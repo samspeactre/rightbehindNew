@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,7 +7,7 @@ import Swiper from 'swiper';
 
 @Component({
   standalone:true,
-  imports:[CommonModule,RouterModule,MatIconModule, MatButtonModule],
+  imports: [RouterModule, MatIconModule, MatButtonModule],
   selector: 'app-card-carousel',
   templateUrl: './card-carousel.component.html',
   styleUrl: './card-carousel.component.css'

@@ -4,7 +4,7 @@ import {} from '../../app/card-carousel/card-carousel.component';
 import { BlogCarouselComponent } from '../../app/blog-carousel/blog-carousel.component';
 import { FooterComponent } from '../footer/footer.component';
 import { SellerCarouselComponent } from '../seller-carousel/seller-carousel.component';
-import { CommonModule } from '@angular/common';
+
 import { NavbarComponent } from '../navbar/navbar.component';
 import { RentalCarouselComponent } from '../rental-carousel/rental-carousel.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
@@ -13,7 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
     NavbarComponent,
     RentalCarouselComponent,
     FooterComponent,
@@ -22,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     SellerCarouselComponent,
     SearchBarComponent,
     MatButtonModule
-  ],
+],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],

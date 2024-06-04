@@ -4,12 +4,12 @@ import Swiper from 'swiper';
 import { FooterComponent } from '../footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
-  imports: [CommonModule,FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule],
+  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.css',

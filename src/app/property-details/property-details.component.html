@@ -1,133 +1,130 @@
 <section>
-    <div class="lg-12">
-        <div class="sec-1">
+  <div class="lg-12">
+    <div class="sec-1">
 
-            <div class="navbar">
-                <app-navbar></app-navbar>
-            </div>
+      <div class="navbar">
+        <app-navbar></app-navbar>
+      </div>
 
-            <div class="content">
-                <h1>The best rental deals in Miami </h1>
-                <h2>Move in with just a security deposit,
-                    a month free and more 🔥</h2>
-                <div class="search-bar">
-                    <app-search-bar></app-search-bar>
-                </div>
-
-                <div class="align-items-center">
-                    <mat-form-field class="w-10">
-                        <mat-label>Max Price</mat-label>
-                        <mat-select>
-                            <mat-option>option a</mat-option>
-                            <mat-option>option b</mat-option>
-                            <mat-option>option c</mat-option>
-                        </mat-select>
-                        <button matSuffix mat-icon-button>
-                            <mat-icon
-                                class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <mat-form-field class="w-10">
-                        <mat-label>Bed</mat-label>
-                        <mat-select>
-                            <mat-option>option a</mat-option>
-                            <mat-option>option b</mat-option>
-                            <mat-option>option c</mat-option>
-                        </mat-select>
-                        <button matSuffix mat-icon-button>
-                            <mat-icon
-                                class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <mat-form-field class="w-10">
-                        <mat-label>Area</mat-label>
-                        <mat-select>
-                            <mat-option>option a</mat-option>
-                            <mat-option>option b</mat-option>
-                            <mat-option>option c</mat-option>
-                        </mat-select>
-                        <button matSuffix mat-icon-button>
-                            <mat-icon
-                                class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <mat-form-field class="w-10">
-                        <mat-label>Filters</mat-label>
-                        <mat-select>
-                            <mat-option>option a</mat-option>
-                            <mat-option>option b</mat-option>
-                            <mat-option>option c</mat-option>
-                        </mat-select>
-                        <button matSuffix mat-icon-button>
-                            <mat-icon
-                                class="custom-icon material-symbols-outlined arrow-down">instant_mix</mat-icon>
-                        </button>
-                    </mat-form-field>
-                </div>
-
-            </div>
-
+      <div class="content">
+        <h1>The best rental deals in Miami </h1>
+        <h2>Move in with just a security deposit,
+        a month free and more 🔥</h2>
+        <div class="search-bar">
+          <app-search-bar></app-search-bar>
         </div>
 
-        <div class="home-tree display content-between">
-            <div class="left-tree">
-                <img src="../../assets/img/left-tree.png" alt="">
-            </div>
-
-            <div class="right-tree">
-                <img src="../../assets/img/left-tree.png" alt="">
-            </div>
+        <div class="align-items-center">
+          <mat-form-field class="w-10">
+            <mat-label>Max Price</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon
+              class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-10">
+            <mat-label>Bed</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon
+              class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-10">
+            <mat-label>Area</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon
+              class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-10">
+            <mat-label>Filters</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon
+              class="custom-icon material-symbols-outlined arrow-down">instant_mix</mat-icon>
+            </button>
+          </mat-form-field>
         </div>
+
+      </div>
+
     </div>
+
+    <div class="home-tree display content-between">
+      <div class="left-tree">
+        <img src="../../assets/img/left-tree.png" alt="">
+      </div>
+
+      <div class="right-tree">
+        <img src="../../assets/img/left-tree.png" alt="">
+      </div>
+    </div>
+  </div>
 </section>
 
 <section>
-    <div class="lg-12 container-site">
-        <div class=" sec-2 content-between">
-            <div class="property-card-wrapper" *ngFor="let card of cards">
-                <div class="property-card">
-                    <div class="card-img">
-                        <img [src]="card.imgSrc" alt="Card Image" class="card-img">
-                        <div class="badge">
-                            <p>{{card.badge}}</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <h3>{{card.name}}</h3>
-                        <p>{{card.desc}}</p>
-                        <div class="card-details  display">
-                            <div class="detail-sec bed display">
-                                <img src="../../assets/img/bed-white.png" alt="" class="details-img">
-                                <div class="detail-text">{{card.bed}}</div>
-                            </div>
-
-                            <div class="detail-sec display">
-                                <img src="../../assets/img/bath-white.png" alt="" class="details-img">
-                                <div class="detail-text">{{card.bath}}</div>
-                            </div>
-
-                            <div class="detail-sec bath display">
-                                <img src="../../assets/img/sq.ft-white.png" alt="" class="details-img">
-                                <div class="detail-text">{{card.sqft}} SqFt</div>
-                            </div>
-                        </div>
-
-                        <div class="card-bottom display content-between">
-                            <div class="price">${{card.price}}</div>
-                            <hr>
-                            <button mat-raised-button>Contact Agent</button>
-                        </div>
-
-                    </div>
-
-                </div>
+  <div class="lg-12 container-site">
+    <div class=" sec-2 content-between">
+      @for (card of cards; track card) {
+        <div class="property-card-wrapper">
+          <div class="property-card">
+            <div class="card-img">
+              <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+              <div class="badge">
+                <p>{{card.badge}}</p>
+              </div>
             </div>
-        </div>
+            <div class="card-content">
+              <h3>{{card.name}}</h3>
+              <p>{{card.desc}}</p>
+              <div class="card-details  display">
+                <div class="detail-sec bed display">
+                  <img src="../../assets/img/bed-white.png" alt="" class="details-img">
+                  <div class="detail-text">{{card.bed}}</div>
+                </div>
+                <div class="detail-sec display">
+                  <img src="../../assets/img/bath-white.png" alt="" class="details-img">
+                  <div class="detail-text">{{card.bath}}</div>
+                </div>
+                <div class="detail-sec bath display">
+                  <img src="../../assets/img/sq.ft-white.png" alt="" class="details-img">
+                  <div class="detail-text">{{card.sqft}} SqFt</div>
+                </div>
+              </div>
+              <div class="card-bottom display content-between">
+                <div class="price">${{card.price}}</div>
+                <hr>
+                  <button mat-raised-button>Contact Agent</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
     </div>
-</section>
+  </section>
 
-<section>
+  <section>
     <div class="footer">
-        <app-footer></app-footer>
+      <app-footer></app-footer>
     </div>
-</section>
+  </section>

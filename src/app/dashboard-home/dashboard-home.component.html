@@ -1,201 +1,199 @@
 <section>
-    <div class="display content-between">
-        <div class="left ">
+  <div class="display content-between">
+    <div class="left ">
 
-            <div class="display content-between bottom-margin">
+      <div class="display content-between bottom-margin">
 
-                <div class="properties tab">
+        <div class="properties tab">
 
-                    <div class=" display content-between tab">
-                        <h2>Total Properties</h2>
-                        <button mat-fab>
-                            <mat-icon>east</mat-icon>
-                        </button>
-                    </div>
-                    <div class="icon-value">
-                        <div class="value-icon">
-                            <div class="btn display">
-                                <mat-icon>location_on</mat-icon>
-                                <h1>20</h1>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="sale">
-                    <div class=" display content-between tab">
-                        <h2>For Sale</h2>
-                        <button mat-fab>
-                            <mat-icon> east</mat-icon>
-                        </button>
-                    </div>
-                    <div class="icon-value">
-                        <div class="value-icon">
-                            <div class="btn display">
-                                <mat-icon>sell</mat-icon>
-                                <h1>10</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rent">
-                    <div class=" display content-between tab">
-                        <h2>For Rent</h2>
-                        <button mat-fab>
-                            <mat-icon>east</mat-icon>
-                        </button>
-                    </div>
-                    <div class="icon-value">
-                        <div class="value-icon">
-                            <div class="btn display">
-                                <mat-icon>vpn_key</mat-icon>
-                                <h1>30</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+          <div class=" display content-between tab">
+            <h2>Total Properties</h2>
+            <button mat-fab>
+              <mat-icon>east</mat-icon>
+            </button>
+          </div>
+          <div class="icon-value">
+            <div class="value-icon">
+              <div class="btn display">
+                <mat-icon>location_on</mat-icon>
+                <h1>20</h1>
+              </div>
             </div>
+          </div>
 
-            <div class="display content-between bottom-margin">
-                <div class="chart">
-                    <h2>Total Listings</h2>
+        </div>
 
-                    <canvasjs-chart [options]="chartOptions"
-                        [styles]="{width: '100%', height: '100%'}"></canvasjs-chart>
-
-                </div>
-                <div class="map">
-                    <google-map width="100%" height="12.5vw" [center]="center" [zoom]="zoom"
-                        (mapClick)="moveMap($event)" [options]="options" (mapClick)="addMarker($event)"
-                        (mapMousemove)="move($event)">
-                        <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
-                            [options]="markerOptions"></map-marker>
-                    </google-map>
-                </div>
+        <div class="sale">
+          <div class=" display content-between tab">
+            <h2>For Sale</h2>
+            <button mat-fab>
+              <mat-icon> east</mat-icon>
+            </button>
+          </div>
+          <div class="icon-value">
+            <div class="value-icon">
+              <div class="btn display">
+                <mat-icon>sell</mat-icon>
+                <h1>10</h1>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div>
+        <div class="rent">
+          <div class=" display content-between tab">
+            <h2>For Rent</h2>
+            <button mat-fab>
+              <mat-icon>east</mat-icon>
+            </button>
+          </div>
+          <div class="icon-value">
+            <div class="value-icon">
+              <div class="btn display">
+                <mat-icon>vpn_key</mat-icon>
+                <h1>30</h1>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <div class="display content-between listing-page">
-                    <h2>My Listings</h2>
-                    <a (click)="viewAllListings()">View All</a>
-                </div>
+      </div>
 
-                <div class="display content-between">
-                    <div class="listing-card" *ngFor="let listing of cards">
-                        <img [src]="listing.imgSrc" alt="Card Image">
-                        <div class="listing-content">
-                            <div class="list-title">{{listing.title}}</div>
-                            <div class="list-add">{{listing.address}}</div>
-                            <div class="listing-icon display">
+      <div class="display content-between bottom-margin">
+        <div class="chart">
+          <h2>Total Listings</h2>
 
-                                <div class="icon-bg display">
-                                    <mat-icon>bed</mat-icon>
-                                    <div class="icon-text">{{listing.bed}}</div>
-                                </div>
-                                <hr>
-                                <div class="icon-bg display">
-                                    <mat-icon>bathtub</mat-icon>
-                                    <div class="icon-text">{{listing.bath}}</div>
-                                </div>
-                                <hr>
-                                <div class="icon-bg-foot display">
-                                    <mat-icon>square_foot</mat-icon>
-                                    <span class="material-symbols-outlined">
+          <canvasjs-chart [options]="chartOptions"
+          [styles]="{width: '100%', height: '100%'}"></canvasjs-chart>
 
-                                    </span>
-                                    <div class="icon-text">{{listing.sqft}}SqFt </div>
-                                </div>
-                            </div>
-                            <div class="price-btn display content-between">
-                                <div class="listing-price">${{listing.price}}</div>
-                                <button mat-raised-button>Contact Agent</button>
-                            </div>
-                        </div>
+        </div>
+        <div class="map">
+          <google-map width="100%" height="12.5vw" [center]="center" [zoom]="zoom"
+            (mapClick)="moveMap($event)" [options]="options" (mapClick)="addMarker($event)"
+            (mapMousemove)="move($event)">
+            @for (markerPosition of markerPositions; track markerPosition) {
+              <map-marker [position]="markerPosition"
+              [options]="markerOptions"></map-marker>
+            }
+          </google-map>
+        </div>
+      </div>
+
+      <div>
+
+        <div class="display content-between listing-page">
+          <h2>My Listings</h2>
+          <a (click)="viewAllListings()">View All</a>
+        </div>
+
+        <div class="display content-between">
+          @for (listing of cards; track listing) {
+            <div class="listing-card">
+              <img [src]="listing.imgSrc" alt="Card Image">
+              <div class="listing-content">
+                <div class="list-title">{{listing.title}}</div>
+                <div class="list-add">{{listing.address}}</div>
+                <div class="listing-icon display">
+                  <div class="icon-bg display">
+                    <mat-icon>bed</mat-icon>
+                    <div class="icon-text">{{listing.bed}}</div>
+                  </div>
+                  <hr>
+                    <div class="icon-bg display">
+                      <mat-icon>bathtub</mat-icon>
+                      <div class="icon-text">{{listing.bath}}</div>
                     </div>
+                    <hr>
+                      <div class="icon-bg-foot display">
+                        <mat-icon>square_foot</mat-icon>
+                        <span class="material-symbols-outlined">
+                        </span>
+                        <div class="icon-text">{{listing.sqft}}SqFt </div>
+                      </div>
+                    </div>
+                    <div class="price-btn display content-between">
+                      <div class="listing-price">${{listing.price}}</div>
+                      <button mat-raised-button>Contact Agent</button>
+                    </div>
+                  </div>
                 </div>
+              }
             </div>
+          </div>
 
         </div>
         <div class="right">
 
-            <div class="analaytics-box">
-                <h2 class="analytics-head">Analytics</h2>
+          <div class="analaytics-box">
+            <h2 class="analytics-head">Analytics</h2>
 
-                <div *ngFor="let num of Analaytics">
-
-                    <div class="analytics-link display content-between">
-                        <div class="icon-analaytics-text display">
-                            <mat-icon>tty</mat-icon>
-                            <div class="analaytic-icon-name">Leads</div>
-                        </div>
-                        <div class="analaytic-icon-value">{{num.leads}}</div>
-                    </div>
-
-                    <div class="analytics-link display content-between">
-                        <div class="icon-analaytics-text display">
-                            <mat-icon>call</mat-icon>
-                            <div class="analaytic-icon-name">Calls</div>
-                        </div>
-                        <div class="analaytic-icon-value">{{num.call}}</div>
-                    </div>
-
-                    <div class="analytics-link-last display content-between">
-                        <div class="icon-analaytics-text display">
-                            <mat-icon>mail</mat-icon>
-                            <div class="analaytic-icon-name">Emails</div>
-                        </div>
-                        <div class="analaytic-icon-value">{{num.emails}}</div>
-                    </div>
-
+            @for (num of Analaytics; track num) {
+              <div>
+                <div class="analytics-link display content-between">
+                  <div class="icon-analaytics-text display">
+                    <mat-icon>tty</mat-icon>
+                    <div class="analaytic-icon-name">Leads</div>
+                  </div>
+                  <div class="analaytic-icon-value">{{num.leads}}</div>
                 </div>
-
-            </div>
-
-            <div class="analaytics-box">
-
-                <div *ngFor="let num of Analaytics">
-
-                    <div class="analytics-link display content-between">
-                        <div class="icon-analaytics-text display">
-                            <mat-icon>visibility</mat-icon>
-                            <div class="analaytic-icon-name">Views</div>
-                        </div>
-                        <div class="analaytic-icon-value">{{num.view}}</div>
-                    </div>
-
-                    <div class="analytics-link display content-between">
-                        <div class="icon-analaytics-text display">
-                            <mat-icon>ads_click</mat-icon>
-                            <div class="analaytic-icon-name">Click</div>
-                        </div>
-                        <div class="analaytic-icon-value">{{num.click}}</div>
-                    </div>
-
-                    <div class="analytics-link-last display content-between">
-                        <div class="icon-analaytics-text display">
-                            <mat-icon> web_traffic</mat-icon>
-                            <div class="analaytic-icon-name">CTR <span class="extra-small-text">(Click Through
-                                    Rate)</span></div>
-                        </div>
-                        <div class="analaytic-icon-value">{{num.ctr}}</div>
-                    </div>
-
+                <div class="analytics-link display content-between">
+                  <div class="icon-analaytics-text display">
+                    <mat-icon>call</mat-icon>
+                    <div class="analaytic-icon-name">Calls</div>
+                  </div>
+                  <div class="analaytic-icon-value">{{num.call}}</div>
                 </div>
+                <div class="analytics-link-last display content-between">
+                  <div class="icon-analaytics-text display">
+                    <mat-icon>mail</mat-icon>
+                    <div class="analaytic-icon-name">Emails</div>
+                  </div>
+                  <div class="analaytic-icon-value">{{num.emails}}</div>
+                </div>
+              </div>
+            }
 
-            </div>
+          </div>
 
-            <div class="redirect-box">
-                <button mat-raised-button>
-                    <mat-icon>north_east</mat-icon>
-                    Go to website.
-                </button>
-            </div>
+          <div class="analaytics-box">
+
+            @for (num of Analaytics; track num) {
+              <div>
+                <div class="analytics-link display content-between">
+                  <div class="icon-analaytics-text display">
+                    <mat-icon>visibility</mat-icon>
+                    <div class="analaytic-icon-name">Views</div>
+                  </div>
+                  <div class="analaytic-icon-value">{{num.view}}</div>
+                </div>
+                <div class="analytics-link display content-between">
+                  <div class="icon-analaytics-text display">
+                    <mat-icon>ads_click</mat-icon>
+                    <div class="analaytic-icon-name">Click</div>
+                  </div>
+                  <div class="analaytic-icon-value">{{num.click}}</div>
+                </div>
+                <div class="analytics-link-last display content-between">
+                  <div class="icon-analaytics-text display">
+                    <mat-icon> web_traffic</mat-icon>
+                    <div class="analaytic-icon-name">CTR <span class="extra-small-text">(Click Through
+                    Rate)</span></div>
+                  </div>
+                  <div class="analaytic-icon-value">{{num.ctr}}</div>
+                </div>
+              </div>
+            }
+
+          </div>
+
+          <div class="redirect-box">
+            <button mat-raised-button>
+              <mat-icon>north_east</mat-icon>
+              Go to website.
+            </button>
+          </div>
 
         </div>
 
-    </div>
-</section>
+      </div>
+    </section>

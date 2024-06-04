@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CommonModule } from '@angular/common';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -51,7 +51,6 @@ interface FormSection {
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
     FooterComponent,
     MatCheckboxModule,
     MatLabel,
@@ -64,7 +63,7 @@ interface FormSection {
     CdkTextareaAutosize,
     NavbarComponent,
     MatButtonModule
-  ],
+],
   selector: 'app-sell-add-property',
   templateUrl: './sell-add-property.component.html',
   styleUrl: './sell-add-property.component.css',

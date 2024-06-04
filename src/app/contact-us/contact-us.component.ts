@@ -3,13 +3,13 @@ import { FooterComponent } from '../footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CommonModule } from '@angular/common';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone:true,
-  imports:[CommonModule,FooterComponent,MatIconModule,MatLabel,MatFormFieldModule,MatInputModule,NavbarComponent,MatButtonModule],
+  imports: [FooterComponent, MatIconModule, MatLabel, MatFormFieldModule, MatInputModule, NavbarComponent, MatButtonModule],
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css'

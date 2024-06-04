@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,7 +7,7 @@ import Swiper from 'swiper';
 
 @Component({
   standalone:true,
-  imports:[CommonModule,MatIconModule,RouterModule, MatButtonModule],
+  imports: [MatIconModule, RouterModule, MatButtonModule],
   selector: 'app-blog-carousel',
   templateUrl: './blog-carousel.component.html',
   styleUrl: './blog-carousel.component.css'

@@ -5,14 +5,14 @@ import { MatOption } from '@angular/material/core';
 import { MatLabel, MatSelect } from '@angular/material/select';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CommonModule } from '@angular/common';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone:true,
-  imports:[CommonModule,FooterComponent,MatIconModule,MatOption,MatSelect,MatLabel,MatFormFieldModule,MatInputModule,SearchBarComponent,NavbarComponent, MatButtonModule],
+  imports: [FooterComponent, MatIconModule, MatOption, MatSelect, MatLabel, MatFormFieldModule, MatInputModule, SearchBarComponent, NavbarComponent, MatButtonModule],
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
   styleUrl: './property-details.component.css'

@@ -5,7 +5,7 @@ import { RentalCarouselComponent } from '../rental-carousel/rental-carousel.comp
 import { MatIconModule } from '@angular/material/icon';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 // import Swiper from 'swiper';
 
@@ -17,7 +17,7 @@ interface Rule {
 
 @Component({
   standalone:true,
-  imports:[CommonModule,FooterComponent,RentalCarouselComponent,MatIconModule,MatTab,MatTabGroup,NavbarComponent,MatButtonModule],
+  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, MatTab, MatTabGroup, NavbarComponent, MatButtonModule],
   selector: 'app-preview',
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.css']

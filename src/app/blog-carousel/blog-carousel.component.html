@@ -1,54 +1,51 @@
 <div class="slide-container swiper">
-    <div class="swiper-container slide-content">
+  <div class="swiper-container slide-content">
 
-          <!-- Add pagination buttons -->
-      <div class="carousel-btn">
-        <button mat-icon-button (click)="slidePrev()" class="swiper-button-prev">
-            <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
-        </button>
-        
-        <button mat-icon-button (click)="slideNext()" class="swiper-button-next">
-            <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
-        </button>
-      </div>
+    <!-- Add pagination buttons -->
+    <div class="carousel-btn">
+      <button mat-icon-button (click)="slidePrev()" class="swiper-button-prev">
+        <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
+      </button>
 
-        <div class="swiper-wrapper container-site">
-            <div class="card-wrapper swiper-slide" *ngFor="let card of cards">
-
-                <div class="card">
-                    <div class="image-content display">
-                        <span class="overlay"></span>
-                        <div class="card-image">
-                            <img [src]="card.imgSrc" alt="Card Image" class="card-img">
-                            <div class="blog-img-content display content-between">
-                                <div class="date-div display">
-                                    <div class="circle"></div>
-                                    <div class="date">{{card.date}}</div>
-                                </div>
-                                <div class="badge">{{card.badge}}</div>
-                            </div>
-                        </div>
-
-                        <div class="card-content">
-                            <div class=" content-between">
-                             <h1 class="card-name">{{ card.name }}</h1>
-                            </div>
-                             <p>{{ card.description }}</p>
-                             <div class="blog-btn">
-                                <a [routerLink]="card.buttonUrl" class="display">
-                                    <mat-icon class="blog-btn-icon">arrow_forward</mat-icon>
-                                    <span>Read more</span>
-                                </a>
-                             </div>
-                         </div>
-
-                    </div>
-                    
-                </div>
-
-            </div>
-        </div>
-      
-
+      <button mat-icon-button (click)="slideNext()" class="swiper-button-next">
+        <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
+      </button>
     </div>
+
+    <div class="swiper-wrapper container-site">
+      @for (card of cards; track card) {
+        <div class="card-wrapper swiper-slide">
+          <div class="card">
+            <div class="image-content display">
+              <span class="overlay"></span>
+              <div class="card-image">
+                <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+                <div class="blog-img-content display content-between">
+                  <div class="date-div display">
+                    <div class="circle"></div>
+                    <div class="date">{{card.date}}</div>
+                  </div>
+                  <div class="badge">{{card.badge}}</div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class=" content-between">
+                  <h1 class="card-name">{{ card.name }}</h1>
+                </div>
+                <p>{{ card.description }}</p>
+                <div class="blog-btn">
+                  <a [routerLink]="card.buttonUrl" class="display">
+                    <mat-icon class="blog-btn-icon">arrow_forward</mat-icon>
+                    <span>Read more</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+
+  </div>
 </div>

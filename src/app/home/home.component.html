@@ -1,229 +1,231 @@
 <section>
-    <app-navbar></app-navbar>
-    <div class="lg-12 home-sec">
-        <div class="row">
+  <app-navbar></app-navbar>
+  <div class="lg-12 home-sec">
+    <div class="row">
 
-            <div class="main-head">
-                <h1>
-                    Find Your Dream Home in Miami, Florida
-                </h1>
-            </div>
+      <div class="main-head">
+        <h1>
+          Find Your Dream Home in Miami, Florida
+        </h1>
+      </div>
 
-            <div class="para-1">
-                <p>Discover exquisite properties in the vibrant heart of Miami. <br> Start your journey to unparalleled
-                    elegance and coastal charm today.</p>
-            </div>
+      <div class="para-1">
+        <p>Discover exquisite properties in the vibrant heart of Miami. <br> Start your journey to unparalleled
+        elegance and coastal charm today.</p>
+      </div>
 
-        </div>
-        <div class="search-bar">
-            <app-search-bar></app-search-bar>
-        </div>
-
-        <div class="display or-text">
-            <hr class="or-line">
-            <p class="or">Or</p>
-            <hr class="or-line">
-        </div>
-
-        <div class="head-2">
-            <h3>Maximize Your Property's Potential!</h3>
-            <div class="para-2">
-                <p>Maximize Your Property's Potential! <br>
-                    List with us and watch your rental income soar!</p>
-            </div>
-            <div class="head-btn">
-                <button mat-raised-button class="head-btn-style">Submit A Deal</button>
-            </div>
-        </div>
-
-        <div class="home-tree">
-            <img src="../../assets/img/left-tree.png" alt="" class="tree-img">
-        </div>
-
-        <div class="right-tree">
-            <img src="../../assets/img/left-tree.png" alt="" class="tree-img">
-        </div>
     </div>
+    <div class="search-bar">
+      <app-search-bar></app-search-bar>
+    </div>
+
+    <div class="display or-text">
+      <hr class="or-line">
+      <p class="or">Or</p>
+      <hr class="or-line">
+    </div>
+
+    <div class="head-2">
+      <h3>Maximize Your Property's Potential!</h3>
+      <div class="para-2">
+        <p>Maximize Your Property's Potential! <br>
+        List with us and watch your rental income soar!</p>
+      </div>
+      <div class="head-btn">
+        <button mat-raised-button class="head-btn-style">Submit A Deal</button>
+      </div>
+    </div>
+
+    <div class="home-tree">
+      <img src="../../assets/img/left-tree.png" alt="" class="tree-img">
+    </div>
+
+    <div class="right-tree">
+      <img src="../../assets/img/left-tree.png" alt="" class="tree-img">
+    </div>
+  </div>
 
 </section>
 
 <section>
-    <div class="lg-12 sec-2">
-        <div class="display carousel-portion container-site ">
+  <div class="lg-12 sec-2">
+    <div class="display carousel-portion container-site ">
 
-            <div class="head-3">
-                <h2>Hot rentals in Miami</h2>
-            </div>
+      <div class="head-3">
+        <h2>Hot rentals in Miami</h2>
+      </div>
 
-            <div class="carousel-line">
-                <hr>
-            </div>
-
+      <div class="carousel-line">
+        <hr>
         </div>
 
-        <div class="rental-carousel">
-            <app-rental-carousel></app-rental-carousel>
-        </div>
+      </div>
+
+      <div class="rental-carousel">
+        <app-rental-carousel></app-rental-carousel>
+      </div>
 
     </div>
-</section>
+  </section>
 
-<section>
+  <section>
     <div class="lg-12 sec-3">
-        <div class="display seller-carousel-portion container-site ">
+      <div class="display seller-carousel-portion container-site ">
 
-            <div class="seller-head-3">
-                <h2>Sellers in Miami</h2>
-            </div>
+        <div class="seller-head-3">
+          <h2>Sellers in Miami</h2>
+        </div>
 
-            <div class="seller-carousel-line">
-                <hr>
-            </div>
+        <div class="seller-carousel-line">
+          <hr>
+          </div>
 
         </div>
 
         <div class="rental-carousel">
-            <app-seller-carousel></app-seller-carousel>
+          <app-seller-carousel></app-seller-carousel>
         </div>
 
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-    <div class="lg-12 post-property">
+    <section>
+      <div class="lg-12 post-property">
         <div class="display container-site">
-            <div class="register-bg display">
-                <div class="left-text">
-                    <h5>Looking to sell or rent your property?</h5>
-                    <h3>Register to Post your Property for Free</h3>
-                    <h5 class="residential">Post your residential/commercial property</h5>
-                </div>
-                <div class="center-text">
-                    <div class="btn-counter">
-                        <button mat-raised-button class="property-btn">Submit Your Property FREE</button>
-                        <div class="counter display">
-                            <!-- counter.component.html -->
-                            <div *ngFor="let counter of counters; let i = index">
-                                <div class="counter-num">{{ counter.count }}K+</div>
-                                <div class="counter-name">{{ counter.name }}</div>
-                            </div>
-
-                        </div>
+          <div class="register-bg display">
+            <div class="left-text">
+              <h5>Looking to sell or rent your property?</h5>
+              <h3>Register to Post your Property for Free</h3>
+              <h5 class="residential">Post your residential/commercial property</h5>
+            </div>
+            <div class="center-text">
+              <div class="btn-counter">
+                <button mat-raised-button class="property-btn">Submit Your Property FREE</button>
+                <div class="counter display">
+                  <!-- counter.component.html -->
+                  @for (counter of counters; track counter; let i = $index) {
+                    <div>
+                      <div class="counter-num">{{ counter.count }}K+</div>
+                      <div class="counter-name">{{ counter.name }}</div>
                     </div>
+                  }
+
                 </div>
-                <div class="house-img-width">
-                    <img src="../../assets/img/house-img-1.png" alt="" class="house-img">
-                </div>
+              </div>
             </div>
+            <div class="house-img-width">
+              <img src="../../assets/img/house-img-1.png" alt="" class="house-img">
+            </div>
+          </div>
 
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-    <div class="lg-12">
+    <section>
+      <div class="lg-12">
         <div class="display container-site">
-            <div class="dream-home">
-                <img src="../../assets/img/dream-home-img.png" alt="">
-            </div>
-            <div class="dream-content">
-                <h2>Ready to make your dream home a reality?</h2>
-                <p>Submit an inquiry for a hassle-free home loan process. Let us guide you through every step toward
-                    securing the keys to your new home.</p>
-                <button mat-raised-button>Submit an inquiry</button>
-            </div>
+          <div class="dream-home">
+            <img src="../../assets/img/dream-home-img.png" alt="">
+          </div>
+          <div class="dream-content">
+            <h2>Ready to make your dream home a reality?</h2>
+            <p>Submit an inquiry for a hassle-free home loan process. Let us guide you through every step toward
+            securing the keys to your new home.</p>
+            <button mat-raised-button>Submit an inquiry</button>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-    <div class="lg-12 market-sec">
+    <section>
+      <div class="lg-12 market-sec">
         <div class="display left-site">
-            <div class="market-content">
-                <h2>Unlock Exclusive Opportunities in Miami's Off-Market Properties</h2>
-                <p>Get early access to Miami's off-market properties. Whether you're buying or selling, join our
-                    exclusive network to unlock unparalleled opportunities. Submit your property or explore listings
-                    now!</p>
-                <button mat-stroked-button>Know More</button>
-            </div>
+          <div class="market-content">
+            <h2>Unlock Exclusive Opportunities in Miami's Off-Market Properties</h2>
+            <p>Get early access to Miami's off-market properties. Whether you're buying or selling, join our
+              exclusive network to unlock unparalleled opportunities. Submit your property or explore listings
+            now!</p>
+            <button mat-stroked-button>Know More</button>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-    <div class="lg-12 sec-6">
+    <section>
+      <div class="lg-12 sec-6">
 
         <div class="display container-site sec-6-content">
-            <div class="sec-left-6">
-                <img src="../../assets/img/map.png" alt="">
-            </div>
-            <div class="sec-right-6">
-                <img src="../../assets/img/sec-6-profile.png" alt="">
-                <h2>Where’s Bryan</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis,
-                    lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis
-                    leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis
-                    scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis
-                    mauris sit amet massa vitae tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit ut aliquam, purus sit amet luctus venenatis.</p>
-                <p class="sec-6-para">lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent
-                    elementum facilisis
-                    leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis
-                    scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis
-                    mauris sit amet massa vitae tortor condimentum.</p>
-                <button mat-stroked-button>Know More</button>
-            </div>
+          <div class="sec-left-6">
+            <img src="../../assets/img/map.png" alt="">
+          </div>
+          <div class="sec-right-6">
+            <img src="../../assets/img/sec-6-profile.png" alt="">
+            <h2>Where’s Bryan</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis,
+              lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis
+              leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis
+              scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis
+              mauris sit amet massa vitae tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit ut aliquam, purus sit amet luctus venenatis.</p>
+            <p class="sec-6-para">lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent
+              elementum facilisis
+              leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis
+              scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis
+            mauris sit amet massa vitae tortor condimentum.</p>
+            <button mat-stroked-button>Know More</button>
+          </div>
 
         </div>
 
         <div class="display">
-            <div class="sec-6-head container-site">
-                <h2>Right Behind Me Community</h2>
-                <div class="display sec-6-carousel">
-                    <div class="sec-6-carousel-para">
-                        <p>Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris
-                            tincidunt sed fusce rhoncus. </p>
-                    </div>
-                    <div class="sec-6-carousel-line">
-                        <hr>
-                    </div>
-
+          <div class="sec-6-head container-site">
+            <h2>Right Behind Me Community</h2>
+            <div class="display sec-6-carousel">
+              <div class="sec-6-carousel-para">
+                <p>Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris
+                tincidunt sed fusce rhoncus. </p>
+              </div>
+              <div class="sec-6-carousel-line">
+                <hr>
                 </div>
 
+              </div>
+
             </div>
-        </div>
+          </div>
 
-        <div class="community-carousel">
+          <div class="community-carousel">
             <app-card-carousel></app-card-carousel>
+          </div>
+
         </div>
+      </section>
 
-    </div>
-</section>
-
-<section>
-    <div class="lg-12 sec-7">
-        <div class="display container-site">
+      <section>
+        <div class="lg-12 sec-7">
+          <div class="display container-site">
 
             <div class="sec-7-content display">
-                <div class="blog-head">
-                    <h2>Blog & News</h2>
+              <div class="blog-head">
+                <h2>Blog & News</h2>
+              </div>
+              <div class="blog-sec-line">
+                <hr>
                 </div>
-                <div class="blog-sec-line">
-                    <hr>
-                </div>
+              </div>
+
             </div>
 
-        </div>
+            <div class="blog-carousel">
+              <app-blog-carousel></app-blog-carousel>
+            </div>
 
-        <div class="blog-carousel">
-            <app-blog-carousel></app-blog-carousel>
-        </div>
+          </div>
+        </section>
 
-    </div>
-</section>
-
-<section>
-    <div class="footer">
-        <app-footer></app-footer>
-    </div>
-</section>
+        <section>
+          <div class="footer">
+            <app-footer></app-footer>
+          </div>
+        </section>

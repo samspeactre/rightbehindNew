@@ -1,16 +1,26 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {RegisterService} from '../services/register.service'
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { RegisterService } from '../services/register.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
+  standalone: true,
+  imports: [MatCheckboxModule, MatLabel, MatFormFieldModule,MatInputModule,MatButtonModule, ReactiveFormsModule],
   selector: 'app-register-popup',
   templateUrl: './register-popup.component.html',
-  styleUrl: './register-popup.component.css'
+  styleUrl: './register-popup.component.css',
 })
 export class RegisterPopupComponent {
-
   registerForm: FormGroup;
 
   constructor(
@@ -20,7 +30,7 @@ export class RegisterPopupComponent {
     private registrationService: RegisterService
   ) {
     this.registerForm = this.fb.group({
-      userAccountTypeId:[''],
+      userAccountTypeId: [''],
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       // phoneNumber: ['', Validators.required],
@@ -33,11 +43,11 @@ export class RegisterPopupComponent {
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.registrationService.register(this.registerForm.value).subscribe(
-        response => {
+        (response) => {
           console.log('Registration successful', response);
           this.dialogRef.close();
         },
-        error => {
+        (error) => {
           console.error('Registration failed', error);
         }
       );
@@ -54,5 +64,4 @@ export class RegisterPopupComponent {
       width: '27%',
     });
   }
-  
 }

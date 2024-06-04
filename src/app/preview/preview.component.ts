@@ -1,5 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import Swiper from 'swiper';
+import { FooterComponent } from '../footer/footer.component';
+import { RentalCarouselComponent } from '../rental-carousel/rental-carousel.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 // import Swiper from 'swiper';
 
 interface Rule {
@@ -9,6 +16,8 @@ interface Rule {
 }
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,FooterComponent,RentalCarouselComponent,MatIconModule,MatTab,MatTabGroup,NavbarComponent,MatButtonModule],
   selector: 'app-preview',
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.css']

@@ -1,8 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,MatIconModule,MatDialogContent,MatButtonModule],
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.css'

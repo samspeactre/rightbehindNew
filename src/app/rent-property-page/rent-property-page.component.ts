@@ -1,6 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
 
 interface ImageFile {
   name: string;
@@ -31,26 +48,33 @@ interface FormSection {
 }
 
 @Component({
+  standalone: true,
+  imports: [CommonModule,FooterComponent, MatCheckboxModule, MatLabel, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize,ReactiveFormsModule,MatDatepickerModule,NavbarComponent],
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
   styleUrls: ['./rent-property-page.component.css'],
   animations: [
     trigger('fadeInOut', [
-      state('void', style({
-        opacity: 0,
-        height: '0px',
-        overflow: 'hidden'
-      })),
-      state('*', style({
-        opacity: 1,
-        height: '*'
-      })),
+      state(
+        'void',
+        style({
+          opacity: 0,
+          height: '0px',
+          overflow: 'hidden',
+        })
+      ),
+      state(
+        '*',
+        style({
+          opacity: 1,
+          height: '*',
+        })
+      ),
       transition('void <=> *', animate('300ms ease-in-out')),
-    ])
-  ]
+    ]),
+  ],
 })
 export class RentPropertyPageComponent implements OnInit {
-
   imageSrc: string | ArrayBuffer | null = null;
   sections: any;
   private readonly MAX_AMENITIES = 24; // Maximum number of amenities to display
@@ -72,32 +96,32 @@ export class RentPropertyPageComponent implements OnInit {
 
   ngOnInit(): void {
     // Limit amenities for each category
-    this.categories = this.categories.map(category => ({
+    this.categories = this.categories.map((category) => ({
       ...category,
-      amenities: category.amenities.slice(0, this.MAX_AMENITIES)
+      amenities: category.amenities.slice(0, this.MAX_AMENITIES),
     }));
     this.formGroup = new FormGroup({
       floorPlansArray: new FormArray([
         new FormGroup({
           floorPlanName: new FormControl(null, Validators.required),
-        floorBed: new FormControl(null, Validators.required),
-        floorbath: new FormControl(null, Validators.required),
-        floorSqft: new FormControl(null, Validators.required),
-        floorCurrencyType: new FormControl(null, Validators.required),
-        floorSalesPrice: new FormControl(null, Validators.required),
-        floorDesc: new FormControl(null, Validators.required),
-        img: new FormControl(null, Validators.required),
-        })
-      ])
-    })
+          floorBed: new FormControl(null, Validators.required),
+          floorbath: new FormControl(null, Validators.required),
+          floorSqft: new FormControl(null, Validators.required),
+          floorCurrencyType: new FormControl(null, Validators.required),
+          floorSalesPrice: new FormControl(null, Validators.required),
+          floorDesc: new FormControl(null, Validators.required),
+          img: new FormControl(null, Validators.required),
+        }),
+      ]),
+    });
   }
 
   get getFloorPlansFormArray(): FormArray {
-    return this.formGroup.get("floorPlansArray") as FormArray
+    return this.formGroup.get('floorPlansArray') as FormArray;
   }
 
   addNew() {
-    this.floorPlansArray = this.formGroup.get("floorPlansArray") as FormArray
+    this.floorPlansArray = this.formGroup.get('floorPlansArray') as FormArray;
     this.floorPlansArray.push(
       new FormGroup({
         floorPlanName: new FormControl(null, Validators.required),
@@ -109,16 +133,15 @@ export class RentPropertyPageComponent implements OnInit {
         floorDesc: new FormControl(null, Validators.required),
         img: new FormControl(null, Validators.required),
       })
-    )
+    );
   }
 
   getimg(index: number) {
-    this.floorPlansArray = this.formGroup.get("floorPlansArray") as FormArray
-    let controls = this.floorPlansArray.at(index)
-    return controls.get("img")?.value
+    this.floorPlansArray = this.formGroup.get('floorPlansArray') as FormArray;
+    let controls = this.floorPlansArray.at(index);
+    return controls.get('img')?.value;
   }
 
-  
   // Remove the selected image
   removeImage(index: number) {
     const floorPlanGroup = this.getFloorPlansFormArray.at(index) as FormGroup;
@@ -127,35 +150,33 @@ export class RentPropertyPageComponent implements OnInit {
 
   // Trigger primary file input
   triggerFileInput(index: number): void {
-    let id = "fileInput" + index.toString()
+    let id = 'fileInput' + index.toString();
     const fileInput = document.getElementById(id) as HTMLElement;
     fileInput.click();
   }
 
   // Handle primary file selection
-  onFileSelected(event: Event,index?: number): void {
+  onFileSelected(event: Event, index?: number): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
         this.imageSrc = reader.result;
-        if(index!= undefined) {
-          this.floorPlansArray = this.formGroup.get("floorPlansArray") as FormArray
-          let controls = this.floorPlansArray.at(index)
+        if (index != undefined) {
+          this.floorPlansArray = this.formGroup.get(
+            'floorPlansArray'
+          ) as FormArray;
+          let controls = this.floorPlansArray.at(index);
           controls.patchValue({
-           img: this.imageSrc
-  
-          })
-          console.log(this.floorPlansArray)
+            img: this.imageSrc,
+          });
+          console.log(this.floorPlansArray);
         }
-
-      
       };
       reader.readAsDataURL(file);
     }
   }
-
 
   // Handle additional file selection
   onAdditionalFileSelected(event: any) {
@@ -164,8 +185,8 @@ export class RentPropertyPageComponent implements OnInit {
 
   // Handle third file selection
   onThirdFileSelected(event: any) {
-    console.log("Third file input selected");
-    console.log("Event: ", event);
+    console.log('Third file input selected');
+    console.log('Event: ', event);
     this.handleFileSelection(event, this.thirdSelectedFiles);
   }
 
@@ -190,7 +211,7 @@ export class RentPropertyPageComponent implements OnInit {
         targetArray.push({
           name: file.name,
           size: file.size,
-          url: e.target.result
+          url: e.target.result,
         });
       };
       reader.readAsDataURL(file);
@@ -213,14 +234,128 @@ export class RentPropertyPageComponent implements OnInit {
   }
 
   categories: Category[] = [
-    { name: 'Features', amenities: ['Cable Ready', 'Storage Space', 'Heating', ' Security System', 'Ceiling Fans', ' Double Vanities', ' High Speed Internet Access', ' Satellite TV', 'Sprinkler System', ' Tub/Shower', 'Surround Sound', 'Wi-Fi', 'Framed Mirrors', 'Handrails', 'Intercom', ' Trash Compactor', ' Vacuum System', ' Wheelchair Accessible (Rooms)'] },
-    { name: 'Kitchens', amenities: ['Disposal', 'Microwave', 'Eat-in Kitchen', 'Kitchen', 'Granite Countertops', ' Ice Maker', 'Refrigerator', 'Oven', 'Stainless Steel Appliances', 'Range', 'Breakfast Nook', 'Coffee System', 'Freezer', 'Instant Hot Water', 'Island Kitchen', 'Pantry', 'Warming Drawer', 'Quartz Countertops'] },
-    { name: 'Outdoor Spaces', amenities: ['Balcony', 'Yard', 'Grill', 'Deck', 'Dock', 'Garden', 'Greenhouse', 'Lawn', 'Patio', 'Porch'] },
-    { name: 'Living Spaces', amenities: ['Bay Window', 'Tile Floors', ' Crown Molding', 'Hardwood Floors', 'Vaulted Ceiling', 'Sunroom', 'Views', 'Walk-In Closets', 'Carpet', 'Attic', 'Basement', 'Built-In Bookshelves'] },
-    { name: 'Property', amenities: ['Furnished', ' Wheelchair Accessible', ' Elevator', ' No Smoking', 'AC', 'Storage', 'Loft', 'Fitness Center', 'Fireplace', ' Gated Entry', ' Dishwasher', 'Swimming Pool'] },
+    {
+      name: 'Features',
+      amenities: [
+        'Cable Ready',
+        'Storage Space',
+        'Heating',
+        ' Security System',
+        'Ceiling Fans',
+        ' Double Vanities',
+        ' High Speed Internet Access',
+        ' Satellite TV',
+        'Sprinkler System',
+        ' Tub/Shower',
+        'Surround Sound',
+        'Wi-Fi',
+        'Framed Mirrors',
+        'Handrails',
+        'Intercom',
+        ' Trash Compactor',
+        ' Vacuum System',
+        ' Wheelchair Accessible (Rooms)',
+      ],
+    },
+    {
+      name: 'Kitchens',
+      amenities: [
+        'Disposal',
+        'Microwave',
+        'Eat-in Kitchen',
+        'Kitchen',
+        'Granite Countertops',
+        ' Ice Maker',
+        'Refrigerator',
+        'Oven',
+        'Stainless Steel Appliances',
+        'Range',
+        'Breakfast Nook',
+        'Coffee System',
+        'Freezer',
+        'Instant Hot Water',
+        'Island Kitchen',
+        'Pantry',
+        'Warming Drawer',
+        'Quartz Countertops',
+      ],
+    },
+    {
+      name: 'Outdoor Spaces',
+      amenities: [
+        'Balcony',
+        'Yard',
+        'Grill',
+        'Deck',
+        'Dock',
+        'Garden',
+        'Greenhouse',
+        'Lawn',
+        'Patio',
+        'Porch',
+      ],
+    },
+    {
+      name: 'Living Spaces',
+      amenities: [
+        'Bay Window',
+        'Tile Floors',
+        ' Crown Molding',
+        'Hardwood Floors',
+        'Vaulted Ceiling',
+        'Sunroom',
+        'Views',
+        'Walk-In Closets',
+        'Carpet',
+        'Attic',
+        'Basement',
+        'Built-In Bookshelves',
+      ],
+    },
+    {
+      name: 'Property',
+      amenities: [
+        'Furnished',
+        ' Wheelchair Accessible',
+        ' Elevator',
+        ' No Smoking',
+        'AC',
+        'Storage',
+        'Loft',
+        'Fitness Center',
+        'Fireplace',
+        ' Gated Entry',
+        ' Dishwasher',
+        'Swimming Pool',
+      ],
+    },
   ];
 
-  defaultAmenities: string[] = ['Air Conditioning', 'Lawn', 'Swimming Pool', 'Barbeque', 'Microwave', 'Wide-Open Spaces', 'Billiards Table', 'Valet Trash', 'TV Cable', 'Dryer', 'Outdoor Shower', 'Washer', 'Gym', 'Parks', 'Clubhouse', 'Sporting Facilities', 'Refrigerator', 'WIFI', 'Laundry', 'Sauna', 'Window Coverings', 'Rooftop Gardens', 'Spa'].slice(0, this.MAX_AMENITIES); // Limit default amenities
+  defaultAmenities: string[] = [
+    'Air Conditioning',
+    'Lawn',
+    'Swimming Pool',
+    'Barbeque',
+    'Microwave',
+    'Wide-Open Spaces',
+    'Billiards Table',
+    'Valet Trash',
+    'TV Cable',
+    'Dryer',
+    'Outdoor Shower',
+    'Washer',
+    'Gym',
+    'Parks',
+    'Clubhouse',
+    'Sporting Facilities',
+    'Refrigerator',
+    'WIFI',
+    'Laundry',
+    'Sauna',
+    'Window Coverings',
+    'Rooftop Gardens',
+    'Spa',
+  ].slice(0, this.MAX_AMENITIES); // Limit default amenities
 
   selectedCategory: Category | null = null;
   filteredAmenities: string[] = this.defaultAmenities;
@@ -241,5 +376,14 @@ export class RentPropertyPageComponent implements OnInit {
     return columns;
   }
 
-  utilities: string[] = ['Gas', 'Water', 'Electricity', 'Heat', 'Trash Removal', 'Sewer', 'Air Conditioning', 'Cable'];
+  utilities: string[] = [
+    'Gas',
+    'Water',
+    'Electricity',
+    'Heat',
+    'Trash Removal',
+    'Sewer',
+    'Air Conditioning',
+    'Cable',
+  ];
 }

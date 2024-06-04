@@ -1,20 +1,42 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {} from '../../app/card-carousel/card-carousel.component'
-import {} from '../../app/card-carousel/card-carousel.component'
-import {} from '../../app/blog-carousel/blog-carousel.component'
-
+import { CardCarouselComponent } from '../../app/card-carousel/card-carousel.component';
+import {} from '../../app/card-carousel/card-carousel.component';
+import { BlogCarouselComponent } from '../../app/blog-carousel/blog-carousel.component';
+import { FooterComponent } from '../footer/footer.component';
+import { SellerCarouselComponent } from '../seller-carousel/seller-carousel.component';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { RentalCarouselComponent } from '../rental-carousel/rental-carousel.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    RentalCarouselComponent,
+    FooterComponent,
+    BlogCarouselComponent,
+    CardCarouselComponent,
+    SellerCarouselComponent,
+    SearchBarComponent,
+    MatButtonModule
+  ],
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-
-  counters: { name: string; count: number; minCount: number; maxCount: number }[] = [
-    { name: ' Property Listings', count: 0, minCount: 0, maxCount: 350 } ,
-    { name: 'Monthly Users', count: 0, minCount: 0, maxCount: 200 }, 
-    { name: 'New Property every Month', count: 0, minCount: 0, maxCount: 30 }, 
+  counters: {
+    name: string;
+    count: number;
+    minCount: number;
+    maxCount: number;
+  }[] = [
+    { name: ' Property Listings', count: 0, minCount: 0, maxCount: 350 },
+    { name: 'Monthly Users', count: 0, minCount: 0, maxCount: 200 },
+    { name: 'New Property every Month', count: 0, minCount: 0, maxCount: 30 },
   ];
   intervalIds: any[] = [];
 
@@ -40,11 +62,10 @@ export class HomeComponent {
   }
 
   stopCounters() {
-    this.intervalIds.forEach(id => clearInterval(id));
+    this.intervalIds.forEach((id) => clearInterval(id));
   }
 
   stopCounter(index: number) {
     clearInterval(this.intervalIds[index]);
   }
-  
 }

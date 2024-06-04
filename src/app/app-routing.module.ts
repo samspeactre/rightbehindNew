@@ -21,7 +21,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'card-carousel', component: CardCarouselComponent },
   { path: 'blog-carousel', component: BlogCarouselComponent },

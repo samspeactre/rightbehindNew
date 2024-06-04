@@ -1,8 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
+import { FooterComponent } from '../footer/footer.component';
+import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatOption } from '@angular/material/core';
+import { MatLabel, MatSelect } from '@angular/material/select';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,FooterComponent,MapMarker,GoogleMap,RouterModule,MatIconModule,MatOption,MatSelect,MatLabel,MatFormFieldModule,MatInputModule,SearchBarComponent,NavbarComponent,MatButtonModule],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.css'

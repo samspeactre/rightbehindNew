@@ -1,9 +1,15 @@
+import { MatButtonModule } from '@angular/material/button';
 import { Component, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,RouterModule, MatIconModule, MatButtonModule],
   selector: 'app-rental-carousel',
   templateUrl: './rental-carousel.component.html',
   styleUrl: './rental-carousel.component.css'

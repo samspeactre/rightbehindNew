@@ -1,7 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import Swiper from 'swiper';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,RouterModule,MatIconModule,MatButtonModule],
   selector: 'app-seller-carousel',
   templateUrl: './seller-carousel.component.html',
   styleUrl: './seller-carousel.component.css'

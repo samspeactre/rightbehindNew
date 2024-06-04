@@ -1,7 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @Component({
+  standalone:true,
+  imports:[CommonModule,MatIconModule,MapMarker,GoogleMap,CanvasJSAngularChartsModule],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.css'

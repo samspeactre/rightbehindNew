@@ -1,0 +1,111 @@
+<section>
+
+    <div class="navbar">
+        <app-navbar></app-navbar>
+    </div>
+
+    <div class="lg-12">
+        <div class="content sec-1">
+            <h1>Contact Us</h1>
+            <div class="page-links display">
+                <a href="">Home</a>
+                <div class="slash">/</div>
+                <a href="">Contact Us</a>
+            </div>
+            <div class="home-tree display content-between">
+                <div class="left-tree">
+                    <img src="../../assets/img/left-tree.png" alt="">
+                </div>
+                <div class="right-tree">
+                    <img src="../../assets/img/left-tree.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section>
+    <div class="container-site display sec-2">
+
+        <div class="left-portion">
+            <h1>Connect with Us</h1>
+            <div class="left-contact">
+                <div class="display">
+                    <div class="icon">
+                        <mat-icon class="call">phone_in_talk</mat-icon>
+                    </div>
+                    <div class="icon-text" *ngFor="let info of contact">
+                        <h2 class="bold-text">Phone :</h2>
+                        <div class="light-text-num">{{info.num}}</div>
+                    </div>
+                </div>
+
+                <div class="display">
+                    <div class="icon-mail">
+                        <mat-icon class="mail">mark_email_unread</mat-icon>
+                    </div>
+                    <div class="icon-text" *ngFor="let info of contact">
+                        <h2 class="bold-text">Email :</h2>
+                        <div class="light-text">{{info.email}}</div>
+                    </div>
+                </div>
+
+                <div class="display">
+                    <div class="icon icon-location">
+                        <mat-icon class="call">location_on</mat-icon>
+                    </div>
+                    <div class="icon-text icon-text-location" *ngFor="let info of contact">
+                        <h2 class="bold-text">Visit Here:</h2>
+                        <div class="light-text">{{info.location}}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="right-portion">
+            <h1>Get in Touch</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Bibendum neque pellentesque quis adipiscing convallis.</p>
+
+            <form>
+                <mat-form-field class="input-padding">
+                    <mat-label>Full Name</mat-label>
+                    <mat-icon class="form-icon" matPrefix>person</mat-icon>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field class="input-padding">
+                    <mat-label>Email Address</mat-label>
+                    <mat-icon class="form-icon" matPrefix>mail</mat-icon>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field class="input-padding">
+                    <mat-label>Mobile No</mat-label>
+                    <mat-icon class="form-icon" matPrefix>call</mat-icon>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field class="input-padding">
+                    <mat-label>Subject</mat-label>
+                    <mat-icon class="form-icon" matPrefix>pan_tool_alt</mat-icon>
+                    <input matInput>
+                </mat-form-field>
+
+                <mat-form-field class="input-padding text-padding">
+                    <mat-label>Write your message here....</mat-label>
+                    <mat-icon class="text-icon" matPrefix>mail</mat-icon>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+
+                <button mat-raised-button class="contact-form">Send</button>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>
+</section>

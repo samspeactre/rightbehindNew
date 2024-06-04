@@ -1,0 +1,125 @@
+nav {
+    height: 3.2vw;
+    align-content: center;
+}
+
+.left {
+    width: 23.3%;
+    align-content: center;
+}
+
+h1 {
+    font-size: 1.58vw;
+    font-family: "bold";
+    color: var(--black);
+    letter-spacing: -0.01vw;
+}
+
+.center {
+    width: 48.2%;
+}
+
+.right {
+    width: 22.2%;
+}
+
+:host ::ng-deep .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+    background-color: var(--sec-light);
+    border-radius: 3vw;
+    height: 3.2vw;
+    width: 22.5vw;
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom: 0;
+}
+
+:host ::ng-deep .mat-mdc-form-field-infix {
+    width: auto;
+    padding: 0vw;
+    min-width: auto;
+    min-height: 0vw;
+}
+
+.search-bar .srch-input .mat-icon {
+    font-size: 1.7vw;
+    padding: 0;
+    margin-left: -21.5vw;
+    margin-top: 0.8vw;
+    color: var(--dashnav-icon);
+}
+
+:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    font-size: 0.85vw;
+    font-family: "reg";
+    color: rgba(126, 126, 126, 1);
+    margin-top: -0.4vw;
+    margin-left: 2vw;
+}
+
+:host ::ng-deep .mat-mdc-outlined-button:not(:disabled) {
+    color: var(--white);
+    background-color: var(--red);
+    border: 0;
+    border-radius: 3vw;
+    padding: 0vw 1.8vw;
+    font-size: 0.95vw;
+    font-family: 'reg';
+    height: 3.2vw;
+}
+
+:host ::ng-deep .mat-mdc-button>.mat-icon,
+.mat-mdc-unelevated-button>.mat-icon,
+.mat-mdc-raised-button>.mat-icon,
+.mat-mdc-outlined-button>.mat-icon {
+    width: 2vw;
+    height: 2vw;
+    align-content: center;
+    font-size: 1.4vw;
+}
+
+.nav-icon button {
+    background-color: var(--sec-light);
+    width: 3.3vw;
+    height: 3.3vw;
+    box-shadow: none;
+}
+
+.nav-icon button .mat-icon {
+    color: var(--dashnav-icon);
+    background-color: transparent;
+    font-size: 2vw;
+    align-content: center;
+    text-align: center;
+}
+
+.nav-icon-profile{
+    align-items: center;
+}
+
+.nav-icon-profile button img {
+    box-shadow: none;
+    width: 3vw;
+    height: 3vw;
+    object-fit: cover;
+    border: 0.2vw solid var(--dashnav-icon);
+    border-radius: 50%;
+    margin-left: -1.5vw;
+    padding: 0;
+}
+
+.nav-icon-profile span {
+    font-size: 0.9vw;
+    font-family: 'med';
+    align-content: center;
+    margin-left: -1vw;
+}
+
+.navbar hr{
+    height: 2.5vw;
+    align-self: center;
+}

@@ -6,10 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule],
+  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.css',

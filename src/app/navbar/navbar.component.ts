@@ -5,10 +5,11 @@ import { SellPropertyPopupComponent } from '../sell-property-popup/sell-property
 import { MatIconModule } from '@angular/material/icon';
 
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone:true,
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatIconModule, RouterModule, MatButtonModule],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',

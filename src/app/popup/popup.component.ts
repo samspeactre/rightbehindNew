@@ -3,11 +3,11 @@ import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   standalone:true,
-  imports: [MatIconModule, MatDialogContent, MatButtonModule],
+  imports: [MatIconModule, MatDialogContent, MatButtonModule,RouterModule],
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.css'
@@ -89,11 +89,15 @@ export class PopupComponent implements OnInit{
   }
 
   startAutoPlay() {
-    this.sliderTrack.nativeElement.style.animationPlayState = 'running';
+    if(this.sliderTrack){
+      this.sliderTrack.nativeElement.style.animationPlayState = 'running';
+    }
   }
 
   stopAutoPlay() {
-    this.sliderTrack.nativeElement.style.animationPlayState = 'paused';
+    if(this.sliderTrack){
+      this.sliderTrack.nativeElement.style.animationPlayState = 'paused';
+    }
   }
 
   onHeadingClick(id: string) {
@@ -104,7 +108,9 @@ export class PopupComponent implements OnInit{
   onMouseDown(event: MouseEvent) {
     this.isDragging = true;
     this.startX = event.clientX;
-    this.startScrollLeft = this.sliderTrack.nativeElement.scrollLeft;
+    if(this.sliderTrack){
+      this.startScrollLeft = this.sliderTrack.nativeElement.scrollLeft;
+    }
     this.stopAutoPlay();
   }
 
@@ -112,7 +118,9 @@ export class PopupComponent implements OnInit{
   onMouseMove(event: MouseEvent) {
     if (!this.isDragging) return;
     const distance = event.clientX - this.startX;
-    this.sliderTrack.nativeElement.scrollLeft = this.startScrollLeft - distance;
+    if(this.sliderTrack){
+      this.sliderTrack.nativeElement.scrollLeft = this.startScrollLeft - distance;
+    }
   }
 
   @HostListener('mouseup', ['$event'])

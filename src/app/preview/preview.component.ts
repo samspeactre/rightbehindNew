@@ -7,6 +7,7 @@ import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 // import Swiper from 'swiper';
 
 interface Rule {
@@ -17,7 +18,7 @@ interface Rule {
 
 @Component({
   standalone:true,
-  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, MatTab, MatTabGroup, NavbarComponent, MatButtonModule],
+  imports: [FooterComponent,RouterModule, RentalCarouselComponent, MatIconModule, MatTab, MatTabGroup, NavbarComponent, MatButtonModule],
   selector: 'app-preview',
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.css']

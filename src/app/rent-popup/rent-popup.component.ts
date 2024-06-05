@@ -6,10 +6,11 @@ import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone:true,
-  imports:[MatLabel,MatFormFieldModule,MatInputModule,MatButtonModule,MatOption,MatSelect],
+  imports:[MatLabel,RouterModule,MatFormFieldModule,MatInputModule,MatButtonModule,MatOption,MatSelect],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
   styleUrl: './rent-popup.component.css'

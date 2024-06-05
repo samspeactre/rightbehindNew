@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 
 interface ImageFile {
   name: string;
@@ -49,7 +50,7 @@ interface FormSection {
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, MatCheckboxModule, MatLabel, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, NavbarComponent],
+  imports: [FooterComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, NavbarComponent],
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
   styleUrls: ['./rent-property-page.component.css'],

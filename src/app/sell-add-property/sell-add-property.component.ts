@@ -19,6 +19,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 interface ImageFile {
   name: string;
@@ -62,7 +63,8 @@ interface FormSection {
     MatDatepickerModule,
     CdkTextareaAutosize,
     NavbarComponent,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
 ],
   selector: 'app-sell-add-property',
   templateUrl: './sell-add-property.component.html',

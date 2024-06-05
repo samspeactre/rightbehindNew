@@ -12,7 +12,7 @@
         </h1>
         <h2>Move in with just a security deposit, a month free and more 🔥</h2>
         <div class="search-bar">
-          <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
+          <app-search-bar (searchEvent)="searchProperties($event)" [searching]="loader"></app-search-bar>
         </div>
 
         <div class="align-items-center">

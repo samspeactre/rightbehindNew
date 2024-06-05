@@ -66,6 +66,7 @@ export class PropertyDetailsComponent {
   }
 
   getProperties() {
+    this.loader = true
     const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo}&pageSize=${this.pageSize}`;
     const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize}`;
     this.http

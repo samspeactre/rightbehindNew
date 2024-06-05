@@ -50,20 +50,14 @@ export class PropertyDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private http: HttpService
   ) {
-    this.activatedRoute.data
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
-      )
-      .subscribe((data: any) => {
-        this.pageType = data?.type;
-        this.loader = true;
-        this.getProperties();
-      });
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.search = params['search']
+    });
   }
-
+  ngOnInit() {
+    this.loader = true;
+    this.getProperties();
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

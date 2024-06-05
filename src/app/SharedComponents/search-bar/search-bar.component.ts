@@ -14,9 +14,9 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
   styleUrl: './search-bar.component.css'
 })
 export class SearchBarComponent {
-  mentorSearchQuery!: string;
   mentorSearchQueryUpdate = new Subject<any>();
   @Input() searching:boolean = false;
+  @Input() search!:string;
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
 
   private destroy$ = new Subject<void>();

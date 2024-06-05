@@ -4,7 +4,7 @@
       matInput
       [readOnly]="searching"
       onkeydown="return /[a-zA-Z\s\b\n]/.test(event.key) || /^\d$/.test(event.key)"
-      [(ngModel)]="mentorSearchQuery"
+      [(ngModel)]="search"
       (ngModelChange)="this.mentorSearchQueryUpdate.next($event)"
       class="input-text"
       placeholder="Enter an address, neighborhood, city, or ZIP code"

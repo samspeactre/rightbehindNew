@@ -7,6 +7,7 @@ import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/
 import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { SellerCarouselComponent } from '../seller-carousel/seller-carousel.component';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -18,8 +19,8 @@ import { SellerCarouselComponent } from '../seller-carousel/seller-carousel.comp
     CardCarouselComponent,
     SellerCarouselComponent,
     SearchBarComponent,
-    MatButtonModule
-],
+    MatButtonModule,
+  ],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -36,7 +37,7 @@ export class HomeComponent {
     { name: 'New Property every Month', count: 0, minCount: 0, maxCount: 30 },
   ];
   intervalIds: any[] = [];
-
+  constructor(private router: Router) {}
   ngOnInit() {
     this.startCounters();
   }
@@ -53,7 +54,7 @@ export class HomeComponent {
         } else {
           this.stopCounter(index);
         }
-      }, 30); // Interval duration
+      }, 30);
       this.intervalIds.push(intervalId);
     });
   }
@@ -65,7 +66,9 @@ export class HomeComponent {
   stopCounter(index: number) {
     clearInterval(this.intervalIds[index]);
   }
-  searchProperties(event:any){
-    console.log(event);
-  }
+  searchProperties(event: any) {
+    this.router.navigate(
+      ['/buy-property'],
+      { queryParams: { search: event } }
+    );}
 }

@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { PropertyCardComponent } from '../../SharedComponents/property-card/property-card.component';
 import { HttpService } from '../../Services/http.service';
+import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 
 @Component({
   standalone: true,
@@ -28,6 +29,7 @@ import { HttpService } from '../../Services/http.service';
     NavbarComponent,
     MatButtonModule,
     PropertyCardComponent,
+    MiniLoadingComponent,
   ],
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
@@ -39,10 +41,11 @@ export class PropertyDetailsComponent {
   search: string = '';
   pageNo: number = 1;
   pageSize: number = 5;
-  cards: any[] = [1,2,3];
+  cards: any[] = [1, 2, 3];
   loader: boolean = true;
   noData: boolean = false;
-  loadMore:boolean = false;
+  loadMore: boolean = false;
+  loadMoreLoader: boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService
@@ -56,6 +59,7 @@ export class PropertyDetailsComponent {
       )
       .subscribe((data: any) => {
         this.pageType = data?.type;
+        this.loader = true;
         this.getProperties();
       });
   }
@@ -66,19 +70,21 @@ export class PropertyDetailsComponent {
   }
 
   getProperties() {
-    this.loader = true
     const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo}&pageSize=${this.pageSize}`;
     const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize}`;
     this.http
-      .loaderGet(this.search ? searchUrl : withoutSearchUrl, false, false, false)
+      .loaderGet(
+        this.search ? searchUrl : withoutSearchUrl,
+        false,
+        false,
+        false
+      )
       .pipe(
         finalize(() => {
+          this.loadMoreLoader = false;
           this.loader = false;
         }),
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
+        takeUntil(this.destroy$)
       )
       .subscribe((response) => {
         if (response?.model?.properties) {
@@ -89,18 +95,20 @@ export class PropertyDetailsComponent {
           this.cards = [];
           this.noData = true;
         }
+        this.loadMore = this.cards?.length < response?.model?.totalResults;
       });
   }
 
   loadMoreProperties() {
     this.pageNo++;
+    this.loadMoreLoader = true;
     this.getProperties();
   }
 
   searchProperties(event: string) {
+    this.loader = true;
     this.search = event;
     this.pageNo = 1;
     this.getProperties();
   }
 }
-

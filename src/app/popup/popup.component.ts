@@ -40,8 +40,7 @@ export class PopupComponent implements OnInit{
       'Dryer',
       'Outdoor Shower',
       'Washer',
-      'Gym',
-      // Add other facilities here...
+      'Gym'
     ]
   };
 
@@ -83,9 +82,10 @@ export class PopupComponent implements OnInit{
   private isDragging = false;
   private startX = 0;
   private startScrollLeft = 0;
-
+  chunkedFacilities: any[] = [];
   ngOnInit() {
     this.startAutoPlay();
+    this.chunkedFacilities = this.chunkArray(this.amenities.facilities, 6);
   }
 
   startAutoPlay() {

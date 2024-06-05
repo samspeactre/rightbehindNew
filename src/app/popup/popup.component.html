@@ -139,20 +139,20 @@
                       <p>{{detail.desc}}</p>
                     </div>
                   }
-                  <div id="Ameneties" class="ameneties">
-                    <h3>Ameneties</h3>
-                    <div class="facilities">
-                      @for (group of chunkArray(amenities.facilities, 6); track group) {
-                        <ul class="facility-group">
-                          @for (facility of group; track facility) {
-                            @if(facility){
+                  @if(chunkedFacilities?.length){
+                    <div id="Ameneties" class="ameneties">
+                      <h3>Ameneties</h3>
+                      <div class="facilities">
+                        @for (group of chunkedFacilities; track group) {
+                          <ul class="facility-group">
+                            @for (facility of group; track facility) {
                               <li class="facility">{{ facility }}</li>
                             }
-                          }
-                        </ul>
-                      }
+                          </ul>
+                        }
+                      </div>
                     </div>
-                  </div>
+                  }
 
                   <div id="Gallery" class="gallery">
                     <h3>Gallery</h3>

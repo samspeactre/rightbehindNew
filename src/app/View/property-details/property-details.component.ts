@@ -9,7 +9,7 @@ import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { PropertyCardComponent } from '../../SharedComponents/property-card/property-card.component';
 import { HttpService } from '../../Services/http.service';
@@ -46,12 +46,16 @@ export class PropertyDetailsComponent {
   noData: boolean = false;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
+  param:boolean= false;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private http: HttpService
+    private http: HttpService,
+    private router:Router
   ) {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.search = params['search']
+      if(params['search']){
+        this.search = params['search'];
+      }
     });
   }
   ngOnInit() {
@@ -77,6 +81,10 @@ export class PropertyDetailsComponent {
         finalize(() => {
           this.loadMoreLoader = false;
           this.loader = false;
+          this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            queryParams: {}
+          });
         }),
         takeUntil(this.destroy$)
       )

@@ -24,15 +24,22 @@ export class SearchBarComponent {
   constructor(){
     this.mentorSearchQueryUpdate
       .pipe(
-        debounceTime(1000),
+        debounceTime(500),
         distinctUntilChanged(),
         takeUntil(this.destroy$),
         distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
       )
-      .subscribe((value) => this.searchEvent.emit(value));
+      .subscribe((value) => {
+        if(value?.length < 1){
+          this.searchEvent.emit(value)
+        }
+      });
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  submit(){
+    this.searchEvent.emit(this.search)
   }
 }

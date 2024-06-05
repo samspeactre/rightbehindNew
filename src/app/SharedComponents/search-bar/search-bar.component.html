@@ -1,9 +1,17 @@
 <div class="bar-width">
-    <mat-form-field class="search-bar">
-        <input matInput class="input-text" placeholder="Enter an address, neighborhood, city, or ZIP code">
-        <button matSuffix mat-flat-button class="login-btn" color="primary">
-            <mat-icon class="custom-icon material-symbols-outlined">search</mat-icon>
-            Search
-        </button>
-    </mat-form-field>
+  <mat-form-field class="search-bar">
+    <input
+      matInput
+      [readOnly]="searching"
+      onkeydown="return /[a-zA-Z\s\b\n]/.test(event.key) || /^\d$/.test(event.key)"
+      [(ngModel)]="mentorSearchQuery"
+      (ngModelChange)="this.mentorSearchQueryUpdate.next($event)"
+      class="input-text"
+      placeholder="Enter an address, neighborhood, city, or ZIP code"
+    />
+    <button matSuffix mat-flat-button class="login-btn" color="primary">
+      <mat-icon class="custom-icon material-symbols-outlined">search</mat-icon>
+      Search
+    </button>
+  </mat-form-field>
 </div>

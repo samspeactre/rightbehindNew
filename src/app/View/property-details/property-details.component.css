@@ -1,80 +1,80 @@
 h1 {
-    font-size: 3.1vw;
-    font-family: "bold";
-    color: var(--black);
-    text-align: center;
-    letter-spacing: 0.01vw;
+  font-size: 3.1vw;
+  font-family: "bold";
+  color: var(--black);
+  text-align: center;
+  letter-spacing: 0.01vw;
 }
 
 h2 {
-    font-size: 1.6vw;
-    font-family: "reg";
-    color: var(--black);
-    text-align: center;
-    margin-top: -0.27vw;
-    letter-spacing: 0.06vw;
-    padding-left: 0.8vw;
-    font-weight: 400;
+  font-size: 1.6vw;
+  font-family: "reg";
+  color: var(--black);
+  text-align: center;
+  margin-top: -0.27vw;
+  letter-spacing: 0.06vw;
+  padding-left: 0.8vw;
+  font-weight: 400;
 }
 
-.container-site{
-    padding: 0 3.55vw;
+.container-site {
+  padding: 0 3.55vw;
 }
 
 .content {
-    margin-top: 4.8vw;
-    padding-bottom: 2.5vw;
+  margin-top: 4.8vw;
+  padding-bottom: 2.5vw;
 }
 
-.search-bar{
-    margin-top: 2.6vw;
+.search-bar {
+  margin-top: 2.6vw;
 }
 
 /*  */
 
-.options{
-    width: 22.8%; 
+.options {
+  width: 22.8%;
 }
 
-.listing-filter{
-    align-content: center;
+.listing-filter {
+  align-content: center;
 }
 
-.listing-filter button{
-    font-size: 1vw;
-    font-family: 'reg';
-    color: var(--filter-text);
-    border: 0.15vw solid var(--sec-light);
-    padding:1.5vw 2vw;
-    border-radius: 3vw;
+.listing-filter button {
+  font-size: 1vw;
+  font-family: "reg";
+  color: var(--filter-text);
+  border: 0.15vw solid var(--sec-light);
+  padding: 1.5vw 2vw;
+  border-radius: 3vw;
 }
 
-.listing-filter button .mat-icon{
-    color: var(--royal-blue);
+.listing-filter button .mat-icon {
+  color: var(--royal-blue);
 }
 
-:host ::ng-deep .mat-mdc-select-arrow{
-    display: none;
+:host ::ng-deep .mat-mdc-select-arrow {
+  display: none;
 }
 
-.arrow-down{
-    color: #0147b8 !important;
-    font-weight: 500;
+.arrow-down {
+  color: #0147b8 !important;
+  font-weight: 500;
 }
 
-:host ::ng-deep .mdc-line-ripple{
-    display: none;
+:host ::ng-deep .mdc-line-ripple {
+  display: none;
 }
 
-:host ::ng-deep .mdc-text-field--filled{ 
-   background: white !important;
+:host ::ng-deep .mdc-text-field--filled {
+  background: white !important;
 }
 
-:host ::ng-deep .mat-mdc-form-field-icon-suffix{ 
-  padding: 0vw 0.5vw 0vw 0.1vw !important
+:host ::ng-deep .mat-mdc-form-field-icon-suffix {
+  padding: 0vw 0.5vw 0vw 0.1vw !important;
 }
 
-:host ::ng-deep .mat-mdc-text-field-wrapper{ 
+:host ::ng-deep .mat-mdc-text-field-wrapper {
   border-radius: 3rem;
   background: white !important;
 }
@@ -84,65 +84,87 @@ h2 {
   background-color: white !important;
 }
 
-:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
-    color: var(--black);
+:host
+  ::ng-deep
+  .mat-mdc-form-field:not(.mat-form-field-disabled)
+  .mat-mdc-floating-label.mdc-floating-label {
+  color: var(--black);
 }
 
-.w-10{
-    width: 15.2%;
+.w-10 {
+  width: 15.2%;
 }
 
-.align-items-center{
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    width: 60%;
-    margin: auto;
-    margin-top: -0.3vw;
-
+.align-items-center {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 60%;
+  margin: auto;
+  margin-top: -0.3vw;
 }
 
 /*  */
 
-.sec-1{
-    background-image: url(../../../assets/img/home-bottom.png);
-    background-repeat: no-repeat;
-    background-position: 0vw bottom;
-    background-size: 100% 22.7vw;
+.sec-1 {
+  background-image: url(../../../assets/img/home-bottom.png);
+  background-repeat: no-repeat;
+  background-position: 0vw bottom;
+  background-size: 100% 22.7vw;
 }
 
-.home-tree{
-    margin-top: -23%;
-  }
-  
-  .left-tree img,
-  .right-tree img{
-      width: 46%;
-  }
-  
-  .right-tree{
-      transform: scaleX(-1);
-  }
-
-.sec-2{
-    margin-top: 3vw;
-    width: 100%;
+.home-tree {
+  margin-top: -23%;
 }
 
-hr{
-    height: 2.5vw;
-    align-self: center;
+.left-tree img,
+.right-tree img {
+  width: 46%;
 }
 
-.footer{
-    margin-top: 66.2%;
+.right-tree {
+  transform: scaleX(-1);
+}
+
+.sec-2 {
+  margin-top: 3vw;
+  width: 100%;
+}
+
+hr {
+  height: 2.5vw;
+  align-self: center;
+}
+
+.footer {
+  margin-top: 66.2%;
 }
 
 :host ::ng-deep .mat-mdc-form-field-infix {
-    flex: auto;
-    min-width: 0;
-    width: 180px;
-    position: unset;
-    box-sizing: border-box;
-    padding: 0vw 5vw 0vw 0vw;
+  flex: auto;
+  min-width: 0;
+  width: 180px;
+  position: unset;
+  box-sizing: border-box;
+  padding: 0vw 5vw 0vw 0vw;
+}
+.loadMore {
+  background-color: var(--royal-blue);
+  color: var(--white);
+  font-size: 0.9vw;
+  border-radius: 3vw;
+  padding: 0.8vw 2.3vw;
+  border: none;
+}
+.centerBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.noData{
+  text-align: center;
+  color: red;
+  margin-bottom: 0;
 }

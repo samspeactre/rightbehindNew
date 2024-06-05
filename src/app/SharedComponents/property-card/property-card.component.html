@@ -27,8 +27,8 @@
   <div class="property-card-wrapper">
     <div class="property-card">
       <div class="card-img">
-        <img [src]="card?.imgSrc || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="Card Image" class="card-img" />
-        @if(showBadge){
+        <img [src]="card?.imgSrc || 'https://homes.madeeasy.app/img/no-propertyfound.png'" [class.NoImageFound]="!card?.imgSrc" alt="Card Image" class="card-img" />
+        @if(showBadge && card?.badge){
         <div class="badge">
           <p>{{ card?.badge }}</p>
         </div>

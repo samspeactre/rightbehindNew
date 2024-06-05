@@ -27,7 +27,7 @@ import { HttpService } from '../../Services/http.service';
     SearchBarComponent,
     NavbarComponent,
     MatButtonModule,
-    PropertyCardComponent
+    PropertyCardComponent,
   ],
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
@@ -36,13 +36,17 @@ import { HttpService } from '../../Services/http.service';
 export class PropertyDetailsComponent {
   pageType!: string;
   private destroy$ = new Subject<void>();
-  cards = [
-    {},
-    {},
-    {},
-  ];
-  loader:boolean = true;
-  constructor(private activatedRoute: ActivatedRoute, private http:HttpService) {
+  search: string = '';
+  pageNo: number = 1;
+  pageSize: number = 5;
+  cards: any[] = [1,2,3];
+  loader: boolean = true;
+  noData: boolean = false;
+  loadMore:boolean = false;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private http: HttpService
+  ) {
     this.activatedRoute.data
       .pipe(
         takeUntil(this.destroy$),
@@ -52,28 +56,50 @@ export class PropertyDetailsComponent {
       )
       .subscribe((data: any) => {
         this.pageType = data?.type;
-        this.getProperties()
+        this.getProperties();
       });
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  getProperties(){
+
+  getProperties() {
+    const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo}&pageSize=${this.pageSize}`;
+    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize}`;
     this.http
-    .loaderGet('Property/get', false, false, false)
-    .pipe(
-      finalize(()=>{
-        this.loader = false
-      }),
-      takeUntil(this.destroy$),
-      distinctUntilChanged(
-        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      .loaderGet(this.search ? searchUrl : withoutSearchUrl, false, false, false)
+      .pipe(
+        finalize(() => {
+          this.loader = false;
+        }),
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
       )
-    )
-    .subscribe((response) => {
-      this.cards = response?.model?.properties
-      console.log(response);
-    });
+      .subscribe((response) => {
+        if (response?.model?.properties) {
+          const newProperties = response?.model?.properties || [];
+          this.cards = [...newProperties];
+          this.noData = this.cards.length === 0;
+        } else {
+          this.cards = [];
+          this.noData = true;
+        }
+      });
+  }
+
+  loadMoreProperties() {
+    this.pageNo++;
+    this.getProperties();
+  }
+
+  searchProperties(event: string) {
+    this.search = event;
+    this.pageNo = 1;
+    this.getProperties();
   }
 }
+

@@ -113,7 +113,10 @@ hr{
 .card-img{
     width: 100%;
 }
-
+.NoImageFound{
+    object-fit: contain;
+    background-color: #dddddd;
+}
 .title.skeleton{
     width: 90%;
     height: 24px;

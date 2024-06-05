@@ -1,17 +1,18 @@
 <section>
   <div class="lg-12">
     <div class="sec-1">
-
       <div class="navbar">
         <app-navbar></app-navbar>
       </div>
 
       <div class="content">
-        <h1>The best {{pageType == 'rent' ? 'rental ' : 'selling '}} deals in Miami </h1>
-        <h2>Move in with just a security deposit,
-        a month free and more 🔥</h2>
+        <h1>
+          The best {{ pageType == "rent" ? "rental " : "selling " }} deals in
+          Miami
+        </h1>
+        <h2>Move in with just a security deposit, a month free and more 🔥</h2>
         <div class="search-bar">
-          <app-search-bar></app-search-bar>
+          <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
         </div>
 
         <div class="align-items-center">
@@ -23,8 +24,9 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon
-              class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
+                >keyboard_arrow_down</mat-icon
+              >
             </button>
           </mat-form-field>
           <mat-form-field class="w-10">
@@ -35,8 +37,9 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon
-              class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
+                >keyboard_arrow_down</mat-icon
+              >
             </button>
           </mat-form-field>
           <mat-form-field class="w-10">
@@ -47,8 +50,9 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon
-              class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
+                >keyboard_arrow_down</mat-icon
+              >
             </button>
           </mat-form-field>
           <mat-form-field class="w-10">
@@ -59,23 +63,22 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon
-              class="custom-icon material-symbols-outlined arrow-down">instant_mix</mat-icon>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
+                >instant_mix</mat-icon
+              >
             </button>
           </mat-form-field>
         </div>
-
       </div>
-
     </div>
 
     <div class="home-tree display content-between">
       <div class="left-tree">
-        <img src="../../assets/img/left-tree.png" alt="">
+        <img src="../../assets/img/left-tree.png" alt="" />
       </div>
 
       <div class="right-tree">
-        <img src="../../assets/img/left-tree.png" alt="">
+        <img src="../../assets/img/left-tree.png" alt="" />
       </div>
     </div>
   </div>
@@ -83,16 +86,27 @@
 
 <section>
   <div class="lg-12 container-site">
-    <div class=" sec-2 content-between">
-      @for (card of cards; track card) {
-        <app-property-card [card]="card" [showBadge]="true" [loader]="loader"></app-property-card>
-        }
-      </div>
+    <div class="sec-2 content-between">
+      @if(!noData){ @for (card of cards; track card) {
+      <app-property-card
+        [card]="card"
+        [showBadge]="true"
+        [loader]="loader"
+      ></app-property-card>
+      } } @else{
+      <p class="noData">No data found</p>
+      }
     </div>
-  </section>
+  </div>
+  @if(loadMore){
+  <div class="centerBtn">
+    <button class="loadMore" (click)="loadMoreProperties()">Load More</button>
+  </div>
+  }
+</section>
 
-  <section>
-    <div class="footer">
-      <app-footer></app-footer>
-    </div>
-  </section>
+<section>
+  <div class="footer">
+    <app-footer></app-footer>
+  </div>
+</section>

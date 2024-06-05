@@ -1,0 +1,69 @@
+<div class="cstmContainer">
+  <div class="cstmInputBox" [class.FocusedBackground]="focusBackground" [style]="cstmStyle" [ngClass]="{ error: error }" [class]="classes">
+    <label [class.focused]="isFocused">{{ label }}</label>
+    @if (inputType == "textArea") {
+      <textarea
+        [rows]="rows"
+        (input)="write($event)"
+        [readOnly]="readOnly || loader"
+        [placeholder]="placeholder"
+        [class.show-placeholder]="isFocused"
+        (focus)="togglePlaceholder(true)"
+        [(ngModel)]="form.controls[control].value"
+        (blur)="togglePlaceholder(false)"
+      ></textarea>
+    } @else {
+      @if (NumbersOnly) {
+        <input
+          [type]="type"
+          (input)="
+            write($event);
+          "
+          [readOnly]="readOnly || loader"
+          [placeholder]="placeholder"
+          [class.show-placeholder]="isFocused"
+          NumbersOnly
+          (focus)="togglePlaceholder(true)"
+          [(ngModel)]="form.controls[control].value"
+          (blur)="togglePlaceholder(false)"
+        />
+      } @else {
+        <input
+          [type]="type"
+          (input)="
+            write($event);
+          "
+          [readOnly]="readOnly || loader"
+          [placeholder]="placeholder"
+          [class.show-placeholder]="isFocused"
+          (focus)="togglePlaceholder(true)"
+          [(ngModel)]="form.controls[control].value"
+          (blur)="togglePlaceholder(false)"
+        />
+      }
+    }
+    @if (password) {
+      <mat-icon class="circle eye cursor community-carousel-icon" (click)="type = type === 'text' ? 'password' : 'text'"> remove_red_eye</mat-icon>
+    }
+  </div>
+  @if (error && errorName && (value != '' || !value)) {
+    <small>
+      {{
+        errorName == "required"
+          ? label +
+            "
+      Required"
+          : errorName == "minlength"
+            ? "Minimum " +
+              form.controls[control]?.errors?.[errorName]?.requiredLength +
+              "
+      required"
+            : returnFirstLetterCapital(
+                form.controls[control].status?.toLowerCase()
+              ) +
+              " " +
+              label
+      }}
+    </small>
+  }
+</div>

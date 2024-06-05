@@ -1,49 +1,63 @@
 <section>
-    <div class="lg-12 popup">
-        <div class="logo">
-            <img src="../../assets/img/nav-logo.png" alt="">
-        </div>
-        <h1>Register</h1>
-        <p>Enter your details to get started.</p>
-
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <mat-form-field>
-                <mat-label>Full Name</mat-label>
-                <input matInput formControlName="fullName">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Email Address</mat-label>
-                <input matInput formControlName="email">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Phone Number</mat-label>
-                <input matInput formControlName="phoneNumber">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password">
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Confirm Password</mat-label>
-                <input matInput type="password" formControlName="confirmPassword">
-            </mat-form-field>
-
-            <div class="display content-between check-pass">
-                <div class="checkbox">
-                    <mat-checkbox formControlName="receiveUpdates">Receive latest updates Via Email</mat-checkbox>
-                </div>
-            </div>
-
-            <div class="login-popup-btn">
-                <button mat-flat-button type="submit" [disabled]="registerForm.invalid">Sign Up</button>
-            </div>
-
-            <div class="register-link">Already have an account? <a (click)="openLoginPopup()">Login</a></div>
-        </form>
-        
+  <div class="lg-12 popup">
+    <div class="logo">
+      <img src="../../assets/img/nav-logo.png" alt="" />
     </div>
+    <h1>Register</h1>
+    <p>Enter your details to get started.</p>
+    <app-input
+    type="text"
+    [form]="registerForm"
+    control="fullName"
+    label="Full Name"
+    placeholder="Enter your full name*"
+    ></app-input>
+    <app-input
+      type="email"
+      [form]="registerForm"
+      control="email"
+      label="Email address"
+      placeholder="Enter your email address*"
+    ></app-input>
+    <app-input
+      type="number"
+      [form]="registerForm"
+      control="phoneNumber"
+      label="Phone Number"
+      placeholder="Enter your phone number*"
+    ></app-input>
+    <app-input
+      type="password"
+      [form]="registerForm"
+      control="password"
+      label="Password"
+      placeholder="Enter your password*"
+    ></app-input>
+    <app-input
+      type="password"
+      [form]="registerForm"
+      control="confirmPassword"
+      label="Confirm Password"
+      placeholder="Enter your Confirm password*"
+    ></app-input>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="display content-between check-pass">
+        <div class="checkbox">
+          <mat-checkbox formControlName="receiveUpdates"
+            >Receive latest updates Via Email</mat-checkbox
+          >
+        </div>
+      </div>
+
+      <div class="login-popup-btn">
+        <button mat-flat-button type="submit" [disabled]="registerForm.invalid">
+          Sign Up
+        </button>
+      </div>
+
+      <div class="register-link">
+        Already have an account? <a (click)="openLoginPopup()">Login</a>
+      </div>
+    </form>
+  </div>
 </section>

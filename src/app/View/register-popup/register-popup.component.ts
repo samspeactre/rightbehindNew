@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,10 +15,11 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpService } from '../../Services/http.service';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
+import { InputComponent } from '../../SharedComponents/input/input.component';
 
 @Component({
   standalone: true,
-  imports: [MatCheckboxModule, MatLabel, MatFormFieldModule,MatInputModule,MatButtonModule, ReactiveFormsModule],
+  imports: [MatCheckboxModule, MatLabel, MatFormFieldModule,MatInputModule,MatButtonModule, ReactiveFormsModule, InputComponent],
   selector: 'app-register-popup',
   templateUrl: './register-popup.component.html',
   styleUrl: './register-popup.component.css',
@@ -29,14 +33,14 @@ export class RegisterPopupComponent {
     private http:HttpService
   ) {
     this.registerForm = this.fb.group({
-      userAccountTypeId: [''],
+      userAccountTypeId: [2],
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(8)],
+      confirmPassword: ['', Validators.required, Validators.minLength(8)],
       receiveUpdates: [false]
-    });
+    }, { validators: this.PasswordMatchValidator });
   }
 
   onSubmit(): void {
@@ -55,4 +59,10 @@ export class RegisterPopupComponent {
       width: '27%',
     });
   }
+  PasswordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+  
+    return password && confirmPassword && password.value === confirmPassword.value ? null : { 'passwordMismatch': true };
+  };
 }

@@ -18,7 +18,7 @@ export class HttpService {
   user$ = this.store.select(selectUser);
   userDetails: any;
   private destroy$ = new Subject<void>();
-  url:string = 'https://stgapiv2.mentoga.com/api/'
+  url:string = 'https://recursing-allen.74-208-96-50.plesk.page/api/'
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -53,7 +53,7 @@ export class HttpService {
       }),
     };
   }
-  loaderPost(link: string, data: any, token: boolean, toaster: boolean, loader:boolean = true) {
+  loaderPost(link: string, data: any, token: boolean, toaster: boolean = true, loader:boolean = true) {
     if(loader){
       this.store.dispatch(toggleLoader({ show: true }));
     }

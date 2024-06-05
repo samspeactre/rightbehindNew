@@ -5,42 +5,42 @@
     </div>
     <h1>Register</h1>
     <p>Enter your details to get started.</p>
-    <app-input
-      type="text"
-      [form]="registerForm"
-      control="fullName"
-      label="Full Name"
-      placeholder="Enter your full name*"
-    ></app-input>
-    <app-input
-      type="email"
-      [form]="registerForm"
-      control="email"
-      label="Email address"
-      placeholder="Enter your email address*"
-    ></app-input>
-    <app-input
-      type="number"
-      [form]="registerForm"
-      control="phoneNumber"
-      label="Phone Number"
-      placeholder="Enter your phone number*"
-    ></app-input>
-    <app-input
-      type="password"
-      [form]="registerForm"
-      control="password"
-      label="Password"
-      placeholder="Enter your password*"
-    ></app-input>
-    <app-input
-      type="password"
-      [form]="registerForm"
-      control="confirmPassword"
-      label="Confirm Password"
-      placeholder="Enter your Confirm password*"
-    ></app-input>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <app-input
+        type="text"
+        [form]="registerForm"
+        control="fullName"
+        label="Full Name"
+        placeholder="Enter your full name*"
+      ></app-input>
+      <app-input
+        type="email"
+        [form]="registerForm"
+        control="email"
+        label="Email address"
+        placeholder="Enter your email address*"
+      ></app-input>
+      <app-input
+        type="number"
+        [form]="registerForm"
+        control="phoneNumber"
+        label="Phone Number"
+        placeholder="Enter your phone number*"
+      ></app-input>
+      <app-input
+        type="password"
+        [form]="registerForm"
+        control="password"
+        label="Password"
+        placeholder="Enter your password*"
+      ></app-input>
+      <app-input
+        type="password"
+        [form]="registerForm"
+        control="confirmPassword"
+        label="Confirm Password"
+        placeholder="Enter your Confirm password*"
+      ></app-input>
       <div class="display content-between check-pass">
         <div class="checkbox">
           <mat-checkbox formControlName="receiveUpdates"

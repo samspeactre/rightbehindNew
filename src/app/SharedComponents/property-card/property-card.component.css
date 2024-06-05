@@ -1,0 +1,133 @@
+
+.property-card-wrapper {
+    width: calc(100% / 3);
+    box-sizing: border-box;
+    padding: 0vw 0.5vw; 
+    float: left;
+}
+
+.property-card{
+    width: 100%;
+    background-color: rgba(230, 242, 255, 1);
+    margin-bottom: 10vw;
+    border-radius: 1vw;
+    margin-bottom: 1.7vw;
+}
+
+.card-img{
+    height: 12.8vw;
+}
+
+.card-content{
+    padding: 0vw 2vw 1.5vw;
+}
+
+.card-content h3{
+    font-size: 1.2vw;
+    font-family: 'bold';
+    margin-top: 1.05vw;
+    letter-spacing: -0.015vw;
+}
+
+.card-content p{
+    font-size: 1.13vw;
+    margin-top: 0.85vw;
+    font-family: 'reg';
+    color: var(--carousel-add);
+    letter-spacing: 0.015vw;
+}
+
+.badge{
+    margin-top: -8vw;
+}
+
+.badge p{
+    border-radius: 2vw;
+    background-color: rgb(255 255 255);
+    opacity: 0.8;
+    font-size: 0.95vw;
+    font-family: "reg";
+    padding: 0.2vw 1.2vw 0.2vw 1.2vw;
+}
+
+.badge{
+    margin-top: -12vw;
+    float: right;
+    padding-right: 2vw;
+    color: var(--black);
+}
+
+.card-details{
+    margin-top: 0.9vw;
+}
+
+.detail-text{
+    font-size: 0.95vw;
+    font-family: 'bold';
+    color: rgba(112, 112, 112, 1);
+    align-content: center;
+    padding-left: 0.3vw;
+}
+
+.details-img{
+    width: 3.2vw;
+    object-fit: cover;
+}
+
+.detail-sec{
+    border-right: 0.12vw solid rgba(196, 196, 196, 1);
+    padding:0vw 1.3vw;
+}
+
+.bed{
+    padding-left: 0;
+}
+
+.bath{
+    border-right: 0;
+}
+
+.card-bottom{
+    margin-top: 0.9vw;
+}
+
+.price{
+    font-size: 1.85vw;
+    font-family: "bold";
+    align-content: center;
+    color: var(--royal-blue);
+}
+
+.card-bottom button{
+    background-color: var(--royal-blue);
+    color: var(--white);
+    font-size: 0.9vw;
+    border-radius: 3vw;
+    padding: 1.8vw 2.3vw;
+}
+
+hr{
+    height: 2.5vw;
+    align-self: center;
+}
+.card-img{
+    width: 100%;
+}
+
+.title.skeleton{
+    width: 90%;
+    height: 24px;
+}
+.description.skeleton{
+    width: 100%;
+    height: 24px;
+}
+.detail-sec.skeleton{
+    width: 94px;
+    height: 49px;
+    margin: 0vw 1.3vw;
+}
+.price.skeleton{
+    width: 119px;
+    height: 55px;
+}

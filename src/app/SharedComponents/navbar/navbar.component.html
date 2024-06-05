@@ -1,35 +1,33 @@
 <section>
   <div class="lg-12">
     <div class="display container-site content-between">
-
       <div class="display">
-        <a  class="display">
+        <a class="display">
           <mat-icon> headset_mic</mat-icon>
-          <h2>Need Help? Call us
+          <h2>
+            Need Help? Call us
             <span>123 456 7890</span>
           </h2>
         </a>
 
-        <a  class="contact-nav display">
+        <a class="contact-nav display">
           <mat-icon> alternate_email</mat-icon>
-          <h2>Contact for more info:
+          <h2>
+            Contact for more info:
             <span>info&#64;rightnehindme.com</span>
           </h2>
         </a>
       </div>
 
       <div class="social-links display content-between">
-
         @for (item of socialLinks; track item) {
-          <div>
-            <a [href]="item.url" class="">
-              <img [src]="item.imageUrl" class="link-img" alt="">
-            </a>
-          </div>
+        <div>
+          <a [href]="item.url" class="">
+            <img [src]="item.imageUrl" class="link-img" alt="" />
+          </a>
+        </div>
         }
-
       </div>
-
     </div>
   </div>
 
@@ -37,7 +35,9 @@
     <div class="lg-12">
       <div class="display">
         <div class="nav-logo">
-          <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" class="logo-img"></a>
+          <a routerLink="/"
+            ><img src="../../assets/img/nav-logo.png" alt="" class="logo-img"
+          /></a>
         </div>
         <div class="nav-items">
           <ul class="display content-between">
@@ -66,13 +66,22 @@
         </div>
 
         <div class="nav-btns">
-          <button mat-stroked-button class="login-btn" (click)="openPopup()">
+          <button
+            mat-stroked-button
+            class="login-btn"
+            (click)="user ? logout() : openPopup()"
+          >
             <mat-icon>person</mat-icon>
-            Login
+            @if(user){ Logout } @else{ Login }
           </button>
-          <button mat-stroked-button class="submit-btn" (click)="openSellPopup()">Submit A Deal</button>
+          <button
+            mat-stroked-button
+            class="submit-btn"
+            (click)="openSellPopup()"
+          >
+            Submit A Deal
+          </button>
         </div>
-
       </div>
     </div>
   </nav>

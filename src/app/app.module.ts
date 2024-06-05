@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
 import {
@@ -9,13 +10,16 @@ import {
   searchStateReducer,
   userReducer,
 } from './Ngrx/data.reducer';
+import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
 import { FileSizePipe } from './TsExtras/file-size.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [FileSizePipe],
+  declarations: [FileSizePipe, AppComponent],
   imports: [
+    LoadingComponent,
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -26,13 +30,13 @@ import { AppComponent } from './app.component';
     }),
     ToastrModule.forRoot({
       timeOut: 2000,
-      positionClass: 'toast-bottom-left',
+      positionClass: 'toast-top-right',
       maxOpened: 1,
       autoDismiss: true,
       preventDuplicates: true,
       includeTitleDuplicates: true,
     }),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

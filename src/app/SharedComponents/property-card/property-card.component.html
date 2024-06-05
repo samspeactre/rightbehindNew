@@ -1,0 +1,75 @@
+@if(loader){
+  <div class="property-card-wrapper">
+    <div class="property-card">
+      <div class="card-img skeleton">
+      </div>
+      <div class="card-content">
+        <h3 class="skeleton title"></h3>
+        <p class="skeleton description"></p>
+        <div class="card-details display">
+          <div class="detail-sec bed display skeleton">
+          </div>
+          <div class="detail-sec display skeleton">
+          </div>
+          <div class="detail-sec bath display skeleton">
+          </div>
+        </div>
+        <div class="card-bottom display content-between">
+          <div class="price skeleton"></div>
+          <hr />
+          <button mat-raised-button [disabled]="loader">Contact Agent</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@else{
+  <div class="property-card-wrapper">
+    <div class="property-card">
+      <div class="card-img">
+        <img [src]="card?.imgSrc || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="Card Image" class="card-img" />
+        @if(showBadge){
+        <div class="badge">
+          <p>{{ card?.badge }}</p>
+        </div>
+        }
+      </div>
+      <div class="card-content">
+        <h3>{{ card?.name }}</h3>
+        <p>{{ card?.desc }}</p>
+        <div class="card-details display">
+          <div class="detail-sec bed display">
+            <img
+              src="../../assets/img/bed-white.png"
+              alt=""
+              class="details-img"
+            />
+            <div class="detail-text">{{ card?.noOfBed }}</div>
+          </div>
+          <div class="detail-sec display">
+            <img
+              src="../../assets/img/bath-white.png"
+              alt=""
+              class="details-img"
+            />
+            <div class="detail-text">{{ card?.noOfBath }}</div>
+          </div>
+          <div class="detail-sec bath display">
+            <img
+              src="../../assets/img/sq.ft-white.png"
+              alt=""
+              class="details-img"
+            />
+            <div class="detail-text">{{ card?.area }} SqFt</div>
+          </div>
+        </div>
+        <div class="card-bottom display content-between">
+          <div class="price">{{ card?.price | currency:'USD' }}</div>
+          <hr />
+          <button mat-raised-button>Contact Agent</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+

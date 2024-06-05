@@ -65,4 +65,7 @@ export class HomeComponent {
   stopCounter(index: number) {
     clearInterval(this.intervalIds[index]);
   }
+  searchProperties(event:any){
+    console.log(event);
+  }
 }

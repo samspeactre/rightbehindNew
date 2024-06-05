@@ -1,0 +1,534 @@
+h1 {
+    font-family: "bold";
+    font-size: 4.15vw;
+    color: var(--black);
+    text-align: center;
+}
+
+h2 {
+    font-family: "bold";
+    font-size: 1.58vw;
+    color: var(--black);
+}
+
+h3 {
+    font-family: "med";
+    font-size: 1.36vw;
+    color: var(--black);
+    letter-spacing: 0.03vw;
+    margin-bottom: 1.6vw;
+    cursor: pointer;
+    transition: color 0.3 ease;
+}
+
+h3:hover {
+    color: var(--royal-blue);
+}
+
+p {
+    font-family: "reg";
+    font-size: 1.1vw;
+    color: var(--head-black);
+    text-align: center;
+    letter-spacing: 0.03vw;
+    line-height: 1.6vw;
+}
+
+.container-site {
+    padding: 0vw 3.55vw;
+}
+
+.content {
+    padding-top: 8.25vw;
+}
+
+.page-links {
+    width: 13.2%;
+    margin: auto;
+    text-align: center;
+    margin-top: 0.65vw;
+}
+
+.page-links a {
+    font-family: "reg";
+    font-size: 1.1vw;
+    color: var(--head-black);
+    text-align: center;
+    letter-spacing: 0.03vw;
+    transition: font-family 0.6s ease;
+}
+
+.page-links a:hover {
+    font-family: 'med';
+}
+
+.slash {
+    padding: 0vw 0.25vw;
+    align-content: center;
+}
+
+.sec-1 {
+    background-image: url(../../../assets/img/home-bottom.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+}
+
+.home-tree {
+    margin-top: -11.85%;
+    width: 100%;
+}
+
+.left-tree img,
+.right-tree img {
+    width: 46.5%;
+}
+
+.right-tree img {
+    transform: scaleX(-1);
+    float: right;
+}
+
+.lower-portion {
+    margin-top: 3.1vw;
+}
+
+.left-portion {
+    border-radius: 1vw;
+    background-color: var(--sec-light);
+    padding: 1.2vw 1.3vw 0vw 1.5vw;
+    width: 24.5%;
+    position: sticky;
+    top: 1vw;
+    left: 0;
+    overflow: hidden;
+    height: 48vw;
+    transition: top 0.3s;
+}
+
+.pro-details button {
+    font-family: "med";
+    font-size: 1.36vw;
+    color: var(--black);
+    letter-spacing: 0.03vw;
+    margin-bottom: 1.3vw;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease, width 0.3s ease, padding 0.3s ease, border-radius 0.3s ease, letter-spacing 0.3s ease, text-align 0.3s ease;
+    background-color: transparent;
+}
+
+.pro-details button:hover {
+    width: 100%;
+    font-size: 1.36vw;
+    font-family: "med";
+    color: var(--white);
+    background-color: var(--royal-blue);
+    padding: 2.3vw 0vw;
+    border-radius: 3vw;
+    letter-spacing: 0.07vw;
+    text-align: start;
+}
+
+.right-portion {
+    width: 74.3%;
+}
+
+.prop {
+    background-color: var(--add-prop-bg);
+    padding: 1.9vw 2.2vw 1.3vw;
+    border-radius: 1vw;
+    margin-bottom: 2.25vw;
+}
+
+.right-portion-para {
+    font-family: "reg";
+    font-size: 1.1vw;
+    color: var(--carousel-add);
+    text-align: start;
+    letter-spacing: 0.03vw;
+    line-height: 1.3vw;
+    width: 58%;
+    margin-top: 1.4vw;
+}
+
+.ameneties-portion-para {
+    font-family: "reg";
+    font-size: 1.1vw;
+    color: var(--carousel-add);
+    text-align: start;
+    letter-spacing: 0.03vw;
+    line-height: 1.3vw;
+    width: 58%;
+}
+
+.prop-form {
+    width: 100%;
+    margin-top: 1.5vw;
+}
+
+:host ::ng-deep .example-full-width .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--sec-light);
+    width: 64vw;
+    border-radius: 0.3vw;
+    margin-bottom: 1.04vw;
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align::before {
+    display: none;
+}
+
+:host ::ng-deep .mdc-line-ripple {
+    display: none;
+}
+
+:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    cursor: inherit;
+    font-size: 0.85vw;
+    font-family: 'reg';
+    letter-spacing: -0.01vw;
+    padding-left: 0.2vw;
+    color: var(--property-text);
+}
+
+:host ::ng-deep .mat-options .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--sec-light);
+    width: 31.4vw;
+    border-radius: 0.3vw;
+    margin-bottom: 1.04vw;
+}
+
+:host ::ng-deep .mat-options-3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--sec-light);
+    width: 20.6vw;
+    border-radius: 0.3vw;
+    margin-bottom: 1.04vw;
+}
+
+.checkbox-portion {
+    margin-top: 0.5vw;
+}
+
+:host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+    background-color: var(--sec-light) !important;
+    border: 0 !important;
+    padding: 0;
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+:host ::ng-deep .mdc-checkbox {
+    padding: 0.7vw 0.5vw 0.7vw 1.3vw;
+    margin-left: -0.5vw;
+}
+
+:host ::ng-deep .mat-mdc-checkbox label {
+    cursor: pointer;
+    font-size: 1.12vw;
+    font-family: "reg";
+    color: var(--black);
+    margin-top: 0.5vw;
+}
+
+.checkbox-width .example-margin {
+    --mdc-circular-progress-active-indicator-color: #ff4081;
+    width: 23.8vw !important;
+    margin-bottom: 0.35vw;
+}
+
+.checkbox-width .last-margin {
+    --mdc-circular-progress-active-indicator-color: #ff4081;
+    width: 16vw !important;
+}
+
+.upload-container {
+    margin-top: 1vw;
+    margin-bottom: 1.3vw;
+}
+
+.image-preview {
+    width: 6.8vw;
+    margin-right: 0.5vw;
+}
+
+.image-preview img {
+    border-radius: 0.5vw;
+    width: 100%;
+    height: 6.5vw;
+    object-fit: cover;
+}
+
+:host ::ng-deep .mat-mdc-fab .mat-icon,
+.mat-mdc-fab .material-icons,
+.mat-mdc-mini-fab .mat-icon,
+.mat-mdc-mini-fab .material-icons {
+    font-size: 0.8vw;
+    margin-top: 0.75vw;
+}
+
+:host ::ng-deep .mat-mdc-fab.mat-warn {
+    margin-top: 0.3vw;
+    margin-left: -1.5vw;
+    height: 1.2vw;
+    width: 1.2vw !important;
+}
+
+.upload-imgs {
+    margin-top: 1.2vw;
+    background-color: var(--sec-light);
+    width: 60%;
+    padding: 1.25vw;
+    border-radius: 0.3vw;
+    cursor: pointer;
+}
+
+.upload-imgs span {
+    font-size: 0.85vw;
+    font-family: 'reg';
+    color: rgba(113, 113, 113, 1);
+}
+
+.upload-btn {
+    margin-left: 1vw;
+    align-content: center;
+}
+
+:host ::ng-deep .mat-mdc-raised-button:not(:disabled) {
+    padding: 1.8vw 2.3vw;
+    margin-top: 1vw;
+    border-radius: 3vw;
+    font-size: 1vw;
+    font-family: 'reg';
+    color: var(--white);
+    background-color: var(--royal-blue);
+}
+
+:host ::ng-deep .mat-mdc-button>.mat-icon,
+.mat-mdc-unelevated-button>.mat-icon,
+.mat-mdc-raised-button>.mat-icon,
+.mat-mdc-outlined-button>.mat-icon {
+    font-size: 1.5vw;
+    height: 2vw;
+    width: 2vw;
+    align-content: center;
+}
+
+.upload-mess {
+    margin-left: 2.2vw;
+}
+
+.bullets {
+    list-style-type: disc;
+}
+
+.bullets li {
+    font-size: 1.16vw;
+    font-family: 'reg';
+    color: rgba(112, 112, 112, 1);
+}
+
+.bullets li::marker {
+    color: var(--royal-blue);
+    font-size: 2.5vw;
+}
+
+:host ::ng-deep .mat-options-social .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--sec-light);
+    width: 17.9vw;
+    border-radius: 0.3vw;
+    margin-bottom: 1.04vw;
+}
+
+:host ::ng-deep .mat-options-link .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: var(--sec-light);
+    border-radius: 0.3vw;
+    margin-bottom: 1.04vw;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    width: 64vw;
+    background-color: var(--sec-light);
+    margin-bottom: 0.85vw;
+}
+
+.upload-2 {
+    width: 100%;
+    margin-bottom: 1.5vw;
+}
+
+.upload-2-container {
+    margin-top: -1vw;
+    margin-bottom: 1vw;
+}
+
+:host ::ng-deep .add-more-btn .mdc-button__label,
+:host ::ng-deep .add-more-btn .mat-icon{
+    color: var(--royal-blue);
+}
+
+.add-more-btn {
+    align-content: center;
+    margin-top: 2vw;
+    border: 0;
+    font-size: 1.2vw;
+    font-family: 'bold';
+    letter-spacing: -0.01vw;
+}
+
+.map-img {
+    width: 64vw;
+    margin-bottom: 1.5vw;
+}
+
+.map-img img {
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.submit-btns {
+    float: right;
+    margin-top: 0.5vw;
+}
+
+.reset button,
+.add button {
+    font-size: 1.02vw;
+    font-family: 'reg';
+    color: var(--white);
+    background-color: var(--red);
+    border-radius: 3vw;
+    padding: 1.8vw 3.5vw;
+    margin-right: 1vw;
+}
+
+.add button {
+    background-color: var(--royal-blue);
+    margin-right: 0;
+}
+
+.footer {
+    margin-top: 6vw;
+}
+
+.add-section {
+    width: 100%;
+    display: block;
+}
+
+:host ::ng-deep .category-select .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    margin-top: 0.5vw;
+    background-color: transparent;
+    width: 15vw;
+}
+
+:host ::ng-deep .category-head {
+    font-size: 1.1vw !important;
+    font-family: 'med';
+    color: var(--black);
+}
+
+.amenities-portion-para,
+.utilities-portion-para,
+.rent-special-para {
+    font-family: "reg";
+    font-size: 1.1vw;
+    color: var(--carousel-add);
+    text-align: start;
+    letter-spacing: 0.03vw;
+    line-height: 1.3vw;
+    width: 58%;
+}
+
+.amenities-grid {
+    display: flex;
+    flex-direction: row;
+}
+
+.amenities-column {
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    /* Adjust margin as needed for spacing between columns */
+}
+
+.checkbox-container {
+    flex-wrap: wrap;
+}
+
+.checkbox-wrapper {
+    width: calc(100% / 3);
+    /* Each checkbox takes one third of the container */
+}
+
+.pets-column,
+.laundry-column {
+    margin-top: 1vw;
+}
+
+.pets-column-width,
+.laundry-column-width,
+.rent-special,
+.contact-role-check {
+    width: 33.3%;
+}
+
+.rent-special-form {
+    margin-top: 1vw;
+}
+
+.special-tags,
+.contact-role {
+    font-size: 1.2vw;
+    font-family: 'bold';
+    color: var(--black);
+    margin-top: 0.5vw;
+}
+
+.special-offers-check {
+    margin-top: 1vw;
+}
+
+.contact-info-form {
+    margin-top: 1.5vw;
+}
+
+.contact-role-por {
+    padding-bottom: 1.5vw;
+}
+
+.terms-condition {
+    width: 90%;
+}
+
+.terms-text {
+    font-size: 1.2vw;
+    font-family: "reg";
+    color: var(--black);
+    padding-top: 0.5vw;
+}
+
+.terms-text a {
+    font-family: 'med';
+    color: var(--royal-blue);
+}
+
+.floor-img {
+    width: 100%;
+    margin-top: 1vw;
+}
+
+.floor-img img {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 1vw;
+}
+
+.delete-btn {
+    margin-left: -3.2vw;
+    margin-top: 0.5vw;
+    background-color: var(--red);
+    width: 2.5vw;
+    height: 2.5vw;
+}

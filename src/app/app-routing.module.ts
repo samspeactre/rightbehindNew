@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { CardCarouselComponent } from './card-carousel/card-carousel.component';
-import { BlogCarouselComponent } from './blog-carousel/blog-carousel.component';
-import { RentalCarouselComponent } from './rental-carousel/rental-carousel.component';
-import { PropertyDetailsComponent } from './property-details/property-details.component';
-import { ListingsComponent } from './listings/listings.component';
-import { PopupComponent } from './popup/popup.component';
-import { ListingPageComponent } from './listing-page/listing-page.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { PreviewComponent } from './preview/preview.component';
-import { SellingPropertyComponent } from './selling-property/selling-property.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
-import { RentPropertyPageComponent } from './rent-property-page/rent-property-page.component';
-import { SellAddPropertyComponent } from './sell-add-property/sell-add-property.component';
-import { SellPreviewComponent } from './sell-preview/sell-preview.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './View/home/home.component';
+import { CarouselComponent } from './SharedComponents/carousel/carousel.component';
+import { CardCarouselComponent } from './SharedComponents/card-carousel/card-carousel.component';
+import { BlogCarouselComponent } from './SharedComponents/blog-carousel/blog-carousel.component';
+import { RentalCarouselComponent } from './SharedComponents/rental-carousel/rental-carousel.component';
+import { PropertyDetailsComponent } from './View/property-details/property-details.component';
+import { ListingsComponent } from './View/listings/listings.component';
+import { PopupComponent } from './View/popup/popup.component';
+import { ListingPageComponent } from './SharedComponents/listing-page/listing-page.component';
+import { ContactUsComponent } from './View/contact-us/contact-us.component';
+import { PreviewComponent } from './View/preview/preview.component';
+import { SellingPropertyComponent } from './View/selling-property/selling-property.component';
+import { LoginPageComponent } from './SharedComponents/login-page/login-page.component';
+import { SignupPageComponent } from './View/signup-page/signup-page.component';
+import { RentPropertyPageComponent } from './View/rent-property-page/rent-property-page.component';
+import { SellAddPropertyComponent } from './View/sell-add-property/sell-add-property.component';
+import { SellPreviewComponent } from './View/sell-preview/sell-preview.component';
+import { DashboardComponent } from './View/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,7 +41,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

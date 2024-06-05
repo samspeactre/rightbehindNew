@@ -90,16 +90,15 @@ export class InputComponent {
   }
   write(event: Event): void {
     const input = event.target as HTMLInputElement;
-    if (input.id != 'country-search-box') {
-      this.form.controls[this.control].setValue(input.value);
-      this.value = input.value;
-      this.error = this.form.controls[this.control].status == 'INVALID';
-      if (input.value?.length > 0) {
-        this.togglePlaceholder(true);
-      }
-      for (const key in this.form.controls[this.control].errors) {
-        this.errorName = key;
-      }
+    this.form.controls[this.control].setValue(input.value);
+    debugger
+    this.value = input.value;
+    this.error = this.form.controls[this.control].status == 'INVALID';
+    if (input.value?.length > 0) {
+      this.togglePlaceholder(true);
+    }
+    for (const key in this.form.controls[this.control].errors) {
+      this.errorName = key;
     }
   }
   returnFirstLetterCapital(input: string): string {

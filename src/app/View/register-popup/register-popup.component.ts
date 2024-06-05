@@ -40,7 +40,7 @@ export class RegisterPopupComponent {
       password: ['', Validators.required, Validators.minLength(8)],
       confirmPassword: ['', Validators.required, Validators.minLength(8)],
       receiveUpdates: [false]
-    }, { validators: this.PasswordMatchValidator });
+    });
   }
 
   onSubmit(): void {
@@ -59,10 +59,4 @@ export class RegisterPopupComponent {
       width: '27%',
     });
   }
-  PasswordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password');
-    const confirmPassword = control.get('confirmPassword');
-  
-    return password && confirmPassword && password.value === confirmPassword.value ? null : { 'passwordMismatch': true };
-  };
 }

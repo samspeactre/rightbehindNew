@@ -432,9 +432,8 @@
             class="prop-form content-between"
             [formGroup]="formGroup"
           >
-          @if(getFloorPlansFormArray?.controls?.length){
             <ng-container formArrayName="floorPlansArray">
-              @for (item of getFloorPlansFormArray?.controls; track item; let
+              @for (item of getFloorPlansFormArray.controls; track item; let
               index = $index) {
               <ng-container [formGroupName]="index">
                 <mat-form-field class="example-full-width">
@@ -539,7 +538,6 @@
               </ng-container>
               }
             </ng-container>
-          }
           </form>
         </div>
 

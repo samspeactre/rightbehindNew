@@ -46,14 +46,14 @@ export class PropertyDetailsComponent {
   noData: boolean = false;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
-  param:boolean= false;
+  param: boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
-    private router:Router
+    private router: Router
   ) {
     this.activatedRoute.queryParams.subscribe((params) => {
-      if(params['search']){
+      if (params['search']) {
         this.search = params['search'];
       }
     });
@@ -83,24 +83,31 @@ export class PropertyDetailsComponent {
           this.loader = false;
           this.router.navigate([], {
             relativeTo: this.activatedRoute,
-            queryParams: {}
+            queryParams: {},
           });
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe((response) => {
-        if (response?.model?.properties) {
-          const newProperties = response?.model?.properties || [];
-          this.cards = [...newProperties];
-          this.noData = this.cards.length === 0;
-        } else {
-          this.cards = [];
-          this.noData = true;
+      .subscribe(
+        (response) => {
+          if (response?.model?.properties) {
+            const newProperties = response?.model?.properties || [];
+            this.cards = [...newProperties];
+            this.noData = this.cards.length === 0;
+          } else {
+            this.noDataFound();
+          }
+          this.loadMore = this.cards?.length < response?.model?.totalResults;
+        },
+        (err) => {
+          this.noDataFound();
         }
-        this.loadMore = this.cards?.length < response?.model?.totalResults;
-      });
+      );
   }
-
+  noDataFound() {
+    this.cards = [];
+    this.noData = true;
+  }
   loadMoreProperties() {
     this.pageNo++;
     this.loadMoreLoader = true;

@@ -51,10 +51,20 @@
               <a routerLink="/buy-property">buy</a>
             </li>
             <li>
-              <a routerLink="/selling-detail">Sell</a>
+              @if (user) {
+                <a routerLink="/selling-detail">Sell</a>
+              }
+              @else {
+                <a (click)="openSellPopup()">Sell</a>
+              }
             </li>
             <li>
-              <a routerLink="/property-details">Rent</a>
+              @if (user) {
+                <a routerLink="/property-details">Rent</a>
+              }
+              @else {
+                <a (click)="openSellPopup()">Rent</a>
+              }
             </li>
             <li>
               <a routerLink="">property trend</a>

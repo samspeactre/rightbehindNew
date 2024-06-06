@@ -1,9 +1,6 @@
 
 .property-card-wrapper {
-    width: calc(100% / 3);
-    box-sizing: border-box;
     padding: 0vw 0.5vw; 
-    float: left;
 }
 
 .property-card{

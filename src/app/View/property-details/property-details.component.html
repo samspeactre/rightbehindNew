@@ -1,5 +1,5 @@
 <section>
-  <div class="lg-12">
+  <div class="lg-12 position-relative">
     <div class="sec-1">
       <div class="navbar">
         <app-navbar></app-navbar>
@@ -12,11 +12,8 @@
         </h1>
         <h2>Move in with just a security deposit, a month free and more 🔥</h2>
         <div class="search-bar">
-          <app-search-bar
-          [search]="search"
-            (searchEvent)="searchProperties($event)"
-            [searching]="loader"
-          ></app-search-bar>
+          <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
+            [searching]="loader"></app-search-bar>
         </div>
 
         <div class="align-items-center">
@@ -28,9 +25,7 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
-                >keyboard_arrow_down</mat-icon
-              >
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
             </button>
           </mat-form-field>
           <mat-form-field class="w-10">
@@ -41,9 +36,7 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
-                >keyboard_arrow_down</mat-icon
-              >
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
             </button>
           </mat-form-field>
           <mat-form-field class="w-10">
@@ -54,9 +47,7 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
-                >keyboard_arrow_down</mat-icon
-              >
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
             </button>
           </mat-form-field>
           <mat-form-field class="w-10">
@@ -67,9 +58,7 @@
               <mat-option>option c</mat-option>
             </mat-select>
             <button matSuffix mat-icon-button>
-              <mat-icon class="custom-icon material-symbols-outlined arrow-down"
-                >instant_mix</mat-icon
-              >
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">instant_mix</mat-icon>
             </button>
           </mat-form-field>
         </div>
@@ -90,31 +79,27 @@
 
 <section>
   <div class="lg-12 container-site">
-    <div class="sec-2 content-between">
-      @if(!noData){ @for (card of cards; track card) {
-      <app-property-card
-        [card]="card"
-        [showBadge]="true"
-        [loader]="loader"
-      ></app-property-card>
-      } } @else{
-      <p class="noData">No data found</p>
+
+    @if(!noData){
+    <div class="row">
+      @for (card of cards; track card) {
+      <div class="col3">
+        <app-property-card [card]="card" [showBadge]="true" [loader]="loader"></app-property-card>
+      </div>
       }
     </div>
+    } @else{
+    <p class="noData">No data found</p>
+    }
+
   </div>
   @if(loadMore){
   <div class="centerBtn">
     @if(loadMoreLoader){
-      <app-mini-loading></app-mini-loading>
-     } @else{
+    <app-mini-loading></app-mini-loading>
+    } @else{
     <button class="loadMore" (click)="loadMoreProperties()">Load More</button>
     }
   </div>
   }
-</section>
-
-<section>
-  <div class="footer">
-    <app-footer></app-footer>
-  </div>
 </section>

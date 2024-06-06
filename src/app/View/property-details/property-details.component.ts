@@ -94,13 +94,17 @@ export class PropertyDetailsComponent {
           this.cards = [...newProperties];
           this.noData = this.cards.length === 0;
         } else {
-          this.cards = [];
-          this.noData = true;
+          this.noDataError()
         }
         this.loadMore = this.cards?.length < response?.model?.totalResults;
+      },err=>{
+        this.noDataError()
       });
   }
-
+  noDataError(){
+    this.cards = [];
+          this.noData = true;
+  }
   loadMoreProperties() {
     this.pageNo++;
     this.loadMoreLoader = true;

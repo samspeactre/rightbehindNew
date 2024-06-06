@@ -14,11 +14,13 @@ import { LoadingComponent } from './SharedComponents/loaders/loading/loading.com
 import { FileSizePipe } from './TsExtras/file-size.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './SharedComponents/footer/footer.component';
 
 @NgModule({
   declarations: [FileSizePipe, AppComponent],
   imports: [
     LoadingComponent,
+    FooterComponent,
     RouterModule,
     BrowserModule,
     AppRoutingModule,

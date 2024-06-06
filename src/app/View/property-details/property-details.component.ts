@@ -88,25 +88,22 @@ export class PropertyDetailsComponent {
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe(
-        (response) => {
-          if (response?.model?.properties) {
-            const newProperties = response?.model?.properties || [];
-            this.cards = [...newProperties];
-            this.noData = this.cards.length === 0;
-          } else {
-            this.noDataFound();
-          }
-          this.loadMore = this.cards?.length < response?.model?.totalResults;
-        },
-        (err) => {
-          this.noDataFound();
+      .subscribe((response) => {
+        if (response?.model?.properties) {
+          const newProperties = response?.model?.properties || [];
+          this.cards = [...newProperties];
+          this.noData = this.cards.length === 0;
+        } else {
+          this.noDataError()
         }
-      );
+        this.loadMore = this.cards?.length < response?.model?.totalResults;
+      },err=>{
+        this.noDataError()
+      });
   }
-  noDataFound() {
+  noDataError(){
     this.cards = [];
-    this.noData = true;
+          this.noData = true;
   }
   loadMoreProperties() {
     this.pageNo++;

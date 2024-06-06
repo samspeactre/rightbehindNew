@@ -112,9 +112,14 @@ h2 {
   background-position: 0vw bottom;
   background-size: 100% 22.7vw;
 }
-
+.position-relative{
+  position: relative;
+}
 .home-tree {
-  margin-top: -23%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
 }
 
 .left-tree img,
@@ -126,9 +131,15 @@ h2 {
   transform: scaleX(-1);
 }
 
-.sec-2 {
-  margin-top: 3vw;
-  width: 100%;
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+.col3{
+  width: calc(100%/3);
 }
 
 hr {
@@ -166,5 +177,5 @@ hr {
 .noData{
   text-align: center;
   color: red;
-  margin-bottom: 0;
+  margin: 2rem 0;
 }

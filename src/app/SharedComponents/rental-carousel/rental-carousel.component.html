@@ -7,20 +7,18 @@
     <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
   </button>
 </div>
-<div class="container-fluid">
-  <owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging"  #owlCar>
-    @for (card of cards; track card) {
-    <ng-container>
-      <ng-template carouselSlide [id]="card.id">
-        <div (click)="!isDragging && openPopup(card)">
-          <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
-            [background]="background"></app-property-card>
-        </div>
-      </ng-template>
-    </ng-container>
-    }
-  </owl-carousel-o>
-</div>
+<owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging"  #owlCar>
+  @for (card of cards; track card) {
+  <ng-container>
+    <ng-template carouselSlide [id]="card.id">
+      <div (click)="!isDragging && openPopup(card)">
+        <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
+          [background]="background"></app-property-card>
+      </div>
+    </ng-template>
+  </ng-container>
+  }
+</owl-carousel-o>
 <div class="rental-btn">
   <button mat-stroked-button routerLink="/property-details">View More</button>
 </div>

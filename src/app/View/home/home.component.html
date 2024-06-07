@@ -47,42 +47,44 @@
     </div>
   </div>
 </section>
-
-<section>
-  <div class="lg-12 sec-2">
-    <div class="display carousel-portion container-site">
-      <div class="head-3">
-        <h2>Hot rentals in Miami</h2>
+@if(buyCards?.length){
+  <section>
+    <div class="lg-12 sec-2">
+      <div class="display carousel-portion container-site">
+        <div class="head-3">
+          <h2>Hot rentals in Miami</h2>
+        </div>
+  
+        <div class="carousel-line">
+          <hr />
+        </div>
       </div>
-
-      <div class="carousel-line">
-        <hr />
-      </div>
-    </div>
-
-    <div class="rental-carousel">
-      <app-rental-carousel></app-rental-carousel>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="lg-12 sec-3">
-    <div class="display seller-carousel-portion container-site">
-      <div class="seller-head-3">
-        <h2>Sellers in Miami</h2>
-      </div>
-
-      <div class="seller-carousel-line">
-        <hr />
+  
+      <div class="rental-carousel">
+        <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
       </div>
     </div>
-
-    <div class="rental-carousel">
-      <app-seller-carousel></app-seller-carousel>
+  </section>
+}
+@if(sellCards?.length){
+  <section>
+    <div class="lg-12 sec-3">
+      <div class="display seller-carousel-portion container-site">
+        <div class="seller-head-3">
+          <h2>Sellers in Miami</h2>
+        </div>
+  
+        <div class="seller-carousel-line">
+          <hr />
+        </div>
+      </div>
+  
+      <div class="rental-carousel">
+        <app-rental-carousel type="2" [cards]="sellCards"></app-rental-carousel>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+}
 
 <section>
   <div class="lg-12 post-property">

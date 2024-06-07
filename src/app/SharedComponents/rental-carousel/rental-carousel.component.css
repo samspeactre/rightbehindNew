@@ -63,21 +63,6 @@ h2 {
     padding: 0vw 1.5vw;
 }
 
-.appartment {
-    color: var(--black);
-    font-size: 0.87vw;
-    margin-top: 0.6vw;
-    font-family: 'bold';
-}
-
-.address {
-    font-size: 0.82vw;
-    letter-spacing: 0.02vw;
-    margin-top: 0.5vw;
-    font-family: "reg";
-    color: var(--carousel-add);
-}
-
 .home-detail {
     width: 2.4vw;
     margin-top: 0.65vw;
@@ -129,4 +114,8 @@ h2 {
     padding: 1.7vw 2.7vw;
     margin-top: 3vw;
     border-radius: 3vw;
+}
+.noData{
+    text-align: center;
+    margin: 2rem 0;
 }

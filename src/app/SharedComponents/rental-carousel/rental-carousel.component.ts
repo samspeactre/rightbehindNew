@@ -1,40 +1,32 @@
 import { MatButtonModule } from '@angular/material/button';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../../View/popup/popup.component';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpService } from '../../Services/http.service';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { PropertyCardComponent } from '../property-card/property-card.component';
 
 
 @Component({
-  standalone:true,
-  imports: [RouterModule, MatIconModule, MatButtonModule],
+  standalone: true,
+  imports: [RouterModule, MatIconModule, MatButtonModule, PropertyCardComponent],
   selector: 'app-rental-carousel',
   templateUrl: './rental-carousel.component.html',
   styleUrl: './rental-carousel.component.css'
 })
-export class RentalCarouselComponent implements OnInit{
-  cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-   
-
-   // Add more card data as needed
-  ];
+export class RentalCarouselComponent implements OnInit {
+  @Input() cards: any = [1, 2, 3, 4, 5];
   swiper!: Swiper;
-
-  constructor(public dialog: MatDialog){}
+  @Input() type!: string;
+  @Input() background!: string;
+  noData: boolean = false;
+  constructor(public dialog: MatDialog, private http: HttpService) { }
 
   ngOnInit(): void {
-    this.initSwiper();
+    this.initSwiper()
   }
 
   initSwiper(): void {
@@ -64,15 +56,14 @@ export class RentalCarouselComponent implements OnInit{
         },
       },
     });
-    this.swiper.slidesPerViewDynamic()
+    this.swiper.slidesPerViewDynamic();
   }
-  slideNext(){
+  slideNext() {
     this.swiper.slideNext()
   }
-  slidePrev(){
+  slidePrev() {
     this.swiper.slidePrev()
   }
-
   openPopup(): void {
     let dialogRef = this.dialog.open(PopupComponent, {
       height: '650px',
@@ -82,10 +73,9 @@ export class RentalCarouselComponent implements OnInit{
 
 }
 
-  // openPopup(): void {
-  //   this.dialog.open(PopupComponent,({width: "100%", height: "80vw", panelClass:"custom-dialogue"}));
-  // }
+// openPopup(): void {
+//   this.dialog.open(PopupComponent,({width: "100%", height: "80vw", panelClass:"custom-dialogue"}));
+// }
 
-  
 
- 
+

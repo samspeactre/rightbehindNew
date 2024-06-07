@@ -131,3 +131,72 @@ hr{
     width: 119px;
     height: 55px;
 }
+.property-card-wrapper.carousel h3 {
+    color: var(--black);
+    font-size: 0.87vw;
+    margin-top: 0.6vw;
+    font-family: 'bold';
+}
+.property-card-wrapper.carousel p {
+    font-size: 0.82vw;
+    letter-spacing: 0.02vw;
+    margin-top: 0.5vw;
+    font-family: "reg";
+    color: var(--carousel-add);
+}
+.property-card-wrapper.carousel .home-detail {
+    width: 2.4vw;
+    margin-top: 0.65vw;
+}
+
+.property-card-wrapper.carousel .home-img {
+    width: 100%;
+    padding: 0.3vw;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--sec-light);
+}
+
+.property-card-wrapper.carousel .detail-font {
+    font-size: 0.7vw;
+    align-content: center;
+    margin-left: 0.3vw;
+    font-family: 'med';
+    padding-right: 1vw;
+    border-right: 0.1vw solid rgba(196, 196, 196, 1);
+}
+
+.property-card-wrapper.carousel .bath {
+    margin-left: 3.1vw;
+    margin-right: 3.1vw;
+}
+
+.property-card-wrapper.carousel .contact button {
+    background-color: var(--royal-blue);
+    border-radius: 3vw;
+    padding: 1.3vw 1.8vw;
+    color: var(--white);
+    font-size: 0.65vw;
+    font-family: "reg";
+    margin-top: 1vw;
+    margin-left: 1rem;
+}
+.property-card-wrapper.carousel .contact .price {
+    margin-top: 1.4vw;
+    font-size: 1.32vw;
+    font-family: "bold";
+    color: var(--royal-blue);
+    border-right: 0.1vw solid rgba(196, 196, 196, 1);
+    padding-right: 2.5vw;
+}
+.property-card-wrapper.carousel hr{
+    height: auto;
+    align-self: center;
+}
+.property-card-wrapper.carousel .card-img{
+    height: 9.5vw;
+    border-radius: 1vw;
+}
+.property-card-wrapper.carousel .card-bottom {
+    margin-top: 0;
+}

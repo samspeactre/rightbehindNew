@@ -1,8 +1,6 @@
 <section>
-  <div class="slide-container swiper" >
+  <div class="slide-container swiper">
     <div class="slide-content swiper-container-rental">
-
-      <!-- Add pagination buttons -->
       <div class="carousel-btn">
         <button mat-icon-button (click)="slidePrev()" class="swiper-button-prev-rental">
           <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
@@ -12,46 +10,14 @@
           <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
         </button>
       </div>
-
       <div class="swiper-wrapper container-site" (click)="openPopup()">
         @for (card of cards; track card) {
-          <div class="card-wrapper swiper-slide">
-            <div class="card">
-              <div class="image-content">
-                <span class="overlay"></span>
-                <div class="card-image">
-                  <img [src]="card.imgSrc" alt="Card Image" class="card-img">
-                </div>
-              </div>
-              <div class="card-content">
-                <h1 class="appartment">{{ card.name }}</h1>
-                <p class="address">{{ card.address }}</p>
-                <div class="details">
-                  <div class="display">
-                    <div class="home-detail bedroom display">
-                      <img src="../../assets/img/bed.png" alt="" class="home-img">
-                      <div class="detail-font">{{card.room}}</div>
-                    </div>
-                    <div class="home-detail bath display">
-                      <img src="../../assets/img/bath.png" alt="" class="home-img">
-                      <div class="detail-font">{{card.bath}}</div>
-                    </div>
-                    <div class="home-detail  display">
-                      <img src="../../assets/img/sq.ft.png" alt="" class="home-img">
-                      <div class="detail-font sq.ft">{{card.sqft}}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="display contact content-between">
-                  <h2>$ {{card.price}}</h2>
-                  <button mat-flat-button [routerLink]="card.buttonUrl">Contact Agent</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="swiper-slide">
+          <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
+            [background]="background"></app-property-card>
+        </div>
         }
       </div>
-
     </div>
   </div>
 

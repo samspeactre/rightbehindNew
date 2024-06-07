@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'sell-add-property', component: SellAddPropertyComponent, data:{footer:true} },
   { path: 'sell-preview', component: SellPreviewComponent, data:{footer:true} },
   { path: 'dashboard', component: DashboardComponent },
+  { path: '**', redirectTo:'' },
 ];
 
 @NgModule({

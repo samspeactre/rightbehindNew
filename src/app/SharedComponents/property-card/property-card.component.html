@@ -11,7 +11,7 @@
   </div>
 }
 @else{
-  <div class="property-card-wrapper" [ngClass]="[type == 'carousel' ? 'carousel' : 'component']">
+  <div [ngClass]="[type == 'carousel' ? 'carousel' : 'component']">
     <div class="property-card" [ngStyle]="{background:background}">
       <div class="card-img cursor" (click)="type == 'component' && navigate(card)">
         <img [src]="card?.propertyImages?.[0]?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" [class.NoImageFound]="!card?.imgSrc" alt="Card Image" class="card-img" />

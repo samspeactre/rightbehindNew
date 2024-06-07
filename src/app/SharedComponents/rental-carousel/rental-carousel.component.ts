@@ -32,10 +32,11 @@ export class RentalCarouselComponent implements OnInit {
   noData: boolean = false;
   isDragging: boolean = false;
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
+    margin: 20,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],

@@ -16,12 +16,14 @@ import { FileSizePipe } from './TsExtras/file-size.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './SharedComponents/footer/footer.component';
+import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 
 @NgModule({
   declarations: [FileSizePipe, AppComponent],
   imports: [
     LoadingComponent,
     FooterComponent,
+    NavbarComponent,
     RouterModule,
     BrowserModule,
     AppRoutingModule,

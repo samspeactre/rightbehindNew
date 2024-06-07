@@ -10,9 +10,9 @@ import { LoaderService } from './services/loader.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  loader$ = this.store.select(selectLoader);
   loader: boolean = true;
   footer: boolean = true;
+  header: boolean = true;
   private destroy$ = new Subject<void>();
   constructor(private store: Store, private cd: ChangeDetectorRef, private actiavtedRoute: ActivatedRoute, private router: Router, private loaderService: LoaderService, private cdr: ChangeDetectorRef) {
     this.router.events
@@ -35,6 +35,7 @@ export class AppComponent {
             takeUntil(this.destroy$),)
           .subscribe((data: any) => {
             this.footer = data['footer'] || false;
+            this.header = data['header'] || false;
           });
 
       });

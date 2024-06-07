@@ -16,7 +16,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   standalone:true,
-  imports: [FooterComponent, MapMarker, GoogleMap, RouterModule, MatIconModule, MatOption, MatSelect, MatLabel, MatFormFieldModule, MatInputModule, SearchBarComponent, NavbarComponent, MatButtonModule],
+  imports: [RouterModule, MapMarker, GoogleMap, MatIconModule, MatOption, MatSelect, MatLabel, MatFormFieldModule, MatInputModule, SearchBarComponent, NavbarComponent, MatButtonModule],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.css'

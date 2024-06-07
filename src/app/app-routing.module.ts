@@ -20,6 +20,8 @@ import { SignupPageComponent } from './View/signup-page/signup-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data:{footer:true,header:true} },
+  { path: 'buy', component: ListingPageComponent, data:{footer:true,header:true} },
+  { path: 'rent', component: ListingPageComponent, data:{footer:true,header:true} },
   { path: 'carousel', component: CarouselComponent },
   { path: 'card-carousel', component: CardCarouselComponent },
   { path: 'blog-carousel', component: BlogCarouselComponent },

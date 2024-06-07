@@ -10,7 +10,7 @@ import { LoaderService } from './services/loader.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  loader: boolean = true;
+  loader: boolean = false;
   footer: boolean = true;
   header: boolean = true;
   private destroy$ = new Subject<void>();

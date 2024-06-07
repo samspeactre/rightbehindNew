@@ -4,7 +4,14 @@ h1 {
     color: var(--black);
     text-align: center;
 }
-
+.btnWhiteNBlue{
+    padding: .5rem 2rem;
+}
+.btnWhiteNBlue.active{
+    background-color: #0160c9;
+    border-color:#0160c9;
+    color: white;
+}
 .height-half{
     height: 53%;
 }

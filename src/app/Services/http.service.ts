@@ -76,10 +76,10 @@ export class HttpService {
           }
         }),
         catchError((error: HttpErrorResponse) => {
+          if(loader){
+            this.store.dispatch(toggleLoader({ show: false }));
+          }
           if (toaster) {
-            if(loader){
-              this.store.dispatch(toggleLoader({ show: false }));
-            }
             this.errorShown(error)
           }
           return throwError(error.message || 'Server error');
@@ -100,12 +100,11 @@ export class HttpService {
       }),
       catchError((error: HttpErrorResponse) => {
         if (toastr) {
-          this.toastr.error(error?.error?.userMessage || error?.error?.errorMessage);
+          this.errorShown(error)
         }
         if(loader){
           this.store.dispatch(toggleLoader({ show: false }));   
         }
-        this.errorShown(error)
         return throwError(error.message || 'Server error');
       }),
     );

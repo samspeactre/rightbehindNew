@@ -6,8 +6,8 @@
         <div class="content">
             <h1>Add New Property</h1>
             <div class="btns display content-between">
-                <button mat-stroked-button class="rent-btn">Rent</button>
-                <button mat-stroked-button class="sell-btn">Sell</button>
+                <button mat-stroked-button class="rent-btn" [class.Active]="active == 'rent'" (click)="makeActive('rent')">Rent</button>
+                <button mat-stroked-button class="sell-btn" [class.Active]="active == 'sell'" (click)="makeActive('sell')">Sell</button>
             </div>
             <form action="">
                 <div class="display content-between">

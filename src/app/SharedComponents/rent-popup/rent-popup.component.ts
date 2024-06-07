@@ -9,24 +9,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  standalone:true,
-  imports:[MatLabel,RouterModule,MatFormFieldModule,MatInputModule,MatButtonModule,MatOption,MatSelect],
+  standalone: true,
+  imports: [MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatOption, MatSelect],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
   styleUrl: './rent-popup.component.css'
 })
 export class RentPopupComponent {
-selected: any;
+  selected: any;
   router: any;
+  active: string = 'rent'
+  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<SellPropertyPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.active = data
+  }
 
-constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<SellPropertyPopupComponent>,
-  @Inject(MAT_DIALOG_DATA) public data: any
-) {
-  console.log(data);
-  
-}
-
-openSellPopup(): void {
+  openSellPopup(): void {
     this.dialog.open(SellPropertyPopupComponent, {
       height: '95%',
       width: '33%',
@@ -36,5 +35,8 @@ openSellPopup(): void {
   navigateAndClose() {
     this.dialogRef.close();
     this.router.navigate(['/add-rent-property']);
+  }
+  makeActive(type:string){
+    this.active = type;    
   }
 }

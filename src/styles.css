@@ -178,3 +178,16 @@ body {
     background-position: right -40px top 0;
   }
 }
+.cursor{
+  cursor: pointer;
+}
+.dCenter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hideScroll{
+  height: 100vh;
+  overflow: hidden;
+  cursor: not-allowed;
+}

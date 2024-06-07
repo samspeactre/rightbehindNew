@@ -37,6 +37,8 @@ export class RentalCarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSwiper();
+    console.log(this.type);
+    
   }
 
   initSwiper(): void {

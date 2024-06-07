@@ -11,6 +11,7 @@ import { catchError, distinctUntilChanged, finalize, shareReplay, takeUntil, tap
 import { ToastrService } from 'ngx-toastr';
 import { selectUser } from '../Ngrx/data.reducer';
 import { toggleLoader } from '../Ngrx/data.action';
+import { LoaderService } from '../services/loader.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,6 +24,7 @@ export class HttpService {
     private http: HttpClient,
     private toastr: ToastrService,
     private store: Store,
+    private loaderService:LoaderService
   ) {
     this.user$
       .pipe(
@@ -55,7 +57,7 @@ export class HttpService {
   }
   loaderPost(link: string, data: any, token: boolean, toaster: boolean = true, loader:boolean = true) {
     if(loader){
-      this.store.dispatch(toggleLoader({ show: true }));
+      LoaderService.loader.next(true);
     }
     return this.http
       .post(
@@ -74,10 +76,13 @@ export class HttpService {
               this.toastr.error(res.errorMessage);
             }
           }
+          if(loader){
+            LoaderService.loader.next(false);
+           }
         }),
         catchError((error: HttpErrorResponse) => {
           if(loader){
-            this.store.dispatch(toggleLoader({ show: false }));
+           LoaderService.loader.next(false);
           }
           if (toaster) {
             this.errorShown(error)
@@ -88,7 +93,7 @@ export class HttpService {
   }
   loaderGet(url: string, token: boolean, toastr: boolean = false, loader:boolean = true) {
     if(loader){
-      this.store.dispatch(toggleLoader({ show: true }));       
+      LoaderService.loader.next(true);       
     }
     const headers = token ? this.headerToken : this.header;
     return this.http.get(this.url + url, headers ).pipe(
@@ -97,19 +102,22 @@ export class HttpService {
         if (toastr) {
           this.toastr.success(res?.userMessage || res?.successMessage);
         }
+        if(loader){
+         LoaderService.loader.next(false);   
+        }
       }),
       catchError((error: HttpErrorResponse) => {
         if (toastr) {
           this.errorShown(error)
         }
         if(loader){
-          this.store.dispatch(toggleLoader({ show: false }));   
+         LoaderService.loader.next(false);   
         }
         return throwError(error.message || 'Server error');
       }),
     );
   }
-  get(url: string, token: boolean, clearCache: boolean) {
+  get(url: string, token: boolean,toaster:boolean = false) {
     const headers = token ? this.headerToken : this.header;
     return this.http.get(this.url + url, headers).pipe(
       shareReplay({ refCount: true }),
@@ -119,7 +127,9 @@ export class HttpService {
         // }
       }),
       catchError((error: HttpErrorResponse) => {
-        this.store.dispatch(toggleLoader({ show: false }));
+        if (toaster) {
+            this.errorShown(error)
+          }
         return throwError(error || 'Server error');
       }),
     );
@@ -144,7 +154,7 @@ export class HttpService {
           }
         }),
         catchError((error: HttpErrorResponse) => {
-          this.store.dispatch(toggleLoader({ show: false }));
+         LoaderService.loader.next(false);
           if (toaster) {
             this.errorShown(error)
           }

@@ -6,16 +6,32 @@ import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
 
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { HttpService } from '../../Services/http.service';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { toggleLoader } from '../../Ngrx/data.action';
+import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule],
+  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.css',
 })
 export class SellPreviewComponent implements OnInit {
+  type!:number;
+  id!:number;
+  propertyDetails:any;
+  loader:boolean = true;
+  constructor(private activatedRoute:ActivatedRoute,private http:HttpService, private store:Store){
+    this.activatedRoute.queryParams.subscribe((param:any)=>{
+      console.log(param,'checlo');
+      this.type = Number(param?.type)
+      this.id = Number(param?.id)
+    })
+  }
   cards = [
     {
       imgSrc: '../../assets/img/carousel-img-1.png',
@@ -119,11 +135,30 @@ export class SellPreviewComponent implements OnInit {
   ];
   swiper!: Swiper;
   utility: any;
-
+  private destroy$ = new Subject<void>();
   ngOnInit(): void {
     this.initSwiper();
+    this.getPropertyDetail()
   }
-
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+  getPropertyDetail() {
+    this.http.get(`Property/get/${this.id}`, false)
+    .pipe(
+      takeUntil(this.destroy$),
+      finalize(()=>{
+        this.loader =false;
+      })
+    )
+    .subscribe(
+      (response) => {
+        console.log(response);
+        this.propertyDetails = response?.model
+      }
+    );
+  }
   initSwiper(): void {
     this.swiper = new Swiper('.swiper-container-rental-preview', {
       // slidesPerView: 1,

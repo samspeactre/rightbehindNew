@@ -48,6 +48,8 @@ export class HomeComponent {
 
   ngOnDestroy() {
     this.stopCounters();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   startCounters() {
@@ -82,7 +84,7 @@ export class HomeComponent {
         `Property/get?pageNo=1&pageSize=10&type=1`,
         false,
         false,
-        false
+        true
       )
       .pipe(
         finalize(() => {
@@ -108,7 +110,7 @@ export class HomeComponent {
         `Property/get?pageNo=1&pageSize=10&type=2`,
         false,
         false,
-        false
+        true
       )
       .pipe(
         takeUntil(this.destroy$)

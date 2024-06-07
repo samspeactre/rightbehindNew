@@ -107,3 +107,9 @@ section{
     color: var(--white);
     font-family: 'reg';
 }
+button{
+    transition: 0.5s all ease-in-out;
+}
+button.Active{
+    background: #b8daff !important;
+}

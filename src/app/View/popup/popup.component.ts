@@ -17,8 +17,8 @@ import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectPopupState } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { HttpService } from '../../Services/http.service';
 import { CommonModule } from '@angular/common';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   standalone: true,
@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
 export class PopupComponent implements OnInit {
   popUpId$ = this.store.select(selectPopupState);
   popUpId: any;
-  propertyData:any;
+  propertyData: any;
   private destroy$ = new Subject<void>();
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
@@ -41,22 +41,11 @@ export class PopupComponent implements OnInit {
   ) {
     console.log(data?.card);
     this.propertyData = data?.card
-    // this.getPropertyDetail(data?.card?.id);
   }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  // getPropertyDetail(id: number) {
-  //   this.http.loaderGet(`Property/get/${id}`, false).subscribe(
-  //     (response) => {
-  //       console.log(response);
-  //     },
-  //     (err) => {
-  //       this.dialogRef.close();
-  //     }
-  //   );
-  // }
   Appartment = [
     {
       propertyid: '123145',
@@ -205,6 +194,11 @@ export class PopupComponent implements OnInit {
 
   navigateAndClose() {
     this.dialogRef.close();
-    this.router.navigate(['/preview']);
+    setTimeout(() => {
+      this.router.navigate(
+        ['/preview'],
+        { queryParams: { id: this.propertyData?.id, type: this.propertyData?.propertyType } }
+      );
+    }, 500);
   }
 }

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectLoader } from './Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { LoaderService } from './services/loader.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,7 @@ export class AppComponent {
   loader: boolean = true;
   footer: boolean = true;
   private destroy$ = new Subject<void>();
-  constructor(private store: Store, private actiavtedRoute: ActivatedRoute, private router: Router) {
+  constructor(private store: Store, private cd: ChangeDetectorRef, private actiavtedRoute: ActivatedRoute, private router: Router, private loaderService: LoaderService, private cdr: ChangeDetectorRef) {
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -37,21 +38,20 @@ export class AppComponent {
           });
 
       });
-    this.loader$
-      .pipe(
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr),
-        ),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((loader) => {
-        this.loader = loader;
-        if (loader) {
-          document.body.classList.add('bodyLoader');
-        } else {
-          document.body.classList.remove('bodyLoader');
-        }
-      });
+      this.observe()
+  }
+  async observe() {
+    LoaderService.loader.subscribe((res: any) => {
+      console.log(res);
+      
+      this.loader = res;
+      if (this.loader == true) {
+        document.body.classList.add('hideScroll');
+      } else {
+        document.body.classList.remove('hideScroll');
+      }
+      this.cd.detectChanges();
+    });
   }
   ngOnDestroy() {
     this.destroy$.next();

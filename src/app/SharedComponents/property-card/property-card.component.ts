@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   standalone:true,
@@ -17,8 +17,15 @@ export class PropertyCardComponent {
   @Input() loader:boolean = true;
   @Input() type!:string;
   @Input() background!:string;
+  constructor(private router:Router){}
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.card,this.background,this.type);
     
+  }
+  navigate(propertyData:any) {
+    this.router.navigate(
+      ['/preview'],
+      { queryParams: { id: propertyData?.id,type:propertyData?.propertyType } }
+    );
   }
 }

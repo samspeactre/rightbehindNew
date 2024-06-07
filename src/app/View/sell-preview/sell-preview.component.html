@@ -2,15 +2,21 @@
   <div class="navbar">
     <app-navbar></app-navbar>
   </div>
+  @if(loader){
+    <div class="dCenter my-3">
+      <app-mini-loading></app-mini-loading>
+    </div>
+  }
+  @else {
   <div class="lg-12">
     <div class="display container-site">
       <div class="pages-links display">
 
-        <a  routerLink="/">Home</a>
+        <a routerLink="/">Home</a>
         <div class="slash">/</div>
-        <a  routerLink="/rent">Rent</a>
+        <a routerLink="/rent">Rent</a>
         <div class="slash">/</div>
-        <a  routerLink="/rent"> New Apartment Nice View</a>
+        <a routerLink="/rent"> New Apartment Nice View</a>
 
       </div>
     </div>
@@ -23,16 +29,16 @@
 
           <div class="swiper-wrapper display">
             @for (card of cards; track card) {
-              <div class="card-wrapper swiper-slide">
-                <div class="card">
-                  <div class="image-content">
-                    <span class="overlay"></span>
-                    <div class="card-image ">
-                      <img [src]="card.imgSrc" alt="Card Image" class="card-img">
-                    </div>
+            <div class="card-wrapper swiper-slide">
+              <div class="card">
+                <div class="image-content">
+                  <span class="overlay"></span>
+                  <div class="card-image ">
+                    <img [src]="card.imgSrc" alt="Card Image" class="card-img">
                   </div>
                 </div>
               </div>
+            </div>
             }
           </div>
 
@@ -45,307 +51,308 @@
       <div class="left-site">
 
         @for (card of Appartment; track card) {
-          <div class="first-box">
-            <div class="display content-between">
-              <div class="head">{{card.head}}</div>
-              <div class="prop-detail-icon">
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                  <mat-icon>favorite</mat-icon>
-                </button>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                  <mat-icon>share</mat-icon>
-                </button>
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-              </div>
+        <div class="first-box">
+          <div class="display content-between">
+            <div class="head">{{card.head}}</div>
+            <div class="prop-detail-icon">
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>share</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>more_vert</mat-icon>
+              </button>
             </div>
-            <div class="address">{{card.address}}</div>
-            <div class="prop-details-div display content-between">
-              <div class="prop-details display content-between">
-                <div class="prop-detail-img display">
-                  <div class="display content-between">
-                    <img src="../../assets/img/bed.png" alt="">
-                    <div class="prop-detail-text">{{card.bed}}</div>
-                  </div>
-                  <hr>
-                  </div>
-                  <div class="prop-detail-img display">
-                    <div class="display content-between">
-                      <img src="../../assets/img/bath.png" alt="">
-                      <div class="prop-detail-text">{{card.bath}}</div>
-                    </div>
-                    <hr>
-                    </div>
-                    <div class="prop-detail-img display">
-                      <div class="display content-between">
-                        <img src="../../assets/img/sq.ft.png" alt="">
-                        <div class="prop-detail-text">{{card.sqft}}Sq.Ft</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="pricing">$ {{card.price}}</div>
-                </div>
-              </div>
-            }
-
-            @for (info of setPrice; track info) {
-              <div class="Prop-info">
-                <h3 class="small-head prop-info-padding">Set Your Price</h3>
-                <div class="white-box display white-box-price">
-                  <div class="white-box-text text-info">Price</div>
-                  <div class="white-box-text">${{info.price}}</div>
-                </div>
-              </div>
-            }
-
-            <div class="gallery" >
-              <h3 class="small-head">Gallery</h3>
-
-              <div class="display">
-                @for (imageUrl of Gallery; track imageUrl) {
-                  <div class="gallery-img ">
-                    <img [src]="imageUrl" alt="Image">
-                  </div>
-                }
-              </div>
-            </div>
-
-            @for (info of virtualUrl; track info) {
-              <div class="Prop-info ">
-                <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
-                <div class="white-box display white-box-price">
-                  <div class="white-box-text text-info">Url</div>
-                  <div class="white-box-text">{{info.url}}</div>
-                </div>
-              </div>
-            }
-
-            @for (info of homeFacts; track info) {
-              <div class="Prop-info">
-                <h3 class="small-head prop-info-padding">Home Facts</h3>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Home Type</div>
-                    <div class="white-box-text">{{info.homeType}}</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">No. of Bedrooms</div>
-                    <div class="white-box-text">{{info.bed}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">No. of Bathrooms</div>
-                    <div class="white-box-text">{{info.bath}}</div>
-                  </div>
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">3/4 bath</div>
-                    <div class="white-box-text">{{info.Bath3and4}}Sq.Ft</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">1/2 bath</div>
-                    <div class="white-box-text">{{info.Bath1and2}}</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">1/4 bath</div>
-                    <div class="white-box-text">{{info.Bath1and4}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">Finished Sq.FT</div>
-                    <div class="white-box-text">{{info.finishedSqft}}Sq Ft</div>
-                  </div>
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">Lot Size</div>
-                    <div class="white-box-text">{{info.lotSize}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Sq.FT</div>
-                    <div class="white-box-text">{{info.sqft}} Sq.Ft</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Years Constructed</div>
-                    <div class="white-box-text">{{info.yearConstructed}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">Structural Remodal Year</div>
-                    <div class="white-box-text">{{info.remodalYear}}Sq Ft</div>
-                  </div>
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">HAO Dues</div>
-                    <div class="white-box-text">{{info.dues}}Sq Ft</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Basement Sq.Ft</div>
-                    <div class="white-box-text">{{info.baseSqft}} Sq.Ft</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Garage Sq.Ft</div>
-                    <div class="white-box-text">{{info.GarageSqft}} Sq.Ft</div>
-                  </div>
-                </div>
-                <div class="blue-box-property">
-                  <div class="text-info-property">Description:</div>
-                  <div class="white-box-para">{{info.desc}}</div>
-                </div>
-              </div>
-            }
-
-            @for (info of openHouse; track info) {
-              <div class="Prop-info ">
-                <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Date</div>
-                    <div class="white-box-text">{{info.date}}</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Start Time</div>
-                    <div class="white-box-text">{{info.startTime}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">End Time</div>
-                    <div class="white-box-text">{{info.endTime}}</div>
-                  </div>
-                </div>
-              </div>
-            }
-
-            @for (info of addInfo; track info) {
-              <div class="Prop-info ">
-                <h3 class="small-head prop-info-padding">Additional Information</h3>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Related Website</div>
-                    <div class="white-box-text">{{info.realtedSite}}</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">what I love about This Home</div>
-                    <div class="white-box-text">{{info.feedback}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">Room Details</div>
-                    <div class="white-box-text">{{info.roomDetails}}</div>
-                  </div>
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">Utility Bills</div>
-                    <div class="white-box-text">{{info.utilityBills}}</div>
-                  </div>
-                </div>
-                <div class="white-box display">
-                  <div class="white-box-text text-info">Building Details</div>
-                  <div class="white-box-text">{{info.buildDetails}}</div>
-                </div>
-              </div>
-            }
-
-            @for (info of contactInfo; track info) {
-              <div class="Prop-info">
-                <h3 class="small-head prop-info-padding">Contact Information</h3>
-                <div class="white-box display white-box-price">
-                  <div class="white-box-text text-info">Phone</div>
-                  <div class="white-box-text">${{info.phone}}</div>
-                </div>
-              </div>
-            }
-
-            @for (info of Proplocation; track info) {
-              <div class="map">
-                <h3 class="small-head">Property Location</h3>
-                <div class="display content-between Proplocation">
-                  <div class="white-box white-box-address display">
-                    <div class="white-box-text text-info">Address</div>
-                    <div class="white-box-text">{{info.address}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">Country/State</div>
-                    <div class="white-box-text">{{info.country}}</div>
-                  </div>
-                  <div class="transparent-box display">
-                    <div class="white-box-text text-info">City</div>
-                    <div class="white-box-text">{{info.city}}</div>
-                  </div>
-                </div>
-                <div class="display content-between">
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Landmark</div>
-                    <div class="white-box-text">{{info.landmark}}</div>
-                  </div>
-                  <div class="white-box display">
-                    <div class="white-box-text text-info">Zip Code</div>
-                    <div class="white-box-text">{{info.zipcode}}</div>
-                  </div>
-                </div>
-                <div class="map-img">
-                  <img [src]="info.imgSrc" alt="Card Image" class="card-img">
-                </div>
-              </div>
-            }
           </div>
-
-          @for (info of contact; track info) {
-            <div class="right-site">
-              <div class="contact-head">Contact Property</div>
-              <div class="contact-para">{{info.para}}</div>
-              <div class="btns">
-                <button mat-stroked-button class="display call">
-                  <mat-icon>phone_in_talk</mat-icon>
-                  123 456 7890
-                </button>
-                <button mat-stroked-button class="display email">
-                  <mat-icon>mail</mat-icon>
-                  Send an email
-                </button>
-              </div>
-              <div class="or display">
-                <hr class="or-line">
-                <span>Or</span>
-                <hr class="or-line">
-              </div>
-              <div class="tour-btn">
-                <button mat-stroked-button>
-                  Request a tour
-                </button>
-              </div>
-            </div>
-          }
-        </div>
-
-        <div class="nearby-rentals">
-          <div class="lg-12 sec-2">
-            <div class="display carousel-portion container-site ">
-
-              <div class="head-3">
-                <h2>Nearby apartments for rent</h2>
-              </div>
-
-              <div class="carousel-line">
+          <div class="address">{{card.address}}</div>
+          <div class="prop-details-div display content-between">
+            <div class="prop-details display content-between">
+              <div class="prop-detail-img display">
+                <div class="display content-between">
+                  <img src="../../assets/img/bed.png" alt="">
+                  <div class="prop-detail-text">{{card.bed}}</div>
+                </div>
                 <hr>
+              </div>
+              <div class="prop-detail-img display">
+                <div class="display content-between">
+                  <img src="../../assets/img/bath.png" alt="">
+                  <div class="prop-detail-text">{{card.bath}}</div>
                 </div>
-
+                <hr>
               </div>
-
-              <div class="rental-carousel">
-                <app-rental-carousel></app-rental-carousel>
+              <div class="prop-detail-img display">
+                <div class="display content-between">
+                  <img src="../../assets/img/sq.ft.png" alt="">
+                  <div class="prop-detail-text">{{card.sqft}}Sq.Ft</div>
+                </div>
               </div>
+            </div>
+            <div class="pricing">$ {{card.price}}</div>
+          </div>
+        </div>
+        }
 
+        @for (info of setPrice; track info) {
+        <div class="Prop-info">
+          <h3 class="small-head prop-info-padding">Set Your Price</h3>
+          <div class="white-box display white-box-price">
+            <div class="white-box-text text-info">Price</div>
+            <div class="white-box-text">${{info.price}}</div>
+          </div>
+        </div>
+        }
+
+        <div class="gallery">
+          <h3 class="small-head">Gallery</h3>
+
+          <div class="display">
+            @for (imageUrl of Gallery; track imageUrl) {
+            <div class="gallery-img ">
+              <img [src]="imageUrl" alt="Image">
+            </div>
+            }
+          </div>
+        </div>
+
+        @for (info of virtualUrl; track info) {
+        <div class="Prop-info ">
+          <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
+          <div class="white-box display white-box-price">
+            <div class="white-box-text text-info">Url</div>
+            <div class="white-box-text">{{info.url}}</div>
+          </div>
+        </div>
+        }
+
+        @for (info of homeFacts; track info) {
+        <div class="Prop-info">
+          <h3 class="small-head prop-info-padding">Home Facts</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Home Type</div>
+              <div class="white-box-text">{{info.homeType}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">No. of Bedrooms</div>
+              <div class="white-box-text">{{info.bed}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">No. of Bathrooms</div>
+              <div class="white-box-text">{{info.bath}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">3/4 bath</div>
+              <div class="white-box-text">{{info.Bath3and4}}Sq.Ft</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">1/2 bath</div>
+              <div class="white-box-text">{{info.Bath1and2}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">1/4 bath</div>
+              <div class="white-box-text">{{info.Bath1and4}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Finished Sq.FT</div>
+              <div class="white-box-text">{{info.finishedSqft}}Sq Ft</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Lot Size</div>
+              <div class="white-box-text">{{info.lotSize}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Sq.FT</div>
+              <div class="white-box-text">{{info.sqft}} Sq.Ft</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Years Constructed</div>
+              <div class="white-box-text">{{info.yearConstructed}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Structural Remodal Year</div>
+              <div class="white-box-text">{{info.remodalYear}}Sq Ft</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">HAO Dues</div>
+              <div class="white-box-text">{{info.dues}}Sq Ft</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Basement Sq.Ft</div>
+              <div class="white-box-text">{{info.baseSqft}} Sq.Ft</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Garage Sq.Ft</div>
+              <div class="white-box-text">{{info.GarageSqft}} Sq.Ft</div>
+            </div>
+          </div>
+          <div class="blue-box-property">
+            <div class="text-info-property">Description:</div>
+            <div class="white-box-para">{{info.desc}}</div>
+          </div>
+        </div>
+        }
+
+        @for (info of openHouse; track info) {
+        <div class="Prop-info ">
+          <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Date</div>
+              <div class="white-box-text">{{info.date}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Start Time</div>
+              <div class="white-box-text">{{info.startTime}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">End Time</div>
+              <div class="white-box-text">{{info.endTime}}</div>
             </div>
           </div>
         </div>
-      </section>
+        }
+
+        @for (info of addInfo; track info) {
+        <div class="Prop-info ">
+          <h3 class="small-head prop-info-padding">Additional Information</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Related Website</div>
+              <div class="white-box-text">{{info.realtedSite}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">what I love about This Home</div>
+              <div class="white-box-text">{{info.feedback}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Room Details</div>
+              <div class="white-box-text">{{info.roomDetails}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Utility Bills</div>
+              <div class="white-box-text">{{info.utilityBills}}</div>
+            </div>
+          </div>
+          <div class="white-box display">
+            <div class="white-box-text text-info">Building Details</div>
+            <div class="white-box-text">{{info.buildDetails}}</div>
+          </div>
+        </div>
+        }
+
+        @for (info of contactInfo; track info) {
+        <div class="Prop-info">
+          <h3 class="small-head prop-info-padding">Contact Information</h3>
+          <div class="white-box display white-box-price">
+            <div class="white-box-text text-info">Phone</div>
+            <div class="white-box-text">${{info.phone}}</div>
+          </div>
+        </div>
+        }
+
+        @for (info of Proplocation; track info) {
+        <div class="map">
+          <h3 class="small-head">Property Location</h3>
+          <div class="display content-between Proplocation">
+            <div class="white-box white-box-address display">
+              <div class="white-box-text text-info">Address</div>
+              <div class="white-box-text">{{info.address}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Country/State</div>
+              <div class="white-box-text">{{info.country}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">City</div>
+              <div class="white-box-text">{{info.city}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Landmark</div>
+              <div class="white-box-text">{{info.landmark}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Zip Code</div>
+              <div class="white-box-text">{{info.zipcode}}</div>
+            </div>
+          </div>
+          <div class="map-img">
+            <img [src]="info.imgSrc" alt="Card Image" class="card-img">
+          </div>
+        </div>
+        }
+      </div>
+
+      @for (info of contact; track info) {
+      <div class="right-site">
+        <div class="contact-head">Contact Property</div>
+        <div class="contact-para">{{info.para}}</div>
+        <div class="btns">
+          <button mat-stroked-button class="display call">
+            <mat-icon>phone_in_talk</mat-icon>
+            123 456 7890
+          </button>
+          <button mat-stroked-button class="display email">
+            <mat-icon>mail</mat-icon>
+            Send an email
+          </button>
+        </div>
+        <div class="or display">
+          <hr class="or-line">
+          <span>Or</span>
+          <hr class="or-line">
+        </div>
+        <div class="tour-btn">
+          <button mat-stroked-button>
+            Request a tour
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="nearby-rentals">
+      <div class="lg-12 sec-2">
+        <div class="display carousel-portion container-site ">
+
+          <div class="head-3">
+            <h2>Nearby apartments for rent</h2>
+          </div>
+
+          <div class="carousel-line">
+            <hr>
+          </div>
+
+        </div>
+
+        <div class="rental-carousel">
+          <app-rental-carousel></app-rental-carousel>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  }
+</section>

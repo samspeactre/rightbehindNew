@@ -36,14 +36,14 @@ const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
   { path: 'rent-add-property', component: RentPropertyPageComponent, data:{footer:true} },
   { path: 'sell-add-property', component: SellAddPropertyComponent, data:{footer:true} },
-  { path: 'sell-preview', component: SellPreviewComponent, data:{footer:true} },
+  { path: 'preview', component: SellPreviewComponent, data:{footer:true} },
   { path: 'dashboard', component: DashboardComponent },
   { path: '**', redirectTo:'' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' }),
   ],
   exports: [RouterModule],
 })

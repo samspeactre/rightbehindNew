@@ -2,22 +2,26 @@
   <div class="slide-container swiper">
     <div class="slide-content swiper-container-rental">
       <div class="carousel-btn">
-        <button mat-icon-button (click)="slidePrev()" class="swiper-button-prev-rental">
+        <button mat-icon-button (click)="owlCar.prev()" class="swiper-button-prev-rental">
           <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
         </button>
 
-        <button mat-icon-button (click)="slideNext()" class="swiper-button-next-rental">
+        <button mat-icon-button (click)="owlCar.next()" class="swiper-button-next-rental">
           <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
         </button>
       </div>
-      <div class="swiper-wrapper container-site">
+      <owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging"  #owlCar>
         @for (card of cards; track card) {
-        <div class="swiper-slide" (click)="openPopup(card)">
-          <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
-            [background]="background"></app-property-card>
-        </div>
+        <ng-container>
+          <ng-template carouselSlide [id]="card.id">
+            <div class="swiper-slide" (click)="!isDragging && openPopup(card)">
+              <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
+                [background]="background"></app-property-card>
+            </div>
+          </ng-template>
+        </ng-container>
         }
-      </div>
+      </owl-carousel-o>
     </div>
   </div>
 

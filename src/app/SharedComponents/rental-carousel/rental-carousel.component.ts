@@ -10,7 +10,7 @@ import { Subject, finalize, takeUntil } from 'rxjs';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { Store } from '@ngrx/store';
 import { setPopupIdState } from '../../Ngrx/data.action';
-
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   standalone: true,
   imports: [
@@ -18,6 +18,7 @@ import { setPopupIdState } from '../../Ngrx/data.action';
     MatIconModule,
     MatButtonModule,
     PropertyCardComponent,
+    CarouselModule
   ],
   selector: 'app-rental-carousel',
   templateUrl: './rental-carousel.component.html',
@@ -29,46 +30,37 @@ export class RentalCarouselComponent implements OnInit {
   @Input() type!: string;
   @Input() background!: string;
   noData: boolean = false;
+  isDragging: boolean = false;
+  customOptions: OwlOptions = {
+    loop: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      }
+    },
+    nav: false
+  }
   constructor(
     public dialog: MatDialog,
     private http: HttpService,
     private store: Store
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.initSwiper();
     console.log(this.type);
-    
-  }
 
-  initSwiper(): void {
-    this.swiper = new Swiper('.swiper-container-rental', {
-      // slidesPerView: 1,
-      width: 1068,
-      spaceBetween: 15,
-      loop: true, // Set loop to true for infinite loop
-      grabCursor: true,
-      pagination: {
-        el: '.swiper-pagination-rental',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next-rental',
-        prevEl: '.swiper-button-prev-rental',
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-        },
-        320: {
-          slidesPerView: 2,
-        },
-        600: {
-          slidesPerView: 3,
-        },
-      },
-    });
-    this.swiper.slidesPerViewDynamic();
   }
   slideNext() {
     this.swiper.slideNext();

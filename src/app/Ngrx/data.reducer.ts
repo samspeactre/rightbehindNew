@@ -5,9 +5,10 @@ import {
   on,
 } from '@ngrx/store';
 import * as CryptoJS from 'crypto-js';
-import { addUserData, removeUserData, setSearchState, toggleLoader, updateUserData } from './data.action';
-const secureKey =
-  '99812f7e870613bf1b2b8b5803e5483094900d86f36b0cb46890345f36d65ac0';
+import { addUserData, removeUserData, setPopupIdState, setSearchState, toggleLoader, updateUserData } from './data.action';
+
+const secureKey = '99812f7e870613bf1b2b8b5803e5483094900d86f36b0cb46890345f36d65ac0';
+
 const encryptData = (data: any): string => {
   const encryptedData = CryptoJS.AES.encrypt(
     JSON.stringify(data),
@@ -15,6 +16,7 @@ const encryptData = (data: any): string => {
   ).toString();
   return encryptedData;
 };
+
 const decryptData = (encryptedData: any): any => {
   const decryptedData = CryptoJS.AES.decrypt(encryptedData, secureKey).toString(
     CryptoJS.enc.Utf8,
@@ -25,11 +27,13 @@ const decryptData = (encryptedData: any): any => {
 export interface UserState {
   user: any;
 }
+
 export const initialStateUser: UserState = {
   user: localStorage.getItem('userDetails')
     ? decryptData(localStorage.getItem('userDetails'))
     : null,
 };
+
 export const userReducer = createReducer(
   initialStateUser,
   on(addUserData, updateUserData, (state, { user }) => {
@@ -43,9 +47,11 @@ export const userReducer = createReducer(
     return { ...state, user: null };
   }),
 );
+
 export interface LoaderState {
   loader: boolean;
 }
+
 const initialStateLoader: LoaderState = {
   loader: false,
 };
@@ -60,6 +66,7 @@ export const LoaderReducer = createReducer(
 export interface SearchState {
   search: boolean;
 }
+
 const initialStateSearch: SearchState = {
   search: false,
 };
@@ -71,6 +78,21 @@ export const searchStateReducer = createReducer(
   }),
 );
 
+export interface PopUpId {
+  id: any;
+}
+
+const initialStatePopUp: PopUpId = {
+  id: null,
+};
+
+export const popupStateReducer = createReducer(
+  initialStatePopUp,
+  on(setPopupIdState, (state, { id }) => {
+    return { ...state, id: id };
+  }),
+);
+
 // Selectors for user state
 export const selectUserState = createFeatureSelector<UserState>('user');
 export const selectUser = createSelector(
@@ -78,16 +100,23 @@ export const selectUser = createSelector(
   (state) => state.user,
 );
 
-
 // Selectors for loader state
 export const selectLoaderState = createFeatureSelector<LoaderState>('loader');
 export const selectLoader = createSelector(
   selectLoaderState,
   (state) => state.loader,
 );
-// Selectors for set search state
+
+// Selectors for search state
 export const selectSearchState = createFeatureSelector<SearchState>('search');
 export const selectSearch = createSelector(
   selectSearchState,
   (state) => state.search,
+);
+
+// Selectors for popup state
+export const selectPopupState = createFeatureSelector<PopUpId>('popup');
+export const selectPopup = createSelector(
+  selectPopupState,
+  (state) => state.id,
 );

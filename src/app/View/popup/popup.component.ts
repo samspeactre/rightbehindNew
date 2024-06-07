@@ -1,31 +1,91 @@
-
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ViewChild,
+  ElementRef,
+  Inject,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogContent,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectPopupState } from '../../Ngrx/data.reducer';
+import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { HttpService } from '../../Services/http.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone:true,
-  imports: [MatIconModule, MatDialogContent, MatButtonModule,RouterModule],
+  standalone: true,
+  imports: [MatIconModule, CommonModule, MatDialogContent, MatButtonModule, RouterModule],
   selector: 'app-popup',
   templateUrl: './popup.component.html',
-  styleUrl: './popup.component.css'
+  styleUrl: './popup.component.css',
 })
-export class PopupComponent implements OnInit{
-
-  constructor(public dialogRef: MatDialogRef<PopupComponent>, private router: Router) { }
-
+export class PopupComponent implements OnInit {
+  popUpId$ = this.store.select(selectPopupState);
+  popUpId: any;
+  propertyData:any;
+  private destroy$ = new Subject<void>();
+  constructor(
+    public dialogRef: MatDialogRef<PopupComponent>,
+    private router: Router,
+    private store: Store,
+    private http: HttpService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    console.log(data?.card);
+    this.propertyData = data?.card
+    // this.getPropertyDetail(data?.card?.id);
+  }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+  // getPropertyDetail(id: number) {
+  //   this.http.loaderGet(`Property/get/${id}`, false).subscribe(
+  //     (response) => {
+  //       console.log(response);
+  //     },
+  //     (err) => {
+  //       this.dialogRef.close();
+  //     }
+  //   );
+  // }
   Appartment = [
-    { propertyid: '123145', head: 'New Apartment Nice View',address: 'Quincy St, Brooklyn, NY, USA', bed: '03', bath: '02', sqft: '1,200', price: '25,000' }
+    {
+      propertyid: '123145',
+      head: 'New Apartment Nice View',
+      address: 'Quincy St, Brooklyn, NY, USA',
+      bed: '03',
+      bath: '02',
+      sqft: '1,200',
+      price: '25,000',
+    },
   ];
 
   PropInfo = [
-    { type: 'House', area: '2,160 sqft', price: 'USD 100K', purpose: 'For Sale', location: 'Miami, Florida', bedroom: '9', bath: '6', added: '2 days ago'  }
+    {
+      type: 'House',
+      area: '2,160 sqft',
+      price: 'USD 100K',
+      purpose: 'For Sale',
+      location: 'Miami, Florida',
+      bedroom: '9',
+      bath: '6',
+      added: '2 days ago',
+    },
   ];
 
   Propdetail = [
-    { desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis. lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum.' }
+    {
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis. lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum.',
+    },
   ];
 
   amenities = {
@@ -40,8 +100,8 @@ export class PopupComponent implements OnInit{
       'Dryer',
       'Outdoor Shower',
       'Washer',
-      'Gym'
-    ]
+      'Gym',
+    ],
   };
 
   Gallery: string[] = [
@@ -68,7 +128,6 @@ export class PopupComponent implements OnInit{
     this.videoPlayer.nativeElement.play();
   }
 
-
   @ViewChild('sliderTrack') sliderTrack!: ElementRef;
   headings = [
     { id: 'Prop-info', title: 'Property Information' },
@@ -89,13 +148,13 @@ export class PopupComponent implements OnInit{
   }
 
   startAutoPlay() {
-    if(this.sliderTrack){
+    if (this.sliderTrack) {
       this.sliderTrack.nativeElement.style.animationPlayState = 'running';
     }
   }
 
   stopAutoPlay() {
-    if(this.sliderTrack){
+    if (this.sliderTrack) {
       this.sliderTrack.nativeElement.style.animationPlayState = 'paused';
     }
   }
@@ -108,7 +167,7 @@ export class PopupComponent implements OnInit{
   onMouseDown(event: MouseEvent) {
     this.isDragging = true;
     this.startX = event.clientX;
-    if(this.sliderTrack){
+    if (this.sliderTrack) {
       this.startScrollLeft = this.sliderTrack.nativeElement.scrollLeft;
     }
     this.stopAutoPlay();
@@ -118,8 +177,9 @@ export class PopupComponent implements OnInit{
   onMouseMove(event: MouseEvent) {
     if (!this.isDragging) return;
     const distance = event.clientX - this.startX;
-    if(this.sliderTrack){
-      this.sliderTrack.nativeElement.scrollLeft = this.startScrollLeft - distance;
+    if (this.sliderTrack) {
+      this.sliderTrack.nativeElement.scrollLeft =
+        this.startScrollLeft - distance;
     }
   }
 
@@ -147,5 +207,4 @@ export class PopupComponent implements OnInit{
     this.dialogRef.close();
     this.router.navigate(['/preview']);
   }
-
 }

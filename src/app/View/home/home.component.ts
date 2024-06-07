@@ -1,15 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CardCarouselComponent } from '../../SharedComponents/card-carousel/card-carousel.component';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { HttpService } from '../../Services/http.service';
 import { BlogCarouselComponent } from '../../SharedComponents/blog-carousel/blog-carousel.component';
+import { CardCarouselComponent } from '../../SharedComponents/card-carousel/card-carousel.component';
 import { FooterComponent } from '../../SharedComponents/footer/footer.component';
 import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar.component';
-import { MatButtonModule } from '@angular/material/button';
-import { SellerCarouselComponent } from '../seller-carousel/seller-carousel.component';
-import { Router } from '@angular/router';
-import { HttpService } from '../../Services/http.service';
-import { Subject, finalize, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -19,7 +18,6 @@ import { Subject, finalize, takeUntil } from 'rxjs';
     FooterComponent,
     BlogCarouselComponent,
     CardCarouselComponent,
-    SellerCarouselComponent,
     SearchBarComponent,
     MatButtonModule,
   ],

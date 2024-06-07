@@ -10,9 +10,9 @@
           <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
         </button>
       </div>
-      <div class="swiper-wrapper container-site" (click)="openPopup()">
+      <div class="swiper-wrapper container-site">
         @for (card of cards; track card) {
-        <div class="swiper-slide">
+        <div class="swiper-slide" (click)="openPopup(card)">
           <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
             [background]="background"></app-property-card>
         </div>

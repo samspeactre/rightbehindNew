@@ -25,3 +25,7 @@ export const setSearchState = createAction(
   '[searchState] Set Search State',
   props<{ search: boolean }>(),
 );
+export const setPopupIdState = createAction(
+  '[searchState] Set PopUp Id State',
+  props<{ id: number }>(),
+);

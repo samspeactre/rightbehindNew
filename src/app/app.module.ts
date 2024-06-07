@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
 import {
   LoaderReducer,
+  popupStateReducer,
   searchStateReducer,
   userReducer,
 } from './Ngrx/data.reducer';
@@ -29,6 +30,7 @@ import { FooterComponent } from './SharedComponents/footer/footer.component';
       user: userReducer,
       loader: LoaderReducer,
       search: searchStateReducer,
+      popup: popupStateReducer,
     }),
     ToastrModule.forRoot({
       timeOut: 2000,

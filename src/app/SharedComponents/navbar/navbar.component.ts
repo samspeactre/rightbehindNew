@@ -31,12 +31,13 @@ export class NavbarComponent {
         )
       )
       .subscribe((user) => {
-        console.log(user);
-        
         this.user = user;
       });
   }
-
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   socialLinks = [
     { url: 'https://www.facebook.com/', imageUrl: '../../assets/img/fb.png' },
     {

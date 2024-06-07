@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SellPropertyPopupComponent } from '../../View/sell-property-popup/sell-property-popup.component';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/core';
@@ -19,13 +19,14 @@ export class RentPopupComponent {
 selected: any;
   router: any;
 
-constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<SellPropertyPopupComponent>) {}
+constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<SellPropertyPopupComponent>,
+  @Inject(MAT_DIALOG_DATA) public data: any
+) {
+  console.log(data);
+  
+}
 
 openSellPopup(): void {
-    // Close the current dialog
-    this.dialogRef.close();
-
-    // Open the registration dialog
     this.dialog.open(SellPropertyPopupComponent, {
       height: '95%',
       width: '33%',

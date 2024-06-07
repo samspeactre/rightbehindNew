@@ -10,6 +10,7 @@ import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { removeUserData } from '../../Ngrx/data.action';
+import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 
 @Component({
   standalone: true,
@@ -58,10 +59,11 @@ export class NavbarComponent {
     });
   }
 
-  openSellPopup(): void {
-    let dialogRef = this.dialog.open(SellPropertyPopupComponent, {
+  openSellPopup(type:string): void {
+    let dialogRef = this.dialog.open(RentPopupComponent, {
       height: '95%',
       width: '33%',
+      data:type
     });
   }
   logout(){

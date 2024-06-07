@@ -55,7 +55,7 @@
                 <a routerLink="/selling-detail">Sell</a>
               }
               @else {
-                <a (click)="openSellPopup()">Sell</a>
+                <a (click)="openSellPopup('sell')">Sell</a>
               }
             </li>
             <li>
@@ -63,7 +63,7 @@
                 <a routerLink="/property-details">Rent</a>
               }
               @else {
-                <a (click)="openSellPopup()">Rent</a>
+                <a (click)="openSellPopup('rent')">Rent</a>
               }
             </li>
             <li>
@@ -87,7 +87,7 @@
           <button
             mat-stroked-button
             class="submit-btn"
-            (click)="openSellPopup()"
+            (click)="openSellPopup('rent')"
           >
             Submit A Deal
           </button>

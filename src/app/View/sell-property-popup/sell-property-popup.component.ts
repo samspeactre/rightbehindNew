@@ -6,10 +6,11 @@ import { MatSelect } from '@angular/material/select';
 import { RentPopupComponent } from '../../SharedComponents/rent-popup/rent-popup.component';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone:true,
-  imports:[MatLabel,MatFormFieldModule,MatInputModule,MatOption,MatSelect,RouterModule],
+  imports:[MatLabel,MatFormFieldModule,MatInputModule,MatOption,MatSelect, MatButtonModule, RouterModule],
   selector: 'app-sell-property-popup',
   templateUrl: './sell-property-popup.component.html',
   styleUrl: './sell-property-popup.component.css'

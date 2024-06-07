@@ -46,14 +46,14 @@ export class PropertyDetailsComponent {
   noData: boolean = false;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
-  param:boolean= false;
+  param: boolean = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
-    private router:Router
+    private router: Router
   ) {
     this.activatedRoute.queryParams.subscribe((params) => {
-      if(params['search']){
+      if (params['search']) {
         this.search = params['search'];
       }
     });
@@ -83,7 +83,7 @@ export class PropertyDetailsComponent {
           this.loader = false;
           this.router.navigate([], {
             relativeTo: this.activatedRoute,
-            queryParams: {}
+            queryParams: {},
           });
         }),
         takeUntil(this.destroy$)

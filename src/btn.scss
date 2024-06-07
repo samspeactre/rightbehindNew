@@ -1,0 +1,76 @@
+.btnPrimary {
+    background-color: #0160c9;
+    border-radius: 0.375rem;
+    color: #fff;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border: 1px solid #0160c9;
+    transition: 0.5s all ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        border: 1px solid #0160c9;
+        background-color: #fff;
+        color: #0160c9;
+    }
+
+    &:disabled {
+        background-color: #61a1fe;
+        border: 1px solid #61a1fe;
+        color: #fff;
+        cursor: not-allowed;
+    }
+}
+
+.btnSecondary {
+    background-color: #fff;
+    border-radius: 0.375rem;
+    color: #000;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border: 1px solid #000;
+    transition: 0.5s all ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff;
+    }
+
+    &:disabled {
+        background-color: #313131;
+        border: 1px solid #313131;
+        color: #fff;
+        cursor: not-allowed;
+    }
+}
+.btnDanger {
+    background-color: #e02c27;
+    border-radius: 0.375rem;
+    color: #fff;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border: 1px solid #e02c27;
+    transition: 0.5s all ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        border: 1px solid #e02c27;
+        background-color: #fff;
+        color: #e02c27;
+    }
+
+    &:disabled {
+        background-color: #ff3932;
+        border: 1px solid #ff3932;
+        color: #fff;
+        cursor: not-allowed;
+    }
+}

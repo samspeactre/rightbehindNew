@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './SharedComponents/footer/footer.component';
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [FileSizePipe, AppComponent],
@@ -43,6 +44,7 @@ import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
       includeTitleDuplicates: true,
     }),
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -38,7 +38,9 @@ p {
 .container-site {
     padding: 0vw 3.55vw;
 }
-
+.cstmContainer{
+    padding-left: 3rem;
+}
 .home-sec {
     background-image: url('../../../assets/img/home-bottom.png');
     background-size: 100%;

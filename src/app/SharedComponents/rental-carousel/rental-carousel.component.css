@@ -15,19 +15,13 @@
 
 .rental-btn {
     text-align: center;
-    padding-bottom: 3vw;
 }
 
 .rental-btn button {
-    color: var(--black);
-    border: 0.1vw solid var(--black);
-    font-size: 1.05vw;
-    font-family: "reg";
-    padding: 1.7vw 2.7vw;
-    border-radius: 3vw;
+    padding: 1vw 3vw !important;
 }
 
-.noData{
+.noData {
     text-align: center;
     margin: 2rem 0;
 }

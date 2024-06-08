@@ -42,10 +42,7 @@
     </div>
     @defer {
     <div class="rental-carousel">
-      <app-rental-carousel
-        background="white"
-        [cards]="buyCards"
-      ></app-rental-carousel>
+      <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
     </div>
     }
   </div>
@@ -58,10 +55,7 @@
     </div>
     @defer {
     <div class="rental-carousel">
-      <app-rental-carousel
-        background="white"
-        [cards]="sellCards"
-      ></app-rental-carousel>
+      <app-rental-carousel background="white" [cards]="sellCards"></app-rental-carousel>
     </div>
     }
   </div>
@@ -93,28 +87,21 @@
           </div>
         </div>
         <div class="house-img-width">
-          <img
-            src="../../assets/img/house-img-1.png"
-            alt=""
-            class="house-img"
-          />
+          <img src="../../assets/img/house-img-1.png" alt="" class="house-img" />
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="lg-12">
-  <div class="display container-site">
-    <div class="dream-home">
-      <img src="../../assets/img/dream-home-img.png" alt="" />
-    </div>
-    <div class="dream-content">
-      <h2>Ready to make your dream home a reality?</h2>
-      <p>
-        Submit an inquiry for a hassle-free home loan process. Let us guide you
-        through every step toward securing the keys to your new home.
-      </p>
-      <button mat-raised-button>Submit an inquiry</button>
+  <div class="row dream-home">
+    <div class="col-lg-6 ms-auto">
+      <div class="pe-4">
+        <h2>Ready to make your dream home a reality?</h2>
+        <p class="text-start">
+          Submit an inquiry for a hassle-free home loan process. Let us guide you
+          through every step toward securing the keys to your new home.
+        </p>
+        <button class="btnSecondary">Submit an inquiry</button>
+      </div>
     </div>
   </div>
 </div>

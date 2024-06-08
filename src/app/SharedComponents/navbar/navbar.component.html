@@ -2,9 +2,7 @@
 <section class="cstmContainer">
   <div class="row">
     <div class="col-lg-12">
-      <div
-        class="dCenter justify-content-between"
-      >
+      <div class="dCenter justify-content-between">
         <a class="dCenter">
           <fa-icon [icon]="faHeadphones"></fa-icon>
           <h2 class="mb-0 ms-2">
@@ -65,7 +63,7 @@
         </div>
         <div class="dCenter">
           @if(user){
-          <div class="dropdown" ngbDropdown>
+          <div class="dropdown cstm-drop-btn" ngbDropdown>
             <button
               class="btn-style-none"
               ngbDropdownToggle
@@ -116,12 +114,64 @@
   </div>
 </section>
 } @else{
-  <div class="position-absolute opener">
-    <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
-  </div>
+<div class="position-absolute opener">
+  <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
+</div>
 <div class="sidebar" [ngClass]="{ open: sidebar }">
-  <div class="dCenter justify-content-end">
-    <fa-icon [icon]="faTimes" class="me-3 mt-3" (click)="show(false)"></fa-icon>
+  <div
+    class="sidebar-padding d-flex justify-content-between align-items-center"
+  >
+    <div class="side-nav-logo">
+      <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" /></a>
+    </div>
+    <div class="dCenter">
+      <fa-icon [icon]="faTimes" class="" (click)="show(false)"></fa-icon>
+    </div>
+  </div>
+
+  <div class="cstm-nav-item ">
+    <ul class="mb-0">
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li>
+        <a routerLink="">About Us</a>
+      </li>
+      <li>
+        <a routerLink="/buy">buy</a>
+      </li>
+      <li>
+        @if (user) {
+        <a routerLink="/selling-detail">Sell</a>
+        } @else {
+        <a (click)="openSellPopup('sell')">Sell</a>
+        }
+      </li>
+      <li>
+        <a routerLink="/rent">Rent</a>
+      </li>
+      <li>
+        <a routerLink="">property trend</a>
+      </li>
+      <li>
+        <a routerLink="/contact-us">Contact Us</a>
+      </li>
+    </ul>
+    <div class="d-flex align-items-center mt-2 sidebar-padding">
+      <button
+        class="btnSecondary margin-right-cstm"
+        (click)="openPopup()"
+      >
+        <fa-icon [icon]="faUser"></fa-icon> Login
+      </button>
+      
+      <button
+        class="btnSecondary"
+        (click)="openSellPopup('rent')"
+      >
+        Submit A Deal
+      </button>
+    </div>
   </div>
 </div>
 }

@@ -80,10 +80,28 @@ nav {
 .dropdown-toggle::after {
   display: none;
 }
-
+.side-nav-logo{
+  width:180px;
+  height: 40px;
+}
+.sidebar-padding{
+  padding: 4px 10px;
+}
+.side-nav-logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.sidebar .cstm-nav-item ul{
+  flex-direction: column;
+  padding-left: 0px;
+}
+.sidebar .cstm-nav-item ul li a{
+  font-size: 14px;
+}
 .profile-img {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   padding: 2px;
   border-radius: 50%;
   border: 1px solid #000;
@@ -121,10 +139,17 @@ nav {
   border-radius: 2.5vw;
   background-color: transparent;
 }
-.cstmContainer{
+.cstmContainer {
   padding: 1rem 0;
 }
-@media only screen and (max-width:1024px) {
+.cstm-drop-btn .cstm-dropmenu {
+  inset: auto !important;
+  transform: translate3d(-20px, 0px, 0px) !important;
+  right: 0 !important;
+  padding: 0px;
+}
+
+@media only screen and (max-width: 1024px) {
   .sidebar {
     position: absolute;
     width: 80%;
@@ -134,7 +159,7 @@ nav {
     overflow-x: hidden;
     top: 0;
     left: -80%;
-    transition: .5s all ease-in-out;
+    transition: 0.5s all ease-in-out;
     z-index: 6;
   }
 

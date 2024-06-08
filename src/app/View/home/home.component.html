@@ -1,82 +1,67 @@
-<section>
-  
-  <div class="home-sec">
-    <div class="main-head">
-      <h1>Find Your Dream Home in Miami, Florida</h1>
-    </div>
+<app-banner>
+  <div class="main-head">
+    <h1>Find Your Dream Home in Miami, Florida</h1>
+  </div>
+  <div class="para-1">
+    <p>
+      Discover exquisite properties in the vibrant heart of Miami. <br />
+      Start your journey to unparalleled elegance and coastal charm today.
+    </p>
+  </div>
+  <div class="search-bar">
+    <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
+  </div>
+  <div class="display or-text">
+    <hr class="or-line" />
+    <p class="or">Or</p>
+    <hr class="or-line" />
+  </div>
 
-    <div class="para-1">
+  <div class="head-2">
+    <h3>Maximize Your Property's Potential!</h3>
+    <div class="para-2">
       <p>
-        Discover exquisite properties in the vibrant heart of Miami. <br />
-        Start your journey to unparalleled elegance and coastal charm today.
+        Maximize Your Property's Potential! <br />
+        List with us and watch your rental income soar!
       </p>
     </div>
-    <div class="search-bar">
-      <app-search-bar
-        (searchEvent)="searchProperties($event)"
-      ></app-search-bar>
-    </div>
-
-    <div class="display or-text">
-      <hr class="or-line" />
-      <p class="or">Or</p>
-      <hr class="or-line" />
-    </div>
-
-    <div class="head-2">
-      <h3>Maximize Your Property's Potential!</h3>
-      <div class="para-2">
-        <p>
-          Maximize Your Property's Potential! <br />
-          List with us and watch your rental income soar!
-        </p>
-      </div>
-      <div class="head-btn">
-        <button mat-raised-button class="head-btn-style">Submit A Deal</button>
-      </div>
-    </div>
-
-    <div class="home-tree">
-      <img src="../../assets/img/left-tree.png" alt="" class="tree-img" />
-    </div>
-
-    <div class="right-tree">
-      <img src="../../assets/img/left-tree.png" alt="" class="tree-img" />
-    </div>
   </div>
-</section>
+  <div class="dCenter">
+    <button class="btnDanger">Submit A Deal</button>
+  </div>
+</app-banner>
 @if(buyCards?.length){
-  <div class="sec-2">
-    <div class="cstmContainer">
-      <div class="display">
-        <h2>Hot rentals in Miami</h2>
-        <div class="carousel-line">
-          <hr />
-        </div>
-      </div>
-    
-      <div class="rental-carousel">
-        <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
+<div class="sec-2">
+  <div class="cstmContainer">
+    <div class="display">
+      <h2>Hot rentals in Miami</h2>
+      <div class="carousel-line">
+        <hr />
       </div>
     </div>
+
+    <div class="rental-carousel">
+      <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
+    </div>
   </div>
+</div>
 }
 @if(sellCards?.length){
-  <div class="sec-3">
-    <div class="cstmContainer">
-      <div class="display">
-        <h2>Sellers in Miami</h2>
-    
-        <div class="carousel-line">
-          <hr />
-        </div>
-      </div>
-    
-      <div class="rental-carousel">
-        <app-rental-carousel type="2" [cards]="sellCards"></app-rental-carousel>
+<div class="sec-3">
+  <div class="cstmContainer">
+    <div class="display">
+      <h2>Sellers in Miami</h2>
+
+      <div class="carousel-line">
+        <hr />
       </div>
     </div>
+
+    <div class="rental-carousel">
+      <app-rental-carousel type="2" [cards]="sellCards"></app-rental-carousel>
+    </div>
   </div>
+</div>
 }
 
 <section>
@@ -105,11 +90,7 @@
           </div>
         </div>
         <div class="house-img-width">
-          <img
-            src="../../assets/img/house-img-1.png"
-            alt=""
-            class="house-img"
-          />
+          <img src="../../assets/img/house-img-1.png" alt="" class="house-img" />
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { FooterComponent } from '../../SharedComponents/footer/footer.component'
 import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar.component';
+import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 
 @Component({
   standalone: true,
@@ -20,6 +21,7 @@ import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar
     CardCarouselComponent,
     SearchBarComponent,
     MatButtonModule,
+    BannerComponent
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',

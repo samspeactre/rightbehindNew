@@ -188,3 +188,12 @@ body {
   overflow: hidden;
   cursor: not-allowed;
 }
+.w-lg-50{
+  width: 48%;
+  margin: 0 auto;
+}
+@media only screen and (max-width:1024px) {
+  .w-lg-50{
+    width: 100%;
+  }
+}

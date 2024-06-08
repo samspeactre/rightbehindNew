@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../../View/popup/popup.component';
 import { FooterComponent } from '../footer/footer.component';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOption } from '@angular/material/core';
 import { MatLabel, MatSelect } from '@angular/material/select';
@@ -13,28 +13,29 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { PropertyCardComponent } from '../property-card/property-card.component';
+import { BannerComponent } from '../banner/banner.component';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   standalone:true,
-  imports: [RouterModule, MapMarker, GoogleMap, MatIconModule, MatOption, MatSelect, MatLabel, MatFormFieldModule, MatInputModule, SearchBarComponent, NavbarComponent, MatButtonModule],
+  imports: [RouterModule, BannerComponent, MapMarker, PropertyCardComponent, GoogleMap, MatIconModule, MatOption, MatSelect, MatLabel, MatFormFieldModule, MatInputModule, SearchBarComponent, NavbarComponent, MatButtonModule],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.css'
 })
 export class ListingPageComponent implements OnInit {
   cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: '25,000', buttonUrl: '' },
-
-
-    // Add more card data as needed
+    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
   ];
   display: any;
   center: google.maps.LatLngLiteral = {
@@ -272,9 +273,90 @@ export class ListingPageComponent implements OnInit {
   markerOptions: any = {
     draggable: true
   };
-  constructor(public dialog: MatDialog) { }
-
+  pageType!: string;
+  private destroy$ = new Subject<void>();
+  search: string = '';
+  pageNo: number = 1;
+  pageSize: number = 5;
+  loader: boolean = true;
+  noData: boolean = false;
+  loadMore: boolean = false;
+  loadMoreLoader: boolean = false;
+  param: boolean = false;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private http: HttpService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params['search']) {
+        this.search = params['search'];
+      }
+    });
+  }
   ngOnInit() {
+    this.loader = true;
+    this.getProperties();
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  getProperties() {
+    const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo}&pageSize=${this.pageSize}&type=${this.router.url.includes('buy')?'1':'2'}`;
+    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize}&type=${this.router.url.includes('buy')?'1':'2'}`;
+    this.http
+      .loaderGet(
+        this.search ? searchUrl : withoutSearchUrl,
+        false,
+        false,
+        false
+      )
+      .pipe(
+        finalize(() => {
+          this.loadMoreLoader = false;
+          this.loader = false;
+          this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            queryParams: {},
+          });
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((response:any) => {
+        if (response?.model?.properties) {
+          const newProperties = response?.model?.properties || [];
+          this.cards = [...newProperties];
+          this.noData = this.cards.length === 0;
+        } else {
+          this.noDataError()
+        }
+        this.loadMore = this.cards?.length < response?.model?.totalResults;
+      },(err:any)=>{
+        this.noDataError()
+      });
+  }
+  noDataError(){
+    this.cards = [];
+          this.noData = true;
+  }
+  loadMoreProperties() {
+    this.pageNo++;
+    this.loadMoreLoader = true;
+    this.getProperties();
+  }
+
+  searchProperties(event: string) {
+    this.loader = true;
+    this.search = event;
+    this.pageNo = 1;
+    this.getProperties();
+  }
+
+  openPopup(): void {
+    this.dialog.open(PopupComponent);
   }
   addMarker(event: any) {
     if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
@@ -285,9 +367,4 @@ export class ListingPageComponent implements OnInit {
   move(event: any) {
     if (event.latLng != null) this.display = event.latLng.toJSON();
   }
-
-  openPopup(): void {
-    this.dialog.open(PopupComponent);
-  }
-
 }

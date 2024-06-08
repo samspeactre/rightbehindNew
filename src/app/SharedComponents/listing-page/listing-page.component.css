@@ -4,69 +4,27 @@ h1 {
     color: var(--black);
     text-align: center;
 }
-.btnWhiteNBlue{
+
+.btnWhiteNBlue {
     padding: .5rem 2rem;
 }
-.btnWhiteNBlue.active{
+
+.btnWhiteNBlue.active {
     background-color: #0160c9;
-    border-color:#0160c9;
+    border-color: #0160c9;
     color: white;
 }
-.height-half{
-    height: 53%;
-}
-.container-site{
-    padding: 0 3.55vw;
+
+.cstmCardWidth {
+    width: calc(100%/2/5);
 }
 
 .content {
     margin-top: 3vw;
 }
 
-.content h1{
+.content h1 {
     letter-spacing: 0.05vw;
-}
-
-.btns{
-    width: 100%;
-    margin: 1.6vw auto 0;
-    justify-content: center;
-    display: flex;
-    gap: 0.9vw;
-}
-
-.btns button{
-    padding: 1.4vw 2.4vw;
-    background-color: var(--white);
-    box-shadow: 0px 2px 22px rgba(0, 0, 0, 0.25);
-}
-
-.btns button:hover{
-    background-color: var(--royal-blue);
-    box-shadow: 0px 2px 22px rgba(1, 96, 201, 0.55);
-}
-
-:host ::ng-deep .btns .mdc-button__label{
-    font-size: 0.85vw;
-    color: var(--black);
-    font-family: 'bold';
-    letter-spacing: 0.01vw;
-}
-
-:host ::ng-deep .btns button:hover .mdc-button__label {
-    color: var(--white);
-}
-
-.search-bar {
-    margin-top: 1.7vw;
-}
-
-.align-items-center{
-    margin-top: -0.5vw;
-    padding-bottom: 1.3vw;
-    display: flex;
-    justify-content: center;
-    gap: 1.15vw;
 }
 
 :host ::ng-deep .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
@@ -84,265 +42,67 @@ h1 {
     color: gray;
 }
 
-.sec-1{
+.sec-1 {
     background-image: url(../../../assets/img/home-bottom.png);
     background-repeat: no-repeat;
     background-position: 0vw bottom;
     background-size: 100% 22.7vw;
 }
 
-.sec-2{
-    margin-top: 3vw;
-    width: 100%;
+.options {
+    width: 22.8%;
 }
 
-.home-tree{
-    margin-top: -26.5%;
-}
-
-.left-tree img,
-.right-tree img{
-    width: 46%;
-    margin-top: 3rem;
-}
-
-.right-tree{
-    transform: scaleX(-1);
-}
-
-.sec-2{
-    margin-top: 2.5vw;
-}
-
-.container-site{
-    padding: 0vw 3.55vw;
-}
-
-.options{
-    width: 22.8%; 
-}
-
-.listing-filter{
+.listing-filter {
     align-content: center;
 }
 
-.listing-filter button{
+.listing-filter button {
     font-size: 1vw;
     font-family: 'reg';
     color: var(--filter-text);
     border: 0.15vw solid var(--sec-light);
-    padding:1.5vw 2vw;
+    padding: 1.5vw 2vw;
     border-radius: 3vw;
 }
 
-.listing-filter button .mat-icon{
+.listing-filter button .mat-icon {
     color: var(--royal-blue);
 }
-.login-btn{
-    color: var(--black);
-    font-size: 1.05vw;
-    font-family: 'reg';
-    padding: 1.4vw 2.5vw;
-    border-radius: 2.5vw;
-    background-color: transparent;
- }
 
- 
-
-:host ::ng-deep .mat-mdc-select-arrow{
+:host ::ng-deep .mat-mdc-select-arrow {
     display: none;
 }
 
-.arrow-down{
+.arrow-down {
     color: #0147b8 !important;
     font-weight: 500;
 }
 
-:host ::ng-deep .mdc-line-ripple{
+:host ::ng-deep .mdc-line-ripple {
     display: none;
 }
-:host ::ng-deep .mdc-text-field--filled{ 
-   background: white !important;
+
+:host ::ng-deep .mdc-text-field--filled {
+    background: white !important;
 }
-:host ::ng-deep .mat-mdc-form-field-icon-suffix{ 
-  padding: 5px 7px 5px 1px !important
+
+:host ::ng-deep .mat-mdc-form-field-icon-suffix {
+    padding: 5px 7px 5px 1px !important
 }
-:host ::ng-deep .mat-mdc-text-field-wrapper{ 
-  border-radius: 3rem;
-  background: white !important;
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+    border-radius: 3rem;
+    background: white !important;
 }
+
 :host ::ng-deep .mat-mdc-form-field-focus-overlay {
-  opacity: 0;
-  background-color: white !important;
+    opacity: 0;
+    background-color: white !important;
 }
 
-/* .w-10{
-    width: 10%;
-} */
-
-
-
-.card {
-    width: 100% !important;
-    margin-right: 2vw;
-    background: var(--sec-light);
-    border-radius: 1vw;
-    padding-bottom: 0.5vw;
-}
-
-.card-image {
-    width: 100%;
-}
-
-.card-img {
-    width: 100%;
-    height: 8.3vw;
-    border-radius: 0.8vw;
-    object-fit: cover;
-}
-
-.swiper-slide {
-    width: 19.5vw!important;
-    margin-bottom: 1.8vw;
-}
-
-.carousel-btn{
-    text-align: right;
-    padding-bottom: 4vw;
-    margin-right: 3vw;
-}
-
-.carousel-btn button{
-    border: 0.1vw solid var(--carousel-btn);
-    border-radius: 50%;
-    padding: 0.5vw 0vw 0vw 0.3vw;
-    color: var(--black);
-    margin-left: 1vw;
-}
-
-.card-content{
-    padding: 0.3vw 1.3vw;
-}
-
-.appartment{
-    text-align: start;
-    color: var(--black);
-    font-size: 0.8vw;
-    font-family: 'bold';
-}
-
-.address{
-    font-size: 0.75vw;
-    margin-top: 0.5vw;
-    font-family: "reg";
-    color: var(--carousel-add);
-}
-
-.home-detail{
-    width: 2.6vw;
-    margin-top: 0.2vw;
-    margin-left: -0.3vw;
-}
-
-.home-img{
-    width: 100%;
-    padding: 0.3vw;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: var(--sec-light);
-}
-
-.detail-font{
-    font-size: 0.65vw;
-    align-content: center;
-    margin-left: 0.05vw;
-    font-family: "med";
-    padding-right: 0.9vw;
-    color: var(--carousel-add);
-}
-
-.vertical-hr,
-.contact hr{
-      height: 1.5vw;
-      align-self: center;
-      border: none;
-      border-left: 0.1vw solid rgba(196, 196, 196, 1);
-      margin: 0;
-      padding: 0;
-}
-
-.bath{
-    margin-left: 2.3vw;
-    margin-right: 2.6vw;
-}
-
-.contact{
-    margin-top: 0.5vw;
-}
-
-.contact h2{
-    font-size: 1.13vw;
-    font-family: 'bold';
-    color: var(--royal-blue);
-    align-content: center;
-}
-
-.contact button{
-    background-color: var(--royal-blue);
-    border-radius: 3vw;
-    padding: 0vw 1.53vw;
-    color: var(--white);
-    font-size: 0.6vw;
-    font-family: "reg";
-}
-
-.rental-btn{
-    margin-top: 22.3vw;
-    text-align: center;
-    padding-bottom: 3vw;
-}
-
-.rental-btn button{
-    color: var(--black);
-    border: 0.1vw solid var(--black);
-    font-size: 1.05vw;
-    font-family: "reg";
-    padding: 1.7vw 2.7vw;
-    margin-top: 3vw;
-    border-radius: 3vw;
-}
-
-.m-1{
-    margin-top: 5.3vw;
-    margin-top: 5.3vw;
-    padding: 0vw 3.55vw;
-    height: 65vw;
-    display: flex;
-}
-
-.card-items{
-    cursor: pointer;
-    width: 50%;
-    display: flex;
-    gap: 0.9vw;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 5.7vw;
-    overflow-y: scroll;
-}
-
-.main-section{
-    height: 100%;
-}
-
-:host ::ng-deep .map-container{
-    margin-top: 3.5vw;
+:host ::ng-deep .map-container {
     position: absolute !important;
 }
-.footer{
-    margin-top: 49vw;
-}
 
-html::-webkit-scrollbar{
-    width: 2vw;
-}
+.leftSide {}

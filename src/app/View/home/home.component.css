@@ -1,52 +1,10 @@
-h1 {
 
-    font-family: "bold";
-    font-size: 5.2vw;
-    padding-top: 5.8vw;
-    text-align: center;
-    line-height: 5.5vw;
-    color: var(--head-black);
+.sec-2 {
+    background-color: var(--sec-light);
+    padding-top: 2.8vw;
 }
 
-h2 {
-    font-family: "bold";
-    font-size: 4.17vw;
-    color: var(--black);
-}
 
-h3 {
-    font-size: 2.1vw;
-    font-family: 'bold';
-    color: var(--black);
-    margin-bottom: 0.7vw;
-}
-
-h5 {
-    font-size: 0.755vw;
-    font-family: 'reg';
-}
-
-p {
-    font-family: "reg";
-    font-size: 1.1vw;
-    color: var(--head-black);
-    text-align: center;
-    letter-spacing: 0.03vw;
-    line-height: 1.6vw;
-}
-
-.container-site {
-    padding: 0vw 3.55vw;
-}
-.cstmContainer{
-    padding-left: 3rem;
-}
-.home-sec {
-    background-image: url('../../../assets/img/home-bottom.png');
-    background-size: 100%;
-    background-position: 0vw 25.5vw;
-    background-repeat: no-repeat;
-}
 
 .main-head {
     width: 63%;
@@ -100,43 +58,40 @@ p {
     margin-bottom: 1.45vw;
 }
 
-.head-btn{
-    width: 11vw;
-    margin: auto;
+.btnDanger {
+    width: fit-content;
+    padding:1rem 2rem;
+}
+h1 {
+
+    font-family: "bold";
+    font-size: 5.2vw;
+    padding-top: 5.8vw;
+    text-align: center;
+    line-height: 5.5vw;
+    color: var(--head-black);
 }
 
-.head-2 button {
-    width: 100%;
-    background-color: var(--red);
-    color: var(--white);
-    padding: 1.7vw 0vw;
-    margin-bottom: 4.8vw;
-    font-size: 1vw;
+
+h3 {
+    font-size: 2.1vw;
+    font-family: 'bold';
+    color: var(--black);
+    margin-bottom: 0.7vw;
+}
+
+
+p {
     font-family: "reg";
-    border-radius: 3vw;
+    font-size: 1.1vw;
+    color: var(--head-black);
+    text-align: center;
+    letter-spacing: 0.03vw;
+    line-height: 1.6vw;
 }
 
-.home-tree {
-    margin-top: -40vw;
-    width: 20vw;
-}
-
-.tree-img {
-    width: 100%;
-    object-fit: cover;
-}
-
-.right-tree {
-    transform: scaleX(-1);
-    float: right;
-    margin-top: -37.3vw;
-    width: 20vw;
-    object-fit: cover;
-}
-
-.sec-2 {
-    background-color: var(--sec-light);
-    padding-top: 2.8vw;
+.cstmContainer {
+    padding-left: 3rem;
 }
 
 

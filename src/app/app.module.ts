@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
 import {
@@ -11,13 +12,12 @@ import {
   searchStateReducer,
   userReducer,
 } from './Ngrx/data.reducer';
+import { FooterComponent } from './SharedComponents/footer/footer.component';
 import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
+import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 import { FileSizePipe } from './TsExtras/file-size.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './SharedComponents/footer/footer.component';
-import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [FileSizePipe, AppComponent],

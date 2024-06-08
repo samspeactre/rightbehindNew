@@ -108,7 +108,9 @@ export class HomeComponent {
     clearInterval(this.intervalIds[index]);
   }
   searchProperties(event: any) {
-    this.router.navigate(['/buy-property'], { queryParams: { search: event } });
+    if(event){
+      this.router.navigate(['/buy-property'], { queryParams: { search: event } });
+    }
   }
   getBuyProperties() {
     this.http

@@ -80,25 +80,7 @@ nav {
 .dropdown-toggle::after {
   display: none;
 }
-.side-nav-logo{
-  width:180px;
-  height: 40px;
-}
-.sidebar-padding{
-  padding: 4px 10px;
-}
-.side-nav-logo img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.sidebar .cstm-nav-item ul{
-  flex-direction: column;
-  padding-left: 0px;
-}
-.sidebar .cstm-nav-item ul li a{
-  font-size: 14px;
-}
+
 .profile-img {
   width: 34px;
   height: 34px;
@@ -139,9 +121,11 @@ nav {
   border-radius: 2.5vw;
   background-color: transparent;
 }
+
 .cstmContainer {
   padding: 1rem 0;
 }
+
 .cstm-drop-btn .cstm-dropmenu {
   inset: auto !important;
   transform: translate3d(-20px, 0px, 0px) !important;
@@ -155,7 +139,7 @@ nav {
     width: 80%;
     height: 100vh;
     overflow-y: auto;
-    background: white;
+    background: linear-gradient(197deg, white, #0248b0);
     overflow-x: hidden;
     top: 0;
     left: -80%;
@@ -172,4 +156,33 @@ nav {
     top: 1rem;
     left: 1rem;
   }
+
+  .side-nav-logo {
+    width: 180px;
+    height: 40px;
+    margin: auto;
+  }
+
+  .sidebar-padding {
+    padding: 4px 10px;
+  }
+
+  .side-nav-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .sidebar .cstm-nav-item ul {
+    flex-direction: column;
+    padding-left: 0px;
+  }
+
+  .sidebar .cstm-nav-item ul li a {
+    font-size: 14px;
+  }
+  .cstm-nav-item ul li {
+    text-align: center;
+    margin: 1rem 0;
+}
 }

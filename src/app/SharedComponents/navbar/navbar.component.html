@@ -28,9 +28,7 @@
     <div class="col-lg-12 mt-3">
       <div class="dCenter justify-content-between">
         <div class="nav-logo">
-          <a routerLink="/"
-            ><img src="../../assets/img/nav-logo.png" alt="" class="logo-img"
-          /></a>
+          <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" class="logo-img" /></a>
         </div>
         <div class="cstm-nav-item">
           <ul class="mb-0">
@@ -64,48 +62,29 @@
         <div class="dCenter">
           @if(user){
           <div class="dropdown cstm-drop-btn" ngbDropdown>
-            <button
-              class="btn-style-none"
-              ngbDropdownToggle
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
+            <button class="btn-style-none" ngbDropdownToggle type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
               <div class="profile-img">
-                <img
-                  [src]="
+                <img [src]="
                     user?.imageUrl ||
                     'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
-                  "
-                  alt="profile picture"
-                />
+                  " alt="profile picture" />
               </div>
             </button>
-            <ul
-              ngbDropdownMenu
-              class="dropdown-menu cstm-dropmenu"
-              aria-labelledby="dropdownMenuButton1"
-            >
+            <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" ngbDropdownItem (click)="logout()"
-                  >Log Out</a
-                >
+                <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
               </li>
             </ul>
           </div>
           } @else{
-          <button
-            class="d-flex justify-content-between align-items-center btnSecondary margin-right-cstm"
-            (click)="openPopup()"
-          >
+          <button class="d-flex justify-content-between align-items-center btnSecondary margin-right-cstm"
+            (click)="openPopup()">
             <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
           }
-          <button
-            class="btnSecondary d-flex justify-content-between align-items-center"
-            (click)="openSellPopup('rent')"
-          >
+          <button class="btnSecondary d-flex justify-content-between align-items-center"
+            (click)="openSellPopup('rent')">
             Submit A Deal
           </button>
         </div>
@@ -118,9 +97,7 @@
   <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
 </div>
 <div class="sidebar" [ngClass]="{ open: sidebar }">
-  <div
-    class="sidebar-padding d-flex justify-content-between align-items-center"
-  >
+  <div class="sidebar-padding d-flex justify-content-between align-items-center">
     <div class="side-nav-logo">
       <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" /></a>
     </div>
@@ -157,18 +134,12 @@
         <a routerLink="/contact-us">Contact Us</a>
       </li>
     </ul>
-    <div class="d-flex align-items-center mt-2 sidebar-padding">
-      <button
-        class="btnSecondary margin-right-cstm"
-        (click)="openPopup()"
-      >
+    <div class="dCenter mt-2 flex-column">
+      <button class="btnSecondary" (click)="openPopup()">
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
-      
-      <button
-        class="btnSecondary"
-        (click)="openSellPopup('rent')"
-      >
+
+      <button class="btnSecondary mt-4" (click)="openSellPopup('rent')">
         Submit A Deal
       </button>
     </div>

@@ -1,4 +1,4 @@
-import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHeadphones, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faAt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -13,16 +13,17 @@ import { MatIconModule } from '@angular/material/icon';
 import {faUser } from '@fortawesome/free-regular-svg-icons'
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { selectUser } from '../../Ngrx/data.reducer';
+import { selectSideBar, selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { removeUserData } from '../../Ngrx/data.action';
+import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, RouterModule, MatButtonModule, FontAwesomeModule, NgbDropdownModule],
+  imports: [MatIconModule, RouterModule, MatButtonModule, FontAwesomeModule, NgbDropdownModule, CommonModule],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
@@ -30,14 +31,18 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 export class NavbarComponent {
   user$ = this.store.select(selectUser);
   user: any;
+  sidebar:boolean = false;
   private destroy$ = new Subject<void>();
   faUser=faUser
+  faTimes=faTimes
+  faBars=faBars
   faHeadphones=faHeadphones
   faFacebook=faFacebook
   faLinkedin=faLinkedin
   faInstagram=faInstagram
   faTwitter=faTwitter
   faAt=faAt
+  screenWidth:number = window.innerWidth
   constructor(private store: Store, public dialog: MatDialog) {
     this.user$
       .pipe(
@@ -85,5 +90,9 @@ export class NavbarComponent {
   }
   logout(){
     this.store.dispatch(removeUserData());
+  }
+  show(condition:boolean){
+    this.sidebar = condition
+    this.store.dispatch(toggleSideBar({open:condition}))
   }
 }

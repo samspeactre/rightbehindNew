@@ -1,132 +1,128 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 h1,
 h2 {
-    font-family: 'reg';
-    color: var(--black);
+  font-family: "reg";
+  color: var(--black);
 }
 
 h1 {
-    font-size: 1.5vw;
+  font-size: 1.5vw;
 }
 
 h2 {
-    font-size: 0.83vw;
+  font-size: 0.83vw;
 }
 
 .container-site {
-    padding: 1.2vw 3.55vw 0vw;
-}
-
-.mat-icon {
-    font-size: 1.27vw;
-    color: var(--black);
-    padding-right: 1.7vw;
-    width: 1vw;
+  padding: 1.2vw 3.55vw 0vw;
 }
 
 h2 span {
-    font-family: 'bold';
+  font-family: "bold";
 }
 
-.contact-nav{
-    margin-left: 2.9vw;
+.contact-nav {
+  margin-left: 2.9vw;
+}
+.social-links a,
+.container-site a {
+  color: #000;
+}
+.social-links fa-icon {
+  margin-left: 10px;
 }
 
-.social-links{
-    width: 10.3vw;
-    margin-top: -0.4vw;
+.link-img {
+  height: 0.95vw;
+  object-fit: cover;
 }
 
-.link-img{
-    height: 0.95vw;
-    object-fit: cover;
+nav {
+  padding: 1.45vw 3.55vw 0vw;
 }
 
-nav{
-    padding: 1.45vw 3.55vw 0vw;
+.nav-logo {
+  width: 15.8%;
 }
 
-.nav-logo{
-    width: 15.8%;
+.logo-img {
+  width: 100%;
+  object-fit: cover;
 }
 
-.logo-img{
+.cstm-nav-item ul {
+  display: flex;
+}
+.cstm-nav-item ul li {
+  padding: 2px 16px;
+  list-style: none;
+  letter-spacing: 0.02vw;
+}
+
+.cstm-nav-item ul li a {
+  color: var(--black);
+  font-family: "reg";
+  font-size: 1.11vw;
+  text-transform: capitalize;
+  transition: font-family 0.3s ease;
+}
+
+.cstm-nav-item ul li a:hover {
+  text-decoration: underline;
+}
+.btn-style-none {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+  outline: none;
+  margin-right: 16px;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.profile-img {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+.profile-img img{
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    border-radius: 50%;
+}
+.cstm-dropmenu li{
+    padding: 4px 6px;
 }
 
-.nav-items{
-    width: 58%;
-    padding: 0vw 3.7vw 0vw 5.7vw;
-    margin-top: 0.8vw;
+.btnSecondary:hover mat-icon {
+  color: #fff !important;
+}
+.btnSecondary fa-icon,
+.container-site fa-icon {
+  padding-right: 6px;
+}
+.margin-right-cstm {
+  margin-right: 1rem;
 }
 
-ul li{
-    list-style: none;
-    letter-spacing: 0.02vw;
+.submit-btn {
+  margin-left: 0.7vw;
+  font-size: 1vw;
+  font-family: "reg";
+  border: 0.1vw solid var(--black);
+  padding: 1.8vw 1.75vw;
+  border-radius: 2.5vw;
+  background-color: transparent;
 }
 
-ul li a{
-   color: var(--black);
-   font-family: 'reg';
-   font-size: 1.11vw;
-   text-transform: capitalize;
-   transition: font-family 0.3s ease;
-}
-
-ul li a:hover{
-    font-family: 'med';
- }
-
- .nav-btns{
-    margin-top: -0.5vw;
- }
-
- .login-btn{
-    color: var(--black);
-    font-size: 1.05vw;
-    font-family: 'reg';
-    border: 0.1vw solid var(--black);
-    padding: 1.8vw 2.1vw;
-    border-radius: 2.5vw;
-    background-color: transparent;
- }
-
- .login-btn:hover,
- .submit-btn:hover {
-    background-color: var(--red);
-    color: var(--white);
- }
-
- .login-btn:hover mat-icon{
-    color: var(--white);
- }
-
- :host ::ng-deep .mat-mdc-outlined-button>.mat-icon{
-    font-size: 1.7vw;
-    object-fit: cover;
-    margin-right: 0.2vw;
-    letter-spacing: 0.1vw;
-    height: 2vw;
-    align-content: center;
- }
-
- .submit-btn{
-    margin-left: 0.7vw;
-    font-size: 1vw;
-    font-family: "reg";
-    border: 0.1vw solid var(--black);
-    padding: 1.8vw 1.75vw;
-    border-radius: 2.5vw;
-    background-color: transparent;
- }
-
- /* :host ::ng-deep .mdc-button .mdc-button__label {
+/* :host ::ng-deep .mdc-button .mdc-button__label {
    color: var(--black);
 }
 
@@ -134,10 +130,10 @@ ul li a:hover{
     color: var(--white);
  } */
 
- :host ::ng-deep .mat-mdc-outlined-button:not(:disabled){
-    border: 1px solid var(--black);
- }
+:host ::ng-deep .mat-mdc-outlined-button:not(:disabled) {
+  border: 1px solid var(--black);
+}
 
- :host ::ng-deep .mat-mdc-outlined-button:not(:disabled):hover{
-    border: 0;
- }
+:host ::ng-deep .mat-mdc-outlined-button:not(:disabled):hover {
+  border: 0;
+}

@@ -121,7 +121,9 @@ nav {
   border-radius: 2.5vw;
   background-color: transparent;
 }
-
+.cstmContainer{
+  padding: 1rem 0;
+}
 @media only screen and (max-width:1024px) {
   .sidebar {
     position: absolute;

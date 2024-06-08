@@ -7,14 +7,14 @@
       >
         <a class="dCenter">
           <fa-icon [icon]="faHeadphones"></fa-icon>
-          <h2>
+          <h2 class="mb-0 ms-2">
             Need Help? Call us
             <span>123 456 7890</span>
           </h2>
         </a>
         <a class="dCenter">
           <fa-icon [icon]="faAt"></fa-icon>
-          <h2>
+          <h2 class="mb-0 ms-2">
             Contact for more info:
             <span>info&#64;rightnehindme.com</span>
           </h2>
@@ -35,7 +35,7 @@
           /></a>
         </div>
         <div class="cstm-nav-item">
-          <ul class="">
+          <ul>
             <li>
               <a routerLink="/">Home</a>
             </li>
@@ -63,7 +63,7 @@
             </li>
           </ul>
         </div>
-        <div class="d-flex align-items-center">
+        <div class="dCenter">
           @if(user){
           <div class="dropdown" ngbDropdown>
             <button
@@ -114,13 +114,6 @@
       </div>
     </div>
   </div>
-  <div class="lg-12">
-  </div>
-
-  <nav>
-    <div class="lg-12">
-    </div>
-  </nav>
 </section>
 } @else{
   <div class="position-absolute opener">

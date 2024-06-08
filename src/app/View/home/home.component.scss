@@ -1,10 +1,7 @@
 
 .sec-2 {
     background-color: var(--sec-light);
-    padding-top: 2.8vw;
 }
-
-
 
 .main-head {
     width: 63%;
@@ -63,7 +60,6 @@
     padding:1rem 2rem;
 }
 h1 {
-
     font-family: "bold";
     font-size: 5.2vw;
     padding-top: 5.8vw;
@@ -71,8 +67,24 @@ h1 {
     line-height: 5.5vw;
     color: var(--head-black);
 }
-
-
+.headingContainer{
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    .headingLine{
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 1px;
+            width: 50%;
+            background-color: #222;
+        }
+    }
+}
 h3 {
     font-size: 2.1vw;
     font-family: 'bold';
@@ -108,10 +120,6 @@ p {
     align-content: center;
     width: 44%;
     margin-left: 2.5vw;
-}
-
-.rental-carousel{
-    margin-top: -4.7vw;
 }
 
 .seller-head-3{
@@ -394,7 +402,7 @@ p {
 
 .sec-7{
     background-color: var(--blog-sec);
-    margin-top: 41vw;
+    margin-top: 2rem;
     padding-top: 4vw;
 }
 

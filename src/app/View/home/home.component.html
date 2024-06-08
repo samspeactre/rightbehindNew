@@ -1,3 +1,4 @@
+@defer {
 <app-banner>
   <div class="main-head">
     <h1>Find Your Dream Home in Miami, Florida</h1>
@@ -16,7 +17,6 @@
     <p class="or">Or</p>
     <hr class="or-line" />
   </div>
-
   <div class="head-2">
     <h3>Maximize Your Property's Potential!</h3>
     <div class="para-2">
@@ -26,71 +26,88 @@
       </p>
     </div>
   </div>
-  <div class="dCenter">
+  <div class="dCenter pb-3">
     <button class="btnDanger">Submit A Deal</button>
   </div>
 </app-banner>
-@if(buyCards?.length){
-<div class="sec-2">
-  <div class="cstmContainer">
-    <div class="display">
-      <h2>Hot rentals in Miami</h2>
-      <div class="carousel-line">
-        <hr />
+}
+@defer{
+  @if(buyCards?.length || loading){
+  <div class="sec-2">
+    <div class="cstmContainer position-relative">
+      <div class="headingContainer">
+        <h2 class="headingLine">Hot rentals in Miami</h2>
       </div>
-    </div>
-
-    <div class="rental-carousel">
-      <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
+      @if(loading){
+      <div class="py-5">
+        <app-mini-loading></app-mini-loading>
+      </div>
+      } @else { @defer {
+      <div class="rental-carousel">
+        <app-rental-carousel
+          background="white"
+          [cards]="buyCards"
+        ></app-rental-carousel>
+      </div>
+      } }
     </div>
   </div>
-</div>
-}
-@if(sellCards?.length){
-<div class="sec-3">
-  <div class="cstmContainer">
-    <div class="display">
-      <h2>Sellers in Miami</h2>
-
-      <div class="carousel-line">
-        <hr />
+  } @if(sellCards?.length || loading){
+  <div class="sec-3 mt-5">
+    <div class="cstmContainer position-relative">
+      <div class="headingContainer">
+        <h2 class="headingLine">Sellers in Miami</h2>
       </div>
-    </div>
-
-    <div class="rental-carousel">
-      <app-rental-carousel type="2" [cards]="sellCards"></app-rental-carousel>
+      @if(loading){
+      <div class="py-5">
+        <app-mini-loading></app-mini-loading>
+      </div>
+      } @else { @defer {
+      <div class="rental-carousel">
+        <app-rental-carousel
+          background="white"
+          [cards]="sellCards"
+        ></app-rental-carousel>
+      </div>
+      } }
     </div>
   </div>
-</div>
+  } 
 }
-
+@if(scrollPosition > 120){
 <section>
-  <div class="lg-12 post-property">
-    <div class="display container-site">
-      <div class="register-bg display">
-        <div class="left-text">
-          <h5>Looking to sell or rent your property?</h5>
-          <h3>Register to Post your Property for Free</h3>
-          <h5 class="residential">Post your residential/commercial property</h5>
-        </div>
-        <div class="center-text">
-          <div class="btn-counter">
-            <button mat-raised-button class="property-btn">
-              Submit Your Property FREE
-            </button>
-            <div class="counter display">
-              <!-- counter.component.html -->
-              @for (counter of counters; track counter; let i = $index) {
-              <div>
-                <div class="counter-num">{{ counter.count }}K+</div>
-                <div class="counter-name">{{ counter.name }}</div>
+  <div class="container-fluid">
+    <div class="lg-12 post-property">
+      <div class="display container-site">
+        <div class="register-bg display">
+          <div class="left-text">
+            <h5>Looking to sell or rent your property?</h5>
+            <h3>Register to Post your Property for Free</h3>
+            <h5 class="residential">Post your residential/commercial property</h5>
+          </div>
+          <div class="center-text">
+            <div class="btn-counter">
+              <button mat-raised-button class="property-btn">
+                Submit Your Property FREE
+              </button>
+              <div class="counter display">
+                <!-- counter.component.html -->
+                @for (counter of counters; track counter; let i = $index) {
+                <div>
+                  <div class="counter-num">{{ counter.count }}K+</div>
+                  <div class="counter-name">{{ counter.name }}</div>
+                </div>
+                }
               </div>
-              }
             </div>
           </div>
-        </div>
-        <div class="house-img-width">
-          <img src="../../assets/img/house-img-1.png" alt="" class="house-img" />
+          <div class="house-img-width">
+            <img
+              src="../../assets/img/house-img-1.png"
+              alt=""
+              class="house-img"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -180,7 +197,9 @@
     </div>
 
     <div class="community-carousel">
+      @defer {
       <app-card-carousel></app-card-carousel>
+      }
     </div>
   </div>
 </section>
@@ -199,7 +218,10 @@
     </div>
 
     <div class="blog-carousel">
+      @defer {
       <app-blog-carousel></app-blog-carousel>
+      }
     </div>
   </div>
 </section>
+}

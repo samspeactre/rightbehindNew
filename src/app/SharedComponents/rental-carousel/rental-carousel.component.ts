@@ -1,16 +1,13 @@
-import { MatButtonModule } from '@angular/material/button';
 import { Component, Input, OnInit } from '@angular/core';
-import Swiper from 'swiper';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from '../../View/popup/popup.component';
-import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpService } from '../../Services/http.service';
-import { Subject, finalize, takeUntil } from 'rxjs';
-import { PropertyCardComponent } from '../property-card/property-card.component';
+import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { setPopupIdState } from '../../Ngrx/data.action';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { HttpService } from '../../Services/http.service';
+import { PopupComponent } from '../../View/popup/popup.component';
+import { PropertyCardComponent } from '../property-card/property-card.component';
 @Component({
   standalone: true,
   imports: [
@@ -26,7 +23,6 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class RentalCarouselComponent implements OnInit {
   @Input() cards: any = [1, 2, 3, 4, 5];
-  swiper!: Swiper;
   @Input() type!: string;
   @Input() background!: string;
   noData: boolean = false;
@@ -62,12 +58,6 @@ export class RentalCarouselComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.type);
 
-  }
-  slideNext() {
-    this.swiper.slideNext();
-  }
-  slidePrev() {
-    this.swiper.slidePrev();
   }
   openPopup(card: any): void {
     let dialogRef = this.dialog.open(PopupComponent, {

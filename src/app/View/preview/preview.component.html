@@ -13,24 +13,31 @@
     </div>
 
     <div class="carousel">
-      <div class="slide-container swiper">
-        <div class="swiper-container-rental-preview slide-content">
+      <div class="slide-container">
+        <div class="slide-content">
 
           <!-- Add pagination buttons -->
 
-          <div class="swiper-wrapper display">
-            @for (card of cards; track card) {
-              <div class="card-wrapper swiper-slide">
-                <div class="card">
-                  <div class="image-content">
-                    <span class="overlay"></span>
-                    <div class="card-image ">
-                      <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+          <div class="display">
+
+            <owl-carousel-o [options]="customOptions" #owlCar>
+              @for (card of cards; track card) {
+              <ng-container>
+                <ng-template carouselSlide>
+                  <div class="card-wrapper">
+                    <div class="card">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image ">
+                          <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            }
+                </ng-template>
+              </ng-container>
+              }
+            </owl-carousel-o>
           </div>
 
         </div>

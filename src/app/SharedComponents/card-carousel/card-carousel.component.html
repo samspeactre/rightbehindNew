@@ -1,42 +1,52 @@
 <div class="slide-container swiper">
   <div class="swiper-container-card slide-content">
-
     <!-- Add pagination buttons -->
     <div class="carousel-btn">
-      <button mat-icon-button (click)="slidePrev()" class="swiper-button-prev-card">
+      <button
+        mat-icon-button
+        (click)="owlCar.prev()"
+        class="swiper-button-prev-card"
+      >
         <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
       </button>
 
-      <button mat-icon-button (click)="slideNext()" class="swiper-button-next-card">
+      <button
+        mat-icon-button
+        (click)="owlCar.next()"
+        class="swiper-button-next-card"
+      >
         <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
       </button>
     </div>
-
-    <div class="swiper-wrapper container-site">
+    <owl-carousel-o [options]="customOptions" #owlCar>
       @for (card of cards; track card) {
-        <div class="card-wrapper swiper-slide">
-          <div class="card">
-            <div class="image-content">
-              <span class="overlay"></span>
-              <div class="card-image">
-                <img [src]="card.imgSrc" alt="Card Image" class="card-img">
-              </div>
-            </div>
-            <div class="card-content">
-              <div class="display content-between">
-                <h1 class="card-name">{{ card.name }}</h1>
-                <div class="card-tag">
-                  <span>{{card.tag}}</span>
+      <ng-container>
+        <ng-template carouselSlide>
+          <div class="card-wrapper swiper-slide">
+            <div class="card">
+              <div class="image-content">
+                <span class="overlay"></span>
+                <div class="card-image">
+                  <img [src]="card.imgSrc" alt="Card Image" class="card-img" />
                 </div>
               </div>
-              <p>{{ card.description }}</p>
-              <button mat-stroked-button [routerLink]="card.buttonUrl">Join Now {{ card.buttonUrl }}</button>
+              <div class="card-content">
+                <div class="display content-between">
+                  <h1 class="card-name">{{ card.name }}</h1>
+                  <div class="card-tag">
+                    <span>{{ card.tag }}</span>
+                  </div>
+                </div>
+                <p>{{ card.description }}</p>
+                <button mat-stroked-button [routerLink]="card.buttonUrl">
+                  Join Now {{ card.buttonUrl }}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-template>
+      </ng-container>
       }
-    </div>
-
-
+    </owl-carousel-o>
   </div>
 </div>

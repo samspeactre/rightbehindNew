@@ -1,6 +1,5 @@
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { Component, OnInit } from '@angular/core';
-import Swiper from 'swiper';
 import { FooterComponent } from '../../SharedComponents/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
@@ -12,10 +11,11 @@ import { Subject, finalize, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { toggleLoader } from '../../Ngrx/data.action';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent],
+  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.css',
@@ -25,6 +25,28 @@ export class SellPreviewComponent implements OnInit {
   id!:number;
   propertyDetails:any;
   loader:boolean = true;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    margin: 20,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      }
+    },
+    nav: false
+  }
   constructor(private activatedRoute:ActivatedRoute,private http:HttpService, private store:Store){
     this.activatedRoute.queryParams.subscribe((param:any)=>{
       console.log(param,'checlo');
@@ -133,11 +155,9 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
   ];
-  swiper!: Swiper;
   utility: any;
   private destroy$ = new Subject<void>();
   ngOnInit(): void {
-    this.initSwiper();
     this.getPropertyDetail()
   }
   ngOnDestroy() {
@@ -158,34 +178,6 @@ export class SellPreviewComponent implements OnInit {
         this.propertyDetails = response?.model
       }
     );
-  }
-  initSwiper(): void {
-    this.swiper = new Swiper('.swiper-container-rental-preview', {
-      // slidesPerView: 1,
-      width: 1280,
-      spaceBetween: 20,
-      loop: true, // Set loop to true for infinite loop
-      grabCursor: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-        },
-        320: {
-          slidesPerView: 2,
-        },
-        600: {
-          slidesPerView: 3,
-        },
-      },
-    });
   }
 
   Appartment = [

@@ -101,8 +101,4 @@ h1 {
     background-color: white !important;
 }
 
-:host ::ng-deep .map-container {
-    position: absolute !important;
-}
-
 .leftSide {}

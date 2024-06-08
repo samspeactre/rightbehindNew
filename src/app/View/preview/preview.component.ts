@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import Swiper from 'swiper';
 import { FooterComponent } from '../../SharedComponents/footer/footer.component';
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +7,7 @@ import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component'
 
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 // import Swiper from 'swiper';
 
 interface Rule {
@@ -18,7 +18,7 @@ interface Rule {
 
 @Component({
   standalone:true,
-  imports: [FooterComponent,RouterModule, RentalCarouselComponent, MatIconModule, MatTab, MatTabGroup, NavbarComponent, MatButtonModule],
+  imports: [FooterComponent,RouterModule, RentalCarouselComponent, MatIconModule, MatTab, MatTabGroup, NavbarComponent, MatButtonModule, CarouselModule],
   selector: 'app-preview',
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.css']
@@ -35,41 +35,30 @@ export class PreviewComponent implements OnInit {
     { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
     { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
   ];
-  swiper!: Swiper;
 utility: any;
-
+customOptions: OwlOptions = {
+  loop: true,
+  mouseDrag: true,
+  touchDrag: true,
+  pullDrag: true,
+  margin: 20,
+  dots: false,
+  navSpeed: 700,
+  navText: ['', ''],
+  responsive: {
+    0: {
+      items: 1
+    },
+    400: {
+      items: 2
+    },
+    740: {
+      items: 3
+    }
+  },
+  nav: false
+}
   ngOnInit(): void {
-    this.initSwiper();
-  }
-
-  initSwiper(): void {
-    this.swiper = new Swiper(".swiper-container-rental-preview", {
-      // slidesPerView: 1,
-      width: 1280,
-      spaceBetween: 20,
-      loop: true, // Set loop to true for infinite loop
-      grabCursor: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-        },
-        320: {
-          slidesPerView: 2,
-        },
-        600: {
-          slidesPerView: 3,
-        },
-      },
-    });
- 
   }
 
 

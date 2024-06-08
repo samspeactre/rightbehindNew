@@ -1,278 +1,378 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from '../../View/popup/popup.component';
-import { FooterComponent } from '../footer/footer.component';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 import { MatOption } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatLabel, MatSelect } from '@angular/material/select';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { PopupComponent } from '../../View/popup/popup.component';
 
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { PropertyCardComponent } from '../property-card/property-card.component';
-import { BannerComponent } from '../banner/banner.component';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../Services/http.service';
+import { BannerComponent } from '../banner/banner.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PropertyCardComponent } from '../property-card/property-card.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { mapSrc } from '../../app.component';
 
 @Component({
-  standalone:true,
-  imports: [RouterModule, BannerComponent, MapMarker, PropertyCardComponent, GoogleMap, MatIconModule, MatOption, MatSelect, MatLabel, MatFormFieldModule, MatInputModule, SearchBarComponent, NavbarComponent, MatButtonModule],
+  standalone: true,
+  imports: [
+    RouterModule,
+    BannerComponent,
+    MapMarker,
+    PropertyCardComponent,
+    GoogleMap,
+    MatIconModule,
+    MatOption,
+    MatSelect,
+    MatLabel,
+    MatFormFieldModule,
+    MatInputModule,
+    SearchBarComponent,
+    NavbarComponent,
+    MatButtonModule,
+  ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
-  styleUrl: './listing-page.component.css'
+  styleUrl: './listing-page.component.css',
 })
 export class ListingPageComponent implements OnInit {
   cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200', price: 25000, buttonUrl: '' },
+    {
+      imgSrc: '../../assets/img/carousel-img-1.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-2.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-3.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-1.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-2.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-3.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-1.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-2.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
+    {
+      imgSrc: '../../assets/img/carousel-img-3.png',
+      name: 'New Apartment Nice View',
+      tag: 'miami',
+      address: 'Quincy St, Brooklyn, NY, USA  ',
+      room: '02',
+      bath: '03',
+      sqft: '1,200',
+      price: 25000,
+      buttonUrl: '',
+    },
   ];
   display: any;
   center: google.maps.LatLngLiteral = {
-    lat: -34.40097030,
-    lng: 150.48267150
+    lat: -34.4009703,
+    lng: 150.4826715,
   };
 
   light = [
     {
-      "elementType": "geometry",
-      "stylers": [
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#ebe3cd"
-        }
-      ]
+          color: '#ebe3cd',
+        },
+      ],
     },
     {
-      "elementType": "labels.text.fill",
-      "stylers": [
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#523735"
-        }
-      ]
+          color: '#523735',
+        },
+      ],
     },
     {
-      "elementType": "labels.text.stroke",
-      "stylers": [
+      elementType: 'labels.text.stroke',
+      stylers: [
         {
-          "color": "#f5f1e6"
-        }
-      ]
+          color: '#f5f1e6',
+        },
+      ],
     },
     {
-      "featureType": "administrative",
-      "elementType": "geometry.stroke",
-      "stylers": [
+      featureType: 'administrative',
+      elementType: 'geometry.stroke',
+      stylers: [
         {
-          "color": "#c9b2a6"
-        }
-      ]
+          color: '#c9b2a6',
+        },
+      ],
     },
     {
-      "featureType": "administrative.land_parcel",
-      "elementType": "geometry.stroke",
-      "stylers": [
+      featureType: 'administrative.land_parcel',
+      elementType: 'geometry.stroke',
+      stylers: [
         {
-          "color": "#dcd2be"
-        }
-      ]
+          color: '#dcd2be',
+        },
+      ],
     },
     {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'administrative.land_parcel',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#ae9e90"
-        }
-      ]
+          color: '#ae9e90',
+        },
+      ],
     },
     {
-      "featureType": "landscape.natural",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'landscape.natural',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#dfd2ae"
-        }
-      ]
+          color: '#dfd2ae',
+        },
+      ],
     },
     {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'poi',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#dfd2ae"
-        }
-      ]
+          color: '#dfd2ae',
+        },
+      ],
     },
     {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'poi',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#93817c"
-        }
-      ]
+          color: '#93817c',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "geometry.fill",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'geometry.fill',
+      stylers: [
         {
-          "color": "#a5b076"
-        }
-      ]
+          color: '#a5b076',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#447530"
-        }
-      ]
+          color: '#447530',
+        },
+      ],
     },
     {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#f5f1e6"
-        }
-      ]
+          color: '#f5f1e6',
+        },
+      ],
     },
     {
-      "featureType": "road.arterial",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.arterial',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#fdfcf8"
-        }
-      ]
+          color: '#fdfcf8',
+        },
+      ],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.highway',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#f8c967"
-        }
-      ]
+          color: '#f8c967',
+        },
+      ],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [
+      featureType: 'road.highway',
+      elementType: 'geometry.stroke',
+      stylers: [
         {
-          "color": "#e9bc62"
-        }
-      ]
+          color: '#e9bc62',
+        },
+      ],
     },
     {
-      "featureType": "road.highway.controlled_access",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.highway.controlled_access',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#e98d58"
-        }
-      ]
+          color: '#e98d58',
+        },
+      ],
     },
     {
-      "featureType": "road.highway.controlled_access",
-      "elementType": "geometry.stroke",
-      "stylers": [
+      featureType: 'road.highway.controlled_access',
+      elementType: 'geometry.stroke',
+      stylers: [
         {
-          "color": "#db8555"
-        }
-      ]
+          color: '#db8555',
+        },
+      ],
     },
     {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'road.local',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#806b63"
-        }
-      ]
+          color: '#806b63',
+        },
+      ],
     },
     {
-      "featureType": "transit.line",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'transit.line',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#dfd2ae"
-        }
-      ]
+          color: '#dfd2ae',
+        },
+      ],
     },
     {
-      "featureType": "transit.line",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'transit.line',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#8f7d77"
-        }
-      ]
+          color: '#8f7d77',
+        },
+      ],
     },
     {
-      "featureType": "transit.line",
-      "elementType": "labels.text.stroke",
-      "stylers": [
+      featureType: 'transit.line',
+      elementType: 'labels.text.stroke',
+      stylers: [
         {
-          "color": "#ebe3cd"
-        }
-      ]
+          color: '#ebe3cd',
+        },
+      ],
     },
     {
-      "featureType": "transit.station",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'transit.station',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#dfd2ae"
-        }
-      ]
+          color: '#dfd2ae',
+        },
+      ],
     },
     {
-      "featureType": "water",
-      "elementType": "geometry.fill",
-      "stylers": [
+      featureType: 'water',
+      elementType: 'geometry.fill',
+      stylers: [
         {
-          "color": "#b9d3c2"
-        }
-      ]
+          color: '#b9d3c2',
+        },
+      ],
     },
     {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'water',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#92998d"
-        }
-      ]
-    }
-  ]
+          color: '#92998d',
+        },
+      ],
+    },
+  ];
   options: google.maps.MapOptions = {
     styles: this.light,
-    mapId: "8bd4969372a2f413",
+    mapId: '8bd4969372a2f413',
     disableDefaultUI: false,
     mapTypeControl: true,
     streetViewControl: false,
     fullscreenControl: false,
-    panControl: false
-  }
-  zoom = 15;
-  mapTypeId: google.maps.MapTypeId = google.maps.MapTypeId.TERRAIN;
-  markerPositions: google.maps.LatLngLiteral[] = [];
-  markerOptions: any = {
-    draggable: true
+    panControl: false,
   };
+  zoom = 15;
   pageType!: string;
   private destroy$ = new Subject<void>();
   search: string = '';
@@ -283,12 +383,15 @@ export class ListingPageComponent implements OnInit {
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
+  mapScriptLoad: boolean = false;
+  screenHeight:number = window.innerHeight;
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
     private router: Router,
     public dialog: MatDialog
   ) {
+    this.appendScript();
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
@@ -302,11 +405,18 @@ export class ListingPageComponent implements OnInit {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    this.removeScript();
   }
 
   getProperties() {
-    const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo}&pageSize=${this.pageSize}&type=${this.router.url.includes('buy')?'1':'2'}`;
-    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize}&type=${this.router.url.includes('buy')?'1':'2'}`;
+    const searchUrl = `Property/get?search=${this.search}&pageNo=${
+      this.pageNo
+    }&pageSize=${this.pageSize}&type=${
+      this.router.url.includes('buy') ? '1' : '2'
+    }`;
+    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${
+      this.pageSize
+    }&type=${this.router.url.includes('buy') ? '1' : '2'}`;
     this.http
       .loaderGet(
         this.search ? searchUrl : withoutSearchUrl,
@@ -325,22 +435,25 @@ export class ListingPageComponent implements OnInit {
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe((response:any) => {
-        if (response?.model?.properties) {
-          const newProperties = response?.model?.properties || [];
-          this.cards = [...newProperties];
-          this.noData = this.cards.length === 0;
-        } else {
-          this.noDataError()
+      .subscribe(
+        (response: any) => {
+          if (response?.model?.properties) {
+            const newProperties = response?.model?.properties || [];
+            this.cards = [...newProperties];
+            this.noData = this.cards.length === 0;
+          } else {
+            this.noDataError();
+          }
+          this.loadMore = this.cards?.length < response?.model?.totalResults;
+        },
+        (err: any) => {
+          this.noDataError();
         }
-        this.loadMore = this.cards?.length < response?.model?.totalResults;
-      },(err:any)=>{
-        this.noDataError()
-      });
+      );
   }
-  noDataError(){
+  noDataError() {
     this.cards = [];
-          this.noData = true;
+    this.noData = true;
   }
   loadMoreProperties() {
     this.pageNo++;
@@ -358,13 +471,24 @@ export class ListingPageComponent implements OnInit {
   openPopup(): void {
     this.dialog.open(PopupComponent);
   }
-  addMarker(event: any) {
-    if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
+  appendScript(): void {
+    const scriptAvailable = document.querySelector(`script[src="${mapSrc}"]`);
+    if (!scriptAvailable) {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = mapSrc;
+      document.body.appendChild(script);
+      script.onload = () => {
+        this.mapScriptLoad = true;
+      };
+    } else {
+      this.mapScriptLoad = true;
+    }
   }
-  moveMap(event: any) {
-    if (event.latLng != null) this.center = (event.latLng.toJSON());
-  }
-  move(event: any) {
-    if (event.latLng != null) this.display = event.latLng.toJSON();
+  removeScript(): void {
+    const script = document.querySelector(`script[src="${mapSrc}"]`);
+    if (script) {
+      script.remove();
+    }
   }
 }

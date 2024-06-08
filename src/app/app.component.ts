@@ -1,20 +1,38 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectLoader } from './Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { FooterComponent } from './SharedComponents/footer/footer.component';
+import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
+import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 import { LoaderService } from './services/loader.service';
+export const mapSrc = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCm_NXIOGvZ0nlQ9EBeotrO1ESY3hji6No'
 @Component({
+  standalone:true,
+  imports:[NavbarComponent,FooterComponent,LoadingComponent, RouterModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   loader: boolean = false;
   footer: boolean = true;
   header: boolean = true;
   private destroy$ = new Subject<void>();
-  constructor(private store: Store, private cd: ChangeDetectorRef, private actiavtedRoute: ActivatedRoute, private router: Router, private loaderService: LoaderService, private cdr: ChangeDetectorRef) {
+  constructor(private store: Store, private cd: ChangeDetectorRef, private actiavtedRoute: ActivatedRoute, private router: Router, private loaderService: LoaderService
+  ) {
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationStart),
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr),
+        ),
+      )
+      .subscribe((event: any) => {
+        this.footer = false;
+        LoaderService.loader.next(true)
+      });
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -24,6 +42,7 @@ export class AppComponent {
         takeUntil(this.destroy$),
       )
       .subscribe((event: any) => {
+        LoaderService.loader.next(false)
         let route = this.actiavtedRoute;
         while (route.firstChild) {
           route = route.firstChild;

@@ -20,5 +20,5 @@
   }
 </owl-carousel-o>
 <div class="rental-btn">
-  <button mat-stroked-button routerLink="/property-details">View More</button>
+  <button mat-stroked-button [routerLink]="cards?.[0]?.propertyType == 1 ? '/buy' : '/rent'">View More</button>
 </div>

@@ -1,5 +1,4 @@
-
-.property-card{
+.property-card {
     width: 100%;
     background-color: rgba(230, 242, 255, 1);
     margin-bottom: 10vw;
@@ -7,22 +6,22 @@
     margin-bottom: 1.7vw;
 }
 
-.card-img{
+.card-img {
     height: 12.8vw;
 }
 
-.card-content{
+.card-content {
     padding: 0vw 2vw 1.5vw;
 }
 
-.card-content h3{
+.card-content h3 {
     font-size: 1.2vw;
     font-family: 'bold';
     margin-top: 1.05vw;
     letter-spacing: -0.015vw;
 }
 
-.card-content p{
+.card-content p {
     font-size: 1.13vw;
     margin-top: 0.85vw;
     font-family: 'reg';
@@ -30,11 +29,11 @@
     letter-spacing: 0.015vw;
 }
 
-.badge{
+.badge {
     margin-top: -8vw;
 }
 
-.badge p{
+.badge p {
     border-radius: 2vw;
     background-color: rgb(255 255 255);
     opacity: 0.8;
@@ -43,18 +42,18 @@
     padding: 0.2vw 1.2vw 0.2vw 1.2vw;
 }
 
-.badge{
+.badge {
     margin-top: -12vw;
     float: right;
     padding-right: 2vw;
     color: var(--black);
 }
 
-.card-details{
+.card-details {
     margin-top: 0.9vw;
 }
 
-.detail-text{
+.detail-text {
     font-size: 0.95vw;
     font-family: 'bold';
     color: rgba(112, 112, 112, 1);
@@ -62,77 +61,83 @@
     padding-left: 0.3vw;
 }
 
-.details-img{
+.details-img {
     width: 3.2vw;
     object-fit: cover;
 }
 
-.detail-sec{
+.detail-sec {
     border-right: 0.12vw solid rgba(196, 196, 196, 1);
-    padding:0vw 1.3vw;
+    padding: 0vw 1.3vw;
 }
 
-.bed{
+.bed {
     padding-left: 0;
 }
 
-.bath{
+.bath {
     border-right: 0;
 }
 
-.card-bottom{
+.card-bottom {
     margin-top: 0.9vw;
 }
 
-.price{
+.price {
     font-size: 1.85vw;
     font-family: "bold";
     align-content: center;
     color: var(--royal-blue);
 }
 
-.card-bottom button{
-    background-color: var(--royal-blue);
-    color: var(--white);
+.card-bottom button {
     font-size: 0.9vw;
     border-radius: 3vw;
-    padding: 1.8vw 2.3vw;
+    padding: .5rem 2rem;
 }
 
-hr{
+hr {
     height: 2.5vw;
     align-self: center;
 }
-.card-img{
+
+.card-img {
     width: 100%;
 }
-.NoImageFound{
+
+.NoImageFound {
     object-fit: contain;
     background-color: #dddddd;
 }
-.title.skeleton{
+
+.title.skeleton {
     width: 90%;
     height: 24px;
 }
-.description.skeleton{
+
+.description.skeleton {
     width: 100%;
     height: 24px;
 }
-.detail-sec.skeleton{
+
+.detail-sec.skeleton {
     width: 94px;
     height: 49px;
     margin: 0vw 1.3vw;
 }
-.price.skeleton{
+
+.price.skeleton {
     width: 119px;
     height: 55px;
 }
+
 .carousel h3 {
     color: var(--black);
     font-size: 0.87vw;
     margin-top: 0.6vw;
     font-family: 'bold';
 }
+
 .carousel p {
     font-size: 0.82vw;
     letter-spacing: 0.02vw;
@@ -140,6 +145,7 @@ hr{
     font-family: "reg";
     color: var(--carousel-add);
 }
+
 .carousel .home-detail {
     width: 2.4vw;
     margin-top: 0.65vw;
@@ -168,31 +174,42 @@ hr{
 }
 
 .carousel .contact button {
-    background-color: var(--royal-blue);
     border-radius: 3vw;
-    padding: 1.3vw 1.8vw;
-    color: var(--white);
     font-size: 0.65vw;
     font-family: "reg";
-    margin-top: 1vw;
-    margin-left: 1rem;
 }
+
 .carousel .contact .price {
-    margin-top: 1.4vw;
     font-size: 1.32vw;
     font-family: "bold";
     color: var(--royal-blue);
-    border-right: 0.1vw solid rgba(196, 196, 196, 1);
-    padding-right: 2.5vw;
 }
-.carousel hr{
+
+.carousel hr {
     height: auto;
     align-self: center;
 }
-.carousel .card-img{
+
+.carousel .card-img {
     height: 9.5vw;
     border-radius: 1vw;
 }
+
 .carousel .card-bottom {
     margin-top: 0;
+}
+
+.carousel .card-bottom {
+    position: relative;
+}
+
+.carousel .card-bottom::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 1px;
+    background-color: #c4c4c4;
 }

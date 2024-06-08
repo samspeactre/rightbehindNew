@@ -37,7 +37,7 @@
               </div>
               <div class="home-detail  display">
                 <img src="../../assets/img/sq.ft.png" alt="" class="home-img">
-                <div class="detail-font sq.ft">{{card?.area}}</div>
+                <div class="detail-font sq.ft">{{card?.area}} Sqft</div>
               </div>
             </div>
           </div>
@@ -70,10 +70,9 @@
             </div>
           </div>
         }
-        <div class="card-bottom display content-between contact">
+        <div class="card-bottom mt-3 dCenter justify-content-between contact">
           <div class="price">{{ card?.price | currency:'USD' }}</div>
-          <hr />
-          <button mat-raised-button>Contact Agent</button>
+          <button class="btnPrimary">Contact Agent</button>
         </div>
       </div>
     </div>

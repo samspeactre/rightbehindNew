@@ -19,6 +19,7 @@ import {
   LoaderReducer,
   popupStateReducer,
   searchStateReducer,
+  sideBarReducer,
   userReducer,
 } from './Ngrx/data.reducer';
 import { routes } from './app.routes';
@@ -44,6 +45,7 @@ export const appConfig: ApplicationConfig = {
         loader: LoaderReducer,
         search: searchStateReducer,
         popup: popupStateReducer,
+        sideBar: sideBarReducer,
       }),
       ToastrModule.forRoot({
         timeOut: 2000,

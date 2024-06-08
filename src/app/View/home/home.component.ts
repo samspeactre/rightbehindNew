@@ -40,6 +40,7 @@ export class HomeComponent {
     { name: 'Monthly Users', count: 0, minCount: 0, maxCount: 200 },
     { name: 'New Property every Month', count: 0, minCount: 0, maxCount: 30 },
   ];
+  screenWidth:number = window.innerWidth;
   intervalIds: any[] = [];
   buyCards: any;
   sellCards: any;

@@ -1,3 +1,4 @@
+@if(screenWidth > 786){
 <section>
   <div class="lg-12">
     <div
@@ -76,7 +77,10 @@
             >
               <div class="profile-img">
                 <img
-                  [src]="user?.imageUrl || 'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'"
+                  [src]="
+                    user?.imageUrl ||
+                    'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
+                  "
                   alt="profile picture"
                 />
               </div>
@@ -87,7 +91,9 @@
               aria-labelledby="dropdownMenuButton1"
             >
               <li>
-                <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
+                <a class="dropdown-item" ngbDropdownItem (click)="logout()"
+                  >Log Out</a
+                >
               </li>
             </ul>
           </div>
@@ -110,3 +116,13 @@
     </div>
   </nav>
 </section>
+} @else{
+  <div class="position-absolute opener">
+    <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
+  </div>
+<div class="sidebar" [ngClass]="{ open: sidebar }">
+  <div class="dCenter justify-content-end">
+    <fa-icon [icon]="faTimes" class="me-3 mt-3" (click)="show(false)"></fa-icon>
+  </div>
+</div>
+}

@@ -29,3 +29,7 @@ export const setPopupIdState = createAction(
   '[searchState] Set PopUp Id State',
   props<{ id: number }>(),
 );
+export const toggleSideBar = createAction(
+  '[SideBar] Toggle Side Bar',
+  props<{ open: boolean }>(),
+);

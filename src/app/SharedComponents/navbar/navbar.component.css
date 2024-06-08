@@ -137,3 +137,26 @@ nav {
 :host ::ng-deep .mat-mdc-outlined-button:not(:disabled):hover {
   border: 0;
 }
+
+@media only screen and (max-width:1024px) {
+  .sidebar{
+    position: absolute;
+    width: 80%;
+    height: 100vh;
+    overflow-y: auto;
+    background: white;
+    overflow-x: hidden;
+    top: 0;
+    left: -80%;
+    transition: .5s all ease-in-out;
+    z-index: 6;
+  }
+  .open{
+    left: 0;
+  }
+  .opener{
+    z-index: 5;
+    top: 1rem;
+    left: 1rem;
+  }
+}

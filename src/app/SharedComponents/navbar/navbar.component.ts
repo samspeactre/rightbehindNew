@@ -1,9 +1,16 @@
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faAt } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { SellPropertyPopupComponent } from '../../View/sell-property-popup/sell-property-popup.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import {faUser } from '@fortawesome/free-regular-svg-icons'
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { selectUser } from '../../Ngrx/data.reducer';
@@ -11,10 +18,11 @@ import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { removeUserData } from '../../Ngrx/data.action';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, RouterModule, MatButtonModule],
+  imports: [MatIconModule, RouterModule, MatButtonModule, FontAwesomeModule, NgbDropdownModule],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
@@ -23,6 +31,13 @@ export class NavbarComponent {
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
+  faUser=faUser
+  faHeadphones=faHeadphones
+  faFacebook=faFacebook
+  faLinkedin=faLinkedin
+  faInstagram=faInstagram
+  faTwitter=faTwitter
+  faAt=faAt
   constructor(private store: Store, public dialog: MatDialog) {
     this.user$
       .pipe(

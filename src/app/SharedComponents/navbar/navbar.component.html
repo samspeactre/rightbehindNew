@@ -1,46 +1,41 @@
 <section>
   <div class="lg-12">
-    <div class="display container-site content-between">
-      <div class="display">
-        <a class="display">
-          <mat-icon> headset_mic</mat-icon>
-          <h2>
-            Need Help? Call us
-            <span>123 456 7890</span>
-          </h2>
-        </a>
-
-        <a class="contact-nav display">
-          <mat-icon> alternate_email</mat-icon>
-          <h2>
-            Contact for more info:
-            <span>info&#64;rightnehindme.com</span>
-          </h2>
-        </a>
-      </div>
-
-      <div class="social-links display content-between">
-        @for (item of socialLinks; track item) {
-        <div>
-          <a [href]="item.url" class="">
-            <img [src]="item.imageUrl" class="link-img" alt="" />
-          </a>
-        </div>
-        }
+    <div
+      class="container-site d-flex justify-content-between align-items-center"
+    >
+      <a class="dCenter">
+        <fa-icon [icon]="faHeadphones"></fa-icon>
+        <h2>
+          Need Help? Call us
+          <span>123 456 7890</span>
+        </h2>
+      </a>
+      <a class="dCenter">
+        <fa-icon [icon]="faAt"></fa-icon>
+        <h2>
+          Contact for more info:
+          <span>info&#64;rightnehindme.com</span>
+        </h2>
+      </a>
+      <div class="social-links dCenter">
+        <a href="#"> <fa-icon [icon]="faFacebook"></fa-icon></a>
+        <a href="#"><fa-icon [icon]="faInstagram"></fa-icon></a>
+        <a href="#"> <fa-icon [icon]="faTwitter"></fa-icon></a>
+        <a href="#"> <fa-icon [icon]="faLinkedin"></fa-icon></a>
       </div>
     </div>
   </div>
 
   <nav>
     <div class="lg-12">
-      <div class="display">
+      <div class="d-flex justify-content-between align-items-center">
         <div class="nav-logo">
           <a routerLink="/"
             ><img src="../../assets/img/nav-logo.png" alt="" class="logo-img"
           /></a>
         </div>
-        <div class="nav-items">
-          <ul class="display content-between">
+        <div class="cstm-nav-item">
+          <ul class="">
             <li>
               <a routerLink="/">Home</a>
             </li>
@@ -52,10 +47,9 @@
             </li>
             <li>
               @if (user) {
-                <a routerLink="/selling-detail">Sell</a>
-              }
-              @else {
-                <a (click)="openSellPopup('sell')">Sell</a>
+              <a routerLink="/selling-detail">Sell</a>
+              } @else {
+              <a (click)="openSellPopup('sell')">Sell</a>
               }
             </li>
             <li>
@@ -69,19 +63,44 @@
             </li>
           </ul>
         </div>
-
-        <div class="nav-btns">
+        <div class="d-flex align-items-center">
+          @if(user){
+          <div class="dropdown" ngbDropdown>
+            <button
+              class="btn-style-none"
+              ngbDropdownToggle
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <div class="profile-img">
+                <img
+                  src="https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png"
+                  alt=""
+                />
+              </div>
+            </button>
+            <ul
+              ngbDropdownMenu
+              class="dropdown-menu cstm-dropmenu dropstart"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <li>
+                <a class="dropdown-item" ngbDropdownItem href="#">LogOut</a>
+              </li>
+            </ul>
+          </div>
+          } @else{
           <button
-            mat-stroked-button
-            class="login-btn"
-            (click)="user ? logout() : openPopup()"
+            class="d-flex justify-content-between align-items-center btnSecondary margin-right-cstm"
+            (click)="openPopup()"
           >
-            <mat-icon>person</mat-icon>
-            @if(user){ Logout } @else{ Login }
+            <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
+          }
           <button
-            mat-stroked-button
-            class="submit-btn"
+            class="btnSecondary d-flex justify-content-between align-items-center"
             (click)="openSellPopup('rent')"
           >
             Submit A Deal

@@ -1,13 +1,12 @@
-<div class="carousel-btn">
-  <button mat-icon-button (click)="owlCar.prev()" class="swiper-button-prev-rental">
-    <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
+<div class="dCenter justify-content-end">
+  <button class="carosuelBtn dCenter me-3" (click)="owlCar.prev()">
+    <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
   </button>
-
-  <button mat-icon-button (click)="owlCar.next()" class="swiper-button-next-rental">
-    <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
+  <button class="carosuelBtn dCenter" (click)="owlCar.next()">
+    <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
   </button>
 </div>
-<owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging"  #owlCar>
+<owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging" #owlCar>
   @for (card of cards; track card) {
   <ng-container>
     <ng-template carouselSlide [id]="card.id">
@@ -20,5 +19,6 @@
   }
 </owl-carousel-o>
 <div class="rental-btn py-3">
-  <button class="btnBlackNWhite" [routerLink]="cards?.[0]?.propertyType == 1 ? '/buy' : '/rent'">View More</button>
+  <button [ngClass]="[ cards?.[0]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
+    [routerLink]="cards?.[0]?.propertyType == 1 ? '/buy' : '/rent'">View More</button>
 </div>

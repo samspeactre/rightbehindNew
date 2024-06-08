@@ -121,102 +121,49 @@ p {
     margin-left: 2.5vw;
 }
 
-.seller-head-3 {
-    width: 37%;
-}
-
-.seller-carousel-line {
-    width: 53%;
-    align-content: center;
-}
-
-.post-property {
-    margin-top: 3vw;
-}
-
 .register-bg {
     background-color: var(--royal-blue);
     width: 100%;
-    margin-top: 3vw;
-    margin-bottom: 5.35vw;
     border-radius: 1vw;
-}
+    position: relative;
+    margin-top: 5rem;
 
-.left-text {
-    width: 26.1%;
-    padding: 3.7vw 0vw 3.7vw 2.05vw;
-}
-
-.left-text h3 {
-    line-height: 2.05vw;
-    padding-bottom: 0.4vw;
-    padding-top: 0.3vw;
-}
-
-.left-text h5 {
-    letter-spacing: 0.04vw;
-}
-
-.left-text h3,
-.left-text h5 {
-    color: var(--white);
-}
-
-.residential {
-    padding-top: 0.4vw;
-}
-
-.center-text {
-    width: 25%;
-    margin-left: 1.3vw;
-    margin-top: 4vw;
-}
-
-.btn-counter button {
-    font-size: 0.8vw;
-    font-family: "bold";
-    color: var(--royal-blue);
-    margin-bottom: 2.1vw;
-    padding: 1vw 4.5vw;
-    letter-spacing: 0.01vw;
+    &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: -50px;
+        width: 50%;
+        background: url('../../../assets/img/house-img-1.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 100%;
+        background-position: right top;
+    }
 }
 
 .counter {
-    width: 21.8vw;
+    width: 100%;
     justify-content: space-between;
 }
 
 .counter-num {
-    font-size: 1.46vw;
     font-family: 'bold';
     color: var(--white);
 }
 
 .counter-name {
-    font-size: 0.65vw;
+    font-size: 14px;
     color: var(--white);
     font-family: 'reg';
     margin-top: 0.2vw;
-}
-
-.house-img-width {
-    width: 47%;
-    margin-top: -3.6vw;
-    margin-left: 0.45vw;
-}
-
-.house-img {
-    width: 100%;
-    object-fit: cover;
-    -webkit-filter: drop-shadow(5px 5px 5px #222);
-    filter: drop-shadow(5px 5px 5px #222);
-    border-bottom-right-radius: 1vw;
 }
 
 .dream-home {
     position: relative;
     align-items: center;
     min-height: 500px;
+
     &::after {
         content: "";
         position: absolute;
@@ -228,64 +175,68 @@ p {
         background-repeat: no-repeat;
         height: 100%;
     }
-    .btnSecondary{
+
+    .btnSecondary {
         padding: 1vw 2vw;
     }
 }
 
-.market-sec {
-    margin-top: -0.5vw;
-    background: var(--royal-blue) url('../../../assets/img/market-img.png');
-    background-repeat: no-repeat;
-    background-position: right 4.7vw;
-    background-size: 59.27% 55.2%;
-    object-fit: cover;
-    padding-bottom: 23.3vw;
+.dream-home.right {
+    position: static;
+
+    &::after {
+        left: unset;
+        right: 0;
+        background: url('../../../assets/img/market-img.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+    }
 }
 
-.left-site {
-    padding-left: 3.55vw;
+.blueBg {
+    background: var(--royal-blue);
 }
 
-.market-content {
-    width: 41%;
+.where {
+    min-height: 500px;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 30%;
+        background: var(--royal-blue);
+        z-index: -1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 70%;
+        background: var(--dark-blue);
+        z-index: -1;
+    }
+
+    .brainImg {
+        width: 50%;
+        height: 300px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
 }
 
-.market-content h2 {
-    margin-top: 12vw;
-    color: var(--white);
-    line-height: 4.3vw;
-    margin-bottom: 1.6vw;
-}
-
-.market-content p {
-    color: var(--white);
-    text-align: start;
-    width: 93%;
-}
-
-.market-content button {
-    margin-top: 1.45vw;
-    border: 0.1vw solid var(--white);
-    color: var(--white);
-    font-size: 1vw;
-    font-family: 'reg';
-    padding: 1.8vw 3.05vw;
-    border-radius: 2.5vw;
-    background-color: transparent;
-}
-
-.sec-6 {
-    background-color: var(--dark-blue);
-}
-
-.sec-6-content {
-    margin-bottom: 10.5vw;
-}
-
-.sec-left-6 {
-    width: 68.9%;
-    margin-top: -14.7vw;
+.mapBox {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .sec-left-6 img {
@@ -408,6 +359,25 @@ p {
     margin-top: -4.2vw;
 }
 
-.footer {
-    margin-top: 25vw;
+@media only screen and (max-width:1024px) {
+    .counter-name {
+        font-size: 8px;
+    }
+    .headingContainer .headingLine::after{
+        content: unset;
+    }
+    .register-bg {
+        .position-relative {
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 1rem;
+        }
+
+        &::after {
+            width: 100%;
+        }
+    }
 }

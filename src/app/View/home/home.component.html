@@ -60,34 +60,26 @@
     }
   </div>
 </div>
-} } } } @if(scrollPosition > 120 && screenWidth > 1024 ){
+} } } }
 <div class="container-fluid">
-  <div class="lg-12 post-property">
-    <div class="display container-site">
-      <div class="register-bg display">
-        <div class="left-text">
-          <h5>Looking to sell or rent your property?</h5>
-          <h3>Register to Post your Property for Free</h3>
-          <h5 class="residential">Post your residential/commercial property</h5>
-        </div>
-        <div class="center-text">
-          <div class="btn-counter">
-            <button mat-raised-button class="property-btn">
-              Submit Your Property FREE
-            </button>
-            <div class="counter display">
-              <!-- counter.component.html -->
-              @for (counter of counters; track counter; let i = $index) {
-              <div>
-                <div class="counter-num">{{ counter.count }}K+</div>
-                <div class="counter-name">{{ counter.name }}</div>
-              </div>
-              }
-            </div>
+  <div class="register-bg p-5 mb-5 position-relative">
+    <div class="row align-items-center position-relative">
+      <div class="col-lg-3">
+        <h5 class="text-light mb-0">Looking to sell or rent your property?</h5>
+        <h3 class="text-light my-4">Register to Post your Property for Free</h3>
+        <h5 class="text-light">Post your residential/commercial property</h5>
+      </div>
+      <div class="col-lg-3 dCenter flex-column text-center">
+        <button class="btnWhite mx-auto mb-3">
+          Submit Your Property FREE
+        </button>
+        <div class="counter display">
+          @for (counter of counters; track counter; let i = $index) {
+          <div>
+            <div class="counter-num">{{ counter.count }}K+</div>
+            <div class="counter-name">{{ counter.name }}</div>
           </div>
-        </div>
-        <div class="house-img-width">
-          <img src="../../assets/img/house-img-1.png" alt="" class="house-img" />
+          }
         </div>
       </div>
     </div>
@@ -105,65 +97,59 @@
     </div>
   </div>
 </div>
-<div class="lg-12 market-sec">
-  <div class="display left-site">
-    <div class="market-content">
-      <h2>Unlock Exclusive Opportunities in Miami's Off-Market Properties</h2>
-      <p>
-        Get early access to Miami's off-market properties. Whether you're buying
-        or selling, join our exclusive network to unlock unparalleled
-        opportunities. Submit your property or explore listings now!
-      </p>
-      <button mat-stroked-button>Know More</button>
-    </div>
-  </div>
-</div>
-<div class="lg-12 sec-6">
-  <div class="display container-site sec-6-content">
-    <div class="sec-left-6">
-      <img src="../../assets/img/map.png" alt="" />
-    </div>
-    <div class="sec-right-6">
-      <img src="../../assets/img/sec-6-profile.png" alt="" />
-      <h2>Where’s Bryan</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-        purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor
-        rhoncus dolor purus non enim praesent elementum facilisis leo, vel
-        fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis
-        enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra
-        orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae
-        tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing
-        elit ut aliquam, purus sit amet luctus venenatis.
-      </p>
-      <p class="sec-6-para">
-        lectus magna fringilla urna, porttitor rhoncus dolor purus non enim
-        praesent elementum facilisis leo, vel fringilla est ullamcorper eget
-        nulla facilisi etiam dignissim diam quis enim lobortis scelerisque
-        fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat
-        odio facilisis mauris sit amet massa vitae tortor condimentum.
-      </p>
-      <button mat-stroked-button>Know More</button>
-    </div>
-  </div>
-
-  <div class="display">
-    <div class="sec-6-head container-site">
-      <h2>Right Behind Me Community</h2>
-      <div class="display sec-6-carousel">
-        <div class="sec-6-carousel-para">
-          <p>
-            Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis
-            tortor. Cras auctor mauris tincidunt sed fusce rhoncus.
-          </p>
-        </div>
-        <div class="sec-6-carousel-line">
-          <hr />
-        </div>
+@if(scrollPosition > 120){
+<div class="blueBg position-relative">
+  <div class="cstmContainer">
+    <div class="row dream-home right">
+      <div class="col-lg-6 me-auto">
+        <h2 class="text-light">Unlock Exclusive Opportunities in Miami's Off-Market Properties</h2>
+        <p class="text-light text-start">
+          Get early access to Miami's off-market properties. Whether you're buying
+          or selling, join our exclusive network to unlock unparalleled
+          opportunities. Submit your property or explore listings now!
+        </p>
+        <button class="btnBlackNWhite">Know More</button>
       </div>
     </div>
   </div>
-
+</div>
+<div class="where py-5">
+  <div class="cstmContainer">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="mapBox">
+          <img width="100%" height="100%" src="../../assets/img/map.png" alt="map" />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="brainImg">
+          <img src="../../assets/img/sec-6-profile.png" width="100%" height="100%" alt="brian" />
+        </div>
+        <h2 class="text-light mt-3">Where’s Bryan</h2>
+        <p class="text-light text-start">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
+          purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor
+          rhoncus dolor purus non enim praesent elementum facilisis leo, vel
+          fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis
+          enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra
+          orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae
+          tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit ut aliquam, purus sit amet luctus venenatis.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
+          purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor
+          rhoncus dolor purus non enim praesent elementum facilisis leo, vel
+          fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis
+          enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra
+          orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae
+          tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit ut aliquam, purus sit amet luctus venenatis.
+        </p>
+        <button class="btnPrimary">Know More</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="lg-12 sec-6">
   <div class="community-carousel">
     @defer {
     <app-card-carousel></app-card-carousel>
@@ -187,5 +173,5 @@
     <app-blog-carousel></app-blog-carousel>
     }
   </div>
-</div>
+</div> -->
 }

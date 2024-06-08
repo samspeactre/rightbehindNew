@@ -1,9 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 h1,
 h2 {
   font-family: "reg";
@@ -18,10 +12,6 @@ h2 {
   font-size: 0.83vw;
 }
 
-.container-site {
-  padding: 1.2vw 3.55vw 0vw;
-}
-
 h2 span {
   font-family: "bold";
 }
@@ -29,10 +19,12 @@ h2 span {
 .contact-nav {
   margin-left: 2.9vw;
 }
+
 .social-links a,
 .container-site a {
   color: #000;
 }
+
 .social-links fa-icon {
   margin-left: 10px;
 }
@@ -43,7 +35,7 @@ h2 span {
 }
 
 nav {
-  padding: 1.45vw 3.55vw 0vw;
+  padding: 1.45vw 0;
 }
 
 .nav-logo {
@@ -58,6 +50,7 @@ nav {
 .cstm-nav-item ul {
   display: flex;
 }
+
 .cstm-nav-item ul li {
   padding: 2px 16px;
   list-style: none;
@@ -75,6 +68,7 @@ nav {
 .cstm-nav-item ul li a:hover {
   text-decoration: underline;
 }
+
 .btn-style-none {
   background-color: transparent;
   border: none;
@@ -82,32 +76,38 @@ nav {
   outline: none;
   margin-right: 16px;
 }
+
 .dropdown-toggle::after {
   display: none;
 }
+
 .profile-img {
-    width: 30px;
-    height: 30px;
-    padding: 2px;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
   border-radius: 50%;
   border: 1px solid #000;
 }
-.profile-img img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
-.cstm-dropmenu li{
-    padding: 4px 6px;
+
+.cstm-dropmenu li {
+  padding: 4px 6px;
 }
 
 .btnSecondary:hover mat-icon {
   color: #fff !important;
 }
+
 .btnSecondary fa-icon,
 .container-site fa-icon {
   padding-right: 6px;
 }
+
 .margin-right-cstm {
   margin-right: 1rem;
 }
@@ -122,24 +122,8 @@ nav {
   background-color: transparent;
 }
 
-/* :host ::ng-deep .mdc-button .mdc-button__label {
-   color: var(--black);
-}
-
-:host ::ng-deep .mdc-button .mdc-button__label:hover {
-    color: var(--white);
- } */
-
-:host ::ng-deep .mat-mdc-outlined-button:not(:disabled) {
-  border: 1px solid var(--black);
-}
-
-:host ::ng-deep .mat-mdc-outlined-button:not(:disabled):hover {
-  border: 0;
-}
-
 @media only screen and (max-width:1024px) {
-  .sidebar{
+  .sidebar {
     position: absolute;
     width: 80%;
     height: 100vh;
@@ -151,10 +135,12 @@ nav {
     transition: .5s all ease-in-out;
     z-index: 6;
   }
-  .open{
+
+  .open {
     left: 0;
   }
-  .opener{
+
+  .opener {
     z-index: 5;
     top: 1rem;
     left: 1rem;

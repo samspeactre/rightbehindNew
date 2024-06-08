@@ -42,7 +42,7 @@ export class SellPreviewComponent implements OnInit {
         items: 2
       },
       740: {
-        items: 3
+        items: 4
       }
     },
     nav: false
@@ -174,8 +174,8 @@ export class SellPreviewComponent implements OnInit {
     )
     .subscribe(
       (response) => {
-        console.log(response);
         this.propertyDetails = response?.model
+        console.log(this.propertyDetails);
       }
     );
   }

@@ -30,6 +30,9 @@ p{
 
 .carousel-img{
     width: 100%;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
 }
 
 .carousel-img-half{
@@ -103,7 +106,6 @@ p{
 .pricing-btns{
     width: 66%;
 }
-
 :host ::ng-deep .mat-mdc-outlined-button:not(:disabled) {
     padding: 1.5vw 1vw;
     border-radius: 3vw;

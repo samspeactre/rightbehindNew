@@ -96,7 +96,7 @@
     </div>
     <div class="w-lg-50">
       @if(mapScriptLoad){
-        <google-map [style.height.px]="screenHeight" width="100%" [center]="center" [zoom]="zoom">
+        <google-map [height]="screenHeight" class="mapElement" width="100%" [center]="center" [zoom]="zoom">
         </google-map>
       }
     </div>

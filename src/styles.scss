@@ -192,7 +192,40 @@ body {
   width: 48%;
   margin: 0 auto;
 }
+::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #ebf0fe;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0 108 223);
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f0ede8;
+}
+.cstmContainer{
+  max-width: 1660px;
+  width: 93vw;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
 @media only screen and (max-width:1024px) {
+  .cstmContainer{
+    max-width: 1660px;
+    width: 99vw;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
   .w-lg-50{
     width: 100%;
   }

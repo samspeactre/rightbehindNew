@@ -1,234 +1,153 @@
 <mat-dialog-content>
-  <section>
-    <div class="lg-12">
-      <div class="display">
-        <div class="lg-7 left-side-portion">
-          <div class="carousel-img content-between">
-            <img
-              src="../../assets/img/popup-img.png"
-              alt=""
-              class="carousel-img-full"
-            />
-            <img
-              src="../../assets/img/popup-img-2.png"
-              alt=""
-              class="carousel-img-half"
-            />
-            <img
-              src="../../assets/img/popup-img-2.png"
-              alt=""
-              class="carousel-img-half"
-              style="margin-left: 1%"
-            />
-            <img
-              src="../../assets/img/popup-img-2.png"
-              alt=""
-              class="carousel-img-half"
-            />
-            <img
-              src="../../assets/img/popup-img-2.png"
-              alt=""
-              class="carousel-img-half"
-              style="margin-left: 1%"
-            />
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="carousel-img content-between">
+          <img src="../../assets/img/popup-img.png" alt="" class="carousel-img-full" />
+          <img src="../../assets/img/popup-img-2.png" alt="" class="carousel-img-half" />
+          <img src="../../assets/img/popup-img-2.png" alt="" class="carousel-img-half" style="margin-left: 1%" />
+          <img src="../../assets/img/popup-img-2.png" alt="" class="carousel-img-half" />
+          <img src="../../assets/img/popup-img-2.png" alt="" class="carousel-img-half" style="margin-left: 1%" />
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="first-box">
+          <div class="property-id">Propert ID:{{ propertyData.id }}</div>
+          <h1>{{ propertyData.title }}</h1>
+          <div class="address">
+            {{ propertyData?.street + ", " + propertyData?.city }}
+          </div>
+          <div class="row">
+            <div class="col-lg-8 d-flex">
+              <div class="prop-detail-img display">
+                <img src="../../assets/img/bed.png" alt="" />
+                <div class="prop-detail-text">
+                  {{ propertyData?.noOfBed }}
+                </div>
+              </div>
+              <div class="prop-detail-img display">
+                <img src="../../assets/img/bath.png" alt="" />
+                <div class="prop-detail-text">
+                  {{ propertyData?.noOfBath }}
+                </div>
+              </div>
+              <div class="prop-detail-img display">
+                <img src="../../assets/img/sq.ft.png" alt="" />
+                <div class="prop-detail-text">
+                  {{ propertyData?.area }}Sq.Ft
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="prop-detail-icon dCenter justify-content-end">
+                <button class="dCenter optionBtn me-2">
+                  <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
+                </button>
+                <button class="dCenter optionBtn me-2">
+                  <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
+                </button>
+                <button class="dCenter optionBtn">
+                  <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+              <h2>{{ propertyData?.price | currency : "USD" }}</h2>
+            </div>
+            <div class="col-lg-9 mt-3 dCenter justify-content-end">
+              <button class="btnPrimary me-3" (click)="navigateAndClose()">Open a new tab</button>
+              <button class="btnBlackNWhite" >Request a tour</button>
+            </div>
           </div>
         </div>
-        <div class="lg-5">
-          <div class="first-box">
-            <div class="property-id">Propert ID:{{ propertyData.id }}</div>
-            <h1>{{ propertyData.title }}</h1>
-            <div class="address">
-              {{ propertyData?.street + ", " + propertyData?.city }}
-            </div>
-            <div class="prop-details-div display content-between">
-              <div class="prop-details display content-between">
-                <div class="prop-detail-img display">
-                  <div class="display content-between">
-                    <img src="../../assets/img/bed.png" alt="" />
-                    <div class="prop-detail-text">
-                      {{ propertyData?.noOfBed }}
-                    </div>
-                  </div>
-                  <hr />
-                </div>
-                <div class="prop-detail-img display">
-                  <div class="display content-between">
-                    <img src="../../assets/img/bath.png" alt="" />
-                    <div class="prop-detail-text">
-                      {{ propertyData?.noOfBath }}
-                    </div>
-                  </div>
-                  <hr />
-                </div>
-                <div class="prop-detail-img display">
-                  <div class="display content-between">
-                    <img src="../../assets/img/sq.ft.png" alt="" />
-                    <div class="prop-detail-text">
-                      {{ propertyData?.area }}Sq.Ft
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="prop-detail-icon">
-                <button
-                  mat-icon-button
-                  aria-label="Example icon button with a vertical three dot icon"
-                >
-                  <mat-icon>favorite</mat-icon>
-                </button>
-                <button
-                  mat-icon-button
-                  aria-label="Example icon button with a vertical three dot icon"
-                >
-                  <mat-icon>share</mat-icon>
-                </button>
-                <button
-                  mat-icon-button
-                  aria-label="Example icon button with a vertical three dot icon"
-                >
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-              </div>
-            </div>
-            <div class="pricing display content-between">
-              <h2>{{ propertyData?.price | currency : "USD" }}</h2>
-              <div class="pricing-btns display content-between">
-                <button mat-stroked-button (click)="navigateAndClose()">
-                  Open a new tab
-                </button>
-                <button mat-flat-button routerLink="">Request a tour</button>
-              </div>
-            </div>
-          </div>
 
-          <div
-            class="slider"
-            (mouseover)="stopAutoPlay()"
-            (mouseleave)="startAutoPlay()"
-          >
-            <div class="slider-track" #sliderTrack>
-              @for (heading of headings; track heading; let i = $index) {
-              <h3 class="heading" (click)="onHeadingClick(heading.id)">
-                {{ heading.title }}
-              </h3>
-              }
-              <!-- Duplicate the headings for smooth infinite scroll -->
-              @for (heading of headings; track heading) {
-              <h3 class="heading" (click)="onHeadingClick(heading.id)">
-                {{ heading.title }}
-              </h3>
-              }
-            </div>
+        <div class="slider" (mouseover)="stopAutoPlay()" (mouseleave)="startAutoPlay()">
+          <div class="slider-track" #sliderTrack>
+            @for (heading of headings; track heading; let i = $index) {
+            <h3 class="heading" (click)="onHeadingClick(heading.id)">
+              {{ heading.title }}
+            </h3>
+            }
+            <!-- Duplicate the headings for smooth infinite scroll -->
+            @for (heading of headings; track heading) {
+            <h3 class="heading" (click)="onHeadingClick(heading.id)">
+              {{ heading.title }}
+            </h3>
+            }
           </div>
+        </div>
 
-          <!-- Sections for demonstration -->
-          <div id="Prop-info" class="Prop-info">
-            <h3 class="prop-info-padding">Property Information</h3>
-            <div class="display content-between">
-              <div class="white-box display">
-                <div class="white-box-text text-info">Type:</div>
-                <div class="white-box-text">{{ propertyData?.type }}</div>
-              </div>
-              <div class="white-box display">
-                <div class="white-box-text text-info">Area</div>
-                <div class="white-box-text">{{ propertyData?.area }}</div>
+        <!-- Sections for demonstration -->
+        <div id="Prop-info" class="Prop-info">
+          <h3 class="prop-info-padding">Property Information</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Type:</div>
+              <div class="white-box-text">{{ propertyData?.type }}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Area</div>
+              <div class="white-box-text">{{ propertyData?.area }}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Price</div>
+              <div class="white-box-text">
+                {{ propertyData?.price | currency : "USD" }}
               </div>
             </div>
-            <div class="display content-between">
-              <div class="transparent-box display">
-                <div class="white-box-text text-info">Price</div>
-                <div class="white-box-text">
-                  {{ propertyData?.price | currency : "USD" }}
-                </div>
-              </div>
-              <div class="transparent-box display">
-                <div class="white-box-text text-info">Purpose</div>
-                <div class="white-box-text">{{ propertyData?.type }}</div>
-              </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Purpose</div>
+              <div class="white-box-text">{{ propertyData?.type }}</div>
             </div>
-            <div class="display content-between">
-              <div class="white-box display">
-                <div class="white-box-text text-info">Location</div>
-                <div class="white-box-text">{{ propertyData?.location }}</div>
-              </div>
-              <div class="white-box display">
-                <div class="white-box-text text-info">Bedroom(s)</div>
-                <div class="white-box-text">{{ propertyData?.noOfBed }}</div>
-              </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Location</div>
+              <div class="white-box-text">{{ propertyData?.location }}</div>
             </div>
-            <div class="display content-between">
-              <div class="transparent-box display">
-                <div class="white-box-text text-info">Bath(s)</div>
-                <div class="white-box-text">{{ propertyData?.noOfBath }}</div>
-              </div>
-              <div class="transparent-box display">
-                <div class="white-box-text text-info">Added</div>
-                <div class="white-box-text">
-                  {{ propertyData?.createdAt | date : "d MMMM y" }}
-                </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Bedroom(s)</div>
+              <div class="white-box-text">{{ propertyData?.noOfBed }}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Bath(s)</div>
+              <div class="white-box-text">{{ propertyData?.noOfBath }}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Added</div>
+              <div class="white-box-text">
+                {{ propertyData?.createdAt | date : "d MMMM y" }}
               </div>
             </div>
           </div>
-          <div id="prop-deatil" class="prop-deatil">
-            <h3>Property Information</h3>
-            <p>{{ propertyData?.description }}</p>
+        </div>
+        <div id="prop-deatil" class="prop-deatil">
+          <h3>Property Information</h3>
+          <p>{{ propertyData?.description }}</p>
+        </div>
+        @if(propertyData?.propertyAmenities.length){
+        <div id="Ameneties" class="ameneties">
+          <h3>Ameneties</h3>
+          <div class="facilities">
+            @for (group of propertyData?.propertyAmenities; track group) {
+            <ul class="facility-group">
+              <li class="facility">{{ group?.amenity?.amenityName }}</li>
+            </ul>
+            }
           </div>
-          @if(propertyData?.propertyAmenities.length){
-          <div id="Ameneties" class="ameneties">
-            <h3>Ameneties</h3>
-            <div class="facilities">
-              @for (group of chunkedFacilities; track group) {
-              <ul class="facility-group">
-                @for (facility of group; track facility) {
-                <li class="facility">{{ facility }}</li>
-                }
-              </ul>
-              }
-            </div>
-          </div>
-          }
-
-          <div id="Gallery" class="gallery">
-            <h3>Gallery</h3>
-
-            <div class="display">
-              @for (imageUrl of Gallery; track imageUrl) {
-              <div class="gallery-img">
-                <img [src]="imageUrl" alt="Image" />
-              </div>
-              }
-            </div>
-          </div>
-
-          <div id="Video" class="video">
-            <h3>Video</h3>
-
-            <div class="video-player">
-              @if (!showVideo) {
-              <img [src]="thumbnailSource" alt="Thumbnail" class="thumbnail" />
-              } @if (!showVideo) {
-              <button
-                mat-icon-button
-                class="start-button"
-                (click)="toggleVideo()"
-              >
-                <mat-icon>play_arrow</mat-icon>
-              </button>
-              }
-              <video #videoPlayer controls preload="none" [hidden]="!showVideo">
-                <source [src]="videoSource" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-          <div id="Map" class="map">
-            <h3>View on map</h3>
-            <div class="map-img">
-              <img src="../../assets/img/map.png" alt="" />
-            </div>
+        </div>
+        }
+        <div id="Map" class="map">
+          <h3>View on map</h3>
+          <div class="map-img">
+            <img src="../../assets/img/map.png" alt="" />
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </mat-dialog-content>

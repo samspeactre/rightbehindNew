@@ -21,6 +21,29 @@
         cursor: not-allowed;
     }
 }
+.btnBlackNWhite {
+    background-color: #fff;
+    border-radius: 100px;
+    color: #000;
+    padding: 0.2rem 0.75rem !important;
+    border: 1px solid #000;
+    transition: 0.5s all ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        border: 1px solid #000;
+        background-color: #000;
+        color: #fff !important;
+    }
+
+    &:disabled {
+        background-color: #313131;
+        border: 1px solid #313131;
+        color: #fff;
+        cursor: not-allowed;
+    }
+}
 .btnDanger {
     background-color: #e02c27;
     border-radius: 100px;
@@ -87,5 +110,19 @@
         border: 1px solid #61a1fe;
         color: #fff;
         cursor: not-allowed;
+    }
+}
+.optionBtn{
+    background-color: transparent;
+    color: #bbbbbb;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    transition: 0.5s all ease-in-out;
+    outline:none;
+    &:hover{
+        background-color: #bbbbbb;
+        color: #000;
     }
 }

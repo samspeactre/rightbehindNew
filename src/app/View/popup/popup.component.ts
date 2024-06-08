@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
-  OnInit,
-  HostListener,
-  ViewChild,
   ElementRef,
+  HostListener,
   Inject,
+  OnInit,
+  ViewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -15,19 +16,23 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
 import { selectPopupState } from '../../Ngrx/data.reducer';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { HttpService } from '../../Services/http.service';
+import { faEllipsisVertical, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, CommonModule, MatDialogContent, MatButtonModule, RouterModule],
+  imports: [MatIconModule, CommonModule, MatDialogContent, MatButtonModule, RouterModule,FontAwesomeModule],
   selector: 'app-popup',
   templateUrl: './popup.component.html',
-  styleUrl: './popup.component.css',
+  styleUrl: './popup.component.scss',
 })
 export class PopupComponent implements OnInit {
+  faHeart=faHeart;
+  faShare=faShareAlt
+  faEllipsisVertical=faEllipsisVertical
   popUpId$ = this.store.select(selectPopupState);
   popUpId: any;
   propertyData: any;
@@ -46,84 +51,11 @@ export class PopupComponent implements OnInit {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  Appartment = [
-    {
-      propertyid: '123145',
-      head: 'New Apartment Nice View',
-      address: 'Quincy St, Brooklyn, NY, USA',
-      bed: '03',
-      bath: '02',
-      sqft: '1,200',
-      price: '25,000',
-    },
-  ];
-
-  PropInfo = [
-    {
-      type: 'House',
-      area: '2,160 sqft',
-      price: 'USD 100K',
-      purpose: 'For Sale',
-      location: 'Miami, Florida',
-      bedroom: '9',
-      bath: '6',
-      added: '2 days ago',
-    },
-  ];
-
-  Propdetail = [
-    {
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum.Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis. lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor condimentum.',
-    },
-  ];
-
-  amenities = {
-    facilities: [
-      'Air Conditioning',
-      'Lawn',
-      'Swimming Pool',
-      'Barbeque',
-      'Microwave',
-      'Wide-Open Spaces',
-      'TV Cable',
-      'Dryer',
-      'Outdoor Shower',
-      'Washer',
-      'Gym',
-    ],
-  };
-
-  Gallery: string[] = [
-    '../../assets/img/popup-gallery.jpg',
-    '../../assets/img/popup-gallery.jpg',
-    '../../assets/img/popup-gallery.jpg',
-    '../../assets/img/popup-gallery.jpg',
-    '../../assets/img/popup-gallery.jpg',
-    '../../assets/img/popup-gallery.jpg',
-    // Add more image URLs as needed
-  ];
-
-  @ViewChild('videoPlayer') videoPlayer: any;
-  videoSource: string = '../../assets/video/popup-video.mp4'; // Set the path to your video file
-  thumbnailSource: string = '../../assets/img/popup-gallery.jpg'; // Set the path to your thumbnail image
-  showVideo: boolean = false;
-
-  // onMetadataLoaded() {
-  //   this.videoPlayer.nativeElement.pause();
-  // }
-
-  toggleVideo() {
-    this.showVideo = true;
-    this.videoPlayer.nativeElement.play();
-  }
-
   @ViewChild('sliderTrack') sliderTrack!: ElementRef;
   headings = [
     { id: 'Prop-info', title: 'Property Information' },
     { id: 'prop-deatil', title: 'Property Details' },
     { id: 'Ameneties', title: 'Amenities' },
-    { id: 'Gallery', title: 'Gallery' },
-    { id: 'Video', title: 'Videos' },
     { id: 'Map', title: 'map' },
   ];
 
@@ -133,7 +65,6 @@ export class PopupComponent implements OnInit {
   chunkedFacilities: any[] = [];
   ngOnInit() {
     this.startAutoPlay();
-    this.chunkedFacilities = this.chunkArray(this.amenities.facilities, 6);
   }
 
   startAutoPlay() {

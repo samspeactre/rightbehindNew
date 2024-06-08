@@ -100,5 +100,9 @@ h1 {
     opacity: 0;
     background-color: white !important;
 }
-
+.mapElement{
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+}
 .leftSide {}

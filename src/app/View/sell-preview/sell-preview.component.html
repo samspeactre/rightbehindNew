@@ -1,6 +1,6 @@
 <section>
   @if(loader){
-  <div class="dCenter my-3">
+  <div class="dCenter py-5">
     <app-mini-loading></app-mini-loading>
   </div>
   } @else {
@@ -9,45 +9,34 @@
       <div class="pages-links display">
         <a routerLink="/">Home</a>
         <div class="slash">/</div>
+        @if(propertyDetails?.propertyType == 1){
+        <a routerLink="/buy">Buy</a>
+        }
+        @else{
         <a routerLink="/rent">Rent</a>
+        }
         <div class="slash">/</div>
-        <a routerLink="/rent"> New Apartment Nice View</a>
+        <a>{{propertyDetails?.title}}</a>
       </div>
     </div>
-
-    <div class="carousel">
-      <div class="slide-container">
-        <div class="slide-content">
-          <!-- Add pagination buttons -->
-
-          <div class="display">
-            <owl-carousel-o [options]="customOptions" #owlCar>
-              @for (card of cards; track card) {
-              <ng-container>
-                <ng-template carouselSlide>
-                  <div class="card-wrapper">
-                    <div class="card">
-                      <div class="image-content">
-                        <span class="overlay"></span>
-                        <div class="card-image">
-                          <img
-                            [src]="card.imgSrc"
-                            alt="Card Image"
-                            class="card-img"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ng-template>
-              </ng-container>
-              }
-            </owl-carousel-o>
-          </div>
-        </div>
-      </div>
+    @if(propertyDetails?.propertyImages?.length){
+    <owl-carousel-o [options]="customOptions" #owlCar>
+      @for (card of propertyDetails?.propertyImages; track card) {
+      <ng-container>
+        <ng-template carouselSlide>
+          <img
+            [src]="card?.imageUrl" alt="noimage found">
+        </ng-template>
+      </ng-container>
+      }
+    </owl-carousel-o>
+    }
+    @else {
+    <div class="dCenter">
+      <img style="width: 93vw; height: 200px; object-fit: contain; background-color:#dddddd;"
+        src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="noimage found">
     </div>
-
+    }
     <div class="container-site lower-portion display content-between">
       <div class="left-site">
         @for (card of Appartment; track card) {
@@ -55,22 +44,13 @@
           <div class="display content-between">
             <div class="head">{{ card.head }}</div>
             <div class="prop-detail-icon">
-              <button
-                mat-icon-button
-                aria-label="Example icon button with a vertical three dot icon"
-              >
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
                 <mat-icon>favorite</mat-icon>
               </button>
-              <button
-                mat-icon-button
-                aria-label="Example icon button with a vertical three dot icon"
-              >
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
                 <mat-icon>share</mat-icon>
               </button>
-              <button
-                mat-icon-button
-                aria-label="Example icon button with a vertical three dot icon"
-              >
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
                 <mat-icon>more_vert</mat-icon>
               </button>
             </div>

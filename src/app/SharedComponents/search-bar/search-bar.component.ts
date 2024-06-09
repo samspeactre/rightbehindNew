@@ -16,6 +16,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 })
 export class SearchBarComponent {
   mentorSearchQueryUpdate = new Subject<any>();
+  screenWidth:number = window.innerWidth
   @Input() searching: boolean = false;
   @Input() search!: string;
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();

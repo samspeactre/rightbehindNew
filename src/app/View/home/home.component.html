@@ -1,33 +1,29 @@
 @defer {
 <app-banner>
-  <div class="main-head">
-    <h1>Find Your Dream Home in Miami, Florida</h1>
-  </div>
-  <div class="para-1">
-    <p>
-      Discover exquisite properties in the vibrant heart of Miami. <br />
-      Start your journey to unparalleled elegance and coastal charm today.
-    </p>
-  </div>
-  <div class="search-bar">
-    <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
-  </div>
-  <div class="display or-text">
-    <hr class="or-line" />
-    <p class="or">Or</p>
-    <hr class="or-line" />
-  </div>
-  <div class="head-2">
-    <h3>Maximize Your Property's Potential!</h3>
-    <div class="para-2">
-      <p>
-        Maximize Your Property's Potential! <br />
-        List with us and watch your rental income soar!
-      </p>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="text-center">
+          <h1 class="bigFont">Find Your Dream Home in Miami, Florida</h1>
+          <p>
+            Discover exquisite properties in the vibrant heart of Miami. <br />
+            Start your journey to unparalleled elegance and coastal charm today.
+          </p>
+          <div class="search-bar">
+            <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
+          </div>
+          <p class="my-3">Or</p>
+          <h3>Maximize Your Property's Potential!</h3>
+          <p>
+            Maximize Your Property's Potential! <br />
+            List with us and watch your rental income soar!
+          </p>
+          <div class="dCenter pb-3">
+            <button class="btnDanger">Submit A Deal</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="dCenter pb-3">
-    <button class="btnDanger">Submit A Deal</button>
   </div>
 </app-banner>
 @if(loading){

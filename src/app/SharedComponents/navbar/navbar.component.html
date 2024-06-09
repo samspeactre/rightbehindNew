@@ -93,9 +93,14 @@
   </div>
 </section>
 } @else{
-<div class="position-absolute opener">
-  <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
-</div>
+  <div class="dCenter position-relative">
+    <div class="position-absolute opener">
+      <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
+    </div>
+    <div class="side-nav-logo mt-2">
+      <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" /></a>
+    </div>
+  </div>
 <div class="sidebar" [ngClass]="{ open: sidebar }">
   <div class="sidebar-padding d-flex justify-content-between align-items-center">
     <div class="side-nav-logo">

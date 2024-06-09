@@ -1,11 +1,15 @@
-.btnWhiteNBlue
+.btnWhiteNBlueOutline.active{
+    background-color: #0160c9;
+    color: #fff;
+}
 h1 {
     font-family: "bold";
-    font-size: 4.15vw;
     color: var(--black);
     text-align: center;
 }
-
+.min75{
+    min-height: 50vh;
+}
 h2 {
     font-family: "bold";
     font-size: 1.58vw;
@@ -43,26 +47,9 @@ p {
     padding-top: 8.25vw;
 }
 
-.page-links {
-    width: 13.2%;
-    margin: auto;
-    text-align: center;
-    margin-top: 0.65vw;
-}
-
-.page-links a {
+a {
     font-family: "reg";
-    font-size: 1.1vw;
-    color: var(--head-black);
-    text-align: center;
-    letter-spacing: 0.03vw;
-    transition: font-family 0.6s ease;
 }
-
-.page-links a:hover {
-    font-family: 'med';
-}
-
 .slash {
     padding: 0vw 0.25vw;
     align-content: center;

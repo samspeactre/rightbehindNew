@@ -5,12 +5,12 @@
         <div class="carousel-img content-between">
           @if(propertyData?.propertyImages?.length){
             @for (item of propertyData?.propertyImages; let i = $index; track item) {
-            <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
+            <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'" alt="propertyimages"
               [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half',i > 0 && i % 2 === 1 ? 'ms-2' : '']" />
             }
           }
           @else{
-            <img src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="propertyimages" class="carousel-img-full mt-3" />
+            <img src="https://homes.madeeasy.app/img/no-propertyfound.webp" alt="propertyimages" class="carousel-img-full mt-3" />
           }
         </div>
       </div>
@@ -24,19 +24,19 @@
           <div class="row">
             <div class="col-lg-8 d-flex">
               <div class="prop-detail-img display">
-                <img src="../../assets/img/bed.png" alt="" />
+                <img src="../../assets/img/bed.webp" alt="" />
                 <div class="prop-detail-text">
                   {{ propertyData?.noOfBed }}
                 </div>
               </div>
               <div class="prop-detail-img display">
-                <img src="../../assets/img/bath.png" alt="" />
+                <img src="../../assets/img/bath.webp" alt="" />
                 <div class="prop-detail-text">
                   {{ propertyData?.noOfBath }}
                 </div>
               </div>
               <div class="prop-detail-img display">
-                <img src="../../assets/img/sq.ft.png" alt="" />
+                <img src="../../assets/img/sq.ft.webp" alt="" />
                 <div class="prop-detail-text">
                   {{ propertyData?.area }}Sq.Ft
                 </div>
@@ -148,7 +148,7 @@
         <div id="Map" class="map">
           <h3>View on map</h3>
           <div class="map-img">
-            <img src="../../assets/img/map.png" alt="" />
+            <img src="../../assets/img/map.webp" alt="" />
           </div>
         </div>
       </div>

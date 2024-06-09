@@ -16,7 +16,7 @@
       (click)="type == 'component' && navigate(card)"
     >
       <img
-        [src]="card?.propertyImages?.[0]?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'"
+        [src]="card?.propertyImages?.[0]?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'"
         [class.NoImageFound]="!card?.imgSrc"
         alt="Card Image"
         class="card-img"
@@ -38,19 +38,19 @@
           <div class="display">
             <div class="d-flex align-items-center border-right-style">
               <div class="home-detail bedroom wow fadeInDown">
-                <img src="../../assets/img/bed.png" alt="" class="home-img" />
+                <img src="../../assets/img/bed.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font">{{ card?.noOfBed }}</div>
             </div>
             <div class="d-flex align-items-center border-right-style">
               <div class="home-detail bath display wow fadeInDown">
-                <img src="../../assets/img/bath.png" alt="" class="home-img" />
+                <img src="../../assets/img/bath.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font">{{ card?.noOfBath }}</div>
             </div>
             <div class="d-flex align-items-center border-right-style">
               <div class="home-detail display wow fadeInDown">
-                <img src="../../assets/img/sq.ft.png" alt="" class="home-img" />
+                <img src="../../assets/img/sq.ft.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font sq.ft">{{ card?.area }} Sqft</div>
             </div>
@@ -64,7 +64,7 @@
       <div class="card-details display">
         <div class="detail-sec bed display wow fadeInDown">
           <img
-            src="../../assets/img/bed-white.png"
+            src="../../assets/img/bed-white.webp"
             alt=""
             class="details-img"
           />
@@ -72,7 +72,7 @@
         </div>
         <div class="detail-sec display wow fadeInDown">
           <img
-            src="../../assets/img/bath-white.png"
+            src="../../assets/img/bath-white.webp"
             alt=""
             class="details-img"
           />
@@ -80,7 +80,7 @@
         </div>
         <div class="detail-sec bath display wow fadeInDown">
           <img
-            src="../../assets/img/sq.ft-white.png"
+            src="../../assets/img/sq.ft-white.webp"
             alt=""
             class="details-img"
           />

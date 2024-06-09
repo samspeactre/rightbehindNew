@@ -13,18 +13,18 @@ import Swiper from 'swiper';
 })
 export class CarouselComponent implements OnInit {
   cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'David Dell', description: 'The lorem text the section that contains header ' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'David Dell', description: 'The lorem text the section that contains header' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'David Dell', description: 'The lorem text the section that contains header ' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'David Dell', description: 'The lorem text the section that contains header' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'David Dell', description: 'The lorem text the section that contains header ' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'David Dell', description: 'The lorem text the section that contains header' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'David Dell', description: 'The lorem text the section that contains header ' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'David Dell', description: 'The lorem text the section that contains header' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'David Dell', description: 'The lorem text the section that contains header ' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'David Dell', description: 'The lorem text the section that contains header' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'David Dell', description: 'The lorem text the section that contains header ' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'David Dell', description: 'The lorem text the section that contains header' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'David Dell', description: 'The lorem text the section that contains header ' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'David Dell', description: 'The lorem text the section that contains header' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'David Dell', description: 'The lorem text the section that contains header ' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'David Dell', description: 'The lorem text the section that contains header' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'David Dell', description: 'The lorem text the section that contains header ' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'David Dell', description: 'The lorem text the section that contains header' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'David Dell', description: 'The lorem text the section that contains header ' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'David Dell', description: 'The lorem text the section that contains header' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'David Dell', description: 'The lorem text the section that contains header ' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'David Dell', description: 'The lorem text the section that contains header' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'David Dell', description: 'The lorem text the section that contains header ' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'David Dell', description: 'The lorem text the section that contains header' },
     // Add more card data as needed
   ];
   swiper!: Swiper;

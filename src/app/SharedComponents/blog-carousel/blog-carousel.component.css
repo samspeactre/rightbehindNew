@@ -2,6 +2,9 @@ h1 {
     font-family: 'bold';
     color: var(--black);
 }
+.image-content h1{
+    font-size: 18px;
+}
 .zI{
     z-index: 10;
 }
@@ -28,14 +31,18 @@ h1 {
 }
 
 .card-content{
-    width: 70%;
+    width: 100%;
+    padding:10px 14px;
+}
+.blog-img-content{
+    padding:2px 14px;
 }
 
 .card-content p{
     color: var(--black);
     margin-top: 0.8vw;
     padding-right: 1.9vw;
-    font-size: 0.89vw;
+    font-size: 16px;
 }
 
 .blog-btn{
@@ -68,25 +75,33 @@ h1 {
 }
 
 .date{
-    font-size: 0.8vw;
+    font-size: 13px;
     font-family: 'reg';
     color: var(--black);
     padding-left: 0.8vw;
 }
 
 .badge{
-    font-size: 0.8vw;
+    font-size: 13px;
     font-family: 'med';
     color: var(--black);
     padding-left: 0.4vw;
     border-left: 0.1vw solid var(--black);
     align-content: center;
 }
+.card{
+    border-radius: 16px;
+}
 
 .circle{
     width: 1.2vw;
     height: 1.2vw;
     border-radius: 50%;
+    background-color: var(--royal-blue);
+}
+.badge{
+    color:#fff;
+    border: 1px solid var(--royal-blue);
     background-color: var(--royal-blue);
 }
 

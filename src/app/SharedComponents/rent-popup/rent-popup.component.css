@@ -55,17 +55,17 @@ section{
 }
 
 :host ::ng-deep .mat-options .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: var(--sec-light);
-    width: 14vw;
-    border-radius: 0.3vw;
-    margin-bottom: 0.7vw;
+    /* background-color: var(--sec-light); */
+    /* width: 14vw; */
+    /* border-radius: 0.3vw;
+    margin-bottom: 0.7vw; */
 }
 
 :host ::ng-deep .mat-select .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: var(--sec-light);
-    width: 28.5vw;
-    border-radius: 0.3vw;
-    margin-bottom: 0.7vw;
+    /* background-color: var(--sec-light); */
+    /* width: 28.5vw; */
+    /* border-radius: 0.3vw;
+    margin-bottom: 0.7vw; */
 }
 
 :host ::ng-deep .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before {
@@ -84,7 +84,6 @@ section{
 
 .map{
     width: 100%;
-    margin-bottom: 2vw;
 }
 
 .map img{

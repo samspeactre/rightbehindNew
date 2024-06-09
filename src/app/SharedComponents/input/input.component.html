@@ -1,11 +1,66 @@
-<div [formGroup]="form" [class]="classes">
-  <mat-form-field class="input-padding">
-    <mat-label>{{label}}</mat-label>
-    <input [type]="type" (input)="write($event)" matInput [formControlName]="control" [placeholder]="placeholder"/>
+<div class="cstmsContainer">
+  @if(matType == 'input'){
+    <div class="cstmInputBox" [class.FocusedBackground]="focusBackground" [style]="cstmStyle" [ngClass]="{ error: error }" [class]="classes">
+      <label [class.focused]="isFocused">{{ label }}</label>
+      @if (inputType == "textArea") {
+        <textarea
+          [rows]="rows"
+          (input)="write($event)"
+          [readOnly]="readOnly"
+          [placeholder]="placeholder"
+          [class.show-placeholder]="isFocused"
+          (focus)="togglePlaceholder(true)"
+          [(ngModel)]="form.controls[control].value"
+          (blur)="togglePlaceholder(false)"
+        ></textarea>
+      } @else {
+        @if (NumbersOnly) {
+          <input
+            [type]="type"
+            (input)="
+              write($event);
+            "
+            [readOnly]="readOnly"
+            [placeholder]="placeholder"
+            [class.show-placeholder]="isFocused"
+            NumbersOnly
+            (focus)="togglePlaceholder(true)"
+            [(ngModel)]="form.controls[control].value"
+            (blur)="togglePlaceholder(false)"
+          />
+        } @else {
+          <input
+            [type]="type"
+            (input)="
+              write($event);
+            "
+            [readOnly]="readOnly"
+            [placeholder]="placeholder"
+            [class.show-placeholder]="isFocused"
+            (focus)="togglePlaceholder(true)"
+            [(ngModel)]="form.controls[control].value"
+            (blur)="togglePlaceholder(false)"
+          />
+        }
+      }
+      @if (password) {
+        <mat-icon class="circle eye cursor community-carousel-icon" (click)="type = type === 'text' ? 'password' : 'text'"> remove_red_eye</mat-icon>
+      }
+    </div>
+  }
+  @else if(matType == 'select') {
+    <mat-form-field class="mat-options">
+      <mat-label>Property Type</mat-label>
+      <mat-select [formControlName]="control">
+          @for (item of array; track $index) {
+          <mat-option [value]="item?.value">{{item?.name}}</mat-option>
+          }
+      </mat-select>
   </mat-form-field>
+  }
   @if (error && errorName && (value != '' || !value)) {
-  <small>
-    {{
+    <small>
+      {{
         errorName == "required"
           ? label +
             "
@@ -13,13 +68,14 @@
           : errorName == "minlength"
             ? "Minimum " +
               form.controls[control]?.errors?.[errorName]?.requiredLength +
-              " characters required"
+              "
+      required"
             : returnFirstLetterCapital(
                 form.controls[control].status?.toLowerCase()
               ) +
               " " +
               label
-    }}
-  </small>
+      }}
+    </small>
   }
 </div>

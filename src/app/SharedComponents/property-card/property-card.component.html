@@ -13,29 +13,29 @@
 @else{
   <div [ngClass]="[type == 'carousel' ? 'carousel' : 'component']">
     <div class="property-card" [ngStyle]="{background:background}">
-      <div class="card-img cursor" (click)="type == 'component' && navigate(card)">
+      <div class="card-img cursor wow fadeInDown" (click)="type == 'component' && navigate(card)">
         <img [src]="card?.propertyImages?.[0]?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" [class.NoImageFound]="!card?.imgSrc" alt="Card Image" class="card-img" />
         @if(showBadge && card?.badge){
         <div class="badge">
-          <p>{{ card?.badge }}</p>
+          <p class="wow fadeInDown">{{ card?.badge }}</p>
         </div>
         }
       </div>
       <div class="card-content">
-        <h3>{{ card?.title }}</h3>
-        <p>{{ card?.description }}</p>
+        <h3 class="wow fadeInDown">{{ card?.title }}</h3>
+        <p class="wow fadeInDown">{{ card?.description }}</p>
         @if(type == 'carousel'){
           <div class="details">
             <div class="display">
-              <div class="home-detail bedroom display">
+              <div class="home-detail bedroom display wow fadeInDown">
                 <img src="../../assets/img/bed.png" alt="" class="home-img">
                 <div class="detail-font">{{card?.noOfBed}}</div>
               </div>
-              <div class="home-detail bath display">
+              <div class="home-detail bath display wow fadeInDown">
                 <img src="../../assets/img/bath.png" alt="" class="home-img">
                 <div class="detail-font">{{card?.noOfBath}}</div>
               </div>
-              <div class="home-detail  display">
+              <div class="home-detail  display wow fadeInDown">
                 <img src="../../assets/img/sq.ft.png" alt="" class="home-img">
                 <div class="detail-font sq.ft">{{card?.area}} Sqft</div>
               </div>
@@ -44,35 +44,35 @@
         }
         @else {
           <div class="card-details display">
-            <div class="detail-sec bed display">
+            <div class="detail-sec bed display wow fadeInDown">
               <img
                 src="../../assets/img/bed-white.png"
                 alt=""
                 class="details-img"
               />
-              <div class="detail-text">{{ card?.noOfBed }}</div>
+              <div class="detail-text wow fadeInDown">{{ card?.noOfBed }}</div>
             </div>
-            <div class="detail-sec display">
+            <div class="detail-sec display wow fadeInDown">
               <img
                 src="../../assets/img/bath-white.png"
                 alt=""
                 class="details-img"
               />
-              <div class="detail-text">{{ card?.noOfBath }}</div>
+              <div class="detail-text wow fadeInDown">{{ card?.noOfBath }}</div>
             </div>
-            <div class="detail-sec bath display">
+            <div class="detail-sec bath display wow fadeInDown">
               <img
                 src="../../assets/img/sq.ft-white.png"
                 alt=""
                 class="details-img"
               />
-              <div class="detail-text">{{ card?.area }} SqFt</div>
+              <div class="detail-text wow fadeInDown">{{ card?.area }} SqFt</div>
             </div>
           </div>
         }
         <div class="card-bottom mt-3 dCenter justify-content-between contact">
-          <div class="price">{{ card?.price | currency:'USD' }}</div>
-          <button class="btnPrimary">Contact Agent</button>
+          <div class="price wow fadeInDown">{{ card?.price | currency:'USD' }}</div>
+          <button class="btnPrimary wow fadeInDown">Contact Agent</button>
         </div>
       </div>
     </div>

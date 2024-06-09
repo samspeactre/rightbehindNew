@@ -1,8 +1,8 @@
 <div class="dCenter justify-content-end position-relative zI">
-  <button class="carosuelBtn dCenter me-2" (click)="owlCar.prev()">
+  <button class="carosuelBtn dCenter me-2 wow fadeInDown" (click)="owlCar.prev()">
     <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
   </button>
-  <button class="carosuelBtn dCenter" (click)="owlCar.next()">
+  <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
     <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
   </button>
 </div>
@@ -13,20 +13,20 @@
       <div class="card">
         <div class="image-content">
           <span class="overlay"></span>
-          <div class="card-image">
+          <div class="card-image wow fadeInDown">
             <img [src]="card.imgSrc" alt="Card Image" class="card-img" />
           </div>
         </div>
         <div class="card-content p-3">
           <div class="dCenter justify-content-between flex-wrap">
-            <h5 class="card-name text-dark">{{ card.name }}</h5>
+            <h5 class="card-name text-dark wow fadeInDown">{{ card.name }}</h5>
             <div class="card-tag text-light">
-              <span>{{ card.tag }}</span>
+              <span class="wow fadeInDown">{{ card.tag }}</span>
             </div>
           </div>
-          <p class="text-dark mt-3">{{ card.description }}</p>
+          <p class="text-dark mt-3 wow fadeInDown">{{ card.description }}</p>
           <div class="dCenter">
-            <button class="btnDanger" [routerLink]="card.buttonUrl">
+            <button class="btnDanger wow fadeInDown" [routerLink]="card.buttonUrl">
               Join Now
             </button>
           </div>

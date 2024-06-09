@@ -13,6 +13,7 @@ import { LoadingComponent } from './SharedComponents/loaders/loading/loading.com
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 import { LoaderService } from './services/loader.service';
 import { selectSideBar } from './Ngrx/data.reducer';
+declare var WOW: any;
 export const mapSrc =
   'https://maps.googleapis.com/maps/api/js?key=AIzaSyCm_NXIOGvZ0nlQ9EBeotrO1ESY3hji6No';
 @Component({
@@ -75,19 +76,19 @@ export class AppComponent {
       });
     if (window.innerWidth < 1024) {
       this.sideBar$
-      .pipe(
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        ),
-        takeUntil(this.destroy$)
-      )
-      .subscribe((open) => {
-        if (open) {
-          document?.body?.classList?.add('sideBarOpenBody');
-        } else {
-          document?.body?.classList?.remove('sideBarOpenBody');
-        }
-      });
+        .pipe(
+          distinctUntilChanged(
+            (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+          ),
+          takeUntil(this.destroy$)
+        )
+        .subscribe((open) => {
+          if (open) {
+            document?.body?.classList?.add('sideBarOpenBody');
+          } else {
+            document?.body?.classList?.remove('sideBarOpenBody');
+          }
+        });
     }
     this.observe();
   }
@@ -107,5 +108,8 @@ export class AppComponent {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  ngAfterViewInit(): void {
+    new WOW().init();
   }
 }

@@ -1,8 +1,8 @@
 <div class="dCenter justify-content-end position-relative zI">
-  <button class="carosuelBtn dCenter me-2" (click)="owlCar.prev()">
+  <button class="carosuelBtn dCenter me-2 wow fadeInDown" (click)="owlCar.prev()">
     <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
   </button>
-  <button class="carosuelBtn dCenter" (click)="owlCar.next()">
+  <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
     <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
   </button>
 </div>
@@ -18,7 +18,7 @@
   </ng-container>
   }
 </owl-carousel-o>
-<div class="rental-btn py-3">
+<div class="rental-btn py-3 wow fadeInDown">
   <button [ngClass]="[ cards?.[0]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
     [routerLink]="cards?.[0]?.propertyType == 1 ? '/buy' : '/rent'">View More</button>
 </div>

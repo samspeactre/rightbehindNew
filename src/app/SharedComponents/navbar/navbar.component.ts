@@ -1,25 +1,20 @@
-import { faBars, faHeadphones, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { faAt } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginPopupComponent } from '../login-popup/login-popup.component';
-import { SellPropertyPopupComponent } from '../../View/sell-property-popup/sell-property-popup.component';
-import { MatIconModule } from '@angular/material/icon';
-import {faUser } from '@fortawesome/free-regular-svg-icons'
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
-import { selectSideBar, selectUser } from '../../Ngrx/data.reducer';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
-import { RentPopupComponent } from '../rent-popup/rent-popup.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faAt, faBars, faHeadphones, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { Store } from '@ngrx/store';
+import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
+import { selectUser } from '../../Ngrx/data.reducer';
+import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 
 @Component({
   standalone: true,
@@ -77,15 +72,15 @@ export class NavbarComponent {
   openPopup(): void {
     let dialogRef = this.dialog.open(LoginPopupComponent, {
       height: '80%',
-      width: '27%',
+      width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }
 
   openSellPopup(type:string): void {
     let dialogRef = this.dialog.open(RentPopupComponent, {
       height: '95%',
-      width: '33%',
-      data:type
+      width: window.innerWidth > 1024 ? '33%' : '100%',
+      data:type,
     });
   }
   logout(){

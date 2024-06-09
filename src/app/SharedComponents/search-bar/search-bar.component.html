@@ -8,7 +8,7 @@
       class="input-text"
       placeholder="Enter an address, neighborhood, city, or ZIP code"
     />
-    <button class="btnPrimary login-btn dCenter" (click)="submit()">
+    <button class="btnPrimary login-btn dCenter" (click)="submit()" [disabled]="searching">
       <fa-icon [icon]="faSearch" size="2x" [class.me-2]="screenWidth > 1024"></fa-icon>
       @if(screenWidth > 1024){
         Search

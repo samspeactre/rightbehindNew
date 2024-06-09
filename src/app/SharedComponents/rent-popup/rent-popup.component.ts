@@ -28,7 +28,7 @@ export class RentPopupComponent {
   openSellPopup(): void {
     this.dialog.open(SellPropertyPopupComponent, {
       height: '95%',
-      width: '33%',
+      width: window.innerWidth > 1024 ? '33%' : '100%',
     });
   }
 

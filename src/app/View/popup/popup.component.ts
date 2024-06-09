@@ -44,7 +44,6 @@ export class PopupComponent implements OnInit {
     private http: HttpService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data?.card);
     this.propertyData = data?.card
   }
   ngOnDestroy() {
@@ -130,6 +129,6 @@ export class PopupComponent implements OnInit {
         ['/preview'],
         { queryParams: { id: this.propertyData?.id, type: this.propertyData?.propertyType } }
       );
-    }, 500);
+    });
   }
 }

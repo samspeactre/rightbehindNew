@@ -63,7 +63,7 @@ export class LoginPopupComponent {
     // Open the registration dialog
     this.dialog.open(RegisterPopupComponent, {
       height: '92%',
-      width: '27%',
+      width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }
 }

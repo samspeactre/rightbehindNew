@@ -38,9 +38,6 @@ export class SellPreviewComponent implements OnInit {
       0: {
         items: 1
       },
-      400: {
-        items: 2
-      },
       740: {
         items: 4
       }

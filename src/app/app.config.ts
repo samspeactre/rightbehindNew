@@ -23,6 +23,7 @@ import {
   userReducer,
 } from './Ngrx/data.reducer';
 import { routes } from './app.routes';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -31,6 +32,7 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
   withInMemoryScrolling(scrollConfig);
 export const appConfig: ApplicationConfig = {
   providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
     provideRouter(
       routes,
       inMemoryScrollingFeature,

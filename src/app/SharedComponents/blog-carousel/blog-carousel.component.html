@@ -1,57 +1,46 @@
-<div class="slide-container swiper">
-  <div class="swiper-container slide-content">
 
-    <!-- Add pagination buttons -->
-    <div class="carousel-btn">
-      <button mat-icon-button (click)="owlCar.prev()" class="swiper-button-prev">
-        <mat-icon class="community-carousel-icon">arrow_back_ios</mat-icon>
-      </button>
-
-      <button mat-icon-button (click)="owlCar.next()" class="swiper-button-next">
-        <mat-icon class="community-carousel-icon"> arrow_forward_ios</mat-icon>
-      </button>
-    </div>
-
-    <div class="container-site">
-      <owl-carousel-o [options]="customOptions"  #owlCar>
-        @for (card of cards; track card) {
-        <ng-container>
-          <ng-template carouselSlide>
-            <div class="card-wrapper swiper-slide">
-              <div class="card">
-                <div class="image-content display">
-                  <span class="overlay"></span>
-                  <div class="card-image">
-                    <img [src]="card.imgSrc" alt="Card Image" class="card-img">
-                    <div class="blog-img-content display content-between">
-                      <div class="date-div display">
-                        <div class="circle"></div>
-                        <div class="date">{{card.date}}</div>
-                      </div>
-                      <div class="badge">{{card.badge}}</div>
-                    </div>
-                  </div>
-                  <div class="card-content">
-                    <div class=" content-between">
-                      <h1 class="card-name">{{ card.name }}</h1>
-                    </div>
-                    <p>{{ card.description }}</p>
-                    <div class="blog-btn">
-                      <a [routerLink]="card.buttonUrl" class="display">
-                        <mat-icon class="blog-btn-icon">arrow_forward</mat-icon>
-                        <span>Read more</span>
-                      </a>
-                    </div>
-                  </div>
+<div class="dCenter justify-content-end">
+  <button class="carosuelBtn dCenter me-2" (click)="owlCar.prev()">
+    <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
+  </button>
+  <button class="carosuelBtn dCenter" (click)="owlCar.next()">
+    <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
+  </button>
+</div>
+<owl-carousel-o [options]="customOptions"  #owlCar>
+  @for (card of cards; track card) {
+  <ng-container>
+    <ng-template carouselSlide>
+      <div class="card-wrapper swiper-slide">
+        <div class="card">
+          <div class="image-content display">
+            <span class="overlay"></span>
+            <div class="card-image">
+              <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+              <div class="blog-img-content display content-between">
+                <div class="date-div display">
+                  <div class="circle"></div>
+                  <div class="date">{{card.date}}</div>
                 </div>
+                <div class="badge">{{card.badge}}</div>
               </div>
             </div>
-          </ng-template>
-        </ng-container>
-        }
-      </owl-carousel-o>
-    </div>
-
-
-  </div>
-</div>
+            <div class="card-content">
+              <div class=" content-between">
+                <h1 class="card-name">{{ card.name }}</h1>
+              </div>
+              <p>{{ card.description }}</p>
+              <div class="blog-btn">
+                <a [routerLink]="card.buttonUrl" class="display">
+                  <mat-icon class="blog-btn-icon">arrow_forward</mat-icon>
+                  <span>Read more</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+  }
+</owl-carousel-o>

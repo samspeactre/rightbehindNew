@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   standalone:true,
-  imports: [MatIconModule, RouterModule, MatButtonModule, CarouselModule],
+  imports: [MatIconModule, RouterModule, MatButtonModule, CarouselModule, FontAwesomeModule],
   selector: 'app-blog-carousel',
   templateUrl: './blog-carousel.component.html',
   styleUrl: './blog-carousel.component.css'
@@ -25,6 +27,8 @@ export class BlogCarouselComponent implements OnInit {
  
     // Add more card data as needed
   ];
+  faChevronCircleLeft=faChevronLeft
+  faChevronCircleRight=faChevronRight
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

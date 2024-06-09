@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="min75 dCenter flex-column w-100">
-          <h1 class="text-center">Add New Property</h1>
+          <h1 class="text-center bigFont text-dark">Add New Property</h1>
           <div class="dCenter w-100">
             <a class="text-dark" routerLink="/">Home</a>
             <div class="slash">/</div>
@@ -20,7 +20,7 @@
       <div class="col-lg-3">
         <div class="left-portion">
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'property-information' }"
             (click)="scrollToSection('property-information')"
           >
@@ -28,7 +28,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'amenities' }"
             (click)="scrollToSection('amenities')"
           >
@@ -36,7 +36,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'utilities' }"
             (click)="scrollToSection('utilities')"
           >
@@ -44,7 +44,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'rent-special' }"
             (click)="scrollToSection('rent-special')"
           >
@@ -52,7 +52,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'Pet-policy' }"
             (click)="scrollToSection('Pet-policy')"
           >
@@ -60,7 +60,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'laundry' }"
             (click)="scrollToSection('laundry')"
           >
@@ -68,7 +68,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'gallery' }"
             (click)="scrollToSection('gallery')"
           >
@@ -76,7 +76,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'videos' }"
             (click)="scrollToSection('videos')"
           >
@@ -84,7 +84,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'contact-info' }"
             (click)="scrollToSection('contact-info')"
           >
@@ -92,7 +92,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'description' }"
             (click)="scrollToSection('description')"
           >
@@ -100,7 +100,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'floor-plans' }"
             (click)="scrollToSection('floor-plans')"
           >
@@ -108,7 +108,7 @@
           </button>
           <br />
           <button
-            class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'location' }"
             (click)="scrollToSection('location')"
           >
@@ -127,40 +127,32 @@
             </p>
 
             <form action="" class="prop-form">
-              <mat-form-field class="example-full-width">
-                <mat-label>Property Type</mat-label>
-                <input matInput />
-              </mat-form-field>
-
-              <div class="display content-between">
-                <mat-form-field class="mat-options-3">
+              <div class="row">
+                <mat-form-field class="col-lg-12">
+                  <mat-label>Property Type</mat-label>
+                  <input matInput />
+                </mat-form-field>
+                <mat-form-field class="col-lg-4">
                   <mat-label>Lease Lenght In Months</mat-label>
                   <input matInput />
                 </mat-form-field>
-
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <mat-label>Monthly Rent</mat-label>
                   <input matInput />
                 </mat-form-field>
-
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <mat-label>Deposit</mat-label>
                   <input matInput />
                 </mat-form-field>
-              </div>
-
-              <div class="display content-between">
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <mat-label>No. of Bedrooms</mat-label>
                   <input matInput />
                 </mat-form-field>
-
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <mat-label>No. of Bathrooms</mat-label>
                   <input matInput />
                 </mat-form-field>
-
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <mat-label>Sqft</mat-label>
                   <input matInput />
                 </mat-form-field>
@@ -169,8 +161,8 @@
           </div>
           <div class="prop" id="amenities">
             <h2>Amenities</h2>
-            <div class="category">
-              <mat-form-field class="category-select">
+            <div class="category row">
+              <mat-form-field class="col-lg-12">
                 <mat-label class="category-head">Category:</mat-label>
                 <mat-select
                   [(value)]="selectedCategory"
@@ -183,11 +175,13 @@
                   }
                 </mat-select>
               </mat-form-field>
+              <div class="col-lg-12">
+                <p class="amenities-portion-para">
+                  Select amenities included with your property to display them
+                  on your listing.
+                </p>
+              </div>
             </div>
-            <p class="amenities-portion-para">
-              Select amenities included with your property to display them on
-              your listing.
-            </p>
 
             <form action="" class="checkbox-portion">
               <div class="amenities-grid">
@@ -211,9 +205,9 @@
             </p>
 
             <form action="">
-              <div class="checkbox-container display">
+              <div class="checkbox-container row">
                 @for (utility of utilities; track utility) {
-                <div class="checkbox-wrapper">
+                <div class="col-lg-4">
                   <mat-checkbox>{{ utility }}</mat-checkbox>
                 </div>
                 }
@@ -227,13 +221,12 @@
             </p>
 
             <form action="" class="rent-special-form">
-              <div class="display content-between">
-                <mat-form-field class="mat-options-3">
+              <div class="row">
+                <mat-form-field class="col-lg-4">
                   <mat-label>Rent Special Title</mat-label>
                   <input matInput />
                 </mat-form-field>
-
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <input
                     matInput
                     [matDatepicker]="startPicker"
@@ -245,8 +238,7 @@
                   ></mat-datepicker-toggle>
                   <mat-datepicker #startPicker></mat-datepicker>
                 </mat-form-field>
-
-                <mat-form-field class="mat-options-3">
+                <mat-form-field class="col-lg-4">
                   <input
                     matInput
                     [matDatepicker]="endPicker"
@@ -259,53 +251,51 @@
                   ></mat-datepicker-toggle>
                   <mat-datepicker #endPicker></mat-datepicker>
                 </mat-form-field>
-              </div>
-
-              <div class="special-tags">Special Offers:</div>
-
-              <div class="display content-between special-offers-check">
-                <div class="rent-special">
+                <div class="col-lg-12 special-tags">Special Offers:</div>
+                <div class="col-lg-4">
                   <mat-checkbox>1 Month Free</mat-checkbox>
                 </div>
-                <div class="rent-special">
+                <div class="col-lg-4">
                   <mat-checkbox>50% Off</mat-checkbox>
                 </div>
-                <div class="rent-special">
+                <div class="col-lg-4">
                   <mat-checkbox>Free Movein</mat-checkbox>
                 </div>
               </div>
             </form>
           </div>
           <div class="prop" id="Pet-policy">
-            <h2>Pet Policy</h2>
-
-            <form class="pets-column display">
-              <div class="pets-column-width">
+            <form class="row">
+              <div class="col-lg-12">
+                <h2>Pet Policy</h2>
+              </div>
+              <div class="col-lg-4">
                 <mat-checkbox>Cats</mat-checkbox>
               </div>
-              <div class="pets-column-width">
+              <div class="col-lg-4">
                 <mat-checkbox>Dogs</mat-checkbox>
               </div>
             </form>
           </div>
           <div class="prop" id="laundry">
-            <h2>Laundry</h2>
-
-            <form class="laundry-column display content-between">
-              <div class="laundry-column-width">
+            <form class="row">
+              <div class="col-lg-12">
+                <h2>Laundry</h2>
+              </div>
+              <div class="col-lg-4">
                 <mat-checkbox>Washer/Dryer-In Unit</mat-checkbox>
               </div>
-              <div class="laundry-column-width">
+              <div class="col-lg-4">
                 <mat-checkbox>Washer/Dryer Hookup</mat-checkbox>
               </div>
-              <div class="laundry-column-width">
+              <div class="col-lg-4">
                 <mat-checkbox>Laundry Faclities</mat-checkbox>
               </div>
             </form>
           </div>
           <div class="prop" id="gallery">
             <h2>Property Gallery</h2>
-            <p class="right-portion-para">
+            <p class="text-start">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
               aliquam, purus sit amet luctus venenatis, lectus magna fringilla
               urna, porttitor.
@@ -328,26 +318,30 @@
               </div>
               }
 
-              <div class="display">
-                <a class="upload-imgs" (click)="fileInput.click()">
-                  <span>Browns Photo</span>
-                </a>
-                <div class="upload-btn">
-                  <button
-                    mat-raised-button
-                    color="primary"
-                    (click)="fileInput.click()"
-                  >
-                    <mat-icon>cloud_upload</mat-icon>
-                    Upload Photos
-                  </button>
-                  <input
-                    type="file"
-                    #fileInput
-                    multiple
-                    (change)="onFileSelected($event)"
-                    style="display: none"
-                  />
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <a class="upload-imgs" (click)="fileInput.click()">
+                    <span>Browns Photo</span>
+                  </a>
+                </div>
+                <div class="col-lg-4">
+                  <div class="upload-btn">
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      (click)="fileInput.click()"
+                    >
+                      <mat-icon>cloud_upload</mat-icon>
+                      Upload Photos
+                    </button>
+                    <input
+                      type="file"
+                      #fileInput
+                      multiple
+                      (change)="onFileSelected($event)"
+                      style="display: none"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -372,10 +366,12 @@
             </p>
 
             <form action="" class="prop-form">
-              <mat-form-field class="mat-options-link">
-                <mat-label>Enter Video Link</mat-label>
-                <input matInput />
-              </mat-form-field>
+              <div class="row">
+                <mat-form-field class="col-lg-12">
+                  <mat-label>Enter Video Link</mat-label>
+                  <input matInput />
+                </mat-form-field>
+              </div>
             </form>
           </div>
           <div class="prop" id="contact-info">
@@ -385,45 +381,43 @@
               listing.
             </p>
             <form action="" class="contact-info-form">
-              <div class="display content-between">
-                <mat-form-field class="mat-options">
+              <div class="row">
+                <mat-form-field class="col-lg-6">
                   <mat-label>First Name</mat-label>
                   <input matInput />
                 </mat-form-field>
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-6">
                   <mat-label>last Name</mat-label>
                   <input matInput />
                 </mat-form-field>
               </div>
               <div class="contact-role">Role</div>
-              <div class="display content-between contact-role-por">
-                <div class="contact-role-check">
+              <div class="row">
+                <div class="col-lg-4">
                   <mat-checkbox>Owner</mat-checkbox>
                 </div>
-                <div class="contact-role-check">
+                <div class="col-lg-4">
                   <mat-checkbox>Broker</mat-checkbox>
                 </div>
-                <div class="contact-role-check">
+                <div class="col-lg-4">
                   <mat-checkbox>Property Manager</mat-checkbox>
                 </div>
-              </div>
-              <div class="display content-between">
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-4 mt-3">
                   <mat-label>Email</mat-label>
                   <input matInput />
                 </mat-form-field>
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-4 mt-3">
                   <mat-label>Phone</mat-label>
                   <input matInput />
                 </mat-form-field>
+                <mat-form-field class="col-lg-4 mt-3">
+                  <mat-label>Contact Prefrence</mat-label>
+                  <mat-select>
+                    <mat-option value="option1">Phone</mat-option>
+                    <mat-option value="option2">Email</mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
-              <mat-form-field class="mat-options">
-                <mat-label>Contact Prefrence</mat-label>
-                <mat-select>
-                  <mat-option value="option1">Phone</mat-option>
-                  <mat-option value="option2">Email</mat-option>
-                </mat-select>
-              </mat-form-field>
             </form>
           </div>
           <div class="prop" id="description">
@@ -434,16 +428,18 @@
               urna, porttitor.
             </p>
             <form action="" class="prop-form">
-              <mat-form-field class="text-area">
-                <mat-label>Autosize textarea</mat-label>
-                <textarea
-                  matInput
-                  cdkTextareaAutosize
-                  #autosize="cdkTextareaAutosize"
-                  cdkAutosizeMinRows="11"
-                  cdkAutosizeMaxRows="15"
-                ></textarea>
-              </mat-form-field>
+              <div class="row">
+                <mat-form-field class="col-lg-12">
+                  <mat-label>Autosize textarea</mat-label>
+                  <textarea
+                    matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="11"
+                    cdkAutosizeMaxRows="15"
+                  ></textarea>
+                </mat-form-field>
+              </div>
             </form>
           </div>
           <div class="prop" id="floor-plans">
@@ -453,35 +449,29 @@
               aliquam, purus sit amet luctus venenatis, lectus magna fringilla
               urna, porttitor.
             </p>
-            <form
-              action=""
-              class="prop-form content-between"
-              [formGroup]="formGroup"
-            >
+            <form action="" class="prop-form" [formGroup]="formGroup">
               <ng-container formArrayName="floorPlansArray">
                 @for (item of getFloorPlansFormArray.controls; track item; let
                 index = $index) {
                 <ng-container [formGroupName]="index">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Plan Name</mat-label>
-                    <input matInput formControlName="floorPlanName" />
-                  </mat-form-field>
-                  <div class="content-between display">
-                    <mat-form-field class="mat-options-3">
+                  <div class="row">
+                    <mat-form-field class="col-lg-12">
+                      <mat-label>Plan Name</mat-label>
+                      <input matInput formControlName="floorPlanName" />
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-4">
                       <mat-label>No. of Bedrooms</mat-label>
                       <input matInput formControlName="floorBed" />
                     </mat-form-field>
-                    <mat-form-field class="mat-options-3">
+                    <mat-form-field class="col-lg-4">
                       <mat-label>No. of Bathrooms</mat-label>
                       <input matInput formControlName="floorbath" />
                     </mat-form-field>
-                    <mat-form-field class="mat-options-3">
+                    <mat-form-field class="col-lg-4">
                       <mat-label>Sqft</mat-label>
                       <input matInput formControlName="floorSqft" />
                     </mat-form-field>
-                  </div>
-                  <div class="content-between display">
-                    <mat-form-field class="mat-options">
+                    <mat-form-field class="col-lg-6">
                       <mat-label>$ Currency Type</mat-label>
                       <mat-select formControlName="floorCurrencyType">
                         <mat-option>None</mat-option>
@@ -490,76 +480,80 @@
                         <mat-option value="option3">Option 3</mat-option>
                       </mat-select>
                     </mat-form-field>
-                    <mat-form-field class="mat-options">
+                    <mat-form-field class="col-lg-6">
                       <mat-label>Sale Price</mat-label>
                       <input matInput formControlName="floorSalesPrice" />
                     </mat-form-field>
-                  </div>
-                  <mat-form-field class="text-area">
-                    <mat-label>Enter Description of Property</mat-label>
-                    <textarea
-                      matInput
-                      cdkTextareaAutosize
-                      #autosize="cdkTextareaAutosize"
-                      cdkAutosizeMinRows="11"
-                      cdkAutosizeMaxRows="15"
-                      formControlName="floorDesc"
-                    ></textarea>
-                  </mat-form-field>
-                  <div class="upload-2-container">
-                    <div>
-                      <div class="display">
-                        @if (getimg(index)) {
-                        <div class="floor-img display">
-                          <img
-                            id="image-preview"
-                            [src]="getimg(index)"
-                            alt="Image Preview"
-                          />
-                          <button
-                            mat-fab
-                            (click)="removeImage(index)"
-                            class="delete-btn"
-                          >
-                            <mat-icon>delete</mat-icon>
-                          </button>
+                    <mat-form-field class="col-lg-12">
+                      <mat-label>Enter Description of Property</mat-label>
+                      <textarea
+                        matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="11"
+                        cdkAutosizeMaxRows="15"
+                        formControlName="floorDesc"
+                      ></textarea>
+                    </mat-form-field>
+                    <div class="upload-2-container">
+                      <div>
+                        <div class="display">
+                          @if (getimg(index)) {
+                          <div class="floor-img display">
+                            <img
+                              id="image-preview"
+                              [src]="getimg(index)"
+                              alt="Image Preview"
+                            />
+                            <button
+                              mat-fab
+                              (click)="removeImage(index)"
+                              class="delete-btn"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                          }
                         </div>
-                        }
                       </div>
-                    </div>
-                    <div class="display">
-                      <div class="display upload-2 display content-between">
-                        <a
-                          class="upload-imgs"
-                          (click)="triggerFileInput(index)"
-                        >
-                          <span>Browse Photos</span>
-                        </a>
-                        <div class="upload-btn">
-                          <button
-                            mat-raised-button
+                      <div class="row align-items-center">
+                        <div class="col-lg-7">
+                          <a
+                            class="upload-imgs"
                             (click)="triggerFileInput(index)"
                           >
-                            <mat-icon>cloud_upload</mat-icon>
-                            Upload Photo
-                          </button>
-                          <input
-                            type="file"
-                            id="fileInput{{ index }}"
-                            (change)="onFileSelected($event, index)"
-                            style="display: none"
-                            accept="image/*"
-                          />
+                            <span>Browse Photos</span>
+                          </a>
                         </div>
-                        <div class="add-sec">
-                          <button
-                            mat-stroked-button
-                            class="add-more-btn"
-                            (click)="addNew()"
-                          >
-                            <mat-icon>add</mat-icon>
-                            AddMore
-                          </button>
+                        <div class="col-lg-5">
+                          <div class="dCenter justify-content-between">
+                            <div class="upload-btn">
+                              <button
+                                mat-raised-button class="mt-2"
+                                (click)="triggerFileInput(index)"
+                              >
+                                <mat-icon>cloud_upload</mat-icon>
+                                Upload Photo
+                              </button>
+                              <input
+                                type="file"
+                                id="fileInput{{ index }}"
+                                (change)="onFileSelected($event, index)"
+                                style="display: none"
+                                accept="image/*"
+                              />
+                            </div>
+                            <div class="add-sec">
+                              <button
+                                mat-stroked-button
+                                class="add-more-btn mt-2"
+                                (click)="addNew()"
+                              >
+                                <mat-icon>add</mat-icon>
+                                AddMore
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -571,20 +565,19 @@
           </div>
           <div class="prop" id="location">
             <h2>Property Location</h2>
-            <p class="right-portion-para">
+            <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
               aliquam, purus sit amet luctus venenatis, lectus magna fringilla
               urna, porttitor.
             </p>
 
             <form action="" class="prop-form">
-              <mat-form-field class="example-full-width">
+              <div class="row">
+              <mat-form-field class="col-lg-12">
                 <mat-label>Address</mat-label>
                 <input matInput />
               </mat-form-field>
-
-              <div class="display content-between">
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-6">
                   <mat-label>Country/State</mat-label>
                   <mat-select [(value)]="selected">
                     <mat-option>None</mat-option>
@@ -593,32 +586,28 @@
                     <mat-option value="option3">Option 3</mat-option>
                   </mat-select>
                 </mat-form-field>
-
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-6">
                   <mat-label>City</mat-label>
                   <input matInput />
                 </mat-form-field>
-              </div>
-
-              <div class="display content-between">
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-6">
                   <mat-label>Landmark</mat-label>
                   <input matInput />
                 </mat-form-field>
-
-                <mat-form-field class="mat-options">
+                <mat-form-field class="col-lg-6">
                   <mat-label>Zip Code</mat-label>
                   <input matInput />
                 </mat-form-field>
-              </div>
-
-              <div class="map-img">
-                <img src="../../assets/img/add-property-map.webp" alt="" />
-              </div>
+                <div class="col-lg-12">
+                  <div class="map-img">
+                    <img src="../../assets/img/add-property-map.webp" alt="" />
+                  </div>
+                </div>
+            </div>
             </form>
           </div>
           <div class="prop">
-            <div class="terms-condition">
+            <div class="dCenter align-items-start">
               <mat-checkbox> </mat-checkbox>
               <span class="terms-text"
                 >By checking this box I agree as follows: I agree that I will
@@ -634,7 +623,10 @@
               <button class="btnDanger wow fadeInDown">Reset</button>
             </div>
             <div class="ms-2">
-              <button class="btnPrimary wow fadeInDown" routerLink="/rent-preview">
+              <button
+                class="btnPrimary wow fadeInDown"
+                routerLink="/rent-preview"
+              >
                 Add Property
               </button>
             </div>

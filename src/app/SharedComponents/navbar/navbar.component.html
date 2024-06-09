@@ -42,11 +42,11 @@
               <a routerLink="/buy" class="wow fadeInDown">buy</a>
             </li>
             <li>
-              @if (user) {
-              <a routerLink="/selling-detail" class="wow fadeInDown">Sell</a>
+              <!-- @if (user) {
+                <a routerLink="/selling-detail" class="wow fadeInDown">Sell</a>
               } @else {
+              } -->
               <a (click)="openSellPopup('sell')" class="wow fadeInDown">Sell</a>
-              }
             </li>
             <li>
               <a routerLink="/rent" class="wow fadeInDown">Rent</a>
@@ -124,11 +124,11 @@
         <a routerLink="/buy" (click)="show(false)">buy</a>
       </li>
       <li>
-        @if (user) {
+        <!-- @if (user) {
         <a routerLink="/selling-detail" (click)="show(false)">Sell</a>
         } @else {
+        } -->
         <a (click)="show(false); openSellPopup('sell')">Sell</a>
-        }
       </li>
       <li>
         <a routerLink="/rent" (click)="show(false)">Rent</a>

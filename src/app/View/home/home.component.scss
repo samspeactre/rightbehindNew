@@ -51,7 +51,7 @@
         right: 0;
         top: -50px;
         width: 50%;
-        background: url('../../../assets/img/house-img-1.png');
+        background: url("../../../assets/img/house-img-1.png");
         background-size: contain;
         background-repeat: no-repeat;
         height: 100%;
@@ -65,8 +65,9 @@
 }
 
 .counter-num {
-    font-family: 'bold';
+    font-family: "bold";
     color: var(--white);
+    font-size: 20px;
 }
 
 .counter-name {
@@ -86,7 +87,7 @@
         left: 0;
         bottom: 0;
         width: 50%;
-        background: url('../../../assets/img/dream-home-img.png');
+        background: url("../../../assets/img/dream-home-img.png");
         background-size: contain;
         background-repeat: no-repeat;
         height: 100%;
@@ -103,7 +104,7 @@
     &::after {
         left: unset;
         right: 0;
-        background: url('../../../assets/img/market-img.png');
+        background: url("../../../assets/img/market-img.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: bottom right;
@@ -178,7 +179,6 @@
     color: var(--white);
     padding-top: 1vw;
     padding-left: 1vw;
-
 }
 
 .sec-right-6 p {
@@ -199,7 +199,7 @@
     border: 0.1vw solid var(--white);
     color: var(--white);
     font-size: 1vw;
-    font-family: 'reg';
+    font-family: "reg";
     padding: 1.8vw 3.05vw;
     border-radius: 2.5vw;
     background-color: var(--royal-blue);
@@ -275,25 +275,33 @@
     margin-top: -4.2vw;
 }
 
-@media only screen and (max-width:1024px) {
-    .bigFont {
-        font-size: 1.5rem;
+@media only screen and (max-width: 1024px) {
+    h3 {
+        font-size: 18px;
     }
 
     .counter-name {
         font-size: 8px;
     }
 
+    .bigFont {
+        font-size: 1.5rem;
+    }
+
     .headingContainer .headingLine::after {
         content: unset;
+    }
+
+    .bigFont {
+        font-size: 1.5rem;
     }
 
     .register-bg {
         .position-relative {
             z-index: 1;
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(4px);
+            background: rgb(0 0 0 / 45%);
+            box-shadow: 0 8px 32px 0px rgb(0 0 0 / 45%);
+            backdrop-filter: blur(3px);
             -webkit-backdrop-filter: blur(4px);
             padding: 1rem;
         }
@@ -310,4 +318,34 @@
     .headingContainer {
         width: fit-content;
     }
+}
+
+@media only screen and (max-width: 821px) {
+    .dream-home::after {
+        content: "";
+        width: 100%;
+        top: 10px;
+        height: 360px;
+        background-position: center;
+    }
+
+    .dream-home.right {
+        padding-top: 2rem;
+    }
+
+    .dream-home,
+    .dream-home p {
+        text-align: center !important;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .dream-home p {
+        line-height: normal;
+    }
+
+    .dream-home::after {
+        height: 320px;
+    }
+
 }

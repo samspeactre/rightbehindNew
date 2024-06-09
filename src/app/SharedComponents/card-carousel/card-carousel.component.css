@@ -1,7 +1,9 @@
 h1 {
     font-family: 'bold';
 }
-
+.zI{
+    z-index: 10;
+}
 .carosuelBtn {
     background: transparent;
     border: 1px solid #3b3b3b;

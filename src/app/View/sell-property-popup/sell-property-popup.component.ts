@@ -28,7 +28,7 @@ openRentPopup(): void {
     // Open the registration dialog
     this.dialog.open(RentPopupComponent, {
       height: '95%',
-      width: '33%',
+      width: window.innerWidth > 1024 ? '33%' : '100%',
     });
   }
 

@@ -130,6 +130,6 @@ export class PopupComponent implements OnInit {
         ['/preview'],
         { queryParams: { id: this.propertyData?.id, type: this.propertyData?.propertyType } }
       );
-    }, 500);
+    });
   }
 }

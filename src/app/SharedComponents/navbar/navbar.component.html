@@ -104,7 +104,7 @@
 <div class="sidebar" [ngClass]="{ open: sidebar }">
   <div class="sidebar-padding d-flex justify-content-between align-items-center">
     <div class="side-nav-logo">
-      <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" /></a>
+      <a routerLink="/" (click)="show(false)"><img src="../../assets/img/nav-logo.png" alt="" /></a>
     </div>
     <div class="dCenter">
       <fa-icon [icon]="faTimes" class="" (click)="show(false)"></fa-icon>
@@ -114,37 +114,37 @@
   <div class="cstm-nav-item ">
     <ul class="mb-0">
       <li>
-        <a routerLink="/">Home</a>
+        <a routerLink="/" (click)="show(false)">Home</a>
       </li>
       <li>
-        <a routerLink="">About Us</a>
+        <a routerLink="" (click)="show(false)">About Us</a>
       </li>
       <li>
-        <a routerLink="/buy">buy</a>
+        <a routerLink="/buy" (click)="show(false)">buy</a>
       </li>
       <li>
         @if (user) {
-        <a routerLink="/selling-detail">Sell</a>
+        <a routerLink="/selling-detail" (click)="show(false)">Sell</a>
         } @else {
-        <a (click)="openSellPopup('sell')">Sell</a>
+        <a (click)="show(false); openSellPopup('sell')">Sell</a>
         }
       </li>
       <li>
-        <a routerLink="/rent">Rent</a>
+        <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
       <li>
-        <a routerLink="">property trend</a>
+        <a routerLink=""  (click)="show(false)">property trend</a>
       </li>
       <li>
-        <a routerLink="/contact-us">Contact Us</a>
+        <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>
       </li>
     </ul>
     <div class="dCenter mt-2 flex-column">
-      <button class="btnSecondary" (click)="openPopup()">
+      <button class="btnSecondary" (click)="show(false); openPopup()">
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
 
-      <button class="btnSecondary mt-4" (click)="openSellPopup('rent')">
+      <button class="btnSecondary mt-4" (click)="show(false);openSellPopup('rent')">
         Submit A Deal
       </button>
     </div>

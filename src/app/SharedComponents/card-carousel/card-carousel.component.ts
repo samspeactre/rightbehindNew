@@ -16,13 +16,13 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class CardCarouselComponent implements OnInit{
   cards = [
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
-    { imgSrc: '../../assets/img/carousel-map-img.png', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
+    { imgSrc: '../../assets/img/carousel-map-img.webp', buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
     // Add more card data as needed
   ];
   faChevronCircleLeft=faChevronLeft

@@ -12,10 +12,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 export class NgxCarouselComponent {
   slides = [
-    { img: "../../assets/img/carousel-img-1.png" },
-    { img: "../../assets/img/carousel-img-2.png" },
-    { img: "../../assets/img/carousel-img-1.png" },
-    { img: "../../assets/img/carousel-img-2.png" },
+    { img: "../../assets/img/carousel-img-1.webp" },
+    { img: "../../assets/img/carousel-img-2.webp" },
+    { img: "../../assets/img/carousel-img-1.webp" },
+    { img: "../../assets/img/carousel-img-2.webp" },
   ];
   slideConfig = { "slidesToShow": 4, "slidesToScroll": 4 };
 

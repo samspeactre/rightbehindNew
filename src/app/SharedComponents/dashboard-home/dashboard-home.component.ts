@@ -31,9 +31,9 @@ export class DashboardHomeComponent {
   }
 
   cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.png', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
+    { imgSrc: '../../assets/img/carousel-img-3.webp', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
   ]
 
   Analaytics = [

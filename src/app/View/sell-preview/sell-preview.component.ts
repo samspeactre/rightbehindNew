@@ -59,7 +59,7 @@ export class SellPreviewComponent implements OnInit {
   }
   cards = [
     {
-      imgSrc: '../../assets/img/carousel-img-1.png',
+      imgSrc: '../../assets/img/carousel-img-1.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -70,7 +70,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-2.png',
+      imgSrc: '../../assets/img/carousel-img-2.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -81,7 +81,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-3.png',
+      imgSrc: '../../assets/img/carousel-img-3.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -92,7 +92,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-1.png',
+      imgSrc: '../../assets/img/carousel-img-1.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -103,7 +103,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-2.png',
+      imgSrc: '../../assets/img/carousel-img-2.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -114,7 +114,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-3.png',
+      imgSrc: '../../assets/img/carousel-img-3.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -125,7 +125,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-1.png',
+      imgSrc: '../../assets/img/carousel-img-1.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -136,7 +136,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-2.png',
+      imgSrc: '../../assets/img/carousel-img-2.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -147,7 +147,7 @@ export class SellPreviewComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/carousel-img-3.png',
+      imgSrc: '../../assets/img/carousel-img-3.webp',
       name: 'New Apartment Nice View',
       tag: 'miami',
       address: 'Quincy St, Brooklyn, NY, USA  ',
@@ -251,7 +251,7 @@ export class SellPreviewComponent implements OnInit {
       city: '02',
       landmark: '1200',
       zipcode: 'USD',
-      imgSrc: '../../assets/img/map.png',
+      imgSrc: '../../assets/img/map.webp',
     },
   ];
 

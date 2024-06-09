@@ -25,15 +25,15 @@ interface Rule {
 })
 export class PreviewComponent implements OnInit {
   cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-1.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-2.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
-    { imgSrc: '../../assets/img/carousel-img-3.png', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-3.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-3.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-1.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-2.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
+    { imgSrc: '../../assets/img/carousel-img-3.webp', name: 'New Apartment Nice View', tag: 'miami', address: 'Quincy St, Brooklyn, NY, USA  ', room: '02', bath: '03', sqft: '1,200SqFt', price: '25,000', buttonUrl: '' },
   ];
 utility: any;
 customOptions: OwlOptions = {
@@ -146,7 +146,7 @@ floorPlan = [
 ];
 
 Proplocation = [
-  { address: 'Miami, U.S. state in South Florida', country: '02', city: '02', landmark: '1200', zipcode: 'USD',  imgSrc: '../../assets/img/map.png'}
+  { address: 'Miami, U.S. state in South Florida', country: '02', city: '02', landmark: '1200', zipcode: 'USD',  imgSrc: '../../assets/img/map.webp'}
 ];
 
 

@@ -9,7 +9,9 @@
     font-size: 18px;
     margin-bottom: 1rem;
 }
-
+.zI{
+    z-index: 10;
+}
 .rental-btn {
     text-align: center;
 }

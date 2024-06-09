@@ -2,6 +2,9 @@ h1 {
     font-family: 'bold';
     color: var(--black);
 }
+.image-content h1{
+    font-size: 18px;
+}
 .carosuelBtn {
     background: transparent;
     border: 1px solid black;
@@ -25,14 +28,15 @@ h1 {
 }
 
 .card-content{
-    width: 70%;
+    width: 100%;
+    padding:10px;
 }
 
 .card-content p{
     color: var(--black);
     margin-top: 0.8vw;
     padding-right: 1.9vw;
-    font-size: 0.89vw;
+    font-size: 16px;
 }
 
 .blog-btn{

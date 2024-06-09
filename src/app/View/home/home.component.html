@@ -1,3 +1,4 @@
+@defer {
 <app-banner>
   <div class="container mt-5">
     <div class="row">
@@ -25,21 +26,21 @@
     </div>
   </div>
 </app-banner>
+}
 @if(loading){
 <div class="py-5">
   <app-mini-loading></app-mini-loading>
 </div>
-} @else{ @defer{ @if(buyCards?.length){
+} @else{
+@if(buyCards?.length){
 <div class="sec-2 pt-5">
   <div class="cstmContainer position-relative">
     <div class="headingContainer">
       <h2 class="headingLine wow fadeInDown">Hot rentals in Miami</h2>
     </div>
-    @defer {
     <div class="rental-carousel">
       <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
     </div>
-    }
   </div>
 </div>
 } @if(sellCards?.length){
@@ -48,15 +49,14 @@
     <div class="headingContainer">
       <h2 class="headingLine wow fadeInDown">Sellers in Miami</h2>
     </div>
-    @defer {
     <div class="rental-carousel">
       <app-rental-carousel background="white" [cards]="sellCards"></app-rental-carousel>
     </div>
-    }
   </div>
 </div>
-} } } 
-@defer {
+}
+}
+@defer (on timer(2s)) {
 <div class="container-fluid">
   <div class="register-bg p-5 mb-5 position-relative">
     <div class="row align-items-center position-relative">
@@ -92,7 +92,7 @@
       </div>
     </div>
   </div>
-</div>}
+</div>
 @if(scrollPosition > 120){
 <div class="blueBg position-relative">
   <div class="cstmContainer">
@@ -175,4 +175,5 @@
     </div>
   </div>
 </div>
+}
 }

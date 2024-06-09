@@ -1,10 +1,16 @@
 h1 {
-    font-size: 4.1vw;
     font-family: "bold";
     color: var(--black);
     text-align: center;
 }
-
+.loadMore {
+    background-color: var(--royal-blue);
+    color: var(--white);
+    font-size: 0.9vw;
+    border-radius: 3vw;
+    padding: 0.8vw 2.3vw;
+    border: none;
+  }
 .btnWhiteNBlue {
     padding: .5rem 2rem;
 }
@@ -45,7 +51,7 @@ h1 {
 .sec-1 {
     background-image: url(../../../assets/img/home-bottom.png);
     background-repeat: no-repeat;
-    background-position: 0vw bottom;
+    background-position: bottom;
     background-size: 100% 22.7vw;
 }
 
@@ -105,4 +111,9 @@ h1 {
     position: sticky;
     top: 0;
 }
-.leftSide {}
+@media only screen and (max-width:1024px) {
+    .bigFont{
+        margin-top:4rem;
+        margin-bottom: 2rem;
+    }
+}

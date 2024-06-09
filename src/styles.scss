@@ -221,7 +221,15 @@ body {
 .container-fluid{
   max-width: 1660px;
 }
+.bigFont {
+  font-size: 4rem;
+  font-weight: bold;
+}
 @media only screen and (max-width:1024px) {
+  .bigFont {
+    font-size: 1.5rem;
+}
+
   .cstmContainer{
     max-width: 1660px;
     width: 95vw;

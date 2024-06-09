@@ -109,7 +109,7 @@ export class HomeComponent {
   }
   searchProperties(event: any) {
     if(event){
-      this.router.navigate(['/buy-property'], { queryParams: { search: event } });
+      this.router.navigate(['/buy'], { queryParams: { search: event } });
     }
   }
   getBuyProperties() {

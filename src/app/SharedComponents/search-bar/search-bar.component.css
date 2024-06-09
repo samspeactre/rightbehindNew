@@ -21,9 +21,6 @@
   }
 }
 @media only screen and (max-width:1024px) {
-  .bar-width {
-    width: 80%;
-  }
   .searchBar {
     padding: 5px;
     input{

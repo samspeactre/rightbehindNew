@@ -1,298 +1,308 @@
 .container-site {
-    padding: 0vw 3.55vw;
+  padding: 0vw 3.55vw;
 }
 
 .carousel {
-    width: 100%;
+  width: 100%;
 }
 
 .pages-links {
-    margin: 2.2vw 0vw 0.65vw;
+  margin: 2.2vw 0vw 0.65vw;
+}
+.banner-review-img {
+  width: 100%;
+  height: 340px;
+}
+.banner-review-img img {
+  width: 100%;
+  height: 100%;
 }
 
 .pages-links a {
-    font-size: 1.11vw;
-    font-family: 'reg';
-    color: var(--black);
-    transition: font-family 0.3s ease;
+  font-size: 20px;
+  font-family: "reg";
+  color: var(--black);
+  transition: font-family 0.3s ease;
 }
 
 .pages-links a:hover {
-    font-family: 'med';
+  font-family: "med";
 }
 
 .slash {
-    font-size: 1.4vw;
-    padding: 0vw 0.4vw;
+  font-size: 20px;
+  padding: 0px 10px;
 }
-.my-3{
-    margin: 5rem 0;
+.my-3 {
+  margin: 5rem 0;
 }
 
 /*  */
 
-
 .card {
-    width: 100% !important;
-    background: var(--white);
-    border-radius: 1vw;
+  width: 100% !important;
+  background: var(--white);
+  border-radius: 1vw;
 }
 
 .card-image {
-    width: 28vw;
+  width: 28vw;
 }
 
 .card-img {
-    width: 100%;
-    height: 18vw;
-    object-fit: cover;
-    border-radius: 0.5vw !important;
+  width: 100%;
+  height: 18vw;
+  object-fit: cover;
+  border-radius: 0.5vw !important;
 }
 
 .swiper-slide {
-    cursor: pointer;
-    /* width: 28vw !important; */
+  cursor: pointer;
+  /* width: 28vw !important; */
 }
 
 /*  */
 
 .left-site {
-    width: 64.2%;
+  width: 64.2%;
 }
 
 .lower-portion {
-    margin-top: 2.5vw;
+  margin-top: 2.5vw;
 }
 
 .head {
-    font-size: 2.45vw;
-    font-family: 'bold';
-    color: var(--black);
-    letter-spacing: -0.02vw;
+  font-size: 28px;
+  font-family: "bold";
+  color: var(--black);
 }
 
 .address {
-    font-size: 1vw;
-    font-family: "reg";
-    color: var(--carousel-add);
-    margin-bottom: 1vw;
-    margin-top: 0.3vw;
-    letter-spacing: 0.04vw;
+  font-size: 16px;
+  font-family: "reg";
+  color: var(--carousel-add);
+  margin-bottom: 1vw;
+  margin-top: 0.3vw;
+  letter-spacing: 0.04vw;
 }
 
 :host ::ng--deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
-    display: none;
+  display: none;
 }
 
 .prop-details {
-    width: 26%;
+  width: 26%;
 }
 
 .prop-detail-img {
-    width: 4vw;
-    align-items: center;
+  width: 4vw;
+  align-items: center;
 }
 
 .prop-detail-img img {
-    width: 2.35vw;
-    height: 2.35vw;
+  width: 2.35vw;
+  height: 2.35vw;
 }
 
 .prop-detail-text {
-    font-size: 0.7vw;
-    align-content: center;
-    font-family: 'med';
-    color: var(--carousel-add);
-    margin-left: 0.3vw;
+  font-size: 14px;
+  align-content: center;
+  font-family: "med";
+  color: var(--carousel-add);
+  margin-left: 0.3vw;
 }
 
 .prop-detail-img hr {
-    height: 1.5vw;
-    align-self: center;
-    color: var(--hr);
-    margin-left: 1vw;
+  height: 20px;
+  align-self: center;
+  color: var(--hr);
+  margin-left: 1vw;
 }
 
 .pricing {
-    font-size: 2.1vw;
-    font-family: 'bold';
-    color: var(--royal-blue);
+  font-size: 26px;
+  font-family: "bold";
+  color: var(--royal-blue);
 }
 
 .Prop-info {
-    margin: 1vw 0vw;
-    background-color: var(--add-prop-bg);
-    border-radius: 1vw;
-    padding-bottom: 1vw;
+  margin: 10px 0px;
+  background-color: var(--add-prop-bg);
+  border-radius: 8px;
+  padding-bottom: 0px;
 }
 
 .prop-info-padding {
-    padding: 1vw 2.2vw 0.5vw;
+  padding: 6px 10px;
 }
 
 .prop-deatil-padding {
-    padding: 1vw 1.5vw 0.5vw;
+  padding: 1vw 1.5vw 0.5vw;
 }
 
 .small-head {
-    font-size: 0.9vw;
-    font-family: "med";
-    color: var(--black);
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
 }
 
 .white-box {
-    background-color: var(--white);
-    padding: 0.5vw 2.2vw;
-    width: 49.25%;
+  background-color: var(--white);
+  padding: 8px 20px;
+  width: 49.25%;
 }
 
 .transparent-box {
-    background-color: transparent;
-    padding: 0.5vw 2.2vw;
-    width: 49.25%;
+  background-color: transparent;
+  padding: 8px 20px;
+  width: 49.25%;
 }
 
 .text-info {
-    width: 12.8vw;
+  width: 48%;
+  padding-right:1rem ;
+}
+.white-box-text{
+    width: 52%;
 }
 
-.text-info-property{
-    font-size: 0.9vw;
-    font-family: 'med';
-    color: var(--black);
+.text-info-property {
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
 }
 
 .white-box-text {
-    border-radius: 1vw;
-    font-size: 0.9vw;
-    font-family: 'reg';
-    color: var(--black);
+  border-radius: 1vw;
+  font-size: 15px;
+  font-family: "reg";
+  color: var(--black);
 }
 
-.white-box-property{
-    background-color: var(--white);
-    width: 100%;
-    padding:0.5vw 2.2vw;
+.white-box-property {
+  background-color: var(--white);
+  width: 100%;
+  padding: 0.5vw 2.2vw;
 }
 
-.white-box-para{
-    font-size: 0.9vw;
-    font-family: 'reg';
-    color: var(--black);
-    margin-top: 0.5vw;
+.white-box-para {
+  font-size: 15px;
+  font-family: "reg";
+  color: var(--black);
+  margin-top: 0.5vw;
 }
 
 .prop-deatil,
 .rent-special {
-    background-color: var(--add-prop-bg);
-    border-radius: 1vw;
-    margin-top: 1.3vw;
+  background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  margin-top: 1.3vw;
 }
 
 .prop-detail-padding {
-    font-size: 0.9vw;
-    font-family: 'med';
-    padding: 0.9vw 0vw 1vw 1.3vw;
+  font-size: 15px;
+  font-family: "med";
+  padding: 0.9vw 0vw 1vw 1.3vw;
 }
 
 .prop-deatil p {
-    font-size: 0.85vw;
-    font-family: "reg";
-    padding: 0vw 5.5vw 2.5vw 1.5vw;
-    line-height: 1.3vw;
+  font-size: 15px;
+  font-family: "reg";
+  padding: 0vw 5.5vw 2.5vw 1.5vw;
+  line-height: 1.3vw;
 }
 
 .gallery h3 {
-    font-size: 0.9vw;
-    font-family: "med";
-    color: var(--black);
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
 }
 
 .gallery {
-    padding: 1vw 1.2vw;
-    background-color: var(--add-prop-bg);
-    border-radius: 1vw;
-    margin-bottom: 1.3vw;
+  padding: 1vw 1.2vw;
+  background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  margin-bottom: 1.3vw;
 }
 
 .gallery-img {
-    margin-top: 1vw;
-    width: 8.3vw;
-    margin-right: 0.8vw;
+  margin-top: 1vw;
+  width: 8.3vw;
+  margin-right: 0.8vw;
 }
 
 .gallery-img img {
-    width: 100%;
-    height: 8.6vw;
-    border-radius: 0.3vw;
+  width: 100%;
+  height: 8.6vw;
+  border-radius: 0.3vw;
 }
 
 .map {
-    padding: 1vw 2.2vw 1vw;
-    background-color: var(--add-prop-bg);
-    border-radius: 1vw;
-    width: 100%;
+  padding: 1vw 2.2vw 1vw;
+  background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  width: 100%;
 }
 
 .map h3 {
-    font-size: 0.9vw;
-    font-family: "med";
-    color: var(--black);
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
 }
 
 .map-img {
-    margin-top: 1vw;
-    width: 100%;
+  margin-top: 1vw;
+  width: 100%;
 }
 
 .map-img img {
-    width: 100%;
-    height: 23vw;
-    border-radius: 1vw;
-    object-fit: cover;
+  width: 100%;
+  height: 23vw;
+  border-radius: 1vw;
+  object-fit: cover;
 }
 
 .nearby-rentals {
-    background-color: var(--sec-light);
-    margin-top: 6.7vw;
+  background-color: var(--sec-light);
+  margin-top: 6.7vw;
 }
 
 /*  */
 
 .sec-2 {
-    background-color: var(--sec-light);
-    padding-top: 2.8vw;
+  background-color: var(--sec-light);
+  padding-top: 2.8vw;
 }
 
 .carousel-portion {
-    width: 100%;
+  width: 100%;
 }
 
 .seller-carousel-portion {
-    padding-top: 6vw;
+  padding-top: 6vw;
 }
 
 .head-3 {
-    font-family: 'bold';
-    font-size: 2.8vw;
-    color: var(--black);
-    margin-top: 0.75vw;
-    width: 61%;
-    letter-spacing: -0.01vw;
+  font-family: "bold";
+  font-size: 22px;
+  color: var(--black);
+  margin-top: 0.75vw;
+  width: 61%;
+  letter-spacing: -0.01vw;
 }
 
 .carousel-line {
-    align-content: center;
-    width: 27%;
-    margin-left: 1vw;
+  align-content: center;
+  width: 27%;
+  margin-left: 1vw;
 }
 
 .rental-carousel {
-    margin-top: -4.7vw;
+  margin-top: -4.7vw;
 }
 
 .rental-btn button {
-    display: none !important;
+  display: none !important;
 }
 
 /*  */
@@ -300,138 +310,160 @@
 /*  */
 
 .right-site {
-    width: 34.6%;
-    height: 34.1vw;
-    padding: 2.8vw 0vw;
-    background-color: var(--sec-light);
-    border-radius: 1vw;
-    position: sticky;
-    top: 1vw;
-    left: 0;
-    overflow: hidden;
+  width: 34.6%;
+  height: fit-content;
+  padding: 2.8vw 0vw;
+  background-color: var(--sec-light);
+  border-radius: 1vw;
+  position: sticky;
+  top: 1vw;
+  left: 0;
+  overflow: hidden;
 }
 
 .contact-head {
-    font-size: 2.1vw;
-    font-family: 'bold';
-    color: var(--black);
-    text-align: center;
+  font-size: 28px;
+  font-family: "bold";
+  color: var(--black);
+  text-align: center;
 }
 
 .contact-para {
-    font-size: 1.15vw;
-    font-family: 'reg';
-    color: var(--black);
-    text-align: center;
-    padding: 1.1vw 4.5vw 0vw;
-    line-height: 1.75vw;
+  font-size: 18px;
+  font-family: "reg";
+  color: var(--black);
+  text-align: center;
+  padding: 1.1vw 4.5vw 0vw;
+  line-height: normal;
 }
 
 .btns {
-    margin: 1vw 0vw;
-    text-align: center;
+  margin: 1vw 0vw;
+  text-align: center;
 }
 
-:host ::ng-deep .mat-mdc-outlined-button>.mat-icon {
-    font-size: 1.8vw !important;
-    width: 2vw;
-    height: 2vw;
+:host ::ng-deep .mat-mdc-outlined-button > .mat-icon {
+  font-size: 24px !important;
+  width: 2vw;
+  height: 2vw;
 }
 
 .btns .call {
-    border-color: var(--mdc-outlined-button-outline-color);
-    background-color: var(--royal-blue);
-    padding: 1.75vw 5.5vw;
-    border-radius: 3vw;
-    color: var(--white);
-    font-size: 1.1vw;
-    font-family: 'reg';
-    margin-bottom: 1vw;
+  border-color: var(--mdc-outlined-button-outline-color);
+  background-color: var(--royal-blue);
+  padding: 1.75vw 5.5vw;
+  border-radius: 3vw;
+  color: var(--white);
+  font-size: 16px;
+  font-family: "reg";
+  margin-bottom: 1vw;
 }
 
 .btns .email {
-    border-color: var(--mdc-outlined-button-outline-color);
-    background-color: transparent;
-    border: 0.1vw solid var(--royal-blue);
-    padding: 1.75vw 5.5vw;
-    border-radius: 3vw;
-    color: var(--royal-blue);
-    font-size: 1vw;
-    font-family: 'bold';
-    letter-spacing: -0.01vw;
+  border-color: var(--mdc-outlined-button-outline-color);
+  background-color: transparent;
+  border: 0.1vw solid var(--royal-blue);
+  padding: 1.75vw 5.5vw;
+  border-radius: 3vw;
+  color: var(--royal-blue);
+  font-size: 16px;
+  font-family: "bold";
+  letter-spacing: -0.01vw;
 }
 
 .or {
-    width: 6vw;
-    margin: auto;
-    align-items: center;
+  width: 6vw;
+  margin: auto;
+  align-items: center;
 }
 
 .or span {
-    font-size: 1.15vw;
-    font-family: 'reg';
-    padding: 0vw 2.5vw;
+  font-size: 18px;
+  font-family: "reg";
+  padding: 0vw 2.5vw;
 }
 
 .or-line {
-    rotate: 90deg;
-    height: 3vw;
-    background: var(--black)
+  rotate: 90deg;
+  height: 3vw;
+  background: var(--black);
 }
 
 .tour-btn {
-    text-align: center;
+  text-align: center;
 }
 
 .tour-btn button {
-    margin-top: 1vw;
-    color: var(--white);
-    font-size: 1vw;
-    font-family: 'bold';
-    background-color: var(--royal-blue);
-    padding: 1.75vw 5.5vw;
-    border-radius: 3vw;
-    letter-spacing: -0.01vw;
+  margin-top: 1vw;
+  color: var(--white);
+  font-size: 16px;
+  font-family: "bold";
+  background-color: var(--royal-blue);
+  padding: 1.75vw 5.5vw;
+  border-radius: 3vw;
+  letter-spacing: -0.01vw;
 }
 
 /*  */
 
-.desc{
-    padding: 0.5vw 2vw 1vw 2.2vw;
+.desc {
+  padding: 0.5vw 2vw 1vw 2.2vw;
 }
 
-.desc p{
-    font-size: 0.85vw;
-    font-family: "reg";
-    line-height: 1.3vw;
-    margin-top: 0.5vw;
+.desc p {
+  font-size: 15px;
+  font-family: "reg";
+  line-height: 1.3vw;
+  margin-top: 0.5vw;
 }
 
-.plan-img{
-    padding: 0vw 2.2vw 0.5vw;
+.plan-img {
+  padding: 0vw 2.2vw 0.5vw;
+  width: 100%;
+  background-color: var(--white);
+}
+
+.plan-img img {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+  padding-top: 0.5vw;
+}
+
+.white-box-address {
+  width: 100%;
+}
+
+.Proplocation {
+  margin-top: 0.5vw;
+}
+
+.white-box-price {
+  width: 100%;
+}
+
+.blue-box-property {
+  padding: 0.5vw 2.2vw 0vw;
+}
+@media only screen and (max-width: 821px) {
+  .left-site {
     width: 100%;
-    background-color: var(--white);
+  }
+  .right-site {
+    width: 50%;
+    margin: 2rem auto;
+  }
 }
+@media only screen and (max-width: 540px) {
+    .right-site {
+      width: 100%;
+      margin: 2rem auto;
+    }
+    .head{
+        font-size: 20px;
+    }
+    .white-box{
+        width: 100%;
+    }
+  }
 
-.plan-img img{
-    width: 100%;
-    height: 20vw;
-    object-fit: cover;
-    padding-top: 0.5vw;
-}
-
-.white-box-address{
-    width: 100%;
-}
-
-.Proplocation{
-    margin-top: 0.5vw;
-}
-
-.white-box-price{
-    width: 100%;
-}
-
-.blue-box-property{
-    padding: 0.5vw 2.2vw 0vw;
-}

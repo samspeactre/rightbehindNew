@@ -33,11 +33,13 @@
     }
     @else {
     <div class="dCenter">
-      <img style="width: 93vw; height: 200px; object-fit: contain; background-color:#dddddd;"
+      <div class="banner-review-img">
+        <img
         src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="noimage found">
+      </div>
     </div>
     }
-    <div class="container-site lower-portion display content-between">
+    <div class="container-site lower-portion display content-between flex-wrap">
       <div class="left-site">
         @for (card of Appartment; track card) {
         <div class="first-box">
@@ -251,7 +253,7 @@
           </div>
         </div>
         } @for (info of Proplocation; track info) {
-        <div class="map">
+        <div class="Prop-info">
           <h3 class="small-head">Property Location</h3>
           <div class="display content-between Proplocation">
             <div class="white-box white-box-address display">

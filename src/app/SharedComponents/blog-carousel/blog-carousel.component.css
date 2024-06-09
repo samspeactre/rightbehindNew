@@ -50,13 +50,13 @@ h1 {
 }
 
 .blog-btn-icon{
-    font-size: 1.2vw;
+    font-size: 20px;
     padding: 0;
 }
 
 .blog-btn a span{
     color: var(--royal-blue);
-    font-size: 0.95vw;
+    font-size: 14px;
     font-family: 'bold';
     transition: color 0.3s;
     margin-left: -0.2vw;
@@ -78,7 +78,7 @@ h1 {
     font-size: 13px;
     font-family: 'reg';
     color: var(--black);
-    padding-left: 0.8vw;
+    padding-left: 8px;
 }
 
 .badge{
@@ -94,8 +94,8 @@ h1 {
 }
 
 .circle{
-    width: 1.2vw;
-    height: 1.2vw;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background-color: var(--royal-blue);
 }

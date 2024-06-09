@@ -41,9 +41,11 @@
               "node_modules/animate.css/animate.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/btn.scss",
+              "src/fade.scss",
               "src/styles.scss"
             ],
             "scripts": [
+              "src/wow.min.js",
               "node_modules/jquery/dist/jquery.min.js"
             ]
           },

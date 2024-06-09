@@ -4,14 +4,12 @@ section{
     border-radius: 1.5vw;
 }
 
-h1 {
-    font-size: 2vw;
+h4 {
     font-family: 'bold';
-    color: var(--black);
 }
 
 .logo {
-    width: 11vw;
+    width: 150px;
     margin: auto;
     margin-top: 1.5vw;
 }
@@ -20,33 +18,11 @@ h1 {
     width: 100%;
 }
 
-.popup h1 {
-    text-align: center;
-    margin-top: 1.5vw;
-}
-
-.popup p {
-    padding: 1vw 2.8vw;
-    font-size: 0.95vw;
-    font-family: "reg";
-    color: var(--black);
-    text-align: center;
-}
-
-.popup form {
-    padding: 0vw 1.5vw;
-}
-
-:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: transparent;
-}
-
 :host ::ng-deep .mat-mdc-form-field {
     width: 100%;
 }
 
 :host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
-    font-size: 0.8vw;
     font-family: 'reg';
 }
 
@@ -59,13 +35,8 @@ h1 {
     border: 0.01vw solid var(--royal-blue);
 }
 
-.check-pass {
-    margin-top: 0.5vw;
-    align-items: center;
-}
 
 :host ::ng-deep .mdc-form-field>label {
-    font-size: 0.8vw;
     font-family: 'reg';
     color: var(--black);
 }
@@ -78,41 +49,28 @@ h1 {
 }
 
 .check-pass a{
-    font-size: 0.8vw;
     font-family: 'reg';
     color: var(--black);
 }
 
-.login-popup-btn{
-    margin-top: 0.5vw;
-}
-
-.login-popup-btn button {
-    font-size: 1vw;
-    font-family: 'reg';
-    background: var(--royal-blue);
-    color: var(--white);
-    width: 100%;
-    padding: 1.7vw;
-    border-radius: 3vw;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
 .register-link{
-    margin-top: 2vw;
     text-align: center;
-    font-size: 0.8vw;
     font-family: 'bold';
     color: var(--black);
 }
 
 .register-link a{
-    font-size: 0.8vw;
     font-family: 'bold';
     color: var(--royal-blue);
     cursor: pointer;
 }
-
-:host ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
-    border-radius: 1.5vw;
+p{
+    font-size: 14px;
+    font-family: "reg";
+}
+@media only screen and (max-width:1024px){
+    p{
+        font-size: 12px;
+    }
 }

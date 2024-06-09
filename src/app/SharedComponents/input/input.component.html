@@ -1,4 +1,4 @@
-<div [formGroup]="form">
+<div [formGroup]="form" [class]="classes">
   <mat-form-field class="input-padding">
     <mat-label>{{label}}</mat-label>
     <input [type]="type" (input)="write($event)" matInput [formControlName]="control" [placeholder]="placeholder"/>

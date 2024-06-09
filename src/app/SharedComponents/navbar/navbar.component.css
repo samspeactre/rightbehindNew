@@ -144,7 +144,7 @@ nav {
     top: 0;
     left: -80%;
     transition: 0.5s all ease-in-out;
-    z-index: 6;
+    z-index: 15;
   }
 
   .open {
@@ -184,5 +184,10 @@ nav {
   .cstm-nav-item ul li {
     text-align: center;
     margin: 1rem 0;
+}
+.proifle{
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
 }
 }

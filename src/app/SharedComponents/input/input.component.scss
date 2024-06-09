@@ -67,21 +67,12 @@
     background-color: #e6e6e6e8;
   }
 }
-/* Chrome, Safari, Edge, Opera */
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    font-size: 12px;
+    font-family: 'reg';
 }
-
-/* Firefox */
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-
-/* General styling */
-input[type='number'] {
-  appearance: none;
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent;
 }
 small {
   text-transform: capitalize;

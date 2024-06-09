@@ -12,15 +12,21 @@ import { Store } from '@ngrx/store';
 import { toggleLoader } from '../../Ngrx/data.action';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { faEllipsisVertical, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [FontAwesomeModule, CommonModule, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.css',
 })
 export class SellPreviewComponent implements OnInit {
+  faHeart=faHeart;
+  faShare=faShareAlt
+  faEllipsisVertical=faEllipsisVertical
   type!:number;
   id!:number;
   propertyDetails:any;

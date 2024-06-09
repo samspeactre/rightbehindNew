@@ -1,9 +1,9 @@
 
 <div class="dCenter justify-content-end position-relative zI">
-  <button class="carosuelBtn dCenter me-2" (click)="owlCar.prev()">
+  <button class="carosuelBtn dCenter me-2 wow fadeInDown" (click)="owlCar.prev()">
     <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
   </button>
-  <button class="carosuelBtn dCenter" (click)="owlCar.next()">
+  <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
     <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
   </button>
 </div>
@@ -16,22 +16,22 @@
           <div class="image-content">
             <span class="overlay"></span>
             <div class="card-image">
-              <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+              <img [src]="card.imgSrc" alt="Card Image" class="card-img wow fadeInDown">
               <div class="blog-img-content display content-between">
                 <div class="date-div display">
-                  <div class="circle"></div>
-                  <div class="date">{{card.date}}</div>
+                  <div class="circle wow fadeInDown"></div>
+                  <div class="date wow fadeInDown">{{card.date}}</div>
                 </div>
-                <div class="badge">{{card.badge}}</div>
+                <div class="badge wow fadeInDown">{{card.badge}}</div>
               </div>
             </div>
             <div class="card-content">
               <div class=" content-between">
-                <h1 class="card-name">{{ card.name }}</h1>
+                <h1 class="card-name wow fadeInDown">{{ card.name }}</h1>
               </div>
               <p>{{ card.description }}</p>
               <div class="blog-btn">
-                <a [routerLink]="card.buttonUrl" class="display">
+                <a [routerLink]="card.buttonUrl" class="display wow fadeInDown">
                   <mat-icon class="blog-btn-icon">arrow_forward</mat-icon>
                   <span>Read more</span>
                 </a>

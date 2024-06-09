@@ -78,7 +78,8 @@
             </ul>
           </div>
           } @else{
-          <button class="wow fadeInDown d-flex justify-content-between align-items-center btnSecondary margin-right-cstm"
+          <button
+            class="wow fadeInDown d-flex justify-content-between align-items-center btnSecondary margin-right-cstm"
             (click)="openPopup()">
             <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
@@ -93,14 +94,14 @@
   </div>
 </section>
 } @else{
-  <div class="dCenter position-relative">
-    <div class="position-absolute opener">
-      <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
-    </div>
-    <div class="side-nav-logo mt-1">
-      <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" /></a>
-    </div>
+<div class="dCenter position-relative">
+  <div class="position-absolute opener">
+    <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
   </div>
+  <div class="side-nav-logo mt-1">
+    <a routerLink="/"><img src="../../assets/img/nav-logo.png" alt="" /></a>
+  </div>
+</div>
 <div class="sidebar" [ngClass]="{ open: sidebar }">
   <div class="sidebar-padding d-flex justify-content-between align-items-center">
     <div class="side-nav-logo">
@@ -133,17 +134,25 @@
         <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
       <li>
-        <a routerLink=""  (click)="show(false)">property trend</a>
+        <a routerLink="" (click)="show(false)">property trend</a>
       </li>
       <li>
         <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>
       </li>
     </ul>
     <div class="dCenter mt-2 flex-column">
+      @if(user){
+      <button class="btnSecondary" (click)="show(false); logout()">
+        <img class="proifle" [src]="user?.imageUrl ||
+          'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
+        " alt="profiel picture"> Logout
+      </button>
+      }
+      @else {
       <button class="btnSecondary" (click)="show(false); openPopup()">
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
-
+      }
       <button class="btnSecondary mt-4" (click)="show(false);openSellPopup('rent')">
         Submit A Deal
       </button>

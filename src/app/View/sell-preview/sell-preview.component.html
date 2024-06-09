@@ -1,11 +1,12 @@
-<section>
-  @if(loader){
-  <div class="dCenter py-5">
-    <app-mini-loading></app-mini-loading>
-  </div>
-  } @else {
-  <div class="lg-12">
-    <div class="display container-site">
+<div class="cstmContainer">
+  <div class="row">
+    @if(loader){
+    <div class="dCenter py-5">
+      <app-mini-loading></app-mini-loading>
+    </div>
+    }
+    @else {
+    <div class="col-lg-12">
       <div class="pages-links display">
         <a routerLink="/">Home</a>
         <div class="slash">/</div>
@@ -18,183 +19,205 @@
         <div class="slash">/</div>
         <a>{{propertyDetails?.title}}</a>
       </div>
-    </div>
-    @if(propertyDetails?.propertyImages?.length){
-    <owl-carousel-o [options]="customOptions" #owlCar>
-      @for (card of propertyDetails?.propertyImages; track card) {
-      <ng-container>
-        <ng-template carouselSlide>
-          <img
-            [src]="card?.imageUrl" alt="noimage found">
-        </ng-template>
-      </ng-container>
-      }
-    </owl-carousel-o>
-    }
-    @else {
-    <div class="dCenter">
-      <div class="banner-review-img">
-        <img
-        src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="noimage found">
-      </div>
-    </div>
-    }
-    <div class="container-site lower-portion display content-between flex-wrap">
-      <div class="left-site">
-        @for (card of Appartment; track card) {
-        <div class="first-box">
-          <div class="display content-between">
-            <div class="head">{{ card.head }}</div>
-            <div class="prop-detail-icon">
-              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                <mat-icon>share</mat-icon>
-              </button>
-              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-            </div>
-          </div>
-          <div class="address">{{ card.address }}</div>
-          <div class="prop-details-div display content-between">
-            <div class="prop-details display content-between">
-              <div class="prop-detail-img display">
-                <div class="display content-between">
-                  <img src="../../assets/img/bed.png" alt="" />
-                  <div class="prop-detail-text">{{ card.bed }}</div>
-                </div>
-                <hr />
-              </div>
-              <div class="prop-detail-img display">
-                <div class="display content-between">
-                  <img src="../../assets/img/bath.png" alt="" />
-                  <div class="prop-detail-text">{{ card.bath }}</div>
-                </div>
-                <hr />
-              </div>
-              <div class="prop-detail-img display">
-                <div class="display content-between">
-                  <img src="../../assets/img/sq.ft.png" alt="" />
-                  <div class="prop-detail-text">{{ card.sqft }}Sq.Ft</div>
-                </div>
-              </div>
-            </div>
-            <div class="pricing">$ {{ card.price }}</div>
-          </div>
-        </div>
-        } @for (info of setPrice; track info) {
-        <div class="Prop-info">
-          <h3 class="small-head prop-info-padding">Set Your Price</h3>
-          <div class="white-box display white-box-price">
-            <div class="white-box-text text-info">Price</div>
-            <div class="white-box-text">${{ info.price }}</div>
-          </div>
-        </div>
+      @if(propertyDetails?.propertyImages?.length){
+      <owl-carousel-o [options]="customOptions" #owlCar>
+        @for (card of propertyDetails?.propertyImages; track card) {
+        <ng-container>
+          <ng-template carouselSlide>
+            <img [src]="card?.imageUrl" alt="noimage found">
+          </ng-template>
+        </ng-container>
         }
-
-        <div class="gallery">
-          <h3 class="small-head">Gallery</h3>
-
-          <div class="display">
-            @for (imageUrl of Gallery; track imageUrl) {
-            <div class="gallery-img">
-              <img [src]="imageUrl" alt="Image" />
+      </owl-carousel-o>
+      }
+      @else {
+      <div class="dCenter">
+        <div class="banner-review-img">
+          <img src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="noimage found">
+        </div>
+      </div>
+      }
+    </div>
+    <div class="col-lg-8">
+      <div class="first-box">
+        <div class="dCenter justify-content-between">
+          <div class="head">{{ propertyDetails?.title || 'N/A' }}</div>
+          <div class="prop-detail-icon dCenter justify-content-between">
+            <button class="dCenter optionBtn me-2">
+              <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
+            </button>
+            <button class="dCenter optionBtn me-2">
+              <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
+            </button>
+            <button class="dCenter optionBtn">
+              <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
+            </button>
+          </div>
+        </div>
+        @if(propertyDetails?.location){
+        <div class="address">{{ propertyDetails?.location }}</div>
+        }
+        <div class="prop-details-div display content-between">
+          <div class="prop-details display content-between">
+            @if(propertyDetails.noOfBed){
+            <div class="prop-detail-img display">
+              <div class="display content-between">
+                <img src="../../assets/img/bed.png" alt="bed" />
+                <div class="prop-detail-text">{{ propertyDetails.noOfBed }}</div>
+              </div>
+              <hr />
+            </div>
+            }
+            @if(propertyDetails.noOfBath){
+            <div class="prop-detail-img display">
+              <div class="display content-between">
+                <img src="../../assets/img/bath.png" alt="bath" />
+                <div class="prop-detail-text">{{ propertyDetails.noOfBath }}</div>
+              </div>
+              <hr />
+            </div>
+            }
+            @if(propertyDetails.area){
+            <div class="prop-detail-img display">
+              <div class="display content-between">
+                <img src="../../assets/img/sq.ft.png" alt="area" />
+                <div class="prop-detail-text">{{ propertyDetails.area }}Sq.Ft</div>
+              </div>
             </div>
             }
           </div>
+          <div class="pricing">{{ propertyDetails?.price | currency : "USD" || 'N/A'}}</div>
         </div>
-
-        @for (info of virtualUrl; track info) {
-        <div class="Prop-info">
-          <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
-          <div class="white-box display white-box-price">
-            <div class="white-box-text text-info">Url</div>
-            <div class="white-box-text">{{ info.url }}</div>
-          </div>
+      </div>
+      <div class="Prop-info p-2 my-3">
+        <h3 class="small-head prop-info-padding">Set your Price</h3>
+        <div class="white-box display white-box-price">
+          <div class="white-box-text text-info">Price</div>
+          <div class="white-box-text">{{ propertyDetails?.price | currency : "USD" || 'N/A' }}</div>
         </div>
-        } @for (info of homeFacts; track info) {
-        <div class="Prop-info">
-          <h3 class="small-head prop-info-padding">Home Facts</h3>
-          <div class="display content-between">
-            <div class="white-box display">
-              <div class="white-box-text text-info">Home Type</div>
-              <div class="white-box-text">{{ info.homeType }}</div>
-            </div>
-            <div class="white-box display">
-              <div class="white-box-text text-info">No. of Bedrooms</div>
-              <div class="white-box-text">{{ info.bed }}</div>
-            </div>
+      </div>
+      @if(propertyDetails.videoUrl){
+      <div class="Prop-info p-2 my-3">
+        <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
+        <div class="white-box display white-box-price">
+          <div class="white-box-text text-info">Url</div>
+          <div class="white-box-text">{{ propertyDetails.videoUrl }}</div>
+        </div>
+      </div>
+      }
+      <div class="Prop-info">
+        <h3 class="small-head prop-info-padding">Home Facts</h3>
+        <div class="display content-between">
+          @if(propertyDetails?.homeType){
+          <div class="white-box display">
+            <div class="white-box-text text-info">Home Type</div>
+            <div class="white-box-text">{{ propertyDetails?.homeType }}</div>
           </div>
-          <div class="display content-between">
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">No. of Bathrooms</div>
-              <div class="white-box-text">{{ info.bath }}</div>
-            </div>
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">3/4 bath</div>
-              <div class="white-box-text">{{ info.Bath3and4 }}Sq.Ft</div>
-            </div>
+          }
+          @if(propertyDetails.noOfBed){
+          <div class="white-box display">
+            <div class="white-box-text text-info">No. of Bedrooms</div>
+            <div class="white-box-text">{{ propertyDetails.noOfBed }}</div>
           </div>
-          <div class="display content-between">
-            <div class="white-box display">
-              <div class="white-box-text text-info">1/2 bath</div>
-              <div class="white-box-text">{{ info.Bath1and2 }}</div>
-            </div>
-            <div class="white-box display">
-              <div class="white-box-text text-info">1/4 bath</div>
-              <div class="white-box-text">{{ info.Bath1and4 }}</div>
-            </div>
+          }
+        </div>
+        <div class="display content-between">
+          @if(propertyDetails.noOfBath){
+          <div class="transparent-box display">
+            <div class="white-box-text text-info">No. of Bathrooms</div>
+            <div class="white-box-text">{{ propertyDetails.noOfBath }}</div>
           </div>
-          <div class="display content-between">
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">Finished Sq.FT</div>
-              <div class="white-box-text">{{ info.finishedSqft }}Sq Ft</div>
-            </div>
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">Lot Size</div>
-              <div class="white-box-text">{{ info.lotSize }}</div>
-            </div>
+          }
+          <!-- <div class="transparent-box display">
+            <div class="white-box-text text-info">3/4 bath</div>
+            <div class="white-box-text">{{ info.Bath3and4 }}Sq.Ft</div>
+          </div> -->
+        </div>
+        <!-- <div class="display content-between">
+          <div class="white-box display">
+            <div class="white-box-text text-info">1/2 bath</div>
+            <div class="white-box-text">{{ info.Bath1and2 }}</div>
           </div>
-          <div class="display content-between">
-            <div class="white-box display">
-              <div class="white-box-text text-info">Sq.FT</div>
-              <div class="white-box-text">{{ info.sqft }} Sq.Ft</div>
-            </div>
-            <div class="white-box display">
-              <div class="white-box-text text-info">Years Constructed</div>
-              <div class="white-box-text">{{ info.yearConstructed }}</div>
-            </div>
+          <div class="white-box display">
+            <div class="white-box-text text-info">1/4 bath</div>
+            <div class="white-box-text">{{ info.Bath1and4 }}</div>
           </div>
-          <div class="display content-between">
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">
-                Structural Remodal Year
-              </div>
-              <div class="white-box-text">{{ info.remodalYear }}Sq Ft</div>
-            </div>
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">HAO Dues</div>
-              <div class="white-box-text">{{ info.dues }}Sq Ft</div>
-            </div>
+        </div> -->
+        <div class="display content-between">
+          @if(propertyDetails.area){
+          <div class="transparent-box display">
+            <div class="white-box-text text-info">Finished Sq.FT</div>
+            <div class="white-box-text">{{ propertyDetails.area }}Sq Ft</div>
           </div>
-          <div class="display content-between">
+          }
+          @if(propertyDetails.area){
+          <div class="transparent-box display">
+            <div class="white-box-text text-info">Lot Size</div>
+            <div class="white-box-text">{{ propertyDetails.area }}</div>
+          </div>
+          }
+        </div>
+        <div class="display content-between">
+          @if(propertyDetails.area){
+          <div class="white-box display">
+            <div class="white-box-text text-info">Sq.FT</div>
+            <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
+          </div>
+          }
+          @if(propertyDetails.createdAt){
+          <div class="white-box display">
+            <div class="white-box-text text-info">Years Constructed</div>
+            <div class="white-box-text">{{ propertyDetails.createdAt | date : "d MMMM y" }}</div>
+          </div>
+          }
+        </div>
+        <div class="display content-between">
+          @if(propertyDetails.createdAt){
+          <div class="transparent-box display">
+            <div class="white-box-text text-info">
+              Structural Remodal Year
+            </div>
+            <div class="white-box-text">{{ propertyDetails.createdAt | date : "d MMMM y" }}</div>
+          </div>
+          }
+          @if(propertyDetails.createdAt){
+          <div class="transparent-box display">
+            <div class="white-box-text text-info">HAO Dues</div>
+            <div class="white-box-text">{{ propertyDetails.createdAt }}</div>
+          </div>
+          }
+        </div>
+        <div class="display content-between">
+          @if(propertyDetails.area){
             <div class="white-box display">
               <div class="white-box-text text-info">Basement Sq.Ft</div>
-              <div class="white-box-text">{{ info.baseSqft }} Sq.Ft</div>
+              <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
             </div>
+          }
+          @if(propertyDetails.area){
             <div class="white-box display">
               <div class="white-box-text text-info">Garage Sq.Ft</div>
-              <div class="white-box-text">{{ info.GarageSqft }} Sq.Ft</div>
+              <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
             </div>
-          </div>
+          }
+        </div>
+        @if(propertyDetails.description){
           <div class="blue-box-property">
             <div class="text-info-property">Description:</div>
-            <div class="white-box-para">{{ info.desc }}</div>
+            <div class="white-box-para">{{ propertyDetails.description }}</div>
           </div>
-        </div>
-        } @for (info of openHouse; track info) {
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
+<section>
+
+  <div class="lg-12">
+    <div class="container-site lower-portion display content-between flex-wrap">
+      <div class="left-site">
+        @for (info of openHouse; track info) {
         <div class="Prop-info">
           <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
           <div class="display content-between">
@@ -332,5 +355,4 @@
       </div>
     </div>
   </div>
-  }
 </section>

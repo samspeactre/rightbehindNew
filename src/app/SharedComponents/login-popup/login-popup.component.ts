@@ -9,8 +9,7 @@ import { addUserData, toggleLoader } from '../../Ngrx/data.action';
 import { HttpService } from '../../Services/http.service';
 import { RegisterPopupComponent } from '../../View/register-popup/register-popup.component';
 import { InputComponent } from '../input/input.component';
-import { HelperService } from '../../Services/helper.service';
-
+import { HelperService } from '../../services/helper.service';
 @Component({
   standalone: true,
   imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule],
@@ -31,7 +30,7 @@ export class LoginPopupComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required,Validators.minLength(8)]],
       deviceId:[this.helper.detectBrowserName()]
     });
   }
@@ -57,10 +56,7 @@ export class LoginPopupComponent {
       });
   }
   openRegisterPopup(): void {
-    // Close the current dialog
     this.dialogRef.close();
-
-    // Open the registration dialog
     this.dialog.open(RegisterPopupComponent, {
       height: '92%',
       width: window.innerWidth > 1024 ? '27%' : '100%'

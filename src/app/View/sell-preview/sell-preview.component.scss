@@ -1,7 +1,8 @@
-.container-site {
-  padding: 0vw 3.55vw;
+.headingContainer {
+  position: absolute;
+  top: 5px;
+  width: 100%;
 }
-
 .carousel {
   width: 100%;
 }
@@ -268,14 +269,12 @@
 
 .nearby-rentals {
   background-color: var(--sec-light);
-  margin-top: 6.7vw;
 }
 
 /*  */
 
 .sec-2 {
   background-color: var(--sec-light);
-  padding-top: 2.8vw;
 }
 
 .carousel-portion {
@@ -299,14 +298,6 @@
   align-content: center;
   width: 27%;
   margin-left: 1vw;
-}
-
-.rental-carousel {
-  margin-top: -4.7vw;
-}
-
-.rental-btn button {
-  display: none !important;
 }
 
 /*  */
@@ -449,7 +440,12 @@
 .blue-box-property {
   padding: 0.5vw 2.2vw 0vw;
 }
-
+@media only screen and (max-width:1024px) {
+  .headingContainer {
+    width: fit-content;
+    max-width: 80%;
+}
+}
 @media only screen and (max-width: 821px) {
   .left-site {
     width: 100%;

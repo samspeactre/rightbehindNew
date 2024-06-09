@@ -1,0 +1,91 @@
+.cursor {
+    cursor: pointer;
+}
+
+.dCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hideScroll {
+    height: 100vh;
+    overflow: hidden;
+    cursor: not-allowed;
+}
+
+.w-lg-50 {
+    width: 48%;
+    margin: 0 auto;
+}
+.cstmContainer {
+    width: 93vw;
+    max-width: 1660px;
+    margin: 0 auto;
+}
+
+.container-fluid {
+    max-width: 1660px;
+}
+
+.bigFont {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+#toast-container {
+    position: fixed !important;
+    bottom: 0;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.smallFont {
+    font-size: 12px;
+}
+
+.fHeavy {
+    font-weight: bold;
+}
+
+@media only screen and (max-width:1024px) {
+    .smallFont {
+        font-size: 10px;
+    }
+
+    .cdk-global-overlay-wrapper {
+        justify-content: center !important;
+    }
+
+    .bigFont {
+        font-size: 1.5rem;
+    }
+
+    .cstmContainer {
+        max-width: 1660px;
+        width: 95vw;
+        margin: 0 auto;
+    }
+
+    .w-lg-50 {
+        width: 100%;
+    }
+
+    .sideBarOpenBody {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: #000000b3;
+        }
+    }
+}

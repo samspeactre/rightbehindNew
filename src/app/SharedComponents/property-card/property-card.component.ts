@@ -9,7 +9,7 @@ import { Router, RouterModule } from '@angular/router';
   imports:[CommonModule,MatIconModule,MatButtonModule, RouterModule],
   selector: 'app-property-card',
   templateUrl: './property-card.component.html',
-  styleUrl: './property-card.component.css'
+  styleUrl: './property-card.component.scss'
 })
 export class PropertyCardComponent {
   @Input() card!:any;

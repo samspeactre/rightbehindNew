@@ -1,16 +1,18 @@
 h1 {
-    font-size: 1.57vw;
     font-family: 'bold';
-    color: var(--white);
 }
 
-.swiper-wrapper {
-    display: flex;
-    position: absolute;
-    gap: 1.1vw;
-    padding: 0vw 3.5vw;
-    background-color: var(--dark-blue);
-    padding-bottom: 10vw;
+.carosuelBtn {
+    background: transparent;
+    border: 1px solid #3b3b3b;
+    outline: none;
+    padding: 10px;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-bottom: 1rem;
+    color: white;
 }
 
 .card {
@@ -28,71 +30,24 @@ h1 {
     object-fit: cover;
 }
 
-.swiper-slide {
-    width: 30.3vw !important;
-}
-
-.carousel-btn{
-    text-align: right;
-    padding-bottom: 4vw;
-}
-
-.carousel-btn button{
-    border: 0.1vw solid var(--carousel-btn);
-    border-radius: 50%;
-    padding: 1vw 0vw 0vw 0.3vw;
-    color: var(--white);
-    margin-left: 1vw;
-}
-
-.community-carousel-icon {
-    font-size: 1vw;
-}
-
-.swiper-button-next{
-    margin-left: 1vw;
-}
-
-.card-content{
- margin-top: 1.3vw;
-}
-
-.card-tag{
+.card-tag {
     background-color: var(--red);
     padding: 0vw 1.2vw;
-    font-size: 0.8vw;
     font-family: "reg";
     align-content: center;
     text-transform: capitalize;
     color: var(--white);
     border-radius: 1vw;
     margin-right: 1vw;
+    font-size: 10px;
 }
 
-.card-tag span{
-    padding: 0;
+p {
+    font-size: 12px;
 }
 
-.card-content p{
-    color: var(--white);
-    margin-top: 0.8vw;
-    padding-right: 4vw;
-    font-size: 0.99vw;
-}
-
-.card-content button{
-    margin-top: 1.5vw;
-    color: var(--white);
-    padding: 1.8vw 3.62vw;
-    font-size: 1vw;
-    font-family: 'reg';
-    border: 0.1vw solid var(--white);
-    background-color: transparent;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.card-content button:hover{
-    background-color: var(--white);
-    color: var(--dark-blue);
-    font-family: 'med';
+@media only screen and (max-width:1024px) {
+    p {
+        font-size: 10px;
+    }
 }

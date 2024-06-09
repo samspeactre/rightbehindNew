@@ -143,9 +143,16 @@
         <button class="btnPrimary">Know More</button>
       </div>
       <div class="col-lg-12 mt-3">
-        @defer {
-          <app-card-carousel></app-card-carousel>
+        <div class="position-relative">
+          <div class="headingContainer">
+            <h2 class="headingLine text-light">Right Behind Me Community</h2>
+          </div>
+          @defer {
+          <div class="rental-carousel">
+            <app-card-carousel></app-card-carousel>
+          </div>
           }
+        </div>
       </div>
     </div>
   </div>

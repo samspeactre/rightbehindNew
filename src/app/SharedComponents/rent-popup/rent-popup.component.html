@@ -9,7 +9,7 @@
                 <button mat-stroked-button class="rent-btn" [class.Active]="active == 'rent'" (click)="makeActive('rent')">Rent</button>
                 <button mat-stroked-button class="sell-btn" [class.Active]="active == 'sell'" (click)="makeActive('sell')">Sell</button>
             </div>
-            <form action="">
+            <form>
                 <div class="display content-between">
                     <mat-form-field class="mat-options">
                         <mat-label>First Name</mat-label>
@@ -53,11 +53,11 @@
                     <img src="../../assets/img/map.png" alt="">
                 </div>
 
-                <div class="add-property-btn">
-                    <button mat-flat-button class="property-btn" routerLink="/rent-add-property" (click)="navigateAndClose()">Add Property</button>
-                </div>
-
+                
             </form>
+            <div class="add-property-btn">
+                <button mat-flat-button class="property-btn" (click)="navigateAndClose()">Add Property</button>
+            </div>
         </div>
     </div>
 </section>

@@ -1,79 +1,57 @@
-<section>
-  <div class="lg-12">
-    <div class="content sec-1">
-      <h1>Add New Property</h1>
-      <div class="page-links display">
-        <a href="">Home</a>
-        <div class="slash">/</div>
-        <a href="">Add New Property</a>
-      </div>
-      <div class="home-tree display content-between">
-        <div class="left-tree">
-          <img src="../../assets/img/left-tree.png" alt="" />
-        </div>
-        <div class="right-tree">
-          <img src="../../assets/img/left-tree.png" alt="" />
+<app-banner>
+  <div class="cstmContainer">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>Add New Property</h1>
+        <div class="page-links display">
+          <a href="">Home</a>
+          <div class="slash">/</div>
+          <a href="">Add New Property</a>
         </div>
       </div>
     </div>
   </div>
-</section>
-
+</app-banner>
 <section>
   <div class="lg-12 container-site">
     <div class="display content-between lower-portion">
       <div class="left-portion">
-        <!-- <button mat-flat-button>Property Information</button> -->
-        <div class="pro-details">
-          <button
-            mat-flat-button
-            (click)="scrollToSection('property-information')"
-          >
-            Property Information
-          </button>
-          <button mat-flat-button (click)="scrollToSection('amenities')">
-            Amenities
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('utilities')">
-            Utilities
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('rent-special')">
-            Rent Special
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('Pet-policy')">
-            Pet Policy
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('laundry')">
-            Laundry
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('gallery')">
-            Gallery
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('videos')">
-            Videos
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('contact-info')">
-            Contact Information
-          </button>
-          <button mat-flat-button (click)="scrollToSection('description')">
-            Description
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('floor-plans')">
-            Floor Plans
-          </button>
-          <br />
-          <button mat-flat-button (click)="scrollToSection('location')">
-            Location
-          </button>
-        </div>
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('property-information')">Property Information</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('amenities')">Amenities</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('utilities')">Utilities</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start" (click)="scrollToSection('rent-special')">Rent
+          Special</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start" (click)="scrollToSection('Pet-policy')">Pet
+          Policy</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('laundry')">Laundry</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('gallery')">Gallery</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('videos')">Videos</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('contact-info')">Contact
+          Information</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('description')">Description</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start" (click)="scrollToSection('floor-plans')">Floor
+          Plans</button>
+        <br />
+        <button class="btnWhiteNBlueOutline mb-1 w-100 fHeavy text-start"
+          (click)="scrollToSection('location')">Location</button>
       </div>
 
       <div class="right-portion">
@@ -132,10 +110,7 @@
           <div class="category">
             <mat-form-field class="category-select">
               <mat-label class="category-head">Category:</mat-label>
-              <mat-select
-                [(value)]="selectedCategory"
-                (selectionChange)="onCategoryChange($event.value)"
-              >
+              <mat-select [(value)]="selectedCategory" (selectionChange)="onCategoryChange($event.value)">
                 @for (category of categories; track category) {
                 <mat-option [value]="category">{{ category.name }}</mat-option>
                 }
@@ -149,7 +124,7 @@
 
           <form action="" class="checkbox-portion">
             <div class="amenities-grid">
-              @for (column of splitAmenitiesIntoColumns(filteredAmenities);
+              <!-- @for (column of splitAmenitiesIntoColumns(filteredAmenities);
               track column) {
               <div class="amenities-column">
                 @for (amenity of column; track amenity) {
@@ -158,7 +133,7 @@
                 }}</mat-checkbox>
                 }
               </div>
-              }
+              } -->
             </div>
           </form>
         </div>
@@ -194,29 +169,14 @@
               </mat-form-field>
 
               <mat-form-field class="mat-options-3">
-                <input
-                  matInput
-                  [matDatepicker]="startPicker"
-                  placeholder="Start Date"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="startPicker"
-                ></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="startPicker" placeholder="Start Date" />
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
                 <mat-datepicker #startPicker></mat-datepicker>
               </mat-form-field>
 
               <mat-form-field class="mat-options-3">
-                <input
-                  matInput
-                  [matDatepicker]="endPicker"
-                  placeholder="End Date"
-                  [min]="startDate"
-                />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="endPicker"
-                ></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="endPicker" placeholder="End Date" [min]="startDate" />
+                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
                 <mat-datepicker #endPicker></mat-datepicker>
               </mat-form-field>
             </div>
@@ -296,21 +256,11 @@
                 <span>Browns Photo</span>
               </a>
               <div class="upload-btn">
-                <button
-                  mat-raised-button
-                  color="primary"
-                  (click)="fileInput.click()"
-                >
+                <button mat-raised-button color="primary" (click)="fileInput.click()">
                   <mat-icon>cloud_upload</mat-icon>
                   Upload Photos
                 </button>
-                <input
-                  type="file"
-                  #fileInput
-                  multiple
-                  (change)="onFileSelected($event)"
-                  style="display: none"
-                />
+                <input type="file" #fileInput multiple (change)="onFileSelected($event)" style="display: none" />
               </div>
             </div>
 
@@ -404,13 +354,8 @@
           <form action="" class="prop-form">
             <mat-form-field class="text-area">
               <mat-label>Autosize textarea</mat-label>
-              <textarea
-                matInput
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="11"
-                cdkAutosizeMaxRows="15"
-              ></textarea>
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="11"
+                cdkAutosizeMaxRows="15"></textarea>
             </mat-form-field>
           </form>
         </div>
@@ -423,11 +368,7 @@
             porttitor.
           </p>
 
-          <form
-            action=""
-            class="prop-form content-between"
-            [formGroup]="formGroup"
-          >
+          <form action="" class="prop-form content-between" [formGroup]="formGroup">
             <ng-container formArrayName="floorPlansArray">
               @for (item of getFloorPlansFormArray.controls; track item; let
               index = $index) {
@@ -467,30 +408,16 @@
                 </div>
                 <mat-form-field class="text-area">
                   <mat-label>Enter Description of Property</mat-label>
-                  <textarea
-                    matInput
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="11"
-                    cdkAutosizeMaxRows="15"
-                    formControlName="floorDesc"
-                  ></textarea>
+                  <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="11"
+                    cdkAutosizeMaxRows="15" formControlName="floorDesc"></textarea>
                 </mat-form-field>
                 <div class="upload-2-container">
                   <div>
                     <div class="display">
                       @if (getimg(index)) {
                       <div class="floor-img display">
-                        <img
-                          id="image-preview"
-                          [src]="getimg(index)"
-                          alt="Image Preview"
-                        />
-                        <button
-                          mat-fab
-                          (click)="removeImage(index)"
-                          class="delete-btn"
-                        >
+                        <img id="image-preview" [src]="getimg(index)" alt="Image Preview" />
+                        <button mat-fab (click)="removeImage(index)" class="delete-btn">
                           <mat-icon>delete</mat-icon>
                         </button>
                       </div>
@@ -503,27 +430,15 @@
                         <span>Browse Photos</span>
                       </a>
                       <div class="upload-btn">
-                        <button
-                          mat-raised-button
-                          (click)="triggerFileInput(index)"
-                        >
+                        <button mat-raised-button (click)="triggerFileInput(index)">
                           <mat-icon>cloud_upload</mat-icon>
                           Upload Photo
                         </button>
-                        <input
-                          type="file"
-                          id="fileInput{{ index }}"
-                          (change)="onFileSelected($event, index)"
-                          style="display: none"
-                          accept="image/*"
-                        />
+                        <input type="file" id="fileInput{{ index }}" (change)="onFileSelected($event, index)"
+                          style="display: none" accept="image/*" />
                       </div>
                       <div class="add-sec">
-                        <button
-                          mat-stroked-button
-                          class="add-more-btn"
-                          (click)="addNew()"
-                        >
+                        <button mat-stroked-button class="add-more-btn" (click)="addNew()">
                           <mat-icon>add</mat-icon>
                           AddMore
                         </button>
@@ -589,13 +504,11 @@
         <div class="prop">
           <div class="terms-condition">
             <mat-checkbox> </mat-checkbox>
-            <span class="terms-text"
-              >By checking this box I agree as follows: I agree that I will
+            <span class="terms-text">By checking this box I agree as follows: I agree that I will
               provide accurate and <a href="">non discriminatory</a> information
               and I will comply with the Apartments.com
               <a href="">Terms and Conditions</a> and the
-              <a href="">Add a Property Terms of Service.</a></span
-            >
+              <a href="">Add a Property Terms of Service.</a></span>
           </div>
         </div>
 

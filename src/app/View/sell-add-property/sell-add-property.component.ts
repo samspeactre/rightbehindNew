@@ -10,7 +10,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FooterComponent } from '../../SharedComponents/footer/footer.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { MatOption } from '@angular/material/core';
+import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
@@ -60,7 +60,7 @@ interface FormSection {
     MatOption,
     MatSelect,
     MatIconModule,
-    MatDatepickerModule,
+    MatDatepickerModule, MatNativeDateModule,
     CdkTextareaAutosize,
     NavbarComponent,
     MatButtonModule,

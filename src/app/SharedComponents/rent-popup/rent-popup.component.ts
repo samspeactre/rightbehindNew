@@ -6,7 +6,7 @@ import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -17,9 +17,9 @@ import { RouterModule } from '@angular/router';
 })
 export class RentPopupComponent {
   selected: any;
-  router: any;
   active: string = 'rent'
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<SellPropertyPopupComponent>,
+    private router:Router,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.active = data
@@ -34,7 +34,7 @@ export class RentPopupComponent {
 
   navigateAndClose() {
     this.dialogRef.close();
-    this.router.navigate(['/add-rent-property']);
+    this.router.navigateByUrl('/rent-add-property');
   }
   makeActive(type:string){
     this.active = type;    

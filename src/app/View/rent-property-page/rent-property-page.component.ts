@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
 import {
-  trigger,
+  animate,
   state,
   style,
   transition,
-  animate,
+  trigger,
 } from '@angular/animations';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FooterComponent } from '../../SharedComponents/footer/footer.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { MatNativeDateModule, MatOption } from '@angular/material/core';
-import { MatSelect } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelect } from '@angular/material/select';
 
+import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 
 interface ImageFile {
   name: string;
@@ -51,7 +51,7 @@ interface FormSection {
 
 @Component({
   standalone: true,
-  imports: [FooterComponent, MatButtonModule, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, NavbarComponent, MatNativeDateModule],
+  imports: [CommonModule,MatButtonModule, BannerComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
   styleUrls: ['./rent-property-page.component.css'],

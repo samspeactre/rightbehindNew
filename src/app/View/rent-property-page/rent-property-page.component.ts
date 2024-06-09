@@ -80,7 +80,7 @@ export class RentPropertyPageComponent implements OnInit {
   imageSrc: string | ArrayBuffer | null = null;
   sections: any;
   private readonly MAX_AMENITIES = 24; // Maximum number of amenities to display
-
+  section:string= 'property-information'
   startDate: Date;
   endDate: Date = new Date(); // Initialize with today's date
 
@@ -229,6 +229,7 @@ export class RentPropertyPageComponent implements OnInit {
   }
 
   scrollToSection(sectionId: string) {
+    this.section = sectionId
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

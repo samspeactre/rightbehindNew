@@ -69,7 +69,7 @@
 /*  */
 
 .left-site {
-  width: 64.2%;
+  width: 100%;
 }
 
 .lower-portion {
@@ -314,7 +314,7 @@
 /*  */
 
 .right-site {
-  width: 34.6%;
+  width: 100%;
   height: fit-content;
   padding: 2.8vw 0vw;
   background-color: var(--sec-light);

@@ -26,6 +26,14 @@
             background-color: #222;
         }
     }
+    &.rightBehind{
+        .headingLine {
+            &::after {
+                width: 30%;
+                background-color: #fff;
+            }
+        }
+    }
 }
 
 .seller-carousel-portion {
@@ -250,8 +258,6 @@
 
 .sec-7 {
     background-color: var(--blog-sec);
-    margin-top: 2rem;
-    padding-top: 4vw;
 }
 
 .sec-7-content {

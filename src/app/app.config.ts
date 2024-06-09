@@ -8,22 +8,25 @@ import {
 } from '@angular/router';
 
 import {
+  HTTP_INTERCEPTORS,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { StoreModule } from '@ngrx/store';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { ToastrModule } from 'ngx-toastr';
 import {
-  LoaderReducer,
+  RentalReducer,
+  SellReducer,
   popupStateReducer,
   searchStateReducer,
   sideBarReducer,
   userReducer,
 } from './Ngrx/data.reducer';
 import { routes } from './app.routes';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { CacheInterceptor } from './TsExtras/cache.interceptor';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -40,11 +43,17 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true,
+    },
     importProvidersFrom(
       QuicklinkModule,
       StoreModule.forRoot({
         user: userReducer,
-        loader: LoaderReducer,
+        rent:RentalReducer,
+        sell:SellReducer,
         search: searchStateReducer,
         popup: popupStateReducer,
         sideBar: sideBarReducer,

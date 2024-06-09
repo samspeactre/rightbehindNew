@@ -5,11 +5,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { addUserData, toggleLoader } from '../../Ngrx/data.action';
+import { addUserData } from '../../Ngrx/data.action';
 import { HttpService } from '../../Services/http.service';
 import { RegisterPopupComponent } from '../../View/register-popup/register-popup.component';
-import { InputComponent } from '../input/input.component';
 import { HelperService } from '../../services/helper.service';
+import { InputComponent } from '../input/input.component';
 @Component({
   standalone: true,
   imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule],
@@ -43,9 +43,6 @@ export class LoginPopupComponent {
       .loaderPost('Account/login', this.loginForm.value, false)
       .pipe(
         takeUntil(this.destroy$),
-        finalize(() => {
-          this.store.dispatch(toggleLoader({ show: false }));
-        }),
         distinctUntilChanged(
           (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
         )

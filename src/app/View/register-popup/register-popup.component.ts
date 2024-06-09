@@ -1,24 +1,19 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { HttpService } from '../../Services/http.service';
-import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
-import { InputComponent } from '../../SharedComponents/input/input.component';
-import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { addUserData, toggleLoader } from '../../Ngrx/data.action';
 import { Store } from '@ngrx/store';
+import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { addUserData } from '../../Ngrx/data.action';
+import { HttpService } from '../../Services/http.service';
+import { InputComponent } from '../../SharedComponents/input/input.component';
+import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
 
 @Component({
   standalone: true,
@@ -89,9 +84,6 @@ export class RegisterPopupComponent {
       .loaderPost('Account/login', data, false)
       .pipe(
         takeUntil(this.destroy$),
-        finalize(() => {
-          this.store.dispatch(toggleLoader({ show: false }));
-        }),
         distinctUntilChanged(
           (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
         )

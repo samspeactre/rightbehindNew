@@ -1,63 +1,50 @@
-<section>
-    <div class="lg-12">
-        <div class="plus-img">
-            <img src="../../assets/img/popup-plus.webp" alt="">
-        </div>
-        <div class="content">
-            <h1>Add New Property</h1>
-            <div class="btns display content-between">
-                <button mat-stroked-button class="rent-btn" [class.Active]="active == 'rent'" (click)="makeActive('rent')">Rent</button>
-                <button mat-stroked-button class="sell-btn" [class.Active]="active == 'sell'" (click)="makeActive('sell')">Sell</button>
+<div class="container p-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="plus-img">
+                <img src="../../assets/img/popup-plus.webp" alt="">
             </div>
-            <form>
-                <div class="display content-between">
-                    <mat-form-field class="mat-options">
-                        <mat-label>First Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-
-                    <mat-form-field class="mat-options">
-                        <mat-label>Last Name</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-
-                <div class="display content-between">
-                    <mat-form-field class="mat-options">
-                        <mat-label>Property Type</mat-label>
-                        <mat-select [(value)]="selected">
-                            <mat-option>None</mat-option>
-                            <mat-option value="option1">Option 1</mat-option>
-                            <mat-option value="option2">Option 2</mat-option>
-                            <mat-option value="option3">Option 3</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field class="mat-options">
-                        <mat-label>Unit (If Applicable)</mat-label>
-                        <input matInput>
-                    </mat-form-field>
-                </div>
-
-                <mat-form-field class="mat-select">
-                    <mat-label>Email</mat-label>
-                    <input matInput>
-                </mat-form-field>
-
-                <mat-form-field class="mat-select">
-                    <mat-label>Address</mat-label>
-                    <input matInput>
-                </mat-form-field>
-
-                <div class="map">
-                    <img src="../../assets/img/map.webp" alt="">
-                </div>
-
-                
-            </form>
-            <div class="add-property-btn">
-                <button mat-flat-button class="property-btn" (click)="navigateAndClose()">Add Property</button>
+            <h1 class="text-center text-dark">Add New Property</h1>
+            <div class="btns display content-between">
+                <button mat-stroked-button class="rent-btn" [class.Active]="active == 'rent'"
+                    (click)="makeActive('rent')">Rent</button>
+                <button mat-stroked-button class="sell-btn" [class.Active]="active == 'sell'"
+                    (click)="makeActive('sell')">Sell</button>
             </div>
         </div>
     </div>
-</section>
+    <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="firstName" label="First Name"
+                placeholder="Enter your First Name*"></app-input>
+        </div>
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="lastName" label="Last Name"
+                placeholder="Enter your Last Name*"></app-input>
+        </div>
+        <div class="col-lg-6 dCenter">
+            <app-input classes="w-100 mb-1" matType="select" [array]="types" [form]="propertyForm" control="propertyType"
+                label="Last Name" placeholder="Enter your Last Name*"></app-input>
+        </div>
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
+                placeholder="Enter Unit"></app-input>
+        </div>
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" type="email" [form]="propertyForm" control="email" label="Email"
+                placeholder="Enter Your Email Address"></app-input>
+        </div>
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="address" label="Address"
+                placeholder="Enter Your Address"></app-input>
+        </div>
+        <div class="col-lg-12 my-3">
+            <div class="map">
+                <img src="../../assets/img/map.webp" alt="">
+            </div>
+        </div>
+        <div class="dCenter">
+            <button class="btnPrimary">Submit</button>
+        </div>
+    </form>
+</div>

@@ -15,6 +15,7 @@ import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -38,7 +39,7 @@ export class NavbarComponent {
   faTwitter=faTwitter
   faAt=faAt
   screenWidth:number = window.innerWidth
-  constructor(private store: Store, public dialog: MatDialog) {
+  constructor(private store: Store, public dialog: MatDialog, private auth:AuthService) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -80,12 +81,13 @@ export class NavbarComponent {
   openSellPopup(type:string): void {
     let dialogRef = this.dialog.open(RentPopupComponent, {
       height: '95%',
-      width: window.innerWidth > 1024 ? '27%' : '100%',
+      width: window.innerWidth > 1024 ? '33%' : '100%',
       data:type,
     });
   }
   logout(){
     this.store.dispatch(removeUserData());
+    this.auth.logout()
   }
   show(condition:boolean){
     this.sidebar = condition

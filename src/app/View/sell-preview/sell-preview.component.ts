@@ -1,20 +1,17 @@
-import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { Component, OnInit } from '@angular/core';
-import { FooterComponent } from '../../SharedComponents/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
-
-import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { HttpService } from '../../Services/http.service';
-import { Subject, finalize, takeUntil } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { toggleLoader } from '../../Ngrx/data.action';
-import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { faEllipsisVertical, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { CommonModule, Location } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEllipsisVertical, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { HttpService } from '../../Services/http.service';
+import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 
 @Component({
   standalone: true,

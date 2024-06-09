@@ -34,4 +34,34 @@ export class HelperService {
 
     return "Unknown";
   }
+  appendScript(src: string): void {
+    const scriptAvailable = document.querySelector(`script[src="${src}"]`);
+    if (!scriptAvailable) {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = src;
+      document.body.appendChild(script);
+    }
+  }
+  appendLink(href:string) {
+    const linkAvailable = document.querySelector(`link[href="${href}"]`);
+    if (!linkAvailable) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  }
+  removeScript(src: string): void {
+    const script = document.querySelector(`script[src="${src}"]`);
+    if (script) {
+      script.remove();
+    }
+  }
+  removeLink(href:string) {
+    const link = document.querySelector(`link[href="${href}"]`);
+    if (link) {
+      link.remove();
+    }
+  }
 }

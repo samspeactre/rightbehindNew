@@ -10,9 +10,9 @@
         sit amet luctus venenatis,
       </p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <app-input type="email" [form]="loginForm" control="email" label="Email address"
+        <app-input type="email" classes="w-100" [form]="loginForm" control="email" label="Email address"
           placeholder="Enter your email address*"></app-input>
-        <app-input type="password" [form]="loginForm" control="password" label="Password"
+        <app-input type="password" classes="w-100" [form]="loginForm" control="password" label="Password"
           placeholder="Enter your password*"></app-input>
   
         <div class="dCeneter justify-content-between check-pass">

@@ -5,7 +5,7 @@ import {
   on,
 } from '@ngrx/store';
 import * as CryptoJS from 'crypto-js';
-import { addUserData, removeUserData, setPopupIdState, setSearchState, toggleLoader, toggleSideBar, updateUserData } from './data.action';
+import { addRental, addSell, addUserData, removeUserData, setPopupIdState, setSearchState, toggleSideBar, updateUserData } from './data.action';
 
 const secureKey = '99812f7e870613bf1b2b8b5803e5483094900d86f36b0cb46890345f36d65ac0';
 
@@ -48,18 +48,33 @@ export const userReducer = createReducer(
   }),
 );
 
-export interface LoaderState {
-  loader: boolean;
+export interface RentalState {
+  rent: any;
 }
 
-const initialStateLoader: LoaderState = {
-  loader: false,
+const initialStateRental: RentalState = {
+  rent: null,
 };
 
-export const LoaderReducer = createReducer(
-  initialStateLoader,
-  on(toggleLoader, (state, { show }) => {
-    return { ...state, loader: show };
+export const RentalReducer = createReducer(
+  initialStateRental,
+  on(addRental, (state, { data }) => {
+    return { ...state, rent: data };
+  }),
+);
+
+export interface SellState {
+  rent: any;
+}
+
+const initialStateSell: SellState = {
+  rent: null,
+};
+
+export const SellReducer = createReducer(
+  initialStateSell,
+  on(addSell, (state, { data }) => {
+    return { ...state, rent: data };
   }),
 );
 
@@ -122,11 +137,19 @@ export const selectUser = createSelector(
 );
 
 // Selectors for loader state
-export const selectLoaderState = createFeatureSelector<LoaderState>('loader');
-export const selectLoader = createSelector(
-  selectLoaderState,
-  (state) => state.loader,
+export const selectRentalState = createFeatureSelector<RentalState>('rent');
+export const selectRental = createSelector(
+  selectRentalState,
+  (state) => state.rent,
 );
+
+// Selectors for loader state
+export const selectSellState = createFeatureSelector<SellState>('sell');
+export const selectSell = createSelector(
+  selectSellState,
+  (state) => state.rent,
+);
+
 
 // Selectors for search state
 export const selectSearchState = createFeatureSelector<SearchState>('search');

@@ -1,7 +1,8 @@
 .sec-2 {
     background-color: var(--sec-light);
 }
-.bigFont{
+
+.bigFont {
     font-size: 4rem;
     font-weight: bold;
 }
@@ -275,15 +276,18 @@
 }
 
 @media only screen and (max-width:1024px) {
-    .bigFont{
+    .bigFont {
         font-size: 1.5rem;
     }
+
     .counter-name {
         font-size: 8px;
     }
-    .headingContainer .headingLine::after{
+
+    .headingContainer .headingLine::after {
         content: unset;
     }
+
     .register-bg {
         .position-relative {
             z-index: 1;
@@ -298,7 +302,12 @@
             width: 100%;
         }
     }
-    p{
+
+    p {
         font-size: 14px;
+    }
+
+    .headingContainer {
+        width: fit-content;
     }
 }

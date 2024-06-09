@@ -214,14 +214,14 @@ body {
   background: #f0ede8;
 }
 .cstmContainer{
-  max-width: 1660px;
   width: 93vw;
+  max-width: 1660px;
   margin: 0 auto;
 }
+.container-fluid{
+  max-width: 1660px;
+}
 @media only screen and (max-width:1024px) {
-  .container-fluid{
-    max-width: 1660px;
-  }
   .cstmContainer{
     max-width: 1660px;
     width: 95vw;

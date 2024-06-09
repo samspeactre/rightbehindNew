@@ -44,7 +44,6 @@ export class PopupComponent implements OnInit {
     private http: HttpService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data?.card);
     this.propertyData = data?.card
   }
   ngOnDestroy() {

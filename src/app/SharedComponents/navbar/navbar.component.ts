@@ -72,8 +72,7 @@ export class NavbarComponent {
   openPopup(): void {
     let dialogRef = this.dialog.open(LoginPopupComponent, {
       height: '80%',
-      width: window.innerWidth > 1024 ? '27%' : '100%',
-      closeOnNavigation:true
+      width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }
 
@@ -81,7 +80,7 @@ export class NavbarComponent {
     let dialogRef = this.dialog.open(RentPopupComponent, {
       height: '95%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
-      data:type
+      data:type,
     });
   }
   logout(){

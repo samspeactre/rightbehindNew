@@ -10,10 +10,15 @@ export const updateUserData = createAction(
 );
 export const removeUserData = createAction('[User] Remove User Data');
 
-export const toggleLoader = createAction(
-  '[Loader] Toggle Loader',
-  props<{ show: boolean }>(),
-);export const collectionSearching = createAction(
+export const addRental = createAction(
+  '[Rental] Add Rental',
+  props<{ data: any }>(),
+);
+export const addSell = createAction(
+  '[Sell] Add Sell',
+  props<{ data: any }>(),
+);
+export const collectionSearching = createAction(
   '[Searching] Collection Searching',
   props<{ searching: boolean }>(),
 );

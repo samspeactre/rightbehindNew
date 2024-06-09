@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { selectLoader } from '../../Ngrx/data.reducer';
-import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Subject } from 'rxjs';
 declare var $: any;
 @Component({
   selector: 'app-input',
@@ -43,20 +42,8 @@ export class InputComponent {
   error: boolean = false;
   value!: any;
   errorName!: any;
-  loader$ = this.store.select(selectLoader);
-  loader: boolean = false;
   private destroy$ = new Subject<void>();
   constructor(private store: Store) {
-    this.loader$
-      .pipe(
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        ),
-        takeUntil(this.destroy$)
-      )
-      .subscribe((loader) => {
-        this.loader = loader;
-      });
   }
   ngOnInit(): void {
     setTimeout(() => {
@@ -74,7 +61,6 @@ export class InputComponent {
     this.error = false;
     this.value = null;
     this.errorName = null;
-    this.loader = false;
   }
   write(event: Event): void {
     const input = event.target as HTMLInputElement;

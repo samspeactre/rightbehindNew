@@ -13,6 +13,7 @@ import { LoadingComponent } from './SharedComponents/loaders/loading/loading.com
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 import { LoaderService } from './services/loader.service';
 import { selectSideBar } from './Ngrx/data.reducer';
+import { HelperService } from './services/helper.service';
 declare var WOW: any;
 export const mapSrc =
   'https://maps.googleapis.com/maps/api/js?key=AIzaSyCm_NXIOGvZ0nlQ9EBeotrO1ESY3hji6No';
@@ -34,7 +35,7 @@ export class AppComponent {
     private cd: ChangeDetectorRef,
     private actiavtedRoute: ActivatedRoute,
     private router: Router,
-    private loaderService: LoaderService
+    private helper: HelperService
   ) {
     this.router.events
       .pipe(
@@ -108,8 +109,17 @@ export class AppComponent {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    this.helper.removeLink("https://fonts.googleapis.com/icon?family=Material+Icons");
+    this.helper.removeLink("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+    this.helper.removeLink("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
   }
   ngAfterViewInit(): void {
     new WOW().init();
+    setTimeout(() => {
+      this.helper.appendLink("https://fonts.googleapis.com/icon?family=Material+Icons");
+      this.helper.appendLink("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
+      this.helper.appendLink("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+    },500);
   }
 }

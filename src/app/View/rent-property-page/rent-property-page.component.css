@@ -12,13 +12,13 @@ h1 {
 }
 h2 {
     font-family: "bold";
-    font-size: 1.58vw;
+    font-size: 24px;
     color: var(--black);
 }
 
 h3 {
     font-family: "med";
-    font-size: 1.36vw;
+    font-size: 20px;
     color: var(--black);
     letter-spacing: 0.03vw;
     margin-bottom: 1.6vw;
@@ -32,15 +32,9 @@ h3:hover {
 
 p {
     font-family: "reg";
-    font-size: 1.1vw;
+    font-size: 16px;
     color: var(--head-black);
     text-align: center;
-    letter-spacing: 0.03vw;
-    line-height: 1.6vw;
-}
-
-.container-site {
-    padding: 0vw 3.55vw;
 }
 
 .content {
@@ -82,21 +76,21 @@ a {
 }
 
 .left-portion {
-    border-radius: 1vw;
+    border-radius: 14px;
     background-color: var(--sec-light);
     padding: 1.2vw 1.3vw 0vw 1.5vw;
-    width: 24.5%;
+    width: 100%;
     position: sticky;
     top: 0;
     left: 0;
     overflow: hidden;
-    height: 48vw;
+    height: fit-content;
     transition: top 0.3s;
 }
 
 .pro-details button {
     font-family: "med";
-    font-size: 1.36vw;
+    font-size: 16px;
     color: var(--black);
     letter-spacing: 0.03vw;
     margin-bottom: 1.3vw;
@@ -107,7 +101,6 @@ a {
 
 .pro-details button:hover {
     width: 100%;
-    font-size: 1.36vw;
     font-family: "med";
     color: var(--white);
     background-color: var(--royal-blue);
@@ -118,7 +111,7 @@ a {
 }
 
 .right-portion {
-    width: 74.3%;
+    width: 100%;
 }
 
 .prop {
@@ -130,11 +123,9 @@ a {
 
 .right-portion-para {
     font-family: "reg";
-    font-size: 1.1vw;
+    font-size: 18px;
     color: var(--carousel-add);
     text-align: start;
-    letter-spacing: 0.03vw;
-    line-height: 1.3vw;
     width: 58%;
     margin-top: 1.4vw;
 }
@@ -144,8 +135,6 @@ a {
     font-size: 1.1vw;
     color: var(--carousel-add);
     text-align: start;
-    letter-spacing: 0.03vw;
-    line-height: 1.3vw;
     width: 58%;
 }
 
@@ -411,7 +400,7 @@ a {
 }
 
 :host ::ng-deep .category-head {
-    font-size: 1.1vw !important;
+    font-size: 18px !important;
     font-family: 'med';
     color: var(--black);
 }
@@ -420,11 +409,9 @@ a {
 .utilities-portion-para,
 .rent-special-para {
     font-family: "reg";
-    font-size: 1.1vw;
+    font-size: 16px;
     color: var(--carousel-add);
     text-align: start;
-    letter-spacing: 0.03vw;
-    line-height: 1.3vw;
     width: 58%;
 }
 
@@ -490,7 +477,7 @@ a {
 }
 
 .terms-text {
-    font-size: 1.2vw;
+    font-size: 18px;
     font-family: "reg";
     color: var(--black);
     padding-top: 0.5vw;
@@ -519,4 +506,16 @@ a {
     background-color: var(--red);
     width: 2.5vw;
     height: 2.5vw;
+}
+@media only screen and (max-width: 821px) {
+    .left-portion{
+        width: 60%;
+        margin: 1rem auto;
+    }
+    .right-portion-para{
+        width: 100%;
+    }
+    .left-portion{
+        width: 80%;
+    }
 }

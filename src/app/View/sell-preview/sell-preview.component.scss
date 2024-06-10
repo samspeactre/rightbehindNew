@@ -153,22 +153,17 @@
 .white-box {
   background-color: var(--white);
   padding: 8px 20px;
-  width: 49.25%;
 }
 
 .transparent-box {
   background-color: transparent;
   padding: 8px 20px;
-  width: 49.25%;
+  width: 100%;
 }
 
-.text-info {
-  width: 48%;
-  padding-right: 1rem;
-}
 
 .white-box-text {
-  width: 52%;
+  width: 49%;
 }
 
 .text-info-property {
@@ -433,13 +428,6 @@
   margin-top: 0.5vw;
 }
 
-.white-box-price {
-  width: 100%;
-}
-
-.blue-box-property {
-  padding: 0.5vw 2.2vw 0vw;
-}
 @media only screen and (max-width:1024px) {
   .headingContainer {
     width: fit-content;
@@ -465,9 +453,5 @@
 
   .head {
     font-size: 20px;
-  }
-
-  .white-box {
-    width: 100%;
   }
 }

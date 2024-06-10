@@ -208,7 +208,10 @@
               <div class="checkbox-container row">
                 @for (utility of utilities; track utility) {
                 <div class="col-lg-4">
-                  <mat-checkbox>{{ utility }}</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">{{ utility }}</label>
+                  </div>
                 </div>
                 }
               </div>
@@ -253,13 +256,22 @@
                 </mat-form-field>
                 <div class="col-lg-12 special-tags">Special Offers:</div>
                 <div class="col-lg-4">
-                  <mat-checkbox>1 Month Free</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">1 Month Free</label>
+                  </div>
                 </div>
                 <div class="col-lg-4">
-                  <mat-checkbox>50% Off</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">50% Off</label>
+                  </div>
                 </div>
                 <div class="col-lg-4">
-                  <mat-checkbox>Free Movein</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">Free Movein</label>
+                  </div>
                 </div>
               </div>
             </form>
@@ -270,10 +282,16 @@
                 <h2>Pet Policy</h2>
               </div>
               <div class="col-lg-4">
-                <mat-checkbox>Cats</mat-checkbox>
+                <div class="check-box d-flex align-items-center">
+                  <input type="checkbox" name="" id="" />
+                  <label for="">Cats</label>
+                </div>
               </div>
               <div class="col-lg-4">
-                <mat-checkbox>Dogs</mat-checkbox>
+                <div class="check-box d-flex align-items-center">
+                  <input type="checkbox" name="" id="" />
+                  <label for="">Dogs</label>
+                </div>
               </div>
             </form>
           </div>
@@ -283,13 +301,22 @@
                 <h2>Laundry</h2>
               </div>
               <div class="col-lg-4">
-                <mat-checkbox>Washer/Dryer-In Unit</mat-checkbox>
+                <div class="check-box d-flex align-items-center">
+                  <input type="checkbox" name="" id="" />
+                  <label for="">Washer/Dryer-In Unit</label>
+                </div>
               </div>
               <div class="col-lg-4">
-                <mat-checkbox>Washer/Dryer Hookup</mat-checkbox>
+                <div class="check-box d-flex align-items-center">
+                  <input type="checkbox" name="" id="" />
+                  <label for="">Washer/Dryer Hookup</label>
+                </div>
               </div>
               <div class="col-lg-4">
-                <mat-checkbox>Laundry Faclities</mat-checkbox>
+                <div class="check-box d-flex align-items-center">
+                  <input type="checkbox" name="" id="" />
+                  <label for="">Laundry Faclities</label>
+                </div>
               </div>
             </form>
           </div>
@@ -394,13 +421,22 @@
               <div class="contact-role">Role</div>
               <div class="row">
                 <div class="col-lg-4">
-                  <mat-checkbox>Owner</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">Owner</label>
+                  </div>
                 </div>
                 <div class="col-lg-4">
-                  <mat-checkbox>Broker</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">Broker</label>
+                  </div>
                 </div>
                 <div class="col-lg-4">
-                  <mat-checkbox>Property Manager</mat-checkbox>
+                  <div class="check-box d-flex align-items-center">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">Property Manager</label>
+                  </div>
                 </div>
                 <mat-form-field class="col-lg-4 mt-3">
                   <mat-label>Email</mat-label>
@@ -529,7 +565,8 @@
                           <div class="dCenter justify-content-between">
                             <div class="upload-btn">
                               <button
-                                mat-raised-button class="mt-2"
+                                mat-raised-button
+                                class="mt-2"
                                 (click)="triggerFileInput(index)"
                               >
                                 <mat-icon>cloud_upload</mat-icon>
@@ -573,10 +610,10 @@
 
             <form action="" class="prop-form">
               <div class="row">
-              <mat-form-field class="col-lg-12">
-                <mat-label>Address</mat-label>
-                <input matInput />
-              </mat-form-field>
+                <mat-form-field class="col-lg-12">
+                  <mat-label>Address</mat-label>
+                  <input matInput />
+                </mat-form-field>
                 <mat-form-field class="col-lg-6">
                   <mat-label>Country/State</mat-label>
                   <mat-select [(value)]="selected">
@@ -603,19 +640,19 @@
                     <img src="../../assets/img/add-property-map.webp" alt="" />
                   </div>
                 </div>
-            </div>
+              </div>
             </form>
           </div>
           <div class="prop">
-            <div class="dCenter align-items-start">
-              <mat-checkbox> </mat-checkbox>
-              <span class="terms-text"
+            <div class="check-box d-flex align-items-Start">
+              <input type="checkbox" name="" id="" />
+              <label for=""> <span class="terms-text"
                 >By checking this box I agree as follows: I agree that I will
                 provide accurate and
                 <a href="">non discriminatory</a> information and I will comply
                 with the Apartments.com <a href="">Terms and Conditions</a> and
                 the <a href="">Add a Property Terms of Service.</a></span
-              >
+              ></label>
             </div>
           </div>
           <div class="submit-btns display">

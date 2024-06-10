@@ -96,7 +96,6 @@ export class RentPropertyPageComponent implements OnInit {
       if(!response?.data){
         this.location.back()
       }
-      console.log();
     })
     // Initialize start date to today
     this.startDate = new Date();
@@ -179,7 +178,6 @@ export class RentPropertyPageComponent implements OnInit {
           controls.patchValue({
             img: this.imageSrc,
           });
-          console.log(this.floorPlansArray);
         }
       };
       reader.readAsDataURL(file);
@@ -193,8 +191,6 @@ export class RentPropertyPageComponent implements OnInit {
 
   // Handle third file selection
   onThirdFileSelected(event: any) {
-    console.log('Third file input selected');
-    console.log('Event: ', event);
     this.handleFileSelection(event, this.thirdSelectedFiles);
   }
 

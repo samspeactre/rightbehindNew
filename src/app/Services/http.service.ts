@@ -58,8 +58,6 @@ export class HttpService {
     if (loader) {
       LoaderService.loader.next(true);
     }
-    console.log(data,'value2');
-    
     return this.http
       .post(
         this.url + link,

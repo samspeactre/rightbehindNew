@@ -95,8 +95,6 @@ export class AppComponent {
   }
   async observe() {
     LoaderService.loader.subscribe((res: any) => {
-      console.log(res);
-
       this.loader = res;
       if (this.loader == true) {
         document.body.classList.add('hideScroll');

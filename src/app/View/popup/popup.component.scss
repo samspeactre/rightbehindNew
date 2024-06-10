@@ -78,36 +78,11 @@ p{
 
 
 .slider {
-    overflow: hidden;
-    white-space: nowrap;
     width: 100%;
-    position: relative;
   }
-  
-  .slider-track {
-    display: flex;
-    width: max-content;
-    animation: slide 20s linear infinite;
-  }
-  
-  @keyframes slide {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
   .heading {
-    font-size: 1.05vw;
-    font-family: 'reg';
     color: var(--black);
-    display: inline-block;
-    padding: 0vw 0.5vw;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.3s, color 0.3s, font-family 0.3s;
+    text-transform: capitalize;
   }
   
   .heading:hover {

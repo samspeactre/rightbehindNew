@@ -28,7 +28,14 @@
     textarea {
       width: 97%;
     }
-
+    fa-icon {
+      color: #5581f2;
+      position: absolute;
+      bottom: 0;
+      transform: translateY(-50%);
+      transition: 0.5s all ease-in-out;
+      z-index: 12;
+    }
     label {
       position: absolute;
       top: 50%;
@@ -44,7 +51,7 @@
     }
 
     .eye {
-      right: 35px;
+      right: 10px;
     }
 
     input::placeholder,

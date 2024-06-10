@@ -8,6 +8,7 @@ import { AuthService } from '../../TsExtras/auth.service';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
+import { types } from '../../services/helper.service';
 
 @Component({
   standalone: true,
@@ -20,13 +21,7 @@ export class RentPopupComponent {
   selected: any;
   active: string = 'rent';
   user$ = this.store.select(selectUser);
-  types = [
-    { name: 'Apartments', value: 1 },
-    { name: 'Houses', value: 2 },
-    { name: 'Condos', value: 3 },
-    { name: 'Townhomes', value: 4 },
-    { name: 'Rooms', value: 5 }
-  ];
+  types = types;
   propertyForm:any = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],

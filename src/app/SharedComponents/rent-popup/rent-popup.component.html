@@ -15,28 +15,28 @@
     </div>
     <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="firstName" label="First Name"
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="firstName" label="First Name"
                 placeholder="Enter your First Name*"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="lastName" label="Last Name"
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="lastName" label="Last Name"
                 placeholder="Enter your Last Name*"></app-input>
         </div>
-        <div class="col-lg-6 dCenter">
+        <div class="col-lg-6 dCenter overflow-hidden">
             <app-input classes="w-100 mb-1" matType="select" [array]="types" [form]="propertyForm"
-                control="propertyType" label="Last Name" placeholder="Enter your Last Name*"></app-input>
+                control="propertyType" label="Property Type"></app-input>
         </div>
         <div class="col-lg-6">
             <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="unit"
                 label="Unit (If Applicable)" placeholder="Enter Unit"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" type="email" [form]="propertyForm" control="email" label="Email"
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="email" [form]="propertyForm" control="email" label="Email"
                 placeholder="Enter Your Email Address"></app-input>
         </div>
         @if(!user){
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" type="password" [form]="propertyForm" control="password" label="Password"
+            <app-input classes="w-100 mb-1" type="password" [password]="true" [form]="propertyForm" control="password" label="Password"
                 placeholder="Enter your Password*"></app-input>
         </div>
         }

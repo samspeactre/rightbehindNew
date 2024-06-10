@@ -19,7 +19,7 @@ import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component'
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 interface ImageFile {
   name: string;
@@ -91,14 +91,13 @@ interface FormSection {
   ],
 })
 export class SellAddPropertyComponent implements OnInit {
+  routeData:any;
   selectedDate!: Date;
   imageSrc: string | ArrayBuffer | null = null;
   sections: any;
   private readonly MAX_AMENITIES = 24; // Maximum number of amenities to display
-
   startDate: Date;
   endDate: Date = new Date(); // Initialize with today's date
-
   selected = 'none';
   selectedFiles: ImageFile[] = [];
   additionalSelectedFiles: ImageFile[] = [];
@@ -106,7 +105,10 @@ export class SellAddPropertyComponent implements OnInit {
   thirdFileInput: HTMLInputElement | undefined;
   formGroup!: FormGroup;
   floorPlansArray!: FormArray;
-  constructor() {
+  constructor(private activatedRoute:ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((param:any)=>{
+      this.routeData = param?.data
+    })
     // Initialize start date to today
     this.startDate = new Date();
   }
@@ -188,7 +190,6 @@ export class SellAddPropertyComponent implements OnInit {
           controls.patchValue({
             img: this.imageSrc,
           });
-          console.log(this.floorPlansArray);
         }
       };
       reader.readAsDataURL(file);
@@ -202,8 +203,6 @@ export class SellAddPropertyComponent implements OnInit {
 
   // Handle third file selection
   onThirdFileSelected(event: any) {
-    console.log('Third file input selected');
-    console.log('Event: ', event);
     this.handleFileSelection(event, this.thirdSelectedFiles);
   }
 

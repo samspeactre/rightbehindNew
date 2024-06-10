@@ -132,12 +132,12 @@
           <div class="col-lg-12">
             <h3 class="small-head prop-info-padding">Home Facts</h3>
           </div>
-          @if(propertyDetails?.homeType){
+          @if(propertyDetails?.propertyType){
           <div class="col-lg-12">
             <div class="white-box dCenter justify-content-between">
               <div class="white-box-text text-info">Home Type</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeType }}
+                {{ helper.returnType(propertyDetails?.propertyType) }}
               </div>
             </div>
           </div>
@@ -355,7 +355,7 @@
             Send an email
           </button>
         </div>
-        <span class="my-3">Or</span>
+        <p class="my-2">Or</p>
         <div class="dCenter">
           <button class="btnPrimary rounded-3 py-2">
             Request a tour

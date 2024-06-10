@@ -44,7 +44,11 @@
         }
       }
       @if (password) {
-        <mat-icon class="circle eye cursor community-carousel-icon" (click)="type = type === 'text' ? 'password' : 'text'"> remove_red_eye</mat-icon>
+        <fa-icon
+          [icon]="type == 'password' ? faEye : faEyeSlash"
+          class="circle eye cursor"
+          (click)="type = type === 'text' ? 'password' : 'text'"
+        ></fa-icon>
       }
     </div>
   }

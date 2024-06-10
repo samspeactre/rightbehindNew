@@ -104,6 +104,7 @@ export class ListingPageComponent implements OnInit {
         this.search ? searchUrl : withoutSearchUrl,
         false,
         true,
+        false,
         false
       )
       .pipe(

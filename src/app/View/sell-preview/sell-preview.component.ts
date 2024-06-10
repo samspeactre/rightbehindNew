@@ -13,6 +13,7 @@ import { Subject, finalize, takeUntil } from 'rxjs';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
+import { HelperService } from '../../services/helper.service';
 
 @Component({
   standalone: true,
@@ -50,7 +51,7 @@ export class SellPreviewComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private activatedRoute:ActivatedRoute,private http:HttpService, private store:Store, private location:Location){
+  constructor(private activatedRoute:ActivatedRoute,private http:HttpService, private store:Store, private location:Location, public helper:HelperService){
     this.activatedRoute.queryParams.subscribe((param:any)=>{
       if(!param?.type||!param?.id){
         this.location.back()
@@ -77,7 +78,8 @@ export class SellPreviewComponent implements OnInit {
     )
     .subscribe(
       (response) => {
-        this.propertyDetails = response?.model
+        this.propertyDetails = response?.model;
+        console.log(this.propertyDetails,'hello');
       },err=>{
         this.location.back()
       }

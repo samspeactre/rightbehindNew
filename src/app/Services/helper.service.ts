@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-
+export const types = [
+  { name: 'Apartments', value: 1 },
+  { name: 'Houses', value: 2 },
+  { name: 'Condos', value: 3 },
+  { name: 'Townhomes', value: 4 },
+  { name: 'Rooms', value: 5 }
+];
 @Injectable({
   providedIn: 'root'
 })
@@ -43,7 +49,7 @@ export class HelperService {
       document.body.appendChild(script);
     }
   }
-  appendLink(href:string) {
+  appendLink(href: string) {
     const linkAvailable = document.querySelector(`link[href="${href}"]`);
     if (!linkAvailable) {
       const link = document.createElement('link');
@@ -58,10 +64,14 @@ export class HelperService {
       script.remove();
     }
   }
-  removeLink(href:string) {
+  removeLink(href: string) {
     const link = document.querySelector(`link[href="${href}"]`);
     if (link) {
       link.remove();
     }
+  }
+  returnType(id: number) {
+    const type = types.find((type: any) => type?.value == id)
+    return type?.name
   }
 }

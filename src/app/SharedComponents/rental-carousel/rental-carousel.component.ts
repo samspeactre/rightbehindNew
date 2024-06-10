@@ -59,10 +59,7 @@ export class RentalCarouselComponent implements OnInit {
     private store: Store
   ) { }
 
-  ngOnInit(): void {
-    console.log(this.type);
-
-  }
+  ngOnInit(): void {}
   openPopup(card: any): void {
     let dialogRef = this.dialog.open(PopupComponent, {
       height: '650px',

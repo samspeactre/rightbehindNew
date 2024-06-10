@@ -8,6 +8,8 @@ import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLabel, MatOption, MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 declare var $: any;
 @Component({
   selector: 'app-input',
@@ -20,6 +22,7 @@ declare var $: any;
     MatOption, MatSelect,
     MatLabel,
     MatFormFieldModule,
+    FontAwesomeModule
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
@@ -41,6 +44,8 @@ export class InputComponent {
   @Input() NumbersOnly: boolean = false;
   @Input() limit!: number;
   @Input() array!: any;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
   isFocused: boolean = false;
   error: boolean = false;
   value!: any;

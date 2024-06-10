@@ -4,151 +4,144 @@
       <div class="col-lg-6">
         <div class="carousel-img content-between">
           @if(propertyData?.propertyImages?.length){
-            @for (item of propertyData?.propertyImages; let i = $index; track item) {
-            <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'" alt="propertyimages"
-              [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half',i > 0 && i % 2 === 1 ? 'ms-2' : '']" />
-            }
+          @for (item of propertyData?.propertyImages; let i = $index; track item) {
+          <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'" alt="propertyimages"
+            [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half',i > 0 && i % 2 === 1 ? 'ms-2' : '']" />
+          }
           }
           @else{
-            <img src="https://homes.madeeasy.app/img/no-propertyfound.webp" alt="propertyimages" class="carousel-img-full mt-3" />
+          <img src="https://homes.madeeasy.app/img/no-propertyfound.webp" alt="propertyimages"
+            class="carousel-img-full mt-3" />
           }
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="first-box">
-          <div class="property-id">Propert ID:{{ propertyData.id }}</div>
-          <h1>{{ propertyData.title }}</h1>
-          <div class="address">
-            {{ propertyData?.street + ", " + propertyData?.city }}
-          </div>
-          <div class="row">
-            <div class="col-lg-8 d-flex">
-              <div class="prop-detail-img display">
+        <div class="first-box p-3">
+          <p class="reg text-dark mb-0 smallFont">Propert ID:{{ propertyData.id }}</p>
+          <h1 class="bold text-dark">{{ propertyData.title }}</h1>
+          <p class="text-dark">{{ propertyData?.description }}</p>
+          <p class="address mb-3">{{ propertyData?.street + ", " + propertyData?.city }}</p>
+          <div class="row align-items-center">
+            <div class="col-lg-8 d-flex gap-3">
+              <div class="prop-detail-img dCenter gap-2">
                 <img src="../../assets/img/bed.webp" alt="" />
                 <div class="prop-detail-text">
                   {{ propertyData?.noOfBed }}
                 </div>
               </div>
-              <div class="prop-detail-img display">
+              <div class="prop-detail-img dCenter gap-2">
                 <img src="../../assets/img/bath.webp" alt="" />
                 <div class="prop-detail-text">
                   {{ propertyData?.noOfBath }}
                 </div>
               </div>
-              <div class="prop-detail-img display">
+              <div class="prop-detail-img dCenter gap-2">
                 <img src="../../assets/img/sq.ft.webp" alt="" />
                 <div class="prop-detail-text">
                   {{ propertyData?.area }}Sq.Ft
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="prop-detail-icon dCenter justify-content-end">
-                <button class="dCenter optionBtn me-2">
-                  <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
-                </button>
-                <button class="dCenter optionBtn me-2">
-                  <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
-                </button>
-                <button class="dCenter optionBtn">
-                  <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
-                </button>
-              </div>
+            <div class="col-lg-4 d-flex gap-3">
+              <button class="dCenter optionBtn ms-auto">
+                <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
+              </button>
+              <button class="dCenter optionBtn">
+                <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
+              </button>
+              <button class="dCenter optionBtn">
+                <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
+              </button>
             </div>
-            <div class="col-lg-3 mt-3">
-              <h2>{{ propertyData?.price | currency : "USD" }}</h2>
+            <div class="col-lg-3 my-3">
+              <h2 class="mb-0">{{ propertyData?.price | currency : "USD" }}</h2>
             </div>
-            <div class="col-lg-9 mt-3 dCenter justify-content-end">
-              <button class="btnPrimary me-3" (click)="navigateAndClose()">Open a new tab</button>
+            <div class="col-lg-9 my-3 dCenter justify-content-end gap-3">
+              <button class="btnPrimary" (click)="navigateAndClose()">Open a new tab</button>
               <button class="btnBlackNWhite">Request a tour</button>
             </div>
           </div>
         </div>
-
-        <div class="slider" (mouseover)="stopAutoPlay()" (mouseleave)="startAutoPlay()">
-          <div class="slider-track" #sliderTrack>
-            @for (heading of headings; track heading; let i = $index) {
-            <h3 class="heading" (click)="onHeadingClick(heading.id)">
-              {{ heading.title }}
-            </h3>
-            }
-            <!-- Duplicate the headings for smooth infinite scroll -->
-            @for (heading of headings; track heading) {
-            <h3 class="heading" (click)="onHeadingClick(heading.id)">
-              {{ heading.title }}
-            </h3>
-            }
+        <div class="py-3">
+          <div class="slider" (mouseover)="stopAutoPlay()" (mouseleave)="startAutoPlay()">
+            <div class="slider-track" #sliderTrack>
+              @for (heading of headings; track heading; let i = $index) {
+              <h3 class="heading" (click)="onHeadingClick(heading.id)">
+                {{ heading.title }}
+              </h3>
+              }
+              <!-- Duplicate the headings for smooth infinite scroll -->
+              @for (heading of headings; track heading) {
+              <h3 class="heading" (click)="onHeadingClick(heading.id)">
+                {{ heading.title }}
+              </h3>
+              }
+            </div>
           </div>
         </div>
-
-        <!-- Sections for demonstration -->
-        <div id="Prop-info" class="Prop-info">
-          <h3 class="prop-info-padding">Property Information</h3>
-          <div class="display content-between">
-            <div class="white-box display">
-              <div class="white-box-text text-info">Type:</div>
-              <div class="white-box-text">{{ propertyData?.type }}</div>
+        <div id="Prop-info" class="Prop-info p-3">
+          <h3 class="py-3">Property Information</h3>
+          <div class="dCenter justify-content-between">
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark reg text-info">Type:</div>
+              <div class="text-dark reg">{{ propertyData?.type }}</div>
             </div>
-            <div class="white-box display">
-              <div class="white-box-text text-info">Area</div>
-              <div class="white-box-text">{{ propertyData?.area }}</div>
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark reg text-info">Area:</div>
+              <div class="text-dark reg">{{ propertyData?.area }} Sqft</div>
             </div>
           </div>
-          <div class="display content-between">
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">Price</div>
-              <div class="white-box-text">
+          <div class="dCenter justify-content-between">
+            <div class="transparent-box d-flex py-2 gap-2">
+              <div class="text-dark reg text-info">Price:</div>
+              <div class="text-dark reg">
                 {{ propertyData?.price | currency : "USD" }}
               </div>
             </div>
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">Purpose</div>
-              <div class="white-box-text">{{ propertyData?.type }}</div>
+            <div class="transparent-box d-flex py-2 gap-2">
+              <div class="text-dark reg text-info">Purpose:</div>
+              <div class="text-dark reg">{{ propertyData?.type }}</div>
             </div>
           </div>
-          <div class="display content-between">
-            <div class="white-box display">
-              <div class="white-box-text text-info">Location</div>
-              <div class="white-box-text">{{ propertyData?.location }}</div>
+          <div class="dCenter justify-content-between">
+            <div class="white-box d-flex py-2 gap-2">
+              <div class="text-dark reg text-info">Location:</div>
+              <div class="text-dark reg">{{ propertyData?.location }}</div>
             </div>
-            <div class="white-box display">
-              <div class="white-box-text text-info">Bedroom(s)</div>
-              <div class="white-box-text">{{ propertyData?.noOfBed }}</div>
+            <div class="white-box d-flex py-2 gap-2">
+              <div class="text-dark reg text-info">Bedroom(s):</div>
+              <div class="text-dark reg">{{ propertyData?.noOfBed }}</div>
             </div>
           </div>
-          <div class="display content-between">
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">Bath(s)</div>
-              <div class="white-box-text">{{ propertyData?.noOfBath }}</div>
+          <div class="dCenter justify-content-between">
+            <div class="transparent-box d-flex py-2 gap-2">
+              <div class="text-dark reg text-info">Bath(s):</div>
+              <div class="text-dark reg">{{ propertyData?.noOfBath }}</div>
             </div>
-            <div class="transparent-box display">
-              <div class="white-box-text text-info">Added</div>
-              <div class="white-box-text">
+            <div class="transparent-box d-flex py-2 gap-2">
+              <div class="text-dark reg text-info">Added:</div>
+              <div class="text-dark reg">
                 {{ propertyData?.createdAt | date : "d MMMM y" }}
               </div>
             </div>
           </div>
-        </div>
-        <div id="prop-deatil" class="prop-deatil">
-          <h3>Property Information</h3>
-          <p>{{ propertyData?.description }}</p>
-        </div>
-        @if(propertyData?.propertyAmenities.length){
-        <div id="Ameneties" class="ameneties">
-          <h3>Ameneties</h3>
-          <div class="facilities">
-            @for (group of propertyData?.propertyAmenities; track group) {
-            <ul class="facility-group">
-              <li class="facility">{{ group?.amenity?.amenityName }}</li>
-            </ul>
-            }
+          @if(propertyData?.propertyAmenities.length){
+          <div id="Ameneties" class="ameneties">
+            <h3>Ameneties</h3>
+            <div class="facilities">
+              @for (group of propertyData?.propertyAmenities; track group) {
+              <ul class="facility-group">
+                <li class="facility mb-3">{{ group?.amenity?.amenityName }}</li>
+              </ul>
+              }
+            </div>
           </div>
-        </div>
-        }
-        <div id="Map" class="map">
-          <h3>View on map</h3>
-          <div class="map-img">
-            <img src="../../assets/img/map.webp" alt="" />
+          }
+          <div id="Map" class="map">
+            <h3>View on map</h3>
+            <div class="map-img">
+              <img src="../../assets/img/map.webp" alt="" />
+            </div>
           </div>
         </div>
       </div>

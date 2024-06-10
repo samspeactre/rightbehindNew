@@ -28,10 +28,6 @@
     max-width: 1660px;
 }
 
-.bigFont {
-    font-size: 4rem;
-}
-
 #toast-container {
     position: fixed !important;
     bottom: 0;
@@ -41,21 +37,11 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.smallFont {
-    font-size: 12px;
-}
 
 @media only screen and (max-width:1024px) {
-    .smallFont {
-        font-size: 10px;
-    }
 
     .cdk-global-overlay-wrapper {
         justify-content: center !important;
-    }
-
-    .bigFont {
-        font-size: 1.5rem;
     }
 
     .cstmContainer {

@@ -1,8 +1,3 @@
-.headingContainer {
-  position: absolute;
-  top: 5px;
-  width: 100%;
-}
 .carousel {
   width: 100%;
 }
@@ -106,8 +101,8 @@
 }
 
 .prop-detail-img img {
-  width: 2.35vw;
-  height: 2.35vw;
+  width: 40px;
+  height: 40px;
 }
 
 .prop-detail-text {
@@ -327,38 +322,10 @@
   line-height: normal;
 }
 
-.btns {
-  margin: 1vw 0vw;
-  text-align: center;
-}
-
 :host ::ng-deep .mat-mdc-outlined-button>.mat-icon {
   font-size: 24px !important;
   width: 2vw;
   height: 2vw;
-}
-
-.btns .call {
-  border-color: var(--mdc-outlined-button-outline-color);
-  background-color: var(--royal-blue);
-  padding: 1.75vw 5.5vw;
-  border-radius: 3vw;
-  color: var(--white);
-  font-size: 16px;
-  font-family: "reg";
-  margin-bottom: 1vw;
-}
-
-.btns .email {
-  border-color: var(--mdc-outlined-button-outline-color);
-  background-color: transparent;
-  border: 0.1vw solid var(--royal-blue);
-  padding: 1.75vw 5.5vw;
-  border-radius: 3vw;
-  color: var(--royal-blue);
-  font-size: 16px;
-  font-family: "bold";
-  letter-spacing: -0.01vw;
 }
 
 .or {
@@ -371,27 +338,6 @@
   font-size: 18px;
   font-family: "reg";
   padding: 0vw 2.5vw;
-}
-
-.or-line {
-  rotate: 90deg;
-  height: 3vw;
-  background: var(--black);
-}
-
-.tour-btn {
-  text-align: center;
-}
-
-.tour-btn button {
-  margin-top: 1vw;
-  color: var(--white);
-  font-size: 16px;
-  font-family: "bold";
-  background-color: var(--royal-blue);
-  padding: 1.75vw 5.5vw;
-  border-radius: 3vw;
-  letter-spacing: -0.01vw;
 }
 
 /*  */
@@ -427,13 +373,6 @@
 .Proplocation {
   margin-top: 0.5vw;
 }
-
-@media only screen and (max-width:1024px) {
-  .headingContainer {
-    width: fit-content;
-    max-width: 80%;
-}
-}
 @media only screen and (max-width: 821px) {
   .left-site {
     width: 100%;
@@ -442,6 +381,10 @@
   .right-site {
     width: 50%;
     margin: 2rem auto;
+  }
+  .prop-detail-img img {
+    width: 25px;
+    height: 25px;
   }
 }
 

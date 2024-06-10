@@ -6,12 +6,13 @@ import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEllipsisVertical, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../Services/http.service';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
@@ -24,6 +25,8 @@ export class SellPreviewComponent implements OnInit {
   faHeart=faHeart;
   faShare=faShareAlt
   faEllipsisVertical=faEllipsisVertical
+  faPhoneAlt=faPhoneAlt
+  faEnvelope=faEnvelope
   type!:number;
   id!:number;
   propertyDetails:any;

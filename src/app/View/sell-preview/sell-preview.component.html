@@ -342,26 +342,24 @@
     </div>
     <div class="col-lg-4 mt-4">
       @for (info of contact; track info) {
-      <div class="right-site">
-        <div class="contact-head">Contact Property</div>
-        <div class="contact-para">{{ info.para }}</div>
-        <div class="btns">
-          <button mat-stroked-button class="display call">
-            <mat-icon>phone_in_talk</mat-icon>
-            123 456 7890
+      <div class="right-site text-center">
+        <h2>Contact Property</h2>
+        <p class="w-75 mx-auto">{{ info.para }}</p>
+        <div class="dCenter flex-wrap gap-1">
+          <button class="btnPrimary rounded-3 py-2">
+            <fa-icon [icon]="faPhoneAlt"></fa-icon>
+            1234456678
           </button>
-          <button mat-stroked-button class="display email">
-            <mat-icon>mail</mat-icon>
+          <button class="btnPrimary rounded-3 py-2">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
             Send an email
           </button>
         </div>
-        <div class="or display">
-          <hr class="or-line" />
-          <span>Or</span>
-          <hr class="or-line" />
-        </div>
-        <div class="tour-btn">
-          <button mat-stroked-button>Request a tour</button>
+        <span class="my-3">Or</span>
+        <div class="dCenter">
+          <button class="btnPrimary rounded-3 py-2">
+            Request a tour
+          </button>
         </div>
       </div>
       }

@@ -15,7 +15,7 @@ import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../TsExtras/auth.service';
 
 @Component({
   standalone: true,

@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { of } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {

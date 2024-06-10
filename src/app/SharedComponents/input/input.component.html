@@ -49,14 +49,16 @@
     </div>
   }
   @else if(matType == 'select') {
-    <mat-form-field class="mat-options">
-      <mat-label>Property Type</mat-label>
-      <mat-select [formControlName]="control">
-          @for (item of array; track $index) {
-          <mat-option [value]="item?.value">{{item?.name}}</mat-option>
-          }
-      </mat-select>
-  </mat-form-field>
+    <div [formGroup]="form">
+      <mat-form-field class="mat-options">
+        <mat-label>Property Type</mat-label>
+        <mat-select [formControlName]="control">
+            @for (item of array; track $index) {
+            <mat-option [value]="item?.value">{{item?.name}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    </div>
   }
   @if (error && errorName && (value != '' || !value)) {
     <small>

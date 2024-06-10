@@ -54,10 +54,12 @@ export class HttpService {
       }),
     };
   }
-  loaderPost(link: string, data: any, token: boolean, clearCache: boolean = false, toaster: boolean = true, loader: boolean = true) {
+  loaderPost(link: string, data: any, token: boolean, toaster: boolean = true, loader: boolean = true) {
     if (loader) {
       LoaderService.loader.next(true);
     }
+    console.log(data,'value2');
+    
     return this.http
       .post(
         this.url + link,
@@ -141,7 +143,7 @@ export class HttpService {
       }),
     );
   }
-  post(link: string, data: any, token: boolean, clearCache: boolean = false, toaster: boolean) {
+  post(link: string, data: any, token: boolean, toaster: boolean) {
     return this.http
       .post(
         this.url + link,

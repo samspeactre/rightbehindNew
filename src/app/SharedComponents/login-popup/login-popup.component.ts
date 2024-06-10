@@ -10,6 +10,7 @@ import { HttpService } from '../../Services/http.service';
 import { RegisterPopupComponent } from '../../View/register-popup/register-popup.component';
 import { HelperService } from '../../services/helper.service';
 import { InputComponent } from '../input/input.component';
+import { AuthService } from '../../TsExtras/auth.service';
 @Component({
   standalone: true,
   imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule],
@@ -24,9 +25,8 @@ export class LoginPopupComponent {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
-    private http: HttpService,
-    private store: Store,
-    private helper:HelperService
+    private helper:HelperService,
+    private auth:AuthService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,18 +39,17 @@ export class LoginPopupComponent {
     this.destroy$.complete();
   }
   onSubmit(): void {
-    this.http
-      .loaderPost('Account/login', this.loginForm.value, false)
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
+    this.auth.login(this.loginForm.value)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
       )
-      .subscribe((response) => {
-        this.store.dispatch(addUserData({user:response?.model}))
-        this.dialogRef.close();
-      });
+    )
+    .subscribe((loginResponse:any)=>{
+      this.auth.handleLoginResponse(loginResponse);
+      this.dialogRef.close();
+    })
   }
   openRegisterPopup(): void {
     this.dialogRef.close();

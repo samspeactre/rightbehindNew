@@ -1,15 +1,21 @@
-.btnWhiteNBlueOutline.active {
-  background-color: #0160c9;
-  color: #fff;
+.btnWhiteNBlueOutline {
+  box-shadow: none;
+  &.active {
+    background-color: #0160c9;
+    color: #fff;
+  }
 }
+
 h1 {
   font-family: "bold";
   color: var(--black);
   text-align: center;
 }
+
 .min75 {
   min-height: 50vh;
 }
+
 h2 {
   font-family: "bold";
   font-size: 24px;
@@ -44,6 +50,7 @@ p {
 a {
   font-family: "reg";
 }
+
 .slash {
   padding: 0vw 0.25vw;
   align-content: center;
@@ -139,6 +146,7 @@ a {
   text-align: start;
   width: 58%;
 }
+
 .prop-form {
   width: 100%;
   margin-top: 1.5vw;
@@ -153,10 +161,7 @@ a {
   display: none;
 }
 
-:host
-  ::ng-deep
-  .mat-mdc-form-field:not(.mat-form-field-disabled)
-  .mat-mdc-floating-label.mdc-floating-label {
+:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
   cursor: inherit;
   font-size: 15px;
   font-family: "reg";
@@ -165,19 +170,13 @@ a {
   color: var(--property-text);
 }
 
-:host
-  ::ng-deep
-  .mat-options
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
 }
 
-:host
-  ::ng-deep
-  .mat-options-3
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options-3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
@@ -187,13 +186,7 @@ a {
   margin-top: 0.5vw;
 }
 
-:host
-  ::ng-deep
-  .mdc-checkbox
-  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
-    [data-indeterminate="true"]
-  )
-  ~ .mdc-checkbox__background {
+:host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
   background-color: var(--sec-light) !important;
   border: 0 !important;
   padding: 0;
@@ -208,12 +201,14 @@ a {
   color: var(--black);
   font-weight: 600;
 }
+
 .check-box input {
   margin-right: 10px;
   width: 20px;
   height: 20px;
   border: none;
 }
+
 .check-box {
   margin-top: 10px;
 }
@@ -292,10 +287,10 @@ a {
   background-color: var(--royal-blue);
 }
 
-:host ::ng-deep .mat-mdc-button > .mat-icon,
-.mat-mdc-unelevated-button > .mat-icon,
-.mat-mdc-raised-button > .mat-icon,
-.mat-mdc-outlined-button > .mat-icon {
+:host ::ng-deep .mat-mdc-button>.mat-icon,
+.mat-mdc-unelevated-button>.mat-icon,
+.mat-mdc-raised-button>.mat-icon,
+.mat-mdc-outlined-button>.mat-icon {
   font-size: 22px;
   height: 24px;
   width: 24px;
@@ -321,19 +316,13 @@ a {
   font-size: 28px;
 }
 
-:host
-  ::ng-deep
-  .mat-options-social
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options-social .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
 }
 
-:host
-  ::ng-deep
-  .mat-options-link
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options-link .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
@@ -407,10 +396,7 @@ a {
   display: block;
 }
 
-:host
-  ::ng-deep
-  .category-select
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .category-select .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   margin-top: 0.5vw;
   background-color: transparent;
 }
@@ -523,30 +509,37 @@ a {
   width: 2.5vw;
   height: 2.5vw;
 }
+
 @media only screen and (max-width: 821px) {
   .left-portion {
     width: 60%;
     margin: 1rem auto;
   }
+
   .right-portion-para {
     width: 100%;
   }
+
   .left-portion {
     width: 80%;
   }
+
   h2 {
     font-size: 18px;
   }
 }
+
 @media only screen and (max-width: 540px) {
   .check-box label {
     font-size: 14px;
     font-weight: 500;
   }
+
   .check-box input {
     width: 16px;
     height: 16px;
   }
+
   .terms-text {
     font-size: 12px;
   }

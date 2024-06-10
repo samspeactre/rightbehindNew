@@ -10,9 +10,9 @@ import { faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesom
 import { Store } from '@ngrx/store';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Subject, finalize, takeUntil } from 'rxjs';
-import { HttpService } from '../../Services/http.service';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   standalone: true,

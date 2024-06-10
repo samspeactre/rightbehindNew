@@ -14,6 +14,7 @@ import { addUserData } from '../../Ngrx/data.action';
 import { HttpService } from '../../Services/http.service';
 import { InputComponent } from '../../SharedComponents/input/input.component';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
+import { AuthService } from '../../TsExtras/auth.service';
 
 @Component({
   standalone: true,
@@ -34,8 +35,7 @@ export class RegisterPopupComponent {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
-    private http: HttpService,
-    private store: Store
+    private authService: AuthService
   ) {
     this.registerForm = this.fb.group({
       userAccountTypeId: [2],
@@ -52,19 +52,30 @@ export class RegisterPopupComponent {
     this.destroy$.complete();
   }
   onSubmit(): void {
-    this.http
-      .loaderPost('Account/signup', this.registerForm.value, false)
+    this.authService.register(this.registerForm.value)
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(
           (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
         )
       )
-      .subscribe((response) => {
-        this.login()
+      .subscribe((response: any) => {
+        const data ={
+          email:this.registerForm.controls['email'].value,
+          password:this.registerForm.controls['password'].value,
+        }
+        this.authService.login(data)
+          .pipe(
+            takeUntil(this.destroy$),
+            distinctUntilChanged(
+              (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+            )
+          ).subscribe((loginResponse) => {
+            this.authService.handleLoginResponse(loginResponse);
+            this.dialogRef.close();
+          });
       });
   }
-
   openLoginPopup(): void {
     // Close the current dialog
     this.dialogRef.close();
@@ -75,22 +86,5 @@ export class RegisterPopupComponent {
       width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }
-  login(){
-    const data = {
-      email:this.registerForm.controls['email'].value,
-      password:this.registerForm.controls['password'].value
-     }
-    this.http
-      .loaderPost('Account/login', data, false)
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
-      )
-      .subscribe((response) => {
-        this.dialogRef.close();
-        this.store.dispatch(addUserData({user:response?.model}))
-      });
-  }
+
 }

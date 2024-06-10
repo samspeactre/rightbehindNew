@@ -17,8 +17,8 @@ import { MatSelect } from '@angular/material/select';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 
 interface ImageFile {
@@ -91,7 +91,13 @@ export class RentPropertyPageComponent implements OnInit {
   thirdFileInput: HTMLInputElement | undefined;
   formGroup!: FormGroup;
   floorPlansArray!: FormArray;
-  constructor() {
+  constructor(private activatedRoute:ActivatedRoute, private location:Location) {
+    this.activatedRoute.queryParams.subscribe((response:any)=>{
+      if(!response?.data){
+        this.location.back()
+      }
+      console.log();
+    })
     // Initialize start date to today
     this.startDate = new Date();
   }

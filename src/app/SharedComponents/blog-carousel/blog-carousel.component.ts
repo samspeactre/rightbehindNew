@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -12,9 +12,10 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   imports: [MatIconModule, RouterModule, MatButtonModule, CarouselModule, FontAwesomeModule],
   selector: 'app-blog-carousel',
   templateUrl: './blog-carousel.component.html',
-  styleUrl: './blog-carousel.component.css'
+  styleUrl: './blog-carousel.component.scss'
 })
 export class BlogCarouselComponent implements OnInit {
+  faArrowRight=faArrowRight
   cards = [
     { imgSrc: '../../assets/img/blog-1.webp', date: 'March 2024', badge: 'Marketing', name: 'How behavioral-based solutions minimize your marketing budget.', description: ' Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet....', buttonUrl: '', },
     { imgSrc: '../../assets/img/blog-2.webp', date: 'April 2024', badge: 'Marketing', name: 'Consistency is the key to achieving marketing success.', description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet.... ', buttonUrl: '', },

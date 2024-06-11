@@ -15,7 +15,7 @@ import { types } from '../../services/helper.service';
   imports: [InputComponent, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
-  styleUrl: './rent-popup.component.css'
+  styleUrl: './rent-popup.component.scss'
 })
 export class RentPopupComponent {
   selected: any;

@@ -10,6 +10,7 @@ import { MatLabel, MatOption, MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 declare var $: any;
 @Component({
   selector: 'app-input',
@@ -22,7 +23,8 @@ declare var $: any;
     MatOption, MatSelect,
     MatLabel,
     MatFormFieldModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
@@ -64,6 +66,9 @@ export class InputComponent {
         this.value = this.form?.controls?.[this.control]?.value;
       }
     }, 500);
+    if (this.matType == 'select' && this.array.length > 0) {
+      this.form.controls[this.control].setValue(this.array[0].value);
+    }
   }
   ngOnDestroy() {
     this.destroy$.next();

@@ -1,49 +1,8 @@
-h1,
-h2 {
-  font-family: "reg";
-  color: var(--black);
-}
-
-h1 {
-  font-size: 1.5vw;
-}
-
-h2 {
-  font-size: 0.83vw;
-}
-
-h2 span {
-  font-family: "bold";
-}
-
-.contact-nav {
-  margin-left: 2.9vw;
-}
-
-.social-links a,
-.container-site a {
-  color: #000;
-}
-
-.social-links fa-icon {
-  margin-left: 10px;
-}
-
-.link-img {
-  height: 0.95vw;
-  object-fit: cover;
-}
-
-nav {
-  padding: 1.45vw 0;
-}
-
 .nav-logo {
   width: 15.8%;
 }
 
 .logo-img {
-  width: 100%;
   object-fit: cover;
 }
 
@@ -54,15 +13,10 @@ nav {
 .cstm-nav-item ul li {
   padding: 2px 16px;
   list-style: none;
-  letter-spacing: 0.02vw;
 }
 
 .cstm-nav-item ul li a {
-  color: var(--black);
-  font-family: "reg";
-  font-size: 1.11vw;
   text-transform: capitalize;
-  transition: font-family 0.3s ease;
 }
 
 .cstm-nav-item ul li a:hover {
@@ -98,30 +52,6 @@ nav {
 .cstm-dropmenu li {
   padding: 4px 6px;
 }
-
-.btnSecondary:hover mat-icon {
-  color: #fff !important;
-}
-
-.btnSecondary fa-icon,
-.container-site fa-icon {
-  padding-right: 6px;
-}
-
-.margin-right-cstm {
-  margin-right: 1rem;
-}
-
-.submit-btn {
-  margin-left: 0.7vw;
-  font-size: 1vw;
-  font-family: "reg";
-  border: 0.1vw solid var(--black);
-  padding: 1.8vw 1.75vw;
-  border-radius: 2.5vw;
-  background-color: transparent;
-}
-
 .cstmContainer {
   padding: 1rem 0;
 }
@@ -184,10 +114,10 @@ nav {
   .cstm-nav-item ul li {
     text-align: center;
     margin: 1rem 0;
-}
-.proifle{
-  width: 15px;
-  height: 15px;
-  object-fit: contain;
-}
+  }
+  .proifle {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+  }
 }

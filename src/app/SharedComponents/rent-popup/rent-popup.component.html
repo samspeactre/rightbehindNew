@@ -4,8 +4,8 @@
             <div class="plus-img">
                 <img src="../../assets/img/popup-plus.webp" alt="">
             </div>
-            <h1 class="text-center text-dark">Add New Property</h1>
-            <div class="btns display content-between">
+            <h4 class="text-center text-dark bold">Add New Property</h4>
+            <div class="dCenter w-50 mx-auto btns gap-2">
                 <button mat-stroked-button class="rent-btn" [class.Active]="active == 'rent'"
                     (click)="makeActive('rent')">Rent</button>
                 <button mat-stroked-button class="sell-btn" [class.Active]="active == 'sell'"
@@ -22,7 +22,7 @@
             <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="lastName" label="Last Name"
                 placeholder="Enter your Last Name*"></app-input>
         </div>
-        <div class="col-lg-6 dCenter overflow-hidden">
+        <div class="col-lg-6">
             <app-input classes="w-100 mb-1" matType="select" [array]="types" [form]="propertyForm"
                 control="propertyType" label="Property Type"></app-input>
         </div>
@@ -40,7 +40,7 @@
                 placeholder="Enter your Password*"></app-input>
         </div>
         }
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="address" label="Address"
                 placeholder="Enter Your Address"></app-input>
         </div>

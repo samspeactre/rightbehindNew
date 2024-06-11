@@ -3,21 +3,19 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="dCenter justify-content-between">
-        <a class="dCenter">
+        <a class="dCenter gap-2">
           <fa-icon [icon]="faHeadphones"></fa-icon>
-          <h2 class="mb-0 ms-2 wow fadeInDown">
-            Need Help? Call us
-            <span>123 456 7890</span>
-          </h2>
+          <p class="smallFont mb-0 bold wow fadeInDown">
+            Need Help? Call us 123 456 7890
+          </p>
         </a>
-        <a class="dCenter">
+        <a class="dCenter gap-2">
           <fa-icon [icon]="faAt"></fa-icon>
-          <h2 class="mb-0 ms-2 wow fadeInDown">
-            Contact for more info:
-            <span>info&#64;rightnehindme.com</span>
-          </h2>
+          <p class="smallFont mb-0 bold wow fadeInDown">
+            Contact for more info: info&#64;rightnehindme.com
+          </p>
         </a>
-        <div class="social-links dCenter">
+        <div class="social-links dCenter gap-2">
           <a> <fa-icon class="wow fadeInDown" [icon]="faFacebook"></fa-icon></a>
           <a> <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon></a>
           <a> <fa-icon class="wow fadeInDown" [icon]="faTwitter"></fa-icon></a>
@@ -28,34 +26,34 @@
     <div class="col-lg-12 mt-3">
       <div class="dCenter justify-content-between">
         <div class="nav-logo wow fadeInDown">
-          <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="" class="logo-img" /></a>
+          <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="" class="logo-img w-100" /></a>
         </div>
         <div class="cstm-nav-item">
           <ul class="mb-0">
             <li>
-              <a routerLink="/" class="wow fadeInDown">Home</a>
+              <a routerLink="/" class="text-dark wow fadeInDown">Home</a>
             </li>
             <li>
-              <a routerLink="" class="wow fadeInDown">About Us</a>
+              <a routerLink="" class="text-dark wow fadeInDown">About Us</a>
             </li>
             <li>
-              <a routerLink="/buy" class="wow fadeInDown">buy</a>
+              <a routerLink="/buy" class="text-dark wow fadeInDown">buy</a>
             </li>
             <li>
               <!-- @if (user) {
                 <a routerLink="/selling-detail" class="wow fadeInDown">Sell</a>
               } @else {
               } -->
-              <a (click)="openSellPopup('sell')" class="wow fadeInDown">Sell</a>
+              <a (click)="openSellPopup('sell')" class="text-dark wow fadeInDown">Sell</a>
             </li>
             <li>
-              <a routerLink="/rent" class="wow fadeInDown">Rent</a>
+              <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
             </li>
             <li>
-              <a routerLink="" class="wow fadeInDown">property trend</a>
+              <a routerLink="" class="text-dark wow fadeInDown">property trend</a>
             </li>
             <li>
-              <a routerLink="/contact-us" class="wow fadeInDown">Contact Us</a>
+              <a routerLink="/contact-us" class="text-dark wow fadeInDown">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -79,12 +77,12 @@
           </div>
           } @else{
           <button
-            class="wow fadeInDown d-flex justify-content-between align-items-center btnSecondary margin-right-cstm"
+            class="wow fadeInDown dCenter gap-2 justify-content-between btnSecondary me-3"
             (click)="openPopup()">
             <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
           }
-          <button class="wow fadeInDown btnSecondary d-flex justify-content-between align-items-center"
+          <button class="wow fadeInDown btnSecondary dCenter justify-content-between"
             (click)="openSellPopup('rent')">
             Submit A Deal
           </button>

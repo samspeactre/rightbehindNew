@@ -16,7 +16,7 @@ import { AuthService } from '../../TsExtras/auth.service';
   imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule],
   selector: 'app-login-popup',
   templateUrl: './login-popup.component.html',
-  styleUrl: './login-popup.component.css',
+  styleUrl: './login-popup.component.scss',
 })
 export class LoginPopupComponent {
   loginForm: FormGroup;

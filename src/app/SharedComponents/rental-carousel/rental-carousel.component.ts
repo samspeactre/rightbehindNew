@@ -24,7 +24,7 @@ import { PropertyCardComponent } from '../property-card/property-card.component'
   ],
   selector: 'app-rental-carousel',
   templateUrl: './rental-carousel.component.html',
-  styleUrl: './rental-carousel.component.css',
+  styleUrl: './rental-carousel.component.scss',
 })
 export class RentalCarouselComponent implements OnInit {
   @Input() cards: any = [1, 2, 3, 4, 5];

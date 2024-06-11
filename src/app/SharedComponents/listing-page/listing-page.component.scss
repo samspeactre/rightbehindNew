@@ -1,9 +1,4 @@
 @import url('../../../assets/scss/skeleton.scss');
-h1 {
-    font-family: "bold";
-    color: var(--black);
-    text-align: center;
-}
 .loadMore {
     background-color: var(--royal-blue);
     color: var(--white);
@@ -20,18 +15,6 @@ h1 {
     background-color: #0160c9;
     border-color: #0160c9;
     color: white;
-}
-
-.cstmCardWidth {
-    width: calc(100%/2/5);
-}
-
-.content {
-    margin-top: 3vw;
-}
-
-.content h1 {
-    letter-spacing: 0.05vw;
 }
 
 :host ::ng-deep .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
@@ -54,27 +37,6 @@ h1 {
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: 100% 22.7vw;
-}
-
-.options {
-    width: 22.8%;
-}
-
-.listing-filter {
-    align-content: center;
-}
-
-.listing-filter button {
-    font-size: 1vw;
-    font-family: 'reg';
-    color: var(--filter-text);
-    border: 0.15vw solid var(--sec-light);
-    padding: 1.5vw 2vw;
-    border-radius: 3vw;
-}
-
-.listing-filter button .mat-icon {
-    color: var(--royal-blue);
 }
 
 :host ::ng-deep .mat-mdc-select-arrow {
@@ -108,7 +70,7 @@ h1 {
     background-color: white !important;
 }
 .mapElement{
-    position: -webkit-sticky; /* For Safari */
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
 }

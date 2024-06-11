@@ -12,7 +12,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   imports: [RouterModule, MatIconModule, MatButtonModule, CarouselModule, FontAwesomeModule],
   selector: 'app-card-carousel',
   templateUrl: './card-carousel.component.html',
-  styleUrl: './card-carousel.component.css'
+  styleUrl: './card-carousel.component.scss'
 })
 export class CardCarouselComponent implements OnInit{
   cards = [

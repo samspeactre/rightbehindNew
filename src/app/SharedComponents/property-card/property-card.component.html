@@ -3,7 +3,7 @@
   <div class="property-card">
     <div class="card-img skeleton"></div>
     <div class="card-content">
-      <h3 class="skeleton title"></h3>
+      <h5 class="skeleton title"></h5>
       <p class="skeleton description"></p>
     </div>
   </div>
@@ -11,25 +11,18 @@
 } @else{
 <div [ngClass]="[type == 'carousel' ? 'carousel' : 'component']">
   <div class="property-card" [ngStyle]="{ background: background }">
-    <div
-      class="card-img cursor wow fadeInDown"
-      (click)="type == 'component' && navigate(card)"
-    >
-      <img
-        [src]="card?.propertyImages?.[0]?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'"
-        [class.NoImageFound]="!card?.imgSrc"
-        alt="Card Image"
-        class="card-img"
-      />
+    <div class="card-img cursor wow fadeInDown" (click)="type == 'component' && navigate(card)">
+      <img [src]="card?.propertyImages?.[0]?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'"
+        [class.NoImageFound]="!card?.imgSrc" alt="Card Image" class="card-img" />
       @if(showBadge && card?.badge){
-      <div class="badge">
-        <p class="wow fadeInDown">{{ card?.badge }}</p>
+      <div class="badge bg-light rounded-2 ">
+        <p class="wow fadeInDown reg smallFont">asd</p>
       </div>
       }
     </div>
     <div class="card-content">
-      <h3 class="wow fadeInDown">{{ card?.title }}</h3>
-      <p class="wow fadeInDown">
+      <h5 class="wow fadeInDown bold mt-2">{{ card?.title }}</h5>
+      <p class="wow fadeInDown reg">
         {{ card?.description }}
       </p>
       <!-- @if(type == 'carousel'){ -->
@@ -55,39 +48,11 @@
               <div class="detail-font sq.ft">{{ card?.area }} Sqft</div>
             </div>
           </div>
-          <div class="price wow fadeInDown">
+          <p class="price bold mb-0 wow fadeInDown">
             {{ card?.price | currency : "USD" }}
-          </div>
+          </p>
         </div>
       </div>
-      <!-- } @else {
-      <div class="card-details display">
-        <div class="detail-sec bed display wow fadeInDown">
-          <img
-            src="../../assets/img/bed-white.webp"
-            alt=""
-            class="details-img"
-          />
-          <div class="detail-text wow fadeInDown">{{ card?.noOfBed }}</div>
-        </div>
-        <div class="detail-sec display wow fadeInDown">
-          <img
-            src="../../assets/img/bath-white.webp"
-            alt=""
-            class="details-img"
-          />
-          <div class="detail-text wow fadeInDown">{{ card?.noOfBath }}</div>
-        </div>
-        <div class="detail-sec bath display wow fadeInDown">
-          <img
-            src="../../assets/img/sq.ft-white.webp"
-            alt=""
-            class="details-img"
-          />
-          <div class="detail-text wow fadeInDown">{{ card?.area }} SqFt</div>
-        </div>
-      </div>
-      } -->
       <div class="card-bottom mt-3 dCenter justify-content-between">
         <button class="btnPrimary wow fadeInDown" (click)="routeToContact(card)">Contact Agent</button>
       </div>

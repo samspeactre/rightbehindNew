@@ -1,13 +1,3 @@
-section{
-    height: 100%;
-    border: 1vw solid var( --add-prop-bg);
-    border-radius: 1.5vw;
-}
-
-h4 {
-    font-family: 'bold';
-}
-
 .logo {
     width: 150px;
     margin: auto;
@@ -29,24 +19,6 @@ h4 {
     color: var(--black);
 }
 
-
-.register-link{
-    text-align: center;
-    font-family: 'bold';
-    color: var(--black);
-}
-
 .register-link a{
-    font-family: 'bold';
     color: var(--royal-blue);
-    cursor: pointer;
-}
-p{
-    font-size: 14px;
-    font-family: "reg";
-}
-@media only screen and (max-width:1024px){
-    p{
-        font-size: 12px;
-    }
 }

@@ -12,30 +12,26 @@
   <ng-container>
     <ng-template carouselSlide>
       <div class="card-wrapper swiper-slide">
-        <div class="card">
+        <div class="card rounded-3 w-100">
           <div class="image-content">
             <span class="overlay"></span>
-            <div class="card-image">
-              <img [src]="card.imgSrc" alt="Card Image" class="card-img wow fadeInDown">
-              <div class="blog-img-content display content-between">
-                <div class="date-div display">
+            <div class="card-image w-100">
+              <img [src]="card.imgSrc" alt="Card Image" class="card-img rounded-3 w-100 wow fadeInDown">
+              <div class="blog-img-content mt-3 dCenter justify-content-between">
+                <div class="dCenter justify-content-start gap-2">
                   <div class="circle wow fadeInDown"></div>
-                  <div class="date wow fadeInDown">{{card.date}}</div>
+                  <p class="date text-dark reg smallFont mb-0 wow fadeInDown">{{card.date}}</p>
                 </div>
                 <div class="badge wow fadeInDown">{{card.badge}}</div>
               </div>
             </div>
-            <div class="card-content">
-              <div class=" content-between">
-                <h1 class="card-name wow fadeInDown">{{ card.name }}</h1>
-              </div>
-              <p>{{ card.description }}</p>
-              <div class="blog-btn">
-                <a [routerLink]="card.buttonUrl" class="display wow fadeInDown">
-                  <mat-icon class="blog-btn-icon">arrow_forward</mat-icon>
-                  <span>Read more</span>
-                </a>
-              </div>
+            <div class="w-100 py-2 px-3">
+              <h5 class="bold text-dark wow fadeInDown">{{ card.name }}</h5>
+              <p class="text-dark reg">{{ card.description }}</p>
+              <a [routerLink]="card.buttonUrl" class="dCenter mt-2 gap-2 justify-content-start wow fadeInDown">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+                <span class="smallFont bold">Read more</span>
+              </a>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ import { AuthService } from '../../TsExtras/auth.service';
   imports: [MatIconModule, RouterModule, MatButtonModule, FontAwesomeModule, NgbDropdownModule, CommonModule],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
   user$ = this.store.select(selectUser);

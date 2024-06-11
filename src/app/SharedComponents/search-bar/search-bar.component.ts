@@ -12,7 +12,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
   imports: [MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, FontAwesomeModule],
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.css'
+  styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
   mentorSearchQueryUpdate = new Subject<any>();

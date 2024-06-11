@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   imports: [],
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrl: './banner.component.css'
+  styleUrl: './banner.component.scss'
 })
 export class BannerComponent {
 }

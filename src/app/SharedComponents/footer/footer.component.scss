@@ -1,36 +1,12 @@
-h1 {
-    font-size: 1.55vw;
-    font-family: 'bold';
-    color: var(--white);
-    padding-bottom: 1.35vw;
-}
-
 li{
     list-style: none;
     padding-bottom: 0.8vw;
     font-size: 0.96vw;
 }
 
-.bold-text span{
-    width: 4.2vw;
-    list-style: none;
-    padding-bottom: 0.77vw;
-    font-size: 0.92vw;
-    font-family: 'bold';
-}
-
-.light-text{
-    font-size: 1vw;
-    font-family: "reg";
-    padding-left: 0.25vw;
-    font-family: "reg";
-    letter-spacing: 0.02vw;
-}
-
 p {
-    font-size: 1.1vw;
+    font-size: 12px;
     font-family: 'reg';
-    color: var(--white);
 }
 
 #footer {
@@ -62,14 +38,12 @@ p {
 
 .stn-box-head{
     font-family: "med";
-    font-size: 1.6vw;
     color: var(--white);
     letter-spacing: 0.02vw;
 
 }
 
 .stn-box-para{
-    font-size: 1.05vw;
     font-family: "reg";
     color: var(--white);
     width: 86%;
@@ -82,7 +56,6 @@ p {
 }
 
 .stn-input input{
-    font-size: 0.8vw;
     font-family: 'reg';
     color: var(--white);
     background-color: rgba(31, 31, 31, 1);
@@ -138,12 +111,6 @@ p {
     width: 14.8vw;
 }
 
-.brand-info p {
-    color: var(--white);
-    padding-top: 1.32vw;
-    letter-spacing: 0.03vw;
-}
-
 .brand-info {
     border-right: 0.1vw solid var(--royal-blue);
 }
@@ -169,6 +136,6 @@ p {
 
 .copyright-text{
     font-family: 'med';
-    font-size: 1.1vw;
+    font-size: 12px;
     color: var(--white);
 }

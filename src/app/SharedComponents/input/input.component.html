@@ -1,87 +1,58 @@
 <div class="cstmsContainer">
   @if(matType == 'input'){
-    <div class="cstmInputBox" [class.FocusedBackground]="focusBackground" [style]="cstmStyle" [ngClass]="{ error: error }" [class]="classes">
-      <label [class.focused]="isFocused">{{ label }}</label>
-      @if (inputType == "textArea") {
-        <textarea
-          [rows]="rows"
-          (input)="write($event)"
-          [readOnly]="readOnly"
-          [placeholder]="placeholder"
-          [class.show-placeholder]="isFocused"
-          (focus)="togglePlaceholder(true)"
-          [(ngModel)]="form.controls[control].value"
-          (blur)="togglePlaceholder(false)"
-        ></textarea>
-      } @else {
-        @if (NumbersOnly) {
-          <input
-            [type]="type"
-            (input)="
+  <div class="cstmInputBox" [class.FocusedBackground]="focusBackground" [style]="cstmStyle" [ngClass]="{ error: error }"
+    [class]="classes">
+    <label [class.focused]="isFocused">{{ label }}</label>
+    @if (inputType == "textArea") {
+    <textarea [rows]="rows" (input)="write($event)" [readOnly]="readOnly" [placeholder]="placeholder"
+      [class.show-placeholder]="isFocused" (focus)="togglePlaceholder(true)" [(ngModel)]="form.controls[control].value"
+      (blur)="togglePlaceholder(false)"></textarea>
+    } @else {
+    @if (NumbersOnly) {
+    <input [type]="type" (input)="
               write($event);
-            "
-            [readOnly]="readOnly"
-            [placeholder]="placeholder"
-            [class.show-placeholder]="isFocused"
-            NumbersOnly
-            (focus)="togglePlaceholder(true)"
-            [(ngModel)]="form.controls[control].value"
-            (blur)="togglePlaceholder(false)"
-          />
-        } @else {
-          <input
-            [type]="type"
-            (input)="
+            " [readOnly]="readOnly" [placeholder]="placeholder" [class.show-placeholder]="isFocused" NumbersOnly
+      (focus)="togglePlaceholder(true)" [(ngModel)]="form.controls[control].value" (blur)="togglePlaceholder(false)" />
+    } @else {
+    <input [type]="type" (input)="
               write($event);
-            "
-            [readOnly]="readOnly"
-            [placeholder]="placeholder"
-            [class.show-placeholder]="isFocused"
-            (focus)="togglePlaceholder(true)"
-            [(ngModel)]="form.controls[control].value"
-            (blur)="togglePlaceholder(false)"
-          />
-        }
-      }
-      @if (password) {
-        <fa-icon
-          [icon]="type == 'password' ? faEye : faEyeSlash"
-          class="circle eye cursor"
-          (click)="type = type === 'text' ? 'password' : 'text'"
-        ></fa-icon>
-      }
-    </div>
+            " [readOnly]="readOnly" [placeholder]="placeholder" [class.show-placeholder]="isFocused"
+      (focus)="togglePlaceholder(true)" [(ngModel)]="form.controls[control].value" (blur)="togglePlaceholder(false)" />
+    }
+    }
+    @if (password) {
+    <fa-icon [icon]="type == 'password' ? faEye : faEyeSlash" class="circle eye cursor"
+      (click)="type = type === 'text' ? 'password' : 'text'"></fa-icon>
+    }
+  </div>
   }
   @else if(matType == 'select') {
     <div [formGroup]="form">
-      <mat-form-field class="mat-options">
-        <mat-label>Property Type</mat-label>
-        <mat-select [formControlName]="control">
-            @for (item of array; track $index) {
-            <mat-option [value]="item?.value">{{item?.name}}</mat-option>
-            }
-        </mat-select>
-    </mat-form-field>
+      <ng-select class="cstmNg" [formControlName]="control" [searchable]="false">
+        @for (item of array; track $index) {
+        <ng-option [value]="item?.value" selected>{{item?.name}}</ng-option>
+        }
+      </ng-select>
     </div>
   }
   @if (error && errorName && (value != '' || !value)) {
-    <small>
-      {{
-        errorName == "required"
-          ? label +
-            "
-      Required"
-          : errorName == "minlength"
-            ? "Minimum " +
-              form.controls[control]?.errors?.[errorName]?.requiredLength +
-              "
-      required"
-            : returnFirstLetterCapital(
-                form.controls[control].status?.toLowerCase()
-              ) +
-              " " +
-              label
-      }}
-    </small>
+  <small>
+    {{
+    errorName == "required"
+    ? label +
+    "
+    Required"
+    : errorName == "minlength"
+    ? "Minimum " +
+    form.controls[control]?.errors?.[errorName]?.requiredLength +
+    "
+    required"
+    : returnFirstLetterCapital(
+    form.controls[control].status?.toLowerCase()
+    ) +
+    " " +
+    label
+    }}
+  </small>
   }
 </div>

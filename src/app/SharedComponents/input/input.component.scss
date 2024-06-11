@@ -86,33 +86,31 @@
 }
 
 /* Chrome, Safari, Edge, Opera */
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 :host ::ng-deep {
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
-    border: 1.5px solid var(--royal-blue);
+  .cstmNg {
+    padding-bottom: 0;
+    margin-top: 0.6rem;
   }
-
-  .mat-mdc-text-field-wrapper,
-  .mat-options .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background: transparent;
-  }
-  .mat-mdc-form-field {
-    width: 100%;
-  }
+  .ng-select .ng-select-container{
+    padding: 0 0rem 0 1rem;
+    &:after {
+    border-bottom: 2px solid #0160c9;
+  }}
 }
 
 /* Firefox */
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
 /* General styling */
-input[type='number'] {
+input[type="number"] {
   appearance: none;
 }
 

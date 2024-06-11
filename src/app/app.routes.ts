@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { InnerGuard } from './Guards/inner.gaurd';
 
 export const routes: Routes = [
   {
@@ -59,6 +60,7 @@ export const routes: Routes = [
   },
   {
     path: 'sell-add-property',
+    canActivate: [InnerGuard],
     data: { footer: true, header: true },
     loadChildren: () =>
       import('./view/rent-property-page/rent-property.route').then(

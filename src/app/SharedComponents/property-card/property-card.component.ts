@@ -3,7 +3,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-
+import { baseUrl } from '../../Services/http.service';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, RouterModule],
@@ -12,6 +12,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './property-card.component.scss'
 })
 export class PropertyCardComponent {
+  src = baseUrl
   @Input() card!:any;
   @Input() showBadge:boolean = false;
   @Input() loader:boolean = true;

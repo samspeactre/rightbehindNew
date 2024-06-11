@@ -15,12 +15,12 @@
     </div>
     <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="firstName" label="First Name"
-                placeholder="Enter your First Name*"></app-input>
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
+                label="First Name" placeholder="Enter your First Name*"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="lastName" label="Last Name"
-                placeholder="Enter your Last Name*"></app-input>
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
+                label="Last Name" placeholder="Enter your Last Name*"></app-input>
         </div>
         <div class="col-lg-6">
             <app-input classes="w-100 mb-1" matType="select" [array]="types" [form]="propertyForm"
@@ -31,16 +31,16 @@
                 label="Unit (If Applicable)" placeholder="Enter Unit"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="email" [form]="propertyForm" control="email" label="Email"
-                placeholder="Enter Your Email Address"></app-input>
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="email" [form]="propertyForm" control="email"
+                label="Email" placeholder="Enter Your Email Address"></app-input>
         </div>
         @if(!user){
         <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" type="password" [password]="true" [form]="propertyForm" control="password" label="Password"
-                placeholder="Enter your Password*"></app-input>
+            <app-input classes="w-100 mb-1" type="password" [password]="true" [form]="propertyForm" control="password"
+                label="Password" placeholder="Enter your Password*"></app-input>
         </div>
         }
-        <div class="col-lg-12">
+        <div [ngClass]="[user ? 'col-lg-6': 'col-lg-12']">
             <app-input classes="w-100 mb-1" type="text" [form]="propertyForm" control="address" label="Address"
                 placeholder="Enter Your Address"></app-input>
         </div>

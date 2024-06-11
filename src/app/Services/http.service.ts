@@ -11,6 +11,7 @@ import { catchError, distinctUntilChanged, finalize, shareReplay, takeUntil, tap
 import { ToastrService } from 'ngx-toastr';
 import { selectUser } from '../Ngrx/data.reducer';
 import { LoaderService } from '../services/loader.service';
+export const baseUrl = 'https://recursing-allen.74-208-96-50.plesk.page/api/'
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +19,6 @@ export class HttpService {
   user$ = this.store.select(selectUser);
   userDetails: any;
   private destroy$ = new Subject<void>();
-  url: string = 'https://recursing-allen.74-208-96-50.plesk.page/api/'
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
@@ -60,7 +60,7 @@ export class HttpService {
     }
     return this.http
       .post(
-        this.url + link,
+        baseUrl + link,
         data,
         token ? this.headerToken : this.header,
       )
@@ -99,7 +99,7 @@ export class HttpService {
       ? new HttpParams().set('clearCache', 'true')
       : undefined;
     const headers = token ? this.headerToken : this.header;
-    return this.http.get(this.url + url, { ...headers, params }).pipe(
+    return this.http.get(baseUrl + url, { ...headers, params }).pipe(
       shareReplay({ refCount: true, bufferSize: CACHE_SIZE }),
       tap((res: any) => {
         if (toastr) {
@@ -126,7 +126,7 @@ export class HttpService {
       ? new HttpParams().set('clearCache', 'true')
       : undefined;
     const headers = token ? this.headerToken : this.header;
-    return this.http.get(this.url + url, { ...headers, params }).pipe(
+    return this.http.get(baseUrl + url, { ...headers, params }).pipe(
       shareReplay({ refCount: true, bufferSize: CACHE_SIZE }),
       tap((res: any) => {
         // if (res?.message || res?.messsage) {
@@ -144,7 +144,7 @@ export class HttpService {
   post(link: string, data: any, token: boolean, toaster: boolean) {
     return this.http
       .post(
-        this.url + link,
+        baseUrl + link,
         data,
         token ? this.headerToken : this.header,
       )

@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -20,6 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
+import { HttpService } from '../../Services/http.service';
+import { finalize } from 'rxjs';
+import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
+import { SharedModule } from '../../TsExtras/shared.module';
 
 interface ImageFile {
   name: string;
@@ -51,10 +55,10 @@ interface FormSection {
 
 @Component({
   standalone: true,
-  imports: [CommonModule,MatButtonModule, BannerComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [CommonModule, SharedModule, MatButtonModule, BannerComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
-  styleUrls: ['./rent-property-page.component.css'],
+  styleUrls: ['./rent-property-page.component.scss'],
   animations: [
     trigger('fadeInOut', [
       state(
@@ -77,13 +81,68 @@ interface FormSection {
   ],
 })
 export class RentPropertyPageComponent implements OnInit {
+  amenityCategories!: any;
+  utilities!: any;
+  amenities!: any;
+  propertyAddForm: any = this.fb.group({
+    Title: ['', Validators.required],
+    Description: ['', Validators.required],
+    Category: ['', Validators.required],
+    PropertyType: ['', Validators.required],
+    NoOfBed: [''],
+    NoOfBath: [''],
+    Area: [''],
+    Price: [''],
+    Location: [''],
+    City: [''],
+    Unit: [''],
+    Plot: [''],
+    Street: [''],
+    Building: [''],
+    VideoUrl: [''],
+    Latitude: [''],
+    Longitude: [''],
+    PetPolicy: [''],
+    Parking: [''],
+    ParkingFees: [''],
+    Laundry: [''],
+    IsFurnished: [false],
+    PropertyImageFiles: this.fb.array([]),
+    Amenities: this.fb.array([]),
+    Utilities: this.fb.array([]),
+    FloorPlans: this.fb.array([]),
+    OpenHouses: this.fb.array([]),
+    PropertyContact: this.fb.group({
+      UserRole: [''],
+      FullName: [''],
+      Email: [''],
+      Contact: ['']
+    }),
+    RentSpecial: this.fb.group({
+      Title: [''],
+      Description: [''],
+      Tag: [''],
+      StartDate: [''],
+      EndDate: ['']
+    }),
+    HomeFact: this.fb.group({
+      NoOfBeds: [''],
+      NoOfBaths: [''],
+      FinishedSqrFt: [''],
+      SqrFt: [''],
+      RemodelYear: [''],
+      BasementSqrFt: [''],
+      LotSize: [''],
+      ConstructedYear: [''],
+      HaoDues: [''],
+      GarageSqrFt: ['']
+    })
+  });
   imageSrc: string | ArrayBuffer | null = null;
   sections: any;
-  private readonly MAX_AMENITIES = 24; // Maximum number of amenities to display
-  section:string= 'property-information'
+  section: string = 'property-information'
   startDate: Date;
-  endDate: Date = new Date(); // Initialize with today's date
-
+  endDate: Date = new Date();
   selected = 'none';
   selectedFiles: ImageFile[] = [];
   additionalSelectedFiles: ImageFile[] = [];
@@ -91,22 +150,17 @@ export class RentPropertyPageComponent implements OnInit {
   thirdFileInput: HTMLInputElement | undefined;
   formGroup!: FormGroup;
   floorPlansArray!: FormArray;
-  constructor(private activatedRoute:ActivatedRoute, private location:Location) {
-    this.activatedRoute.queryParams.subscribe((response:any)=>{
-      if(!response?.data){
+  constructor(private activatedRoute: ActivatedRoute, private location: Location, private http: HttpService, private fb: FormBuilder,) {
+    this.activatedRoute.queryParams.subscribe((response: any) => {
+      if (!response?.data) {
         this.location.back()
       }
     })
-    // Initialize start date to today
     this.startDate = new Date();
   }
 
   ngOnInit(): void {
-    // Limit amenities for each category
-    this.categories = this.categories.map((category) => ({
-      ...category,
-      amenities: category.amenities.slice(0, this.MAX_AMENITIES),
-    }));
+    this.getAmeneties()
     this.formGroup = new FormGroup({
       floorPlansArray: new FormArray([
         new FormGroup({
@@ -122,7 +176,43 @@ export class RentPropertyPageComponent implements OnInit {
       ]),
     });
   }
+  getAmeneties() {
+    this.http.loaderGet('Property/amenities', true, true, false, false)
+      .pipe(
+        finalize(() => {
+          this.getUtilities()
+        })
+      )
+      .subscribe((response: any) => {
+        this.amenityCategories = response?.modelList;
+        this.propertyAddForm.controls['PropertyType'].setValue(this.amenityCategories[0])
+        this.onCategoryChange(this.amenityCategories[0])
+      })
+  }
+  getUtilities() {
+    this.http.loaderGet('Property/utilities', true, true)
+      .subscribe((response: any) => {
+        this.utilities = response?.modelList
+      })
+  }
+  checkboxSelect(event: any, value: number, type: string) {
+    const formArray = this.propertyAddForm.controls[type] as FormArray;
+    if (event.target.checked) {
+      if (!formArray.value.includes(value)) {
+        formArray.push(new FormControl(value));
+      }
+    } else {
+      const index = formArray.value.indexOf(value);
+      if (index !== -1) {
+        formArray.removeAt(index);
+      }
+    }
+    console.log(this.propertyAddForm.value);
 
+  }
+  onSubmit() {
+    console.log(this.propertyAddForm.value);
+  }
   get getFloorPlansFormArray(): FormArray {
     return this.formGroup.get('floorPlansArray') as FormArray;
   }
@@ -237,158 +327,7 @@ export class RentPropertyPageComponent implements OnInit {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
-
-  categories: Category[] = [
-    {
-      name: 'Features',
-      amenities: [
-        'Cable Ready',
-        'Storage Space',
-        'Heating',
-        ' Security System',
-        'Ceiling Fans',
-        ' Double Vanities',
-        ' High Speed Internet Access',
-        ' Satellite TV',
-        'Sprinkler System',
-        ' Tub/Shower',
-        'Surround Sound',
-        'Wi-Fi',
-        'Framed Mirrors',
-        'Handrails',
-        'Intercom',
-        ' Trash Compactor',
-        ' Vacuum System',
-        ' Wheelchair Accessible (Rooms)',
-      ],
-    },
-    {
-      name: 'Kitchens',
-      amenities: [
-        'Disposal',
-        'Microwave',
-        'Eat-in Kitchen',
-        'Kitchen',
-        'Granite Countertops',
-        ' Ice Maker',
-        'Refrigerator',
-        'Oven',
-        'Stainless Steel Appliances',
-        'Range',
-        'Breakfast Nook',
-        'Coffee System',
-        'Freezer',
-        'Instant Hot Water',
-        'Island Kitchen',
-        'Pantry',
-        'Warming Drawer',
-        'Quartz Countertops',
-      ],
-    },
-    {
-      name: 'Outdoor Spaces',
-      amenities: [
-        'Balcony',
-        'Yard',
-        'Grill',
-        'Deck',
-        'Dock',
-        'Garden',
-        'Greenhouse',
-        'Lawn',
-        'Patio',
-        'Porch',
-      ],
-    },
-    {
-      name: 'Living Spaces',
-      amenities: [
-        'Bay Window',
-        'Tile Floors',
-        ' Crown Molding',
-        'Hardwood Floors',
-        'Vaulted Ceiling',
-        'Sunroom',
-        'Views',
-        'Walk-In Closets',
-        'Carpet',
-        'Attic',
-        'Basement',
-        'Built-In Bookshelves',
-      ],
-    },
-    {
-      name: 'Property',
-      amenities: [
-        'Furnished',
-        ' Wheelchair Accessible',
-        ' Elevator',
-        ' No Smoking',
-        'AC',
-        'Storage',
-        'Loft',
-        'Fitness Center',
-        'Fireplace',
-        ' Gated Entry',
-        ' Dishwasher',
-        'Swimming Pool',
-      ],
-    },
-  ];
-
-  defaultAmenities: string[] = [
-    'Air Conditioning',
-    'Lawn',
-    'Swimming Pool',
-    'Barbeque',
-    'Microwave',
-    'Wide-Open Spaces',
-    'Billiards Table',
-    'Valet Trash',
-    'TV Cable',
-    'Dryer',
-    'Outdoor Shower',
-    'Washer',
-    'Gym',
-    'Parks',
-    'Clubhouse',
-    'Sporting Facilities',
-    'Refrigerator',
-    'WIFI',
-    'Laundry',
-    'Sauna',
-    'Window Coverings',
-    'Rooftop Gardens',
-    'Spa',
-  ].slice(0, this.MAX_AMENITIES); // Limit default amenities
-
-  selectedCategory: Category | null = null;
-  filteredAmenities: string[] = this.defaultAmenities;
-
-  amenities: Amenity[] = [];
-
-  onCategoryChange(category: Category) {
-    this.selectedCategory = category;
-    this.filteredAmenities = category.amenities.slice(0, this.MAX_AMENITIES);
+  onCategoryChange(category: any) {
+    this.amenities = category?.amenities
   }
-
-  // Split amenities into chunks of 8 for displaying in columns
-  splitAmenitiesIntoColumns(amenities: string[]): string[][] {
-    const columns: string[][] = [];
-    for (let i = 0; i < amenities.length; i += 8) {
-      columns.push(amenities.slice(i, i + 8));
-    }
-    return columns;
-  }
-
-  utilities: string[] = [
-    'Gas',
-    'Water',
-    'Electricity',
-    'Heat',
-    'Trash Removal',
-    'Sewer',
-    'Air Conditioning',
-    'Cable',
-  ];
 }

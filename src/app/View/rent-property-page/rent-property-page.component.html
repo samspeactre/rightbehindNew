@@ -19,159 +19,121 @@
     <div class="row lower-portion mb-5">
       <div class="col-lg-3">
         <div class="left-portion">
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'property-information' }"
-            (click)="scrollToSection('property-information')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'property-information' }" (click)="scrollToSection('property-information')">
             Property Information
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'amenities' }"
-            (click)="scrollToSection('amenities')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'amenities' }"
+            (click)="scrollToSection('amenities')">
             Amenities
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'utilities' }"
-            (click)="scrollToSection('utilities')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'utilities' }"
+            (click)="scrollToSection('utilities')">
             Utilities
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'rent-special' }"
-            (click)="scrollToSection('rent-special')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'rent-special' }" (click)="scrollToSection('rent-special')">
             Rent Special
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'Pet-policy' }"
-            (click)="scrollToSection('Pet-policy')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'Pet-policy' }" (click)="scrollToSection('Pet-policy')">
             Pet Policy
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'laundry' }"
-            (click)="scrollToSection('laundry')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'laundry' }"
+            (click)="scrollToSection('laundry')">
             Laundry
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'gallery' }"
-            (click)="scrollToSection('gallery')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'gallery' }"
+            (click)="scrollToSection('gallery')">
             Gallery
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'videos' }"
-            (click)="scrollToSection('videos')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'videos' }"
+            (click)="scrollToSection('videos')">
             Videos
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'contact-info' }"
-            (click)="scrollToSection('contact-info')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'contact-info' }" (click)="scrollToSection('contact-info')">
             Contact Information
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'description' }"
-            (click)="scrollToSection('description')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'description' }" (click)="scrollToSection('description')">
             Description
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'floor-plans' }"
-            (click)="scrollToSection('floor-plans')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'floor-plans' }" (click)="scrollToSection('floor-plans')">
             Floor Plans
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'location' }"
-            (click)="scrollToSection('location')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'location' }"
+            (click)="scrollToSection('location')">
             Location
           </button>
         </div>
       </div>
       <div class="col-lg-9">
-        <div class="right-portion">
-          <div class="prop" id="property-information">
-            <h2>Property Information</h2>
-            <p class="right-portion-para">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-              aliquam, purus sit amet luctus venenatis, lectus magna fringilla
-              urna, porttitor.
-            </p>
-
-            <form action="" class="prop-form">
-              <div class="row">
-                <mat-form-field class="col-lg-12">
-                  <mat-label>Property Type</mat-label>
-                  <input matInput />
-                </mat-form-field>
-                <mat-form-field class="col-lg-4">
-                  <mat-label>Lease Lenght In Months</mat-label>
-                  <input matInput />
-                </mat-form-field>
-                <mat-form-field class="col-lg-4">
-                  <mat-label>Monthly Rent</mat-label>
-                  <input matInput />
-                </mat-form-field>
-                <mat-form-field class="col-lg-4">
-                  <mat-label>Deposit</mat-label>
-                  <input matInput />
-                </mat-form-field>
-                <mat-form-field class="col-lg-4">
-                  <mat-label>No. of Bedrooms</mat-label>
-                  <input matInput />
-                </mat-form-field>
-                <mat-form-field class="col-lg-4">
-                  <mat-label>No. of Bathrooms</mat-label>
-                  <input matInput />
-                </mat-form-field>
-                <mat-form-field class="col-lg-4">
-                  <mat-label>Sqft</mat-label>
-                  <input matInput />
-                </mat-form-field>
-              </div>
-            </form>
-          </div>
-          <div class="prop" id="amenities">
-            <h2>Amenities</h2>
-            <div class="category row">
+        <div class="right-portion prop">
+          <form [formGroup]="propertyAddForm" (ngSubmit)="onSubmit()">
+            <div id="property-information">
+              <h2>Property Information</h2>
+              <p class="right-portion-para">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+                aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+                urna, porttitor.
+              </p>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-lg-6">
+                <mat-label>Property Type</mat-label>
+                <input matInput formControlName="PropertyType" />
+              </mat-form-field>
+              <mat-form-field class="col-lg-6">
+                <mat-label>Property Title</mat-label>
+                <input matInput formControlName="Title" />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4">
+                <mat-label>Lease Lenght In Months</mat-label>
+                <input matInput />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4">
+                <mat-label>Monthly Rent</mat-label>
+                <input matInput />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4">
+                <mat-label>Deposit</mat-label>
+                <input matInput />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4">
+                <mat-label>No. of Bedrooms</mat-label>
+                <input matInput formControlName="NoOfBed" />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4">
+                <mat-label>No. of Bathrooms</mat-label>
+                <input matInput formControlName="NoOfBath" />
+              </mat-form-field>
+              <mat-form-field class="col-lg-4">
+                <mat-label>Sqft</mat-label>
+                <input matInput formControlName="Area" />
+              </mat-form-field>
+            </div>
+            <div class="checkbox-portion row">
+              <h2>Amenities</h2>
               <mat-form-field class="col-lg-12">
                 <mat-label class="category-head">Category:</mat-label>
-                <mat-select
-                  [(value)]="selectedCategory"
-                  (selectionChange)="onCategoryChange($event.value)"
-                >
-                  @for (category of categories; track category) {
+                <mat-select (selectionChange)="onCategoryChange($event.value)">
+                  @for (category of amenityCategories; track category) {
                   <mat-option [value]="category">{{
-                    category.name
-                  }}</mat-option>
+                    category.amenityCategoryName
+                    }}</mat-option>
                   }
                 </mat-select>
               </mat-form-field>
@@ -181,100 +143,89 @@
                   on your listing.
                 </p>
               </div>
+              @for (amenity of amenities;
+              let i =$index;
+              track amenity) {
+              <div class="col-lg-3 my-2">
+                <div class="dCenter check-box justify-content-start gap-2">
+                  <input type="checkbox" [id]="'amenity'+amenity?.id"
+                    (change)="checkboxSelect($event ,amenity?.id, 'Amenities')" />
+                  <label [for]="'amenity'+amenity?.id">{{ amenity?.amenityName }}</label>
+                </div>
+              </div>
+              }
+              <h2>Utilities</h2>
+              <p class="right-portion-para">
+                Select any utilities in the price of rent.
+              </p>
+              @for (utility of utilities;
+              let i =$index;
+              track utility) {
+              <div class="col-lg-3 my-2">
+                <div class="dCenter check-box justify-content-start gap-2">
+                  <input type="checkbox" [id]="'utility'+utility?.id"
+                    (change)="checkboxSelect($event ,utility?.id,'Utilities')" />
+                  <label [for]="'utility'+utility?.id">{{ utility?.utilityName }}</label>
+                </div>
+              </div>
+              }
             </div>
-
-            <form action="" class="checkbox-portion">
-              <div class="amenities-grid">
-                <!-- @for (column of splitAmenitiesIntoColumns(filteredAmenities);
-                track column) {
-                <div class="amenities-column">
-                  @for (amenity of column; track amenity) {
-                  <mat-checkbox class="example-margin">{{
-                    amenity
-                  }}</mat-checkbox>
-                  }
-                </div>
-                } -->
-              </div>
-            </form>
-          </div>
-          <div class="prop" id="utilities">
-            <h2>Utilities</h2>
-            <p class="right-portion-para">
-              Select any utilities in the price of rent.
-            </p>
-
-            <form action="">
-              <div class="checkbox-container row">
-                @for (utility of utilities; track utility) {
-                <div class="col-lg-4">
-                  <div class="check-box d-flex align-items-center">
-                    <input type="checkbox" name="" id="" />
-                    <label for="">{{ utility }}</label>
-                  </div>
-                </div>
-                }
-              </div>
-            </form>
-          </div>
-          <div class="prop" id="rent-special">
-            <h2>Rent Specials</h2>
-            <p class="right-portion-para">
-              Enter any rent specials you wish to offer prospective renters.
-            </p>
-
-            <form action="" class="rent-special-form">
-              <div class="row">
+            <div id="rent-special">
+              <h2>Rent Specials</h2>
+              <p class="right-portion-para">
+                Enter any rent specials you wish to offer prospective renters.
+              </p>
+              <div formGroupName="RentSpecial" class="row">
                 <mat-form-field class="col-lg-4">
                   <mat-label>Rent Special Title</mat-label>
-                  <input matInput />
+                  <input matInput formControlName="Title" />
                 </mat-form-field>
                 <mat-form-field class="col-lg-4">
-                  <input
-                    matInput
-                    [matDatepicker]="startPicker"
-                    placeholder="Start Date"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="startPicker"
-                  ></mat-datepicker-toggle>
+                  <input matInput [matDatepicker]="startPicker" placeholder="Start Date" formControlName="StartDate" />
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
                   <mat-datepicker #startPicker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field class="col-lg-4">
-                  <input
-                    matInput
-                    [matDatepicker]="endPicker"
-                    placeholder="End Date"
-                    [min]="startDate"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="endPicker"
-                  ></mat-datepicker-toggle>
+                  <input matInput [matDatepicker]="endPicker" placeholder="End Date" [min]="startDate"
+                    formControlName="EndDate" />
+                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
                   <mat-datepicker #endPicker></mat-datepicker>
                 </mat-form-field>
                 <div class="col-lg-12 special-tags">Special Offers:</div>
-                <div class="col-lg-4">
-                  <div class="check-box d-flex align-items-center">
-                    <input type="checkbox" name="" id="" />
-                    <label for="">1 Month Free</label>
+                <div class="col-lg-4 my-3">
+                  <div class="dCenter check-box justify-content-start gap-2">
+                    <input type="radio" id="1 Month Free" formControlName="Tag" value="1 Month Free" />
+                    <label for="1 Month Free">1 Month Free</label>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <div class="check-box d-flex align-items-center">
-                    <input type="checkbox" name="" id="" />
-                    <label for="">50% Off</label>
+                <div class="col-lg-4 my-3">
+                  <div class="dCenter check-box justify-content-start gap-2">
+                    <input type="radio" id="50% Off" formControlName="Tag" value="50% Off" />
+                    <label for="50% Off">50% Off</label>
                   </div>
                 </div>
-                <div class="col-lg-4">
-                  <div class="check-box d-flex align-items-center">
-                    <input type="checkbox" name="" id="" />
-                    <label for="">Free Movein</label>
+                <div class="col-lg-4 my-3">
+                  <div class="dCenter check-box justify-content-start gap-2">
+                    <input type="radio" id="Free Move-in" formControlName="Tag" value="Free Move-in" />
+                    <label for="Free Move-in">Free Move-in</label>
                   </div>
                 </div>
+                <mat-form-field class="col-lg-12 my-3">
+                  <mat-label>Custom Offer</mat-label>
+                  <input matInput formControlName="Tag" appCharacterLimit [limit]="10" />
+                </mat-form-field>
               </div>
-            </form>
+            </div>
+          </form>
+          <div class="submit-btns display">
+            <div class="me-2">
+              <button class="btnDanger wow fadeInDown">Reset</button>
+            </div>
+            <div class="ms-2">
+              <button class="btnPrimary wow fadeInDown" type="submit">
+                Add Property
+              </button>
+            </div>
           </div>
           <div class="prop" id="Pet-policy">
             <form class="row">
@@ -353,21 +304,11 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="upload-btn">
-                    <button
-                      mat-raised-button
-                      color="primary"
-                      (click)="fileInput.click()"
-                    >
+                    <button mat-raised-button color="primary" (click)="fileInput.click()">
                       <mat-icon>cloud_upload</mat-icon>
                       Upload Photos
                     </button>
-                    <input
-                      type="file"
-                      #fileInput
-                      multiple
-                      (change)="onFileSelected($event)"
-                      style="display: none"
-                    />
+                    <input type="file" #fileInput multiple (change)="onFileSelected($event)" style="display: none" />
                   </div>
                 </div>
               </div>
@@ -467,13 +408,8 @@
               <div class="row">
                 <mat-form-field class="col-lg-12">
                   <mat-label>Autosize textarea</mat-label>
-                  <textarea
-                    matInput
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="11"
-                    cdkAutosizeMaxRows="15"
-                  ></textarea>
+                  <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="11"
+                    cdkAutosizeMaxRows="15"></textarea>
                 </mat-form-field>
               </div>
             </form>
@@ -522,30 +458,16 @@
                     </mat-form-field>
                     <mat-form-field class="col-lg-12">
                       <mat-label>Enter Description of Property</mat-label>
-                      <textarea
-                        matInput
-                        cdkTextareaAutosize
-                        #autosize="cdkTextareaAutosize"
-                        cdkAutosizeMinRows="11"
-                        cdkAutosizeMaxRows="15"
-                        formControlName="floorDesc"
-                      ></textarea>
+                      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="11"
+                        cdkAutosizeMaxRows="15" formControlName="floorDesc"></textarea>
                     </mat-form-field>
                     <div class="upload-2-container">
                       <div>
                         <div class="display">
                           @if (getimg(index)) {
                           <div class="floor-img display">
-                            <img
-                              id="image-preview"
-                              [src]="getimg(index)"
-                              alt="Image Preview"
-                            />
-                            <button
-                              mat-fab
-                              (click)="removeImage(index)"
-                              class="delete-btn"
-                            >
+                            <img id="image-preview" [src]="getimg(index)" alt="Image Preview" />
+                            <button mat-fab (click)="removeImage(index)" class="delete-btn">
                               <mat-icon>delete</mat-icon>
                             </button>
                           </div>
@@ -554,38 +476,22 @@
                       </div>
                       <div class="row align-items-center">
                         <div class="col-lg-7">
-                          <a
-                            class="upload-imgs"
-                            (click)="triggerFileInput(index)"
-                          >
+                          <a class="upload-imgs" (click)="triggerFileInput(index)">
                             <span>Browse Photos</span>
                           </a>
                         </div>
                         <div class="col-lg-5">
                           <div class="dCenter justify-content-between">
                             <div class="upload-btn">
-                              <button
-                                mat-raised-button
-                                class="mt-2"
-                                (click)="triggerFileInput(index)"
-                              >
+                              <button mat-raised-button class="mt-2" (click)="triggerFileInput(index)">
                                 <mat-icon>cloud_upload</mat-icon>
                                 Upload Photo
                               </button>
-                              <input
-                                type="file"
-                                id="fileInput{{ index }}"
-                                (change)="onFileSelected($event, index)"
-                                style="display: none"
-                                accept="image/*"
-                              />
+                              <input type="file" id="fileInput{{ index }}" (change)="onFileSelected($event, index)"
+                                style="display: none" accept="image/*" />
                             </div>
                             <div class="add-sec">
-                              <button
-                                mat-stroked-button
-                                class="add-more-btn mt-2"
-                                (click)="addNew()"
-                              >
+                              <button mat-stroked-button class="add-more-btn mt-2" (click)="addNew()">
                                 <mat-icon>add</mat-icon>
                                 AddMore
                               </button>
@@ -646,28 +552,14 @@
           <div class="prop">
             <div class="check-box d-flex align-items-Start">
               <input type="checkbox" name="" id="" />
-              <label for=""> <span class="terms-text"
-                >By checking this box I agree as follows: I agree that I will
-                provide accurate and
-                <a href="">non discriminatory</a> information and I will comply
-                with the Apartments.com <a href="">Terms and Conditions</a> and
-                the <a href="">Add a Property Terms of Service.</a></span
-              ></label>
+              <label for=""> <span class="terms-text">By checking this box I agree as follows: I agree that I will
+                  provide accurate and
+                  <a href="">non discriminatory</a> information and I will comply
+                  with the Apartments.com <a href="">Terms and Conditions</a> and
+                  the <a href="">Add a Property Terms of Service.</a></span></label>
             </div>
           </div>
-          <div class="submit-btns display">
-            <div class="me-2">
-              <button class="btnDanger wow fadeInDown">Reset</button>
-            </div>
-            <div class="ms-2">
-              <button
-                class="btnPrimary wow fadeInDown"
-                routerLink="/rent-preview"
-              >
-                Add Property
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>

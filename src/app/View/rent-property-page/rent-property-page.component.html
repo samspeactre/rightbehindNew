@@ -126,48 +126,52 @@
               </mat-form-field>
             </div>
             <div class="checkbox-portion row">
-              <h2>Amenities</h2>
-              <mat-form-field class="col-lg-12">
-                <mat-label class="category-head">Category:</mat-label>
-                <mat-select (selectionChange)="onCategoryChange($event.value)">
-                  @for (category of amenityCategories; track category) {
-                  <mat-option [value]="category">{{
-                    category.amenityCategoryName
-                    }}</mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
-              <div class="col-lg-12">
-                <p class="amenities-portion-para">
-                  Select amenities included with your property to display them
-                  on your listing.
-                </p>
-              </div>
-              @for (amenity of amenities;
-              let i =$index;
-              track amenity) {
-              <div class="col-lg-3 my-2">
-                <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" [id]="'amenity'+amenity?.id"
-                    (change)="checkboxSelect($event ,amenity?.id, 'Amenities')" />
-                  <label [for]="'amenity'+amenity?.id">{{ amenity?.amenityName }}</label>
+              @if(amenityCategories?.length){
+                <h2>Amenities</h2>
+                <mat-form-field class="col-lg-12">
+                  <mat-label class="category-head">Category:</mat-label>
+                  <mat-select (selectionChange)="onCategoryChange($event.value)">
+                    @for (category of amenityCategories; track category) {
+                    <mat-option [value]="category?.id">{{
+                      category.amenityCategoryName
+                      }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+                <div class="col-lg-12">
+                  <p class="amenities-portion-para">
+                    Select amenities included with your property to display them
+                    on your listing.
+                  </p>
                 </div>
-              </div>
+                @for (amenity of amenities;
+                let i =$index;
+                track amenity) {
+                <div class="col-lg-3 my-2">
+                  <div class="dCenter check-box justify-content-start gap-2">
+                    <input type="checkbox" [id]="'amenity'+amenity?.id"
+                      (change)="checkboxSelect($event ,amenity?.id, 'Amenities')" />
+                    <label [for]="'amenity'+amenity?.id">{{ amenity?.amenityName }}</label>
+                  </div>
+                </div>
+                }
               }
-              <h2>Utilities</h2>
-              <p class="right-portion-para">
-                Select any utilities in the price of rent.
-              </p>
-              @for (utility of utilities;
-              let i =$index;
-              track utility) {
-              <div class="col-lg-3 my-2">
-                <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" [id]="'utility'+utility?.id"
-                    (change)="checkboxSelect($event ,utility?.id,'Utilities')" />
-                  <label [for]="'utility'+utility?.id">{{ utility?.utilityName }}</label>
+              @if(utilities?.length){
+                <h2>Utilities</h2>
+                <p class="right-portion-para">
+                  Select any utilities in the price of rent.
+                </p>
+                @for (utility of utilities;
+                let i =$index;
+                track utility) {
+                <div class="col-lg-3 my-2">
+                  <div class="dCenter check-box justify-content-start gap-2">
+                    <input type="checkbox" [id]="'utility'+utility?.id"
+                      (change)="checkboxSelect($event ,utility?.id,'Utilities')" />
+                    <label [for]="'utility'+utility?.id">{{ utility?.utilityName }}</label>
+                  </div>
                 </div>
-              </div>
+                }
               }
             </div>
             <div id="rent-special">

@@ -24,6 +24,7 @@ import { HttpService } from '../../Services/http.service';
 import { finalize } from 'rxjs';
 import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
 import { SharedModule } from '../../TsExtras/shared.module';
+import { HelperService } from '../../services/helper.service';
 
 interface ImageFile {
   name: string;
@@ -81,6 +82,7 @@ interface FormSection {
   ],
 })
 export class RentPropertyPageComponent implements OnInit {
+  previousData:any;
   amenityCategories!: any;
   utilities!: any;
   amenities!: any;
@@ -150,8 +152,9 @@ export class RentPropertyPageComponent implements OnInit {
   thirdFileInput: HTMLInputElement | undefined;
   formGroup!: FormGroup;
   floorPlansArray!: FormArray;
-  constructor(private activatedRoute: ActivatedRoute, private location: Location, private http: HttpService, private fb: FormBuilder,) {
+  constructor(private activatedRoute: ActivatedRoute, public helper:HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
     this.activatedRoute.queryParams.subscribe((response: any) => {
+      this.previousData = JSON.parse(response?.data)
       if (!response?.data) {
         this.location.back()
       }
@@ -185,8 +188,9 @@ export class RentPropertyPageComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.amenityCategories = response?.modelList;
-        this.propertyAddForm.controls['PropertyType'].setValue(this.amenityCategories[0])
-        this.onCategoryChange(this.amenityCategories[0])
+        console.log(this.previousData);
+        
+        this.propertyAddForm.controls['PropertyType'].setValue(this.helper.returnType(this.previousData?.propertyType))
       })
   }
   getUtilities() {
@@ -327,7 +331,7 @@ export class RentPropertyPageComponent implements OnInit {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  onCategoryChange(category: any) {
-    this.amenities = category?.amenities
+  onCategoryChange(id: any) {
+    this.amenities = this.amenityCategories.find((category:any)=> category?.id == id)
   }
 }

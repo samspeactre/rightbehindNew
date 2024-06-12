@@ -11,6 +11,7 @@ import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/
 import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar.component';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   standalone: true,
@@ -23,7 +24,7 @@ import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader
     SearchBarComponent,
     MatButtonModule,
     BannerComponent,
-    MiniLoadingComponent
+    MiniLoadingComponent,
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -40,6 +41,8 @@ export class HomeComponent {
     { name: 'Monthly Users', count: 0, minCount: 0, maxCount: 200 },
     { name: 'New Property every Month', count: 0, minCount: 0, maxCount: 30 },
   ];
+  faChevronCircleLeft=faChevronLeft
+  faChevronCircleRight=faChevronRight
   screenWidth:number = window.innerWidth;
   intervalIds: any[] = [];
   buyCards: any;

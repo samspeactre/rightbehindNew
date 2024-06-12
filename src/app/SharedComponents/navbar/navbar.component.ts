@@ -114,6 +114,7 @@ export class NavbarComponent {
   }
   logout(){
     this.store.dispatch(removeUserData());
+    this.router.navigateByUrl('/')
     this.auth.logout()
   }
   show(condition:boolean){

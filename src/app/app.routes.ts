@@ -52,6 +52,7 @@ export const routes: Routes = [
   },
   {
     path: 'rent-add-property',
+    canActivate: [InnerGuard],
     data: { footer: true, header: true, sellHide:true },
     loadChildren: () =>
       import('./view/rent-property-page/rent-property.route').then(

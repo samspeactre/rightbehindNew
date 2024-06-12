@@ -16,6 +16,7 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() height: any;
   @Input() addMarker: boolean = false;
   @Input() draggable: boolean = false;
+  @Input() mapDraggable: boolean = true;
   @Input() search: boolean = false;
   @Input() markerPositions: google.maps.LatLngLiteral[] = [];
   @Output() mapMarkerCordinates = new EventEmitter<any>();
@@ -50,9 +51,6 @@ export class MapComponent implements OnInit, OnDestroy {
     }).catch(err => {
       console.error('Error loading Google Maps script:', err);
     });
-    console.log('====================================');
-    console.log(this.markerPositions,"markerpost");
-    console.log('====================================');
   }
 
   ngOnDestroy(): void {
@@ -65,6 +63,7 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.map && this.map.googleMap) {
       this.map.googleMap.setCenter(this.center);
       this.map.googleMap.setZoom(this.zoom);
+      this.map.googleMap.setOptions({ draggable: false });
     }
     if (this.search) {
       this.initAutocomplete()

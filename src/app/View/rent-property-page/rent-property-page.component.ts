@@ -24,8 +24,9 @@ import { HttpService } from '../../Services/http.service';
 import { finalize } from 'rxjs';
 import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
 import { SharedModule } from '../../TsExtras/shared.module';
-import { HelperService } from '../../Services/helper.service';
+import { HelperService, types } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
+import { ToastrService } from 'ngx-toastr';
 
 interface ImageFile {
   name: string;
@@ -87,12 +88,14 @@ export class RentPropertyPageComponent implements OnInit {
   amenityCategories!: any;
   utilities!: any;
   amenities!: any;
+  types = types;
   propertyAddForm: any = this.fb.group({
     Title: ['', Validators.required],
     Description: ['', Validators.required],
     Category: ['', Validators.required],
     PropertyType: ['', Validators.required],
     NoOfBed: [''],
+    LeaseMonth: [''],
     NoOfBath: [''],
     Area: [''],
     Price: [''],
@@ -116,13 +119,31 @@ export class RentPropertyPageComponent implements OnInit {
     PropertyImageFiles: this.fb.array([]),
     Amenities: this.fb.array([]),
     Utilities: this.fb.array([]),
-    FloorPlans: this.fb.array([]),
+    FloorPlans: this.fb.array([
+      this.fb.group({
+        PlanName: ['', Validators.required],
+        NoOfBed: ['', Validators.required],
+        NoOfBath: ['', Validators.required],
+        Area: ['', Validators.required],
+        StartPrice: ['', Validators.required],
+        EndPrice: ['', Validators.required],
+        Description: ['', Validators.required],
+        FloorPlanImage: ['', Validators.required],
+        FloorPlanUnits: this.fb.array([
+          this.fb.group({
+            Price: ['', Validators.required],
+            AvailabilityDate: ['', Validators.required],
+          })
+        ]),
+      })
+    ]),
     OpenHouses: this.fb.array([]),
     PropertyContact: this.fb.group({
       UserRole: [''],
       FullName: [''],
       Email: [''],
-      Contact: ['']
+      Contact: [''],
+      IsEmailPrefered: ['']
     }),
     RentSpecial: this.fb.group({
       Title: [''],
@@ -144,6 +165,9 @@ export class RentPropertyPageComponent implements OnInit {
       GarageSqrFt: ['']
     })
   });
+  readonly MAX_FILES = 10;
+  readonly MAX_SIZE_MB = 8;
+  readonly ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
   imageSrc: string | ArrayBuffer | null = null;
   sections: any;
   section: string = 'property-information'
@@ -154,28 +178,30 @@ export class RentPropertyPageComponent implements OnInit {
   additionalSelectedFiles: ImageFile[] = [];
   thirdSelectedFiles: ImageFile[] = [];
   thirdFileInput: HTMLInputElement | undefined;
-  formGroup!: FormGroup;
-  floorPlansArray!: FormArray;
-  constructor(private activatedRoute: ActivatedRoute, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
+  constructor(private activatedRoute: ActivatedRoute, private toastr: ToastrService, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
     this.activatedRoute.queryParams.subscribe((response: any) => {
       if (!response?.data) {
         this.location.back()
-      }else{
+      } else {
         this.previousData = JSON.parse(response?.data);
         this.propertyAddForm.patchValue({
           PropertyContact: {
             FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
             Email: this.previousData?.email
           },
-          Location:this.previousData?.address?.address,
-          Latitude:this.previousData?.latLng?.lat,
-          Longitude:this.previousData?.latLng?.lng,
-          City:this.previousData?.address?.city,
-          State:this.previousData?.address?.state,
-          Country:this.previousData?.address?.country,
-          ZipCode:this.previousData?.address?.zipCode,
-          Street:this.previousData?.address?.street,
+          PropertyType: this.previousData?.propertyType,
+          Location: this.previousData?.address?.address,
+          Latitude: this.previousData?.latLng?.lat,
+          Longitude: this.previousData?.latLng?.lng,
+          City: this.previousData?.address?.city,
+          State: this.previousData?.address?.state,
+          Country: this.previousData?.address?.country,
+          ZipCode: this.previousData?.address?.zipCode,
+          Street: this.previousData?.address?.street,
         })
+        if (this.previousData?.active === 'sell') {
+          this.propertyAddForm.removeControl('RentSpecial');
+        }
       }
     })
     this.startDate = new Date();
@@ -183,20 +209,7 @@ export class RentPropertyPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAmeneties()
-    this.formGroup = new FormGroup({
-      floorPlansArray: new FormArray([
-        new FormGroup({
-          floorPlanName: new FormControl(null, Validators.required),
-          floorBed: new FormControl(null, Validators.required),
-          floorbath: new FormControl(null, Validators.required),
-          floorSqft: new FormControl(null, Validators.required),
-          floorCurrencyType: new FormControl(null, Validators.required),
-          floorSalesPrice: new FormControl(null, Validators.required),
-          floorDesc: new FormControl(null, Validators.required),
-          img: new FormControl(null, Validators.required),
-        }),
-      ]),
-    });
+    
   }
   getAmeneties() {
     this.http.loaderGet('Property/amenities', true, true, false, false)
@@ -207,9 +220,6 @@ export class RentPropertyPageComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.amenityCategories = response?.modelList;
-        console.log(this.previousData);
-
-        this.propertyAddForm.controls['PropertyType'].setValue(this.helper.returnType(this.previousData?.propertyType))
       })
   }
   getUtilities() {
@@ -235,29 +245,33 @@ export class RentPropertyPageComponent implements OnInit {
     console.log(this.propertyAddForm.value);
   }
   get getFloorPlansFormArray(): FormArray {
-    return this.formGroup.get('floorPlansArray') as FormArray;
+    return this.propertyAddForm.get('floorPlansArray') as FormArray;
   }
 
-  addNew() {
-    this.floorPlansArray = this.formGroup.get('floorPlansArray') as FormArray;
-    this.floorPlansArray.push(
-      new FormGroup({
-        floorPlanName: new FormControl(null, Validators.required),
-        floorBed: new FormControl(null, Validators.required),
-        floorbath: new FormControl(null, Validators.required),
-        floorSqft: new FormControl(null, Validators.required),
-        floorCurrencyType: new FormControl(null, Validators.required),
-        floorSalesPrice: new FormControl(null, Validators.required),
-        floorDesc: new FormControl(null, Validators.required),
-        img: new FormControl(null, Validators.required),
-      })
-    );
+  addFloorPlan(): void {
+    const floorPlan = this.fb.group({
+      PlanName: ['', Validators.required],
+      NoOfBed: ['', Validators.required],
+      NoOfBath: ['', Validators.required],
+      Area: ['', Validators.required],
+      StartPrice: ['', Validators.required],
+      EndPrice: ['', Validators.required],
+      Description: ['', Validators.required],
+      FloorPlanImage: ['', Validators.required],
+      FloorPlanUnits: this.fb.array([
+        this.fb.group({
+          Price: ['', Validators.required],
+          AvailabilityDate: ['', Validators.required],
+        })
+      ]),
+    });
+    (this.propertyAddForm.get('FloorPlans') as FormArray).push(floorPlan);
   }
 
   getimg(index: number) {
-    this.floorPlansArray = this.formGroup.get('floorPlansArray') as FormArray;
-    let controls = this.floorPlansArray.at(index);
-    return controls.get('img')?.value;
+    // this.floorPlansArray = this.formGroup.get('floorPlansArray') as FormArray;
+    // let controls = this.floorPlansArray.at(index);
+    // return controls.get('img')?.value;
   }
 
   // Remove the selected image
@@ -275,24 +289,24 @@ export class RentPropertyPageComponent implements OnInit {
 
   // Handle primary file selection
   onFileSelected(event: Event, index?: number): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imageSrc = reader.result;
-        if (index != undefined) {
-          this.floorPlansArray = this.formGroup.get(
-            'floorPlansArray'
-          ) as FormArray;
-          let controls = this.floorPlansArray.at(index);
-          controls.patchValue({
-            img: this.imageSrc,
-          });
-        }
-      };
-      reader.readAsDataURL(file);
-    }
+    // const input = event.target as HTMLInputElement;
+    // if (input.files && input.files.length > 0) {
+    //   const file = input.files[0];
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     this.imageSrc = reader.result;
+    //     if (index != undefined) {
+    //       this.floorPlansArray = this.formGroup.get(
+    //         'floorPlansArray'
+    //       ) as FormArray;
+    //       let controls = this.floorPlansArray.at(index);
+    //       controls.patchValue({
+    //         img: this.imageSrc,
+    //       });
+    //     }
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
   }
 
   // Handle additional file selection
@@ -348,7 +362,43 @@ export class RentPropertyPageComponent implements OnInit {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  onCategoryChange(id: any) {
-    this.amenities = this.amenityCategories.find((category: any) => category?.id == id)
+  onCategoryChange(category: any) {
+    this.amenities = category?.value?.amenities
+  }
+  get propertyImageFiles(): FormArray {
+    return this.propertyAddForm.get('PropertyImageFiles') as FormArray;
+  }
+  onPropertyImageSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files) {
+      const currentFileCount = this.propertyImageFiles.length;
+      const filesToAdd = Array.from(fileInput.files).slice(0, this.MAX_FILES - currentFileCount);
+
+      if (fileInput.files.length > filesToAdd.length) {
+        this.toastr.warning('No more than 10 images allowed.');
+      }
+
+      filesToAdd.forEach(file => {
+        if (!this.ALLOWED_TYPES.includes(file.type)) {
+          this.toastr.error('Only jpg, jpeg, png, and webp files are allowed.');
+          return;
+        }
+
+        if (file.size > this.MAX_SIZE_MB * 1024 * 1024) {
+          this.toastr.error(`File ${file.name} is larger than 8MB and was not added.`);
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.propertyImageFiles.push(this.fb.control(reader.result));
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  removePropertyImage(index: number): void {
+    this.propertyImageFiles.removeAt(index);
   }
 }

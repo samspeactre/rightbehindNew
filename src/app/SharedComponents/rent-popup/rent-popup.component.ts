@@ -24,7 +24,7 @@ export class RentPopupComponent {
   active: string = 'rent';
   user$ = this.store.select(selectUser);
   types = types;
-  propertyForm:any = this.fb.group({
+  propertyForm: any = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     propertyType: ['', Validators.required],
@@ -32,7 +32,7 @@ export class RentPopupComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     address: ['', Validators.required],
-    latLng:['', Validators.required]
+    latLng: ['', Validators.required]
   });
   user: any;
   private destroy$ = new Subject<void>();
@@ -70,10 +70,10 @@ export class RentPopupComponent {
     this.active = type;
   }
   onSubmit() {
-    if(this.user){
+    if (this.user) {
       this.navigate()
     }
-    else{
+    else {
       const data = {
         fullName: this.propertyForm.controls['firstName'].value + ' ' + this.propertyForm.controls['lastName'].value,
         password: this.propertyForm.controls['password'].value,
@@ -100,16 +100,20 @@ export class RentPopupComponent {
         });
     }
   }
-  navigate(){
+  navigate() {
+    const data = {
+      ...this.propertyForm.value,
+      active:this.active
+    }
     if (this.active == 'rent') {
-      this.router.navigate(['/rent-add-property'], { queryParams: { data: JSON.stringify(this.propertyForm.value) } });
+      this.router.navigate(['/rent-add-property'], { queryParams: { data: JSON.stringify(data)  } });
     }
     else {
-      this.router.navigate(['/sell-add-property'], { queryParams: { data: JSON.stringify(this.propertyForm.value) } });
+      this.router.navigate(['/sell-add-property'], { queryParams: { data: JSON.stringify(data) } });
     }
     this.dialogRef.close();
   }
-  setFormValue(event:any,control:string){
+  setFormValue(event: any, control: string) {
     this.propertyForm.controls[control].setValue(event);
   }
 }

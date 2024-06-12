@@ -13,7 +13,7 @@ import { Subject, finalize, takeUntil } from 'rxjs';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../Services/helper.service';
 
 @Component({
   standalone: true,

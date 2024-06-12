@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { MatButtonModule } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatLabel, MatSelect } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { PopupComponent } from '../../View/popup/popup.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../Services/http.service';
+import { PopupComponent } from '../../View/popup/popup.component';
 import { BannerComponent } from '../banner/banner.component';
+import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { mapSrc } from '../../app.component';
-import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   standalone: true,
@@ -35,7 +35,8 @@ import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.compon
     SearchBarComponent,
     NavbarComponent,
     MatButtonModule,
-    MiniLoadingComponent
+    MiniLoadingComponent,
+    MapComponent
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -54,7 +55,6 @@ export class ListingPageComponent implements OnInit {
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
-  mapScriptLoad: boolean = false;
   screenHeight:number = window.innerHeight;
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
@@ -66,7 +66,6 @@ export class ListingPageComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog
   ) {
-    this.appendScript();
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
@@ -86,7 +85,6 @@ export class ListingPageComponent implements OnInit {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.removeScript();
   }
 
   getProperties(loadMore:boolean) {
@@ -159,24 +157,5 @@ export class ListingPageComponent implements OnInit {
   openPopup(): void {
     this.dialog.open(PopupComponent);
   }
-  appendScript(): void {
-    const scriptAvailable = document.querySelector(`script[src="${mapSrc}"]`);
-    if (!scriptAvailable) {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = mapSrc;
-      document.body.appendChild(script);
-      script.onload = () => {
-        this.mapScriptLoad = true;
-      };
-    } else {
-      this.mapScriptLoad = true;
-    }
-  }
-  removeScript(): void {
-    const script = document.querySelector(`script[src="${mapSrc}"]`);
-    if (script) {
-      script.remove();
-    }
-  }
+  
 }

@@ -8,7 +8,7 @@ import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { addUserData } from '../../Ngrx/data.action';
 import { HttpService } from '../../Services/http.service';
 import { RegisterPopupComponent } from '../../View/register-popup/register-popup.component';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../Services/helper.service';
 import { InputComponent } from '../input/input.component';
 import { AuthService } from '../../TsExtras/auth.service';
 @Component({

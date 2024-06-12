@@ -8,12 +8,13 @@ import { AuthService } from '../../TsExtras/auth.service';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
-import { types } from '../../services/helper.service';
+import { types } from '../../Services/helper.service';
 import { CommonModule } from '@angular/common';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   standalone: true,
-  imports: [InputComponent, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [InputComponent, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
   styleUrl: './rent-popup.component.scss'

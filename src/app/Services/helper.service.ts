@@ -6,6 +6,7 @@ export const types = [
   { name: 'Townhomes', value: 4 },
   { name: 'Rooms', value: 5 }
 ];
+
 @Injectable({
   providedIn: 'root'
 })

@@ -21,7 +21,7 @@ import { selectPopupState } from '../../Ngrx/data.reducer';
 import { HttpService } from '../../Services/http.service';
 import { faEllipsisVertical, faHeart, faShare, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../Services/helper.service';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

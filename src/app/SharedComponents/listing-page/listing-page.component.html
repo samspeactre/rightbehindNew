@@ -101,10 +101,9 @@
         </div>
       </div>
       <div class="col-lg-7 wow fadeInDown">
-        @if(mapScriptLoad){
-        <google-map [height]="screenHeight" class="mapElement" width="100%" [center]="center" [zoom]="zoom">
-        </google-map>
-        }
+        <div class="mapElement">
+          <app-map [height]="screenHeight"></app-map>
+        </div>
       </div>
     </div>
   </div>

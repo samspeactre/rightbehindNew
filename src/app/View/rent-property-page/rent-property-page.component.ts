@@ -24,7 +24,7 @@ import { HttpService } from '../../Services/http.service';
 import { finalize } from 'rxjs';
 import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
 import { SharedModule } from '../../TsExtras/shared.module';
-import { HelperService } from '../../services/helper.service';
+import { HelperService } from '../../Services/helper.service';
 
 interface ImageFile {
   name: string;

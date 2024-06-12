@@ -10,7 +10,7 @@ import { Subject, throwError } from 'rxjs';
 import { catchError, distinctUntilChanged, finalize, shareReplay, takeUntil, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { selectUser } from '../Ngrx/data.reducer';
-import { LoaderService } from '../services/loader.service';
+import { LoaderService } from './loader.service';
 export const baseUrl = 'https://recursing-allen.74-208-96-50.plesk.page/api/'
 @Injectable({
   providedIn: 'root',

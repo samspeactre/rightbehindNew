@@ -11,12 +11,10 @@ import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import { FooterComponent } from './SharedComponents/footer/footer.component';
 import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
-import { LoaderService } from './services/loader.service';
+import { LoaderService } from './Services/loader.service';
 import { selectSideBar } from './Ngrx/data.reducer';
-import { HelperService } from './services/helper.service';
+import { HelperService } from './Services/helper.service';
 declare var WOW: any;
-export const mapSrc =
-  'https://maps.googleapis.com/maps/api/js?key=AIzaSyCm_NXIOGvZ0nlQ9EBeotrO1ESY3hji6No';
 @Component({
   standalone: true,
   imports: [NavbarComponent, FooterComponent, LoadingComponent, RouterModule],

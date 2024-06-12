@@ -15,7 +15,7 @@
             Contact for more info: info&#64;rightnehindme.com
           </p>
         </a>
-        <div class="social-links dCenter gap-2">
+        <div class="social-links dCenter gap-3">
           <a> <fa-icon class="wow fadeInDown" [icon]="faFacebook"></fa-icon></a>
           <a> <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon></a>
           <a> <fa-icon class="wow fadeInDown" [icon]="faTwitter"></fa-icon></a>
@@ -29,23 +29,18 @@
           <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="" class="logo-img w-100" /></a>
         </div>
         <div class="cstm-nav-item">
-          <ul class="mb-0">
+          <ul class="mb-0 ps-0">
             <li>
               <a routerLink="/" class="text-dark wow fadeInDown">Home</a>
             </li>
             <li>
-              <a routerLink="" class="text-dark wow fadeInDown">About Us</a>
-            </li>
-            <li>
               <a routerLink="/buy" class="text-dark wow fadeInDown">buy</a>
             </li>
+            @if(!sellHide){
             <li>
-              <!-- @if (user) {
-                <a routerLink="/selling-detail" class="wow fadeInDown">Sell</a>
-              } @else {
-              } -->
               <a (click)="openSellPopup('sell')" class="text-dark wow fadeInDown">Sell</a>
             </li>
+            }
             <li>
               <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
             </li>
@@ -57,17 +52,13 @@
             </li>
           </ul>
         </div>
-        <div class="dCenter">
+        <div class="dCenter gap-3">
           @if(user){
           <div class="dropdown cstm-drop-btn" ngbDropdown>
-            <button class="btn-style-none" ngbDropdownToggle type="button" id="dropdownMenuButton1"
+            <button class="btn-style-none me-0 dCenter gap-2" ngbDropdownToggle type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="profile-img">
-                <img [src]="
-                    user?.imageUrl ||
-                    'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
-                  " alt="profile picture" />
-              </div>
+              <p class="mb-0 bold text-end">{{user?.fullName}}</p>
+              <fa-icon [icon]="faCircleChevronDown"></fa-icon>
             </button>
             <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
               <li>
@@ -76,16 +67,15 @@
             </ul>
           </div>
           } @else{
-          <button
-            class="wow fadeInDown dCenter gap-2 justify-content-between btnSecondary me-3"
-            (click)="openPopup()">
+          <button class="wow fadeInDown dCenter gap-2 justify-content-between btnSecondary" (click)="openPopup()">
             <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
           }
-          <button class="wow fadeInDown btnSecondary dCenter justify-content-between"
-            (click)="openSellPopup('rent')">
+          @if(!sellHide){
+          <button class="wow fadeInDown btnSecondary dCenter" (click)="openSellPopup('rent')">
             Submit A Deal
           </button>
+          }
         </div>
       </div>
     </div>
@@ -111,23 +101,18 @@
   </div>
 
   <div class="cstm-nav-item ">
-    <ul class="mb-0">
+    <ul class="mb-0 ps-0">
       <li>
         <a routerLink="/" (click)="show(false)">Home</a>
       </li>
       <li>
-        <a routerLink="" (click)="show(false)">About Us</a>
-      </li>
-      <li>
         <a routerLink="/buy" (click)="show(false)">buy</a>
       </li>
+      @if(!sellHide){
       <li>
-        <!-- @if (user) {
-        <a routerLink="/selling-detail" (click)="show(false)">Sell</a>
-        } @else {
-        } -->
         <a (click)="show(false); openSellPopup('sell')">Sell</a>
       </li>
+      }
       <li>
         <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
@@ -151,9 +136,11 @@
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
       }
+      @if(!sellHide){
       <button class="btnSecondary mt-4" (click)="show(false);openSellPopup('rent')">
         Submit A Deal
       </button>
+      }
     </div>
   </div>
 </div>

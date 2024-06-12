@@ -3,14 +3,14 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faAt, faBars, faHeadphones, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faAt, faBars, faCircleChevronDown, faHeadphones, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
 import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
@@ -37,9 +37,11 @@ export class NavbarComponent {
   faLinkedin=faLinkedin
   faInstagram=faInstagram
   faTwitter=faTwitter
+  faCircleChevronDown=faCircleChevronDown
   faAt=faAt
   screenWidth:number = window.innerWidth
-  constructor(private store: Store, public dialog: MatDialog, private auth:AuthService) {
+  sellHide:boolean = true
+  constructor(private store: Store, public dialog: MatDialog, private auth:AuthService, private router:Router, private actiavtedRoute:ActivatedRoute) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -49,6 +51,33 @@ export class NavbarComponent {
       )
       .subscribe((user) => {
         this.user = user;
+      });
+      if(this.router.url.includes('-add-property')){
+        this.sellHide = true;
+      }
+      this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        ),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((event: any) => {
+        let route = this.actiavtedRoute;
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
+        route.data
+          .pipe(
+            distinctUntilChanged(
+              (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+            ),
+            takeUntil(this.destroy$)
+          )
+          .subscribe((data: any) => {
+            this.sellHide = data['sellHide'] || false;
+          });
       });
   }
   ngOnDestroy() {

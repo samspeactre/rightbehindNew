@@ -52,7 +52,7 @@ export const routes: Routes = [
   },
   {
     path: 'rent-add-property',
-    data: { footer: true, header: true },
+    data: { footer: true, header: true, sellHide:true },
     loadChildren: () =>
       import('./view/rent-property-page/rent-property.route').then(
         (m) => m.Rent_Property_Routes
@@ -61,7 +61,7 @@ export const routes: Routes = [
   {
     path: 'sell-add-property',
     canActivate: [InnerGuard],
-    data: { footer: true, header: true },
+    data: { footer: true, header: true, sellHide:true },
     loadChildren: () =>
       import('./view/rent-property-page/rent-property.route').then(
         (m) => m.Rent_Property_Routes

@@ -31,7 +31,8 @@ export class RentPopupComponent {
     unit: [''],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    address: ['', Validators.required]
+    address: ['', Validators.required],
+    latLng:['']
   });
   user: any;
   private destroy$ = new Subject<void>();
@@ -108,14 +109,10 @@ export class RentPopupComponent {
     }
     this.dialogRef.close();
   }
-  getSearchName(event:any){
+  setFormValue(event:any,control:string){
+    this.propertyForm.controls[control].setValue(event);
     console.log('====================================');
-    console.log(event);
-    console.log('====================================');
-  }
-  onSelect(event:any){
-    console.log('====================================');
-    console.log(event);
+    console.log(this.propertyForm.value);
     console.log('====================================');
   }
 }

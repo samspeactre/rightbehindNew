@@ -1,9 +1,19 @@
+@if(search){
+<div class="cstmsContainer mb-3">
+    <div class="cstmInputBox">
+        <label [class.focused]="isFocused">Address</label>
+        <input #autocompleteInput type="text" [value]="value" (input)="
+                  write($event);
+                " placeholder="Enter Your Address" [class.show-placeholder]="isFocused"
+            (focus)="togglePlaceholder(true)" (blur)="togglePlaceholder(false)" />
+    </div>
+</div>
+}
 @if(mapScriptLoad){
 <google-map [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
     @for (position of markerPositions; track position) {
-    <map-marker [position]="position" [options]="markerOptions"
-    (mapDragend)="onMarkerDragEnd($event)" />
+    <map-marker [position]="position" [options]="markerOptions" (mapDragend)="onMarkerDragEnd($event)" />
     }
 </google-map>
 }

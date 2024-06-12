@@ -11,18 +11,19 @@
 } @else{
 <div [ngClass]="[type == 'carousel' ? 'carousel' : 'component']">
   <div class="property-card" [ngStyle]="{ background: background }">
-    <div class="card-img cursor wow fadeInDown" (click)="type == 'component' && navigate(card)">
-      <img [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.webp'"
+    <div class="card-img cursor " (click)="type == 'component' && navigate(card)">
+      <img
+        [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.webp'"
         [class.NoImageFound]="!card?.imgSrc" alt="Card Image" class="card-img" />
       @if(showBadge && card?.badge){
       <div class="badge bg-light rounded-2 ">
-        <p class="wow fadeInDown reg smallFont">asd</p>
+        <p class=" reg smallFont">asd</p>
       </div>
       }
     </div>
     <div class="card-content">
-      <h5 class="wow fadeInDown bold mt-2">{{ card.title || 'N/A' }}</h5>
-      <p class="wow fadeInDown reg">
+      <h5 class=" bold mt-2">{{ card.title || 'N/A' }}</h5>
+      <p class=" reg">
         {{ card.description || 'N/A' }}
       </p>
       <!-- @if(type == 'carousel'){ -->
@@ -30,31 +31,31 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="display">
             <div class="d-flex align-items-center border-right-style">
-              <div class="home-detail bedroom wow fadeInDown">
+              <div class="home-detail bedroom ">
                 <img src="../../assets/img/bed.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font">{{ card.noOfBed || 'N/A' }}</div>
             </div>
             <div class="d-flex align-items-center border-right-style">
-              <div class="home-detail bath display wow fadeInDown">
+              <div class="home-detail bath display ">
                 <img src="../../assets/img/bath.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font">{{ card.noOfBath || 'N/A' }}</div>
             </div>
             <div class="d-flex align-items-center border-right-style">
-              <div class="home-detail display wow fadeInDown">
+              <div class="home-detail display ">
                 <img src="../../assets/img/sq.ft.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font sq.ft">{{ card.area || 0 }} Sqft</div>
             </div>
           </div>
-          <p class="price bold mb-0 wow fadeInDown">
+          <p class="price bold mb-0 ">
             {{ card.price || 0 | currency : "USD" }}
           </p>
         </div>
       </div>
       <div class="card-bottom mt-3 dCenter justify-content-between">
-        <button class="btnPrimary wow fadeInDown" (click)="routeToContact(card)">Contact Agent</button>
+        <button class="btnPrimary " (click)="routeToContact(card)">Contact Agent</button>
       </div>
     </div>
   </div>

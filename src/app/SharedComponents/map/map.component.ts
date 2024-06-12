@@ -50,6 +50,9 @@ export class MapComponent implements OnInit, OnDestroy {
     }).catch(err => {
       console.error('Error loading Google Maps script:', err);
     });
+    console.log('====================================');
+    console.log(this.markerPositions,"markerpost");
+    console.log('====================================');
   }
 
   ngOnDestroy(): void {
@@ -57,7 +60,6 @@ export class MapComponent implements OnInit, OnDestroy {
       google.maps.event.removeListener(this.autocompleteListener);
     }
   }
-
   initMap(): void {
     this.markerOptions = { draggable: this.draggable, clickable: true, crossOnDrag: true, optimized: true };
     if (this.map && this.map.googleMap) {

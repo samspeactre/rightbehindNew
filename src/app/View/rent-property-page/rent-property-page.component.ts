@@ -25,6 +25,7 @@ import { finalize } from 'rxjs';
 import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
 import { SharedModule } from '../../TsExtras/shared.module';
 import { HelperService } from '../../Services/helper.service';
+import { MapComponent } from '../../SharedComponents/map/map.component';
 
 interface ImageFile {
   name: string;
@@ -56,7 +57,7 @@ interface FormSection {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModule, MatButtonModule, BannerComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [CommonModule, SharedModule, MapComponent, MatButtonModule, BannerComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
   styleUrls: ['./rent-property-page.component.scss'],
@@ -175,9 +176,6 @@ export class RentPropertyPageComponent implements OnInit {
           ZipCode:this.previousData?.address?.zipCode,
           Street:this.previousData?.address?.street,
         })
-        console.log('====================================');
-        console.log(this.propertyAddForm.value);
-        console.log('====================================');
       }
     })
     this.startDate = new Date();
@@ -232,8 +230,6 @@ export class RentPropertyPageComponent implements OnInit {
         formArray.removeAt(index);
       }
     }
-    console.log(this.propertyAddForm.value);
-
   }
   onSubmit() {
     console.log(this.propertyAddForm.value);

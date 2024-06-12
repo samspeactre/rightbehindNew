@@ -546,9 +546,7 @@
                   <input matInput />
                 </mat-form-field>
                 <div class="col-lg-12">
-                  <div class="map-img">
-                    <img src="../../assets/img/add-property-map.webp" alt="" />
-                  </div>
+                  <app-map [markerPositions]="[previousData?.latLng]" [center]="previousData?.latLng"></app-map>
                 </div>
               </div>
             </form>

@@ -82,7 +82,7 @@ interface FormSection {
   ],
 })
 export class RentPropertyPageComponent implements OnInit {
-  previousData:any;
+  previousData: any;
   amenityCategories!: any;
   utilities!: any;
   amenities!: any;
@@ -96,7 +96,10 @@ export class RentPropertyPageComponent implements OnInit {
     Area: [''],
     Price: [''],
     Location: [''],
+    Country: [''],
+    State: [''],
     City: [''],
+    ZipCode: [''],
     Unit: [''],
     Plot: [''],
     Street: [''],
@@ -152,11 +155,29 @@ export class RentPropertyPageComponent implements OnInit {
   thirdFileInput: HTMLInputElement | undefined;
   formGroup!: FormGroup;
   floorPlansArray!: FormArray;
-  constructor(private activatedRoute: ActivatedRoute, public helper:HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
+  constructor(private activatedRoute: ActivatedRoute, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
     this.activatedRoute.queryParams.subscribe((response: any) => {
-      this.previousData = JSON.parse(response?.data)
       if (!response?.data) {
         this.location.back()
+      }else{
+        this.previousData = JSON.parse(response?.data);
+        this.propertyAddForm.patchValue({
+          PropertyContact: {
+            FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
+            Email: this.previousData?.email
+          },
+          Location:this.previousData?.address?.address,
+          Latitude:this.previousData?.latLng?.lat,
+          Longitude:this.previousData?.latLng?.lng,
+          City:this.previousData?.address?.city,
+          State:this.previousData?.address?.state,
+          Country:this.previousData?.address?.country,
+          ZipCode:this.previousData?.address?.zipCode,
+          Street:this.previousData?.address?.street,
+        })
+        console.log('====================================');
+        console.log(this.propertyAddForm.value);
+        console.log('====================================');
       }
     })
     this.startDate = new Date();
@@ -189,7 +210,7 @@ export class RentPropertyPageComponent implements OnInit {
       .subscribe((response: any) => {
         this.amenityCategories = response?.modelList;
         console.log(this.previousData);
-        
+
         this.propertyAddForm.controls['PropertyType'].setValue(this.helper.returnType(this.previousData?.propertyType))
       })
   }
@@ -332,6 +353,6 @@ export class RentPropertyPageComponent implements OnInit {
     }
   }
   onCategoryChange(id: any) {
-    this.amenities = this.amenityCategories.find((category:any)=> category?.id == id)
+    this.amenities = this.amenityCategories.find((category: any) => category?.id == id)
   }
 }

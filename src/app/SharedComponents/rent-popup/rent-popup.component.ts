@@ -32,7 +32,7 @@ export class RentPopupComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     address: ['', Validators.required],
-    latLng:['']
+    latLng:['', Validators.required]
   });
   user: any;
   private destroy$ = new Subject<void>();
@@ -111,8 +111,5 @@ export class RentPopupComponent {
   }
   setFormValue(event:any,control:string){
     this.propertyForm.controls[control].setValue(event);
-    console.log('====================================');
-    console.log(this.propertyForm.value);
-    console.log('====================================');
   }
 }

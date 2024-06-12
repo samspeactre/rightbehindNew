@@ -19,7 +19,7 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() search: boolean = false;
   @Input() markerPositions: google.maps.LatLngLiteral[] = [];
   @Output() mapMarkerCordinates = new EventEmitter<any>();
-  @Output() mapSearchLocation = new EventEmitter<string>();
+  @Output() mapSearchLocation = new EventEmitter<any>();
   display!: google.maps.LatLngLiteral;
   @ViewChild(GoogleMap) map!: GoogleMap;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
@@ -28,7 +28,7 @@ export class MapComponent implements OnInit, OnDestroy {
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
-  value: string =''
+  value: string = ''
   constructor(private http: HttpClient) { }
   moveMap(event: any) {
     this.center = (event.latLng.toJSON());
@@ -75,7 +75,8 @@ export class MapComponent implements OnInit, OnDestroy {
       if (place.geometry && place.geometry.location) {
         this.center = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
         this.addMarkerPoint({ latLng: place.geometry.location });
-        this.mapSearchLocation.emit(place.formatted_address)
+        this.mapSearchLocation.emit({ address: place.formatted_address, ...this.returnLocationDetails(place.address_components) })
+        this.mapSearchLocation.emit(place.formatted_address);
       }
     });
   }
@@ -110,7 +111,7 @@ export class MapComponent implements OnInit, OnDestroy {
       if (response.status === 'OK' && response.results.length > 0) {
         const placeName = response.results[0].formatted_address;
         this.mapMarkerCordinates.next(location)
-        this.mapSearchLocation.emit(placeName)
+        this.mapSearchLocation.emit({ address: placeName, ...this.returnLocationDetails(response.results[0].address_components) })
         this.value = placeName;
         this.isFocused = true;
       } else {
@@ -119,5 +120,31 @@ export class MapComponent implements OnInit, OnDestroy {
     }, (error) => {
       console.error('Geocoding API error:', error);
     });
+  }
+  returnLocationDetails(addressComponents: any): any {
+    let city = '';
+    let country = '';
+    let street = '';
+    let zipCode = '';
+    let state = '';
+
+    for (const component of addressComponents) {
+      if (component.types.includes('locality')) {
+        city = component.long_name;
+      }
+      if (component.types.includes('country')) {
+        country = component.long_name;
+      }
+      if (component.types.includes('route')) {
+        street = component.long_name;
+      }
+      if (component.types.includes('postal_code')) {
+        zipCode = component.long_name;
+      }
+      if (component.types.includes('administrative_area_level_1')) {
+        state = component.long_name;
+      }
+    }
+    return { city, country, street, zipCode, state };
   }
 }

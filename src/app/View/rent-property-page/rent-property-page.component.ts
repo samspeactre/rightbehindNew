@@ -21,40 +21,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { HttpService } from '../../Services/http.service';
-import { finalize } from 'rxjs';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
 import { SharedModule } from '../../TsExtras/shared.module';
 import { HelperService, types } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { ToastrService } from 'ngx-toastr';
 
-interface ImageFile {
-  name: string;
-  size: number;
-  url: string;
-  file?: File;
-}
-
-interface Category {
-  name: string;
-  amenities: string[];
-}
-
-interface Amenity {
-  name: string;
-  selected: boolean;
-}
-
-interface FormSection {
-  planName: string;
-  bedrooms: number;
-  bathrooms: number;
-  sqft: number;
-  currencyType: string;
-  salePrice: number;
-  description: string;
-  imageSrc: string | ArrayBuffer | null;
-}
 
 @Component({
   standalone: true,
@@ -89,6 +62,7 @@ export class RentPropertyPageComponent implements OnInit {
   utilities!: any;
   amenities!: any;
   types = types;
+  private destroy$ = new Subject<void>();
   propertyAddForm: any = this.fb.group({
     Title: ['', Validators.required],
     Description: ['', Validators.required],
@@ -101,6 +75,7 @@ export class RentPropertyPageComponent implements OnInit {
     Price: [''],
     Location: [''],
     Country: [''],
+    Landmark: [''],
     State: [''],
     City: [''],
     ZipCode: [''],
@@ -115,6 +90,7 @@ export class RentPropertyPageComponent implements OnInit {
     Parking: [''],
     ParkingFees: [''],
     Laundry: [''],
+    Terms: [null, Validators.required],
     IsFurnished: [false],
     PropertyImageFiles: this.fb.array([]),
     Amenities: this.fb.array([]),
@@ -128,7 +104,7 @@ export class RentPropertyPageComponent implements OnInit {
         StartPrice: ['', Validators.required],
         EndPrice: ['', Validators.required],
         Description: ['', Validators.required],
-        FloorPlanImage: ['', Validators.required],
+        FloorPlanImage: this.fb.array([]),
         FloorPlanUnits: this.fb.array([
           this.fb.group({
             Price: ['', Validators.required],
@@ -168,16 +144,10 @@ export class RentPropertyPageComponent implements OnInit {
   readonly MAX_FILES = 10;
   readonly MAX_SIZE_MB = 8;
   readonly ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
-  imageSrc: string | ArrayBuffer | null = null;
   sections: any;
   section: string = 'property-information'
   startDate: Date;
   endDate: Date = new Date();
-  selected = 'none';
-  selectedFiles: ImageFile[] = [];
-  additionalSelectedFiles: ImageFile[] = [];
-  thirdSelectedFiles: ImageFile[] = [];
-  thirdFileInput: HTMLInputElement | undefined;
   constructor(private activatedRoute: ActivatedRoute, private toastr: ToastrService, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
     this.activatedRoute.queryParams.subscribe((response: any) => {
       if (!response?.data) {
@@ -209,7 +179,10 @@ export class RentPropertyPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAmeneties()
-    
+  }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
   getAmeneties() {
     this.http.loaderGet('Property/amenities', true, true, false, false)
@@ -243,11 +216,44 @@ export class RentPropertyPageComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.propertyAddForm.value);
-  }
-  get getFloorPlansFormArray(): FormArray {
-    return this.propertyAddForm.get('floorPlansArray') as FormArray;
-  }
+    this.propertyAddForm.patchValue({
+      Category:1
+    })
+    const formData = new FormData();
 
+    // Function to append data to FormData, handling nested objects and arrays
+    const appendFormData = (data: any, rootName: string = '') => {
+      let formKey;
+      if (data instanceof FileList) {
+        for (let i = 0; i < data.length; i++) {
+          formData.append(rootName, data[i]);
+        }
+      } else if (data instanceof Array) {
+        for (let i = 0; i < data.length; i++) {
+          appendFormData(data[i], `${rootName}[${i}]`);
+        }
+      } else if (data instanceof Object && !(data instanceof File)) {
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            appendFormData(data[key], rootName ? `${rootName}.${key}` : key);
+          }
+        }
+      } else {
+        formData.append(rootName, data);
+      }
+    };
+
+    // Append form values to the FormData object
+    appendFormData(this.propertyAddForm.value);
+    // Send the FormData object in the HTTP request
+    this.http.loaderPost('Property/create', formData, true)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((response) => {
+        console.log(response);
+      })
+  }
   addFloorPlan(): void {
     const floorPlan = this.fb.group({
       PlanName: ['', Validators.required],
@@ -257,7 +263,7 @@ export class RentPropertyPageComponent implements OnInit {
       StartPrice: ['', Validators.required],
       EndPrice: ['', Validators.required],
       Description: ['', Validators.required],
-      FloorPlanImage: ['', Validators.required],
+      FloorPlanImage: this.fb.array([]),
       FloorPlanUnits: this.fb.array([
         this.fb.group({
           Price: ['', Validators.required],
@@ -267,92 +273,14 @@ export class RentPropertyPageComponent implements OnInit {
     });
     (this.propertyAddForm.get('FloorPlans') as FormArray).push(floorPlan);
   }
-
-  getimg(index: number) {
-    // this.floorPlansArray = this.formGroup.get('floorPlansArray') as FormArray;
-    // let controls = this.floorPlansArray.at(index);
-    // return controls.get('img')?.value;
-  }
-
-  // Remove the selected image
-  removeImage(index: number) {
-    const floorPlanGroup = this.getFloorPlansFormArray.at(index) as FormGroup;
-    floorPlanGroup.get('img')?.setValue(null); // Clear the value of the image control
-  }
-
-  // Trigger primary file input
-  triggerFileInput(index: number): void {
-    let id = 'fileInput' + index.toString();
-    const fileInput = document.getElementById(id) as HTMLElement;
-    fileInput.click();
-  }
-
-  // Handle primary file selection
-  onFileSelected(event: Event, index?: number): void {
-    // const input = event.target as HTMLInputElement;
-    // if (input.files && input.files.length > 0) {
-    //   const file = input.files[0];
-    //   const reader = new FileReader();
-    //   reader.onload = () => {
-    //     this.imageSrc = reader.result;
-    //     if (index != undefined) {
-    //       this.floorPlansArray = this.formGroup.get(
-    //         'floorPlansArray'
-    //       ) as FormArray;
-    //       let controls = this.floorPlansArray.at(index);
-    //       controls.patchValue({
-    //         img: this.imageSrc,
-    //       });
-    //     }
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
-  }
-
-  // Handle additional file selection
-  onAdditionalFileSelected(event: any) {
-    this.handleFileSelection(event, this.additionalSelectedFiles);
-  }
-
-  // Handle third file selection
-  onThirdFileSelected(event: any) {
-    this.handleFileSelection(event, this.thirdSelectedFiles);
-  }
-
-  // General file selection handler
-  handleFileSelection(event: any, targetArray: ImageFile[]) {
-    const files: FileList = event.target.files;
-
-    if (files.length + targetArray.length > 10) {
-      alert('You can only upload a maximum of 10 images');
-      return;
-    }
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (file.size > 8 * 1024 * 1024) {
-        alert(`File ${file.name} is too large. Maximum allowed size is 8 MB.`);
-        continue;
-      }
-
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        targetArray.push({
-          name: file.name,
-          size: file.size,
-          url: e.target.result,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  removeFile(index: number) {
-    this.selectedFiles.splice(index, 1);
-  }
-
-  removeAdditionalFile(index: number) {
-    this.additionalSelectedFiles.splice(index, 1);
+  addFloorPlanUnit(floorPlanIndex: number) {
+    const floorPlanUnits = this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanUnits') as FormArray;
+    floorPlanUnits.push(
+      this.fb.group({
+        Price: ['', Validators.required],
+        AvailabilityDate: ['', Validators.required]
+      })
+    );
   }
 
   scrollToSection(sectionId: string) {
@@ -363,7 +291,7 @@ export class RentPropertyPageComponent implements OnInit {
     }
   }
   onCategoryChange(category: any) {
-    this.amenities = category?.value?.amenities
+    this.amenities = this.amenityCategories.find((amenity: any) => amenity?.amenityCategoryName == category?.value);
   }
   get propertyImageFiles(): FormArray {
     return this.propertyAddForm.get('PropertyImageFiles') as FormArray;
@@ -400,5 +328,41 @@ export class RentPropertyPageComponent implements OnInit {
 
   removePropertyImage(index: number): void {
     this.propertyImageFiles.removeAt(index);
+  }
+  onFloorPlanImageSelected(event: Event, floorPlanIndex: number): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files) {
+      const currentFileCount = this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').value.length;
+      const filesToAdd = Array.from(fileInput.files).slice(0, this.MAX_FILES - currentFileCount);
+
+      if (fileInput.files.length > filesToAdd.length) {
+        this.toastr.warning('No more than 10 images allowed.');
+      }
+
+      filesToAdd.forEach(file => {
+        if (!this.ALLOWED_TYPES.includes(file.type)) {
+          this.toastr.error('Only jpg, jpeg, png, and webp files are allowed.');
+          return;
+        }
+
+        if (file.size > this.MAX_SIZE_MB * 1024 * 1024) {
+          this.toastr.error(`File ${file.name} is larger than 8MB and was not added.`);
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          console.log('====================================');
+          console.log(this.propertyAddForm.get('FloorPlans'));
+          console.log('====================================');
+          this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').push(this.fb.control(reader.result));
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  removeFloorPlanImage(floorPlanIndex: number, imageIndex: number): void {
+    this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').removeAt(imageIndex);
   }
 }

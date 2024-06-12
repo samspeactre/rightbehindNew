@@ -85,12 +85,6 @@
     }
   }
   
-  /* Chrome, Safari, Edge, Opera */
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
   
   :host ::ng-deep {
     .cstmNg {
@@ -102,16 +96,6 @@
       &:after {
       border-bottom: 2px solid #0160c9;
     }}
-  }
-  
-  /* Firefox */
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
-  
-  /* General styling */
-  input[type="number"] {
-    appearance: none;
   }
   
   small {

@@ -11,13 +11,13 @@ export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
-  @Input() center: google.maps.LatLngLiteral = { lat: 37.7749, lng: -122.4194 };
-  @Input() zoom: number = 8;
+  @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
+  @Input() zoom: number = 10;
   @Input() height: any;
   @Input() addMarker: boolean = false;
   @Input() draggable: boolean = false;
   @Input() search: boolean = false;
-  @Input() markerPositions: google.maps.LatLngLiteral[] = [{ lat: 24, lng: 12 }];
+  @Input() markerPositions: google.maps.LatLngLiteral[] = [];
   @Output() mapMarkerCordinates = new EventEmitter<any>();
   @Output() mapSearchLocation = new EventEmitter<string>();
   display!: google.maps.LatLngLiteral;

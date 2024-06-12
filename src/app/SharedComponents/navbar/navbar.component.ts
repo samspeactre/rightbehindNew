@@ -40,7 +40,7 @@ export class NavbarComponent {
   faCircleChevronDown=faCircleChevronDown
   faAt=faAt
   screenWidth:number = window.innerWidth
-  sellHide:boolean = true
+  sellHide:boolean = false
   constructor(private store: Store, public dialog: MatDialog, private auth:AuthService, private router:Router, private actiavtedRoute:ActivatedRoute) {
     this.user$
       .pipe(

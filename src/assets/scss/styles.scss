@@ -1,9 +1,11 @@
 @import "@ng-select/ng-select/themes/material.theme.css";
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
 .display {
   display: flex;
 }
@@ -11,6 +13,7 @@
 body {
   overflow-x: hidden;
 }
+
 a {
   text-decoration: none;
 }
@@ -95,10 +98,12 @@ html,
 body {
   height: 100%;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -108,10 +113,12 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-a{
+
+a {
   cursor: pointer;
 }

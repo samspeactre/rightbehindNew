@@ -43,8 +43,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   faChevronCircleRight = faChevronRight;
   screenWidth: number = window.innerWidth;
   intervalIds: any[] = [];
-  buyCards: any[] = [1, 2, 3];
-  sellCards: any[] = [1, 2, 3];
+  buyCards: any[] = [1, 2, 3, 4];
+  sellCards: any[] = [1, 2, 3, 4];
   scrollPosition: number = 0;
   private destroy$ = new Subject<void>();
   dataLoaded: boolean = false;

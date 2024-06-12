@@ -50,6 +50,9 @@ export class RentalCarouselComponent implements OnInit {
       },
       740: {
         items: 3
+      },
+      1024:{
+        items: 4
       }
     },
     nav: false

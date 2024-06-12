@@ -2,8 +2,8 @@
 <google-map [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
     @for (position of markerPositions; track position) {
-    <map-marker [position]="position" [options]="markerOptions" [draggable]="draggable" (dragend)="onMarkerDragEnd($event, marker)"
-    />
+    <map-marker [position]="position" [options]="markerOptions"
+    (mapDragend)="onMarkerDragEnd($event)" />
     }
 </google-map>
 }

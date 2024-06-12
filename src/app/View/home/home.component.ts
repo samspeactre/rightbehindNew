@@ -45,10 +45,9 @@ export class HomeComponent {
   faChevronCircleRight=faChevronRight
   screenWidth:number = window.innerWidth;
   intervalIds: any[] = [];
-  buyCards: any;
-  sellCards: any;
+  buyCards: any=[1,2,3];
+  sellCards: any=[1,2,3];
   scrollPosition: number = 0;
-  loading: boolean = true;
   private destroy$ = new Subject<void>();
   dataLoaded: boolean = false;
   @HostListener('window:scroll', ['$event'])
@@ -130,11 +129,11 @@ export class HomeComponent {
             const newProperties = response?.model?.properties || [];
             this.buyCards = [...newProperties];
           } else {
-            this.noDataError('buyCards');
+            // this.noDataError('buyCards');
           }
         },
         (err) => {
-          this.noDataError('buyCards');
+          // this.noDataError('buyCards');
         }
       );
   }
@@ -144,7 +143,7 @@ export class HomeComponent {
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => {
-          this.loading = false;
+          // this.loading = false;
         })
       )
       .subscribe(
@@ -153,19 +152,19 @@ export class HomeComponent {
             const newProperties = response?.model?.properties || [];
             this.sellCards = [...newProperties];
           } else {
-            this.noDataError('sellCards');
+            // this.noDataError('sellCards');
           }
         },
         (err) => {
-          this.noDataError('sellCards');
+          // this.noDataError('sellCards');
         }
       );
   }
-  noDataError(type: string) {
-    if (type == 'sellCards') {
-      this.sellCards = [];
-    } else {
-      this.buyCards = [];
-    }
-  }
+  // noDataError(type: string) {
+  //   if (type == 'sellCards') {
+  //     this.sellCards = [];
+  //   } else {
+  //     this.buyCards = [];
+  //   }
+  // }
 }

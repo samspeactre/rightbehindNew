@@ -7,7 +7,6 @@
     width: 40px;
     height: 40px;
     font-size: 18px;
-    margin-bottom: 1rem;
     color: white;
 }
 
@@ -24,9 +23,14 @@
 p {
     font-size: 12px;
 }
-
+hr{
+    color: white;
+}
 @media only screen and (max-width:1024px) {
     p {
         font-size: 10px;
+    }
+    hr{
+        display: none;
     }
 }

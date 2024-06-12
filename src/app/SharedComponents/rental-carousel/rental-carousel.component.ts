@@ -30,6 +30,7 @@ export class RentalCarouselComponent implements OnInit {
   @Input() cards: any = [1, 2, 3, 4, 5];
   @Input() type!: string;
   @Input() background!: string;
+  @Input() heading!: string;
   faChevronCircleLeft=faChevronLeft
   faChevronCircleRight=faChevronRight
   noData: boolean = false;

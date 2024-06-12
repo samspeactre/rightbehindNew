@@ -1,13 +1,16 @@
-
-<div class="dCenter justify-content-end position-relative zI">
-  <button class="carosuelBtn dCenter me-2 wow fadeInDown" (click)="owlCar.prev()">
-    <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
-  </button>
-  <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
-    <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
-  </button>
+<div class="dCenter justify-content-between position-relative">
+  <h2 class="wow fadeInDown my-3">Blog & News</h2>
+  <hr class="w-50 wow fadeInDown my-3">
+  <div class="dCenter gap-2 my-3">
+    <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.prev()">
+      <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
+    </button>
+    <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
+      <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
+    </button>
+  </div>
 </div>
-<owl-carousel-o [options]="customOptions"  #owlCar>
+<owl-carousel-o [options]="customOptions" #owlCar>
   @for (card of cards; track card) {
   <ng-container>
     <ng-template carouselSlide>

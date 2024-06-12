@@ -26,32 +26,16 @@
     </div>
   </div>
 </app-banner>
-}
-@if(loading){
-<div class="py-5">
-  <app-mini-loading></app-mini-loading>
-</div>
-} @else{
 @if(buyCards?.length){
 <div class="sec-2 pt-5">
   <div class="cstmContainer position-relative">
-    <div class="headingContainer">
-      <h2 class="headingLine wow fadeInDown">Hot rentals in Miami</h2>
-    </div>
-    <div class="rental-carousel">
-      <app-rental-carousel background="white" [cards]="buyCards"></app-rental-carousel>
-    </div>
+    <app-rental-carousel heading="Hot rentals in Miami" background="white" [cards]="buyCards"></app-rental-carousel>
   </div>
 </div>
 } @if(sellCards?.length){
 <div class="sec-3 mt-5">
   <div class="cstmContainer position-relative">
-    <div class="headingContainer">
-      <h2 class="headingLine wow fadeInDown">Sellers in Miami</h2>
-    </div>
-    <div class="rental-carousel">
-      <app-rental-carousel background="white" [cards]="sellCards"></app-rental-carousel>
-    </div>
+  <app-rental-carousel heading="Sellers in Miami" background="white" [cards]="sellCards"></app-rental-carousel>
   </div>
 </div>
 }
@@ -105,7 +89,7 @@
             or selling, join our exclusive network to unlock unparalleled
             opportunities. Submit your property or explore listings now!
           </p>
-        <button class="btnBlackNWhite wow fadeInDown">Know More</button>
+          <button class="btnBlackNWhite wow fadeInDown">Know More</button>
         </div>
       </div>
     </div>
@@ -145,16 +129,9 @@
         <button class="btnPrimary wow fadeInDown">Know More</button>
       </div>
       <div class="col-lg-12 mt-5">
-        <div class="position-relative">
-          <div class="headingContainer rightBehind">
-            <h2 class="headingLine text-light wow fadeInDown">Right Behind Me Community</h2>
-          </div>
-          @defer {
-          <div class="rental-carousel">
-            <app-card-carousel></app-card-carousel>
-          </div>
-          }
-        </div>
+      @defer{
+        <app-card-carousel></app-card-carousel>
+      }
       </div>
     </div>
   </div>
@@ -163,16 +140,9 @@
   <div class="cstmContainer">
     <div class="row">
       <div class="col-lg-12 mt-3">
-        <div class="position-relative">
-          <div class="headingContainer">
-            <h2 class="headingLine text-dark wow fadeInDown">Blog & News</h2>
-          </div>
-          @defer {
-          <div class="rental-carousel">
-            <app-blog-carousel></app-blog-carousel>
-          </div>
-          }
-        </div>
+        @defer {
+          <app-blog-carousel></app-blog-carousel>
+        }
       </div>
     </div>
   </div>

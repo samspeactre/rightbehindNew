@@ -7,7 +7,6 @@
     width: 40px;
     height: 40px;
     font-size: 18px;
-    margin-bottom: 1rem;
     color: black;
 }
 .blog-img-content{
@@ -57,6 +56,9 @@ p {
 @media only screen and (max-width:1024px) {
     p {
         font-size: 10px;
+    }
+    hr{
+        display: none;
     }
 }
 

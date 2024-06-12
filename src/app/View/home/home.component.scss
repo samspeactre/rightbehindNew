@@ -155,6 +155,9 @@ font-size: 26px;
   h3 {
     font-size: 18px;
   }
+  .bigFont {
+    font-size: 40px;
+}
 
   .where .brainImg {
     height: 240px;
@@ -198,6 +201,9 @@ font-size: 26px;
 }
 
 @media only screen and (max-width: 821px) {
+  .heading-width{
+    width: 100%;
+}
   .dream-home::after {
     content: "";
     width: 100%;

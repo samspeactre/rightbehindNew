@@ -25,6 +25,6 @@
   }
 </owl-carousel-o>
 <div class="rental-btn py-3 wow fadeInDown">
-  <button [ngClass]="[ cards?.[0]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
-    [routerLink]="cards?.[0]?.propertyType == 1 ? '/buy' : '/rent'">View More</button>
+  <button [ngClass]="[ cards?.[cards?.length-1]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
+    [routerLink]="cards?.[cards?.length-1]?.propertyType == 1 ? '/rent' : '/buy'">View More</button>
 </div>

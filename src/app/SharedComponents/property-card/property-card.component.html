@@ -21,9 +21,9 @@
       }
     </div>
     <div class="card-content">
-      <h5 class="wow fadeInDown bold mt-2">{{ card?.title }}</h5>
+      <h5 class="wow fadeInDown bold mt-2">{{ card.title || 'N/A' }}</h5>
       <p class="wow fadeInDown reg">
-        {{ card?.description }}
+        {{ card.description || 'N/A' }}
       </p>
       <!-- @if(type == 'carousel'){ -->
       <div class="details">
@@ -33,23 +33,23 @@
               <div class="home-detail bedroom wow fadeInDown">
                 <img src="../../assets/img/bed.webp" alt="" class="home-img" />
               </div>
-              <div class="detail-font">{{ card?.noOfBed }}</div>
+              <div class="detail-font">{{ card.noOfBed || 'N/A' }}</div>
             </div>
             <div class="d-flex align-items-center border-right-style">
               <div class="home-detail bath display wow fadeInDown">
                 <img src="../../assets/img/bath.webp" alt="" class="home-img" />
               </div>
-              <div class="detail-font">{{ card?.noOfBath }}</div>
+              <div class="detail-font">{{ card.noOfBath || 'N/A' }}</div>
             </div>
             <div class="d-flex align-items-center border-right-style">
               <div class="home-detail display wow fadeInDown">
                 <img src="../../assets/img/sq.ft.webp" alt="" class="home-img" />
               </div>
-              <div class="detail-font sq.ft">{{ card?.area }} Sqft</div>
+              <div class="detail-font sq.ft">{{ card.area || 0 }} Sqft</div>
             </div>
           </div>
           <p class="price bold mb-0 wow fadeInDown">
-            {{ card?.price | currency : "USD" }}
+            {{ card.price || 0 | currency : "USD" }}
           </p>
         </div>
       </div>

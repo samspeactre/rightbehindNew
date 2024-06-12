@@ -41,6 +41,7 @@
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",
     "ng-apexcharts": "^1.10.0",
+    "ngx-countup": "^13.1.0",
     "ngx-owl-carousel-o": "^18.0.0",
     "ngx-quicklink": "^0.4.6",
     "ngx-toastr": "^19.0.0",

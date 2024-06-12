@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subject, finalize, takeUntil } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { HttpService } from '../../Services/http.service';
 import { BlogCarouselComponent } from '../../SharedComponents/blog-carousel/blog-carousel.component';
 import { CardCarouselComponent } from '../../SharedComponents/card-carousel/card-carousel.component';
@@ -12,7 +13,7 @@ import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
+import { CountUpModule } from 'ngx-countup';
 @Component({
   standalone: true,
   imports: [
@@ -25,95 +26,67 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
     MatButtonModule,
     BannerComponent,
     MiniLoadingComponent,
+    CountUpModule
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent {
-  counters: {
-    name: string;
-    count: number;
-    minCount: number;
-    maxCount: number;
-  }[] = [
-    { name: ' Property Listings', count: 0, minCount: 0, maxCount: 350 },
-    { name: 'Monthly Users', count: 0, minCount: 0, maxCount: 200 },
-    { name: 'New Property every Month', count: 0, minCount: 0, maxCount: 30 },
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  counters: { name: string; count: number; }[] = [
+    { name: ' Property Listings', count: 350 },
+    { name: 'Monthly Users', count: 200 },
+    { name: 'New Property every Month', count: 30 },
   ];
-  faChevronCircleLeft=faChevronLeft
-  faChevronCircleRight=faChevronRight
-  screenWidth:number = window.innerWidth;
+  faChevronCircleLeft = faChevronLeft;
+  faChevronCircleRight = faChevronRight;
+  screenWidth: number = window.innerWidth;
   intervalIds: any[] = [];
-  buyCards: any=[1,2,3];
-  sellCards: any=[1,2,3];
+  buyCards: any[] = [1, 2, 3];
+  sellCards: any[] = [1, 2, 3];
   scrollPosition: number = 0;
   private destroy$ = new Subject<void>();
   dataLoaded: boolean = false;
+
+  private scrollSubject = new Subject<Event>();
+
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: Event) {
-    const scrollPosition =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-    this.scrollPosition = scrollPosition;
-    if (
-      this.scrollPosition > 50 &&
-      !this.dataLoaded &&
-      !this.buyCards?.length &&
-      !this.sellCards?.length
-    ) {
-      this.dataLoaded = true;
-      this.getBuyProperties();
-    }
+    this.scrollSubject.next(event);
   }
-  constructor(private router: Router, private http: HttpService) {}
+
+  constructor(private router: Router, private http: HttpService) { }
+
   ngOnInit() {
-    this.startCounters();
+    this.scrollSubject.pipe(debounceTime(100)).subscribe(() => {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      this.scrollPosition = scrollPosition;
+      if (this.scrollPosition > 50 && !this.dataLoaded) {
+        this.dataLoaded = true;
+        this.getBuyProperties();
+      }
+    });
   }
+
   ngAfterViewInit() {
     setTimeout(() => {
-      if (
-        !this.dataLoaded &&
-        !this.buyCards?.length &&
-        !this.sellCards?.length
-      ) {
+      if (!this.dataLoaded) {
         this.getBuyProperties();
       }
     }, 10000);
   }
+
   ngOnDestroy() {
-    this.stopCounters();
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  startCounters() {
-    this.counters.forEach((counter, index) => {
-      const intervalId = setInterval(() => {
-        if (counter.count < counter.maxCount) {
-          counter.count++;
-        } else {
-          this.stopCounter(index);
-        }
-      }, 30);
-      this.intervalIds.push(intervalId);
-    });
-  }
-
-  stopCounters() {
-    this.intervalIds.forEach((id) => clearInterval(id));
-  }
-
-  stopCounter(index: number) {
-    clearInterval(this.intervalIds[index]);
-  }
   searchProperties(event: any) {
-    if(event){
+    if (event) {
       this.router.navigate(['/buy'], { queryParams: { search: event } });
     }
   }
+
   getBuyProperties() {
     this.http
       .get(`Property/get?pageNo=1&pageSize=10&type=1`, false, false)
@@ -123,48 +96,25 @@ export class HomeComponent {
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe(
-        (response) => {
-          if (response?.model?.properties) {
-            const newProperties = response?.model?.properties || [];
-            this.buyCards = [...newProperties];
-          } else {
-            // this.noDataError('buyCards');
-          }
-        },
-        (err) => {
-          // this.noDataError('buyCards');
+      .subscribe((response) => {
+        if (response?.model?.properties) {
+          response.model.properties.forEach((property: any) => {
+            this.buyCards.push(property);
+          });
         }
-      );
+      });
   }
+
   getSellProperties() {
     this.http
       .get(`Property/get?pageNo=1&pageSize=10&type=2`, false, false)
-      .pipe(
-        takeUntil(this.destroy$),
-        finalize(() => {
-          // this.loading = false;
-        })
-      )
-      .subscribe(
-        (response) => {
-          if (response?.model?.properties) {
-            const newProperties = response?.model?.properties || [];
-            this.sellCards = [...newProperties];
-          } else {
-            // this.noDataError('sellCards');
-          }
-        },
-        (err) => {
-          // this.noDataError('sellCards');
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        if (response?.model?.properties) {
+          response.model.properties.forEach((property: any) => {
+            this.sellCards.push(property);
+          });
         }
-      );
+      });
   }
-  // noDataError(type: string) {
-  //   if (type == 'sellCards') {
-  //     this.sellCards = [];
-  //   } else {
-  //     this.buyCards = [];
-  //   }
-  // }
 }

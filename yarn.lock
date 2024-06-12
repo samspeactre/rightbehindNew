@@ -3781,6 +3781,11 @@ cosmiconfig@^9.0.0:
     js-yaml "^4.1.0"
     parse-json "^5.2.0"
 
+countup.js@^2.3.2:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-2.8.0.tgz#64951f2df3ede28839413d654d8fef28251c32a8"
+  integrity sha512-f7xEhX0awl4NOElHulrl4XRfKoNH3rB+qfNSZZyjSZhaAoUk6elvhH+MNxMmlmuUJ2/QNTWPSA7U4mNtIAKljQ==
+
 critters@0.0.22:
   version "0.0.22"
   resolved "https://registry.yarnpkg.com/critters/-/critters-0.0.22.tgz#ce76b1cbc70078c89d23725646357e3850236dae"
@@ -5624,6 +5629,14 @@ ng-apexcharts@^1.10.0:
   resolved "https://registry.yarnpkg.com/ng-apexcharts/-/ng-apexcharts-1.10.0.tgz#484f083b82677009e343d2548fdbe86e2fceadb3"
   integrity sha512-Bg85iL3uAuALaj7yQ29XsPYGx8cr3gDrlBPYQtWzEbHcIHP1PBl9IEH9CLF7ESxypW/XPbliH3pc95o5+9gIag==
   dependencies:
+    tslib "^2.0.0"
+
+ngx-countup@^13.1.0:
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-countup/-/ngx-countup-13.1.0.tgz#d09126b41524052111a3bf0fa6fd4cf203c9bed9"
+  integrity sha512-5U1heict3J3F+MTvwhEM3w/j9JuSp4Jqm530yrIzZtQC4huOPCTyZ4ZwBhGk+ZkBkb8HOCcm1xXu90/sydt0Qg==
+  dependencies:
+    countup.js "^2.3.2"
     tslib "^2.0.0"
 
 ngx-owl-carousel-o@^18.0.0:

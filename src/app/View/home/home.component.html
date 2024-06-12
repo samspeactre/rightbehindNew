@@ -35,12 +35,10 @@
 } @if(sellCards?.length){
 <div class="sec-3 mt-5">
   <div class="cstmContainer position-relative">
-  <app-rental-carousel heading="Sellers in Miami" background="white" [cards]="sellCards"></app-rental-carousel>
+    <app-rental-carousel heading="Sellers in Miami" background="white" [cards]="sellCards"></app-rental-carousel>
   </div>
 </div>
 }
-}
-@defer (on timer(2s)) {
 <div class="container-fluid">
   <div class="register-bg p-5 mb-5 position-relative">
     <div class="row align-items-center position-relative">
@@ -56,7 +54,8 @@
         <div class="counter display">
           @for (counter of counters; track counter; let i = $index) {
           <div>
-            <div class="counter-num wow fadeInDown">{{ counter.count }}K+</div>
+            <div class="counter-num wow fadeInDown"> <span class="counter-num" [countUp]="counter.count" [reanimateOnClick]="false"
+                [options]="{ enableScrollSpy: true }"></span> K+</div>
             <div class="counter-name wow fadeInDown">{{ counter.name }}</div>
           </div>
           }
@@ -129,9 +128,9 @@
         <button class="btnPrimary wow fadeInDown">Know More</button>
       </div>
       <div class="col-lg-12 mt-5">
-      @defer{
+        @defer{
         <app-card-carousel></app-card-carousel>
-      }
+        }
       </div>
     </div>
   </div>
@@ -141,7 +140,7 @@
     <div class="row">
       <div class="col-lg-12 mt-3">
         @defer {
-          <app-blog-carousel></app-blog-carousel>
+        <app-blog-carousel></app-blog-carousel>
         }
       </div>
     </div>

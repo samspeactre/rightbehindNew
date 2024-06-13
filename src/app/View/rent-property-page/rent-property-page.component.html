@@ -37,10 +37,10 @@
           <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'rent-special' }" (click)="scrollToSection('rent-special')">
             @if(previousData?.active == 'rent'){
-              Rent Special
+            Rent Special
             }
             @else{
-              Open House
+            Open House
             }
           </button>
           <br />
@@ -114,6 +114,10 @@
                 <p class="text-start mb-0">Property Title</p>
                 <input placeholder="Property Title" formControlName="Title" type="text" />
               </div>
+              <div class="col-lg-4">
+                <p class="text-start mb-0">Price</p>
+                <input placeholder="Price" formControlName="Price" type="number" />
+              </div>
               @if(previousData?.active == 'rent'){
               <div class="col-lg-4">
                 <p class="text-start mb-0">Lease Lenght In Months</p>
@@ -176,10 +180,6 @@
                 <div class="col-lg-4">
                   <p class="text-start mb-0">No. of Bathrooms</p>
                   <input placeholder="No. of Bathrooms" formControlName="NoOfBaths" type="number" />
-                </div>
-                <div class="col-lg-4">
-                  <p class="text-start mb-0">Price</p>
-                  <input placeholder="Price" formControlName="Price" type="number" />
                 </div>
                 <div class="col-lg-4">
                   <p class="text-start mb-0">SqrFt</p>
@@ -622,21 +622,17 @@
                 urna, porttitor.
               </p>
               <div class="row">
-                <div class="col-lg-12">
-                  <p class="text-start mb-0">Address</p>
-                  <input formControlName="Location" type="text" readonly />
-                </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Country</p>
-                  <input formControlName="Country" type="text" readonly />
+                  <input formControlName="Country" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">State</p>
-                  <input formControlName="State" type="text" readonly />
+                  <input formControlName="State" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">City</p>
-                  <input formControlName="City" type="text" readonly />
+                  <input formControlName="City" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Plot</p>
@@ -659,15 +655,19 @@
                   <input formControlName="ZipCode" type="number" />
                 </div>
                 <div class="col-lg-12">
-                  <app-map [mapDraggable]="false" [markerPositions]="[previousData?.latLng]"
-                    [center]="previousData?.latLng"></app-map>
+                  <app-map [addMarker]="true" [draggable]="true" [search]="true"
+                    [value]="propertyAddForm.get('Location').value"
+                    [center]="{lat:propertyAddForm.get('Latitude').value, lng:propertyAddForm.get('Longitude').value}"
+                    [markerPositions]="[{lat:propertyAddForm.get('Latitude').value, lng:propertyAddForm.get('Longitude').value}]"
+                    (mapMarkerCordinates)="setFormValue($event,'Latitude'); setFormValue($event,'Longitude')"
+                    (mapSearchLocation)="setFormValue($event,'Location')"></app-map>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-12 my-2">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" value="true" formControlName="Terms" id="terms" />
+                  <input type="checkbox" formControlName="Terms" id="terms" />
                   <label for="terms">
                     <span class="terms-text">By checking this box I agree as follows: I agree that I will
                       provide accurate and
@@ -678,7 +678,8 @@
                 </div>
               </div>
             </div>
-            <button class="btnPrimary wow fadeInDown my-3" [disabled]="propertyAddForm?.invalid" (click)="onSubmit()">
+            <button class="btnPrimary wow fadeInDown my-3"
+              [disabled]="propertyAddForm?.invalid || !propertyAddForm.get('Terms').value" (click)="onSubmit()">
               Add Property
             </button>
           </form>

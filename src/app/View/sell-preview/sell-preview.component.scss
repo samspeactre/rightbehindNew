@@ -19,7 +19,7 @@
 }
 
 .pages-links a {
-  font-size: 20px;
+  // font-size: 20px;
   font-family: "reg";
   color: var(--black);
   transition: font-family 0.3s ease;
@@ -30,7 +30,7 @@
 }
 
 .slash {
-  font-size: 20px;
+  // font-size: 20px;
   padding: 0px 10px;
 }
 
@@ -155,6 +155,7 @@
   padding: 8px 20px;
   width: 100%;
 }
+
 .text-info-property {
   font-size: 15px;
   font-family: "med";
@@ -316,10 +317,19 @@
   line-height: normal;
 }
 
-:host ::ng-deep .mat-mdc-outlined-button>.mat-icon {
-  font-size: 24px !important;
-  width: 2vw;
-  height: 2vw;
+:host ::ng-deep {
+  .mat-mdc-outlined-button>.mat-icon {
+    font-size: 24px !important;
+    width: 2vw;
+    height: 2vw;
+  }
+
+  .owl-carousel .owl-item img {
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 0 10px 0px #a3a3a3;
+    margin: 20px 0;
+  }
 }
 
 .or {
@@ -367,6 +377,7 @@
 .Proplocation {
   margin-top: 0.5vw;
 }
+
 @media only screen and (max-width: 821px) {
   .left-site {
     width: 100%;
@@ -376,6 +387,7 @@
     width: 50%;
     margin: 2rem auto;
   }
+
   .prop-detail-img img {
     width: 25px;
     height: 25px;

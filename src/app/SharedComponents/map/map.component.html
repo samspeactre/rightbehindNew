@@ -17,15 +17,13 @@
         #marker="mapMarker" (mapClick)="infoContents?.length && openInfoWindow(marker, i);moveMap($event)" />
     }
     <map-info-window>
-        @if(index){
-            @if(infoContents?.[index]?.propertyImages?.[0]){
-            <img [src]="infoContents[index].propertyImages?.[0]" alt="images">
-            }
-            <h5 class="bold">Title: {{infoContents?.[index]?.title}}</h5>
-            <h6 class="description bold">Description: {{infoContents?.[index]?.description
-                }}</h6>
-            <h6 class="bold">Price: {{infoContents?.[index]?.price | currency:'USD'}}</h6>
+        @if(infoContents?.[index]?.propertyImages?.[0]){
+        <img [src]="src + infoContents[index].propertyImages?.[0]?.imageUrl" width="100%" height="100px"
+            style="object-fit: cover; box-shadow: 0 0 10px 0 #a3a3a3;" alt="images">
         }
+        <h6 class="bold mt-3">Title: {{infoContents?.[index]?.title}}</h6>
+        <h6 class="description bold">Description: {{infoContents?.[index]?.description}}</h6>
+        <h6 class="bold">Price: {{infoContents?.[index]?.price || 0 | currency:'USD'}}</h6>
     </map-info-window>
 </google-map>
 }

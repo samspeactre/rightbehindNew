@@ -97,8 +97,8 @@ export class RentPropertyPageComponent implements OnInit {
     Parking: [''],
     ParkingFees: [''],
     Laundry: [''],
-    Terms: [null, Validators.required],
-    IsFurnished: [false],
+    Terms: ['', Validators.required],
+    IsFurnished: [true],
     PropertyImageFiles: this.fb.array([]),
     Amenities: this.fb.array([]),
     Utilities: this.fb.array([]),
@@ -186,7 +186,7 @@ export class RentPropertyPageComponent implements OnInit {
           this.propertyAddForm.removeControl('OpenHouses');
         }
         this.propertyAddForm.patchValue({
-          Category: this.previousData?.active == 'rent' ? 2 :1 
+          Category: this.previousData?.active == 'rent' ? 2 : 1
         })
       }
     })
@@ -385,5 +385,27 @@ export class RentPropertyPageComponent implements OnInit {
 
   removeFloorPlanImage(floorPlanIndex: number, imageIndex: number): void {
     this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').removeAt(imageIndex);
+  }
+  setFormValue(event: any, control: string) {
+    if (control == 'Location') {
+      console.log(event);
+      
+      this.propertyAddForm.patchValue({
+        Location: event?.address,
+        City: event?.city,
+        State: event?.state,
+        Country: event?.country,
+        ZipCode: event?.zipCode,
+        Street: event?.street
+      })
+    } else {
+      if (control == 'Latitude') {
+        this.propertyAddForm.controls[control].setValue(event?.lat);
+      } else {
+        this.propertyAddForm.controls[control].setValue(event?.lng);
+      }
+    }
+    console.log(this.propertyAddForm.value);
+
   }
 }

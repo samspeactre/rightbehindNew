@@ -6,23 +6,23 @@
     </div>
     } @else {
     <div class="col-lg-12">
-      <div class="pages-links display">
-        <a routerLink="/">Home</a>
-        <div class="slash">/</div>
+      <div class="pages-links display mb-3">
+        <a routerLink="/" class="smallFont">Home</a>
+        <div class="slash smallFont">/</div>
         @if(propertyDetails?.propertyType == 1){
-        <a routerLink="/buy">Buy</a>
+        <a routerLink="/buy" class="smallFont">Buy</a>
         } @else{
-        <a routerLink="/rent">Rent</a>
+        <a routerLink="/rent" class="smallFont">Rent</a>
         }
-        <div class="slash">/</div>
-        <a>{{ propertyDetails?.title }}</a>
+        <div class="slash smallFont">/</div>
+        <a class="smallFont">{{ propertyDetails?.title }}</a>
       </div>
       @if(propertyDetails?.propertyImages?.length){
       <owl-carousel-o [options]="customOptions" #owlCar>
         @for (card of propertyDetails?.propertyImages; track card) {
         <ng-container>
           <ng-template carouselSlide>
-            <img [src]="card?.imageUrl" alt="noimage found" />
+            <img [src]="src+card?.imageUrl" alt="image" />
           </ng-template>
         </ng-container>
         }

@@ -89,7 +89,7 @@
         <p class="my-3">{{cards?.length}} Properties Found</p>
         }
       </div>
-      <div class="col-lg-7 wow fadeInDown">
+      <div class="col-lg-6 wow fadeInDown">
         <div class="row">
           @if(cards?.length){
           @for (card of cards; track card) {
@@ -105,7 +105,7 @@
             @if(loadMore){
             <div class="dCenter">
               @if(loadMoreLoader){
-              <div class="wow fadeInDown">
+              <div class="wow fadeInDown mb-3">
                 <app-mini-loading></app-mini-loading>
               </div>
               } @else{
@@ -116,7 +116,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-5 wow fadeInDown">
+      <div class="col-lg-6 wow fadeInDown">
         <div class="mapElement">
           <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map>
         </div>

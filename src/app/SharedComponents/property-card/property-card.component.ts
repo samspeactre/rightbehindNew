@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { baseUrl } from '../../Services/http.service';
+import { assetUrl } from '../../Services/helper.service';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, RouterModule],
@@ -12,7 +13,7 @@ import { baseUrl } from '../../Services/http.service';
   styleUrl: './property-card.component.scss'
 })
 export class PropertyCardComponent {
-  src = 'https://recursing-allen.74-208-96-50.plesk.page/api'
+  src = assetUrl
   @Input() card!:any;
   @Input() showBadge:boolean = false;
   @Input() loader:boolean = true;

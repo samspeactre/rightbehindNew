@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Loader } from '@googlemaps/js-api-loader';
+import { assetUrl } from '../../Services/helper.service';
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
 @Component({
   selector: 'app-map',
@@ -12,6 +13,7 @@ export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
+  src = assetUrl
   @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
   @Input() zoom: number = 10;
   @Input() height: any;
@@ -33,7 +35,7 @@ export class MapComponent implements OnInit, OnDestroy {
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
   index!:any;
-  value: string = ''
+  @Input() value!: string;
   @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
   constructor(private http: HttpClient) { }
   moveMap(event: any) {
@@ -48,14 +50,15 @@ export class MapComponent implements OnInit, OnDestroy {
       version: 'weekly',
       libraries: ['places']
     });
-    console.log(this.markerPositions);
-    
     loader.load().then(() => {
       this.mapScriptLoad = true;
       this.initMap();
     }).catch(err => {
       console.error('Error loading Google Maps script:', err);
     });
+    if(this.value){
+      this.isFocused = true;
+    }
   }
   ngOnDestroy(): void {
     if (this.autocompleteListener) {

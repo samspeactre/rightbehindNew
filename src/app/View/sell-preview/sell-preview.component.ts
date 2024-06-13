@@ -13,7 +13,7 @@ import { Subject, finalize, takeUntil } from 'rxjs';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
-import { HelperService } from '../../Services/helper.service';
+import { HelperService, assetUrl } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 
 @Component({
@@ -24,6 +24,7 @@ import { MapComponent } from '../../SharedComponents/map/map.component';
   styleUrl: './sell-preview.component.scss',
 })
 export class SellPreviewComponent implements OnInit {
+  src=assetUrl
   faHeart=faHeart;
   faShare=faShareAlt
   faEllipsisVertical=faEllipsisVertical
@@ -39,6 +40,7 @@ export class SellPreviewComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
+    autoplay:true,
     margin: 20,
     dots: false,
     navSpeed: 700,

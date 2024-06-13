@@ -85,7 +85,7 @@ export class ListingPageComponent implements OnInit {
   maxPrice: any = null;
   beds: any = null;
   baths: any = null;
-  sort: any = 'Price: Low to High';
+  sort: string = 'Date: Early to Late';
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
     lng: 150.4826715,
@@ -117,7 +117,9 @@ export class ListingPageComponent implements OnInit {
     this.destroy$.complete();
   }
   getProperties(loadMore: boolean) {
-    this.loader = true;
+    if(!loadMore){
+      this.loader = true;
+    }
     const urlParams = new URLSearchParams();
     urlParams.set('pageNo', String(this.pageNo));
     urlParams.set('pageSize', String(this.pageSize));
@@ -261,7 +263,7 @@ export class ListingPageComponent implements OnInit {
     this.maxPrice = null;
     this.beds = null;
     this.baths = null;
-    this.sort = this.sortsArray[0]
+    this.sort = 'Date: Early to Late'
     this.getProperties(false);
   }
   isResetDisabled(): boolean {

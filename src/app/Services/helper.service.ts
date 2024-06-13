@@ -6,7 +6,7 @@ export const types = [
   { name: 'Townhomes', value: 4 },
   { name: 'Rooms', value: 5 }
 ];
-
+export const assetUrl = 'https://recursing-allen.74-208-96-50.plesk.page'
 @Injectable({
   providedIn: 'root'
 })

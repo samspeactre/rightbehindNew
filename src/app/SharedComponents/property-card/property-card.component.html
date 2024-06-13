@@ -2,7 +2,7 @@
 <div class="property-card-wrapper">
   <div class="property-card">
     <div class="card-img skeleton"></div>
-    <div class="card-content">
+    <div class="card-content mt-3">
       <h5 class="skeleton title"></h5>
       <p class="skeleton description"></p>
     </div>
@@ -42,19 +42,20 @@
               </div>
               <div class="detail-font">{{ card.noOfBath || 'N/A' }}</div>
             </div>
-            <div class="d-flex align-items-center border-right-style">
+            <div class="d-flex align-items-center">
               <div class="home-detail display ">
                 <img src="../../assets/img/sq.ft.webp" alt="" class="home-img" />
               </div>
               <div class="detail-font sq.ft">{{ card.area || 0 }} Sqft</div>
             </div>
           </div>
-          <p class="price bold mb-0 ">
-            {{ card.price || 0 | currency : "USD" }}
-          </p>
         </div>
       </div>
       <div class="card-bottom mt-3 dCenter justify-content-between">
+        <p class="price bold mb-0 ">
+          {{ card.price || 0 | currency : "USD" }}
+        </p>
+        <div class="line-btn"></div>
         <button class="btnPrimary " (click)="routeToContact(card)">Contact Agent</button>
       </div>
     </div>

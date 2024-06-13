@@ -1,0 +1,400 @@
+.carousel {
+  width: 100%;
+}
+
+.pages-links {
+  margin: 2.2vw 0vw 0.65vw;
+}
+
+.banner-review-img {
+  width: 100%;
+  height: 340px;
+}
+
+.banner-review-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #dddddd;
+}
+
+.pages-links a {
+  font-size: 20px;
+  font-family: "reg";
+  color: var(--black);
+  transition: font-family 0.3s ease;
+}
+
+.pages-links a:hover {
+  font-family: "med";
+}
+
+.slash {
+  font-size: 20px;
+  padding: 0px 10px;
+}
+
+.my-3 {
+  margin: 5rem 0;
+}
+
+/*  */
+
+.card {
+  width: 100% !important;
+  background: var(--white);
+  border-radius: 1vw;
+}
+
+.card-image {
+  width: 28vw;
+}
+
+.card-img {
+  width: 100%;
+  height: 18vw;
+  object-fit: cover;
+  border-radius: 0.5vw !important;
+}
+
+.swiper-slide {
+  cursor: pointer;
+  /* width: 28vw !important; */
+}
+
+/*  */
+
+.left-site {
+  width: 100%;
+}
+
+.lower-portion {
+  margin-top: 2.5vw;
+}
+
+.head {
+  font-size: 28px;
+  font-family: "bold";
+  color: var(--black);
+}
+
+.address {
+  font-size: 16px;
+  font-family: "reg";
+  color: var(--carousel-add);
+  margin-bottom: 1vw;
+  margin-top: 0.3vw;
+  letter-spacing: 0.04vw;
+}
+
+:host ::ng--deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
+  display: none;
+}
+
+.prop-details {
+  width: 26%;
+}
+
+.prop-detail-img {
+  width: 4vw;
+  align-items: center;
+}
+
+.prop-detail-img img {
+  width: 40px;
+  height: 40px;
+}
+
+.prop-detail-text {
+  font-size: 14px;
+  align-content: center;
+  font-family: "med";
+  color: var(--carousel-add);
+  margin-left: 0.3vw;
+}
+
+.prop-detail-img hr {
+  height: 20px;
+  align-self: center;
+  color: var(--hr);
+  margin-left: 1vw;
+}
+
+.pricing {
+  font-size: 26px;
+  font-family: "bold";
+  color: var(--royal-blue);
+}
+
+.Prop-info {
+  background-color: var(--add-prop-bg);
+  border-radius: 8px;
+}
+
+.prop-info-padding {
+  padding: 6px 10px;
+}
+
+.prop-deatil-padding {
+  padding: 1vw 1.5vw 0.5vw;
+}
+
+.small-head {
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
+}
+
+.white-box {
+  background-color: var(--white);
+  padding: 8px 20px;
+}
+
+.transparent-box {
+  background-color: transparent;
+  padding: 8px 20px;
+  width: 100%;
+}
+
+
+.white-box-text {
+  width: 49%;
+}
+
+.text-info-property {
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
+}
+
+.white-box-text {
+  border-radius: 1vw;
+  font-size: 15px;
+  font-family: "reg";
+  color: var(--black);
+}
+
+.white-box-property {
+  background-color: var(--white);
+  width: 100%;
+  padding: 0.5vw 2.2vw;
+}
+
+.white-box-para {
+  font-size: 15px;
+  font-family: "reg";
+  color: var(--black);
+  margin-top: 0.5vw;
+}
+
+.prop-deatil,
+.rent-special {
+  background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  margin-top: 1.3vw;
+}
+
+.prop-detail-padding {
+  font-size: 15px;
+  font-family: "med";
+  padding: 0.9vw 0vw 1vw 1.3vw;
+}
+
+.prop-deatil p {
+  font-size: 15px;
+  font-family: "reg";
+  padding: 0vw 5.5vw 2.5vw 1.5vw;
+  line-height: 1.3vw;
+}
+
+.gallery h3 {
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
+}
+
+.gallery {
+  padding: 1vw 1.2vw;
+  background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  margin-bottom: 1.3vw;
+}
+
+.gallery-img {
+  margin-top: 1vw;
+  width: 8.3vw;
+  margin-right: 0.8vw;
+}
+
+.gallery-img img {
+  width: 100%;
+  height: 8.6vw;
+  border-radius: 0.3vw;
+}
+
+.map {
+  padding: 1vw 2.2vw 1vw;
+  background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  width: 100%;
+}
+
+.map h3 {
+  font-size: 15px;
+  font-family: "med";
+  color: var(--black);
+}
+
+.map-img {
+  margin-top: 1vw;
+  width: 100%;
+}
+
+.map-img img {
+  width: 100%;
+  height: 23vw;
+  border-radius: 1vw;
+  object-fit: cover;
+}
+
+.nearby-rentals {
+  background-color: var(--sec-light);
+}
+
+/*  */
+
+.sec-2 {
+  background-color: var(--sec-light);
+}
+
+.carousel-portion {
+  width: 100%;
+}
+
+.seller-carousel-portion {
+  padding-top: 6vw;
+}
+
+.head-3 {
+  font-family: "bold";
+  font-size: 22px;
+  color: var(--black);
+  margin-top: 0.75vw;
+  width: 61%;
+  letter-spacing: -0.01vw;
+}
+
+.carousel-line {
+  align-content: center;
+  width: 27%;
+  margin-left: 1vw;
+}
+
+/*  */
+
+/*  */
+
+.right-site {
+  width: 100%;
+  height: fit-content;
+  padding: 2.8vw 0vw;
+  background-color: var(--sec-light);
+  border-radius: 1vw;
+  position: sticky;
+  top: 1vw;
+  left: 0;
+  overflow: hidden;
+}
+
+.contact-head {
+  font-size: 28px;
+  font-family: "bold";
+  color: var(--black);
+  text-align: center;
+}
+
+.contact-para {
+  font-size: 18px;
+  font-family: "reg";
+  color: var(--black);
+  text-align: center;
+  padding: 1.1vw 4.5vw 0vw;
+  line-height: normal;
+}
+
+:host ::ng-deep .mat-mdc-outlined-button>.mat-icon {
+  font-size: 24px !important;
+  width: 2vw;
+  height: 2vw;
+}
+
+.or {
+  width: 6vw;
+  margin: auto;
+  align-items: center;
+}
+
+.or span {
+  font-size: 18px;
+  font-family: "reg";
+  padding: 0vw 2.5vw;
+}
+
+/*  */
+
+.desc {
+  padding: 0.5vw 2vw 1vw 2.2vw;
+}
+
+.desc p {
+  font-size: 15px;
+  font-family: "reg";
+  line-height: 1.3vw;
+  margin-top: 0.5vw;
+}
+
+.plan-img {
+  padding: 0vw 2.2vw 0.5vw;
+  width: 100%;
+  background-color: var(--white);
+}
+
+.plan-img img {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+  padding-top: 0.5vw;
+}
+
+.white-box-address {
+  width: 100%;
+}
+
+.Proplocation {
+  margin-top: 0.5vw;
+}
+@media only screen and (max-width: 821px) {
+  .left-site {
+    width: 100%;
+  }
+
+  .right-site {
+    width: 50%;
+    margin: 2rem auto;
+  }
+  .prop-detail-img img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .right-site {
+    width: 100%;
+    margin: 2rem auto;
+  }
+
+  .head {
+    font-size: 20px;
+  }
+}

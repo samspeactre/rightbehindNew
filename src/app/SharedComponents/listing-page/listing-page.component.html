@@ -73,11 +73,11 @@
           <p class="my-3">{{cards?.length}} Properties Found</p>
         }
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-6">
         <div class="row">
           @if(cards?.length){
             @for (card of cards; track card) {
-            <div class="col-lg-12 wow fadeInDown">
+            <div class="col-lg-6 wow fadeInDown">
               <app-property-card [card]="card" [loader]="loader" type="component"></app-property-card>
             </div>
             }
@@ -100,7 +100,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-7 wow fadeInDown">
+      <div class="col-lg-6 wow fadeInDown">
         <div class="mapElement">
           <app-map [height]="screenHeight"></app-map>
         </div>

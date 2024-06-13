@@ -12,13 +12,17 @@ export const routes: Routes = [
     path: 'buy',
     data: { footer: true, header: true },
     loadChildren: () =>
-      import('./SharedComponents/listing-page/listing-page.route').then((m) => m.Listing_Page_Routes),
+      import('./SharedComponents/listing-page/listing-page.route').then(
+        (m) => m.Listing_Page_Routes
+      ),
   },
   {
     path: 'rent',
     data: { footer: true, header: true },
     loadChildren: () =>
-      import('./SharedComponents/listing-page/listing-page.route').then((m) => m.Listing_Page_Routes),
+      import('./SharedComponents/listing-page/listing-page.route').then(
+        (m) => m.Listing_Page_Routes
+      ),
   },
   {
     path: 'property-details',
@@ -53,7 +57,7 @@ export const routes: Routes = [
   {
     path: 'rent-add-property',
     canActivate: [InnerGuard],
-    data: { footer: true, header: true, sellHide:true },
+    data: { footer: true, header: true, sellHide: true },
     loadChildren: () =>
       import('./view/rent-property-page/rent-property.route').then(
         (m) => m.Rent_Property_Routes
@@ -62,22 +66,34 @@ export const routes: Routes = [
   {
     path: 'sell-add-property',
     canActivate: [InnerGuard],
-    data: { footer: true, header: true, sellHide:true },
+    data: { footer: true, header: true, sellHide: true },
     loadChildren: () =>
       import('./view/rent-property-page/rent-property.route').then(
         (m) => m.Rent_Property_Routes
       ),
   },
   {
-  path: 'preview',
+    path: 'preview',
     data: { footer: true, header: true },
     loadChildren: () =>
-      import('./view/sell-preview/sell-preview.route').then((m) => m.Sell_Preview_Routes),
+      import('./view/sell-preview/sell-preview.route').then(
+        (m) => m.Sell_Preview_Routes
+      ),
+  },
+  {
+    path: 'blog-inner',
+    data: { footer: true, header: true },
+    loadChildren: () =>
+      import('./view/blog-inner/blog-inner.route').then(
+        (m) => m.Blog_Inner_Routes
+      ),
   },
   {
     path: 'dashboard',
-      data: { footer: true, header: true },
-      loadChildren: () =>
-        import('./view/dashboard/dashboard.route').then((m) => m.Dashboard_Routes),
-    },
+    data: { footer: true, header: true },
+    loadChildren: () =>
+      import('./view/dashboard/dashboard.route').then(
+        (m) => m.Dashboard_Routes
+      ),
+  },
 ];

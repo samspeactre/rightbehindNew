@@ -6,10 +6,11 @@ import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component'
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 
 @Component({
   standalone:true,
-  imports: [FooterComponent, MatIconModule, MatLabel, MatFormFieldModule, MatInputModule, NavbarComponent, MatButtonModule],
+  imports: [FooterComponent, MatIconModule, MatLabel, BannerComponent, MatFormFieldModule, MatInputModule, NavbarComponent, MatButtonModule],
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css'

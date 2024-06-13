@@ -41,7 +41,12 @@
   font-size: 15px;
   border-radius: 30px;
   padding: 8px 16px;
-  width:100%;
+  // width:100%;
+}
+.line-btn{
+  width: 2px;
+  height: 36px;
+  background-color: #c4c4c4;
 }
 
 .NoImageFound {
@@ -86,6 +91,10 @@
   margin-top: 0px;
   color: var(--carousel-add);
 }
+.carousel p.price {
+  font-size: 20px !important;
+}
+
 
 .carousel .home-detail {
   width: 36px;

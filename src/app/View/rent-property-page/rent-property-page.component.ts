@@ -27,11 +27,15 @@ import { SharedModule } from '../../TsExtras/shared.module';
 import { HelperService, types } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { ToastrService } from 'ngx-toastr';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @Component({
   standalone: true,
-  imports: [CommonModule, SharedModule, MapComponent, MatButtonModule, BannerComponent, MatCheckboxModule, MatLabel, RouterModule, MatFormFieldModule, MatInputModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [CommonModule, SharedModule, MapComponent, MatButtonModule, BannerComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule, MatLabel, NgSelectModule, RouterModule, MatOption, MatSelect, MatIconModule, CdkTextareaAutosize, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule],
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
   styleUrls: ['./rent-property-page.component.scss'],
@@ -217,7 +221,7 @@ export class RentPropertyPageComponent implements OnInit {
   onSubmit() {
     console.log(this.propertyAddForm.value);
     this.propertyAddForm.patchValue({
-      Category:1
+      Category: 1
     })
     const formData = new FormData();
 

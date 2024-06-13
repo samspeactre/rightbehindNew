@@ -170,50 +170,50 @@
           </div>
           } @if(propertyDetails.area){
           <div class="col-lg-6">
-            <div class="white-box display">
+            <div class="white-box dCenter justify-content-start gap-3">
               <div class="white-box-text text-info">Sq.FT</div>
               <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
             </div>
           </div>
-          } @if(propertyDetails.createdAt){
+          } @if(propertyDetails?.homeFacts?.[0]?.constructedYear){
           <div class="col-lg-6">
-            <div class="white-box display">
+            <div class="white-box dCenter justify-content-start gap-3">
               <div class="white-box-text text-info">Years Constructed</div>
               <div class="white-box-text">
-                {{ propertyDetails.createdAt | date : "d MMMM y" }}
+                {{ propertyDetails?.homeFacts?.[0]?.constructedYear | date : "d MMMM y" }}
               </div>
             </div>
           </div>
-          } @if(propertyDetails.createdAt){
+          } @if(propertyDetails?.homeFacts?.[0]?.remodelYear){
           <div class="col-lg-6">
-            <div class="transparent-box dCenter align-item-center">
+            <div class="transparent-box dCenter justify-content-start gap-3">
               <div class="white-box-text text-info">
                 Structural Remodal Year
               </div>
               <div class="white-box-text">
-                {{ propertyDetails.createdAt | date : "d MMMM y" }}
+                {{ propertyDetails?.homeFacts?.[0]?.remodelYear | date : "d MMMM y" }}
               </div>
             </div>
           </div>
-          } @if(propertyDetails.createdAt){
+          } @if(propertyDetails?.homeFacts?.[0]?.haoDues){
           <div class="col-lg-6">
-            <div class="transparent-box dCenter align-item-center">
+            <div class="transparent-box dCenter justify-content-start gap-3">
               <div class="white-box-text text-info">HAO Dues</div>
-              <div class="white-box-text">{{ propertyDetails.createdAt }}</div>
+              <div class="white-box-text">{{ propertyDetails?.homeFacts?.[0]?.haoDues | date : "d MMMM y" }}</div>
             </div>
           </div>
-          } @if(propertyDetails.area){
+          } @if(propertyDetails?.homeFacts?.[0]?.basementSqrFt){
           <div class="col-lg-6">
-            <div class="white-box dCenter align-item-center">
+            <div class="white-box dCenter justify-content-start gap-3">
               <div class="white-box-text text-info">Basement Sq.Ft</div>
-              <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
+              <div class="white-box-text">{{ propertyDetails?.homeFacts?.[0]?.basementSqrFt }} Sq.Ft</div>
             </div>
           </div>
-          } @if(propertyDetails.area){
+          } @if(propertyDetails?.homeFacts?.[0]?.garageSqrFt){
           <div class="col-lg-6">
-            <div class="white-box dCenter align-item-center">
+            <div class="white-box dCenter justify-content-start gap-3">
               <div class="white-box-text text-info">Garage Sq.Ft</div>
-              <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
+              <div class="white-box-text">{{ propertyDetails?.homeFacts?.[0]?.garageSqrFt }} Sq.Ft</div>
             </div>
           </div>
           } @if(propertyDetails.description){
@@ -229,106 +229,113 @@
         </div>
         <div class="Prop-info p-2 my-3">
           <div class="row">
-            @for (info of openHouse; track info) {
-
             <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
-            <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+            @for (info of propertyDetails?.openHouses; track info) {
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Date</div>
-                <div class="white-box-text">{{ info.date }}</div>
+                <div class="white-box-text">{{ info?.startDateTime | date : "d MMMM y" }}</div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Start Time</div>
-                <div class="white-box-text">{{ info.startTime }}</div>
+                <div class="white-box-text">{{ info?.endDateTime | date : 'shortTime' }}</div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="transparent-box dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="transparent-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">End Time</div>
-                <div class="white-box-text">{{ info.endTime }}</div>
+                <div class="white-box-text">{{ info?.startDateTime | date : 'shortTime' }}</div>
               </div>
             </div>
 
-            } @for (info of addInfo; track info) {
+            }
+            <!-- @for (info of addInfo; track info) {
 
             <h3 class="small-head prop-info-padding">Additional Information</h3>
             <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Related Website</div>
-                <div class="white-box-text">{{ info.realtedSite }}</div>
+                <div class="white-box-text">{{ info?.realtedSite }}</div>
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">
                   what I love about This Home
                 </div>
-                <div class="white-box-text">{{ info.feedback }}</div>
+                <div class="white-box-text">{{ info?.feedback }}</div>
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="transparent-box dCenter align-item-center">
+              <div class="transparent-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Room Details</div>
-                <div class="white-box-text">{{ info.roomDetails }}</div>
+                <div class="white-box-text">{{ info?.roomDetails }}</div>
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="transparent-box dCenter align-item-center">
+              <div class="transparent-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Utility Bills</div>
-                <div class="white-box-text">{{ info.utilityBills }}</div>
+                <div class="white-box-text">{{ info?.utilityBills }}</div>
               </div>
             </div>
             <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Building Details</div>
-                <div class="white-box-text">{{ info.buildDetails }}</div>
+                <div class="white-box-text">{{ info?.buildDetails }}</div>
               </div>
             </div>
-            } @for (info of contactInfo; track info) {
-
+            } -->
+            @for (info of propertyDetails?.propertyContacts; track info) {
             <h3 class="small-head prop-info-padding">Contact Information</h3>
-            <div class="col-lg-12">
-              <div class="white-box dCenter align-item-center white-box-price">
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                <div class="white-box-text text-info">Full Name</div>
+                <div class="white-box-text">{{ info?.fullName }}</div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3 white-box-price">
                 <div class="white-box-text text-info">Phone</div>
-                <div class="white-box-text">${{ info.phone }}</div>
+                <div class="white-box-text">{{ info?.contact }}</div>
               </div>
             </div>
-            } @for (info of Proplocation; track info) {
-            <h3 class="small-head">Property Location</h3>
-            <div class="col-lg-12">
-              <div class="white-box white-box-address dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                <div class="white-box-text text-info">Email</div>
+                <div class="white-box-text">{{ info?.email }}</div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Address</div>
-                <div class="white-box-text">{{ info.address }}</div>
+                <div class="white-box-text">{{ propertyDetails?.location }}</div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="transparent-box dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="transparent-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Country/State</div>
-                <div class="white-box-text">{{ info.country }}</div>
+                <div class="white-box-text">{{ info?.country }}</div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="transparent-box dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="transparent-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">City</div>
-                <div class="white-box-text">{{ info.city }}</div>
+                <div class="white-box-text">{{ info?.city }}</div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Landmark</div>
-                <div class="white-box-text">{{ info.landmark }}</div>
+                <div class="white-box-text">{{ info?.landmark }}</div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="white-box dCenter align-item-center">
+            <div class="col-lg-4">
+              <div class="white-box dCenter justify-content-start gap-3">
                 <div class="white-box-text text-info">Zip Code</div>
-                <div class="white-box-text">{{ info.zipcode }}</div>
+                <div class="white-box-text">{{ info?.zipcode }}</div>
               </div>
-            </div>
-            <div class="map-img">
-              <img [src]="info.imgSrc" alt="Card Image" class="card-img" />
             </div>
             }
           </div>
@@ -339,17 +346,27 @@
       @for (info of contact; track info) {
       <div class="right-site text-center">
         <h2>Contact Property</h2>
-        <p class="w-75 mx-auto">{{ info.para }}</p>
+        <p class="w-75 mx-auto">{{ info?.description }}</p>
         <div class="dCenter flex-wrap gap-1">
-          <button class="btnPrimary rounded-3 py-2">
+          <a class="btnPrimary rounded-3 py-2" [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact">
+            @if(!propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
+            <fa-icon [icon]="faCheck" class="me-3"></fa-icon>
+            }
             <fa-icon [icon]="faPhoneAlt"></fa-icon>
-            1234456678
-          </button>
-          <button class="btnPrimary rounded-3 py-2">
+            {{propertyDetails?.propertyContacts?.[0]?.contact}}
+          </a>
+          <a class="btnPrimary rounded-3 py-2" [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email">
+            @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
+            <fa-icon [icon]="faCheck" class="me-3"></fa-icon>
+            }
             <fa-icon [icon]="faEnvelope"></fa-icon>
             Send an email
-          </button>
+          </a>
         </div>
+        <p class="text-center mb-0">Preferred @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
+          Email}@else{
+          Phone
+          } </p>
         <p class="my-2">Or</p>
         <div class="dCenter">
           <button class="btnPrimary rounded-3 py-2">

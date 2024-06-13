@@ -74,7 +74,7 @@
         <p class="my-3">{{cards?.length}} Properties Found</p>
         }
       </div>
-      <div class="col-lg-6" [ngClass]="{'col-lg-12' : !latLngArray?.length}">
+      <div class="col-lg-6">
         <div class="row">
           @if(cards?.length){
           @for (card of cards; track card) {
@@ -101,13 +101,11 @@
           </div>
         </div>
       </div>
-      @if(latLngArray?.length){
         <div class="col-lg-6 wow fadeInDown">
           <div class="mapElement">
             <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map>
           </div>
         </div>
-      }
     </div>
   </div>
 </div>

@@ -136,9 +136,12 @@ export class ListingPageComponent implements OnInit {
               this.noDataError();
             }
           }
-          this.loadMore = this.cards?.length < response?.model?.totalResults;
+          if(response?.model?.totalResults){
+            this.loadMore = this.cards?.length < response?.model?.totalResults;
+          }
         },
         (err: any) => {
+          this.loadMore = false;
           if (!loadMore) {
             this.noDataError();
           }

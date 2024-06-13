@@ -125,7 +125,7 @@
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Deposit</p>
-                <input placeholder="Deposit" formControlName="Price" type="number" />
+                <input placeholder="Deposit" formControlName="Deposit" type="number" />
               </div>
               }
               <div class="col-lg-4">
@@ -387,7 +387,7 @@
                   <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
                     @for (file of propertyAddForm.controls['PropertyImageFiles'].value; track file; let i = $index) {
                     <div class="image-preview display">
-                      <img [src]="file" alt="images" />
+                      <img [src]="getImageSrc(file)" alt="images" />
                       <button mat-fab color="warn" (click)="removePropertyImage(i)">
                         <mat-icon>delete</mat-icon>
                       </button>
@@ -572,7 +572,7 @@
                       <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
                         @for (item of plan.get('FloorPlanImage').value; let j = $index; track $item) {
                         <div class="image-preview display">
-                          <img [src]="item" alt="images" />
+                          <img [src]="getImageSrc(item)" alt="images" />
                           <button mat-fab color="warn" (click)="removeFloorPlanImage(i, j)">
                             <mat-icon>delete</mat-icon>
                           </button>
@@ -633,6 +633,18 @@
                 <div class="col-lg-6">
                   <p class="text-start mb-0">City</p>
                   <input formControlName="City" type="text" />
+                </div>
+                <div class="col-lg-6">
+                  <p class="text-start mb-0">Plot</p>
+                  <input formControlName="Plot" type="text" />
+                </div>
+                <div class="col-lg-6">
+                  <p class="text-start mb-0">Street</p>
+                  <input formControlName="Street" type="text" />
+                </div>
+                <div class="col-lg-6">
+                  <p class="text-start mb-0">Building</p>
+                  <input formControlName="Building" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Landmark</p>

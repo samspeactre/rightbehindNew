@@ -28,6 +28,7 @@ import { HelperService, types } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { ToastrService } from 'ngx-toastr';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -77,6 +78,7 @@ export class RentPropertyPageComponent implements OnInit {
     NoOfBath: [''],
     Area: [''],
     Price: [''],
+    Deposit: [''],
     Location: [''],
     Country: [''],
     Landmark: [''],
@@ -155,7 +157,7 @@ export class RentPropertyPageComponent implements OnInit {
   readonly ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
   sections: any;
   section: string = 'property-information'
-  constructor(private activatedRoute: ActivatedRoute, private router:Router, private toastr: ToastrService, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
+  constructor(private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router, private toastr: ToastrService, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
     this.activatedRoute.queryParams.subscribe((response: any) => {
       if (!response?.data) {
         this.location.back()
@@ -260,10 +262,10 @@ export class RentPropertyPageComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe((response) => {
-        if(this.previousData?.active == 'rent'){
+        if (this.previousData?.active == 'rent') {
           this.router.navigateByUrl('/rent')
         }
-        else{
+        else {
           this.router.navigateByUrl('/buy')
         }
       })
@@ -337,15 +339,15 @@ export class RentPropertyPageComponent implements OnInit {
           return;
         }
 
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.propertyImageFiles.push(this.fb.control(reader.result));
-        };
-        reader.readAsDataURL(file);
+        this.propertyImageFiles.push(this.fb.control(file));
       });
+      console.log(this.propertyAddForm.controls['PropertyImageFiles'].value);
+
     }
   }
-
+  getImageSrc(file: File) {
+    return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
+  }
   removePropertyImage(index: number): void {
     this.propertyImageFiles.removeAt(index);
   }
@@ -369,15 +371,7 @@ export class RentPropertyPageComponent implements OnInit {
           this.toastr.error(`File ${file.name} is larger than 8MB and was not added.`);
           return;
         }
-
-        const reader = new FileReader();
-        reader.onload = () => {
-          console.log('====================================');
-          console.log(this.propertyAddForm.get('FloorPlans'));
-          console.log('====================================');
-          this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').push(this.fb.control(reader.result));
-        };
-        reader.readAsDataURL(file);
+        this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').push(this.fb.control(file));
       });
     }
   }

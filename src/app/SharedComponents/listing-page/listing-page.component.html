@@ -18,6 +18,15 @@
         @if(!loader){
           <div class="row">
             <div class="col-lg-2 col-4">
+              <ng-select [disabled]="loader" [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()" [searchable]="false">
+                @if(types){
+                  @for (item of types; track $index) {
+                  <ng-option [value]="item?.value">{{item?.name}}</ng-option>
+                  }
+                }
+              </ng-select>
+            </div>
+            <div class="col-lg-2 col-4">
               <ng-select [disabled]="loader" [(ngModel)]="minPrice" placeholder="Min. Price" (change)="onFilterChange()" [searchable]="false">
                 @if(minPriceArray){
                   @for (item of minPriceArray; track $index) {
@@ -62,7 +71,7 @@
               }
               </ng-select>
             </div>
-            <div class="col-lg-2 col-4 dCenter">
+            <div class="col-lg-2 col-4 ms-auto dCenter">
               <button class="btnDanger w-100 py-1" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
             </div>
           </div>

@@ -20,6 +20,7 @@ import { MapComponent } from '../map/map.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { types } from '../../Services/helper.service';
 
 @Component({
   standalone: true,
@@ -64,6 +65,7 @@ export class ListingPageComponent implements OnInit {
   param: boolean = false;
   screenHeight: number = window.innerHeight;
   latLngArray: any;
+  types=types;
   minPriceArray: any;
   maxPriceArray: any;
   bedsArray: any;
@@ -77,7 +79,8 @@ export class ListingPageComponent implements OnInit {
     'Bathrooms: High to Low',
     'Date: Early to Late',
     'Date: Late to Early'
-  ];;
+  ];
+  type:any = null;
   minPrice: any = null;
   maxPrice: any = null;
   beds: any = null;
@@ -133,6 +136,9 @@ export class ListingPageComponent implements OnInit {
     }
     if (this.baths !== null && this.baths !== undefined) {
       urlParams.set('noOfBaths', String(this.baths));
+    }
+    if (this.type !== null && this.type !== undefined) {
+      urlParams.set('type', String(this.type));
     }
     const Url = `Property/get?${urlParams.toString()}`;
     this.http

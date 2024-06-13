@@ -49,5 +49,14 @@ p.blue-market{
   border-radius: 8px;
   font-size: 12px;
   padding: 2px 8px;
-
+}
+@media only screen and (max-width: 821px) {
+  h3{
+    font-size: 22px;
+  }
+}
+@media only screen and (max-width: 540px) {
+  h3{
+    font-size: 18px;
+  }
 }

@@ -217,8 +217,8 @@
             </div>
             <div class="checkbox-portion row">
               @if(amenityCategories?.length){
-              <h2>Amenities</h2>
-              <div class="col-lg-12">
+              <h2 id="amenities">Amenities</h2>
+              <div class="col-lg-12" >
                 <p class="text-start mb-0">Category</p>
                 <ng-select formControlName="AmentiyCategory" [searchable]="false">
                   @for (item of amenityCategories; track $index) {
@@ -245,7 +245,7 @@
               }
               }
               @if(utilities?.length){
-              <h2 class="mt-3">Utilities</h2>
+              <h2 class="mt-3" id="utilities">Utilities</h2>
               <p class="right-portion-para">
                 Select any utilities in the price of rent.
               </p>
@@ -495,7 +495,7 @@
                 </div>
               </div>
             </div>
-            <div id="Description">
+            <div id="description">
               <h2 class="mt-3">Description</h2>
               <p class="text-start">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut

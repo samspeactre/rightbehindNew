@@ -13,7 +13,7 @@
   <div class="property-card" [ngStyle]="{ background: background }">
     <div class="card-img cursor " (click)="type == 'component' && navigate(card)">
       <img
-        [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.webp'"
+        [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
         [class.NoImageFound]="!card?.imgSrc" alt="Card Image" class="card-img" />
       @if(showBadge && card?.badge){
       <div class="badge bg-light rounded-2 ">

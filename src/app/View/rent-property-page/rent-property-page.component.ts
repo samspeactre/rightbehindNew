@@ -246,7 +246,12 @@ export class RentPropertyPageComponent implements OnInit {
         }
       } else if (data instanceof Array) {
         for (let i = 0; i < data.length; i++) {
-          appendFormData(data[i], `${rootName}[${i}]`);
+          // Check if the array item is a File object
+          if (data[i] instanceof File) {
+            formData.append(rootName, data[i]);
+          } else {
+            appendFormData(data[i], `${rootName}[${i}]`);
+          }
         }
       } else if (data instanceof Object && !(data instanceof File)) {
         for (const key in data) {

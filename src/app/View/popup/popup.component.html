@@ -5,12 +5,12 @@
         <div class="carousel-img content-between">
           @if(propertyData?.propertyImages?.length){
           @for (item of propertyData?.propertyImages; let i = $index; track item) {
-          <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.webp'" alt="propertyimages"
+          <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
             [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half',i > 0 && i % 2 === 1 ? 'ms-2' : '']" />
           }
           }
           @else{
-          <img src="https://homes.madeeasy.app/img/no-propertyfound.webp" alt="propertyimages"
+          <img src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="propertyimages"
             class="carousel-img-full mt-3" />
           }
         </div>

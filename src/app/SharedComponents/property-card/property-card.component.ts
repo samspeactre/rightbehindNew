@@ -12,7 +12,7 @@ import { baseUrl } from '../../Services/http.service';
   styleUrl: './property-card.component.scss'
 })
 export class PropertyCardComponent {
-  src = baseUrl
+  src = 'https://recursing-allen.74-208-96-50.plesk.page/api'
   @Input() card!:any;
   @Input() showBadge:boolean = false;
   @Input() loader:boolean = true;

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
@@ -6,7 +7,7 @@ export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker],
+  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker, CommonModule],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
@@ -47,7 +48,7 @@ export class MapComponent implements OnInit, OnDestroy {
       version: 'weekly',
       libraries: ['places']
     });
-    console.log(this.infoContents);
+    console.log(this.markerPositions);
     
     loader.load().then(() => {
       this.mapScriptLoad = true;

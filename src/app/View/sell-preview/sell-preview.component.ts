@@ -14,10 +14,11 @@ import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
 import { HelperService } from '../../Services/helper.service';
+import { MapComponent } from '../../SharedComponents/map/map.component';
 
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [FontAwesomeModule, CommonModule,MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.scss',

@@ -1,1 +1,8 @@
 @import url('../../../assets/scss/input.scss');
+.description {
+    display: inline-block;  /* Use inline-block or block */
+    max-width: 200px;       /* Set the maximum width */
+    white-space: nowrap;    /* Prevent text from wrapping */
+    overflow: hidden;       /* Hide the overflow text */
+    text-overflow: ellipsis;/* Add ellipsis to the truncated text */
+  }

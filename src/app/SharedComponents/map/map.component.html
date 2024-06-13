@@ -21,10 +21,10 @@
             @if(infoContents?.[index]?.propertyImages?.[0]){
             <img [src]="infoContents[index].propertyImages?.[0]" alt="images">
             }
-            <h5>{{infoContents?.[index]?.title}}</h5>
-            <h6>{{infoContents?.[index]?.description
+            <h5 class="bold">Title: {{infoContents?.[index]?.title}}</h5>
+            <h6 class="description bold">Description: {{infoContents?.[index]?.description
                 }}</h6>
-            <p>{{infoContents?.[index]?.price}}</p>
+            <h6 class="bold">Price: {{infoContents?.[index]?.price | currency:'USD'}}</h6>
         }
     </map-info-window>
 </google-map>

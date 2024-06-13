@@ -227,119 +227,121 @@
           </div>
           }
         </div>
-        <div class="Prop-info p-2 my-3">
-          <div class="row">
-            <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
-            @for (info of propertyDetails?.openHouses; track info) {
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Date</div>
-                <div class="white-box-text">{{ info?.startDateTime | date : "d MMMM y" }}</div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Start Time</div>
-                <div class="white-box-text">{{ info?.endDateTime | date : 'shortTime' }}</div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="transparent-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">End Time</div>
-                <div class="white-box-text">{{ info?.startDateTime | date : 'shortTime' }}</div>
-              </div>
-            </div>
-
-            }
-            <!-- @for (info of addInfo; track info) {
-
-            <h3 class="small-head prop-info-padding">Additional Information</h3>
-            <div class="col-lg-6">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Related Website</div>
-                <div class="white-box-text">{{ info?.realtedSite }}</div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">
-                  what I love about This Home
+        @if(propertyDetails?.openHouses?.length){
+          <div class="Prop-info p-2 my-3">
+            <div class="row">
+              <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
+              @for (info of propertyDetails?.openHouses; track info) {
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Date</div>
+                  <div class="white-box-text">{{ info?.startDateTime | date : "d MMMM y" }}</div>
                 </div>
-                <div class="white-box-text">{{ info?.feedback }}</div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="transparent-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Room Details</div>
-                <div class="white-box-text">{{ info?.roomDetails }}</div>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Start Time</div>
+                  <div class="white-box-text">{{ info?.endDateTime | date : 'shortTime' }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="transparent-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Utility Bills</div>
-                <div class="white-box-text">{{ info?.utilityBills }}</div>
+              <div class="col-lg-4">
+                <div class="transparent-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">End Time</div>
+                  <div class="white-box-text">{{ info?.startDateTime | date : 'shortTime' }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Building Details</div>
-                <div class="white-box-text">{{ info?.buildDetails }}</div>
+  
+              }
+              <!-- @for (info of addInfo; track info) {
+  
+              <h3 class="small-head prop-info-padding">Additional Information</h3>
+              <div class="col-lg-6">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Related Website</div>
+                  <div class="white-box-text">{{ info?.realtedSite }}</div>
+                </div>
               </div>
-            </div>
-            } -->
-            @for (info of propertyDetails?.propertyContacts; track info) {
-            <h3 class="small-head prop-info-padding">Contact Information</h3>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3 white-box-price">
-                <div class="white-box-text text-info">Full Name</div>
-                <div class="white-box-text">{{ info?.fullName }}</div>
+              <div class="col-lg-6">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">
+                    what I love about This Home
+                  </div>
+                  <div class="white-box-text">{{ info?.feedback }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3 white-box-price">
-                <div class="white-box-text text-info">Phone</div>
-                <div class="white-box-text">{{ info?.contact }}</div>
+              <div class="col-lg-6">
+                <div class="transparent-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Room Details</div>
+                  <div class="white-box-text">{{ info?.roomDetails }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3 white-box-price">
-                <div class="white-box-text text-info">Email</div>
-                <div class="white-box-text">{{ info?.email }}</div>
+              <div class="col-lg-6">
+                <div class="transparent-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Utility Bills</div>
+                  <div class="white-box-text">{{ info?.utilityBills }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Address</div>
-                <div class="white-box-text">{{ propertyDetails?.location }}</div>
+              <div class="col-lg-6">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Building Details</div>
+                  <div class="white-box-text">{{ info?.buildDetails }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="transparent-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Country/State</div>
-                <div class="white-box-text">{{ info?.country }}</div>
+              } -->
+              @for (info of propertyDetails?.propertyContacts; track info) {
+              <h3 class="small-head prop-info-padding">Contact Information</h3>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                  <div class="white-box-text text-info">Full Name</div>
+                  <div class="white-box-text">{{ info?.fullName }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="transparent-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">City</div>
-                <div class="white-box-text">{{ info?.city }}</div>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                  <div class="white-box-text text-info">Phone</div>
+                  <div class="white-box-text">{{ info?.contact }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Landmark</div>
-                <div class="white-box-text">{{ info?.landmark }}</div>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                  <div class="white-box-text text-info">Email</div>
+                  <div class="white-box-text">{{ info?.email }}</div>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="white-box dCenter justify-content-start gap-3">
-                <div class="white-box-text text-info">Zip Code</div>
-                <div class="white-box-text">{{ info?.zipcode }}</div>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Address</div>
+                  <div class="white-box-text">{{ propertyDetails?.location }}</div>
+                </div>
               </div>
+              <div class="col-lg-4">
+                <div class="transparent-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Country/State</div>
+                  <div class="white-box-text">{{ info?.country }}</div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="transparent-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">City</div>
+                  <div class="white-box-text">{{ info?.city }}</div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Landmark</div>
+                  <div class="white-box-text">{{ info?.landmark }}</div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="white-box dCenter justify-content-start gap-3">
+                  <div class="white-box-text text-info">Zip Code</div>
+                  <div class="white-box-text">{{ info?.zipcode }}</div>
+                </div>
+              </div>
+              }
             </div>
-            }
           </div>
-        </div>
+        }
       </div>
     </div>
     <div class="col-lg-4 mt-4">
@@ -375,6 +377,9 @@
         </div>
       </div>
       }
+    </div>
+    <div class="col-lg-12">
+      <app-map [center]="{lat:propertyDetails?.latitude,lng:propertyDetails?.longitude}" [markerPositions]="[{lat:propertyDetails?.latitude,lng:propertyDetails?.longitude}]"></app-map>
     </div>
     }
   </div>

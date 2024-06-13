@@ -178,6 +178,10 @@
                   <input placeholder="No. of Bathrooms" formControlName="NoOfBaths" type="number" />
                 </div>
                 <div class="col-lg-4">
+                  <p class="text-start mb-0">Price</p>
+                  <input placeholder="Price" formControlName="Price" type="number" />
+                </div>
+                <div class="col-lg-4">
                   <p class="text-start mb-0">SqrFt</p>
                   <input placeholder="SqrFt" formControlName="SqrFt" type="number" />
                 </div>
@@ -216,7 +220,7 @@
               <h2>Amenities</h2>
               <div class="col-lg-12">
                 <p class="text-start mb-0">Category</p>
-                <ng-select formControlName="Category" [searchable]="false">
+                <ng-select formControlName="AmentiyCategory" [searchable]="false">
                   @for (item of amenityCategories; track $index) {
                   <ng-option [value]="item?.amenityCategoryName" selected>{{item?.amenityCategoryName}}</ng-option>
                   }
@@ -620,19 +624,19 @@
               <div class="row">
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Address</p>
-                  <input formControlName="Location" type="text" />
+                  <input formControlName="Location" type="text" readonly />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Country</p>
-                  <input formControlName="Country" type="text" />
+                  <input formControlName="Country" type="text" readonly />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">State</p>
-                  <input formControlName="State" type="text" />
+                  <input formControlName="State" type="text" readonly />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">City</p>
-                  <input formControlName="City" type="text" />
+                  <input formControlName="City" type="text" readonly />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Plot</p>

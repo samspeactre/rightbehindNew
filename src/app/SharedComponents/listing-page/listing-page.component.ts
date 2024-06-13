@@ -18,6 +18,8 @@ import { PropertyCardComponent } from '../property-card/property-card.component'
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { MapComponent } from '../map/map.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   standalone: true,
@@ -38,7 +40,10 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MiniLoadingComponent,
     MapComponent,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -49,7 +54,7 @@ export class ListingPageComponent implements OnInit {
   zoom = 15;
   pageType!: string;
   private destroy$ = new Subject<void>();
-  search: string = '';
+  search: any = '';
   pageNo: number = 1;
   pageSize: number = 10;
   loader: boolean = true;
@@ -58,7 +63,26 @@ export class ListingPageComponent implements OnInit {
   loadMoreLoader: boolean = false;
   param: boolean = false;
   screenHeight: number = window.innerHeight;
-  latLngArray:any;
+  latLngArray: any;
+  minPriceArray: any;
+  maxPriceArray: any;
+  bedsArray: any;
+  bathArray: any;
+  sortsArray: any = [
+    'Price: Low to High',
+    'Price: High to Low',
+    'Beds: Low to High',
+    'Beds: High to Low',
+    'Bathrooms: Low to High',
+    'Bathrooms: High to Low',
+    'Date: Early to Late',
+    'Date: Late to Early'
+  ];;
+  minPrice: any = null;
+  maxPrice: any = null;
+  beds: any = null;
+  baths: any = null;
+  sort: any = 'Price: Low to High';
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
     lng: 150.4826715,
@@ -81,24 +105,39 @@ export class ListingPageComponent implements OnInit {
       }
     });
   }
+
   ngOnInit() {
-    this.loader = true;
     this.getProperties(false);
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
   getProperties(loadMore: boolean) {
-    const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo
-      }&pageSize=${this.pageSize}&type=${this.router.url.includes('buy') ? '1' : '2'
-      }`;
-    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize
-      }&type=${this.router.url.includes('buy') ? '1' : '2'}`;
+    this.loader = true;
+    const urlParams = new URLSearchParams();
+    urlParams.set('pageNo', String(this.pageNo));
+    urlParams.set('pageSize', String(this.pageSize));
+    urlParams.set('type', this.router.url.includes('buy') ? '1' : '2');
+    if (this.search) {
+      urlParams.set('search', this.search);
+    }
+    if (this.minPrice !== null && this.minPrice !== undefined) {
+      urlParams.set('minPrice', String(this.minPrice));
+    }
+    if (this.maxPrice !== null && this.maxPrice !== undefined) {
+      urlParams.set('maxPrice', String(this.maxPrice));
+    }
+    if (this.beds !== null && this.beds !== undefined) {
+      urlParams.set('noOfBeds', String(this.beds));
+    }
+    if (this.baths !== null && this.baths !== undefined) {
+      urlParams.set('noOfBaths', String(this.baths));
+    }
+    const Url = `Property/get?${urlParams.toString()}`;
     this.http
       .loaderGet(
-        this.search ? searchUrl : withoutSearchUrl,
+        Url,
         false,
         true,
         false,
@@ -129,14 +168,23 @@ export class ListingPageComponent implements OnInit {
             else {
               this.cards = [...newProperties];
             }
-            this.latLngArray = this.cards.map((location:any) => ({ lat: location.latitude, lng: location.longitude }))
-            this.noData = this.cards.length === 0;
+            if (this.cards?.length) {
+              this.latLngArray = this.cards.map((location: any) => ({ lat: location.latitude, lng: location.longitude }))
+              let prices = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
+              this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
+              this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
+              let midIndex = Math.ceil(prices.length / 2);
+              this.minPriceArray = prices.slice(0, midIndex);
+              this.maxPriceArray = prices.slice(midIndex);
+            }
+            this.sorting()
+            this.noData = response?.model?.properties === 0;
           } else {
             if (!loadMore) {
               this.noDataError();
             }
           }
-          if(response?.model?.totalResults){
+          if (response?.model?.totalResults) {
             this.loadMore = this.cards?.length < response?.model?.totalResults;
           }
         },
@@ -168,5 +216,54 @@ export class ListingPageComponent implements OnInit {
   openPopup(): void {
     this.dialog.open(PopupComponent);
   }
-
+  onFilterChange() {
+    this.getProperties(false);
+  }
+  sorting() {
+    switch (this.sort) {
+      case 'Price: Low to High':
+        this.cards.sort((a: any, b: any) => (a.price || 0) - (b.price || 0));
+        break;
+      case 'Price: High to Low':
+        this.cards.sort((a: any, b: any) => (b.price || 0) - (a.price || 0));
+        break;
+      case 'Beds: Low to High':
+        this.cards.sort((a: any, b: any) => (a.noOfBed || 0) - (b.noOfBed || 0));
+        break;
+      case 'Beds: High to Low':
+        this.cards.sort((a: any, b: any) => (b.noOfBed || 0) - (a.noOfBed || 0));
+        break;
+      case 'Bathrooms: Low to High':
+        this.cards.sort((a: any, b: any) => (a.noOfBath || 0) - (b.noOfBath || 0));
+        break;
+      case 'Bathrooms: High to Low':
+        this.cards.sort((a: any, b: any) => (b.noOfBath || 0) - (a.noOfBath || 0));
+        break;
+      case 'Date: Early to Late':
+        this.cards.sort((a: any, b: any) => (new Date(a.createdAt).getTime() || 0) - (new Date(b.createdAt).getTime() || 0));
+        break;
+      case 'Date: Late to Early':
+        this.cards.sort((a: any, b: any) => (new Date(b.createdAt).getTime() || 0) - (new Date(a.createdAt).getTime() || 0));
+        break;
+      default:
+        break;
+    }
+  }
+  reset() {
+    this.search = null;
+    this.minPrice = null;
+    this.maxPrice = null;
+    this.beds = null;
+    this.baths = null;
+    this.sort = this.sortsArray[0]
+    this.getProperties(false);
+  }
+  isResetDisabled(): boolean {
+    return (
+      !this.minPrice &&
+      !this.maxPrice &&
+      !this.beds &&
+      !this.baths
+    );
+  }
 }

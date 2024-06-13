@@ -72,6 +72,7 @@ export class RentPropertyPageComponent implements OnInit {
     Title: ['', Validators.required],
     Description: ['', Validators.required],
     Category: ['', Validators.required],
+    AmentiyCategory: ['', Validators.required],
     PropertyType: ['', Validators.required],
     NoOfBed: [''],
     LeaseMonth: [''],
@@ -176,7 +177,7 @@ export class RentPropertyPageComponent implements OnInit {
           State: this.previousData?.address?.state,
           Country: this.previousData?.address?.country,
           ZipCode: this.previousData?.address?.zipCode,
-          Street: this.previousData?.address?.street,
+          Street: this.previousData?.address?.street
         })
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');
@@ -184,13 +185,16 @@ export class RentPropertyPageComponent implements OnInit {
         else {
           this.propertyAddForm.removeControl('OpenHouses');
         }
+        this.propertyAddForm.patchValue({
+          Category: this.previousData?.active == 'rent' ? 2 :1 
+        })
       }
     })
   }
 
   ngOnInit(): void {
     this.getAmeneties()
-    this.propertyAddForm.controls['Category'].valueChanges.subscribe((value: any) => {
+    this.propertyAddForm.controls['AmentiyCategory'].valueChanges.subscribe((value: any) => {
       this.onCategoryChange(value)
     });
   }
@@ -208,7 +212,7 @@ export class RentPropertyPageComponent implements OnInit {
       .subscribe((response: any) => {
         this.amenityCategories = response?.modelList;
         this.propertyAddForm.patchValue({
-          Category: response?.modelList?.[0]?.amenityCategoryName
+          AmentiyCategory: response?.modelList?.[0]?.amenityCategoryName
         })
         this.onCategoryChange(response?.modelList?.[0]?.amenityCategoryName)
       })
@@ -233,9 +237,7 @@ export class RentPropertyPageComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.propertyAddForm.patchValue({
-      Category: 1
-    })
+    this.propertyAddForm.removeControl('AmentiyCategory');
     const formData = new FormData();
     const appendFormData = (data: any, rootName: string = '') => {
       if (data instanceof FileList) {

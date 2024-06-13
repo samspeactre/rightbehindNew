@@ -14,6 +14,7 @@ import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { PropertyCardComponent } from '../../SharedComponents/property-card/property-card.component';
 import { HttpService } from '../../Services/http.service';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
+import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 
 @Component({
   standalone: true,
@@ -21,6 +22,7 @@ import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader
     FooterComponent,
     MatIconModule,
     MatOption,
+    BannerComponent,
     MatSelect,
     MatLabel,
     MatFormFieldModule,

@@ -1,4 +1,6 @@
-
+.contact{
+    height: 480px;
+}
 .sicontainer-te {
     padding: 0vw 3.55vw;
 }
@@ -35,28 +37,6 @@
 .slash {
     padding: 0vw 0.25vw;
     align-content: center;
-}
-
-.sec-1 {
-    background-image: url(../../../assets/img/home-bottom.webp);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: 100%;
-}
-
-.home-tree {
-    margin-top: -11.85%;
-    width: 100%;
-}
-
-.left-tree img,
-.right-tree img {
-    width: 46.5%;
-}
-
-.right-tree img {
-    transform: scaleX(-1);
-    float: right;
 }
 
 .sec-2 {

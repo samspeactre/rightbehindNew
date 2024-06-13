@@ -1,10 +1,3 @@
-h1 {
-  font-size: 3.1vw;
-  font-family: "bold";
-  color: var(--black);
-  text-align: center;
-  letter-spacing: 0.01vw;
-}
 
 h2 {
   font-size: 1.6vw;
@@ -15,10 +8,6 @@ h2 {
   letter-spacing: 0.06vw;
   padding-left: 0.8vw;
   font-weight: 400;
-}
-
-.container-site {
-  padding: 0 3.55vw;
 }
 
 .content {
@@ -106,30 +95,10 @@ h2 {
 
 /*  */
 
-.sec-1 {
-  background-image: url(../../../assets/img/home-bottom.webp);
-  background-repeat: no-repeat;
-  background-position: 0vw bottom;
-  background-size: 100% 22.7vw;
-}
 .position-relative{
   position: relative;
 }
-.home-tree {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 0;
-}
 
-.left-tree img,
-.right-tree img {
-  width: 46%;
-}
-
-.right-tree {
-  transform: scaleX(-1);
-}
 
 .row {
   display: flex;

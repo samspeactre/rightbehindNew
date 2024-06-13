@@ -1,14 +1,6 @@
-h1 {
-    font-size: 4.1vw;
-    font-family: "bold";
-    color: var(--black);
-    text-align: center;
+.listing{
+    height: 480px;
 }
-
-.container-site {
-    padding: 0 3.55vw;
-}
-
 .content {
     margin-top: 7.5vw;
     padding-bottom: 7.5vw;
@@ -31,13 +23,6 @@ h1 {
     padding: 0 0.3vw;
 }
 
-.sec-1 {
-    background-image: url(../../../assets/img/home-bottom.webp);
-    background-repeat: no-repeat;
-    background-position: 0vw bottom;
-    background-size: 100% 22.7vw;
-}
-
 .sec-2 {
     margin-top: 3vw;
     width: 100%;
@@ -48,26 +33,11 @@ h1 {
     padding-bottom: 11.5vw;
 }
 
-.home-tree {
-    margin-top: -23%;
-}
-
-.left-tree img,
-.right-tree img {
-    width: 46%;
-}
-
-.right-tree {
-    transform: scaleX(-1);
-}
 
 .sec-2 {
     margin-top: 2.5vw;
 }
 
-.container-site {
-    padding: 0vw 3.55vw;
-}
 
 .options {
     width: 22.8%;

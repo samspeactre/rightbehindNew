@@ -11,16 +11,18 @@ import { Store } from '@ngrx/store';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
 import { HelperService } from '../../Services/helper.service';
 
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [FontAwesomeModule, CommonModule, RentalCarouselComponent, FontAwesomeModule, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-blog-inner',
   templateUrl: './blog-inner.component.html',
   styleUrl: './blog-inner.component.scss',
+
 })
 export class BlogInnerComponent {
+  faUser=faUser
 }

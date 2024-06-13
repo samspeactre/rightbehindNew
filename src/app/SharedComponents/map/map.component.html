@@ -12,8 +12,20 @@
 @if(mapScriptLoad){
 <google-map [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
-    @for (position of markerPositions; track position) {
-    <map-marker [position]="position" [options]="markerOptions" (mapDragend)="onMarkerDragEnd($event)" />
+    @for (position of markerPositions; let i = $index; track position) {
+    <map-marker [position]="position" [options]="markerOptions" (mapDragend)="onMarkerDragEnd($event)"
+        #marker="mapMarker" (mapClick)="infoContents?.length && openInfoWindow(marker, i);moveMap($event)" />
     }
+    <map-info-window>
+        @if(index){
+            @if(infoContents?.[index]?.propertyImages?.[0]){
+            <img [src]="infoContents[index].propertyImages?.[0]" alt="images">
+            }
+            <h5>{{infoContents?.[index]?.title}}</h5>
+            <h6>{{infoContents?.[index]?.description
+                }}</h6>
+            <p>{{infoContents?.[index]?.price}}</p>
+        }
+    </map-info-window>
 </google-map>
 }

@@ -36,7 +36,12 @@
           <br />
           <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'rent-special' }" (click)="scrollToSection('rent-special')">
-            Rent Special
+            @if(previousData?.active == 'rent'){
+              Rent Special
+            }
+            @else{
+              Open House
+            }
           </button>
           <br />
           <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
@@ -211,9 +216,9 @@
               <h2>Amenities</h2>
               <div class="col-lg-12">
                 <p class="text-start mb-0">Category</p>
-                <ng-select formControlName="Category" [searchable]="false" (change)="onCategoryChange($event)">
-                  @for (item of types; track $index) {
-                  <ng-option [value]="item?.value" selected>{{item?.name}}</ng-option>
+                <ng-select formControlName="Category" [searchable]="false">
+                  @for (item of amenityCategories; track $index) {
+                  <ng-option [value]="item?.amenityCategoryName" selected>{{item?.amenityCategoryName}}</ng-option>
                   }
                 </ng-select>
               </div>
@@ -297,6 +302,35 @@
                 </div>
               </div>
             </div>
+            }
+            @else{
+            <div id="rent-special">
+              <h2 class="mt-3">Open House</h2>
+              <p class="right-portion-para">
+                Enter open house date and time.
+              </p>
+              <div formArrayName="OpenHouses" class="row">
+                @for (plan of propertyAddForm.get('OpenHouses').controls;
+                let i = $index; track plan) {
+                <div [formGroupName]="i" class="row">
+                  <div class="col-lg-6">
+                    <p class="text-start mb-0">Start Date</p>
+                    <input placeholder="Start Date" formControlName="StartDateTime" type="datetime-local" />
+                  </div>
+                  <div class="col-lg-6">
+                    <p class="text-start mb-0">End Date</p>
+                    <input placeholder="End Date" formControlName="EndDateTime" type="datetime-local" />
+                  </div>
+                </div>
+                }
+                <div class="col-lg-12">
+                  <button class="btnBlackNWhite py-1 wow fadeInDown mb-3" (click)="addOpenHouse()">
+                    Add Open House
+                  </button>
+                </div>
+              </div>
+            </div>
+
             }
             <div id="Pet-policy">
               <h2 class="mt-3">Pet Policy</h2>
@@ -508,7 +542,8 @@
                   </div>
                   <div class="col-lg-12">
                     <p class="text-start mb-0">Enter Description of Property</p>
-                    <textarea placeholder="Enter Description of Property" formControlName="Description" rows="10"></textarea>
+                    <textarea placeholder="Enter Description of Property" formControlName="Description"
+                      rows="10"></textarea>
                   </div>
                   <div formArrayName="FloorPlanUnits" class="col-lg-12">
                     @for (unit of plan.get('FloorPlanUnits').controls;
@@ -585,19 +620,19 @@
               <div class="row">
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Address</p>
-                  <input formControlName="Location" type="text" readonly />
+                  <input formControlName="Location" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Country</p>
-                  <input formControlName="Country" type="text" readonly />
+                  <input formControlName="Country" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">State</p>
-                  <input formControlName="State" type="text" readonly />
+                  <input formControlName="State" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">City</p>
-                  <input formControlName="City" type="text" readonly />
+                  <input formControlName="City" type="text" />
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Landmark</p>
@@ -605,7 +640,7 @@
                 </div>
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Zip Code</p>
-                  <input formControlName="ZipCode" type="number" readonly />
+                  <input formControlName="ZipCode" type="number" />
                 </div>
                 <div class="col-lg-12">
                   <app-map [mapDraggable]="false" [markerPositions]="[previousData?.latLng]"

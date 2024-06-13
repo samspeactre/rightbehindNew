@@ -17,6 +17,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { MapComponent } from '../map/map.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -36,26 +37,28 @@ import { MapComponent } from '../map/map.component';
     NavbarComponent,
     MatButtonModule,
     MiniLoadingComponent,
-    MapComponent
+    MapComponent,
+    CommonModule
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.scss',
 })
 export class ListingPageComponent implements OnInit {
-  cards:any=[1,2,3]
+  cards: any = [1, 2, 3]
   zoom = 15;
   pageType!: string;
   private destroy$ = new Subject<void>();
   search: string = '';
   pageNo: number = 1;
-  pageSize: number = 5;
+  pageSize: number = 10;
   loader: boolean = true;
   noData: boolean = false;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
-  screenHeight:number = window.innerHeight;
+  screenHeight: number = window.innerHeight;
+  latLngArray:any;
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
     lng: 150.4826715,
@@ -69,10 +72,10 @@ export class ListingPageComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
-        if(params['search']){
+        if (params['search']) {
           this.param = true
         }
-        else{
+        else {
           this.param = false
         }
       }
@@ -87,15 +90,12 @@ export class ListingPageComponent implements OnInit {
     this.destroy$.complete();
   }
 
-  getProperties(loadMore:boolean) {
-    const searchUrl = `Property/get?search=${this.search}&pageNo=${
-      this.pageNo
-    }&pageSize=${this.pageSize}&type=${
-      this.router.url.includes('buy') ? '1' : '2'
-    }`;
-    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${
-      this.pageSize
-    }&type=${this.router.url.includes('buy') ? '1' : '2'}`;
+  getProperties(loadMore: boolean) {
+    const searchUrl = `Property/get?search=${this.search}&pageNo=${this.pageNo
+      }&pageSize=${this.pageSize}&type=${this.router.url.includes('buy') ? '1' : '2'
+      }`;
+    const withoutSearchUrl = `Property/get?pageNo=${this.pageNo}&pageSize=${this.pageSize
+      }&type=${this.router.url.includes('buy') ? '1' : '2'}`;
     this.http
       .loaderGet(
         this.search ? searchUrl : withoutSearchUrl,
@@ -108,7 +108,7 @@ export class ListingPageComponent implements OnInit {
         finalize(() => {
           this.loadMoreLoader = false;
           this.loader = false;
-          if(!loadMore && this.param){
+          if (!loadMore && this.param) {
             this.router.navigate([], {
               relativeTo: this.activatedRoute,
               queryParams: {},
@@ -121,17 +121,25 @@ export class ListingPageComponent implements OnInit {
         (response: any) => {
           if (response?.model?.properties) {
             const newProperties = response?.model?.properties || [];
-            this.cards = [...newProperties];
+            if (loadMore) {
+              newProperties?.map((property: any) => {
+                this.cards.push(property)
+              })
+            }
+            else {
+              this.cards = [...newProperties];
+            }
+            this.latLngArray = this.cards.map((location:any) => ({ lat: location.latitude, lng: location.longitude }))
             this.noData = this.cards.length === 0;
           } else {
-            if(!loadMore){
+            if (!loadMore) {
               this.noDataError();
             }
           }
           this.loadMore = this.cards?.length < response?.model?.totalResults;
         },
         (err: any) => {
-          if(!loadMore){
+          if (!loadMore) {
             this.noDataError();
           }
         }
@@ -157,5 +165,5 @@ export class ListingPageComponent implements OnInit {
   openPopup(): void {
     this.dialog.open(PopupComponent);
   }
-  
+
 }

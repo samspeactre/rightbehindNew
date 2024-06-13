@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { GoogleMap, GoogleMapsModule, MapMarker } from '@angular/google-maps';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { GoogleMap, GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Loader } from '@googlemaps/js-api-loader';
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule, GoogleMap, MapMarker],
+  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
@@ -19,6 +19,8 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() mapDraggable: boolean = true;
   @Input() search: boolean = false;
   @Input() markerPositions: google.maps.LatLngLiteral[] = [];
+  @Input() infoWindow: any = [];
+  @Input() infoContents: any = [];
   @Output() mapMarkerCordinates = new EventEmitter<any>();
   @Output() mapSearchLocation = new EventEmitter<any>();
   display!: google.maps.LatLngLiteral;
@@ -29,12 +31,13 @@ export class MapComponent implements OnInit, OnDestroy {
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
+  index!:any;
   value: string = ''
+  @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
   constructor(private http: HttpClient) { }
   moveMap(event: any) {
     this.center = (event.latLng.toJSON());
   }
-
   move(event: any) {
     this.display = event.latLng.toJSON();
   }
@@ -44,7 +47,8 @@ export class MapComponent implements OnInit, OnDestroy {
       version: 'weekly',
       libraries: ['places']
     });
-
+    console.log(this.infoContents);
+    
     loader.load().then(() => {
       this.mapScriptLoad = true;
       this.initMap();
@@ -52,7 +56,6 @@ export class MapComponent implements OnInit, OnDestroy {
       console.error('Error loading Google Maps script:', err);
     });
   }
-
   ngOnDestroy(): void {
     if (this.autocompleteListener) {
       google.maps.event.removeListener(this.autocompleteListener);
@@ -147,5 +150,9 @@ export class MapComponent implements OnInit, OnDestroy {
       }
     }
     return { city, country, street, zipCode, state };
+  }
+  openInfoWindow(marker: MapMarker, i:number) {
+    this.infosWindow.open(marker);
+    this.index = i;
   }
 }

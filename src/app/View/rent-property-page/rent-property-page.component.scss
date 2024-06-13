@@ -24,6 +24,7 @@
 input[type="number"],
 input[type="text"],
 input[type="email"],
+input[type="datetime-local"],
 input[type="date"],textarea {
   background: none;
   border: none;
@@ -44,6 +45,7 @@ input[type="number"]::placeholder,
 input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="date"]::placeholder,
+input[type="datetime-local"]::placeholder,
 textarea::placeholder {
   font-size: 10px;
 }

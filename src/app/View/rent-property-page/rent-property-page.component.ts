@@ -17,7 +17,7 @@ import { MatSelect } from '@angular/material/select';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { HttpService } from '../../Services/http.service';
@@ -117,7 +117,12 @@ export class RentPropertyPageComponent implements OnInit {
         ]),
       })
     ]),
-    OpenHouses: this.fb.array([]),
+    OpenHouses: this.fb.array([
+      this.fb.group({
+        StartDateTime: [''],
+        EndDateTime: ['']
+      })
+    ]),
     PropertyContact: this.fb.group({
       UserRole: [''],
       FullName: [''],
@@ -150,9 +155,7 @@ export class RentPropertyPageComponent implements OnInit {
   readonly ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
   sections: any;
   section: string = 'property-information'
-  startDate: Date;
-  endDate: Date = new Date();
-  constructor(private activatedRoute: ActivatedRoute, private toastr: ToastrService, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
+  constructor(private activatedRoute: ActivatedRoute, private router:Router, private toastr: ToastrService, public helper: HelperService, private location: Location, private http: HttpService, private fb: FormBuilder,) {
     this.activatedRoute.queryParams.subscribe((response: any) => {
       if (!response?.data) {
         this.location.back()
@@ -176,13 +179,18 @@ export class RentPropertyPageComponent implements OnInit {
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');
         }
+        else {
+          this.propertyAddForm.removeControl('OpenHouses');
+        }
       }
     })
-    this.startDate = new Date();
   }
 
   ngOnInit(): void {
     this.getAmeneties()
+    this.propertyAddForm.controls['Category'].valueChanges.subscribe((value: any) => {
+      this.onCategoryChange(value)
+    });
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -197,6 +205,10 @@ export class RentPropertyPageComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.amenityCategories = response?.modelList;
+        this.propertyAddForm.patchValue({
+          Category: response?.modelList?.[0]?.amenityCategoryName
+        })
+        this.onCategoryChange(response?.modelList?.[0]?.amenityCategoryName)
       })
   }
   getUtilities() {
@@ -219,15 +231,11 @@ export class RentPropertyPageComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.log(this.propertyAddForm.value);
     this.propertyAddForm.patchValue({
       Category: 1
     })
     const formData = new FormData();
-
-    // Function to append data to FormData, handling nested objects and arrays
     const appendFormData = (data: any, rootName: string = '') => {
-      let formKey;
       if (data instanceof FileList) {
         for (let i = 0; i < data.length; i++) {
           formData.append(rootName, data[i]);
@@ -246,16 +254,18 @@ export class RentPropertyPageComponent implements OnInit {
         formData.append(rootName, data);
       }
     };
-
-    // Append form values to the FormData object
     appendFormData(this.propertyAddForm.value);
-    // Send the FormData object in the HTTP request
     this.http.loaderPost('Property/create', formData, true)
       .pipe(
         takeUntil(this.destroy$)
       )
       .subscribe((response) => {
-        console.log(response);
+        if(this.previousData?.active == 'rent'){
+          this.router.navigateByUrl('/rent')
+        }
+        else{
+          this.router.navigateByUrl('/buy')
+        }
       })
   }
   addFloorPlan(): void {
@@ -286,7 +296,13 @@ export class RentPropertyPageComponent implements OnInit {
       })
     );
   }
-
+  addOpenHouse() {
+    const openHouse = this.fb.group({
+      StartDateTime: [''],
+      EndDateTime: ['']
+    });
+    (this.propertyAddForm.get('OpenHouses') as FormArray).push(openHouse);
+  }
   scrollToSection(sectionId: string) {
     this.section = sectionId
     const element = document.getElementById(sectionId);
@@ -295,7 +311,7 @@ export class RentPropertyPageComponent implements OnInit {
     }
   }
   onCategoryChange(category: any) {
-    this.amenities = this.amenityCategories.find((amenity: any) => amenity?.amenityCategoryName == category?.value);
+    this.amenities = this.amenityCategories.find((amenity: any) => amenity?.amenityCategoryName == category);
   }
   get propertyImageFiles(): FormArray {
     return this.propertyAddForm.get('PropertyImageFiles') as FormArray;

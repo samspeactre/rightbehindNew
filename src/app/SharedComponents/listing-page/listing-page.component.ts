@@ -10,7 +10,7 @@ import { MatLabel, MatSelect } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Subject, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../Services/http.service';
-import { PopupComponent } from '../../View/popup/popup.component';
+import { PopupComponent } from '../popup/popup.component';
 import { BannerComponent } from '../banner/banner.component';
 import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
 import { NavbarComponent } from '../navbar/navbar.component';

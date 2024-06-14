@@ -1,17 +1,17 @@
-import { ApplicationConfig, APP_INITIALIZER, importProvidersFrom } from '@angular/core';
-import { InMemoryScrollingFeature, InMemoryScrollingOptions, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { InMemoryScrollingFeature, InMemoryScrollingOptions, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { ToastrModule } from 'ngx-toastr';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { RentalReducer, SellReducer, popupStateReducer, searchStateReducer, sideBarReducer, userReducer } from './Ngrx/data.reducer';
+import { addRental, addSell } from './Ngrx/data.action';
+import { RentalReducer, SellReducer, userReducer } from './Ngrx/data.reducer';
 import { CacheInterceptor } from './TsExtras/cache.interceptor';
 import { routes } from './app.routes';
-import { addRental, addSell } from './Ngrx/data.action';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -68,10 +68,7 @@ export const appConfig: ApplicationConfig = {
       StoreModule.forRoot({
         user: userReducer,
         rent: RentalReducer,
-        sell: SellReducer,
-        search: searchStateReducer,
-        popup: popupStateReducer,
-        sideBar: sideBarReducer,
+        sell: SellReducer
       }),
       ToastrModule.forRoot({
         timeOut: 2000,

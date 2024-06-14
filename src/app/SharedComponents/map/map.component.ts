@@ -35,7 +35,7 @@ export class MapComponent implements OnInit, OnDestroy {
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
   index!:any;
-  @Input() value!: string;
+  @Input() value: string = '';
   @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
   constructor(private http: HttpClient) { }
   moveMap(event: any) {

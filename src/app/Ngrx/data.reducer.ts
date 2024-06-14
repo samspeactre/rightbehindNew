@@ -5,7 +5,7 @@ import {
   on,
 } from '@ngrx/store';
 import * as CryptoJS from 'crypto-js';
-import { addRental, addSell, addUserData, removeUserData, setPopupIdState, setSearchState, toggleSideBar, updateUserData } from './data.action';
+import { addRental, addSell, addUserData, removeUserData, updateUserData } from './data.action';
 
 const secureKey = '99812f7e870613bf1b2b8b5803e5483094900d86f36b0cb46890345f36d65ac0';
 
@@ -78,56 +78,6 @@ export const SellReducer = createReducer(
   }),
 );
 
-export interface SearchState {
-  search: boolean;
-}
-
-const initialStateSearch: SearchState = {
-  search: false,
-};
-
-export const searchStateReducer = createReducer(
-  initialStateSearch,
-  on(setSearchState, (state, { search }) => {
-    return { ...state, search: search };
-  }),
-);
-
-export interface PopUpId {
-  id: any;
-}
-
-const initialStatePopUp: PopUpId = {
-  id: null,
-};
-
-export const popupStateReducer = createReducer(
-  initialStatePopUp,
-  on(setPopupIdState, (state, { id }) => {
-    return { ...state, id: id };
-  }),
-);
-export interface SideBarState {
-  sideBar: any;
-}
-const initialStateSideBar: SideBarState = {
-  sideBar: null,
-};
-
-export const sideBarReducer = createReducer(
-  initialStateSideBar,
-  on(toggleSideBar, (state, { open }) => {
-    return { ...state, sideBar: open };
-  }),
-);
-
-// Selectors for sidebar state
-export const selectSideBarState =
-  createFeatureSelector<SideBarState>('sideBar');
-export const selectSideBar = createSelector(
-  selectSideBarState,
-  (state) => state.sideBar,
-);
 
 // Selectors for user state
 export const selectUserState = createFeatureSelector<UserState>('user');
@@ -148,19 +98,4 @@ export const selectSellState = createFeatureSelector<SellState>('sell');
 export const selectSell = createSelector(
   selectSellState,
   (state) => state.rent,
-);
-
-
-// Selectors for search state
-export const selectSearchState = createFeatureSelector<SearchState>('search');
-export const selectSearch = createSelector(
-  selectSearchState,
-  (state) => state.search,
-);
-
-// Selectors for popup state
-export const selectPopupState = createFeatureSelector<PopUpId>('popup');
-export const selectPopup = createSelector(
-  selectPopupState,
-  (state) => state.id,
 );

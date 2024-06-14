@@ -33,6 +33,7 @@
     "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",
     "@popperjs/core": "^2.11.8",
+    "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "animate.css": "^4.1.1",
     "apexcharts": "^3.49.1",
     "bootstrap": "^5.3.3",
@@ -46,6 +47,7 @@
     "ngx-quicklink": "^0.4.6",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.11.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

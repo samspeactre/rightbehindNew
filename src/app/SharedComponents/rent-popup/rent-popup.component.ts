@@ -1,20 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
-import { InputComponent } from '../input/input.component';
-import { AuthService } from '../../TsExtras/auth.service';
+import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { selectUser } from '../../Ngrx/data.reducer';
-import { Store } from '@ngrx/store';
 import { types } from '../../Services/helper.service';
-import { CommonModule } from '@angular/common';
+import { AuthService } from '../../TsExtras/auth.service';
+import { InputComponent } from '../input/input.component';
 import { MapComponent } from '../map/map.component';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
 @Component({
   standalone: true,
-  imports: [InputComponent, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
+  imports: [InputComponent,SweetAlert2Module , RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
   styleUrl: './rent-popup.component.scss'
@@ -71,7 +72,7 @@ export class RentPopupComponent {
   }
   onSubmit() {
     if (this.user) {
-      this.navigate()
+      this.fireSwal()
     }
     else {
       const data = {
@@ -95,10 +96,23 @@ export class RentPopupComponent {
               )
             ).subscribe((loginResponse) => {
               this.auth.handleLoginResponse(loginResponse);
-              this.navigate()
+              this.fireSwal()
             });
         });
     }
+  }
+  fireSwal() {
+    Swal.fire({
+      text: 'Are you sure this is a residential rental?',
+      icon: 'info',
+      confirmButtonText: 'Yes, this is a residential rental',
+      showCancelButton: true,
+      cancelButtonText: 'No, this is not a residential rental'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.navigate()
+      }
+    });
   }
   navigate() {
     const data = {

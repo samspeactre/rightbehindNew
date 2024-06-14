@@ -11,7 +11,7 @@ import { faAt, faBars, faCircleChevronDown, faHeadphones, faTimes } from '@forta
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
-import { removeUserData, toggleSideBar } from '../../Ngrx/data.action';
+import { removeUserData } from '../../Ngrx/data.action';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
@@ -118,7 +118,11 @@ export class NavbarComponent {
     this.auth.logout()
   }
   show(condition:boolean){
-    this.sidebar = condition
-    this.store.dispatch(toggleSideBar({open:condition}))
+    this.sidebar = condition;
+    if (condition) {
+      document?.body?.classList?.add('sideBarOpenBody');
+    } else {
+      document?.body?.classList?.remove('sideBarOpenBody');
+    }
   }
 }

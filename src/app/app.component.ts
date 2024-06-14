@@ -8,12 +8,11 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
+import { HelperService } from './Services/helper.service';
+import { LoaderService } from './Services/loader.service';
 import { FooterComponent } from './SharedComponents/footer/footer.component';
 import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
-import { LoaderService } from './Services/loader.service';
-import { selectSideBar } from './Ngrx/data.reducer';
-import { HelperService } from './Services/helper.service';
 declare var WOW: any;
 @Component({
   standalone: true,
@@ -26,7 +25,6 @@ export class AppComponent {
   loader: boolean = false;
   footer: boolean = true;
   header: boolean = true;
-  sideBar$ = this.store.select(selectSideBar);
   private destroy$ = new Subject<void>();
   constructor(
     private store: Store,
@@ -73,22 +71,6 @@ export class AppComponent {
             this.header = data['header'] || false;
           });
       });
-    if (window.innerWidth < 1024) {
-      this.sideBar$
-        .pipe(
-          distinctUntilChanged(
-            (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-          ),
-          takeUntil(this.destroy$)
-        )
-        .subscribe((open) => {
-          if (open) {
-            document?.body?.classList?.add('sideBarOpenBody');
-          } else {
-            document?.body?.classList?.remove('sideBarOpenBody');
-          }
-        });
-    }
     this.observe();
   }
   async observe() {

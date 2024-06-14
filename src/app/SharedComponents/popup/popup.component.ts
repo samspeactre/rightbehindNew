@@ -1,11 +1,8 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  ElementRef,
-  HostListener,
   Inject,
-  OnInit,
-  ViewChild,
+  OnInit
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -15,14 +12,13 @@ import {
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEllipsisVertical, faHeart, faShare, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { selectPopupState } from '../../Ngrx/data.reducer';
-import { HttpService } from '../../Services/http.service';
-import { faEllipsisVertical, faHeart, faShare, faShareAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HelperService } from '../../Services/helper.service';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   standalone: true,
@@ -36,8 +32,6 @@ export class PopupComponent implements OnInit {
   faShare=faShareAlt
   faEllipsisVertical=faEllipsisVertical
   faRedirect=faShare
-  popUpId$ = this.store.select(selectPopupState);
-  popUpId: any;
   propertyData: any;
   private destroy$ = new Subject<void>();
   constructor(

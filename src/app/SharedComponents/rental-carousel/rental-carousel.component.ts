@@ -9,7 +9,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { Store } from '@ngrx/store';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { HttpService } from '../../Services/http.service';
-import { PopupComponent } from '../../View/popup/popup.component';
+import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 @Component({
   standalone: true,

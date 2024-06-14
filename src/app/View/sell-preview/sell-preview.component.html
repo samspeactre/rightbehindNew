@@ -178,6 +178,55 @@
           </div>
           }
         </div>
+        @if(propertyDetails?.rentSpecials?.length){
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12 mb-3">
+            <h6><Strong>Rent Specials</Strong></h6>
+          </div>
+          @for (item of propertyDetails?.rentSpecials; track $index) {
+          @if(item?.title){
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-start gap-1 labelCheck">
+              <label>Title: </label>
+              <label>{{ item?.title }}</label>
+            </div>
+          </div>
+          }
+          @if(item?.tag){
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-start gap-1 labelCheck">
+              <label>Special Offer: </label>
+              <label>{{ item?.tag }}</label>
+            </div>
+          </div>
+          }
+          @if(item?.startDate){
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-start gap-1 labelCheck">
+              <label>Start Date: </label>
+              <label>{{ item?.startDate | date : "d MMMM y" }}</label>
+            </div>
+          </div>
+          }
+          @if(item?.endDate){
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-start gap-1 labelCheck">
+              <label>End Date: </label>
+              <label>{{ item?.endDate | date : "d MMMM y" }}</label>
+            </div>
+          </div>
+          }
+          @if(item?.description){
+          <div class="col-lg-12">
+            <div class="d-flex justify-content-start gap-1 labelCheck">
+              <label class="w-auto">Description: </label>
+              <label class="w-100">{{ item?.description }}</label>
+            </div>
+          </div>
+          }
+          }
+        </div>
+        }
         @if(propertyDetails?.propertyAmenities?.length){
         <div class="row mt-5 blue-box">
           <div class="col-lg-12 mb-3">
@@ -189,7 +238,22 @@
                 @for (group of propertyDetails?.propertyAmenities; let i = $index; track group) {
                 <li><span></span> {{group?.amenity?.amenityName }}</li>
                 }
-                <li>Air Conditioning</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        }
+        @if(propertyDetails?.propertyUtilities?.length){
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12 mb-3">
+            <h6><Strong>Utilities</Strong></h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="inner-home-list">
+              <ul class="d-flex flex-wrap ps-3">
+                @for (group of propertyDetails?.propertyUtilities; let i = $index; track group) {
+                <li><span></span> {{group?.utility?.utilityName }}</li>
+                }
               </ul>
             </div>
           </div>
@@ -225,6 +289,21 @@
           </div>
         </div>
         }
+        @if(propertyDetails.petPolicy){
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12 mb-3">
+            <h6><Strong>Policy</Strong></h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="white-box dCenter justify-content-between labelCheck yellow-label">
+              <div class="white-box-text text-info">Pet Policy</div>
+              <div class="white-box-text">
+                {{ propertyDetails.petPolicy }}
+              </div>
+            </div>
+          </div>
+        </div>
+        }
         <div class="row mt-5 blue-box">
           <div class="col-lg-12 mb-3">
             <h6><Strong>Home Facts</Strong></h6>
@@ -239,32 +318,72 @@
             </div>
           </div>
           }
-          @if(propertyDetails?.homeFacts?.[0]?.noOfBed){
+          @if(propertyDetails?.homeFacts?.[0]?.noOfBeds){
           <div class="col-lg-6">
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">No. of Bedrooms</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.noOfBed }}
+                {{ propertyDetails?.homeFacts?.[0]?.noOfBeds }}
               </div>
             </div>
           </div>
           }
-          @if(propertyDetails?.homeFacts?.[0]?.noOfBath){
+          @if(propertyDetails?.homeFacts?.[0]?.noOfBaths){
           <div class="col-lg-6">
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">No. of Bathrooms</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.noOfBath }}
+                {{ propertyDetails?.homeFacts?.[0]?.noOfBaths }}
               </div>
             </div>
           </div>
           }
-          @if(propertyDetails?.homeFacts?.[0]?.area){
+          @if(propertyDetails?.homeFacts?.[0]?.finishedSqrFt){
           <div class="col-lg-6">
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Finished Sq.FT</div>
               <div class="white-box-text">
                 {{ propertyDetails?.homeFacts?.[0]?.finishedSqrFt }} Sq.Ft
+              </div>
+            </div>
+          </div>
+          }
+          @if(propertyDetails?.deposit){
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Deposit</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.deposit }}
+              </div>
+            </div>
+          </div>
+          }
+          @if(propertyDetails?.leaseMonth){
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Lease Months</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.leaseMonth }}
+              </div>
+            </div>
+          </div>
+          }
+          @if(propertyDetails?.parking){
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Parking</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.parking }}
+              </div>
+            </div>
+          </div>
+          }
+          @if(propertyDetails?.isFurnished){
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Furnished</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.isFurnished ? 'Yes' : 'No' }}
               </div>
             </div>
           </div>
@@ -480,39 +599,39 @@
                     </div>
                   </div>
                   @if(item?.floorPlanUnits?.length){
-                    <div class="row">
-                      <div class="col-lg-12 mt-3">
-                        <h5><Strong>Floor Plans Unit</Strong></h5>
-                      </div>
+                  <div class="row">
+                    <div class="col-lg-12 mt-3">
+                      <h5><Strong>Floor Plans Unit</Strong></h5>
                     </div>
-                    <div class="row shadow-lg py-3 rounded-2">
-                      <div class="col-6 my-3">
-                        <h6 class="bold">
-                          Price
-                        </h6>
-                      </div>
-                      <div class="col-6 my-3">
-                        <h6 class="bold">
-                          Availability
-                        </h6>
-                      </div>
-                      @for (unit of item?.floorPlanUnits; let i =$index; track unit) {
-                        <div class="col-lg-12">
-                          <hr class="m-0">
-                        </div>
-                        <div class="col-6 my-3">
-                          <p class="mb-0">{{unit?.price | currency : 'USD'}}</p>
-                        </div>
-                        <div class="col-6 my-3">
-                          <p class="mb-0">{{unit?.availabilityDate | date : "d MMMM y"}}</p>
-                        </div>
-                        @if(i == item?.floorPlanUnits?.length -1){
-                          <div class="col-lg-12">
-                            <hr class="m-0">
-                          </div>
-                        }
-                      }
+                  </div>
+                  <div class="row shadow-lg py-3 rounded-2">
+                    <div class="col-6 my-3">
+                      <h6 class="bold">
+                        Price
+                      </h6>
                     </div>
+                    <div class="col-6 my-3">
+                      <h6 class="bold">
+                        Availability
+                      </h6>
+                    </div>
+                    @for (unit of item?.floorPlanUnits; let i =$index; track unit) {
+                    <div class="col-lg-12">
+                      <hr class="m-0">
+                    </div>
+                    <div class="col-6 my-3">
+                      <p class="mb-0">{{unit?.price | currency : 'USD'}}</p>
+                    </div>
+                    <div class="col-6 my-3">
+                      <p class="mb-0">{{unit?.availabilityDate | date : "d MMMM y"}}</p>
+                    </div>
+                    @if(i == item?.floorPlanUnits?.length -1){
+                    <div class="col-lg-12">
+                      <hr class="m-0">
+                    </div>
+                    }
+                    }
+                  </div>
                   }
                 </ng-template>
               </div>
@@ -577,6 +696,24 @@
             <div class="white-box-text">
               {{ propertyDetails?.landmark }}
             </div>
+          </div>
+        </div>
+        }
+        @if(propertyDetails?.plot){
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text text-info">Plot</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.plot }}
+            </div>
+          </div>
+        </div>
+        }
+        @if(propertyDetails.building){
+        <div class="col-lg-6">
+          <div class="d-flex justify-content-between labelCheck">
+            <label>Building: </label>
+            <label>{{ propertyDetails.building }}</label>
           </div>
         </div>
         }

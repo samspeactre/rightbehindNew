@@ -1,0 +1,81 @@
+<!-- dashboard-navbar.component.html -->
+<nav>
+    <div class="display content-between navbar">
+        <div class="left">
+            <h1>{{ sectionName }}</h1>
+        </div>
+        <div class="center display content-between">
+            <div class="search-bar">
+                <mat-form-field class="srch-input">
+                    <mat-icon matSuffix>search</mat-icon>
+                    <mat-label>Search here...</mat-label>
+                    <input matInput>
+                </mat-form-field>
+            </div>
+            <div class="listing-btn">
+                <button mat-stroked-button class="listing">
+                    <mat-icon>add_location_alt</mat-icon>
+                    Post Listing
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="right display content-between">
+            <div class="nav-icon">
+                <button mat-fab [matMenuTriggerFor]="mess">
+                    <mat-icon>sms</mat-icon>
+                </button>
+                <!-- menu -->
+                <mat-menu #mess="matMenu">
+                    <button mat-menu-item>
+                        <span>message 1</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>message 2</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>message 3</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <div class="nav-icon">
+                <button mat-fab [matMenuTriggerFor]="notification">
+                    <mat-icon>notifications_unread</mat-icon>
+                </button>
+                <!-- menu -->
+                <mat-menu #notification="matMenu">
+                    <button mat-menu-item>
+                        <span>Notification 1</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Notification 2</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Notification 3</span>
+                    </button>
+                </mat-menu>
+            </div>
+            <!-- Profile -->
+            <div class="nav-icon-profile display">
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <img src="../../assets/img/sec-6-profile.png" alt="">
+                </button>
+                <span>John Designer</span>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>person</mat-icon>
+                        <span>My Profile</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>settings</mat-icon>
+                        <span>Settings</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</nav>

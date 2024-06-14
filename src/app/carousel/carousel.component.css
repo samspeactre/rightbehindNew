@@ -1,0 +1,23 @@
+.swiper-wrapper {
+    display: flex;
+    position: absolute;
+    gap: 1vw;
+    padding: 0.5vw;
+}
+
+.card{
+    width: 100%!important;
+    margin-right: 2vw;
+}
+
+.card-image{
+    width: 100%;
+}
+
+.card-img{
+    width: 100%;
+}
+
+.swiper-slide{
+    width: 32.2vw !important;
+}

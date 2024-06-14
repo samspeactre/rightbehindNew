@@ -1,65 +1,92 @@
 .inner-heading h1 {
   font-size: 30px;
 }
+
+:host ::ng-deep {
+
+  .owl-carousel .owl-item img {
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 0 10px 0px #a3a3a3;
+    margin: 20px 0;
+    border-radius: 12px;
+  }
+}
+
 .share-icon-div a {
   margin-left: 1rem;
   color: #000;
   font-size: 24px;
   opacity: 0.7;
 }
+
 .share-icon-div a:hover {
   opacity: 1;
 }
+
 .location-para p,
 .bath-text h6 {
   color: #848484;
 }
+
 .bath-img {
   width: 36px;
   height: 36px;
+
   img {
     width: 100%;
     height: 100%;
   }
 }
+
 .bath-text h6 {
   margin-left: 6px;
   margin-bottom: 0px;
   font-weight: 600;
   font-size: 14px;
 }
+
 .right-border-gray {
   border-right: 2px solid #ddd;
   padding-right: 10px;
 }
+
 .bath-box {
   margin-right: 10px;
 }
+
 .pricing h4,
 .inner-home-list ul li::marker {
   color: #0160c9;
 }
+
 .blue-box label {
   width: 49%;
   padding: 6px 10px;
   font-size: 13px;
   font-weight: 600;
 }
+
 .white-label {
   background-color: #fff;
 }
+
 .blue-box {
   padding: 16px 0px;
   background-color: #f7fbff;
 }
+
 .information-para p,
 .inner-home-list ul li {
   font-size: 15px;
 }
+
 .inner-home-list ul li {
   width: 25%;
   margin-bottom: 10px;
+  font-size: 12px;
 }
+
 .right-site {
   width: 100%;
   height: fit-content;
@@ -71,49 +98,59 @@
   left: 0;
   overflow: hidden;
 }
+
 .right-site p {
   font-weight: 600;
 }
+
 .banner-review-img {
   width: 100%;
   height: 400px;
   background-color: #ddd;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 }
+
 .row {
   width: 100%;
   margin-left: 0;
   margin-right: 0;
 }
+
 .cstm-width-full {
   width: 86%;
   margin-left: auto;
   margin-right: auto;
   border-radius: 50px;
 }
+
 .or-line hr {
   width: 66px;
   margin: 0px 6px;
   background-color: #000;
   height: 2px;
 }
+
 .first-box {
   padding: 0px 18px;
 }
+
 .left-site-box {
   padding: 16px 0px;
   box-shadow: 0px 0px 4px 0px #ddd;
   border-radius: 14px;
 }
+
 @media only screen and (max-width: 1025px) {
   .right-site {
     padding: 2rem 10px;
   }
 }
+
 @media only screen and (max-width: 820px) {
   .right-site {
     padding: 2rem;
@@ -121,23 +158,28 @@
     margin: auto;
   }
 }
+
 @media only screen and (max-width: 540px) {
   .right-site {
     padding: 2rem 1rem;
     width: 98%;
     margin: auto;
   }
+
   .inner-heading h1 {
     font-size: 24px;
   }
-  .pricing{
+
+  .pricing {
     margin-top: 1rem;
     text-align: end;
     width: 100%;
   }
-  .row.mt-5{
+
+  .row.mt-5 {
     margin-top: 1rem !important;
   }
+
   .inner-home-list ul li {
     width: 100%;
   }

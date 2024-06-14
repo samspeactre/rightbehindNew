@@ -125,11 +125,11 @@
           <div id="Ameneties" class="ameneties">
             <h3>Ameneties</h3>
             <div class="facilities">
-              @for (group of propertyData?.propertyAmenities; let i = $index; track group) {
               <ul class="facility-group dCenter justify-content-start">
+              @for (group of propertyData?.propertyAmenities; let i = $index; track group) {
                 <li class="facility mb-3" [ngClass]="{'me-3': propertyData?.propertyAmenities?.length > 1}">{{ i + 1 + '.' + group?.amenity?.amenityName }}</li>
-              </ul>
               }
+            </ul>
             </div>
           </div>
           }

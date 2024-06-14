@@ -264,7 +264,7 @@
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Finished Sq.FT</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.finishedSqrFt }} sq. ft
+                {{ propertyDetails?.homeFacts?.[0]?.finishedSqrFt }} Sq.Ft
               </div>
             </div>
           </div>
@@ -274,7 +274,7 @@
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Basement Sq.Ft</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.basementSqrFt }}
+                {{ propertyDetails?.homeFacts?.[0]?.basementSqrFt }} Sq.Ft
               </div>
             </div>
           </div>
@@ -284,7 +284,7 @@
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Garage Sq.Ft</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.garageSqrFt }}
+                {{ propertyDetails?.homeFacts?.[0]?.garageSqrFt }} Sq.Ft
               </div>
             </div>
           </div>
@@ -294,7 +294,7 @@
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Sq.FT</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.sqrFt }} sq. ft
+                {{ propertyDetails?.homeFacts?.[0]?.sqrFt }} Sq.Ft
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Lot Size</div>
               <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.area }} sq. ft
+                {{ propertyDetails?.homeFacts?.[0]?.area }} Sq.Ft
               </div>
             </div>
           </div>
@@ -358,7 +358,8 @@
         </div>
         @for (info of propertyDetails?.openHouses; let i = $index; track info) {
         <div class="col-lg-4">
-          <div class="white-box dCenter justify-content-start gap-3" [ngClass]="{'white-label': i % 2 === 0, 'yellow-label': i % 2 !== 0}">
+          <div class="white-box dCenter justify-content-start gap-3"
+            [ngClass]="{'white-label': i % 2 === 0, 'yellow-label': i % 2 !== 0}">
             <div class="white-box-text text-info">Date</div>
             <div class="white-box-text">
               {{ info?.startDateTime | date : "d MMMM y" }}
@@ -366,7 +367,8 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="white-box dCenter justify-content-start gap-3" [ngClass]="{'white-label': i % 2 === 0, 'yellow-label': i % 2 !== 0}">
+          <div class="white-box dCenter justify-content-start gap-3"
+            [ngClass]="{'white-label': i % 2 === 0, 'yellow-label': i % 2 !== 0}">
             <div class="white-box-text text-info">Start Time</div>
             <div class="white-box-text">
               {{ info?.startDateTime | date : "d MMMM y" }}
@@ -374,7 +376,8 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="white-box dCenter justify-content-start gap-3" [ngClass]="{'white-label': i % 2 === 0, 'yellow-label': i % 2 !== 0}">
+          <div class="white-box dCenter justify-content-start gap-3"
+            [ngClass]="{'white-label': i % 2 === 0, 'yellow-label': i % 2 !== 0}">
             <div class="white-box-text text-info">End Time</div>
             <div class="white-box-text">
               {{ info?.endDateTime | date : "d MMMM y" }}
@@ -384,8 +387,12 @@
         }
       </div>
       }
-      <div class="p-3 mt-3">
+      @if(propertyDetails?.floorPlans?.length){
+      <div class="yellow-label mt-3">
         <div class="row">
+          <div class="col-lg-12 mb-3">
+            <h6><Strong>Floor Plans</Strong></h6>
+          </div>
           <div class="col-3">
             <h6 class="mb-0">Units</h6>
           </div>
@@ -399,85 +406,121 @@
             <h6 class="mb-0">Sq Ft</h6>
           </div>
         </div>
-      </div>
-      @if(propertyDetails?.floorPlans?.length){
-        <div ngbAccordion class="mt-3">
+        <div ngbAccordion class="mt-3" [closeOthers]="true" [destroyOnHide]="true" [animation]="true">
           @for (item of propertyDetails?.floorPlans; track $index) {
-            <div ngbAccordionItem [collapsed]="false">
-              <h2 ngbAccordionHeader>
-                <button ngbAccordionButton>
-                  <div class="row">
-                    <div class="col-3">
-                      <h6 class="mb-0">{{item?.floorPlanUnits?.length}}</h6>
+          <div ngbAccordionItem [collapsed]="false">
+            <h2 ngbAccordionHeader>
+              <button ngbAccordionButton>
+                <div class="row">
+                  <div class="col-3">
+                    <h6 class="mb-0">{{item?.floorPlanUnits?.length}}</h6>
+                  </div>
+                  <div class="col-3">
+                    <h6 class="mb-0">{{item?.startPrice | currency:'USD'}}</h6>
+                  </div>
+                  <div class="col-3">
+                    <h6 class="mb-0">{{item?.endPrice | currency:'USD'}}</h6>
+                  </div>
+                  <div class="col-3">
+                    <h6 class="mb-0">{{item?.area}}Sq Ft</h6>
+                  </div>
+                </div>
+              </button>
+            </h2>
+            <div ngbAccordionCollapse>
+              <div ngbAccordionBody>
+                <ng-template>
+                  <img [ngClass]="{'NoImageFound' : !item?.planImage}"
+                    [src]="item?.planImage ? src + item?.planImage : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
+                    width="100%" height="200px" alt="image" />
+                  <h5 class="mt-3">{{item?.planName}}</h5>
+                  <p>{{item?.description}}</p>
+                  <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="prop-details display content-between">
+                      @if(item.noOfBed){
+                      <div class="dCenter bath-box right-border-gray">
+                        <div class="bath-img">
+                          <img src="../../assets/img/bed.webp" alt="bed" />
+                        </div>
+                        <div class="bath-text">
+                          <h6>{{ item.noOfBed }}</h6>
+                        </div>
+                      </div>
+                      } @if(item.noOfBath){
+                      <div class="dCenter bath-box right-border-gray">
+                        <div class="bath-img">
+                          <img src="../../assets/img/bed.webp" alt="bed" />
+                        </div>
+                        <div class="bath-text">
+                          <h6>{{ item.noOfBath }}</h6>
+                        </div>
+                      </div>
+                      } @if(item.area){
+                      <div class="dCenter bath-box right-border-gray">
+                        <div class="bath-img">
+                          <img src="../../assets/img/bed.webp" alt="bed" />
+                        </div>
+                        <div class="bath-text">
+                          <h6>{{ item.area }} Sq.Ft</h6>
+                        </div>
+                      </div>
+                      }
                     </div>
-                    <div class="col-3">
-                      <h6 class="mb-0">{{item?.startPrice | currency:'USD'}}</h6>
-                    </div>
-                    <div class="col-3">
-                      <h6 class="mb-0">{{item?.endPrice | currency:'USD'}}</h6>
-                    </div>
-                    <div class="col-3">
-                      <h6 class="mb-0">{{item?.area}}Sq Ft</h6>
+                    <div class="pricing">
+                      <h6>Start Price:
+                        <strong class="ms-2">{{
+                          item?.startPrice||0 | currency : "USD"
+                          }}</strong>
+                      </h6>
+                      <h6>End Price:
+                        <strong class="ms-2">{{
+                          item?.endPrice||0 | currency : "USD"
+                          }}</strong>
+                      </h6>
                     </div>
                   </div>
-                </button>
-              </h2>
-              <div ngbAccordionCollapse>
-                <div ngbAccordionBody>
-                  <ng-template>
-                    <img [ngClass]="{'NoImageFound' : !item?.planImage}" [src]="item?.planImage ? src + item?.planImage : 'https://homes.madeeasy.app/img/no-propertyfound.png'" width="100%" height="200px" alt="image" />
-                    <h5>{{item?.planName}}</h5>
-                    <p>{{item?.description}}</p>
-                    <div class="d-flex align-items-center justify-content-between flex-wrap">
-                      <div class="prop-details display content-between">
-                        @if(item.noOfBed){
-                        <div class="dCenter bath-box right-border-gray">
-                          <div class="bath-img">
-                            <img src="../../assets/img/bed.webp" alt="bed" />
-                          </div>
-                          <div class="bath-text">
-                            <h6>{{ item.noOfBed }}</h6>
-                          </div>
-                        </div>
-                        } @if(item.noOfBath){
-                        <div class="dCenter bath-box right-border-gray">
-                          <div class="bath-img">
-                            <img src="../../assets/img/bed.webp" alt="bed" />
-                          </div>
-                          <div class="bath-text">
-                            <h6>{{ item.noOfBath }}</h6>
-                          </div>
-                        </div>
-                        } @if(item.area){
-                        <div class="dCenter bath-box right-border-gray">
-                          <div class="bath-img">
-                            <img src="../../assets/img/bed.webp" alt="bed" />
-                          </div>
-                          <div class="bath-text">
-                            <h6>{{ item.area }} Sq.Ft</h6>
-                          </div>
-                        </div>
-                        }
-                      </div>
-                      <div class="pricing">
-                        <h6>Start Price: 
-                          <strong>{{
-                            item?.startPrice||0 | currency : "USD"
-                            }}</strong>
-                        </h6>
-                        <h6>End Price: 
-                          <strong>{{
-                            item?.endPrice||0 | currency : "USD"
-                            }}</strong>
-                        </h6>
+                  @if(item?.floorPlanUnits?.length){
+                    <div class="row">
+                      <div class="col-lg-12 mt-3">
+                        <h5><Strong>Floor Plans Unit</Strong></h5>
                       </div>
                     </div>
-                  </ng-template>
-                </div>
+                    <div class="row shadow-lg py-3 rounded-2">
+                      <div class="col-6 my-3">
+                        <h6 class="bold">
+                          Price
+                        </h6>
+                      </div>
+                      <div class="col-6 my-3">
+                        <h6 class="bold">
+                          Availability
+                        </h6>
+                      </div>
+                      @for (unit of item?.floorPlanUnits; let i =$index; track unit) {
+                        <div class="col-lg-12">
+                          <hr class="m-0">
+                        </div>
+                        <div class="col-6 my-3">
+                          <p class="mb-0">{{unit?.price | currency : 'USD'}}</p>
+                        </div>
+                        <div class="col-6 my-3">
+                          <p class="mb-0">{{unit?.availabilityDate | date : "d MMMM y"}}</p>
+                        </div>
+                        @if(i == item?.floorPlanUnits?.length -1){
+                          <div class="col-lg-12">
+                            <hr class="m-0">
+                          </div>
+                        }
+                      }
+                    </div>
+                  }
+                </ng-template>
               </div>
             </div>
+          </div>
           }
         </div>
+      </div>
       }
       <div class="row mt-5 blue-box">
         <div class="col-lg-12 mb-3">
@@ -548,15 +591,15 @@
         </div>
         }
         @if(propertyDetails?.location){
-          <div class="col-lg-12">
-            <div class="white-box d-flex align-items-start gap-3 justify-content-start labelCheck">
-              <div class="white-box-text text-info">Address</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.location }}
-              </div>
+        <div class="col-lg-12">
+          <div class="white-box d-flex align-items-start gap-3 justify-content-start labelCheck">
+            <div class="white-box-text text-info">Address</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.location }}
             </div>
           </div>
-          }
+        </div>
+        }
       </div>
     </div>
     <div class="col-lg-4 mt-3">

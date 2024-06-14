@@ -75,7 +75,9 @@
   background-color: #f7fbff;
   padding: 6px 10px;
 }
-
+.accordion-item .accordion-header .accordion-button{
+  box-shadow: none;
+}
 .information-para p,
 .inner-home-list ul li {
   font-size: 15px;

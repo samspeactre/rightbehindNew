@@ -338,16 +338,6 @@
             </div>
           </div>
           }
-          @if(propertyDetails?.homeFacts?.[0]?.finishedSqrFt){
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text text-info">Finished Sq.FT</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.finishedSqrFt }} Sq.Ft
-              </div>
-            </div>
-          </div>
-          }
           @if(propertyDetails?.deposit){
           <div class="col-lg-6">
             <div class="white-box dCenter justify-content-between labelCheck">
@@ -398,6 +388,16 @@
             </div>
           </div>
           }
+          @if(propertyDetails?.homeFacts?.[0]?.finishedSqrFt){
+            <div class="col-lg-6">
+              <div class="white-box dCenter justify-content-between labelCheck">
+                <div class="white-box-text text-info">Finished Sq.FT</div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.homeFacts?.[0]?.finishedSqrFt }} Sq.Ft
+                </div>
+              </div>
+            </div>
+            }
           @if(propertyDetails?.homeFacts?.[0]?.garageSqrFt){
           <div class="col-lg-6">
             <div class="white-box dCenter justify-content-between labelCheck">

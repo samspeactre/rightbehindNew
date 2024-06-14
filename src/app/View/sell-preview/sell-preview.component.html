@@ -343,7 +343,7 @@
             <div class="white-box dCenter justify-content-between labelCheck">
               <div class="white-box-text text-info">Deposit</div>
               <div class="white-box-text">
-                {{ propertyDetails?.deposit }}
+                {{ propertyDetails?.deposit | currency : 'USD' }}
               </div>
             </div>
           </div>
@@ -459,8 +459,8 @@
           </div>
           }
           @if(propertyDetails.description){
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
+          <div class="col-lg-12">
+            <div class="white-box dCenter justify-content-start gap-3 labelCheck">
               <div class="white-box-text text-info">Description</div>
               <div class="white-box-text">
                 {{ propertyDetails.description }}

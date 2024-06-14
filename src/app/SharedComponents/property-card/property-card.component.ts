@@ -5,14 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { baseUrl } from '../../Services/http.service';
 import { assetUrl } from '../../Services/helper.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEye, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons';
 @Component({
   standalone:true,
-  imports:[CommonModule,MatIconModule,MatButtonModule, RouterModule],
+  imports:[CommonModule,MatIconModule,MatButtonModule, FontAwesomeModule, RouterModule],
   selector: 'app-property-card',
   templateUrl: './property-card.component.html',
   styleUrl: './property-card.component.scss'
 })
 export class PropertyCardComponent {
+  faMagnifyingGlassPlus=faMagnifyingGlassPlus
   src = assetUrl
   @Input() card!:any;
   @Input() showBadge:boolean = false;

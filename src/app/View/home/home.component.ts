@@ -2,7 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetect
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subject, finalize, takeUntil } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { HttpService } from '../../Services/http.service';
 import { BlogCarouselComponent } from '../../SharedComponents/blog-carousel/blog-carousel.component';
 import { CardCarouselComponent } from '../../SharedComponents/card-carousel/card-carousel.component';
@@ -14,6 +14,8 @@ import { BannerComponent } from '../../SharedComponents/banner/banner.component'
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CountUpModule } from 'ngx-countup';
+import { Store } from '@ngrx/store';
+import { selectRental, selectSell } from '../../Ngrx/data.reducer';
 @Component({
   standalone: true,
   imports: [
@@ -33,7 +35,7 @@ import { CountUpModule } from 'ngx-countup';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent {
   counters: { name: string; count: number; }[] = [
     { name: ' Property Listings', count: 350 },
     { name: 'Monthly Users', count: 200 },
@@ -43,40 +45,38 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   faChevronCircleRight = faChevronRight;
   screenWidth: number = window.innerWidth;
   intervalIds: any[] = [];
-  buyCards: any[] = [1, 2, 3, 4];
-  sellCards: any[] = [1, 2, 3, 4];
   scrollPosition: number = 0;
+  rent$ = this.store.select(selectRental);
+  rent: any;
+  sell$ = this.store.select(selectSell);
+  sell: any;
   private destroy$ = new Subject<void>();
-  dataLoaded: boolean = false;
-
-  private scrollSubject = new Subject<Event>();
-
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event) {
-    this.scrollSubject.next(event);
+  constructor(private router: Router, private http: HttpService, private store: Store) {
+    this.rent$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((rent) => {
+        this.rent = rent;
+      });
+      this.sell$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((sell) => {
+        this.sell = sell;
+        console.log(sell);
+        
+      });
   }
 
-  constructor(private router: Router, private http: HttpService) { }
-
-  ngOnInit() {
-    this.scrollSubject.pipe(debounceTime(100)).subscribe(() => {
-      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      this.scrollPosition = scrollPosition;
-      if (this.scrollPosition > 50 && !this.dataLoaded) {
-        this.dataLoaded = true;
-        this.getBuyProperties();
-      }
-    });
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      if (!this.dataLoaded) {
-        this.getBuyProperties();
-      }
-    }, 10000);
-  }
-
+  ngOnInit() { }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -85,36 +85,5 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (event) {
       this.router.navigate(['/buy'], { queryParams: { search: event } });
     }
-  }
-
-  getBuyProperties() {
-    this.http
-      .get(`Property/get?pageNo=1&pageSize=10&type=1`, false, false)
-      .pipe(
-        finalize(() => {
-          this.getSellProperties();
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe((response) => {
-        if (response?.model?.properties) {
-          response.model.properties.forEach((property: any) => {
-            this.buyCards.push(property);
-          });
-        }
-      });
-  }
-
-  getSellProperties() {
-    this.http
-      .get(`Property/get?pageNo=1&pageSize=10&type=2`, false, false)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-        if (response?.model?.properties) {
-          response.model.properties.forEach((property: any) => {
-            this.sellCards.push(property);
-          });
-        }
-      });
   }
 }

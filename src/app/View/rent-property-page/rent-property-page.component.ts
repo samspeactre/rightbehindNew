@@ -238,6 +238,7 @@ export class RentPropertyPageComponent implements OnInit {
   }
   onSubmit() {
     this.propertyAddForm.removeControl('AmentiyCategory');
+    this.propertyAddForm.controls['Country'].setValue(this.propertyAddForm.controls['Country'].value  + ' ' + this.propertyAddForm.controls['State'].value )
     const formData = new FormData();
     const appendFormData = (data: any, rootName: string = '') => {
       if (data instanceof FileList) {

@@ -10,37 +10,43 @@
 </div>
 } @else{
 <div class="cstm-property-card" [ngStyle]="{ background: background }">
-  <div class="property-img">
+  <div class="property-img position-relative">
     <img
       [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-      [class.NoImageFound]="!card?.imgSrc" alt="Card Image" />
+      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
+      @if(card?.RentSpecialTag){
+        <div class="special">{{card?.RentSpecialTag}}</div>
+      }
   </div>
   <div class="property-content">
-    <div class="d-flex justify-content-between align-items-center card-property-heading">
-      <h3>{{ card.price || 0 | currency : "USD" }}</h3>
-      <a class="view-tag" (click)="openPopup(card)">View</a>
-    </div>
-    <div class="d-flex flex-wrap w-100 gap-3 description-para mt-2">
-      <div class="dCenter gap-1 justify-content-start">
-        <img src="../../assets/img/bed.webp" alt="bed" class="smallImg" />
-        <p class="mb-0"><strong>{{card?.noOfBed || 0}}</strong> Bed(s)</p>
+    <div class="p-2">
+      <div class="d-flex justify-content-between align-items-center card-property-heading">
+        <h6 class="bold mb-0">{{card?.title || 'N/A'}}</h6>
+        <a class="view-tag" (click)="openPopup(card)">View</a>
       </div>
-      <div class="rifht-left-border px-1">
-        <div class="dCenter gap-1">
-          <img src="../../assets/img/bath.webp" alt="bed" class="smallImg" />
-          <p class="mb-0"><strong>{{card?.noOfBath || 0}}</strong> Bath(s)</p>
+      <div class="span-text my-1 dCenter justify-content-start gap-1 location">
+        <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon> <span class="elip">{{card?.location}}</span>
+      </div>
+      <div class="d-flex mt-3 flex-wrap gap-5 w-100 description-para">
+        <div class="dCenter flex-column">
+          <img src="../../assets/img/bed.webp" alt="bed" class="smallImg mx-auto" />
+          <p class="mb-0">{{card?.noOfBed || 0}}</p>
+        </div>
+        <div class="dCenter flex-column centerBox">
+          <img src="../../assets/img/bath.webp" alt="bed" class="smallImg mx-auto" />
+          <p class="mb-0">{{card?.noOfBath || 0}}</p>
+        </div>
+        <div class="dCenter flex-column">
+          <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg mx-auto" />
+          <p class="mb-0">{{card.area || 0}} sq ft</p>
         </div>
       </div>
-      <div class="dCenter gap-1">
-        <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg" />
-        <p class="mb-0"><strong>{{card.area || 0}}</strong> sqft</p>
-      </div>
     </div>
-    <div class="span-text ms-1 mt-2 dCenter justify-content-start gap-2">
-      <fa-icon [icon]="faMapMarkerAlt"></fa-icon> <span class="elip">{{card?.location}}</span>
-    </div>
-    <div class="dCenter">
-      <button class="btnPrimary py-1 my-2" (click)="routeToContact(card)">
+    <div class="btnContainer dCenter justify-content-between">
+      <button class="whitBtn rounded-0 py-2 w-50 bold text-start px-2" (click)="openPopup(card)">
+        {{ card.price || 0 | currency : "USD" }}
+      </button>
+      <button class="btnPrimary rounded-0 py-2 w-50" (click)="routeToContact(card)">
         Contact Agent
       </button>
     </div>

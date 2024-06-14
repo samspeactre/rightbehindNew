@@ -22,7 +22,7 @@
         @for (card of propertyDetails?.propertyImages; track card) {
         <ng-container>
           <ng-template carouselSlide>
-            <img [src]="src+card?.imageUrl" alt="image" />
+            <img [src]="src + card?.imageUrl" alt="image" />
           </ng-template>
         </ng-container>
         }
@@ -30,204 +30,331 @@
       } @else {
       <div class="dCenter">
         <div class="banner-review-img">
-          <img src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="noimage found" />
+          <img
+            src="https://homes.madeeasy.app/img/no-propertyfound.png"
+            alt="noimage found"
+          />
         </div>
       </div>
       }
     </div>
-    <div class="col-lg-8 mt-4">
-      <div class="first-box">
-        <div class="dCenter justify-content-between">
-          <div class="head">{{ propertyDetails?.title || "N/A" }}</div>
-          <div class="prop-detail-icon dCenter justify-content-between">
-            <button class="dCenter optionBtn me-2">
-              <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
-            </button>
-            <button class="dCenter optionBtn me-2">
-              <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
-            </button>
-            <button class="dCenter optionBtn">
-              <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
-            </button>
+    <div class="col-lg-8 mt-5">
+      <div class="left-site-box">
+        <div class="first-box">
+          <div class="d-flex align-items-start justify-content-between">
+            <div class="inner-heading">
+              <h1>{{ propertyDetails?.title || "N/A" }}</h1>
+            </div>
+            <div class="d-flex share-icon-div">
+              <a>
+                <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
+              </a>
+              <a>
+                <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
+              </a>
+              <a>
+                <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
+              </a>
+            </div>
+          </div>
+          @if(propertyDetails?.location){
+          <div class="location-para">
+            <p>{{ propertyDetails?.location }}</p>
+          </div>
+          }
+          <div class="d-flex align-items-center justify-content-between flex-wrap">
+            <div class="prop-details display content-between">
+              @if(propertyDetails.noOfBed){
+              <div class="dCenter bath-box right-border-gray">
+                <div class="bath-img">
+                  <img src="../../assets/img/bed.webp" alt="bed" />
+                </div>
+                <div class="bath-text">
+                  <h6>{{ propertyDetails.noOfBed }}</h6>
+                </div>
+              </div>
+              } @if(propertyDetails.noOfBath){
+              <div class="dCenter bath-box right-border-gray">
+                <div class="bath-img">
+                  <img src="../../assets/img/bed.webp" alt="bed" />
+                </div>
+                <div class="bath-text">
+                  <h6>{{ propertyDetails.noOfBath }}</h6>
+                </div>
+              </div>
+              } @if(propertyDetails.area){
+              <div class="dCenter bath-box right-border-gray">
+                <div class="bath-img">
+                  <img src="../../assets/img/bed.webp" alt="bed" />
+                </div>
+                <div class="bath-text">
+                  <h6>{{ propertyDetails.area }} Sq.Ft</h6>
+                </div>
+              </div>
+              }
+            </div>
+            <div class="pricing">
+              <h4>
+                <strong
+                  >{{
+                    propertyDetails?.price | currency : "USD" || "N/A"
+                  }}
+                  $25000.00</strong
+                >
+              </h4>
+            </div>
           </div>
         </div>
-        @if(propertyDetails?.location){
-        <div class="address">{{ propertyDetails?.location }}</div>
-        }
-        <div class="prop-details-div display content-between">
-          <div class="prop-details display content-between">
-            @if(propertyDetails.noOfBed){
-            <div class="prop-detail-img display">
-              <div class="display content-between">
-                <img src="../../assets/img/bed.webp" alt="bed" />
-                <div class="prop-detail-text">
-                  {{ propertyDetails.noOfBed }}
-                </div>
-              </div>
-              <hr />
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12">
+            <h6><Strong>Property Information</Strong></h6>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between white-label">
+              <label for="">Home Type: </label>
+              <label for="">{{
+                helper.returnType(propertyDetails?.propertyType)
+              }}</label>
             </div>
-            } @if(propertyDetails.noOfBath){
-            <div class="prop-detail-img display">
-              <div class="display content-between">
-                <img src="../../assets/img/bath.webp" alt="bath" />
-                <div class="prop-detail-text">
-                  {{ propertyDetails.noOfBath }}
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between white-label">
+              <label for="">No. of Bedrooms: </label>
+              <label for="">{{ propertyDetails.noOfBed }}</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between blue-label">
+              <label for="">No. of Bathrooms: </label>
+              <label for="">{{ propertyDetails.noOfBath }}</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between blue-label">
+              <label for="">Finished Sq.FT: </label>
+              <label for="">{{ propertyDetails.area }} Sq Ft</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between white-label">
+              <label for="">Lot Size: </label>
+              <label for="">{{ propertyDetails.area }}</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between white-label">
+              <label for="">Sq.FT: </label>
+              <label for="">{{ propertyDetails.area }} Sq.Ft</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between blue-label">
+              <label for="">Years Constructed: </label>
+              <label
+                for=""
+                >{{ propertyDetails?.homeFacts?.[0]?.constructedYear | date : "d MMMM y" }}</label
+              >
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex justify-content-between blue-label">
+              <label for="">Structural Remodal Year: </label>
+              <label
+                for=""
+                >{{ propertyDetails?.homeFacts?.[0]?.remodelYear | date : "d MMMM y" }}</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12">
+            <h6><Strong>Property Information</Strong></h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="information-para">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12 mb-3">
+            <h6><Strong>Ameneties</Strong></h6>
+          </div>
+          <div class="col-lg-12">
+            <div class="inner-home-list">
+              <ul class="d-flex flex-wrap">
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+                <li><span></span> Air Conditioning</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="Prop-info p-2 my-3">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="small-head prop-info-padding">Set your Price</h3>
+            </div>
+            <div class="col-lg-12">
+              <div class="white-box dCenter justify-content-between">
+                <div class="white-box-text text-info">Price</div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.price | currency : "USD" || "N/A" }}
                 </div>
               </div>
-              <hr />
+            </div>
+          </div>
+        </div>
+        @if(propertyDetails.videoUrl){
+        <div class="Prop-info p-2 my-3">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
+            </div>
+            <div class="col-lg-12">
+              <div class="white-box dCenter justify-content-between">
+                <div class="white-box-text text-info">Url</div>
+                <div class="white-box-text">
+                  {{ propertyDetails.videoUrl }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+        <div class="Prop-info">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="small-head prop-info-padding">Home Facts</h3>
+            </div>
+            @if(propertyDetails?.propertyType){
+            <div class="col-lg-12">
+              <div class="white-box dCenter justify-content-between">
+                <div class="white-box-text text-info">Home Type</div>
+                <div class="white-box-text">
+                  {{ helper.returnType(propertyDetails?.propertyType) }}
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails.noOfBed){
+            <div class="col-lg-12">
+              <div class="white-box dCenter justify-content-between">
+                <div class="white-box-text text-info">No. of Bedrooms</div>
+                <div class="white-box-text">{{ propertyDetails.noOfBed }}</div>
+              </div>
+            </div>
+            }
+            <div class="col-lg-12">
+              @if(propertyDetails.noOfBath){
+              <div class="transparent-box dCenter justify-content-between">
+                <div class="white-box-text text-info">No. of Bathrooms</div>
+                <div class="white-box-text">{{ propertyDetails.noOfBath }}</div>
+              </div>
+              }
+            </div>
+            @if(propertyDetails.area){
+            <div class="col-lg-12">
+              <div class="white-box dCenter justify-content-between">
+                <div class="white-box-text text-info">Finished Sq.FT</div>
+                <div class="white-box-text">
+                  {{ propertyDetails.area }}Sq Ft
+                </div>
+              </div>
             </div>
             } @if(propertyDetails.area){
-            <div class="prop-detail-img display">
-              <div class="display content-between">
-                <img src="../../assets/img/sq.ft.webp" alt="area" />
-                <div class="prop-detail-text">
-                  {{ propertyDetails.area }}Sq.Ft
+            <div class="col-lg-12">
+              <div class="transparent-box dCenter justify-content-between">
+                <div class="white-box-text text-info">Lot Size</div>
+                <div class="white-box-text">{{ propertyDetails.area }}</div>
+              </div>
+            </div>
+            } @if(propertyDetails.area){
+            <div class="col-lg-6">
+              <div class="white-box dCenter justify-content-start gap-3">
+                <div class="white-box-text text-info">Sq.FT</div>
+                <div class="white-box-text">
+                  {{ propertyDetails.area }} Sq.Ft
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails?.homeFacts?.[0]?.constructedYear){
+            <div class="col-lg-6">
+              <div class="white-box dCenter justify-content-start gap-3">
+                <div class="white-box-text text-info">Years Constructed</div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.homeFacts?.[0]?.constructedYear | date : "d MMMM y" }}
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails?.homeFacts?.[0]?.remodelYear){
+            <div class="col-lg-6">
+              <div class="transparent-box dCenter justify-content-start gap-3">
+                <div class="white-box-text text-info">
+                  Structural Remodal Year
+                </div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.homeFacts?.[0]?.remodelYear | date : "d MMMM y" }}
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails?.homeFacts?.[0]?.haoDues){
+            <div class="col-lg-6">
+              <div class="transparent-box dCenter justify-content-start gap-3">
+                <div class="white-box-text text-info">HAO Dues</div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.homeFacts?.[0]?.haoDues | date : "d MMMM y" }}
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails?.homeFacts?.[0]?.basementSqrFt){
+            <div class="col-lg-6">
+              <div class="white-box dCenter justify-content-start gap-3">
+                <div class="white-box-text text-info">Basement Sq.Ft</div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.homeFacts?.[0]?.basementSqrFt }} Sq.Ft
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails?.homeFacts?.[0]?.garageSqrFt){
+            <div class="col-lg-6">
+              <div class="white-box dCenter justify-content-start gap-3">
+                <div class="white-box-text text-info">Garage Sq.Ft</div>
+                <div class="white-box-text">
+                  {{ propertyDetails?.homeFacts?.[0]?.garageSqrFt }} Sq.Ft
+                </div>
+              </div>
+            </div>
+            } @if(propertyDetails.description){
+            <div class="col-lg-12">
+              <div class="transparent-box">
+                <div class="text-info-property">Description:</div>
+                <div class="white-box-para">
+                  {{ propertyDetails.description }}
                 </div>
               </div>
             </div>
             }
           </div>
-          <div class="pricing">
-            {{ propertyDetails?.price | currency : "USD" || "N/A" }}
-          </div>
-        </div>
-      </div>
-      <div class="Prop-info p-2 my-3">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3 class="small-head prop-info-padding">Set your Price</h3>
-          </div>
-          <div class="col-lg-12">
-            <div class="white-box dCenter justify-content-between">
-              <div class="white-box-text text-info">Price</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.price | currency : "USD" || "N/A" }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      @if(propertyDetails.videoUrl){
-      <div class="Prop-info p-2 my-3">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
-          </div>
-          <div class="col-lg-12">
-            <div class="white-box dCenter justify-content-between">
-              <div class="white-box-text text-info">Url</div>
-              <div class="white-box-text">
-                {{ propertyDetails.videoUrl }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      }
-      <div class="Prop-info">
-        <div class="row">
-          <div class="col-lg-12">
-            <h3 class="small-head prop-info-padding">Home Facts</h3>
-          </div>
-          @if(propertyDetails?.propertyType){
-          <div class="col-lg-12">
-            <div class="white-box dCenter justify-content-between">
-              <div class="white-box-text text-info">Home Type</div>
-              <div class="white-box-text">
-                {{ helper.returnType(propertyDetails?.propertyType) }}
-              </div>
-            </div>
-          </div>
-          } @if(propertyDetails.noOfBed){
-          <div class="col-lg-12">
-            <div class="white-box dCenter justify-content-between">
-              <div class="white-box-text text-info">No. of Bedrooms</div>
-              <div class="white-box-text">{{ propertyDetails.noOfBed }}</div>
-            </div>
-          </div>
-          }
-          <div class="col-lg-12">
-            @if(propertyDetails.noOfBath){
-            <div class="transparent-box dCenter justify-content-between">
-              <div class="white-box-text text-info">No. of Bathrooms</div>
-              <div class="white-box-text">{{ propertyDetails.noOfBath }}</div>
-            </div>
-            }
-          </div>
-          @if(propertyDetails.area){
-          <div class="col-lg-12">
-            <div class="white-box dCenter justify-content-between">
-              <div class="white-box-text text-info">Finished Sq.FT</div>
-              <div class="white-box-text">{{ propertyDetails.area }}Sq Ft</div>
-            </div>
-          </div>
-          } @if(propertyDetails.area){
-          <div class="col-lg-12">
-            <div class="transparent-box dCenter justify-content-between">
-              <div class="white-box-text text-info">Lot Size</div>
-              <div class="white-box-text">{{ propertyDetails.area }}</div>
-            </div>
-          </div>
-          } @if(propertyDetails.area){
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-start gap-3">
-              <div class="white-box-text text-info">Sq.FT</div>
-              <div class="white-box-text">{{ propertyDetails.area }} Sq.Ft</div>
-            </div>
-          </div>
-          } @if(propertyDetails?.homeFacts?.[0]?.constructedYear){
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-start gap-3">
-              <div class="white-box-text text-info">Years Constructed</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.constructedYear | date : "d MMMM y" }}
-              </div>
-            </div>
-          </div>
-          } @if(propertyDetails?.homeFacts?.[0]?.remodelYear){
-          <div class="col-lg-6">
-            <div class="transparent-box dCenter justify-content-start gap-3">
-              <div class="white-box-text text-info">
-                Structural Remodal Year
-              </div>
-              <div class="white-box-text">
-                {{ propertyDetails?.homeFacts?.[0]?.remodelYear | date : "d MMMM y" }}
-              </div>
-            </div>
-          </div>
-          } @if(propertyDetails?.homeFacts?.[0]?.haoDues){
-          <div class="col-lg-6">
-            <div class="transparent-box dCenter justify-content-start gap-3">
-              <div class="white-box-text text-info">HAO Dues</div>
-              <div class="white-box-text">{{ propertyDetails?.homeFacts?.[0]?.haoDues | date : "d MMMM y" }}</div>
-            </div>
-          </div>
-          } @if(propertyDetails?.homeFacts?.[0]?.basementSqrFt){
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-start gap-3">
-              <div class="white-box-text text-info">Basement Sq.Ft</div>
-              <div class="white-box-text">{{ propertyDetails?.homeFacts?.[0]?.basementSqrFt }} Sq.Ft</div>
-            </div>
-          </div>
-          } @if(propertyDetails?.homeFacts?.[0]?.garageSqrFt){
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-start gap-3">
-              <div class="white-box-text text-info">Garage Sq.Ft</div>
-              <div class="white-box-text">{{ propertyDetails?.homeFacts?.[0]?.garageSqrFt }} Sq.Ft</div>
-            </div>
-          </div>
-          } @if(propertyDetails.description){
-          <div class="col-lg-12">
-            <div class="transparent-box">
-              <div class="text-info-property">Description:</div>
-              <div class="white-box-para">
-                {{ propertyDetails.description }}
-              </div>
-            </div>
-          </div>
-          }
-        </div>
-        @if(propertyDetails?.openHouses?.length){
+          @if(propertyDetails?.openHouses?.length){
           <div class="Prop-info p-2 my-3">
             <div class="row">
               <h3 class="small-head prop-info-padding">Virtual Tour Url</h3>
@@ -235,75 +362,89 @@
               <div class="col-lg-4">
                 <div class="white-box dCenter justify-content-start gap-3">
                   <div class="white-box-text text-info">Date</div>
-                  <div class="white-box-text">{{ info?.startDateTime | date : "d MMMM y" }}</div>
+                  <div class="white-box-text">
+                    {{ info?.startDateTime | date : "d MMMM y" }}
+                  </div>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="white-box dCenter justify-content-start gap-3">
                   <div class="white-box-text text-info">Start Time</div>
-                  <div class="white-box-text">{{ info?.endDateTime | date : 'shortTime' }}</div>
+                  <div class="white-box-text">
+                    {{ info?.endDateTime | date : "shortTime" }}
+                  </div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="transparent-box dCenter justify-content-start gap-3">
+                <div
+                  class="transparent-box dCenter justify-content-start gap-3"
+                >
                   <div class="white-box-text text-info">End Time</div>
-                  <div class="white-box-text">{{ info?.startDateTime | date : 'shortTime' }}</div>
+                  <div class="white-box-text">
+                    {{ info?.startDateTime | date : "shortTime" }}
+                  </div>
                 </div>
               </div>
-  
+
               }
               <!-- @for (info of addInfo; track info) {
-  
-              <h3 class="small-head prop-info-padding">Additional Information</h3>
-              <div class="col-lg-6">
-                <div class="white-box dCenter justify-content-start gap-3">
-                  <div class="white-box-text text-info">Related Website</div>
-                  <div class="white-box-text">{{ info?.realtedSite }}</div>
-                </div>
+
+          <h3 class="small-head prop-info-padding">Additional Information</h3>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-start gap-3">
+              <div class="white-box-text text-info">Related Website</div>
+              <div class="white-box-text">{{ info?.realtedSite }}</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-start gap-3">
+              <div class="white-box-text text-info">
+                what I love about This Home
               </div>
-              <div class="col-lg-6">
-                <div class="white-box dCenter justify-content-start gap-3">
-                  <div class="white-box-text text-info">
-                    what I love about This Home
-                  </div>
-                  <div class="white-box-text">{{ info?.feedback }}</div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="transparent-box dCenter justify-content-start gap-3">
-                  <div class="white-box-text text-info">Room Details</div>
-                  <div class="white-box-text">{{ info?.roomDetails }}</div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="transparent-box dCenter justify-content-start gap-3">
-                  <div class="white-box-text text-info">Utility Bills</div>
-                  <div class="white-box-text">{{ info?.utilityBills }}</div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="white-box dCenter justify-content-start gap-3">
-                  <div class="white-box-text text-info">Building Details</div>
-                  <div class="white-box-text">{{ info?.buildDetails }}</div>
-                </div>
-              </div>
-              } -->
+              <div class="white-box-text">{{ info?.feedback }}</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="transparent-box dCenter justify-content-start gap-3">
+              <div class="white-box-text text-info">Room Details</div>
+              <div class="white-box-text">{{ info?.roomDetails }}</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="transparent-box dCenter justify-content-start gap-3">
+              <div class="white-box-text text-info">Utility Bills</div>
+              <div class="white-box-text">{{ info?.utilityBills }}</div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-start gap-3">
+              <div class="white-box-text text-info">Building Details</div>
+              <div class="white-box-text">{{ info?.buildDetails }}</div>
+            </div>
+          </div>
+          } -->
               @for (info of propertyDetails?.propertyContacts; track info) {
               <h3 class="small-head prop-info-padding">Contact Information</h3>
               <div class="col-lg-4">
-                <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                <div
+                  class="white-box dCenter justify-content-start gap-3 white-box-price"
+                >
                   <div class="white-box-text text-info">Full Name</div>
                   <div class="white-box-text">{{ info?.fullName }}</div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                <div
+                  class="white-box dCenter justify-content-start gap-3 white-box-price"
+                >
                   <div class="white-box-text text-info">Phone</div>
                   <div class="white-box-text">{{ info?.contact }}</div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="white-box dCenter justify-content-start gap-3 white-box-price">
+                <div
+                  class="white-box dCenter justify-content-start gap-3 white-box-price"
+                >
                   <div class="white-box-text text-info">Email</div>
                   <div class="white-box-text">{{ info?.email }}</div>
                 </div>
@@ -311,17 +452,23 @@
               <div class="col-lg-4">
                 <div class="white-box dCenter justify-content-start gap-3">
                   <div class="white-box-text text-info">Address</div>
-                  <div class="white-box-text">{{ propertyDetails?.location }}</div>
+                  <div class="white-box-text">
+                    {{ propertyDetails?.location }}
+                  </div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="transparent-box dCenter justify-content-start gap-3">
+                <div
+                  class="transparent-box dCenter justify-content-start gap-3"
+                >
                   <div class="white-box-text text-info">Country/State</div>
                   <div class="white-box-text">{{ info?.country }}</div>
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="transparent-box dCenter justify-content-start gap-3">
+                <div
+                  class="transparent-box dCenter justify-content-start gap-3"
+                >
                   <div class="white-box-text text-info">City</div>
                   <div class="white-box-text">{{ info?.city }}</div>
                 </div>
@@ -341,23 +488,34 @@
               }
             </div>
           </div>
-        }
+          }
+        </div>
       </div>
     </div>
-    <div class="col-lg-4 mt-4">
+    <!-- conatct div -->
+    <div class="col-lg-4 mt-5">
       @for (info of contact; track info) {
       <div class="right-site text-center">
-        <h2>Contact Property</h2>
-        <p class="w-75 mx-auto">{{ info?.description }}</p>
-        <div class="dCenter flex-wrap gap-1">
-          <a class="btnPrimary rounded-3 py-2" [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact">
+        <h2><strong>Contact Property</strong></h2>
+        <p class="">
+          {{ info?.description }}Lorem Ipsum is simply dummy text of the
+          printing and typesetting industry. Lorem Ipsum has been the industry's
+        </p>
+        <div class="dCenter flex-wrap">
+          <a
+            class="btnPrimary cstm-width-full"
+            [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact"
+          >
             @if(!propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
-            <fa-icon [icon]="faCheck" class="me-3"></fa-icon>
+            <!-- <fa-icon [icon]="faCheck" class="me-3"></fa-icon> -->
             }
             <fa-icon [icon]="faPhoneAlt"></fa-icon>
             {{propertyDetails?.propertyContacts?.[0]?.contact}}
           </a>
-          <a class="btnPrimary rounded-3 py-2" [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email">
+          <a
+            class="btnPrimary cstm-width-full mt-3"
+            [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email"
+          >
             @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
             <fa-icon [icon]="faCheck" class="me-3"></fa-icon>
             }
@@ -365,22 +523,27 @@
             Send an email
           </a>
         </div>
-        <p class="text-center mb-0">Preferred @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
+        <!-- <p class="text-center mb-0">Preferred @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
           Email}@else{
           Phone
-          } </p>
-        <p class="my-2">Or</p>
+          } </p> -->
+        <div class="or-line dCenter mt-4">
+          <hr />
+          <p class="mb-0">or</p>
+          <hr />
+        </div>
         <div class="dCenter">
-          <button class="btnPrimary rounded-3 py-2">
+          <button class="btnPrimary cstm-width-full mt-3">
             Request a tour
           </button>
         </div>
       </div>
       }
     </div>
-    <div class="col-lg-12">
+    <!-- map div -->
+    <!-- <div class="col-lg-12">
       <app-map [center]="{lat:propertyDetails?.latitude,lng:propertyDetails?.longitude}" [markerPositions]="[{lat:propertyDetails?.latitude,lng:propertyDetails?.longitude}]"></app-map>
-    </div>
+    </div> -->
     }
   </div>
 </div>
@@ -389,7 +552,10 @@
   <div class="cstmContainer">
     <div class="row">
       <div class="col-lg-12 position-relative">
-        <app-rental-carousel heading="Nearby apartments for rent" background="white"></app-rental-carousel>
+        <app-rental-carousel
+          heading="Nearby apartments for rent"
+          background="white"
+        ></app-rental-carousel>
       </div>
     </div>
   </div>

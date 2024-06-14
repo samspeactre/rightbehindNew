@@ -33,10 +33,7 @@
 }
 
 .sec-1 {
-    background-image: url(../../../assets/img/home-bottom.webp);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: 100% 22.7vw;
+    min-height: 57vh;
 }
 
 :host ::ng-deep .mat-mdc-select-arrow {
@@ -57,7 +54,6 @@
         background: white !important;
     }
     .mat-mdc-text-field-wrapper {
-        // border-radius: 3rem;
         background: white !important;
     }
     .mat-mdc-form-field-focus-overlay {

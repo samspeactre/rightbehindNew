@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
@@ -65,7 +65,7 @@ export class ListingPageComponent implements OnInit {
   param: boolean = false;
   screenHeight: number = window.innerHeight;
   latLngArray: any;
-  types=types;
+  types = types;
   minPriceArray: any;
   maxPriceArray: any;
   bedsArray: any;
@@ -80,7 +80,7 @@ export class ListingPageComponent implements OnInit {
     'Date: Early to Late',
     'Date: Late to Early'
   ];
-  type:any = null;
+  type: any = null;
   minPrice: any = null;
   maxPrice: any = null;
   beds: any = null;
@@ -90,6 +90,8 @@ export class ListingPageComponent implements OnInit {
     lat: -34.4009703,
     lng: 150.4826715,
   };
+  @ViewChild('listing', { static: true }) listing!: ElementRef;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
@@ -106,18 +108,19 @@ export class ListingPageComponent implements OnInit {
           this.param = false
         }
       }
+      this.scrollToListing();
+      this.getProperties(false);
     });
   }
 
   ngOnInit() {
-    this.getProperties(false);
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
   getProperties(loadMore: boolean) {
-    if(!loadMore){
+    if (!loadMore) {
       this.loader = true;
     }
     const urlParams = new URLSearchParams();
@@ -155,12 +158,6 @@ export class ListingPageComponent implements OnInit {
         finalize(() => {
           this.loadMoreLoader = false;
           this.loader = false;
-          if (!loadMore && this.param) {
-            this.router.navigate([], {
-              relativeTo: this.activatedRoute,
-              queryParams: {},
-            });
-          }
         }),
         takeUntil(this.destroy$)
       )
@@ -208,6 +205,11 @@ export class ListingPageComponent implements OnInit {
     this.cards = [];
     this.noData = true;
   }
+  scrollToListing(): void {
+    if (this.listing) {
+      this.listing.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   loadMoreProperties() {
     this.pageNo++;
     this.loadMoreLoader = true;
@@ -215,10 +217,13 @@ export class ListingPageComponent implements OnInit {
   }
 
   searchProperties(event: string) {
-    this.loader = true;
     this.search = event;
-    this.pageNo = 1;
-    this.getProperties(false);
+    if(event){
+      this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent'], { queryParams: { search: event } });
+    }
+    else{
+      this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent']);
+    }
   }
 
   openPopup(): void {

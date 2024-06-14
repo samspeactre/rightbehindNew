@@ -51,6 +51,12 @@ export class HomeComponent {
   sell$ = this.store.select(selectSell);
   sell: any;
   private destroy$ = new Subject<void>();
+  private scrollSubject = new Subject<Event>();
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event) {
+    this.scrollSubject.next(event);
+  }
   constructor(private router: Router, private http: HttpService, private store: Store) {
     this.rent$
       .pipe(
@@ -75,8 +81,12 @@ export class HomeComponent {
         
       });
   }
-
-  ngOnInit() { }
+  ngOnInit() {
+    this.scrollSubject.pipe(debounceTime(100)).subscribe(() => {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      this.scrollPosition = scrollPosition;
+    });
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

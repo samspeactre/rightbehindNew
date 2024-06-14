@@ -43,7 +43,8 @@
               </div>
             </div>
             <div class="col-lg-5 d-flex gap-1">
-              <button class="dCenter optionBtn ms-auto" ngbTooltip="Click open in a new tab" (click)="navigateAndClose()">
+              <button class="dCenter optionBtn ms-auto" ngbTooltip="Click open in a new tab"
+                (click)="navigateAndClose()">
                 <fa-icon class="dCenter" [icon]="faRedirect"></fa-icon>
               </button>
               <button class="dCenter optionBtn ms-auto" ngbTooltip="Click to like a property">
@@ -77,7 +78,7 @@
         </div>
         <div id="Prop-info" class="Prop-info p-3">
           <h3 class="py-3">Property Information</h3>
-          <div class="dCenter justify-content-between">
+          <div class="dCenter justify-content-between flex-wrap">
             <div class="white-box d-flex py-2 gap-2 py-2">
               <div class="text-dark reg text-info">Type:</div>
               <div class="text-dark reg">{{ helper.returnType(propertyData?.propertyType) }}</div>
@@ -86,56 +87,44 @@
               <div class="text-dark reg text-info">Area:</div>
               <div class="text-dark reg">{{ propertyData?.area }} Sqft</div>
             </div>
-          </div>
-          <div class="dCenter justify-content-between">
-            <div class="transparent-box d-flex py-2 gap-2">
+            <div class="white-box d-flex py-2 gap-2 py-2">
               <div class="text-dark reg text-info">Price:</div>
-              <div class="text-dark reg">
-                {{ propertyData?.price | currency : "USD" }}
-              </div>
+              <div class="text-dark reg">{{ propertyData?.price || 0 | currency : "USD" }}</div>
             </div>
-            <div class="transparent-box d-flex py-2 gap-2">
-              <div class="text-dark reg text-info">Purpose:</div>
-              <div class="text-dark reg">{{ propertyData?.type }}</div>
-            </div>
-          </div>
-          <div class="dCenter justify-content-between">
-            <div class="white-box d-flex py-2 gap-2">
-              <div class="text-dark reg text-info">Location:</div>
-              <div class="text-dark reg">{{ propertyData?.location }}</div>
-            </div>
-            <div class="white-box d-flex py-2 gap-2">
+            <div class="white-box d-flex py-2 gap-2 py-2">
               <div class="text-dark reg text-info">Bedroom(s):</div>
               <div class="text-dark reg">{{ propertyData?.noOfBed }}</div>
             </div>
-          </div>
-          <div class="dCenter justify-content-between">
-            <div class="transparent-box d-flex py-2 gap-2">
+            <div class="white-box d-flex py-2 gap-2 py-2">
               <div class="text-dark reg text-info">Bath(s):</div>
               <div class="text-dark reg">{{ propertyData?.noOfBath }}</div>
             </div>
-            <div class="transparent-box d-flex py-2 gap-2">
-              <div class="text-dark reg text-info">Added:</div>
-              <div class="text-dark reg">
-                {{ propertyData?.createdAt | date : "d MMMM y" }}
-              </div>
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark reg text-info">Added(s):</div>
+              <div class="text-dark reg">{{ propertyData?.createdAt | date : "d MMMM y" }}</div>
+            </div>
+            <div class="white-box d-flex py-2 gap-2 py-2 w-100">
+              <div class="text-dark reg text-info">Address:</div>
+              <div class="text-dark reg">{{ propertyData?.location }}</div>
             </div>
           </div>
           @if(propertyData?.propertyAmenities.length){
           <div id="Ameneties" class="ameneties">
-            <h3>Ameneties</h3>
+            <h3 class="mt-3">Ameneties</h3>
             <div class="facilities">
               <ul class="facility-group dCenter justify-content-start">
-              @for (group of propertyData?.propertyAmenities; let i = $index; track group) {
-                <li class="facility mb-3" [ngClass]="{'me-3': propertyData?.propertyAmenities?.length > 1}">{{ i + 1 + '.' + group?.amenity?.amenityName }}</li>
-              }
-            </ul>
+                @for (group of propertyData?.propertyAmenities; let i = $index; track group) {
+                <li class="facility mb-3" [ngClass]="{'me-3': propertyData?.propertyAmenities?.length > 1}">{{ i + 1 +
+                  '.' + group?.amenity?.amenityName }}</li>
+                }
+              </ul>
             </div>
           </div>
           }
           <div id="Map" class="map">
-            <h3>View on map</h3>
-            <app-map [center]="{lat:propertyData?.latitude,lng:propertyData?.longitude}" [markerPositions]="[{lat:propertyData?.latitude,lng:propertyData?.longitude}]"></app-map>
+            <h3 class="mt-3">View on map</h3>
+            <app-map [center]="{lat:propertyData?.latitude,lng:propertyData?.longitude}"
+              [markerPositions]="[{lat:propertyData?.latitude,lng:propertyData?.longitude}]"></app-map>
           </div>
         </div>
       </div>

@@ -62,18 +62,18 @@
 
 .blue-box label {
   width: 49%;
-  padding: 6px 10px;
+  // padding: 6px 10px;
   font-size: 13px;
   font-weight: 600;
 }
-
 .white-label {
   background-color: #fff;
+  padding: 6px 10px;
 }
 
-.blue-box {
-  padding: 16px 0px;
+.yellow-label {
   background-color: #f7fbff;
+  padding: 6px 10px;
 }
 
 .information-para p,

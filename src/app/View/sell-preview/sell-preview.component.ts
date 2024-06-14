@@ -15,32 +15,33 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
 import { HelperService, assetUrl } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule,MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.scss',
 })
 export class SellPreviewComponent implements OnInit {
-  src=assetUrl
-  faHeart=faHeart;
-  faShare=faShareAlt
-  faEllipsisVertical=faEllipsisVertical
-  faPhoneAlt=faPhoneAlt
-  faEnvelope=faEnvelope
-  faCheck=faCheckCircle
-  type!:number;
-  id!:number;
-  propertyDetails:any;
-  loader:boolean = true;
+  src = assetUrl
+  faHeart = faHeart;
+  faShare = faShareAlt
+  faEllipsisVertical = faEllipsisVertical
+  faPhoneAlt = faPhoneAlt
+  faEnvelope = faEnvelope
+  faCheck = faCheckCircle
+  type!: number;
+  id!: number;
+  propertyDetails: any;
+  loader: boolean = true;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    autoplay:true,
+    autoplay: true,
     margin: 20,
     dots: false,
     navSpeed: 700,
@@ -55,9 +56,9 @@ export class SellPreviewComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private activatedRoute:ActivatedRoute,private http:HttpService, private store:Store, private location:Location, public helper:HelperService){
-    this.activatedRoute.queryParams.subscribe((param:any)=>{
-      if(!param?.type||!param?.id){
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
+    this.activatedRoute.queryParams.subscribe((param: any) => {
+      if (!param?.type || !param?.id) {
         this.location.back()
       }
       this.type = Number(param?.type)
@@ -74,52 +75,35 @@ export class SellPreviewComponent implements OnInit {
   }
   getPropertyDetail() {
     this.http.get(`Property/get/${this.id}`, false)
-    .pipe(
-      takeUntil(this.destroy$),
-      finalize(()=>{
-        this.loader =false;
-      })
-    )
-    .subscribe(
-      (response) => {
-        this.propertyDetails = response?.model;
-        console.log(this.propertyDetails,'hello');
-      },err=>{
-        this.location.back()
-      }
-    );
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => {
+          this.loader = false;
+        })
+      )
+      .subscribe(
+        (response) => {
+          this.propertyDetails = response?.model;
+          setTimeout(() => {
+            this.getClass()
+          }, 1000);
+        }, err => {
+          this.location.back()
+        }
+      );
   }
-
-  openHouse = [
-    { date: '24-03-2024', startTime: '12:00 PM', endTime: '3:00 PM' },
-  ];
-
-  addInfo = [
-    {
-      realtedSite: 'www.youtube.com',
-      feedback: 'Nice Apartment',
-      roomDetails: 'Master Bedroom',
-      utilityBills: 'Seperate',
-      buildDetails: 'ABC',
-    },
-  ];
-
-  contactInfo = [{ phone: '0321456987' }];
-
-  Proplocation = [
-    {
-      address: 'Miami, U.S. state in South Florida',
-      country: '02',
-      city: '02',
-      landmark: '1200',
-      zipcode: 'USD',
-      imgSrc: '../../assets/img/map.webp',
-    },
-  ];
-
-  contact = [
-    {
-      para: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ',
-    },
-  ];
+  getClass() {
+    var items = document.querySelectorAll('.labelCheck');
+    console.log(items);
+    
+    for (var i = 0; i < items.length; i++) {
+      // Apply white-label to every first two items
+      if (i % 4 < 2) {
+        items[i].classList.add('white-label');
+      } else {
+        // Apply yellow-label to the next two items
+        items[i].classList.add('yellow-label');
+      }
+    }
+  }
 }

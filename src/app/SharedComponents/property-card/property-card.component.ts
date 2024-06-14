@@ -6,7 +6,9 @@ import { Router, RouterModule } from '@angular/router';
 import { baseUrl } from '../../Services/http.service';
 import { assetUrl } from '../../Services/helper.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEye, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faMagnifyingGlassPlus, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, FontAwesomeModule, RouterModule],
@@ -15,19 +17,21 @@ import { faEye, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
   styleUrl: './property-card.component.scss'
 })
 export class PropertyCardComponent {
-  faMagnifyingGlassPlus=faMagnifyingGlassPlus
+  faMagnifyingGlassPlus=faMagnifyingGlassPlus;
+  faMapMarkerAlt=faMapMarkerAlt
   src = assetUrl
   @Input() card!:any;
   @Input() showBadge:boolean = false;
   @Input() loader:boolean = true;
   @Input() type!:string;
   @Input() background!:string;
-  constructor(private router:Router){}
-  navigate(propertyData:any) {
-    this.router.navigate(
-      ['/preview'],
-      { queryParams: { id: propertyData?.id,type:propertyData?.propertyType } }
-    );
+  constructor(private router:Router, private dialog: MatDialog){}
+  openPopup(card: any): void {
+    this.dialog?.open(PopupComponent, {
+      height: '650px',
+      width: '98%',
+      data: { card: card }
+    });
   }
   routeToContact(card:any){
     this.router.navigate(

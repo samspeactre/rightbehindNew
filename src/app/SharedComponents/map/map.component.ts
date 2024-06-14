@@ -4,11 +4,14 @@ import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, 
 import { GoogleMap, GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Loader } from '@googlemaps/js-api-loader';
 import { assetUrl } from '../../Services/helper.service';
+import { PropertyCardComponent } from '../property-card/property-card.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker, CommonModule],
+  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker, CommonModule, PropertyCardMapComponent],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
@@ -34,7 +37,7 @@ export class MapComponent implements OnInit, OnDestroy {
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
-  index!:any;
+  index!: any;
   @Input() value: string = '';
   @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
   constructor(private http: HttpClient) { }
@@ -56,7 +59,7 @@ export class MapComponent implements OnInit, OnDestroy {
     }).catch(err => {
       console.error('Error loading Google Maps script:', err);
     });
-    if(this.value){
+    if (this.value) {
       this.isFocused = true;
     }
   }
@@ -155,7 +158,7 @@ export class MapComponent implements OnInit, OnDestroy {
     }
     return { city, country, street, zipCode, state };
   }
-  openInfoWindow(marker: MapMarker, i:number) {
+  openInfoWindow(marker: MapMarker, i: number) {
     this.infosWindow.open(marker);
     this.index = i;
   }

@@ -17,17 +17,19 @@ import { faEllipsisVertical, faHeart, faShare, faShareAlt } from '@fortawesome/f
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { HelperService } from '../../Services/helper.service';
+import { HelperService, assetUrl } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, CommonModule, MatDialogContent, MatButtonModule, RouterModule,FontAwesomeModule, NgbTooltipModule],
+  imports: [MatIconModule, MapComponent, CommonModule, MatDialogContent, MatButtonModule, RouterModule,FontAwesomeModule, NgbTooltipModule],
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.scss',
 })
 export class PopupComponent implements OnInit {
+  src=assetUrl
   faHeart=faHeart;
   faShare=faShareAlt
   faEllipsisVertical=faEllipsisVertical

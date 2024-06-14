@@ -16,10 +16,8 @@
   @for (card of cards; track card) {
   <ng-container>
     <ng-template carouselSlide [id]="card.id">
-      <div (click)="!isDragging && openPopup(card)">
-        <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
-          [background]="background"></app-property-card>
-      </div>
+      <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
+        [background]="background"></app-property-card>
     </ng-template>
   </ng-container>
   }

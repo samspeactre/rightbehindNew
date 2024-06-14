@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <div class="carousel-img content-between">
+        <div class="carousel-img dCenter flex-wrap justify-content-between">
           @if(propertyData?.propertyImages?.length){
           @for (item of propertyData?.propertyImages; let i = $index; track item) {
-          <img [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
-            [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half',i > 0 && i % 2 === 1 ? 'ms-2' : '']" />
+          <img [src]="src+item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
+            [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half']" />
           }
           }
           @else{
@@ -135,9 +135,7 @@
           }
           <div id="Map" class="map">
             <h3>View on map</h3>
-            <div class="map-img">
-              <img src="../../assets/img/map.webp" alt="" />
-            </div>
+            <app-map [center]="{lat:propertyData?.latitude,lng:propertyData?.longitude}" [markerPositions]="[{lat:propertyData?.latitude,lng:propertyData?.longitude}]"></app-map>
           </div>
         </div>
       </div>

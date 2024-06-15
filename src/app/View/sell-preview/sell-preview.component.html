@@ -709,14 +709,16 @@
           </div>
         </div>
         }
-        @if(propertyDetails.building){
-        <div class="col-lg-6">
-          <div class="d-flex justify-content-between labelCheck">
-            <label>Building: </label>
-            <label>{{ propertyDetails.building }}</label>
+        @if(propertyDetails?.building){
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Building</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.building }}
+              </div>
+            </div>
           </div>
-        </div>
-        }
+          }
         @if(propertyDetails?.zipcode){
         <div class="col-lg-6">
           <div class="white-box dCenter justify-content-between labelCheck">

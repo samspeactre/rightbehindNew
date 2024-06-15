@@ -11,6 +11,14 @@
     margin: 20px 0;
     border-radius: 12px;
   }
+
+  .accordion-button::after {
+    position: absolute;
+    right: 10px;
+  }
+  .accordion-item .accordion-header .accordion-button {
+    padding: 1rem 0;
+}
 }
 
 .share-icon-div a {
@@ -66,6 +74,7 @@
   font-size: 13px;
   font-weight: 600;
 }
+
 .white-label {
   background-color: #fff;
   padding: 6px 10px;
@@ -75,9 +84,11 @@
   background-color: #f7fbff;
   padding: 6px 10px;
 }
-.accordion-item .accordion-header .accordion-button{
+
+.accordion-item .accordion-header .accordion-button {
   box-shadow: none;
 }
+
 .information-para p,
 .inner-home-list ul li {
   font-size: 15px;
@@ -146,10 +157,12 @@
   box-shadow: 0px 0px 4px 0px #ddd;
   border-radius: 14px;
 }
+
 .NoImageFound {
   object-fit: contain !important;
   background: #dddddd;
 }
+
 @media only screen and (max-width: 1025px) {
   .right-site {
     padding: 2rem 10px;

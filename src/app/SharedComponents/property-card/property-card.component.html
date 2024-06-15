@@ -14,8 +14,8 @@
     <img
       [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
       [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
-      @if(card?.RentSpecialTag){
-        <div class="special">{{card?.RentSpecialTag}}</div>
+      @if(card?.rentSpecialTag){
+        <div class="special">{{card?.rentSpecialTag}}</div>
       }
   </div>
   <div class="property-content">

@@ -576,7 +576,7 @@
                   <div class="upload-container">
                     @if(plan.get('FloorPlanImage').value.length > 0){
                     <div>
-                      <p class="text-start bold">Selected Images ({{ plan.get('FloorPlanImage').value.length }}/10)</p>
+                      <p class="text-start bold">Selected Images ({{ plan.get('FloorPlanImage').value.length }}/1)</p>
                       <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
                         @for (item of plan.get('FloorPlanImage').value; let j = $index; track $item) {
                         <div class="image-preview display">
@@ -590,7 +590,7 @@
                     </div>}
                     <div class="row align-items-center mt-3">
                       <div class="col-lg-8">
-                        <button [disabled]="plan.get('FloorPlanImage').value.length == 10" class="upload-imgs"
+                        <button [disabled]="plan.get('FloorPlanImage').value.length == 1" class="upload-imgs"
                           (click)="fileInput.click()">
                           <span>Browse Photo</span>
                         </button>
@@ -598,11 +598,11 @@
                       <div class="col-lg-4">
                         <div class="dCenter justify-content-end">
                           <button mat-raised-button color="primary"
-                            [disabled]="plan.get('FloorPlanImage').value.length == 10" (click)="fileInput.click()">
+                            [disabled]="plan.get('FloorPlanImage').value.length == 1" (click)="fileInput.click()">
                             <mat-icon>cloud_upload</mat-icon>
                             Upload Photos
                           </button>
-                          <input type="file" #fileInput multiple
+                          <input type="file" #fileInput
                             [readonly]="plan.get('FloorPlanImage').value.length == 10"
                             (change)="onFloorPlanImageSelected($event, i)" style="display: none" />
                         </div>

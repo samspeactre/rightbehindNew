@@ -363,7 +363,7 @@ export class RentPropertyPageComponent implements OnInit {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files) {
       const currentFileCount = this.propertyAddForm.get('FloorPlans').at(floorPlanIndex).get('FloorPlanImage').value.length;
-      const filesToAdd = Array.from(fileInput.files).slice(0, this.MAX_FILES - currentFileCount);
+      const filesToAdd = Array.from(fileInput.files).slice(0, 1 - currentFileCount);
 
       if (fileInput.files.length > filesToAdd.length) {
         this.toastr.warning('No more than 10 images allowed.');

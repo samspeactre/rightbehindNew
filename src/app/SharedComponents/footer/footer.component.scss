@@ -108,7 +108,8 @@ p {
 }
 
 .brand-info img {
-    width: 14.8vw;
+    object-fit: contain;
+    object-position: top;
 }
 
 .brand-info {

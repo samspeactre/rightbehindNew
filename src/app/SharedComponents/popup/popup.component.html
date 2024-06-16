@@ -5,12 +5,12 @@
         <div class="carousel-img dCenter flex-wrap justify-content-between">
           @if(propertyData?.propertyImages?.length){
           @for (item of propertyData?.propertyImages; let i = $index; track item) {
-          <img [src]="src+item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
+          <img width="100%" height="100%" [src]="src+item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
             [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half']" />
           }
           }
           @else{
-          <img src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="propertyimages"
+          <img width="100%" height="100%" src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="propertyimages"
             class="carousel-img-full mt-3" />
           }
         </div>
@@ -29,19 +29,19 @@
           <div class="row align-items-center">
             <div class="col-lg-7 d-flex gap-3">
               <div class="prop-detail-img dCenter gap-2">
-                <img src="../../assets/img/bed.webp" alt="" />
+                <img width="100%" height="100%" src="../../assets/img/bed.webp" alt="bed" />
                 <div class="prop-detail-text">
                   {{ propertyData?.noOfBed }}
                 </div>
               </div>
               <div class="prop-detail-img dCenter gap-2">
-                <img src="../../assets/img/bath.webp" alt="" />
+                <img width="100%" height="100%" src="../../assets/img/bath.webp" alt="bath" />
                 <div class="prop-detail-text">
                   {{ propertyData?.noOfBath }}
                 </div>
               </div>
               <div class="prop-detail-img dCenter gap-2">
-                <img src="../../assets/img/sq.ft.webp" alt="" />
+                <img width="100%" height="100%" src="../../assets/img/sq.ft.webp" alt="area" />
                 <div class="prop-detail-text">
                   {{ propertyData?.area }}Sq.Ft
                 </div>

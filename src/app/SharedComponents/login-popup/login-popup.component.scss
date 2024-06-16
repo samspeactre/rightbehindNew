@@ -1,11 +1,11 @@
 .logo {
     width: 150px;
     margin: auto;
-    margin-top: 1.5vw;
+    margin-top: 1rem;
 }
 
 .logo img {
-    width: 100%;
+    object-fit: contain;
 }
 :host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
     width: 1vw;

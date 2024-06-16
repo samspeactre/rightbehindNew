@@ -13,6 +13,7 @@ h1 {
     font-family: "bold";
     color: var(--black);
     letter-spacing: -0.01vw;
+    text-transform: capitalize;
 }
 
 .center {

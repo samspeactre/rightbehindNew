@@ -1,75 +1,72 @@
 <section>
-  <div class="lg-12 main-sec">
-    <div class="display content-between">
-
-      <div class="sidebar" [class.collapsed]="isSidebarCollapsed">
-        <div class="sidebar-top display content-between">
-          <div>
-            <a >
-              <img src="../../assets/img/nav-logo.webp" alt="">
-            </a>
-          </div>
-
-          <div class="sidebar-btn">
-            <button mat-fab (click)="toggleSidebar()">
-              <img src="../../assets/img/side-bar.webp" alt="">
-            </button>
-          </div>
+    <div class="lg-12 main-sec">
+        <div class="display content-between">
+            <div class="sidebar" [class.collapsed]="isSidebarCollapsed">
+                <div class="sidebar-top display content-between">
+                    <div>
+                        <a href="">
+                            <img src="../../assets/img/nav-logo.webp" alt="">
+                        </a>
+                    </div>
+                    <div class="sidebar-btn">
+                        <button mat-fab (click)="toggleSidebar()">
+                            <img src="../../assets/img/side-bar.webp" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="sidebar-links">
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed"
+                        (click)="setSection('dashboard')">
+                        <mat-icon class="sidelink-icon">dashboard</mat-icon>
+                        <span>Dashboard</span>
+                    </button>
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed"
+                        (click)="setSection('my-listings')">
+                        <mat-icon class="sidelink-icon">format_list_bulleted</mat-icon>
+                        <span>My Listings</span>
+                    </button>
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed"
+                        (click)="setSection('inquiries')">
+                        <mat-icon class="sidelink-half">forum</mat-icon>
+                        <span>Inquiries</span>
+                    </button>
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed"
+                        (click)="setSection('analytics')">
+                        <mat-icon class="sidelink-half">signal_cellular_alt</mat-icon>
+                        <span>Analytics</span>
+                    </button>
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed"
+                        (click)="setSection('help-support')">
+                        <mat-icon class="sidelink-full">help</mat-icon>
+                        <span>Help & Support</span>
+                    </button>
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('settings')">
+                        <mat-icon class="sidelink-half">settings</mat-icon>
+                        <span>Settings</span>
+                    </button>
+                    <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('account')">
+                        <mat-icon class="sidelink-half">account_circle</mat-icon>
+                        <span>Account</span>
+                    </button>
+                    
+                </div>
+            </div>
+            <div class="content-portion" [class.expanded]="isSidebarCollapsed">
+                <div class="dash-nav">
+                    <app-dash-nav [sectionName]="currentSection"></app-dash-nav>
+                </div>
+                <div class="dashboard-link-section">
+                    <app-dashboard-home 
+                    *ngIf="currentSection === 'Dashboard'"(viewAllListingsEvent)="setSection('my-listings')"
+                    (viewOffMarketEvent)="setSection('offMarket')"></app-dashboard-home>
+                    
+                    <app-dashboard-listings *ngIf="currentSection === 'My Listings'"></app-dashboard-listings>
+                    <app-off-market *ngIf="currentSection === 'OFF Market'"></app-off-market>
+                </div>
+            </div>
         </div>
-
-        <div class="sidebar-links">
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('dashboard')">
-            <mat-icon class="sidelink-icon">dashboard</mat-icon>
-            <span>Dashboard</span>
-          </button>
-
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('my-listings')">
-            <mat-icon class="sidelink-icon">format_list_bulleted</mat-icon>
-            <span>My Listings</span>
-          </button>
-
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('inquiries')">
-            <mat-icon class="sidelink-half">forum</mat-icon>
-            <span>Inquiries</span>
-          </button>
-
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('analytics')">
-            <mat-icon class="sidelink-half">signal_cellular_alt</mat-icon>
-            <span>Analytics</span>
-          </button>
-
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('help-support')">
-            <mat-icon class="sidelink-full">help</mat-icon>
-            <span>Help & Support</span>
-          </button>
-
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('settings')">
-            <mat-icon class="sidelink-half">settings</mat-icon>
-            <span>Settings</span>
-          </button>
-
-          <button mat-raised-button [class.text-hidden]="isSidebarCollapsed" (click)="setSection('account')">
-            <mat-icon class="sidelink-half">account_circle</mat-icon>
-            <span>Account</span>
-          </button>
+        <div class="sidebar-footer" [ngClass]="{'hidden': isSidebarCollapsed}">
+            <p>©2024 Right Behind Me. All Rights Reserved</p>
         </div>
-
-      </div>
-
-      <div class="content-portion" [class.expanded]="isSidebarCollapsed">
-        <div class="dash-nav">
-          <app-dash-nav></app-dash-nav>
-        </div>
-
-        <div class="dashboard-link-section">
-          @if (currentSection === 'dashboard') {
-            <app-dashboard-home (viewAllListingsEvent)="setSection('my-listings')"></app-dashboard-home>
-          }
-          @if (currentSection === 'my-listings') {
-            <app-dashboard-listings></app-dashboard-listings>
-          }
-        </div>
-      </div>
     </div>
-  </div>
 </section>

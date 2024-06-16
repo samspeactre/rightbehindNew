@@ -62,6 +62,9 @@
             </button>
             <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
               <li>
+                <a class="dropdown-item" ngbDropdownItem routerLink="/dashboard">Dashboard</a>
+              </li>
+              <li>
                 <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
               </li>
             </ul>
@@ -122,6 +125,11 @@
       <li>
         <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>
       </li>
+      @if(user){
+      <li>
+        <a (click)="show(false)" routerLink="/dashboard">Dashboard</a>
+      </li>
+      }
     </ul>
     <div class="dCenter mt-2 flex-column">
       @if(user){

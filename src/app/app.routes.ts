@@ -90,9 +90,9 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    data: { footer: true, header: true },
+    data: { footer: false, header: false },
     loadChildren: () =>
-      import('./view/dashboard/dashboard.route').then(
+      import('./view/dashboard/dashboardroute').then(
         (m) => m.Dashboard_Routes
       ),
   },

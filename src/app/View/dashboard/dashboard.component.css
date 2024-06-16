@@ -1,3 +1,11 @@
+p{
+    font-size: 0.82vw;
+    font-family: 'reg';
+    color: var(--white);
+    letter-spacing: 0.09vw;
+    line-height: 1vw;
+}
+
 .main-sec {
     background-color: var(--auth-pages);
     padding: 1vw;
@@ -125,4 +133,14 @@
 
 .dashboard-link-section{
     margin-top: 3vw;
+}
+
+.sidebar-footer {
+  width: 14%;
+  padding-left: 2.6vw;
+  margin-top: -2vw;
+}
+
+.hidden {
+    display: none;
 }

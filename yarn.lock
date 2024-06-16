@@ -1356,6 +1356,13 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
+"@canvasjs/angular-charts@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@canvasjs/angular-charts/-/angular-charts-1.2.0.tgz#318683f4457e71d2f41560e5ff5e28d96590ea1f"
+  integrity sha512-9wumUHLIvmfv6h9sQ1n9Rm4jQgg33OFkW2S/0P347mwf7v/N8K0MFPELpExM4Vhy9mj54/DX92QQvRIi9gZ/Lw==
+  dependencies:
+    tslib "^2.3.0"
+
 "@colors/colors@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"

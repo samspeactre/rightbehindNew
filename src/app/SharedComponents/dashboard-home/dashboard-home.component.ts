@@ -1,44 +1,51 @@
-
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { GoogleMap, MapMarker } from '@angular/google-maps';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexXAxis,
-  ApexPlotOptions,
-  NgApexchartsModule
-} from 'ng-apexcharts';
 
 @Component({
-  standalone:true,
-  imports: [MatIconModule, MapMarker, GoogleMap, NgApexchartsModule],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.css'
 })
 export class DashboardHomeComponent {
   display: any;
+  chart: any;
 
   @Output() viewAllListingsEvent = new EventEmitter<void>();
-  @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions!:any;
+  @Output() viewOffMarketEvent = new EventEmitter<void>();
+
   viewAllListings() {
     this.viewAllListingsEvent.emit();
   }
 
+  viewOffMarket(){
+    this.viewOffMarketEvent.emit();
+  }
+
   cards = [
-    { imgSrc: '../../assets/img/carousel-img-1.webp', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
-    { imgSrc: '../../assets/img/carousel-img-2.webp', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
-    { imgSrc: '../../assets/img/carousel-img-3.webp', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
+    { imgSrc: '../../assets/img/carousel-img-1.png', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
+    { imgSrc: '../../assets/img/carousel-img-2.png', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
+    { imgSrc: '../../assets/img/carousel-img-3.png', title: 'New Apartment Nice View', address: 'Quincy St, Brooklyn, NY, USA', bed: '02', bath: '03', sqft: '1200', price: '25000' },
   ]
 
   Analaytics = [
     { leads: '10', call:'12', emails: '8', view: '5', click: '3', ctr: '5' },
   ]
+	
+  chartOptions = {
+    title:{
+    },
+    animationEnabled: true,
+    data: [{
+      type: "bar",
+      dataPoints: [
+        { label: "Rejected", y: 15 },
+        { label: "Pending", y: 20 },
+        { label: "Drafts", y: 24 },
+        { label: "Inactive", y: 29 },
+        { label: "Active", y: 73 }
+      ]
+    }]
+  }
 
   center: google.maps.LatLngLiteral = {
     lat: -34.40097030,
@@ -275,42 +282,7 @@ export class DashboardHomeComponent {
   markerOptions: any = {
     draggable: true
   };
-  constructor(public dialog: MatDialog) {
-    this.chartOptions = {
-      series: [
-        {
-          name: "basic",
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 350
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      xaxis: {
-        categories: [
-          "South Korea",
-          "Canada",
-          "United Kingdom",
-          "Netherlands",
-          "Italy",
-          "France",
-          "Japan",
-          "United States",
-          "China",
-          "Germany"
-        ]
-      }
-    };
-   }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }

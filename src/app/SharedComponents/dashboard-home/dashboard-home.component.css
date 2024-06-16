@@ -20,6 +20,11 @@ h2 {
 
 .right {
     width: 18.1%;
+    height: 34.7vw;
+    position: sticky;
+    top: 1vw;
+    right: 0;
+    overflow: hidden;
 }
 
 .bottom-margin {

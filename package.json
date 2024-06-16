@@ -32,6 +32,7 @@
     "@ng-select/ng-select": "^13.2.0",
     "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",
+    "@canvasjs/angular-charts": "^1.2.0",
     "@popperjs/core": "^2.11.8",
     "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "animate.css": "^4.1.1",

@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
+  standalone:true,
+  imports:[MatIconModule],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.css'
@@ -47,10 +50,10 @@ export class DashboardHomeComponent {
     }]
   }
 
-  center: google.maps.LatLngLiteral = {
-    lat: -34.40097030,
-    lng: 150.48267150
-  };
+  // center: google.maps.LatLngLiteral = {
+  //   lat: -34.40097030,
+  //   lng: 150.48267150
+  // };
 
   light = [
     {
@@ -267,18 +270,18 @@ export class DashboardHomeComponent {
       ]
     }
   ]
-  options: google.maps.MapOptions = {
-    styles: this.light,
-    mapId: "8bd4969372a2f413",
-    disableDefaultUI: false,
-    mapTypeControl: true,
-    streetViewControl: false,
-    fullscreenControl: false,
-    panControl: false
-  }
+  // options: google.maps.MapOptions = {
+  //   styles: this.light,
+  //   mapId: "8bd4969372a2f413",
+  //   disableDefaultUI: false,
+  //   mapTypeControl: true,
+  //   streetViewControl: false,
+  //   fullscreenControl: false,
+  //   panControl: false
+  // }
   zoom = 15;
-  mapTypeId: google.maps.MapTypeId = google.maps.MapTypeId.TERRAIN;
-  markerPositions: google.maps.LatLngLiteral[] = [];
+  // mapTypeId: google.maps.MapTypeId = google.maps.MapTypeId.TERRAIN;
+  // markerPositions: google.maps.LatLngLiteral[] = [];
   markerOptions: any = {
     draggable: true
   };
@@ -287,10 +290,10 @@ export class DashboardHomeComponent {
   ngOnInit() {
   }
   addMarker(event: any) {
-    if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
+    // if (event.latLng != null) this.markerPositions.push(event.latLng.toJSON());
   }
   moveMap(event: any) {
-    if (event.latLng != null) this.center = (event.latLng.toJSON());
+    // if (event.latLng != null) this.center = (event.latLng.toJSON());
   }
   move(event: any) {
     if (event.latLng != null) this.display = event.latLng.toJSON();

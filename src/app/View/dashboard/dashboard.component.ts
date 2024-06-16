@@ -4,10 +4,11 @@ import { DashNavComponent } from '../../SharedComponents/dash-nav/dash-nav.compo
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DashboardHomeComponent } from '../../SharedComponents/dashboard-home/dashboard-home.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, DashNavComponent, MatIconModule, MatFormFieldModule, MatInputModule],
+  imports: [CommonModule, DashNavComponent, MatIconModule, MatFormFieldModule, MatInputModule,DashboardHomeComponent],
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

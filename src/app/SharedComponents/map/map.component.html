@@ -14,13 +14,22 @@
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
     @for (position of markerPositions; let i = $index; track position) {
     <map-marker [position]="position" [options]="markerOptions" (mapDragend)="onMarkerDragEnd($event)"
-        #marker="mapMarker" (mapClick)="infoContents?.length && openInfoWindow(marker, i);moveMap($event)" />
+        #marker="mapMarker" (mapClick)="(infoContents?.length || video) && openInfoWindow(marker, i);moveMap($event)" />
     }
     <map-info-window>
+        @if(video){
+        <video id='video' controls="controls" preload='none' width="100%"
+            poster="https://assets.codepen.io/32795/poster.png">
+            <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+        </video>
+        }
+        @else{
         @if(infoContents){
-            <div class="mt-2">
-                <app-property-card-map [card]="infoContents?.[index]" [loader]="false" [routeDirect]="true"></app-property-card-map>
-            </div>
+        <div class="mt-2">
+            <app-property-card-map [card]="infoContents?.[index]" [loader]="false"
+                [routeDirect]="true"></app-property-card-map>
+        </div>
+        }
         }
     </map-info-window>
 </google-map>

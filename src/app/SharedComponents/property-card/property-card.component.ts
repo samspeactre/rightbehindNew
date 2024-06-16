@@ -26,9 +26,7 @@ export class PropertyCardComponent {
   @Input() type!:string;
   @Input() background!:string;
   constructor(private router:Router, private dialog: MatDialog){}
-  ngOnInit(){
-    console.log(this.card)
-  }
+  ngOnInit(){}
   openPopup(card: any): void {
     this.dialog?.open(PopupComponent, {
       height: '650px',

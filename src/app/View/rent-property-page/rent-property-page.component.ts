@@ -349,8 +349,6 @@ export class RentPropertyPageComponent implements OnInit {
 
         this.propertyImageFiles.push(this.fb.control(file));
       });
-      console.log(this.propertyAddForm.controls['PropertyImageFiles'].value);
-
     }
   }
   getImageSrc(file: File) {
@@ -389,8 +387,6 @@ export class RentPropertyPageComponent implements OnInit {
   }
   setFormValue(event: any, control: string) {
     if (control == 'Location') {
-      console.log(event);
-      
       this.propertyAddForm.patchValue({
         Location: event?.address,
         City: event?.city,
@@ -406,7 +402,5 @@ export class RentPropertyPageComponent implements OnInit {
         this.propertyAddForm.controls[control].setValue(event?.lng);
       }
     }
-    console.log(this.propertyAddForm.value);
-
   }
 }

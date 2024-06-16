@@ -103,14 +103,16 @@ export class HttpService {
       shareReplay({ refCount: true, bufferSize: CACHE_SIZE }),
       tap((res: any) => {
         if (toastr) {
-          this.toastr.success(res?.userMessage || res?.successMessage);
+          if (res?.userMessage || res?.successMessage) {
+            this.toastr.success(res?.userMessage || res?.successMessage);
+          }
         }
         if (loader) {
           LoaderService.loader.next(false);
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        if (toastr) {
+        if (toastr && error) {
           this.errorShown(error)
         }
         if (loader) {

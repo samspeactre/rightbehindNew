@@ -151,7 +151,7 @@ export class ListingPageComponent implements OnInit {
         Url,
         false,
         true,
-        false,
+        true,
         false
       )
       .pipe(
@@ -176,8 +176,6 @@ export class ListingPageComponent implements OnInit {
             if (this.cards?.length) {
               this.latLngArray = this.cards.map((location: any) => ({ lat: location.latitude, lng: location.longitude }))
               let array = this.cards.map((location: any) => (location.rentSpecials))
-              console.log(array);
-              
               let prices = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
               this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
               this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subject, finalize, takeUntil } from 'rxjs';
@@ -16,6 +16,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { CountUpModule } from 'ngx-countup';
 import { Store } from '@ngrx/store';
 import { selectRental, selectSell } from '../../Ngrx/data.reducer';
+import { MapComponent } from '../../SharedComponents/map/map.component';
 @Component({
   standalone: true,
   imports: [
@@ -28,7 +29,8 @@ import { selectRental, selectSell } from '../../Ngrx/data.reducer';
     MatButtonModule,
     BannerComponent,
     MiniLoadingComponent,
-    CountUpModule
+    CountUpModule,
+    MapComponent
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -50,12 +52,16 @@ export class HomeComponent {
   rent: any;
   sell$ = this.store.select(selectSell);
   sell: any;
+  mapHeight:number = 0
   private destroy$ = new Subject<void>();
   private scrollSubject = new Subject<Event>();
-
+  @ViewChild('secondCol') secondCol!: ElementRef;
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: Event) {
     this.scrollSubject.next(event);
+    if(this.mapHeight == 0){
+      this.setMapHeight()
+    }
   }
   constructor(private router: Router, private http: HttpService, private store: Store) {
     this.rent$
@@ -77,8 +83,6 @@ export class HomeComponent {
       )
       .subscribe((sell) => {
         this.sell = sell;
-        console.log(sell);
-        
       });
   }
   ngOnInit() {
@@ -94,6 +98,11 @@ export class HomeComponent {
   searchProperties(event: any) {
     if (event) {
       this.router.navigate(['/buy'], { queryParams: { search: event } });
+    }
+  }
+  setMapHeight() {
+    if (this.secondCol) {
+      this.mapHeight = this.secondCol.nativeElement.offsetHeight;
     }
   }
 }

@@ -94,14 +94,10 @@ export class SellPreviewComponent implements OnInit {
   }
   getClass() {
     var items = document.querySelectorAll('.labelCheck');
-    console.log(items);
-    
     for (var i = 0; i < items.length; i++) {
-      // Apply white-label to every first two items
       if (i % 4 < 2) {
         items[i].classList.add('white-label');
       } else {
-        // Apply yellow-label to the next two items
         items[i].classList.add('yellow-label');
       }
     }

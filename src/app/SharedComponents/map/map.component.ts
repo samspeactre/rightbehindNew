@@ -27,6 +27,7 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() markerPositions: google.maps.LatLngLiteral[] = [];
   @Input() infoWindow: any = [];
   @Input() infoContents: any = [];
+  @Input() video: boolean = false;
   @Output() mapMarkerCordinates = new EventEmitter<any>();
   @Output() mapSearchLocation = new EventEmitter<any>();
   display!: google.maps.LatLngLiteral;

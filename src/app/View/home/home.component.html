@@ -31,11 +31,13 @@
     <app-rental-carousel heading="Hot rentals in Miami" background="white" [cards]="rent"></app-rental-carousel>
   </div>
 </div>
-<div class="sec-3 mt-5">
+@if(scrollPosition > 10){ <div class="sec-3 mt-5">
   <div class="cstmContainer position-relative">
     <app-rental-carousel heading="Sellers in Miami" background="#e6f2ff" [cards]="sell"></app-rental-carousel>
   </div>
 </div>
+}
+@if(scrollPosition > 50){ 
 <div class="container-fluid">
   <div class="register-bg p-5 mb-5 position-relative">
     <div class="row align-items-center position-relative">
@@ -73,7 +75,8 @@
     </div>
   </div>
 </div>
-@if(scrollPosition > 120){
+}
+@if(scrollPosition > 100){ 
 <div class="blueBg position-relative">
   <div class="cstmContainer">
     <div class="row dream-home right">
@@ -91,6 +94,8 @@
     </div>
   </div>
 </div>
+}
+@if(scrollPosition > 200){ 
 <div class="where py-5">
   <div class="cstmContainer">
     <div class="row">
@@ -131,6 +136,8 @@
     </div>
   </div>
 </div>
+}
+@if(scrollPosition > 300){ 
 <div class="sec-7 py-5">
   <div class="cstmContainer">
     <div class="row">

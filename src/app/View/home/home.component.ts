@@ -52,7 +52,8 @@ export class HomeComponent {
   rent: any;
   sell$ = this.store.select(selectSell);
   sell: any;
-  mapHeight:number = 0
+  mapHeight:number = 0;
+  windowInnerWidth:number = window.innerWidth;
   private destroy$ = new Subject<void>();
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;

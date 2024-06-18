@@ -123,37 +123,11 @@ export class ListingPageComponent implements OnInit {
     if (!loadMore) {
       this.loader = true;
     }
-    const urlParams = new URLSearchParams();
-    urlParams.set('pageNo', String(this.pageNo));
-    urlParams.set('pageSize', String(this.pageSize));
-    urlParams.set('type', this.router.url.includes('buy') ? '1' : '2');
-    if (this.search) {
-      urlParams.set('search', this.search);
-    }
-    if (this.minPrice !== null && this.minPrice !== undefined) {
-      urlParams.set('minPrice', String(this.minPrice));
-    }
-    if (this.maxPrice !== null && this.maxPrice !== undefined) {
-      urlParams.set('maxPrice', String(this.maxPrice));
-    }
-    if (this.beds !== null && this.beds !== undefined) {
-      urlParams.set('noOfBeds', String(this.beds));
-    }
-    if (this.baths !== null && this.baths !== undefined) {
-      urlParams.set('noOfBaths', String(this.baths));
-    }
-    if (this.type !== null && this.type !== undefined) {
-      urlParams.set('type', String(this.type));
-    }
+
+    const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
-    this.http
-      .loaderGet(
-        Url,
-        false,
-        true,
-        true,
-        false
-      )
+
+    this.http.loaderGet(Url, false, true, true, false)
       .pipe(
         finalize(() => {
           this.loadMoreLoader = false;
@@ -162,46 +136,77 @@ export class ListingPageComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe(
-        (response: any) => {
-          if (response?.model?.properties) {
-            const newProperties = response?.model?.properties || [];
-            if (loadMore) {
-              newProperties?.map((property: any) => {
-                this.cards.push(property)
-              })
-            }
-            else {
-              this.cards = [...newProperties];
-            }
-            if (this.cards?.length) {
-              this.latLngArray = this.cards.map((location: any) => ({ lat: location.latitude, lng: location.longitude }))
-              let array = this.cards.map((location: any) => (location.rentSpecials))
-              let prices = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
-              this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
-              this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
-              let midIndex = Math.ceil(prices.length / 2);
-              this.minPriceArray = prices.slice(0, midIndex);
-              this.maxPriceArray = prices.slice(midIndex);
-            }
-            this.sorting()
-            this.noData = response?.model?.properties === 0;
-          } else {
-            if (!loadMore) {
-              this.noDataError();
-            }
-          }
-          if (response?.model?.totalResults) {
-            this.loadMore = this.cards?.length < response?.model?.totalResults;
-          }
-        },
-        (err: any) => {
-          this.loadMore = false;
-          if (!loadMore) {
-            this.noDataError();
-          }
-        }
+        (response: any) => this.handleResponse(response, loadMore),
+        (err: any) => this.handleError(loadMore)
       );
   }
+
+  private buildUrlParams(): URLSearchParams {
+    const urlParams = new URLSearchParams();
+
+    urlParams.set('pageNo', String(this.pageNo));
+    urlParams.set('pageSize', String(this.pageSize));
+    urlParams.set('type', this.router.url.includes('buy') ? '1' : '2');
+
+    this.addParamIfExists(urlParams, 'search', this.search);
+    this.addParamIfExists(urlParams, 'minPrice', this.minPrice);
+    this.addParamIfExists(urlParams, 'maxPrice', this.maxPrice);
+    this.addParamIfExists(urlParams, 'noOfBeds', this.beds);
+    this.addParamIfExists(urlParams, 'noOfBaths', this.baths);
+    this.addParamIfExists(urlParams, 'type', this.type);
+
+    return urlParams;
+  }
+
+  private addParamIfExists(params: URLSearchParams, key: string, value: any): void {
+    if (value !== null && value !== undefined) {
+      params.set(key, String(value));
+    }
+  }
+
+  private handleResponse(response: any, loadMore: boolean): void {
+    if (response?.model?.properties) {
+      const newProperties = response?.model?.properties || [];
+
+      if (loadMore) {
+        this.cards = [...this.cards, ...newProperties];
+      } else {
+        this.cards = newProperties;
+      }
+      if (this.cards?.length) {
+        this.latLngArray = this.cards.map((location: any) => ({
+          lat: location.latitude,
+          lng: location.longitude
+        }));
+
+        const prices = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
+        this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
+        this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
+
+        const midIndex = Math.ceil(prices.length / 2);
+        this.minPriceArray = prices.slice(0, midIndex);
+        this.maxPriceArray = prices.slice(midIndex);
+
+        this.sorting();
+      }
+
+      this.noData = response?.model?.properties?.length === 0;
+
+      if (response?.model?.totalResults) {
+        this.loadMore = this.cards?.length < response?.model?.totalResults;
+      }
+    } else {
+      if (!loadMore) {
+        this.noDataError();
+      }
+    }
+  }
+  private handleError(loadMore: boolean): void {
+    this.loadMore = false;
+    if (!loadMore) {
+        this.noDataError();
+    }
+}
   noDataError() {
     this.cards = [];
     this.noData = true;
@@ -219,10 +224,10 @@ export class ListingPageComponent implements OnInit {
 
   searchProperties(event: string) {
     this.search = event;
-    if(event){
+    if (event) {
       this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent'], { queryParams: { search: event } });
     }
-    else{
+    else {
       this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent']);
     }
   }

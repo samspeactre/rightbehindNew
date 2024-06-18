@@ -15,10 +15,10 @@
           <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
             [searching]="loader"></app-search-bar>
         </div>
-        @if(!loader){
+        @if(!loader && !loadMoreLoader){
           <div class="row">
             <div class="col-lg-2 col-4">
-              <ng-select [disabled]="loader" [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()" [searchable]="false">
+              <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()" [searchable]="false">
                 @if(types){
                   @for (item of types; track $index) {
                   <ng-option [value]="item?.value">{{item?.name}}</ng-option>
@@ -27,7 +27,7 @@
               </ng-select>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [disabled]="loader" [(ngModel)]="minPrice" placeholder="Min. Price" (change)="onFilterChange()" [searchable]="false">
+              <ng-select [(ngModel)]="minPrice" placeholder="Min. Price" (change)="onFilterChange()" [searchable]="false">
                 @if(minPriceArray){
                   @for (item of minPriceArray; track $index) {
                   <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
@@ -36,7 +36,7 @@
               </ng-select>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [disabled]="loader" [(ngModel)]="maxPrice" placeholder="Max. Price" (change)="onFilterChange()" [searchable]="false">
+              <ng-select [(ngModel)]="maxPrice" placeholder="Max. Price" (change)="onFilterChange()" [searchable]="false">
                 @if(maxPriceArray){
                 @for (item of maxPriceArray; track $index) {
                 <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
@@ -45,7 +45,7 @@
               </ng-select>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [disabled]="loader" [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
+              <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
                 @if(bedsArray){
                 @for (item of bedsArray; track $index) {
                 <ng-option [value]="item">{{item}} Beds</ng-option>
@@ -54,7 +54,7 @@
               </ng-select>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [disabled]="loader" [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
+              <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
                 @if(bathArray){
                 @for (item of bathArray; track $index) {
                 <ng-option [value]="item">{{item}} Bathroom</ng-option>
@@ -63,7 +63,7 @@
               </ng-select>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [disabled]="loader" [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
+              <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
                 @if(bathArray){
                 @for (item of sortsArray; track $index) {
                 <ng-option [value]="item">{{item}}</ng-option>

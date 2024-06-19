@@ -15,6 +15,12 @@
     padding: 5px;
     border-radius: 70px;
 
+    &.active {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+
     img {
         object-fit: contain;
     }
@@ -27,13 +33,14 @@
     min-width: 100%;
     padding: 1vw 0vw 1vw 1vw;
     font-size: 12px;
+
     &.active {
         background: white;
         color: #000f28;
     }
 
     &.isSidebarCollapsed {
-        min-width: fit-content;
+        min-width: 40px;
         width: 40px;
         height: 40px;
         padding: 10px;

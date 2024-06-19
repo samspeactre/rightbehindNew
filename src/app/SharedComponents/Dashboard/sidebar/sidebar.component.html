@@ -7,7 +7,7 @@
             </a>
         </div>
         }
-        <button class="toggler" (click)="toggleSidebar()">
+        <button class="toggler" (click)="toggleSidebar()" [class.active]="isSidebarCollapsed">
             <img src="../../assets/img/side-bar.webp" alt="toggler" width="100%" height="100%">
         </button>
     </div>

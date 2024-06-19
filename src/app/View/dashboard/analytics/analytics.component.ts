@@ -6,17 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   standalone:true,
   imports:[MatIconModule, MatButtonModule],
-  selector: 'app-dashboard-home',
-  templateUrl: './dashboard-home.component.html',
-  styleUrl: './dashboard-home.component.css'
+  selector: 'app-analytics',
+  templateUrl: './analytics.component.html',
+  styleUrl: './analytics.component.scss'
 })
-export class DashboardHomeComponent {
+export class AnalyticsComponent {
   display: any;
   chart: any;
-
   @Output() viewAllListingsEvent = new EventEmitter<void>();
   @Output() viewOffMarketEvent = new EventEmitter<void>();
-
   viewAllListings() {
     this.viewAllListingsEvent.emit();
   }

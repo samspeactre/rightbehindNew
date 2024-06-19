@@ -90,6 +90,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [InnerGuard],
     data: { footer: false, header: false },
     loadChildren: () =>
       import('./view/dashboard/dashboardroute').then(

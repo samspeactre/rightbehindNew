@@ -35,18 +35,6 @@ export class AppComponent {
   ) {
     this.router.events
       .pipe(
-        filter((event) => event instanceof NavigationStart),
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
-      )
-      .subscribe((event: any) => {
-        this.footer = false;
-        LoaderService.loader.next(true);
-      });
-    this.router.events
-      .pipe(
         filter((event) => event instanceof NavigationEnd),
         distinctUntilChanged(
           (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
@@ -71,6 +59,19 @@ export class AppComponent {
             this.header = data['header'] || false;
           });
       });
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationStart),
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((event: any) => {
+        this.footer = false;
+        LoaderService.loader.next(true);
+      });
+    
     this.observe();
   }
   async observe() {

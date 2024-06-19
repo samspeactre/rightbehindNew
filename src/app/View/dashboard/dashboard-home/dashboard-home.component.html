@@ -1,148 +1,110 @@
-<section>
-    <div class="display content-between">
-        <div class="left ">
-            <div class="display content-between bottom-margin">
-                <div class="properties tab">
-                    <div class=" display content-between tab">
-                        <h2>Total Properties</h2>
-                        <button mat-fab>
-                            <mat-icon>east</mat-icon>
-                        </button>
-                    </div>
-                    <div class="icon-value">
-                        <div class="value-icon">
-                            <div class="btn display">
-                                <mat-icon>location_on</mat-icon>
-                                <h1>20</h1>
-                            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-4 my-3">
+                    <div class="border-1 border rounded-3 p-3 border-dark">
+                        <div class="dCenter justify-content-between">
+                            <h6 class="mb-0 bold">Total Properties</h6>
+                            <fa-icon [icon]="faArrowLeft"></fa-icon>
                         </div>
-                    </div>
-
-                </div>
-
-                <div class="sale">
-                    <div class=" display content-between tab">
-                        <h2>For Sale</h2>
-                        <button mat-fab>
-                            <mat-icon> east</mat-icon>
-                        </button>
-                    </div>
-                    <div class="icon-value">
-                        <div class="value-icon">
-                            <div class="btn display">
-                                <mat-icon>sell</mat-icon>
-                                <h1>10</h1>
+                        <div class="dCenter justify-content-start gap-3 mt-3">
+                            <div class="iconContainer dCenter">
+                                <fa-icon [icon]="faMapMarker" size="2x"></fa-icon>
                             </div>
+                            <h3 class="mb-0 bold">20</h3>
                         </div>
                     </div>
                 </div>
-
-                <div class="rent">
-                    <div class=" display content-between tab">
-                        <h2>For Rent</h2>
-                        <button mat-fab>
-                            <mat-icon>east</mat-icon>
-                        </button>
-                    </div>
-                    <div class="icon-value">
-                        <div class="value-icon">
-                            <div class="btn display">
-                                <mat-icon>vpn_key</mat-icon>
-                                <h1>30</h1>
+                <div class="col-lg-4 my-3">
+                    <div class="border-1 border rounded-3 p-3 border-dark">
+                        <div class="dCenter justify-content-between">
+                            <h6 class="mb-0 bold">For Sale</h6>
+                            <fa-icon [icon]="faArrowLeft"></fa-icon>
+                        </div>
+                        <div class="dCenter justify-content-start gap-3 mt-3">
+                            <div class="iconContainer dCenter">
+                                <fa-icon [icon]="faSaleTag" size="2x"></fa-icon>
                             </div>
+                            <h3 class="mb-0 bold">20</h3>
                         </div>
                     </div>
                 </div>
-
-            </div>
-
-            <div class="display content-between bottom-margin">
-                <div class="chart">
-                    <h2>Total Listings</h2>
-
-                    <!-- <canvasjs-chart [options]="chartOptions"
-                        [styles]="{width: '100%', height: '100%'}"></canvasjs-chart> -->
-
+                <div class="col-lg-4 my-3">
+                    <div class="border-1 border rounded-3 p-3 border-dark">
+                        <div class="dCenter justify-content-between">
+                            <h6 class="mb-0 bold">For Rent</h6>
+                            <fa-icon [icon]="faArrowLeft"></fa-icon>
+                        </div>
+                        <div class="dCenter justify-content-start gap-3 mt-3">
+                            <div class="iconContainer dCenter">
+                                <fa-icon [icon]="faKey" size="2x"></fa-icon>
+                            </div>
+                            <h3 class="mb-0 bold">20</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <h6 class="mb-0 bold">Total Listings</h6>
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                        [xaxis]="chartOptions.xaxis" [plotOptions]="chartOptions.plotOptions"></apx-chart>
                 </div>
             </div>
-
         </div>
-        <div class="right">
-            <div class="analaytics-box">
-                <h2 class="analytics-head">Analytics</h2>
-                @for (num of Analaytics; track $index) {
-                    <div>
-    
-                        <div class="analytics-link display content-between">
-                            <div class="icon-analaytics-text display">
-                                <mat-icon>tty</mat-icon>
-                                <div class="analaytic-icon-name">Leads</div>
-                            </div>
-                            <div class="analaytic-icon-value">{{num.leads}}</div>
-                        </div>
-    
-                        <div class="analytics-link display content-between">
-                            <div class="icon-analaytics-text display">
-                                <mat-icon>call</mat-icon>
-                                <div class="analaytic-icon-name">Calls</div>
-                            </div>
-                            <div class="analaytic-icon-value">{{num.call}}</div>
-                        </div>
-    
-                        <div class="analytics-link-last display content-between">
-                            <div class="icon-analaytics-text display">
-                                <mat-icon>mail</mat-icon>
-                                <div class="analaytic-icon-name">Emails</div>
-                            </div>
-                            <div class="analaytic-icon-value">{{num.emails}}</div>
-                        </div>
-    
+        <div class="col-lg-3">
+            <div class="border border-1 border-dark rounded-3 p-3 my-3">
+                <h6 class="bold mb-0">Analytics</h6>
+                <div class="dCenter justify-content-between my-3">
+                    <div class="dCenter gap-2 icon-analaytics-text">
+                        <mat-icon>tty</mat-icon>
+                        <p class="smallFont mb-0">Leads</p>
                     </div>
-                }
-
-            </div>
-
-            <div class="analaytics-box">
-                @for (num of Analaytics; track $index) {
-                    <div >
-                        <div class="analytics-link display content-between">
-                            <div class="icon-analaytics-text display">
-                                <mat-icon>visibility</mat-icon>
-                                <div class="analaytic-icon-name">Views</div>
-                            </div>
-                            <div class="analaytic-icon-value">{{num.view}}</div>
-                        </div>
-    
-                        <div class="analytics-link display content-between">
-                            <div class="icon-analaytics-text display">
-                                <mat-icon>ads_click</mat-icon>
-                                <div class="analaytic-icon-name">Click</div>
-                            </div>
-                            <div class="analaytic-icon-value">{{num.click}}</div>
-                        </div>
-    
-                        <div class="analytics-link-last display content-between">
-                            <div class="icon-analaytics-text display">
-                                <mat-icon> web_traffic</mat-icon>
-                                <div class="analaytic-icon-name">CTR <span class="extra-small-text">(Click Through
-                                        Rate)</span></div>
-                            </div>
-                            <div class="analaytic-icon-value">{{num.ctr}}</div>
-                        </div>
-    
+                    <p class="mb-0">12</p>
+                </div>
+                <div class="dCenter justify-content-between my-3">
+                    <div class="dCenter gap-2 icon-analaytics-text">
+                        <mat-icon>call</mat-icon>
+                        <p class="smallFont mb-0">Calls</p>
                     </div>
-                }
-
+                    <p class="mb-0">12</p>
+                </div>
+                <div class="dCenter justify-content-between my-3">
+                    <div class="dCenter gap-2 icon-analaytics-text">
+                        <mat-icon>mail</mat-icon>
+                        <p class="smallFont mb-0">Email</p>
+                    </div>
+                    <p class="mb-0">12</p>
+                </div>
+                <hr class="my-2">
+                <div class="dCenter justify-content-between my-3">
+                    <div class="dCenter gap-2 icon-analaytics-text">
+                        <mat-icon>visibilityy</mat-icon>
+                        <p class="smallFont mb-0">View</p>
+                    </div>
+                    <p class="mb-0">12</p>
+                </div>
+                <div class="dCenter justify-content-between my-3">
+                    <div class="dCenter gap-2 icon-analaytics-text">
+                        <mat-icon>ads_click</mat-icon>
+                        <p class="smallFont mb-0">Click</p>
+                    </div>
+                    <p class="mb-0">12</p>
+                </div>
+                <div class="dCenter justify-content-between my-3">
+                    <div class="dCenter gap-2 icon-analaytics-text">
+                        <mat-icon>web_traffic</mat-icon>
+                        <p class="smallFont mb-0">CTR (Click Through
+                            Rate)</p>
+                    </div>
+                    <p class="mb-0">12</p>
+                </div>
             </div>
-
             <div class="redirect-box">
                 <button mat-raised-button (click)="viewOffMarket()">
                     <mat-icon>north_east</mat-icon>
                     Go to market.
                 </button>
             </div>
-
         </div>
-
     </div>
-</section>
+</div>

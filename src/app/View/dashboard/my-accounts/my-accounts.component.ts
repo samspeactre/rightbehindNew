@@ -1,54 +1,20 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeftLong, faArrowRightLong, faKey, faMapMarker, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
-import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts'
+
 @Component({
   standalone:true,
-  imports:[MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule],
-  selector: 'app-dashboard-home',
-  templateUrl: './dashboard-home.component.html',
-  styleUrl: './dashboard-home.component.scss'
+  imports:[MatIconModule, MatButtonModule],
+  selector: 'app-my-accounts',
+  templateUrl: './my-accounts.component.html',
+  styleUrl: './my-accounts.component.scss'
 })
-export class DashboardHomeComponent {
+export class MyAccountsComponent {
   display: any;
-  faArrowLeft=faArrowRightLong
-  faMapMarker=faMapMarkerAlt
-  faSaleTag=faTag
-  faKey=faKey
+  chart: any;
   @Output() viewAllListingsEvent = new EventEmitter<void>();
   @Output() viewOffMarketEvent = new EventEmitter<void>();
-  @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions:any;
-
-  constructor(public dialog: MatDialog) {
-    this.chartOptions = {
-      series: [
-        {
-          name: "My-series",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "bar"
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true
-        }
-      },
-      horizontal: true,
-      title: {
-        text: "My First Angular Chart"
-      },
-      xaxis: {
-        categories: ["Jan", "Feb",  "Mar",  "Apr",  "May",  "Jun",  "Jul",  "Aug", "Sep"]
-      }
-    };
-  }
   viewAllListings() {
     this.viewAllListingsEvent.emit();
   }
@@ -66,6 +32,22 @@ export class DashboardHomeComponent {
   Analaytics = [
     { leads: '10', call:'12', emails: '8', view: '5', click: '3', ctr: '5' },
   ]
+	
+  chartOptions = {
+    title:{
+    },
+    animationEnabled: true,
+    data: [{
+      type: "bar",
+      dataPoints: [
+        { label: "Rejected", y: 15 },
+        { label: "Pending", y: 20 },
+        { label: "Drafts", y: 24 },
+        { label: "Inactive", y: 29 },
+        { label: "Active", y: 73 }
+      ]
+    }]
+  }
 
   // center: google.maps.LatLngLiteral = {
   //   lat: -34.40097030,
@@ -302,6 +284,8 @@ export class DashboardHomeComponent {
   markerOptions: any = {
     draggable: true
   };
+  constructor(public dialog: MatDialog) { }
+
   ngOnInit() {
   }
   addMarker(event: any) {

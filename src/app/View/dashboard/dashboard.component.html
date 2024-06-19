@@ -1,16 +1,23 @@
-<div class="blueBg py-3">
-    <div class="cstmContainer">
-        <div class="row">
-            <div [ngClass]="[isSidebarCollapsed ? 'col-lg-1' : 'col-lg-3']" class="transition">
-                <app-sidebar [isSidebarCollapsed]="isSidebarCollapsed" (isSidebarCollapsedEvent)="isSidebarCollapsed = $event"></app-sidebar>
-            </div>
-            <div [ngClass]="[isSidebarCollapsed ? 'col-lg-11' : 'col-lg-9']" class="transition h-100">
-                <div class="w-100 bg-white rounded-3 mt-3 h-100">
-                    <router-outlet></router-outlet>
+<div class="overflow-hidden">
+    <div class="blueBg" [ngClass]="[width > 1024 ? 'py-3' : 'vh-100']">
+        <div class="cstmContainer">
+            <div class="row">
+                <div [ngClass]="[isSidebarCollapsed ? ( width <= 1024 ? 'col-2' : 'col-1') : 'col-2']" class="transition"
+                    #sidebar>
+                    <app-sidebar [isSidebarCollapsed]="isSidebarCollapsed"
+                        (isSidebarCollapsedEvent)="isSidebarCollapsed = $event"></app-sidebar>
                 </div>
-            </div>
-            <div class="col-lg-12">
-                <p class="text-center">©2024 Right Behind Me. All Rights Reserved</p>
+                <div [ngClass]="[isSidebarCollapsed ? ( width <= 1024 ? 'col-10' : 'col-11') : 'col-10']"
+                    class="transition">
+                    <div class="w-100 bg-white rounded-3 mt-3 overflow-y-auto" [style.height.px]="rightHieght">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+                @if(width > 1024){
+                <div [ngClass]="[isSidebarCollapsed ? 'col-11' : 'col-9']" class="ms-auto">
+                    <p class="text-center my-3">©2024 Right Behind Me. All Rights Reserved</p>
+                </div>
+                }
             </div>
         </div>
     </div>

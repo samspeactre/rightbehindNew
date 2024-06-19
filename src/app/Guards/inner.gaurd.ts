@@ -19,8 +19,8 @@ export class InnerGuard {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
     ): boolean {
-        const guestUser = localStorage.getItem('userDetails');
-        if (!guestUser) {
+        const user = localStorage.getItem('userDetails');
+        if (!user) {
             this.router.navigateByUrl('/');
             return false;
         }

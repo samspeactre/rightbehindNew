@@ -1,4 +1,10 @@
-p{
+/* new cssstart  */
+.blueBg {
+    background-color: var(--auth-pages);
+}
+
+/* ebd */
+p {
     font-size: 0.82vw;
     font-family: 'reg';
     color: var(--white);
@@ -87,19 +93,19 @@ p{
     font-size: 1.3vw;
 }
 
-.sidebar-links button .sidelink-half{
+.sidebar-links button .sidelink-half {
     margin-left: -5.5vw;
     color: var(--white);
     font-size: 1.3vw;
 }
 
-.sidebar-links button .sidelink-full{
+.sidebar-links button .sidelink-full {
     margin-left: -2.5vw;
     color: var(--white);
     font-size: 1.3vw;
 }
 
-.sidebar-links button span{
+.sidebar-links button span {
     font-size: 1.02vw;
     font-family: 'reg';
     color: var(--white);
@@ -109,36 +115,36 @@ p{
     display: none;
 }
 
-.sidebar.collapsed .sidebar-links button{
+.sidebar.collapsed .sidebar-links button {
     border-radius: 0.5vw;
 }
 
-.sidebar.collapsed .sidebar-links button .mat-icon{
+.sidebar.collapsed .sidebar-links button .mat-icon {
     font-size: 1.7vw;
     width: 2vw;
     height: 1.8vw;
 }
 
-.sidebar.collapsed .sidebar-links button .sidelink-icon{
+.sidebar.collapsed .sidebar-links button .sidelink-icon {
     margin-left: 0.6vw;
 }
 
-.sidebar.collapsed .sidebar-links button .sidelink-half{
+.sidebar.collapsed .sidebar-links button .sidelink-half {
     margin-left: 0.85vw;
 }
 
-.sidebar.collapsed .sidebar-links button .sidelink-full{
+.sidebar.collapsed .sidebar-links button .sidelink-full {
     margin-left: 0.85vw;
 }
 
-.dashboard-link-section{
+.dashboard-link-section {
     margin-top: 3vw;
 }
 
 .sidebar-footer {
-  width: 14%;
-  padding-left: 2.6vw;
-  margin-top: -2vw;
+    width: 14%;
+    padding-left: 2.6vw;
+    margin-top: -2vw;
 }
 
 .hidden {

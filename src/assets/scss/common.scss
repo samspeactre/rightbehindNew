@@ -18,6 +18,7 @@
     width: 48%;
     margin: 0 auto;
 }
+
 .cstmContainer {
     width: 93vw;
     max-width: 1660px;
@@ -37,26 +38,28 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.zI{
+.zI {
     z-index: 10;
 }
+
 /* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 /* General styling */
 input[type="number"] {
-  appearance: none;
+    appearance: none;
 }
-.special{
+
+.special {
     background-color: #dd0202;
     border-radius: 4px;
     padding: 5px 1rem;
@@ -65,7 +68,10 @@ input[type="number"] {
     right: 10px;
     font-size: 10px;
     color: white;
-  }
+}
+.transition{
+    transition: 0.5s all ease-in-out;
+}
 @media only screen and (max-width:1024px) {
 
     .cdk-global-overlay-wrapper {

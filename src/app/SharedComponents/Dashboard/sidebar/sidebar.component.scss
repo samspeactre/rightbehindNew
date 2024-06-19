@@ -1,0 +1,44 @@
+.logo {
+    width: 90%;
+    height: 40px;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.toggler {
+    // position: absolute;
+    // top: 50%;
+    // transform: translateY(-50%);
+    // right: 10px;
+    background: #ff4081;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 70px;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.btnWhiteNBlueOutline {
+    color: #fff;
+    max-width: fit-content;
+    margin-right: auto;
+    min-width: 100%;
+
+    &.active {
+        background: white;
+        color: #000f28;
+    }
+
+    &.isSidebarCollapsed {
+        min-width: fit-content;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+}

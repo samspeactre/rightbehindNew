@@ -27,7 +27,8 @@
             "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": [
               "apexcharts",
-              "crypto-js"
+              "crypto-js",
+              "sweetalert2"
             ],
             "assets": [
               "src/favicon.ico",

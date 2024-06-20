@@ -1,14 +1,18 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chat-inner',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './chat-inner.component.html',
   styleUrl: './chat-inner.component.scss'
 })
 export class ChatInnerComponent {
+  constructor(private location:Location){}
+  faArrowLeft=faArrowLeft
   messages: any = [
     {
       sender: 'BOT',
@@ -35,4 +39,7 @@ export class ChatInnerComponent {
       time: '12:46'
     }
   ];
+  routeBack(){
+    this.location.back()
+  }
 }

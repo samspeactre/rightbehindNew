@@ -23,13 +23,9 @@ declare var WOW: any;
 })
 export class AppComponent {
   loader: boolean = false;
-  footer: boolean = true;
-  header: boolean = true;
   private destroy$ = new Subject<void>();
   constructor(
-    private store: Store,
     private cd: ChangeDetectorRef,
-    private actiavtedRoute: ActivatedRoute,
     private router: Router,
     private helper: HelperService
   ) {
@@ -43,21 +39,6 @@ export class AppComponent {
       )
       .subscribe((event: any) => {
         LoaderService.loader.next(false);
-        let route = this.actiavtedRoute;
-        while (route.firstChild) {
-          route = route.firstChild;
-        }
-        route.data
-          .pipe(
-            distinctUntilChanged(
-              (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-            ),
-            takeUntil(this.destroy$)
-          )
-          .subscribe((data: any) => {
-            this.footer = data['footer'] || false;
-            this.header = data['header'] || false;
-          });
       });
     this.router.events
       .pipe(
@@ -68,7 +49,6 @@ export class AppComponent {
         )
       )
       .subscribe((event: any) => {
-        this.footer = false;
         LoaderService.loader.next(true);
       });
     
@@ -91,7 +71,6 @@ export class AppComponent {
     this.helper.removeLink("https://fonts.googleapis.com/icon?family=Material+Icons");
     this.helper.removeLink("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
     this.helper.removeLink("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
-
   }
   ngAfterViewInit(): void {
     new WOW().init();

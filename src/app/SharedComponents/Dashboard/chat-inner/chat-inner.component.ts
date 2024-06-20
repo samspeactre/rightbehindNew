@@ -37,6 +37,24 @@ export class ChatInnerComponent {
       receiver: 'BOT',
       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
       time: '12:46'
+    },
+    {
+      sender: 'Sajad',
+      receiver: 'BOT',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
+      time: '12:46'
+    },
+    {
+      sender: 'Sajad',
+      receiver: 'BOT',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
+      time: '12:46'
+    },
+    {
+      sender: 'BOT',
+      receiver: 'Sajad',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
+      time: '12:45'
     }
   ];
   routeBack(){

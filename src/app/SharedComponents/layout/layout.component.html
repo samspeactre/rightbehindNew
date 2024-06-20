@@ -1,0 +1,7 @@
+@if(header){
+<app-navbar></app-navbar>
+}
+<router-outlet></router-outlet>
+@if(footer){ @defer (on timer(5s)) {
+<app-footer></app-footer>
+} }

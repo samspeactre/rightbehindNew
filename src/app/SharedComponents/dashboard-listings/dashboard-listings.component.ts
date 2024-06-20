@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
+  standalone:true,
+  imports:[MatIconModule, MatFormFieldModule, MatSelectModule],
   selector: 'app-dashboard-listings',
   templateUrl: './dashboard-listings.component.html',
   styleUrl: './dashboard-listings.component.css'

@@ -1,5 +1,5 @@
 <div class="overflow-hidden">
-    <div class="blueBg" [ngClass]="[width > 1024 ? 'py-3' : 'vh-100']">
+    <div class="blueBg vh-100 d-flex align-items-center">
         <div class="cstmContainer">
             <div class="row">
                 <div [ngClass]="[isSidebarCollapsed ? ( width <= 1024 ? 'col-2' : 'col-1') : 'col-2']" class="transition"
@@ -9,15 +9,10 @@
                 </div>
                 <div [ngClass]="[isSidebarCollapsed ? ( width <= 1024 ? 'col-10' : 'col-11') : 'col-10']"
                     class="transition">
-                    <div class="w-100 bg-white rounded-3 mt-3 overflow-y-auto" [style.height.px]="rightHieght">
+                    <div class="w-100 bg-white rounded-3 overflow-y-auto py-3" [style.height.px]="rightHieght">
                         <router-outlet></router-outlet>
                     </div>
                 </div>
-                @if(width > 1024){
-                <div [ngClass]="[isSidebarCollapsed ? 'col-11' : 'col-9']" class="ms-auto">
-                    <p class="text-center my-3 text-light smallFont">©2024 Right Behind Me. All Rights Reserved</p>
-                </div>
-                }
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -12,14 +12,21 @@ import { LoaderService } from '../../../Services/loader.service';
   templateUrl: './chat-inner.component.html',
   styleUrl: './chat-inner.component.scss'
 })
-export class ChatInnerComponent {
-  constructor(private location:Location, private cd:ChangeDetectorRef){
+export class ChatInnerComponent implements OnInit {
+  faArrowLeft = faArrowLeft;
+  faPaperPlane = faPaperPlane;
+  height: number = 0;
+  width = window.innerWidth;
+  constructor(private location: Location, private cd: ChangeDetectorRef) {
+    console.log('helo')
+  }
+  ngOnInit() {
+    console.log('helo')
     this.observe()
   }
-  faArrowLeft=faArrowLeft;
-  faPaperPlane=faPaperPlane;
-  height:number=0;
-  width = window.innerWidth;
+  ngAfterViewInit() {
+    this.observe()
+  }
   messages: any = [
     {
       sender: 'BOT',
@@ -64,12 +71,15 @@ export class ChatInnerComponent {
       time: '12:45'
     }
   ];
-  routeBack(){
+  routeBack() {
     this.location.back()
   }
   async observe() {
     LoaderService.dashboardHeight.subscribe((res: number) => {
       this.height = res;
+      console.log('====================================');
+      console.log(res);
+      console.log('====================================');
       this.cd.detectChanges();
     });
   }

@@ -14,22 +14,24 @@
                         </div>
                     </div>
                 </header>
-                <main class="msger-chat" [style.height.px]="height - width > 1024 ? 200 : 170">
-                        @for (message of messages; track $index) {
-                        <div [ngClass]="[message.sender === 'BOT' ? 'left-msg' : 'right-msg']" class="msg">
-                            <div class="msg-img"
-                                [style.backgroundImage]="message.sender === 'BOT' ? 'url(https://image.flaticon.com/icons/svg/327/327779.svg)' : 'url(https://image.flaticon.com/icons/svg/145/145867.svg)'">
-                            </div>
-                            <div class="msg-bubble">
-                                <div class="msg-info">
-                                    <div class="msg-info-name">{{message.sender}}</div>
-                                    <div class="msg-info-time">{{message.time}}</div>
-                                </div>
-                                <div class="msg-text">{{message.text}}</div>
-                            </div>
+                @if(height > 0){
+                <main class="msger-chat" [style.height.px]="height -( width > 1024 ? 180 : 170)">
+                    @for (message of messages; track $index) {
+                    <div [ngClass]="[message.sender === 'BOT' ? 'left-msg' : 'right-msg']" class="msg">
+                        <div class="msg-img"
+                            [style.backgroundImage]="message.sender === 'BOT' ? 'url(https://image.flaticon.com/icons/svg/327/327779.svg)' : 'url(https://image.flaticon.com/icons/svg/145/145867.svg)'">
                         </div>
-                        }
+                        <div class="msg-bubble">
+                            <div class="msg-info">
+                                <div class="msg-info-name">{{message.sender}}</div>
+                                <div class="msg-info-time">{{message.time}}</div>
+                            </div>
+                            <div class="msg-text">{{message.text}}</div>
+                        </div>
+                    </div>
+                    }
                 </main>
+                }
 
                 <form class="msger-inputarea">
                     <input type="text" class="msger-input" placeholder="Enter your message...">

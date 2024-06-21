@@ -6,7 +6,7 @@ import { InputComponent } from '../../../SharedComponents/input/input.component'
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -19,6 +19,9 @@ export class InquiriesComponent {
   searchForm = this.fb.group({
     search: ['']
   });
-  faPlus = faPlus
-  constructor(private fb: FormBuilder) { }
+  faPlus = faPlus;
+  heading:string;
+  constructor(private fb: FormBuilder, private router:Router) {
+    this.heading = this.router.url.includes('inquiries') ? 'Inquiries' : 'Community Groups'
+   }
 }

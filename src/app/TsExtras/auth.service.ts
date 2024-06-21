@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addUserData } from '../Ngrx/data.action';
+import { addUserData, updateUserData } from '../Ngrx/data.action';
 import { HttpService } from '../Services/http.service';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class AuthService {
     );
   }
 
-  login(loginData:any): Observable<any> {
+  login(loginData: any): Observable<any> {
     const data = {
       email: loginData?.email,
       password: loginData?.password
@@ -40,8 +40,21 @@ export class AuthService {
       distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
     );
   }
+  getUser() {
+    return this.http.loaderGet('User/profile', true, true).pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+    );
+  }
 
   handleLoginResponse(response: any): void {
     this.store.dispatch(addUserData({ user: response?.model }));
+    this.getUser().subscribe((userResponse: any) => {
+      const newData = {
+        ...response?.model,
+        ...userResponse?.model
+      }
+      this.store.dispatch(updateUserData({ user: newData }));
+    })
   }
 }

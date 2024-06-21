@@ -108,7 +108,7 @@ export class RentPopupComponent {
       confirmButtonText: 'Yes, this is a residential rental',
       showCancelButton: true,
       cancelButtonText: 'No, this is not a residential rental'
-    }).then((result) => {
+    }).then((result:any) => {
       if (result.isConfirmed) {
         this.navigate()
       }

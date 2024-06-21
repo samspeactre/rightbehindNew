@@ -14,8 +14,7 @@
                         </div>
                     </div>
                 </header>
-                @if(height > 0){
-                <main class="msger-chat" [style.height.px]="height -( width > 1024 ? 180 : 170)">
+                <main class="msger-chat" [style.height.px]="height -( width > 1024 ? 170 : 160)">
                     @for (message of messages; track $index) {
                     <div [ngClass]="[message.sender === 'BOT' ? 'left-msg' : 'right-msg']" class="msg">
                         <div class="msg-img"
@@ -31,11 +30,10 @@
                     </div>
                     }
                 </main>
-                }
 
                 <form class="msger-inputarea">
                     <input type="text" class="msger-input" placeholder="Enter your message...">
-                    <button type="submit" class="msger-send-btn">
+                    <button type="submit" class="msger-send-btn mx-auto">
                         <fa-icon [icon]="faPaperPlane"></fa-icon>
                     </button>
                 </form>

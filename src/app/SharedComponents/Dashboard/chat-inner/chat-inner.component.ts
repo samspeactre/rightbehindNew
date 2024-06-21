@@ -1,9 +1,8 @@
 import { CommonModule, Location } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { LoaderService } from '../../../Services/loader.service';
 
 @Component({
   selector: 'app-chat-inner',
@@ -12,20 +11,19 @@ import { LoaderService } from '../../../Services/loader.service';
   templateUrl: './chat-inner.component.html',
   styleUrl: './chat-inner.component.scss'
 })
-export class ChatInnerComponent implements OnInit {
+export class ChatInnerComponent {
   faArrowLeft = faArrowLeft;
   faPaperPlane = faPaperPlane;
   height: number = 0;
   width = window.innerWidth;
-  constructor(private location: Location, private cd: ChangeDetectorRef) {
-    console.log('helo')
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.getHeight();
   }
-  ngOnInit() {
-    console.log('helo')
-    this.observe()
-  }
-  ngAfterViewInit() {
-    this.observe()
+  constructor(private location: Location) { }
+  ngOnInit(): void {
+    this.getHeight()
+    this.width = window.innerWidth;
   }
   messages: any = [
     {
@@ -73,14 +71,11 @@ export class ChatInnerComponent implements OnInit {
   ];
   routeBack() {
     this.location.back()
-  }
-  async observe() {
-    LoaderService.dashboardHeight.subscribe((res: number) => {
-      this.height = res;
-      console.log('====================================');
-      console.log(res);
-      console.log('====================================');
-      this.cd.detectChanges();
-    });
+  };
+  getHeight() {
+    var element: any = document.getElementsByClassName('fixedHeight')[0]
+    if (element) {
+      this.height = element.offsetHeight;
+    }
   }
 }

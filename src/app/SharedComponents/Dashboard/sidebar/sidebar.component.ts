@@ -22,6 +22,7 @@ export class SidebarComponent {
   faCircleQuestion = faCircleQuestion;
   faSetting = faGear;
   faUser = faUser;
+  width=window.innerWidth
   @Input() isSidebarCollapsed: boolean = window.innerWidth < 1024 ? true : false;
   @Output() isSidebarCollapsedEvent = new EventEmitter<boolean>();
 

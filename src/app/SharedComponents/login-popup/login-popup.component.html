@@ -15,9 +15,9 @@
         <app-input type="password" [password]="true" classes="w-100" [form]="loginForm" control="password" label="Password"
           placeholder="Enter your password*"></app-input>
   
-        <div class="dCeneter justify-content-between check-pass">
+        <div class="dCenter justify-content-between check-pass">
           <div class="checkbox">
-            <mat-checkbox>Remember me</mat-checkbox>
+            <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox>
           </div>
           <a class="smallFont">Forget Password?</a>
         </div>

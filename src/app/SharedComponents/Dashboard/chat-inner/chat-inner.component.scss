@@ -32,7 +32,7 @@
 .msger-chat {
     overflow-y: auto;
     padding: 10px;
-    height: 60vh;
+    height: 64vh;
 }
 
 .msger-chat::-webkit-scrollbar {
@@ -140,4 +140,25 @@
 
 .msger-send-btn:hover {
     background: rgb(0, 180, 50);
+}
+
+@media only screen and (min-width:1660px) {
+    .msger-chat {
+        height: 54vh;
+    }
+    
+}
+
+@media only screen and (max-width:1024px) {
+    .msg-bubble {
+        width: 75%;
+    }
+    .msger-chat {
+        height: 75vh;
+    }
+    .msg-img {
+        width: 30px;
+        height: 30px;
+    }
+    
 }

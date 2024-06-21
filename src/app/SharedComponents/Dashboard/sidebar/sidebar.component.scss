@@ -46,3 +46,19 @@
         padding: 10px;
     }
 }
+
+@media only screen and (max-width:1024px) {
+    .btnWhiteNBlueOutline {
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 14px;
+    }
+
+    .sidebar {
+
+        .justify-content-between,
+        .justify-content-start {
+            justify-content: center !important;
+        }
+    }
+}

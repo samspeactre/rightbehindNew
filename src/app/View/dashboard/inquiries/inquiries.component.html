@@ -1,17 +1,36 @@
 <div class="container">
     <div class="row align-items-end">
-        <div class="col-lg-10">
+        <div class="col-lg-10 col-8">
             <app-input type="text" classes="w-100" [form]="searchForm" control="search" label="Search"
                 placeholder="Search Here..."></app-input>
         </div>
-        <div class="col-lg-2 d-flex justify-content-end align-items-baseline">
+        <div class="col-lg-2 col-4 d-flex justify-content-end align-items-baseline">
             <button class="btnPrimary smallFont py-1 rounded-1">
                 <fa-icon [icon]="faPlus"></fa-icon>
                 <p class="mb-0 smallFont">New Chat</p>
             </button>
         </div>
         <div class="col-lg-12 my-3">
-            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor" routerLink="chat/1">
+            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor"
+                routerLink="chat/1">
+                <div class="imgBox">
+                    <img src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user profile" width="100%"
+                        height="100%">
+                </div>
+                <div class="content">
+                    <h6 class="bold mb-1">User name</h6>
+                    <p class="reg mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempora! Lorem
+                        ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempora! Lorem ipsum dolor sit, amet
+                        consectetur adipisicing elit. Sed, tempora! Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Sed, tempora! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempora!
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempora!</p>
+                </div>
+                <p class="mb-0 smallFont ms-auto">12:00 PM</p>
+            </div>
+        </div>
+        <div class="col-lg-12 my-3">
+            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor"
+                routerLink="chat/1">
                 <div class="imgBox">
                     <img src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user profile" width="100%"
                         height="100%">
@@ -24,20 +43,8 @@
             </div>
         </div>
         <div class="col-lg-12 my-3">
-            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor" routerLink="chat/1">
-                <div class="imgBox">
-                    <img src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user profile" width="100%"
-                        height="100%">
-                </div>
-                <div class="content">
-                    <h6 class="bold mb-1">User name</h6>
-                    <p class="reg mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempora!</p>
-                </div>
-                <p class="mb-0 smallFont ms-auto">12:00 PM</p>
-            </div>
-        </div>
-        <div class="col-lg-12 my-3">
-            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor" routerLink="chat/1">
+            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor"
+                routerLink="chat/1">
                 <div class="imgBox">
                     <img src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user profile" width="100%"
                         height="100%">

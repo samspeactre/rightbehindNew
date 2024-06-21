@@ -12,8 +12,12 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  max-width: 90%;
 }
 .msgRow{
     width: 95%;
     margin: auto;
+}
+.content{
+    width: 60%;
 }

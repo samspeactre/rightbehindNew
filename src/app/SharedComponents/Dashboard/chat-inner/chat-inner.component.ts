@@ -1,8 +1,9 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { LoaderService } from '../../../Services/loader.service';
 
 @Component({
   selector: 'app-chat-inner',
@@ -12,9 +13,13 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './chat-inner.component.scss'
 })
 export class ChatInnerComponent {
-  constructor(private location:Location){}
+  constructor(private location:Location, private cd:ChangeDetectorRef){
+    this.observe()
+  }
   faArrowLeft=faArrowLeft;
   faPaperPlane=faPaperPlane;
+  height:number=0;
+  width = window.innerWidth;
   messages: any = [
     {
       sender: 'BOT',
@@ -61,5 +66,11 @@ export class ChatInnerComponent {
   ];
   routeBack(){
     this.location.back()
+  }
+  async observe() {
+    LoaderService.dashboardHeight.subscribe((res: number) => {
+      this.height = res;
+      this.cd.detectChanges();
+    });
   }
 }

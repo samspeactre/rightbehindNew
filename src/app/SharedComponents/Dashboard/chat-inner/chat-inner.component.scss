@@ -32,7 +32,6 @@
 .msger-chat {
     overflow-y: auto;
     padding: 10px;
-    height: 64vh;
 }
 
 .msger-chat::-webkit-scrollbar {
@@ -138,20 +137,10 @@
     outline: none;
 }
 
-@media only screen and (min-width:1660px) {
-    .msger-chat {
-        height: 54vh;
-    }
-    
-}
-
 @media only screen and (max-width:1024px) {
     .msg-bubble {
         width: 75%;
         font-size: 12px;
-    }
-    .msger-chat {
-        height: 75vh;
     }
     .msg-img,.imgBox {
         width: 30px;
@@ -159,9 +148,6 @@
     }    
 }
 @media only screen and (max-width:414px) {
-    .msger-chat {
-        height: 60vh;
-    }
     .msg-img {
         width: 20px;
         height: 20px;

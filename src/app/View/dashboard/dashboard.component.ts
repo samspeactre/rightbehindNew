@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '../../SharedComponents/Dashboard/sidebar/sidebar.component';
 import { DashNavComponent } from '../../SharedComponents/dash-nav/dash-nav.component';
+import { LoaderService } from '../../Services/loader.service';
 
 @Component({
   standalone: true,
@@ -29,6 +30,7 @@ export class DashboardComponent {
   setMapHeight() {
     if (this.sidebar) {
       this.rightHieght = this.width > 1024 ? this.sidebar.nativeElement.offsetHeight : (window.innerHeight - 50);
+      LoaderService.dashboardHeight.next(this.rightHieght)
     }
   }
 }

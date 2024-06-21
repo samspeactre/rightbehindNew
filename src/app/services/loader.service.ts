@@ -5,5 +5,6 @@ import {Subject} from 'rxjs'
 })
 export class LoaderService {
 public static loader:Subject <any> =new Subject <any>();
+public static dashboardHeight:Subject <any> =new Subject <any>();
   constructor() { }
 }

@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </header>
-                <main class="msger-chat">
+                <main class="msger-chat" [style.height.px]="height - width > 1024 ? 200 : 170">
                         @for (message of messages; track $index) {
                         <div [ngClass]="[message.sender === 'BOT' ? 'left-msg' : 'right-msg']" class="msg">
                             <div class="msg-img"

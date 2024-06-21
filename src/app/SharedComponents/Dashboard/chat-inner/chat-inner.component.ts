@@ -1,6 +1,7 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,7 +13,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class ChatInnerComponent {
   constructor(private location:Location){}
-  faArrowLeft=faArrowLeft
+  faArrowLeft=faArrowLeft;
+  faPaperPlane=faPaperPlane;
   messages: any = [
     {
       sender: 'BOT',

@@ -116,7 +116,7 @@
     background: #eee;
 }
 
-.msger-inputarea * {
+.msger-inputarea input {
     padding: 10px;
     border: none;
     border-radius: 3px;
@@ -124,22 +124,18 @@
 }
 
 .msger-input {
-    flex: 1;
+    width: 90%;
     background: #ddd;
     outline: none;
 }
 
 .msger-send-btn {
     margin-left: 10px;
-    background: rgb(0, 196, 65);
-    color: #fff;
-    font-weight: bold;
     cursor: pointer;
-    transition: background 0.23s;
-}
-
-.msger-send-btn:hover {
-    background: rgb(0, 180, 50);
+    font-size: 12px;
+    border: none;
+    background: none;
+    outline: none;
 }
 
 @media only screen and (min-width:1660px) {
@@ -152,13 +148,23 @@
 @media only screen and (max-width:1024px) {
     .msg-bubble {
         width: 75%;
+        font-size: 12px;
     }
     .msger-chat {
         height: 75vh;
     }
-    .msg-img {
+    .msg-img,.imgBox {
         width: 30px;
         height: 30px;
+    }    
+}
+@media only screen and (max-width:414px) {
+    .msger-chat {
+        height: 60vh;
     }
-    
+    .msg-img {
+        width: 20px;
+        height: 20px;
+    }
+
 }

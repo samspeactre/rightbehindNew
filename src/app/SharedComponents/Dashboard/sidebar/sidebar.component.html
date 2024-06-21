@@ -23,5 +23,12 @@
             }
         </button>
         }
+        <button class="btnWhiteNBlueOutline my-2 dCenter justify-content-start gap-2"
+            [class.isSidebarCollapsed]="isSidebarCollapsed" (click)="logout()" routerLinkActive="active">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            @if(!isSidebarCollapsed){
+            Log Out
+            }
+        </button>
     </div>
 </div>

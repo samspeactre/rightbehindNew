@@ -49,9 +49,9 @@
         <button class="btnWhite mx-auto mb-3 wow fadeInDown">
           Submit Your Property FREE
         </button>
-        <div class="counter display">
+        <div class="counter dCenter align-items-start">
           @for (counter of counters; track counter; let i = $index) {
-          <div>
+          <div class="counterBox">
             <div class="counter-num wow fadeInDown"> <span class="counter-num" [countUp]="counter.count"
                 [reanimateOnClick]="false" [options]="{ enableScrollSpy: true }"></span> K+</div>
             <div class="counter-name wow fadeInDown">{{ counter.name }}</div>

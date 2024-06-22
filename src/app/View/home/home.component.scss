@@ -37,7 +37,9 @@
   width: 100%;
   justify-content: space-between;
 }
-
+.counterBox{
+  width: calc(100%/3.3);
+}
 .counter-num {
   font-family: "bold";
   color: var(--white);

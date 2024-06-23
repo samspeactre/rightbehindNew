@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { HttpService } from './http.service';
 export const types = [
   { name: 'Apartments', value: 1 },
   { name: 'Houses', value: 2 },
@@ -11,8 +13,12 @@ export const assetUrl = 'https://recursing-allen.74-208-96-50.plesk.page'
   providedIn: 'root'
 })
 export class HelperService {
-
-  constructor() { }
+  private destroy$ = new Subject<void>();
+  constructor(private http:HttpService) { }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   detectBrowserName() {
     const userAgent = navigator.userAgent;
     if (/Edg\/\d+/.test(userAgent)) {
@@ -74,5 +80,14 @@ export class HelperService {
   returnType(id: number) {
     const type = types.find((type: any) => type?.value == id)
     return type?.name
+  }
+  createContact(propertyId:number): Observable<any> {
+    const data = {
+      propertyId: propertyId
+    };
+    return this.http.loaderPost('ChatContact/create', data, true).pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+    );
   }
 }

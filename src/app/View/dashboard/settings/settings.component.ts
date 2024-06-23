@@ -7,6 +7,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { HttpService } from '../../../Services/http.service';
 
 @Component({
   standalone: true,
@@ -19,21 +20,21 @@ export class SettingsComponent {
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
-  settingForm = this.fb.group({
+  settingForm: any = this.fb.group({
     fullName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     contact: [''],
-    Country: [''],
-    Address: [''],
-    Apt: [''],
-    City: [''],
-    State: [''],
-    Zip: [''],
+    country: [''],
+    address: [''],
+    apt: [''],
+    city: [''],
+    state: [''],
+    zip: [''],
   });
   securityForm = this.fb.group({
-    password: ['', [Validators.required,Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   });
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store, private http: HttpService) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -42,13 +43,11 @@ export class SettingsComponent {
         )
       )
       .subscribe((user) => {
-        console.log(user);
-        
         this.user = user;
         this.settingForm.patchValue({
           fullName: user?.fullName,
           email: user?.email,
-          contact:user?.contact
+          contact: user?.contact
         })
       });
   }
@@ -57,6 +56,14 @@ export class SettingsComponent {
     this.destroy$.complete();
   }
   onSubmit() {
-    console.log('hello');
+    const formData = { ...this.settingForm.value };
+
+    // Remove the email property from the copied object
+    delete formData.email;
+    this.http.loaderPost('User/profile/update', formData, true).subscribe((response: any) => {
+      console.log('====================================');
+      console.log(response);
+      console.log('====================================');
+    })
   }
 }

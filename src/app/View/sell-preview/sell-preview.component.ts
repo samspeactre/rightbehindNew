@@ -4,7 +4,7 @@ import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component'
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle, faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
@@ -56,7 +56,7 @@ export class SellPreviewComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
       if (!param?.type || !param?.id) {
         this.location.back()
@@ -101,5 +101,13 @@ export class SellPreviewComponent implements OnInit {
         items[i].classList.add('yellow-label');
       }
     }
+  }
+  createContact() {
+    this.helper.createContact(this.id).subscribe((response) => {
+      const id = response?.model?.id;
+      if (id) {
+        this.router.navigateByUrl(`/dashboard/inquiries/chat/${id}`);
+      }
+    })
   }
 }

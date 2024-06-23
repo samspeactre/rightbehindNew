@@ -24,34 +24,34 @@
             <h6 class="bold mt-3">Address (Optional)</h6>
         </div>
         <div class="col-lg-6">
-            <app-input type="text" [form]="settingForm" control="Address" label="Address"
+            <app-input type="text" [form]="settingForm" control="address" label="Address"
                 placeholder="Enter your Address"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input type="text" [form]="settingForm" control="Apt" label="Apt, Suite, Unit, Building, Floot, etc."
+            <app-input type="text" [form]="settingForm" control="apt" label="Apt, Suite, Unit, Building, Floot, etc."
                 placeholder="Apt, Suite, Unit, Building, Floot, etc"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input type="text" [form]="settingForm" control="City" label="City"
+            <app-input type="text" [form]="settingForm" control="city" label="City"
                 placeholder="Enter your City"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input type="text" [form]="settingForm" control="State" label="State"
+            <app-input type="text" [form]="settingForm" control="state" label="State"
                 placeholder="Enter your State"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input type="text" [form]="settingForm" control="Zip" label="Zip"
+            <app-input type="text" [form]="settingForm" control="zip" label="Zip"
                 placeholder="Enter your Zip"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input type="text" [form]="settingForm" control="Country" label="Country"
+            <app-input type="text" [form]="settingForm" control="country" label="Country"
                 placeholder="Enter your Country"></app-input>
         </div>
         <div class="col-lg-6 mx-auto dCenter align-items-end">
             <button class="btnPrimary py-1 w-100 my-3" type="submit">Save</button>
         </div>
     </form>
-    <form [formGroup]="securityForm" (ngSubmit)="onSubmit()" class="row">
+    <form [formGroup]="securityForm" class="row">
         <div class="col-lg-12">
             <h6 class="bold mb-3">Security Information</h6>
         </div>

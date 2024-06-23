@@ -18,6 +18,7 @@
         <a class="smallFont">{{ propertyDetails?.title }}</a>
       </div>
       @if(propertyDetails?.propertyImages?.length){
+      @if(propertyDetails?.propertyImages?.length >= 4){
       <owl-carousel-o [options]="customOptions" #owlCar>
         @for (card of propertyDetails?.propertyImages; track card) {
         <ng-container>
@@ -27,6 +28,16 @@
         </ng-container>
         }
       </owl-carousel-o>
+      }
+      @else{
+      <div class="row">
+        @for (card of propertyDetails?.propertyImages; track card) {
+        <div class="col-lg-4">
+          <img [src]="src + card?.imageUrl" class="carouselImg" alt="image" />
+        </div>
+        }
+      </div>
+      }
       } @else {
       <div class="dCenter">
         <div class="banner-review-img">
@@ -784,10 +795,13 @@
             <p class="mb-0">or</p>
             <hr />
           </div>
-          <div class="dCenter">
-            <button class="btnPrimary cstm-width-full mt-3">
+          <div class="dCenter flex-wrap mt-3">
+            <a class="btnPrimary cstm-width-full" (click)="createContact()">
+              Contact An Agent
+            </a>
+            <a class="btnPrimary cstm-width-full mt-3">
               Request a tour
-            </button>
+            </a>
           </div>
         </div>
       </div>

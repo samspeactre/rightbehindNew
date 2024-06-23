@@ -45,10 +45,19 @@ export class SettingsComponent {
       )
       .subscribe((user) => {
         this.user = user;
+        console.log('====================================');
+        console.log(user);
+        console.log('====================================');
         this.settingForm.patchValue({
           fullName: user?.fullName,
           email: user?.email,
-          contact: user?.contact
+          contact: user?.contact,
+          country: user?.country || user?.userAddresses?.[0]?.country,
+          address: user?.address || user?.userAddresses?.[0]?.address,
+          apt: user?.apt || user?.userAddresses?.[0]?.apt,
+          city: user?.city || user?.userAddresses?.[0]?.city,
+          state: user?.state || user?.userAddresses?.[0]?.state,
+          zip: user?.zip || user?.userAddresses?.[0]?.zipCode
         })
       });
   }

@@ -8,6 +8,7 @@ import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { HttpService } from '../../../Services/http.service';
+import { updateUserData } from '../../../Ngrx/data.action';
 
 @Component({
   standalone: true,
@@ -23,7 +24,7 @@ export class SettingsComponent {
   settingForm: any = this.fb.group({
     fullName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    contact: [''],
+    contact: ['', Validators.minLength(8)],
     country: [''],
     address: [''],
     apt: [''],
@@ -57,13 +58,9 @@ export class SettingsComponent {
   }
   onSubmit() {
     const formData = { ...this.settingForm.value };
-
-    // Remove the email property from the copied object
     delete formData.email;
     this.http.loaderPost('User/profile/update', formData, true).subscribe((response: any) => {
-      console.log('====================================');
-      console.log(response);
-      console.log('====================================');
+      this.store.dispatch(updateUserData({ user: formData }));
     })
   }
 }

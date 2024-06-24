@@ -45,9 +45,6 @@ export class SettingsComponent {
       )
       .subscribe((user) => {
         this.user = user;
-        console.log('====================================');
-        console.log(user);
-        console.log('====================================');
         this.settingForm.patchValue({
           fullName: user?.fullName,
           email: user?.email,

@@ -3,11 +3,14 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { HttpService } from '../../../Services/http.service';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat-inner',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,FormsModule],
   templateUrl: './chat-inner.component.html',
   styleUrl: './chat-inner.component.scss'
 })
@@ -20,7 +23,15 @@ export class ChatInnerComponent {
   onResize(event: Event) {
     this.getHeight();
   }
-  constructor(private location: Location) { }
+  messageForm = this.fb.group({
+    message: ['', Validators.required],
+  });
+  contactId:any
+  constructor(private location: Location, private http:HttpService, private fb:FormBuilder, private activatedRoute:ActivatedRoute) { 
+    this.activatedRoute.params.subscribe((response:any)=>{
+      this.contactId = response?.id
+    })
+  }
   ngOnInit(): void {
     this.getHeight()
     this.width = window.innerWidth;
@@ -77,5 +88,16 @@ export class ChatInnerComponent {
     if (element) {
       this.height = element.offsetHeight;
     }
+  }
+  sendMessage(){
+    const data = {
+      chatContactId:this.contactId,
+      message:this.messageForm.controls['message'].value
+    }
+    this.http.loaderPost('Chat/send',data,true).subscribe((response)=>{
+      console.log('====================================');
+      console.log(response);
+      console.log('====================================');
+    })
   }
 }

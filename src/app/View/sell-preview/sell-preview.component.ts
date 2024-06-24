@@ -106,16 +106,12 @@ export class SellPreviewComponent implements OnInit {
     this.helper.createContact(this.id).subscribe((response) => {
       const id = response?.model?.id;
       if (id) {
-        this.router.navigateByUrl(`/dashboard/inquiries/chat/${id}`);
+        this.router.navigate(['/dashboard/inquiries/chat', id], { queryParams: { name: this.propertyDetails?.propertyContacts[0]?.fullName } });
       }
     })
   }
-  clickAnalytic(type:string){
+  clickAnalytic(type: string) {
     const api = type == 'email' ? `PropertyAnalytic/email/${this.id}` : `PropertyAnalytic/phone/${this.id}`
-    this.http.get(api,false).subscribe((response)=>{
-      console.log('====================================');
-      console.log(response);
-      console.log('====================================');
-    })
+    this.http.get(api, false).subscribe((response) => { })
   }
 }

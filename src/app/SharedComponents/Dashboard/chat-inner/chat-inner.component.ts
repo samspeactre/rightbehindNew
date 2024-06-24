@@ -1,11 +1,14 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { HttpService } from '../../../Services/http.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { selectUser } from '../../../Ngrx/data.reducer';
+import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-chat-inner',
@@ -26,60 +29,37 @@ export class ChatInnerComponent {
   messageForm = this.fb.group({
     message: ['', Validators.required],
   });
-  contactId: any
-  constructor(private location: Location, private http: HttpService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
+  contactId: any;
+  user$ = this.store.select(selectUser);
+  userDetails: any;
+  messages: any = [];
+  reciever: any;
+  private destroy$ = new Subject<void>();
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+  constructor(private location: Location, private store: Store, private http: HttpService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe((response: any) => {
-      this.contactId = response?.id
+      this.contactId = response?.id;
+      this.getInquiry()
     })
+    this.activatedRoute.queryParams.subscribe((response: any) => {
+      this.reciever = response?.name
+    })
+    this.user$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)))
+      .subscribe((user) => {
+        this.userDetails = user;
+      });
   }
   ngOnInit(): void {
     this.getHeight()
     this.width = window.innerWidth;
   }
-  messages: any = [
-    {
-      sender: 'BOT',
-      receiver: 'Sajad',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
-      time: '12:45'
-    },
-    {
-      sender: 'Sajad',
-      receiver: 'BOT',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
-      time: '12:46'
-    },
-    {
-      sender: 'BOT',
-      receiver: 'Sajad',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
-      time: '12:45'
-    },
-    {
-      sender: 'Sajad',
-      receiver: 'BOT',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
-      time: '12:46'
-    },
-    {
-      sender: 'Sajad',
-      receiver: 'BOT',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
-      time: '12:46'
-    },
-    {
-      sender: 'Sajad',
-      receiver: 'BOT',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...',
-      time: '12:46'
-    },
-    {
-      sender: 'BOT',
-      receiver: 'Sajad',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit...',
-      time: '12:45'
-    }
-  ];
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   routeBack() {
     this.location.back()
   };
@@ -95,10 +75,40 @@ export class ChatInnerComponent {
       message: this.messageForm.controls['message'].value
     }
     this.http.loaderPost('Chat/send', data, true).subscribe((response) => {
-      console.log('====================================');
-      console.log(response);
-      console.log('====================================');
-      this.messageForm.reset()
+      this.messageForm.reset();
+      this.messages.push({
+        sender: this.userDetails?.fullName,
+        receiver: this.reciever || null,
+        text: data?.message,
+        time: new Date()
+      })
+      setTimeout(() => {
+        this.scrollToBottom();
+      });
     })
+  }
+  getInquiry() {
+    this.http.loaderGet(`Chat/get/${this.contactId}`, true).subscribe((response) => {
+      this.reciever = response?.modelList?.[0]?.chatContact?.buyer?.fullName
+      response?.modelList?.map((item: any) => {
+        this.messages.push({
+          sender: item?.sender?.fullName,
+          receiver: item?.chatContact?.buyer?.fullName,
+          text: item?.message,
+          time: item?.createdOn
+        })
+      })
+      setTimeout(() => {
+        this.scrollToBottom();
+      });
+    })
+  }
+  private scrollToBottom(): void {
+    try {
+      this.messagesContainer.nativeElement.scrollTo({
+        top: this.messagesContainer.nativeElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    } catch (err) { }
   }
 }

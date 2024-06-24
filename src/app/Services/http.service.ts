@@ -36,7 +36,6 @@ export class HttpService {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-
   }
   header = {
     headers: new HttpHeaders({

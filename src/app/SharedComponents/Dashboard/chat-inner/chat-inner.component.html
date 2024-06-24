@@ -6,24 +6,24 @@
                     <fa-icon [icon]="faArrowLeft" (click)="routeBack()" class="cursor"></fa-icon>
                     <div class="dCenter justify-content-start gap-2 w-100 cursor" routerLink="chat/1">
                         <div class="imgBox">
-                            <img src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user profile"
+                            <img src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png" alt="user profile"
                                 width="100%" height="100%">
                         </div>
                         <div class="content">
-                            <h6 class="bold mb-0">User name</h6>
+                            <h6 class="bold mb-0">{{reciever}}</h6>
                         </div>
                     </div>
                 </header>
-                <main class="msger-chat" [style.height.px]="height -( width > 1024 ? 170 : 160)">
+                <main class="msger-chat" #messagesContainer [style.height.px]="height -( width > 1024 ? 170 : 160)">
                     @for (message of messages; track $index) {
-                    <div [ngClass]="[message.sender === 'BOT' ? 'left-msg' : 'right-msg']" class="msg">
-                        <div class="msg-img"
-                            [style.backgroundImage]="message.sender === 'BOT' ? 'url(https://image.flaticon.com/icons/svg/327/327779.svg)' : 'url(https://image.flaticon.com/icons/svg/145/145867.svg)'">
+                    <div [ngClass]="[message.sender === userDetails?.fullName ? 'right-msg' : 'left-msg']" class="msg">
+                        <div class="msg-img">
+                            <img src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png" width="100%" height="100%" alt="">
                         </div>
                         <div class="msg-bubble">
                             <div class="msg-info">
                                 <div class="msg-info-name">{{message.sender}}</div>
-                                <div class="msg-info-time">{{message.time}}</div>
+                                <div class="msg-info-time">{{message.time | date:'shortTime'}}</div>
                             </div>
                             <div class="msg-text">{{message.text}}</div>
                         </div>

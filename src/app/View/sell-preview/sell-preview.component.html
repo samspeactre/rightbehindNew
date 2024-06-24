@@ -773,11 +773,12 @@
             <p>{{ info?.description }}</p>
           </div>
           <div class="dCenter flex-wrap">
-            <a class="btnPrimary cstm-width-full" [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact">
+            <a class="btnPrimary cstm-width-full" (click)="clickAnalytic('phone')" [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact">
               <fa-icon [icon]="faPhoneAlt"></fa-icon>
               {{propertyDetails?.propertyContacts?.[0]?.contact}}
             </a>
             <a class="btnPrimary cstm-width-full mt-3"
+            (click)="clickAnalytic('email')"
               [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email">
               @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
               <fa-icon [icon]="faCheck" class="me-3"></fa-icon>

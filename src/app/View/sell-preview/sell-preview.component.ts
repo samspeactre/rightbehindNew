@@ -110,4 +110,12 @@ export class SellPreviewComponent implements OnInit {
       }
     })
   }
+  clickAnalytic(type:string){
+    const api = type == 'email' ? `PropertyAnalytic/email/${this.id}` : `PropertyAnalytic/phone/${this.id}`
+    this.http.get(api,false).subscribe((response)=>{
+      console.log('====================================');
+      console.log(response);
+      console.log('====================================');
+    })
+  }
 }

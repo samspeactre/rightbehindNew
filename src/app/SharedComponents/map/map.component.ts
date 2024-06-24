@@ -74,7 +74,6 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.map && this.map.googleMap) {
       this.map.googleMap.setCenter(this.center);
       this.map.googleMap.setZoom(this.zoom);
-      this.map.googleMap.setOptions({ draggable: false });
     }
     if (this.search) {
       this.initAutocomplete()

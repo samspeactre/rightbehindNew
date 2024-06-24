@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { MapComponent } from '../map/map.component';
 
 @Component({
   standalone:true,
-  imports: [RouterModule, MatIconModule, MatButtonModule, CarouselModule, FontAwesomeModule],
+  imports: [RouterModule, MatIconModule, MatButtonModule, CarouselModule, FontAwesomeModule, MapComponent],
   selector: 'app-card-carousel',
   templateUrl: './card-carousel.component.html',
   styleUrl: './card-carousel.component.scss'

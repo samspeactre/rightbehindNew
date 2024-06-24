@@ -7,6 +7,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Router, RouterModule } from '@angular/router';
+import { ChatPopupComponent } from '../../../SharedComponents/add-chat-popup/add-chat-popup.component';
 
 @Component({
   standalone: true,
@@ -20,8 +21,14 @@ export class InquiriesComponent {
     search: ['']
   });
   faPlus = faPlus;
-  heading:string;
-  constructor(private fb: FormBuilder, private router:Router) {
+  heading: string;
+  constructor(private fb: FormBuilder, private router: Router, public dialog: MatDialog) {
     this.heading = this.router.url.includes('inquiries') ? 'Inquiries' : 'Community Groups'
-   }
+  }
+  openPopup(): void {
+    let dialogRef = this.dialog.open(ChatPopupComponent, {
+      height: '95%',
+      width: window.innerWidth > 1024 ? '33%' : '100%'
+    });
+  }
 }

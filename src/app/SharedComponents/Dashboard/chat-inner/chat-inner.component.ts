@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-chat-inner',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule, FormsModule],
   templateUrl: './chat-inner.component.html',
   styleUrl: './chat-inner.component.scss'
 })
@@ -26,9 +26,9 @@ export class ChatInnerComponent {
   messageForm = this.fb.group({
     message: ['', Validators.required],
   });
-  contactId:any
-  constructor(private location: Location, private http:HttpService, private fb:FormBuilder, private activatedRoute:ActivatedRoute) { 
-    this.activatedRoute.params.subscribe((response:any)=>{
+  contactId: any
+  constructor(private location: Location, private http: HttpService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe((response: any) => {
       this.contactId = response?.id
     })
   }
@@ -89,15 +89,16 @@ export class ChatInnerComponent {
       this.height = element.offsetHeight;
     }
   }
-  sendMessage(){
+  sendMessage() {
     const data = {
-      chatContactId:this.contactId,
-      message:this.messageForm.controls['message'].value
+      chatContactId: this.contactId,
+      message: this.messageForm.controls['message'].value
     }
-    this.http.loaderPost('Chat/send',data,true).subscribe((response)=>{
+    this.http.loaderPost('Chat/send', data, true).subscribe((response) => {
       console.log('====================================');
       console.log(response);
       console.log('====================================');
+      this.messageForm.reset()
     })
   }
 }

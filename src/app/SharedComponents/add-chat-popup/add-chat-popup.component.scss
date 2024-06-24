@@ -1,0 +1,47 @@
+
+.plus-img{
+    width: 50px;
+    height: 50px;
+    margin: auto;
+}
+
+.plus-img img{
+    width: 100%;
+    object-fit: cover;
+}
+
+:host ::ng-deep .btns .rent-btn{
+    font-size: 0.8vw;
+    letter-spacing: -0.03vw;
+    font-family: 'bold';
+    padding: 1.3vw 2vw;
+    background-color: var(--white);
+    border-radius: 3vw;
+    border: 0.1vw solid rgba(217, 217, 217, 1);
+}
+
+:host ::ng-deep .sell-btn{
+    padding: 1.3vw 2.2vw;
+    font-size: 0.8vw;
+    letter-spacing: -0.03vw;
+    font-family: 'bold';
+    background-color: var(--white);
+    border-radius: 3vw;
+    border: 0.1vw solid rgba(217, 217, 217, 1);
+}
+.map{
+    width: 100%;
+}
+
+.map img{
+    width: 100%;
+    height: 9.3vw;
+    object-fit: cover;
+    border-radius: 0.5vw;
+}
+button{
+    transition: 0.5s all ease-in-out;
+}
+button.Active{
+    background: #b8daff !important;
+}

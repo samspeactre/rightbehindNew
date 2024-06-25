@@ -32,14 +32,14 @@ const initializeApp = (httpClient: HttpClient, store: Store): (() => Observable<
         complete: () => {
           observer.next();
           observer.complete();
-          httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=2').pipe(
-            tap((response: any) => {
-              if (response?.model?.properties) {
-                const properties = response.model.properties;
-                store.dispatch(addSell({ data: properties }));
-              }
-            })
-          ).subscribe();
+          // httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=2').pipe(
+          //   tap((response: any) => {
+          //     if (response?.model?.properties) {
+          //       const properties = response.model.properties;
+          //       store.dispatch(addSell({ data: properties }));
+          //     }
+          //   })
+          // ).subscribe();
         }
       });
     });

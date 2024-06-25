@@ -66,7 +66,6 @@ export class ListingPageComponent implements OnInit {
   screenHeight: number = window.innerHeight;
   latLngArray: any;
   types = types;
-  minPriceArray: any;
   maxPriceArray: any;
   bedsArray: any;
   bathArray: any;
@@ -81,7 +80,6 @@ export class ListingPageComponent implements OnInit {
     'Date: Late to Early'
   ];
   type: any = null;
-  minPrice: any = null;
   maxPrice: any = null;
   beds: any = null;
   baths: any = null;
@@ -148,7 +146,6 @@ export class ListingPageComponent implements OnInit {
     urlParams.set('type', this.router.url.includes('buy') ? '1' : '2');
 
     this.addParamIfExists(urlParams, 'search', this.search);
-    this.addParamIfExists(urlParams, 'minPrice', this.minPrice);
     this.addParamIfExists(urlParams, 'maxPrice', this.maxPrice);
     this.addParamIfExists(urlParams, 'noOfBeds', this.beds);
     this.addParamIfExists(urlParams, 'noOfBaths', this.baths);
@@ -178,13 +175,9 @@ export class ListingPageComponent implements OnInit {
           lng: location.longitude
         }));
 
-        const prices = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
+        this.maxPriceArray = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
         this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
         this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
-
-        const midIndex = Math.ceil(prices.length / 2);
-        this.minPriceArray = prices.slice(0, midIndex);
-        this.maxPriceArray = prices.slice(midIndex);
 
         this.sorting();
       }
@@ -269,7 +262,6 @@ export class ListingPageComponent implements OnInit {
   }
   reset() {
     this.search = null;
-    this.minPrice = null;
     this.maxPrice = null;
     this.beds = null;
     this.baths = null;
@@ -278,7 +270,6 @@ export class ListingPageComponent implements OnInit {
   }
   isResetDisabled(): boolean {
     return (
-      !this.minPrice &&
       !this.maxPrice &&
       !this.beds &&
       !this.baths

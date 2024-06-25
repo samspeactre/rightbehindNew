@@ -1,4 +1,3 @@
-@defer {
 <app-banner>
   <div class="container mt-5">
     <div class="row">
@@ -31,12 +30,12 @@
     <app-rental-carousel heading="Hot rentals in Miami" background="white" [cards]="rent"></app-rental-carousel>
   </div>
 </div>
-<div class="sec-3 mt-5">
+<!-- <div class="sec-3 mt-5">
   <div class="cstmContainer position-relative">
     <app-rental-carousel heading="Sellers in Miami" background="#e6f2ff" [cards]="sell"></app-rental-carousel>
   </div>
-</div>
-@if(scrollPosition > 50){
+</div> -->
+@defer {
 <div class="container-fluid">
   <div class="register-bg p-5 mb-5 position-relative">
     <div class="row align-items-center position-relative">
@@ -74,8 +73,6 @@
     </div>
   </div>
 </div>
-}
-@if(scrollPosition > 100){
 <div class="blueBg position-relative">
   <div class="cstmContainer">
     <div class="row dream-home right">
@@ -93,14 +90,14 @@
     </div>
   </div>
 </div>
-}
-@if(scrollPosition > 200){
 <div class="where py-5">
   <div class="cstmContainer">
     <div class="row">
       <div class="col-lg-6">
-        <app-map [height]="mapHeight" [video]="true" [center]="{lat:25.761681,lng:-80.191788}"
-          [markerPositions]="[{lat:25.761681,lng:-80.191788}]"></app-map>
+        <div class="rounded-4 overflow-hidden">
+          <app-map [height]="mapHeight" [video]="true" [center]="{lat:25.761681,lng:-80.191788}"
+            [markerPositions]="[{lat:25.761681,lng:-80.191788}]"></app-map>
+        </div>
       </div>
       <div class="col-lg-6" #secondCol>
         <div class="brainImg wow fadeInDown">
@@ -135,8 +132,6 @@
     </div>
   </div>
 </div>
-}
-@if(scrollPosition > 300){
 <div class="sec-7 py-5">
   <div class="cstmContainer">
     <div class="row">
@@ -148,5 +143,4 @@
     </div>
   </div>
 </div>
-}
 }

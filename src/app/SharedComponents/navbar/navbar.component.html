@@ -33,9 +33,9 @@
             <li>
               <a routerLink="/" class="text-dark wow fadeInDown">Home</a>
             </li>
-            <li>
+            <!-- <li>
               <a routerLink="/buy" class="text-dark wow fadeInDown">buy</a>
-            </li>
+            </li> -->
             @if(!sellHide){
             <li>
               <a (click)="openSellPopup('sell')" class="text-dark wow fadeInDown">Sell</a>
@@ -108,9 +108,9 @@
       <li>
         <a routerLink="/" (click)="show(false)">Home</a>
       </li>
-      <li>
+      <!-- <li>
         <a routerLink="/buy" (click)="show(false)">buy</a>
-      </li>
+      </li> -->
       @if(!sellHide){
       <li>
         <a (click)="show(false); openSellPopup('sell')">Sell</a>

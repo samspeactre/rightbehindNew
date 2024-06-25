@@ -3,14 +3,14 @@
     <div class="container">
       <div class="sec-1 pb-3">
         <h1 class="bigFont wow fadeInDown text-dark text-center">Find Your Dream Home</h1>
-        <div class="dCenter w-100">
+        <!-- <div class="dCenter w-100">
           <button class="btnWhiteNBlue me-2 wow fadeInDown" routerLinkActive="active" routerLink="/buy">
             Buy
           </button>
           <button class="btnWhiteNBlue ms-2 wow fadeInDown" routerLinkActive="active" routerLink="/rent">
             Rent
           </button>
-        </div>
+        </div> -->
         <div class="my-3 wow fadeInDown">
           <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
             [searching]="loader"></app-search-bar>
@@ -18,109 +18,111 @@
         @if(!loader && !loadMoreLoader){
           <div class="row">
             <div class="col-lg-2 col-4">
-              <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()" [searchable]="false">
-                @if(types){
-                  @for (item of types; track $index) {
-                  <ng-option [value]="item?.value">{{item?.name}}</ng-option>
+              <div class="ngs-select">
+                <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()" [searchable]="false">
+                  @if(types){
+                    @for (item of types; track $index) {
+                    <ng-option [value]="item?.value">{{item?.name}}</ng-option>
+                    }
                   }
-                }
-              </ng-select>
+                </ng-select>
+              </div>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [(ngModel)]="minPrice" placeholder="Min. Price" (change)="onFilterChange()" [searchable]="false">
-                @if(minPriceArray){
-                  @for (item of minPriceArray; track $index) {
+              <div class="ngs-select">
+                <ng-select [(ngModel)]="maxPrice" placeholder="Price" (change)="onFilterChange()" [searchable]="false">
+                  @if(maxPriceArray){
+                  @for (item of maxPriceArray; track $index) {
                   <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
                   }
                 }
-              </ng-select>
+                </ng-select>
+              </div>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [(ngModel)]="maxPrice" placeholder="Max. Price" (change)="onFilterChange()" [searchable]="false">
-                @if(maxPriceArray){
-                @for (item of maxPriceArray; track $index) {
-                <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
+              <div class="ngs-select">
+                <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
+                  @if(bedsArray){
+                  @for (item of bedsArray; track $index) {
+                  <ng-option [value]="item">{{item}} Beds</ng-option>
+                  }
                 }
-              }
-              </ng-select>
+                </ng-select>
+              </div>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
-                @if(bedsArray){
-                @for (item of bedsArray; track $index) {
-                <ng-option [value]="item">{{item}} Beds</ng-option>
+              <div class="ngs-select">
+                <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
+                  @if(bathArray){
+                  @for (item of bathArray; track $index) {
+                  <ng-option [value]="item">{{item}} Bathroom</ng-option>
+                  }
                 }
-              }
-              </ng-select>
+                </ng-select>
+              </div>
             </div>
             <div class="col-lg-2 col-4">
-              <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
-                @if(bathArray){
-                @for (item of bathArray; track $index) {
-                <ng-option [value]="item">{{item}} Bathroom</ng-option>
+              <div class="ngs-select">
+                <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
+                  @if(bathArray){
+                  @for (item of sortsArray; track $index) {
+                  <ng-option [value]="item">{{item}}</ng-option>
+                  }
                 }
-              }
-              </ng-select>
-            </div>
-            <div class="col-lg-2 col-4">
-              <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
-                @if(bathArray){
-                @for (item of sortsArray; track $index) {
-                <ng-option [value]="item">{{item}}</ng-option>
-                }
-              }
-              </ng-select>
+                </ng-select>
+              </div>
             </div>
             <div class="col-lg-2 col-4 ms-auto dCenter">
-              <button class="btnDanger w-100 py-1" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
+              <button class="btnDanger w-100 py-3" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
             </div>
           </div>
         }
       </div>
     </div>
   </app-banner>
-  <div class="cstmContainer">
-    <div class="row">
-      <div class="col-lg-12 wow fadeInDown">
-        @if(loader){
-        <p style="height: 16px;" class="w-75 skeleton my-3"></p>
-        }
-        @else {
-        <p class="my-3">{{cards?.length}} Properties Found</p>
-        }
-      </div>
-      <div class="col-lg-6 wow fadeInDown" #listing>
-        <div class="row">
-          @if(cards?.length){
-          @for (card of cards; track card) {
-          <div class="col-lg-6 mb-3 wow fadeInDown">
-            <app-property-card background="#e6f2ff" [card]="card" [loader]="loader" type="component"></app-property-card>
-          </div>
-          }
-          }
-          @else {
-          <p class="text-danger text-center">No properties found</p>
-          }
-          <div class="col-lg-12">
-            @if(loadMore){
-            <div class="dCenter">
-              @if(loadMoreLoader){
-              <div class="wow fadeInDown mb-3">
-                <app-mini-loading></app-mini-loading>
-              </div>
-              } @else{
-              <button class="loadMore wow fadeInDown mb-3" (click)="loadMoreProperties()">Load More</button>
-              }
+  <div class="position-relative">
+    <div class="cstmContainer">
+      <div class="row">
+        <div class="col-lg-6 wow fadeInDown" #listing>
+          @if(loader){
+            <p style="height: 16px;" class="w-75 skeleton my-3"></p>
+            }
+            @else {
+            <p class="my-3">{{cards?.length}} Properties Found</p>
+            }
+          <div class="row">
+            @if(cards?.length){
+            @for (card of cards; track card) {
+            <div class="col-lg-6 mb-3 wow fadeInDown">
+              <app-property-card background="#e6f2ff" [card]="card" [loader]="loader" type="component"></app-property-card>
             </div>
             }
+            }
+            @else {
+            <p class="text-danger text-center">No properties found</p>
+            }
+            <div class="col-lg-12">
+              @if(loadMore){
+              <div class="dCenter">
+                @if(loadMoreLoader){
+                <div class="wow fadeInDown mb-3">
+                  <app-mini-loading></app-mini-loading>
+                </div>
+                } @else{
+                <button class="btnPrimary py-1 wow fadeInDown mb-3" (click)="loadMoreProperties()">Load More</button>
+                }
+              </div>
+              }
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-6 wow fadeInDown">
-        <div class="mapElement">
-          <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map>
+        <div class="col-lg-6 wow fadeInDown rightP">
+          <div class="mapElement">
+            <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  
 </div>

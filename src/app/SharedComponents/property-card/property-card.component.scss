@@ -49,7 +49,7 @@
     top: 50%;
     transform: translateY(-50%);
     height: 60%;
-    width: 2px;
+    width: 1px;
     background-color: #dddddd;
     left: -20px;
   }
@@ -59,7 +59,7 @@
     top: 50%;
     transform: translateY(-50%);
     height: 60%;
-    width: 2px;
+    width: 1px;
     background-color: #dddddd;
     right: -20px;
   }
@@ -69,12 +69,12 @@
 .btnContainer{
   button{
     font-size: 12px;
-
   }
 .whitBtn{
-  background-color: #dddddd;
-  font-size: 12px;
-  border: 1px solid #dddddd;
+  background-color: transparent;
+  font-size: 20px;
+  color:#0160c9;
+  border: 1px solid transparent;
   outline: none;
 }
 }
@@ -107,15 +107,13 @@
 .property-img {
   width: 100%;
   height: 120px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 10px;
+  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
   }
 
   .NoImageFound {

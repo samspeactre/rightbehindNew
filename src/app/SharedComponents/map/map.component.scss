@@ -20,3 +20,12 @@
     background: #ff3932 !important;
   }
 }
+
+:host ::ng-deep {
+  .gmnoprint.gm-style-mtc-bbw,
+  .gm-control-active.gm-fullscreen-control,
+  .gm-svpc,
+  .gm-style-moc {
+    display: none;
+  }
+}

@@ -13,7 +13,11 @@
 <google-map [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
     @for (position of markerPositions; let i = $index; track position) {
-    <map-marker [position]="position" [options]="markerOptions" (mapDragend)="onMarkerDragEnd($event)"
+    <map-marker [position]="position" [options]="propertyMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
+        #marker="mapMarker" (mapClick)="(infoContents?.length || video) && openInfoWindow(marker, i);moveMap($event)" />
+    }
+    @for (position of communityMarkerPositions; let i = $index; track position) {
+    <map-marker [position]="position" [options]="communityMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
         #marker="mapMarker" (mapClick)="(infoContents?.length || video) && openInfoWindow(marker, i);moveMap($event)" />
     }
     <map-info-window>

@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
-import { GoogleMap, GoogleMapsModule, MapAdvancedMarker, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Loader } from '@googlemaps/js-api-loader';
 import { assetUrl } from '../../Services/helper.service';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
+
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
+
 @Component({
   selector: 'app-map',
   standalone: true,
@@ -16,7 +18,7 @@ export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
-  src = assetUrl
+  src = assetUrl;
   @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
   @Input() zoom: number = 10;
   @Input() height: any;
@@ -25,60 +27,94 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() mapDraggable: boolean = true;
   @Input() search: boolean = false;
   @Input() markerPositions: google.maps.LatLngLiteral[] = [];
+  @Input() communityMarkerPositions: google.maps.LatLngLiteral[] = [];
   @Input() infoWindow: any = [];
   @Input() infoContents: any = [];
   @Input() video: boolean = false;
+  @Input() community: boolean = false;
   @Output() mapMarkerCordinates = new EventEmitter<any>();
   @Output() mapSearchLocation = new EventEmitter<any>();
   display!: google.maps.LatLngLiteral;
   @ViewChild(GoogleMap) map!: GoogleMap;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   mapScriptLoad: boolean = false;
-  markerOptions!: google.maps.MarkerOptions;
+  propertyMarkerOptions!: google.maps.MarkerOptions;
+  communityMarkerOptions!: google.maps.MarkerOptions;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
   index!: any;
   @Input() value: string = '';
   @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
+
   constructor(private http: HttpClient) { }
+
   moveMap(event: any) {
     this.center = (event.latLng.toJSON());
   }
+
   move(event: any) {
     this.display = event.latLng.toJSON();
   }
+
   ngOnInit(): void {
     const loader = new Loader({
       apiKey: key,
       version: 'weekly',
       libraries: ['places']
     });
+
     loader.load().then(() => {
       this.mapScriptLoad = true;
       this.initMap();
     }).catch(err => {
       console.error('Error loading Google Maps script:', err);
     });
+
     if (this.value) {
       this.isFocused = true;
     }
   }
+
   ngOnDestroy(): void {
     if (this.autocompleteListener) {
       google.maps.event.removeListener(this.autocompleteListener);
     }
   }
+
   initMap(): void {
-    this.markerOptions = { draggable: this.draggable, clickable: true, crossOnDrag: true, optimized: true };
+    this.propertyMarkerOptions = {
+      draggable: this.draggable,
+      clickable: true,
+      crossOnDrag: true,
+      optimized: true,
+      icon: {
+        url: '/assets/img/markerP.webp',
+        scaledSize: new google.maps.Size(50, 50)
+      }
+    };
+
+    this.communityMarkerOptions = {
+      draggable: this.draggable,
+      clickable: true,
+      crossOnDrag: true,
+      optimized: true,
+      icon: {
+        url: '/assets/img/markerC.webp',
+        scaledSize: new google.maps.Size(50, 50)
+      }
+    };
+
     if (this.map && this.map.googleMap) {
       this.map.googleMap.setCenter(this.center);
       this.map.googleMap.setZoom(this.zoom);
     }
+
     if (this.search) {
-      this.initAutocomplete()
+      this.initAutocomplete();
     }
   }
+
   initAutocomplete(): void {
     this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.nativeElement);
     this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
@@ -86,20 +122,28 @@ export class MapComponent implements OnInit, OnDestroy {
       if (place.geometry && place.geometry.location) {
         this.center = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
         this.addMarkerPoint({ latLng: place.geometry.location });
-        this.mapSearchLocation.emit({ address: place.formatted_address, ...this.returnLocationDetails(place.address_components) })
+        this.mapSearchLocation.emit({ address: place.formatted_address, ...this.returnLocationDetails(place.address_components) });
         this.mapSearchLocation.emit(place.formatted_address);
       }
     });
   }
+
   addMarkerPoint(event: any): void {
-    this.markerPositions = [event.latLng.toJSON()];
-    this.getSearchName(event.latLng.toJSON())
-    this.mapMarkerCordinates.next(event.latLng.toJSON())
+    if(this.community){
+      this.communityMarkerPositions = [event.latLng.toJSON()];
+    }
+    else{
+      this.markerPositions = [event.latLng.toJSON()];
+    }
+    this.getSearchName(event.latLng.toJSON());
+    this.mapMarkerCordinates.next(event.latLng.toJSON());
   }
+
   onMarkerDragEnd(event: any): void {
     const draggedPosition = event.latLng.toJSON();
-    this.getSearchName(draggedPosition)
+    this.getSearchName(draggedPosition);
   }
+
   write(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.value = input.value;
@@ -107,6 +151,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.togglePlaceholder(true);
     }
   }
+
   togglePlaceholder(state: boolean): void {
     if (state) {
       this.isFocused = state;
@@ -116,13 +161,14 @@ export class MapComponent implements OnInit, OnDestroy {
       }
     }
   }
+
   getSearchName(location: { lat: number, lng: number }): void {
     const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${key}`;
     this.http.get(geocodeUrl).subscribe((response: any) => {
       if (response.status === 'OK' && response.results.length > 0) {
         const placeName = response.results[0].formatted_address;
-        this.mapMarkerCordinates.next(location)
-        this.mapSearchLocation.emit({ address: placeName, ...this.returnLocationDetails(response.results[0].address_components) })
+        this.mapMarkerCordinates.next(location);
+        this.mapSearchLocation.emit({ address: placeName, ...this.returnLocationDetails(response.results[0].address_components) });
         this.value = placeName;
         this.isFocused = true;
       } else {
@@ -132,6 +178,7 @@ export class MapComponent implements OnInit, OnDestroy {
       console.error('Geocoding API error:', error);
     });
   }
+
   returnLocationDetails(addressComponents: any): any {
     let city = '';
     let country = '';
@@ -158,6 +205,7 @@ export class MapComponent implements OnInit, OnDestroy {
     }
     return { city, country, street, zipCode, state };
   }
+
   openInfoWindow(marker: MapMarker, i: number) {
     this.infosWindow.open(marker);
     this.index = i;

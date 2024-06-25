@@ -123,7 +123,6 @@ export class ListingPageComponent implements OnInit {
     if (!loadMore) {
       this.loader = true;
     }
-
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
 

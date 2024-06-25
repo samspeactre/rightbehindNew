@@ -88,11 +88,13 @@
     right: 0;
     height: 100%;
 }
-
+.bigFont {
+    margin-top: 3rem;
+}
 @media only screen and (max-width:1024px) {
     .bigFont {
         margin-top: 4rem;
-        margin-bottom: 2rem;
+        // margin-bottom: 2rem;
     }
 
     .rightP {

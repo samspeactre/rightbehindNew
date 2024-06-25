@@ -27,21 +27,21 @@ import { AuthService } from '../../TsExtras/auth.service';
 export class NavbarComponent {
   user$ = this.store.select(selectUser);
   user: any;
-  sidebar:boolean = false;
+  sidebar: boolean = false;
   private destroy$ = new Subject<void>();
-  faUser=faUser
-  faTimes=faTimes
-  faBars=faBars
-  faHeadphones=faHeadphones
-  faFacebook=faFacebook
-  faLinkedin=faLinkedin
-  faInstagram=faInstagram
-  faTwitter=faTwitter
-  faCircleChevronDown=faCircleChevronDown
-  faAt=faAt
-  screenWidth:number = window.innerWidth
-  sellHide:boolean = false
-  constructor(private store: Store, public dialog: MatDialog, private auth:AuthService, private router:Router, private actiavtedRoute:ActivatedRoute) {
+  faUser = faUser
+  faTimes = faTimes
+  faBars = faBars
+  faHeadphones = faHeadphones
+  faFacebook = faFacebook
+  faLinkedin = faLinkedin
+  faInstagram = faInstagram
+  faTwitter = faTwitter
+  faCircleChevronDown = faCircleChevronDown
+  faAt = faAt
+  screenWidth: number = window.innerWidth
+  sellHide: boolean = false
+  constructor(private store: Store, public dialog: MatDialog, private auth: AuthService, private router: Router, private actiavtedRoute: ActivatedRoute) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -52,10 +52,10 @@ export class NavbarComponent {
       .subscribe((user) => {
         this.user = user;
       });
-      if(this.router.url.includes('-add-property')){
-        this.sellHide = true;
-      }
-      this.router.events
+    if (this.router.url.includes('-add-property')) {
+      this.sellHide = true;
+    }
+    this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         distinctUntilChanged(
@@ -84,6 +84,15 @@ export class NavbarComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
+  navigateToOffMarket(id:any): void {
+    const element:any = document.querySelector(id)
+    const topPos = element.getBoundingClientRect().top + window.pageYOffset
+
+    window.scrollTo({
+      top: topPos, // scroll so that the element is at the top of the view
+      behavior: 'smooth' // smooth scroll
+    })
+  }
   socialLinks = [
     { url: 'https://www.facebook.com/', imageUrl: '../../assets/img/fb.png' },
     {
@@ -101,23 +110,23 @@ export class NavbarComponent {
     let dialogRef = this.dialog.open(LoginPopupComponent, {
       height: '85%',
       width: window.innerWidth > 1024 ? '27%' : '100%',
-      
+
     });
   }
 
-  openSellPopup(type:string): void {
+  openSellPopup(type: string): void {
     let dialogRef = this.dialog.open(RentPopupComponent, {
       height: '95%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
-      data:type,
+      data: type,
     });
   }
-  logout(){
+  logout() {
     this.store.dispatch(removeUserData());
     this.router.navigateByUrl('/')
     this.auth.logout()
   }
-  show(condition:boolean){
+  show(condition: boolean) {
     this.sidebar = condition;
     if (condition) {
       document?.body?.classList?.add('sideBarOpenBody');

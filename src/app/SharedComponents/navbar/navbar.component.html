@@ -45,7 +45,10 @@
               <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
             </li>
             <li>
-              <a routerLink="" class="text-dark wow fadeInDown">property trend</a>
+              <a (click)="navigateToOffMarket('#blogSection')" class="text-dark wow fadeInDown">Property Trend</a>
+            </li>
+            <li>
+              <a (click)="navigateToOffMarket('#offMarket')" class="text-dark wow fadeInDown">Off Market</a>
             </li>
             <li>
               <a routerLink="/contact-us" class="text-dark wow fadeInDown">Contact Us</a>
@@ -120,7 +123,10 @@
         <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
       <li>
-        <a routerLink="" (click)="show(false)">property trend</a>
+        <a (click)="navigateToOffMarket('#blogSection')" (click)="show(false)">Property Trend</a>
+      </li>
+      <li>
+        <a (click)="navigateToOffMarket('#offMarket')">Off Market</a>
       </li>
       <li>
         <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>

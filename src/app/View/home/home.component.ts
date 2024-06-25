@@ -55,6 +55,13 @@ export class HomeComponent {
   mapHeight:number = 0;
   windowInnerWidth:number = window.innerWidth;
   private destroy$ = new Subject<void>();
+  array = [
+    { "lat": 25.853681, "lng": -80.191788 }, // ~10 km north
+  { "lat": 25.669681, "lng": -80.191788 }, // ~10 km south
+  { "lat": 25.761681, "lng": -80.091788 }, // ~10 km east
+  { "lat": 25.761681, "lng": -80.291788 }, // ~10 km west
+  { "lat": 25.829681, "lng": -80.115788 }  // ~10 km northeast
+  ]
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   @HostListener('window:scroll', ['$event'])

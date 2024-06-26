@@ -1,6 +1,0 @@
-import { Routes } from '@angular/router';
-import { AnalyticsComponent } from './analytics.component';
-export const Analytics_Routes: Routes = [{
-    path: '', component: AnalyticsComponent
-}
-];

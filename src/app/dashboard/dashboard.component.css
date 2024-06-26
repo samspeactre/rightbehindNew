@@ -1,0 +1,146 @@
+p{
+    font-size: 0.82vw;
+    font-family: 'reg';
+    color: var(--white);
+    letter-spacing: 0.09vw;
+    line-height: 1vw;
+}
+
+.main-sec {
+    background-color: var(--auth-pages);
+    padding: 1vw;
+}
+
+.content-portion {
+    background-color: var(--white);
+    border-radius: 2vw;
+    width: 81.3%;
+    padding: 2vw 2.5vw 2.4vw;
+}
+
+.sidebar.collapsed .sidebar-top {
+    width: 3.4vw;
+}
+
+.sidebar {
+    width: 18.7%;
+    padding: 1.95vw 1vw 2.95vw 2.58vw;
+}
+
+.sidebar.collapsed {
+    width: 6%;
+    padding: 2.95vw 1vw;
+}
+
+.content-portion.expanded {
+    width: 94%;
+}
+
+.sidebar.collapsed a img {
+    display: none;
+}
+
+.sidebar a img {
+    width: 10.7vw;
+    object-fit: cover;
+}
+
+.sidebar-btn button {
+    background-color: var(--sidebar-toggle);
+    border-radius: 0.2vw;
+    width: 2.7vw;
+    height: 2.35vw;
+    padding: 0.5vw 1.15vw;
+}
+
+.sidebar-btn button img {
+    object-fit: cover;
+    width: 1.7vw;
+}
+
+.sidebar.collapsed button {
+    text-align: center;
+}
+
+.sidebar-links {
+    margin-top: 2.3vw;
+}
+
+.sidebar-links button {
+    padding: 1.69vw 0vw;
+    width: 100%;
+    background-color: transparent;
+    transition: all 0.3s;
+    box-shadow: none;
+    margin-bottom: 1.2vw;
+}
+
+.sidebar-links button:hover {
+    background-color: var(--royal-blue);
+    border-radius: 3vw;
+    padding: 1.69vw 0vw;
+}
+
+.sidebar-links button .sidelink-icon {
+    margin-left: -4.5vw;
+    color: var(--white);
+    font-size: 1.3vw;
+}
+
+.sidebar-links button .sidelink-half{
+    margin-left: -5.5vw;
+    color: var(--white);
+    font-size: 1.3vw;
+}
+
+.sidebar-links button .sidelink-full{
+    margin-left: -2.5vw;
+    color: var(--white);
+    font-size: 1.3vw;
+}
+
+.sidebar-links button span{
+    font-size: 1.02vw;
+    font-family: 'reg';
+    color: var(--white);
+}
+
+.text-hidden span {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-links button{
+    border-radius: 0.5vw;
+}
+
+.sidebar.collapsed .sidebar-links button .mat-icon{
+    font-size: 1.7vw;
+    width: 2vw;
+    height: 1.8vw;
+}
+
+.sidebar.collapsed .sidebar-links button .sidelink-icon{
+    margin-left: 0.6vw;
+}
+
+.sidebar.collapsed .sidebar-links button .sidelink-half{
+    margin-left: 0.85vw;
+}
+
+.sidebar.collapsed .sidebar-links button .sidelink-full{
+    margin-left: 0.85vw;
+}
+
+.dashboard-link-section{
+    margin-top: 3vw;
+}
+
+.sidebar-footer {
+  width: 14%;
+  padding-left: 2.6vw;
+  margin-top: -2vw;
+}
+
+.hidden {
+    display: none;
+}

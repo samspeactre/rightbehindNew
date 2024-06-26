@@ -23,6 +23,7 @@ export class InquiriesComponent {
   });
   faPlus = faPlus;
   heading: string;
+  inquiries:any;
   constructor(private fb: FormBuilder, private router: Router, public dialog: MatDialog, private http:HttpService) {
     this.heading = this.router.url.includes('inquiries') ? 'Inquiries' : 'Community Groups'
     if(this.heading == 'Inquiries'){
@@ -38,6 +39,7 @@ export class InquiriesComponent {
   getInquiries(){
     this.http.loaderGet('ChatContact/get',true).subscribe((response)=>{
       console.log(response);
+      this.inquiries = response?.modelList
     })
   }
 }

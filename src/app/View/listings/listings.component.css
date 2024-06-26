@@ -1,0 +1,61 @@
+.listing{
+    height: 480px;
+}
+.content {
+    margin-top: 7.5vw;
+    padding-bottom: 7.5vw;
+}
+
+.btns {
+    width: 100%;
+    margin: 0.6vw auto 0;
+    place-content: center;
+}
+
+.btns a,
+.slash {
+    font-size: 1.12vw;
+    color: var(--head-black);
+    font-family: 'reg';
+}
+
+.slash {
+    padding: 0 0.3vw;
+}
+
+.sec-2 {
+    margin-top: 3vw;
+    width: 100%;
+}
+
+.content {
+    margin-top: 7.8vw;
+    padding-bottom: 11.5vw;
+}
+
+
+.sec-2 {
+    margin-top: 2.5vw;
+}
+
+
+.options {
+    width: 22.8%;
+}
+
+.listing-filter {
+    align-content: center;
+}
+
+.listing-filter button {
+    font-size: 1vw;
+    font-family: 'reg';
+    color: var(--filter-text);
+    border: 0.15vw solid var(--sec-light);
+    padding: 1.5vw 2vw;
+    border-radius: 3vw;
+}
+
+.listing-filter button .mat-icon {
+    color: var(--royal-blue);
+}

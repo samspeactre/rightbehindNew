@@ -1,0 +1,161 @@
+@if(screenWidth > 786){
+<section class="cstmContainer">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="dCenter justify-content-between">
+        <a class="dCenter gap-2">
+          <fa-icon [icon]="faHeadphones"></fa-icon>
+          <p class="smallFont mb-0 bold wow fadeInDown">
+            Need Help? Call us 123 456 7890
+          </p>
+        </a>
+        <a class="dCenter gap-2">
+          <fa-icon [icon]="faAt"></fa-icon>
+          <p class="smallFont mb-0 bold wow fadeInDown">
+            Contact for more info: info&#64;rightnehindme.com
+          </p>
+        </a>
+        <div class="social-links dCenter gap-3">
+          <a> <fa-icon class="wow fadeInDown" [icon]="faFacebook"></fa-icon></a>
+          <a> <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon></a>
+          <a> <fa-icon class="wow fadeInDown" [icon]="faTwitter"></fa-icon></a>
+          <a> <fa-icon class="wow fadeInDown" [icon]="faLinkedin"></fa-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 mt-3">
+      <div class="dCenter justify-content-between">
+        <div class="nav-logo wow fadeInDown">
+          <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo in sidebar" width="100%" height="100%" class="logo-img" /></a>
+        </div>
+        <div class="cstm-nav-item">
+          <ul class="mb-0 ps-0">
+            <li>
+              <a routerLink="/" class="text-dark wow fadeInDown">Home</a>
+            </li>
+            <!-- <li>
+              <a routerLink="/buy" class="text-dark wow fadeInDown">buy</a>
+            </li> -->
+            @if(!sellHide){
+            <li>
+              <a (click)="openSellPopup('sell')" class="text-dark wow fadeInDown">Sell</a>
+            </li>
+            }
+            <li>
+              <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
+            </li>
+            <li>
+              <a (click)="navigateToOffMarket('#blogSection')" class="text-dark wow fadeInDown">Property Trend</a>
+            </li>
+            <li>
+              <a (click)="navigateToOffMarket('#offMarket')" class="text-dark wow fadeInDown">Off Market</a>
+            </li>
+            <li>
+              <a routerLink="/contact-us" class="text-dark wow fadeInDown">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        <div class="dCenter gap-3">
+          @if(user){
+          <div class="dropdown cstm-drop-btn" ngbDropdown>
+            <button class="btn-style-none me-0 dCenter gap-2" ngbDropdownToggle type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <p class="mb-0 text-end text-capitalize text-decoration-underline">{{user?.fullName}}</p>
+              <fa-icon [icon]="faCircleChevronDown"></fa-icon>
+            </button>
+            <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <a class="dropdown-item" ngbDropdownItem routerLink="/dashboard">Dashboard</a>
+              </li>
+              <li>
+                <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
+              </li>
+            </ul>
+          </div>
+          } @else{
+          <button class="wow fadeInDown dCenter gap-2 justify-content-between btnSecondary" (click)="openPopup()">
+            <fa-icon [icon]="faUser"></fa-icon> Login
+          </button>
+          }
+          @if(!sellHide){
+          <button class="wow fadeInDown btnSecondary dCenter" (click)="openSellPopup('rent')">
+            Submit A Deal
+          </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+} @else{
+<div class="dCenter position-relative">
+  <div class="position-absolute opener">
+    <fa-icon [icon]="faBars" (click)="show(true)"></fa-icon>
+  </div>
+  <div class="side-nav-logo mt-1">
+    <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo image" width="100%" height="100%" /></a>
+  </div>
+</div>
+<div class="sidebar" [ngClass]="{ open: sidebar }">
+  <div class="sidebar-padding d-flex justify-content-between align-items-center">
+    <div class="side-nav-logo">
+      <a routerLink="/" (click)="show(false)"><img src="../../assets/img/nav-logo.webp" alt="sidebar inside logo" width="100%" height="100%" /></a>
+    </div>
+    <div class="dCenter">
+      <fa-icon [icon]="faTimes" class="" (click)="show(false)"></fa-icon>
+    </div>
+  </div>
+
+  <div class="cstm-nav-item ">
+    <ul class="mb-0 ps-0">
+      <li>
+        <a routerLink="/" (click)="show(false)">Home</a>
+      </li>
+      <!-- <li>
+        <a routerLink="/buy" (click)="show(false)">buy</a>
+      </li> -->
+      @if(!sellHide){
+      <li>
+        <a (click)="show(false); openSellPopup('sell')">Sell</a>
+      </li>
+      }
+      <li>
+        <a routerLink="/rent" (click)="show(false)">Rent</a>
+      </li>
+      <li>
+        <a (click)="navigateToOffMarket('#blogSection')" (click)="show(false)">Property Trend</a>
+      </li>
+      <li>
+        <a (click)="navigateToOffMarket('#offMarket')">Off Market</a>
+      </li>
+      <li>
+        <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>
+      </li>
+      @if(user){
+      <li>
+        <a (click)="show(false)" routerLink="/dashboard">Dashboard</a>
+      </li>
+      }
+    </ul>
+    <div class="dCenter mt-2 flex-column">
+      @if(user){
+      <button class="btnSecondary" (click)="show(false); logout()">
+        <img class="proifle" width="100%" height="100%" [src]="user?.imageUrl ||
+          'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
+        " alt="profiel picture"> Logout
+      </button>
+      }
+      @else {
+      <button class="btnSecondary" (click)="show(false); openPopup()">
+        <fa-icon [icon]="faUser"></fa-icon> Login
+      </button>
+      }
+      @if(!sellHide){
+      <button class="btnSecondary mt-4" (click)="show(false);openSellPopup('rent')">
+        Submit A Deal
+      </button>
+      }
+    </div>
+  </div>
+</div>
+}

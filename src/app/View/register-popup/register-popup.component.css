@@ -1,0 +1,76 @@
+section{
+    height: 100%;
+    border: 1vw solid var( --add-prop-bg);
+    border-radius: 1.5vw;
+}
+
+h4 {
+    font-family: 'bold';
+}
+
+.logo {
+    width: 150px;
+    margin: auto;
+    margin-top: 1.5vw;
+}
+
+.logo img {
+    width: 100%;
+}
+
+:host ::ng-deep .mat-mdc-form-field {
+    width: 100%;
+}
+
+:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+    font-family: 'reg';
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align::before {
+    display: none;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border: 0.01vw solid var(--royal-blue);
+}
+
+
+:host ::ng-deep .mdc-form-field>label {
+    font-family: 'reg';
+    color: var(--black);
+}
+
+:host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+    width: 1vw;
+    height: 1vw;
+    background-color: var(--checkbox);
+    border: 0;
+}
+
+.check-pass a{
+    font-family: 'reg';
+    color: var(--black);
+}
+
+
+.register-link{
+    text-align: center;
+    font-family: 'bold';
+    color: var(--black);
+}
+
+.register-link a{
+    font-family: 'bold';
+    color: var(--royal-blue);
+    cursor: pointer;
+}
+p{
+    font-size: 14px;
+    font-family: "reg";
+}
+@media only screen and (max-width:1024px){
+    p{
+        font-size: 12px;
+    }
+}

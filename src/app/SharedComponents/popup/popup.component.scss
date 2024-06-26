@@ -1,0 +1,207 @@
+h1 {
+  font-family: 'bold';
+  color: var(--black);
+}
+
+h2 {
+  font-family: 'bold';
+  color: var(--royal-blue);
+}
+
+h3 {
+  font-family: 'med';
+  color: var(--black);
+}
+
+p {
+  font-family: "reg";
+  color: var(--carousel-add);
+}
+
+:host ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+  width: 100% !important;
+}
+
+.carousel-img {
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.carousel-img-half,
+.carousel-img-full  {
+  width: 49%;
+  height: 150px;
+  margin: 5px 0;
+  object-fit: cover;
+  box-shadow: 0 0 10px 0 #acacac;
+  border-radius: 10px;
+}
+
+.carousel-img-full {
+  width: 100%;
+  height: 300px;
+}
+
+.first-box {
+  background-color: var(--add-prop-bg);
+}
+
+
+.first-box h1 {}
+
+.address {
+  color: var(--carousel-add);
+}
+
+
+.prop-detail-img img {
+  width: 40px;
+  height: 40px;
+}
+
+.prop-detail-text {
+  align-content: center;
+  font-family: 'med';
+  color: var(--carousel-add);
+}
+
+.prop-detail-img hr {
+  align-self: center;
+  color: var(--hr);
+}
+
+.pricing {
+  align-items: center;
+}
+
+.pricing-btns {
+  width: 66%;
+}
+
+
+.slider {
+  width: 100%;
+}
+
+.heading {
+  color: var(--black);
+  text-transform: capitalize;
+}
+
+.heading:hover {
+  background-color: #f0f0f0ae;
+  color: var(--royal-blue);
+  font-family: 'bold';
+}
+
+.Prop-info {
+  background-color: var(--add-prop-bg);
+}
+
+.white-box {
+  background-color: var(--white);
+  width: 49.25%;
+}
+
+.transparent-box {
+  background-color: transparent;
+  width: 49.25%;
+}
+
+
+.prop-deatil {
+  background-color: var(--add-prop-bg);
+}
+
+.ameneties {
+  background-color: var(--add-prop-bg);
+}
+.facility-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
+ 
+}
+
+.facility {
+  color: var(--black);
+}
+
+.gallery {
+  background-color: var(--add-prop-bg);
+}
+
+.gallery-img {}
+
+.gallery-img img {
+  width: 100%;
+}
+
+.video {
+  background-color: var(--add-prop-bg);
+  width: 94%;
+}
+
+.video-player img {
+  width: 100%;
+}
+
+.video-player video {
+  width: 100%;
+}
+
+.video-player {
+  position: relative;
+}
+
+.thumbnail {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.start-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.video-player button .mat-icon {
+  color: var(--white);
+}
+
+.map {
+  background-color: var(--add-prop-bg);
+  width: 94%;
+}
+
+.map-img {
+  width: 100%;
+}
+
+.map-img img {
+  width: 100%;
+  object-fit: cover;
+}
+
+:host ::ng-deep .mat-mdc-dialog-content {
+  padding: 0 !important;
+  max-height: 100% !important;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width:1024px) {
+  .prop-detail-img img {
+    width: 25px;
+    height: 25px;
+  }
+}

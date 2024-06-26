@@ -20,7 +20,8 @@ import { MapComponent } from '../map/map.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { types } from '../../Services/helper.service';
+import { HelperService, types } from '../../Services/helper.service';
+import { MapDrawComponent } from '../mapDraw/mapDraw.component';
 
 @Component({
   standalone: true,
@@ -44,7 +45,8 @@ import { types } from '../../Services/helper.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    MapDrawComponent
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -55,6 +57,7 @@ export class ListingPageComponent implements OnInit {
   zoom = 15;
   pageType!: string;
   private destroy$ = new Subject<void>();
+  showMap: boolean = false;
   search: any = '';
   pageNo: number = 1;
   pageSize: number = 10;
@@ -94,8 +97,14 @@ export class ListingPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private helper: HelperService
   ) {
+    // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
+    // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
+    setTimeout(() => {
+      this.showMap = true 
+    });
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
@@ -116,6 +125,8 @@ export class ListingPageComponent implements OnInit {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    // this.helper.removeScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
+    // this.helper.removeScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js')
   }
   getProperties(loadMore: boolean) {
     if (!loadMore) {
@@ -196,9 +207,9 @@ export class ListingPageComponent implements OnInit {
   private handleError(loadMore: boolean): void {
     this.loadMore = false;
     if (!loadMore) {
-        this.noDataError();
+      this.noDataError();
     }
-}
+  }
   noDataError() {
     this.cards = [];
     this.noData = true;

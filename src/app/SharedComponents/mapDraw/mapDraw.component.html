@@ -1,0 +1,11 @@
+<div id="drawpoly">
+  <button class="drawButton customBtn" id="editButton">
+    @if(!mapLoader){
+    <fa-icon [icon]="faEdit"></fa-icon>
+    }
+  </button>
+</div>
+<button class="drawButton customBtn trash" id="clearButton">
+  <fa-icon [icon]="faTrash"></fa-icon>
+</button>
+<div id="map_canvas"></div>

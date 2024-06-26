@@ -121,7 +121,10 @@
         </div>
         <div class="col-lg-6 wow fadeInDown rightP">
           <div class="mapElement">
-            <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map>
+            <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
+            @if(latLngArray?.length){
+              <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards"></app-map-draw>
+            }
           </div>
         </div>
       </div>

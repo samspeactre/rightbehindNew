@@ -41,6 +41,7 @@ export class MapDrawComponent {
     zoom: 10,
     center: { lat: 25.761681, lng: -80.191788 },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true,
   };
   shapeCoordinates: any[] = [];
   shapePromise: any;
@@ -141,7 +142,7 @@ export class MapDrawComponent {
     this.appRef.attachView(componentRef.hostView);
 
     const div = document.createElement('div');
-    div.appendChild(componentRef.location.nativeElement);
+    div.appendChild(componentRef.location?.nativeElement);
     return div;
   }
 

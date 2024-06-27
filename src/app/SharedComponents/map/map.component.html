@@ -9,7 +9,6 @@
     </div>
 </div>
 }
-@if(mapScriptLoad){
 <google-map [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
     @for (position of markerPositions; let i = $index; track position) {
@@ -37,4 +36,3 @@
         }
     </map-info-window>
 </google-map>
-}

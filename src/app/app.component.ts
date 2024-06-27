@@ -65,6 +65,9 @@ export class AppComponent {
       this.cd.detectChanges();
     });
   }
+  ngOnInit(){
+    // this.helper.appendScript('')
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

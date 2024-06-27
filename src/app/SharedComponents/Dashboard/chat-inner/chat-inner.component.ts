@@ -88,7 +88,7 @@ export class ChatInnerComponent {
     })
   }
   getInquiry() {
-    this.http.loaderGet(`Chat/get/${this.contactId}`, true).subscribe((response) => {
+    this.http.loaderGet(`Chat/get/${this.contactId}`, true, true).subscribe((response) => {
       this.reciever = response?.modelList?.[0]?.chatContact?.buyer?.fullName
       response?.modelList?.map((item: any) => {
         this.messages.push({
@@ -105,8 +105,8 @@ export class ChatInnerComponent {
   }
   private scrollToBottom(): void {
     try {
-      this.messagesContainer.nativeElement.scrollTo({
-        top: this.messagesContainer.nativeElement.scrollHeight,
+      this.messagesContainer?.nativeElement.scrollTo({
+        top: this.messagesContainer?.nativeElement.scrollHeight,
         behavior: 'smooth'
       });
     } catch (err) { }

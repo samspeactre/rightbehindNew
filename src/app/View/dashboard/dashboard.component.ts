@@ -29,7 +29,7 @@ export class DashboardComponent {
   }
   setMapHeight() {
     if (this.sidebar) {
-      this.rightHieght = this.width > 1024 ? this.sidebar.nativeElement.offsetHeight : (window.innerHeight - 50)
+      this.rightHieght = this.width > 1024 ? this.sidebar?.nativeElement.offsetHeight : (window.innerHeight - 50)
     }
   }
 }

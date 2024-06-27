@@ -110,7 +110,7 @@ export class HomeComponent {
   }
   setMapHeight() {
     if (this.secondCol) {
-      this.mapHeight = this.secondCol.nativeElement.offsetHeight;
+      this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
     }
   }
 }

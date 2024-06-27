@@ -22,20 +22,20 @@
         </div>
         }
         @for (item of inquiries; track $index) {
-            <div class="col-lg-12 my-3">
-                <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor"
-                    routerLink="chat/1">
-                    <div class="imgBox">
-                        <img src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user profile" width="100%"
-                            height="100%">
-                    </div>
-                    <div class="content">
-                        <h6 class="bold mb-1">User name</h6>
-                        <p class="reg mb-0">PP</p>
-                    </div>
-                    <p class="mb-0 smallFont ms-auto">12:00 PM</p>
+        <div class="col-lg-12 my-3">
+            <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor"
+                [routerLink]="['chat/'+item?.id]">
+                <div class="imgBox">
+                    <img [src]=" item?.property?.propertyImages?.[0]?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                        alt="user profile" width="100%" height="100%">
                 </div>
+                <div class="content">
+                    <h6 class="bold mb-1">{{item?.property?.title}}</h6>
+                    <p class="reg mb-0">PP</p>
+                </div>
+                <p class="mb-0 smallFont ms-auto">12:00 PM</p>
             </div>
+        </div>
         }
     </div>
 </div>

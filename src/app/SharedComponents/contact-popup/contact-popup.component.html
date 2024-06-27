@@ -1,0 +1,34 @@
+<div class="container p-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-center text-dark bold my-3">Inquiry</h4>
+        </div>
+    </div>
+    <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
+                label="First Name" placeholder="Enter your First Name*"></app-input>
+        </div>
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
+                label="Last Name" placeholder="Enter your Last Name*"></app-input>
+        </div>
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" [readOnly]="user" type="email" [form]="propertyForm" control="email"
+                label="Email" placeholder="Enter Your Email Address"></app-input>
+        </div>
+        @if(active?.type == 'property'){
+        <div class="col-lg-6">
+            <app-input classes="w-100 mb-1" type="password" [password]="true" [form]="propertyForm" control="password"
+                label="Password" placeholder="Enter your Password*"></app-input>
+        </div>
+        }
+        <div class="col-lg-12">
+            <app-input classes="w-100 mb-1" [readOnly]="user" inputType="textArea" type="text" [form]="propertyForm"
+                control="message" label="Message" rows="2" placeholder="Enter your Message*"></app-input>
+        </div>
+        <div class="dCenter mt-3">
+            <button class="btnPrimary" [disabled]="propertyForm.invalid">Submit</button>
+        </div>
+    </form>
+</div>

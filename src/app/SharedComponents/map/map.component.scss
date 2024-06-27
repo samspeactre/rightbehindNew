@@ -9,23 +9,25 @@
 }
 
 :host ::ng-deep {
-  .gm-style-iw-ch {
-    display: none;
-  }
-
-  .gm-ui-hover-effect {
-    position: absolute !important;
-    right: 0;
-    outline: none;
-    background: #ff3932 !important;
-  }
-}
-
-:host ::ng-deep {
   .gmnoprint.gm-style-mtc-bbw,
   .gm-control-active.gm-fullscreen-control,
   .gm-svpc,
-  .gm-style-moc {
+  .gm-style-moc,
+  .gmnoprint,
+  img[alt='Google'] {
     display: none;
+  }
+  .gm-style-iw-ch {
+    display: none;
+  }
+  .gm-style-iw.gm-style-iw-c{
+    padding-top: 12px !important;
+  }
+  .gm-ui-hover-effect {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    outline: none;
+    background: #ff3932 !important;
   }
 }

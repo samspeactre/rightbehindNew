@@ -216,7 +216,7 @@ export class ListingPageComponent implements OnInit {
   }
   scrollToListing(): void {
     if (this.listing) {
-      this.listing.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.listing?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   loadMoreProperties() {

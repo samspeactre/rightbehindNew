@@ -37,7 +37,6 @@ export class MapComponent implements OnInit, OnDestroy {
   display!: google.maps.LatLngLiteral;
   @ViewChild(GoogleMap) map!: GoogleMap;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
-  mapScriptLoad: boolean = false;
   propertyMarkerOptions!: google.maps.MarkerOptions;
   communityMarkerOptions!: google.maps.MarkerOptions;
   autocomplete!: google.maps.places.Autocomplete;
@@ -58,19 +57,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const loader = new Loader({
-      apiKey: key,
-      version: 'weekly',
-      libraries: ['places']
-    });
-
-    loader.load().then(() => {
-      this.mapScriptLoad = true;
-      this.initMap();
-    }).catch(err => {
-      console.error('Error loading Google Maps script:', err);
-    });
-
+    this.initMap();
     if (this.value) {
       this.isFocused = true;
     }
@@ -108,6 +95,7 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.map && this.map.googleMap) {
       this.map.googleMap.setCenter(this.center);
       this.map.googleMap.setZoom(this.zoom);
+      this.map.googleMap.setOptions({disableDefaultUI: true})
     }
 
     if (this.search) {
@@ -116,7 +104,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   initAutocomplete(): void {
-    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.nativeElement);
+    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput?.nativeElement);
     this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
       const place = this.autocomplete.getPlace();
       if (place.geometry && place.geometry.location) {
@@ -129,10 +117,10 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   addMarkerPoint(event: any): void {
-    if(this.community){
+    if (this.community) {
       this.communityMarkerPositions = [event.latLng.toJSON()];
     }
-    else{
+    else {
       this.markerPositions = [event.latLng.toJSON()];
     }
     this.getSearchName(event.latLng.toJSON());

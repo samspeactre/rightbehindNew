@@ -107,16 +107,14 @@ export class NavbarComponent {
   ];
 
   openPopup(): void {
-    let dialogRef = this.dialog.open(LoginPopupComponent, {
-      height: '85%',
+    this.dialog.open(LoginPopupComponent, {
       width: window.innerWidth > 1024 ? '27%' : '100%',
 
     });
   }
 
   openSellPopup(type: string): void {
-    let dialogRef = this.dialog.open(RentPopupComponent, {
-      height: '95%',
+    this.dialog.open(RentPopupComponent, {
       width: window.innerWidth > 1024 ? '33%' : '100%',
       data: type,
     });

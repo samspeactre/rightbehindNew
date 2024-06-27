@@ -31,8 +31,7 @@ export class InquiriesComponent {
     }
   }
   openPopup(): void {
-    let dialogRef = this.dialog.open(ChatPopupComponent, {
-      height: '95%',
+    this.dialog.open(ChatPopupComponent, {
       width: window.innerWidth > 1024 ? '33%' : '100%'
     });
   }

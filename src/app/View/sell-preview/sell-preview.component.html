@@ -797,7 +797,7 @@
             <hr />
           </div>
           <div class="dCenter flex-wrap mt-3">
-            <a class="btnPrimary cstm-width-full" (click)="createContact()">
+            <a class="btnPrimary cstm-width-full" (click)="userDetails ? createContact() : openPopup()">
               Contact An Agent
             </a>
             <a class="btnPrimary cstm-width-full mt-3">

@@ -49,7 +49,6 @@ export class PropertyCardComponent {
   ngOnInit(){}
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '95%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
       data: {type:'property',id: this.card?.id}
     });

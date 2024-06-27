@@ -17,6 +17,8 @@ import { CountUpModule } from 'ngx-countup';
 import { Store } from '@ngrx/store';
 import { selectRental, selectSell } from '../../Ngrx/data.reducer';
 import { MapComponent } from '../../SharedComponents/map/map.component';
+import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   standalone: true,
   imports: [
@@ -71,7 +73,7 @@ export class HomeComponent {
       this.setMapHeight()
     }
   }
-  constructor(private router: Router, private http: HttpService, private store: Store) {
+  constructor(private router: Router, private dialog: MatDialog, private http: HttpService, private store: Store) {
     this.rent$
       .pipe(
         takeUntil(this.destroy$),
@@ -112,5 +114,11 @@ export class HomeComponent {
     if (this.secondCol) {
       this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
     }
+  }
+  openPopup(): void {
+    this.dialog?.open(ContactPopupComponent, {
+      width: window.innerWidth > 1024 ? '33%' : '100%',
+      data: {type:'contact'}
+    });
   }
 }

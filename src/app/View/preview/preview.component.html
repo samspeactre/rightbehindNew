@@ -1,0 +1,410 @@
+<section>
+  <div class="lg-12">
+    <div class="display cstmContainer">
+      <div class="pages-links display">
+
+        <a routerLink="/">Home</a>
+        <div class="slash">/</div>
+        <a routerLink="/rent">Rent</a>
+        <div class="slash">/</div>
+        <a routerLink="/rent"> New Apartment Nice View</a>
+
+      </div>
+    </div>
+
+    <div class="carousel">
+      <div class="slide-container">
+        <div class="slide-content">
+
+          <!-- Add pagination buttons -->
+
+          <div class="display">
+
+            <owl-carousel-o [options]="customOptions" #owlCar>
+              @for (card of cards; track card) {
+              <ng-container>
+                <ng-template carouselSlide>
+                  <div class="card-wrapper">
+                    <div class="card">
+                      <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image ">
+                          <img [src]="card.imgSrc" alt="Card Image" class="card-img">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+              }
+            </owl-carousel-o>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="cstmContainer lower-portion display content-between">
+
+      <div class="left-site">
+
+        @for (card of Appartment; track card) {
+        <div class="first-box">
+          <div class="display content-between">
+            <div class="head">{{card.head}}</div>
+            <div class="prop-detail-icon">
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>favorite</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>share</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="address">{{card.address}}</div>
+          <div class="prop-details-div display content-between">
+            <div class="prop-details display content-between">
+              <div class="prop-detail-img display">
+                <div class="display content-between">
+                  <img src="../../assets/img/bed.webp" alt="">
+                  <div class="prop-detail-text">{{card.bed}}</div>
+                </div>
+                <hr>
+              </div>
+              <div class="prop-detail-img display">
+                <div class="display content-between">
+                  <img src="../../assets/img/bath.webp" alt="">
+                  <div class="prop-detail-text">{{card.bath}}</div>
+                </div>
+                <hr>
+              </div>
+              <div class="prop-detail-img display">
+                <div class="display content-between">
+                  <img src="../../assets/img/sq.ft.webp" alt="">
+                  <div class="prop-detail-text">{{card.sqft}}Sq.Ft</div>
+                </div>
+              </div>
+            </div>
+            <div class="pricing">$ {{card.price}}</div>
+          </div>
+        </div>
+        }
+
+        @for (info of PropInfo; track info) {
+        <div class="Prop-info">
+          <h3 class="small-head prop-info-padding">Property Information</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Property Type:</div>
+              <div class="white-box-text">{{info.type}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Lease Lenght In Months</div>
+              <div class="white-box-text">{{info.LeaseLenght}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Monthly Rent</div>
+              <div class="white-box-text">${{info.rent}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Deposit</div>
+              <div class="white-box-text">${{info.deposit}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">No. of Bedrooms</div>
+              <div class="white-box-text">{{info.bed}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">No. of Bathrooms</div>
+              <div class="white-box-text">{{info.bath}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Sqft</div>
+              <div class="white-box-text">{{info.sqft}}Sq Ft</div>
+            </div>
+          </div>
+        </div>
+        }
+
+        <div class="ameneties">
+          <h3 class="small-head">Ameneties</h3>
+
+          <div class="facilities">
+            @for (group of chunkArray(amenities.facilities, 3); track group) {
+            <ul class="facility-group">
+              @for (facility of group; track facility) {
+              <li class="facility">{{ facility }}</li>
+              }
+            </ul>
+            }
+          </div>
+
+        </div>
+
+        <div class="utility">
+          <h3 class="small-head">Utilities</h3>
+
+          <div class="facilities">
+            @for (group of chunkArray(utilities.utility, 3); track group) {
+            <ul class="facility-group">
+              @for (utility of group; track utility) {
+              <li class="facility">{{ utility }}</li>
+              }
+            </ul>
+            }
+          </div>
+
+        </div>
+
+        @for (detail of rentSpecial; track detail) {
+        <div class="rent-special">
+          <h3 class="small-head prop-deatil-padding">Rent Specials</h3>
+          <div class="rent-speacial-input">
+            <div class="display content-between">
+              <div class="white-box display">
+                <div class="white-box-text text-info">Rent Special Title</div>
+                <div class="white-box-text">{{detail.title}}</div>
+              </div>
+              <div class="white-box display">
+                <div class="white-box-text text-info">Start Date</div>
+                <div class="white-box-text">{{detail.startDate}}</div>
+              </div>
+            </div>
+            <div class="display content-between">
+              <div class="transparent-box display">
+                <div class="white-box-text text-info">End Date</div>
+                <div class="white-box-text">{{detail.endDate}}</div>
+              </div>
+              <div class="transparent-box display">
+                <div class="white-box-text text-info">Special Offer</div>
+                <div class="white-box-text">{{detail.specialOffer}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+
+        @for (policy of feePolicy; track policy) {
+        <div class="fee-policy">
+          <h3 class="small-head">Fees and Policies</h3>
+          <p>{{policy.desc}}</p>
+          <!-- app.component.html -->
+          <div class="policy-tabs">
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+              <mat-tab label="Pets">
+                <div class="pet-content">{{policy.pets}}</div>
+              </mat-tab>
+              <mat-tab label="Laundry">
+                <div class="laundry-content">
+                  <div>
+                    <div class="pet-content">{{ policy.laundry }}</div>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+        }
+
+        <div class="gallery">
+          <h3 class="small-head">Gallery</h3>
+
+          <div class="display">
+            @for (imageUrl of Gallery; track imageUrl) {
+            <div class="gallery-img ">
+              <img [src]="imageUrl" alt="Image">
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="video">
+          <h3 class="small-head">Video</h3>
+
+          <div class="video-player">
+            @if (!showVideo) {
+            <img [src]="thumbnailSource" alt="Thumbnail" class="thumbnail">
+            }
+            @if (!showVideo) {
+            <button mat-icon-button class="start-button" (click)="toggleVideo()">
+              <mat-icon>play_arrow</mat-icon>
+            </button>
+            }
+            <video #videoPlayer controls preload="none" [hidden]="!showVideo">
+              <source [src]="videoSource" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+        </div>
+
+        @for (info of contactInfo; track info) {
+        <div class="Prop-info">
+          <h3 class="small-head prop-info-padding">Contact Information</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">First Name</div>
+              <div class="white-box-text">{{info.fName}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Last Name</div>
+              <div class="white-box-text">{{info.lName}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Role</div>
+              <div class="white-box-text">{{info.role}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Email</div>
+              <div class="white-box-text">{{info.email}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Phone</div>
+              <div class="white-box-text">{{info.phone}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Contact Prefrence</div>
+              <div class="white-box-text">{{info.contactprefrence}}</div>
+            </div>
+          </div>
+        </div>
+        }
+
+        @for (info of desc; track info) {
+        <div class="Prop-info desc">
+          <h3 class="small-head">Description</h3>
+          <p>{{info.para}}</p>
+        </div>
+        }
+
+        @for (info of floorPlan; track info) {
+        <div class="Prop-info">
+          <h3 class="small-head prop-info-padding">Floor Plan</h3>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Plan Name</div>
+              <div class="white-box-text">{{info.planName}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">No. of Bedrooms</div>
+              <div class="white-box-text">{{info.bed}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">No. of Bathrooms</div>
+              <div class="white-box-text">{{info.bath}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Sqft</div>
+              <div class="white-box-text">{{info.sqft}}Sq.Ft</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Currency Type</div>
+              <div class="white-box-text">{{info.currencyType}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Sale Price</div>
+              <div class="white-box-text">${{info.salePrice}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Sqft</div>
+              <div class="white-box-text">{{info.sqft}}Sq Ft</div>
+            </div>
+          </div>
+          <div class="white-box-property">
+            <div class="text-info-property">Floor Description</div>
+            <div class="white-box-para">{{info.desc}}</div>
+          </div>
+          <div class="plan-img">
+            <img [src]="info.imgSrc" alt="Card Image" class="card-img">
+          </div>
+        </div>
+        }
+
+        @for (info of Proplocation; track info) {
+        <div class="map">
+          <h3 class="small-head">Property Location</h3>
+          <div class="display content-between Proplocation">
+            <div class="white-box white-box-address display">
+              <div class="white-box-text text-info">Address</div>
+              <div class="white-box-text">{{info.address}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">Country/State</div>
+              <div class="white-box-text">{{info.country}}</div>
+            </div>
+            <div class="transparent-box display">
+              <div class="white-box-text text-info">City</div>
+              <div class="white-box-text">{{info.city}}</div>
+            </div>
+          </div>
+          <div class="display content-between">
+            <div class="white-box display">
+              <div class="white-box-text text-info">Landmark</div>
+              <div class="white-box-text">{{info.landmark}}</div>
+            </div>
+            <div class="white-box display">
+              <div class="white-box-text text-info">Zip Code</div>
+              <div class="white-box-text">{{info.zipcode}}</div>
+            </div>
+          </div>
+          <div class="map-img">
+            <img [src]="info.imgSrc" alt="Card Image" class="card-img">
+          </div>
+        </div>
+        }
+      </div>
+
+      @for (info of contact; track info) {
+      <div class="right-site">
+        <h2>Contact Property</h2>
+        <p class="w-75 mx-auto">{{ info.para }}</p>
+        <div class="dCenter flex-wrap gap-1">
+          <button class="btnPrimary rounded-3 py-2">
+            <fa-icon [icon]="faPhoneAlt"></fa-icon>
+            1234456678
+          </button>
+          <button class="btnPrimary rounded-3 py-2">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+            Send an email
+          </button>
+        </div>
+        <p class="my-2">Or</p>
+        <div class="dCenter">
+          <button class="btnPrimary rounded-3 py-2">
+            Request a tour
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="nearby-rentals">
+      <div class="lg-12 sec-2">
+        <div class="rental-carousel">
+          <app-rental-carousel heading="Nearby apartments for rent"></app-rental-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

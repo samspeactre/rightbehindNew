@@ -1,0 +1,38 @@
+<div class="dCenter justify-content-between position-relative">
+  <h2 class="wow fadeInDown my-3 text-light text-start">Right Behind Me Community</h2>
+  <hr class="w-50 wow fadeInDown my-3">
+  <div class="dCenter gap-2 my-3">
+    <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.prev()">
+      <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
+    </button>
+    <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
+      <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
+    </button>
+  </div>
+</div>
+<owl-carousel-o [options]="customOptions" #owlCar>
+  @for (card of cards; track card) {
+  <ng-container>
+    <ng-template carouselSlide>
+      <div class="card w-100 rounded-2">
+        <app-map height="200" [center]="{lat:25.761681,lng:-80.191788}"
+        [markerPositions]="[{lat:25.761681,lng:-80.191788}]" [mapDraggable]="false"></app-map>
+        <div class="card-content p-3">
+          <div class="dCenter justify-content-between flex-wrap">
+            <h5 class="card-name text-dark wow fadeInDown">{{ card.name }}</h5>
+            <div class="card-tag text-light rounded-2">
+              <span class="wow fadeInDown text-light">{{ card.tag }}</span>
+            </div>
+          </div>
+          <p class="text-dark mt-3 wow fadeInDown">{{ card.description }}</p>
+          <div class="dCenter">
+            <button class="btnDanger wow fadeInDown py-2" [routerLink]="card.buttonUrl">
+              Join Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+  }
+</owl-carousel-o>

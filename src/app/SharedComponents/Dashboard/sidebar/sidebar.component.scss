@@ -1,0 +1,64 @@
+.logo {
+    width: 70%;
+    height: 40px;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.toggler {
+    background: #093A8C;
+    border: none;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border-radius: 5px;
+
+    &.active {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.btnWhiteNBlueOutline {
+    color: #fff;
+    max-width: fit-content;
+    margin-right: auto;
+    min-width: 100%;
+    padding: 1vw 1vw 1vw 1vw;
+    font-size: 12px;
+
+    &.active {
+        background: white;
+        color: #000f28;
+    }
+
+    &.isSidebarCollapsed {
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+    .btnWhiteNBlueOutline {
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 14px;
+    }
+
+    .sidebar {
+
+        .justify-content-between,
+        .justify-content-start {
+            justify-content: center !important;
+        }
+    }
+}

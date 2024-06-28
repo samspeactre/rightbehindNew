@@ -1,0 +1,106 @@
+.cursor {
+    cursor: pointer;
+}
+
+.dCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hideScroll {
+    height: 100vh;
+    overflow: hidden;
+    cursor: not-allowed;
+}
+
+.w-lg-50 {
+    width: 48%;
+    margin: 0 auto;
+}
+
+.cstmContainer {
+    width: 93vw;
+    max-width: 1660px;
+    margin: 0 auto;
+}
+
+.container-fluid {
+    max-width: 1660px;
+}
+
+#toast-container {
+    position: fixed !important;
+    bottom: 0;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.zI {
+    z-index: 10;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* General styling */
+input[type="number"] {
+    appearance: none;
+}
+
+.special {
+    background: rgba(255, 255, 255, 0.76);
+    border-radius: 4px;
+    padding: 5px 1rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    color: black;
+}
+.transition{
+    transition: 0.5s all ease-in-out;
+}
+@media only screen and (max-width:1024px) {
+
+    .cdk-global-overlay-wrapper {
+        justify-content: center !important;
+    }
+
+    .cstmContainer {
+        max-width: 1660px;
+        width: 95vw;
+        margin: 0 auto;
+    }
+
+    .w-lg-50 {
+        width: 100%;
+    }
+
+    .sideBarOpenBody {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background: #000000b3;
+        }
+    }
+}

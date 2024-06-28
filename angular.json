@@ -7,13 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
+          "style": "scss"
         }
       },
       "root": "",
@@ -30,19 +24,35 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "allowedCommonJsDependencies": [
+              "apexcharts",
+              "crypto-js",
+              "sweetalert2"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "node_modules/slick-carousel/slick/slick.scss",
-              "node_modules/slick-carousel/slick/slick-theme.scss",
-              "src/custom-theme.scss",
-              "src/styles.css"
+              "src/assets/scss/custom-theme.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "node_modules/animate.css/animate.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/scss/btn.scss",
+              "src/assets/scss/common.scss",
+              "src/assets/scss/fonts.scss",
+              "src/assets/scss/fade.scss",
+              "src/assets/scss/root.scss",
+              "src/assets/scss/scrollBar.scss",
+              "src/assets/scss/styles.scss"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/slick-carousel/slick/slick.min.js"
+              "src/assets/js/wow.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {
@@ -50,19 +60,19 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "3mb"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
-              "optimization": false,
+              "optimization": true,
               "extractLicenses": false,
               "sourceMap": true
             }
@@ -86,32 +96,11 @@
           "options": {
             "buildTarget": "right-behind-me:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "node_modules/slick-carousel/slick/slick.scss",
-              "node_modules/slick-carousel/slick/slick-theme.scss",
-              "src/custom-theme.scss",
-              "src/styles.css"
-            ],
-            "scripts": []
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "0c612460-3048-428f-b5c0-687c3c4a3dd4"
   }
 }

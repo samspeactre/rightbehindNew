@@ -1,0 +1,171 @@
+li{
+    list-style: none;
+    padding-bottom: 0.8vw;
+    font-size: 14px;
+}
+
+p {
+    font-size: 14px;
+    font-family: 'reg';
+}
+
+#footer {
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+}
+
+.logo-upper-colmn {
+    width: 28.6%;
+    padding: 6.5vw 5.5vw 5.9vw 3.6vw;
+}
+
+.get-box-bottom{
+    width: 26.5%;
+    padding: 5.3vw 3vw 0vw 5.3vw;
+    border-right: 0.1vw solid var(--royal-blue);
+}
+
+.fu-box-bottom{
+    width: 18.7%;
+    border-right: 0.1vw solid var(--royal-blue);
+    padding: 5.3vw 3vw 0vw 5.3vw;
+}
+
+.stn-box-bottom{
+    width: 26%;
+    padding: 5.3vw 3vw 0vw 5.1vw;
+}
+
+.stn-box-head{
+    font-family: "med";
+    color: var(--white);
+    letter-spacing: 0.02vw;
+
+}
+
+.stn-box-para{
+    font-family: "reg";
+    color: var(--white);
+    width: 86%;
+    line-height: 1.6vw;
+    letter-spacing: 0.028vw;
+}
+
+.stn-input{
+    margin-top: 0.95vw;
+}
+
+.stn-input input{
+    font-family: 'reg';
+    color: var(--white);
+    background-color: rgba(31, 31, 31, 1);
+    padding-left: 1.2vw;
+    width: 80%;
+    border: 0;
+}
+
+.stn-input button{
+    padding: 0.15vw 0;
+    background-color: var(--royal-blue);
+    border-radius: 0.15vw;
+    border: 0;
+}
+
+.input-icon{
+    padding: 0.6vw 1.3vw;
+    color: var(--white);
+    rotate: -48deg;
+    font-size: 1.2vw;
+}
+
+.qu-box-bottom{
+    width: 22.5%;
+    border-right: 0.1vw solid var(--royal-blue);
+    padding: 3.5vw 0vw 0vw 5vw;
+}
+
+.comp-box-bottom{
+    width: 30%;
+    padding: 3.5vw 0vw 0.9vw 5vw;
+    border-right: 0.1vw solid var(--royal-blue);
+}
+
+.company-box-bottom{
+    width: 27%;
+    padding: 3.5vw 0vw 0vw 5vw;
+    border-right: 0.1vw solid var(--royal-blue);
+}
+
+.commu-box-bottom{
+    width: 21%;
+    padding: 3.5vw 0vw 0vw 5vw;
+    border-right: 0.1vw solid var(--royal-blue);
+}
+
+.footer-upper {
+    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+}
+
+.brand-info img {
+    object-fit: contain;
+    object-position: top;
+    margin-bottom: 1vw;
+}
+
+.brand-info {
+    border-right: 0.1vw solid var(--royal-blue);
+}
+
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+    border-top: 1px solid var(--royal-blue);
+    border-bottom: 1px solid var(--royal-blue);
+
+}
+
+.copyright-sec {
+    background-color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    padding: 2vw 3.5vw 2vw 4.8vw;
+}
+
+.copyright{
+    letter-spacing: 0.07vw;
+}
+
+.copyright-text{
+    font-family: 'med';
+    font-size: 12px;
+    color: var(--white);
+}
+@media only screen and (max-width: 540px) {
+    .footer-upper,
+    .footer-bottom{
+        flex-wrap: wrap;
+        border-top:none;
+        border-right:none;
+    }
+    .brand-info{
+        width:200px;
+        height: 80px;
+    }
+    .brand-info img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .logo-upper-colmn,
+    .get-box-bottom,
+    .fu-box-bottom,
+    .stn-box-bottom,
+    .qu-box-bottom,
+    .comp-box-bottom,
+    .company-box-bottom,
+    .commu-box-bottom {
+        width: 100%;    
+    }
+
+}

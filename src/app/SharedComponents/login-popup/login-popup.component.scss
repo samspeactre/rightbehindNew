@@ -1,0 +1,45 @@
+.logo {
+    width: 150px;
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.logo img {
+    object-fit: contain;
+}
+:host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+    width: 1vw;
+    height: 1vw;
+    background-color: var(--checkbox);
+    border: 0;
+}
+
+.check-pass a{
+    font-family: 'reg';
+    color: var(--black);
+}
+
+.register-link a{
+    color: var(--royal-blue);
+}
+
+form{
+    margin-top: 2vw;
+}
+
+.main{
+    padding: 0vw 2vw;
+}
+
+.head-1{
+    font-size: 2.5vw;
+}
+
+.para-1{
+    text-align: center;
+    font-size: 1vw;
+}
+
+.container{
+    background-color: var(--sec-blue);
+}

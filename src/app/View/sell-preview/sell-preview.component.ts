@@ -86,23 +86,22 @@ export class SellPreviewComponent implements OnInit {
     this.destroy$.complete();
   }
   open(index: number): void {
-    
-    const images = this.propertyDetails.propertyImages.map((img:any) => ({
+
+    const images = this.propertyDetails.propertyImages.map((img: any) => ({
       src: this.src + img.imageUrl,
-      caption: 'Image caption',
+      caption: 'Property Images',
       thumb: this.src + img.imageUrl
     }));
-    console.log(images);
-    this.lightbox.open(images, index);
+    this.lightbox.open(images, index, { wrapAround: true, showImageNumberLabel: true, alwaysShowNavOnTouchDevices: true, centerVertically: true, fitImageInViewPort: true });
   }
 
   close(): void {
     this.lightbox.close();
   }
-  async share(){
+  async share() {
     try {
       await navigator.share({ title: this.propertyDetails?.title, url: `preview/?id=${this.id}&type=${this.type}` });
-    } catch (err:any) {
+    } catch (err: any) {
       console.error("Share failed:", err?.message);
     }
   }
@@ -146,7 +145,7 @@ export class SellPreviewComponent implements OnInit {
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
       width: window.innerWidth > 1024 ? '33%' : '100%',
-      data: {type:'property',id: this.id}
+      data: { type: 'property', id: this.id }
     });
   }
   clickAnalytic(type: string) {

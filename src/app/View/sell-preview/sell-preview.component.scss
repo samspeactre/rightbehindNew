@@ -18,7 +18,7 @@
   }
   .accordion-item .accordion-header .accordion-button {
     padding: 1rem 0;
-}
+  }
 }
 
 .share-icon-div a {
@@ -161,8 +161,8 @@
 .NoImageFound {
   object-fit: contain !important;
   background: #dddddd;
+  margin: 0;
 }
-
 @media only screen and (max-width: 1025px) {
   .right-site {
     padding: 2rem 10px;

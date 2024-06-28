@@ -10,31 +10,31 @@ import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 @Component({
-  standalone:true,
-  imports:[MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule],
+  standalone: true,
+  imports: [MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.scss'
 })
 export class DashboardHomeComponent {
   display: any;
-  faArrowLeft=faArrowRightLong
-  faMapMarker=faMapMarkerAlt
-  faSaleTag=faTag
-  faKey=faKey
+  faArrowLeft = faArrowRightLong
+  faMapMarker = faMapMarkerAlt
+  faSaleTag = faTag
+  faKey = faKey
   @Output() viewAllListingsEvent = new EventEmitter<void>();
   @Output() viewOffMarketEvent = new EventEmitter<void>();
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions:any;
-  faUser=faUser
-  faBell=faBell
-  faEnvelope=faEnvelope
-  faSearch=faSearch
+  public chartOptions: any;
+  faUser = faUser
+  faBell = faBell
+  faEnvelope = faEnvelope
+  faSearch = faSearch
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
-  width=window.innerWidth
-  constructor(public dialog: MatDialog, private store:Store) {
+  width = window.innerWidth
+  constructor(public dialog: MatDialog, private store: Store) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -48,26 +48,30 @@ export class DashboardHomeComponent {
     this.chartOptions = {
       series: [
         {
-          name: "My-series",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+          name: 'Example Series',
+          data: [10, 20, 30, 40, 50]
         }
       ],
       chart: {
-        height: 350,
-        type: "bar"
+        type: 'bar',
+        height: 350
       },
       plotOptions: {
         bar: {
-          horizontal: true
+          distributed: true,
+          horizontal: true,
+          barHeight: '15%',
+          borderRadius: 2,
+          borderRadiusApplication: 'end'
         }
       },
-      horizontal: true,
-      title: {
-        text: "My First Angular Chart"
+      dataLabels: {
+        enabled: false
       },
       xaxis: {
-        categories: ["Jan", "Feb",  "Mar",  "Apr",  "May",  "Jun",  "Jul",  "Aug", "Sep"]
-      }
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+      },
+      colors: ['#607D8B', '#8BC34A', '#FF9800', '#E91E63', '#2196F3'],
     };
   }
   ngOnDestroy() {
@@ -78,11 +82,11 @@ export class DashboardHomeComponent {
     this.viewAllListingsEvent.emit();
   }
 
-  viewOffMarket(){
+  viewOffMarket() {
     this.viewOffMarketEvent.emit();
   }
   Analaytics = [
-    { leads: '10', call:'12', emails: '8', view: '5', click: '3', ctr: '5' },
+    { leads: '10', call: '12', emails: '8', view: '5', click: '3', ctr: '5' },
   ]
   ngOnInit() {
   }

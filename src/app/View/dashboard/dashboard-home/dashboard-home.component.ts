@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,9 +9,11 @@ import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { RentalCarouselComponent } from '../../../SharedComponents/rental-carousel/rental-carousel.component';
+import { MapComponent } from '../../../SharedComponents/map/map.component';
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule],
+  imports: [MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.scss'
@@ -33,7 +35,16 @@ export class DashboardHomeComponent {
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
-  width = window.innerWidth
+  @ViewChild('secondCol') secondCol!: ElementRef;
+  mapHeight:number=0;
+  width = window.innerWidth;
+  array = [
+    { "lat": 25.853681, "lng": -80.191788 }, // ~10 km north
+  { "lat": 25.669681, "lng": -80.191788 }, // ~10 km south
+  { "lat": 25.761681, "lng": -80.091788 }, // ~10 km east
+  { "lat": 25.761681, "lng": -80.291788 }, // ~10 km west
+  { "lat": 25.829681, "lng": -80.115788 }  // ~10 km northeast
+  ]
   constructor(public dialog: MatDialog, private store: Store) {
     this.user$
       .pipe(
@@ -89,5 +100,18 @@ export class DashboardHomeComponent {
     { leads: '10', call: '12', emails: '8', view: '5', click: '3', ctr: '5' },
   ]
   ngOnInit() {
+    
+  }
+  ngAfterViewInit(){
+    if(this.mapHeight == 0){
+      setTimeout(() => {
+        this.setMapHeight()
+      },500);
+    }
+  }
+  setMapHeight() {
+    if (this.secondCol) {
+      this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
+    }
   }
 }

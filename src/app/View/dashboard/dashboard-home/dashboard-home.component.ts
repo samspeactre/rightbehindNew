@@ -38,13 +38,6 @@ export class DashboardHomeComponent {
   @ViewChild('secondCol') secondCol!: ElementRef;
   mapHeight:number=0;
   width = window.innerWidth;
-  array = [
-    { "lat": 25.853681, "lng": -80.191788 }, // ~10 km north
-  { "lat": 25.669681, "lng": -80.191788 }, // ~10 km south
-  { "lat": 25.761681, "lng": -80.091788 }, // ~10 km east
-  { "lat": 25.761681, "lng": -80.291788 }, // ~10 km west
-  { "lat": 25.829681, "lng": -80.115788 }  // ~10 km northeast
-  ]
   constructor(public dialog: MatDialog, private store: Store) {
     this.user$
       .pipe(

@@ -26,7 +26,7 @@ export const Dashboard_Routes: Routes = [{
         {
             path: 'inquiries',
             loadChildren: () =>
-                import('./inquiries/inquiriesRoute').then(
+                import('./chat/inquiriesRoute').then(
                     (m) => m.Inquiries_Routes
                 ),
         },

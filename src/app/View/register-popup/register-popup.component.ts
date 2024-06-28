@@ -12,6 +12,7 @@ import { Subject, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
 import { InputComponent } from '../../SharedComponents/input/input.component';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -32,7 +33,8 @@ export class RegisterPopupComponent {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    public resize:ResizeService
   ) {
     this.registerForm = this.fb.group({
       userAccountTypeId: [2],

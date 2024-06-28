@@ -66,7 +66,6 @@ export class ListingPageComponent implements OnInit {
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
-  screenHeight: number = window.innerHeight;
   latLngArray: any;
   types = types;
   maxPriceArray: any;

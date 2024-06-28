@@ -16,6 +16,7 @@ import { selectUser } from '../../Ngrx/data.reducer';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -39,9 +40,8 @@ export class NavbarComponent {
   faTwitter = faTwitter
   faCircleChevronDown = faCircleChevronDown
   faAt = faAt
-  screenWidth: number = window.innerWidth
   sellHide: boolean = false
-  constructor(private store: Store, public dialog: MatDialog, private auth: AuthService, private router: Router, private actiavtedRoute: ActivatedRoute) {
+  constructor(private store: Store,public resize:ResizeService, public dialog: MatDialog, private auth: AuthService, private router: Router, private actiavtedRoute: ActivatedRoute) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),

@@ -20,6 +20,7 @@ import { ContactPopupComponent } from '../../SharedComponents/contact-popup/cont
 import { MatDialog } from '@angular/material/dialog';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone: true,
   imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, LightboxModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
@@ -61,7 +62,7 @@ export class SellPreviewComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private activatedRoute: ActivatedRoute, private lightbox: Lightbox, private dialog: MatDialog, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
+  constructor(private activatedRoute: ActivatedRoute, public resize:ResizeService, private lightbox: Lightbox, private dialog: MatDialog, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
       if (!param?.type || !param?.id) {
         this.location.back()
@@ -144,7 +145,7 @@ export class SellPreviewComponent implements OnInit {
   }
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      width: window.innerWidth > 1024 ? '33%' : '100%',
+      width: this.resize.isWidthGreaterThan1024 ? '33%' : '100%',
       data: { type: 'property', id: this.id }
     });
   }

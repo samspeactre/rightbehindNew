@@ -30,13 +30,13 @@ export const Dashboard_Routes: Routes = [{
                     (m) => m.Inquiries_Routes
                 ),
         },
-        {
-            path: 'communities-groups',
-            loadChildren: () =>
-                import('./inquiries/inquiriesRoute').then(
-                    (m) => m.Inquiries_Routes
-                ),
-        },
+        // {
+        //     path: 'communities-groups',
+        //     loadChildren: () =>
+        //         import('./inquiries/inquiriesRoute').then(
+        //             (m) => m.Inquiries_Routes
+        //         ),
+        // },
         {
             path: 'analytics',
             loadChildren: () =>

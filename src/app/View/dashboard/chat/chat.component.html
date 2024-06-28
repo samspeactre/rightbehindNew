@@ -59,7 +59,7 @@
               <div class="col pr-0 chat-right-aside">
                 <div class="chat">
                   <div class="chat-header clearfix d-flex align-items-center gap-2">
-                    @if(width <= 1024){
+                    @if((resize.windowSize$ | async)?.width <= 1024){
                       <fa-icon class="cursor" (click)="removeQueryParam()" [icon]="faArrowLeft"></fa-icon>
                     }
                     <img class="rounded-circle" [src]="chatUser?.profile" alt="profile picture">

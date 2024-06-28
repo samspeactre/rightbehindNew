@@ -11,9 +11,11 @@ import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { RentalCarouselComponent } from '../../../SharedComponents/rental-carousel/rental-carousel.component';
 import { MapComponent } from '../../../SharedComponents/map/map.component';
+import { ResizeService } from '../../../Services/resize.service';
+import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
+  imports: [MatIconModule, MatButtonModule, CommonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.scss'
@@ -37,8 +39,7 @@ export class DashboardHomeComponent {
   private destroy$ = new Subject<void>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   mapHeight:number=0;
-  width = window.innerWidth;
-  constructor(public dialog: MatDialog, private store: Store) {
+  constructor(public dialog: MatDialog, public resize:ResizeService, private store: Store) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),

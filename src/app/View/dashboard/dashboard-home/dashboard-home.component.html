@@ -8,7 +8,7 @@
                 <fa-icon [icon]="faSearch" class="iconLight"></fa-icon>
                 <input type="text" placeholder="Search Here...">
             </div>
-            @if (width > 1024) {
+            @if ((resize.windowSize$ | async)?.width > 1024) {
             <div class="borderLight border iconContainer rounded-5">
                 <fa-icon [icon]="faEnvelope"></fa-icon>
             </div>

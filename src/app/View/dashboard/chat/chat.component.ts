@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from '../../../services/chat.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,6 +9,7 @@ import { HttpService } from '../../../Services/http.service';
 import { faArrowLeft, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ResizeService } from '../../../Services/resize.service';
 
 @Component({
   standalone:true,
@@ -31,7 +32,6 @@ export class ChatComponent implements OnInit {
   faPaperPlane=faPaperPlane
   faArrowLeft=faArrowLeft
   height: number = 0;
-  width:number = window.innerWidth;
   user$ = this.store.select(selectUser);
   private destroy$ = new Subject<void>();
   user: any;
@@ -43,7 +43,11 @@ export class ChatComponent implements OnInit {
   messageForm = this.fb.group({
     message: ['', Validators.required],
   });
-  constructor(private chatService: ChatService, private fb:FormBuilder, private http:HttpService, private store:Store, private router:Router, private activatedRoute:ActivatedRoute) {   
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.getHeight()
+  }
+  constructor(private chatService: ChatService, public resize:ResizeService, private fb:FormBuilder, private http:HttpService, private store:Store, private router:Router, private activatedRoute:ActivatedRoute) {   
     this.chatService.getUsers().subscribe(users => { 
       this.searchUsers = users
       this.users = users
@@ -63,14 +67,14 @@ export class ChatComponent implements OnInit {
       this.activatedRoute.queryParams.subscribe((res:any)=>{
         this.contactId = res?.data?.id;
         this.recieverInfo = res?.data?.info;
-        if(window.innerWidth <= 1024){
+        if(window.innerWidth > 1024){
+          this.showChat = false;
+          this.showSidebar = true;
+        }
+        else{
           if(res?.data){
             this.showChat = true;
             this.showSidebar = false;
-          }
-          else{
-            this.showChat = false;
-            this.showSidebar = true;
           }
         }
         console.log('====================================');

@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { removeUserData } from '../../../Ngrx/data.action';
 import { AuthService } from '../../../TsExtras/auth.service';
 import { CommonModule } from '@angular/common';
+import { ResizeService } from '../../../Services/resize.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -27,10 +28,9 @@ export class SidebarComponent {
   faSetting = faGear;
   faUser = faUser;
   faSignOutAlt=faSignOutAlt
-  width=window.innerWidth
-  @Input() isSidebarCollapsed: boolean = window.innerWidth < 1024 ? true : false;
+  @Input() isSidebarCollapsed: boolean = window.innerWidth > 1024 ? false : true;
   @Output() isSidebarCollapsedEvent = new EventEmitter<boolean>();
-  constructor(private store:Store,private router:Router, private auth:AuthService){}
+  constructor(private store:Store,private router:Router, private auth:AuthService,public resize:ResizeService){}
   toggleSidebar() {
     if(window.innerWidth > 1024){
       this.isSidebarCollapsed = !this.isSidebarCollapsed;

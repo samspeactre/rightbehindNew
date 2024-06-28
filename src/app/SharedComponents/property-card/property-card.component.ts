@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, FontAwesomeModule, RouterModule],
@@ -33,7 +34,7 @@ export class PropertyCardComponent {
   @Input() background!:string;
   @Input() page!:string;
   private destroy$ = new Subject<void>();
-  constructor(private router:Router, private store:Store,private dialog: MatDialog, private helper:HelperService){
+  constructor(private router:Router, public resize:ResizeService, private store:Store,private dialog: MatDialog, private helper:HelperService){
     this.user$
       .pipe(
         takeUntil(this.destroy$),

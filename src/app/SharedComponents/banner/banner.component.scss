@@ -1,0 +1,35 @@
+.home-sec {
+    background-image: url('../../../assets/img/home-bottom.webp');
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.home-sec::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 50%;
+    background-image: url('../../../assets/img/left-tree.webp');
+    background-repeat: no-repeat;
+    z-index: -1;
+    background-size: contain;
+}
+
+.home-sec::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 50%;
+    background-image: url('../../../assets/img/left-tree.webp');
+    background-repeat: no-repeat;
+    z-index: -1;
+    transform: scaleX(-1);
+    background-position: left;
+    background-size: contain;
+}

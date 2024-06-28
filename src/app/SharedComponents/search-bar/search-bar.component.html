@@ -1,0 +1,18 @@
+<div class="m-auto">
+  <div class="searchBar dCenter">
+    <input
+      [readOnly]="searching"
+      onkeydown="return /[a-zA-Z\s\b\n]/.test(event.key) || /^\d$/.test(event.key)"
+      [(ngModel)]="search"
+      (ngModelChange)="this.mentorSearchQueryUpdate.next($event)"
+      class="input-text"
+      placeholder="Enter an address, neighborhood, city, or ZIP code"
+    />
+    <button class="btnPrimary login-btn dCenter" (click)="submit()" [disabled]="searching">
+      <fa-icon [icon]="faSearch" size="2x" [class.me-2]="screenWidth > 1024"></fa-icon>
+      @if(screenWidth > 1024){
+        Search
+      }
+    </button>
+  </div>
+</div>

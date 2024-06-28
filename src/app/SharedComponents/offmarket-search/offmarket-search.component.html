@@ -1,0 +1,10 @@
+<div class="m-auto">
+  <div class="searchBar dCenter">
+    <input [readOnly]="searching" onkeydown="return /[a-zA-Z\s\b\n]/.test(event.key) || /^\d$/.test(event.key)"
+      [(ngModel)]="search" (ngModelChange)="this.mentorSearchQueryUpdate.next($event)" class="input-text"
+      placeholder="Enter an address, neighborhood, city, or ZIP code" />
+    <button class="btnPrimary login-btn dCenter" (click)="openSellPopup('analyze')">
+      {{ screenWidth > 1024 ? 'Analyze' : '' }}
+    </button>
+  </div>
+</div>

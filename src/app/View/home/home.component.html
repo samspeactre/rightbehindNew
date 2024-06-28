@@ -1,0 +1,137 @@
+<app-banner>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="text-center">
+          <h1 class="bigFont wow fadeInDown">Find Your Dream Home in Miami, Florida</h1>
+          <p class="wow fadeInDown">
+            Discover exquisite properties in the vibrant heart of Miami. <br />
+            Start your journey to unparalleled elegance and coastal charm today.
+          </p>
+          <div class="search-bar wow fadeInDown">
+            <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
+          </div>
+          <p class="my-3 wow fadeInDown">Or</p>
+          <h3 class="wow fadeInDown">Maximize Your Property's Potential!</h3>
+          <p class="wow fadeInDown">
+            Maximize Your Property's Potential! <br />
+            List with us and watch your rental income soar!
+          </p>
+          <div class="dCenter pb-3">
+            <button class="btnDanger wow fadeInDown">Submit A Deal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-banner>
+<div class="sec-2 pt-5">
+  <div class="cstmContainer position-relative">
+    <app-rental-carousel heading="Hot rentals in Miami" background="white" [cards]="rent"></app-rental-carousel>
+  </div>
+</div>
+<!-- <div class="sec-3 mt-5">
+  <div class="cstmContainer position-relative">
+    <app-rental-carousel heading="Sellers in Miami" background="#e6f2ff" [cards]="sell"></app-rental-carousel>
+  </div>
+</div> -->
+@defer {
+<div class="container-fluid">
+  <div class="register-bg p-5 mb-5 position-relative">
+    <div class="row align-items-center position-relative">
+      <div class="col-lg-3">
+        <h5 class="text-light mb-0 wow fadeInDown">Looking to sell or rent your property?</h5>
+        <h3 class="text-light my-4 wow fadeInDown h3-heading">Register to Post your Property for Free</h3>
+        <h5 class="text-light mb-3 wow fadeInDown">Post your residential/commercial property</h5>
+      </div>
+      <div class="col-lg-3 dCenter flex-column text-center">
+        <button class="btnWhite mx-auto mb-3 wow fadeInDown">
+          Submit Your Property FREE
+        </button>
+        <div class="counter dCenter align-items-start">
+          @for (counter of counters; track counter; let i = $index) {
+          <div class="counterBox">
+            <div class="counter-num wow fadeInDown"> <span class="counter-num" [countUp]="counter.count"
+                [reanimateOnClick]="false" [options]="{ enableScrollSpy: true }"></span> K+</div>
+            <div class="counter-name wow fadeInDown">{{ counter.name }}</div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row dream-home">
+    <div class="col-lg-6 ms-auto">
+      <div class="pe-4 homefourth-heading heading-width">
+        <h2 class="wow fadeInDown">Ready to make your dream home a reality?</h2>
+        <p class="text-start wow fadeInDown">
+          Submit an inquiry for a hassle-free home loan process. Let us guide you
+          through every step toward securing the keys to your new home.
+        </p>
+        <button class="btnSecondary wow fadeInDown">Submit an inquiry</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="blueBg position-relative" id="offMarket">
+  <div class="cstmContainer">
+    <div class="row dream-home right">
+      <div class="col-lg-6 me-auto">
+        <div class="homefourth-heading">
+          <h2 class="text-light wow fadeInDown">Unlock Exclusive Opportunities in Miami's Off-Market Properties</h2>
+          <p class="text-light text-start wow fadeInDown">
+            Get early access to Miami's off-market properties. Whether you're buying
+            or selling, join our exclusive network to unlock unparalleled
+            opportunities. Submit your property or explore listings now!
+          </p>
+          <button class="btnBlackNWhite wow fadeInDown" (click)="navigateToNextPage()">Know More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="where py-5">
+  <div class="cstmContainer">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="rounded-4 overflow-hidden">
+          <app-map [height]="mapHeight" [video]="true" [center]="{lat:25.761681,lng:-80.191788}"
+            [markerPositions]="array"></app-map>
+        </div>
+      </div>
+      <div class="col-lg-6" #secondCol>
+        <div class="brainImg wow fadeInDown">
+          <img src="../../assets/img/sec-6-profile.webp" width="100%" height="100%" alt="brian" />
+        </div>
+        <h2 class="text-light mt-3 wow fadeInDown profil-heading">Where’s Bryan</h2>
+        <p class="text-light text-start wow fadeInDown">
+          Welcome to Where's Bryan, your guide to Miami's real estate scene and beyond. Bryan, a seasoned Miami real
+          estate broker, explores diverse communities, providing insights into neighborhoods, property trends, and
+          lifestyle choices. Follow Bryan's journey through engaging videos and articles where he shares expert analysis
+          on market dynamics, investment strategies, and the latest in urban living. Whether you're a prospective buyer,
+          seller, or simply curious about Miami's vibrant culture, Bryan offers valuable perspectives to help you
+          navigate the city's ever-changing landscape. Join the conversation and discover why Bryan's expertise and
+          passion make him a trusted voice in Miami's real estate market and beyond.
+        </p>
+        <button class="btnPrimary wow fadeInDown">Know More</button>
+      </div>
+      <div class="col-lg-12 mt-5">
+        @defer{
+        <app-card-carousel></app-card-carousel>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sec-7 py-5">
+  <div class="cstmContainer" id="blogSection">
+    <div class="row">
+      <div class="col-lg-12 mt-3">
+        @defer {
+        <app-blog-carousel></app-blog-carousel>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+}

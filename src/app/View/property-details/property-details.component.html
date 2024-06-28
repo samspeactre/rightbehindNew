@@ -1,0 +1,87 @@
+<app-banner>
+  <div class="lg-12 position-relative">
+      <div class="content">
+        <h1 class="text-dark bold bigFont">
+          The best buying deals in Miami
+        </h1>
+        <h2>Move in with just a security deposit, a month free and more 🔥</h2>
+        <div class="search-bar">
+          <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
+            [searching]="loader"></app-search-bar>
+        </div>
+
+        <div class="align-items-center">
+          <mat-form-field class="w-10">
+            <mat-label>Max Price</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-10">
+            <mat-label>Bed</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-10">
+            <mat-label>Area</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">keyboard_arrow_down</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="w-10">
+            <mat-label>Filters</mat-label>
+            <mat-select>
+              <mat-option>option a</mat-option>
+              <mat-option>option b</mat-option>
+              <mat-option>option c</mat-option>
+            </mat-select>
+            <button matSuffix mat-icon-button>
+              <mat-icon class="custom-icon material-symbols-outlined arrow-down">instant_mix</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+  </div>
+</app-banner>
+<section>
+  <div class="lg-12 cstmContainer">
+
+    @if(!noData){
+    <div class="row">
+      @for (card of cards; track card) {
+      <div class="col3">
+        <app-property-card type="component" [card]="card" [showBadge]="true" [loader]="loader"></app-property-card>
+      </div>
+      }
+    </div>
+    } @else{
+    <p class="noData">No data found</p>
+    }
+
+  </div>
+  @if(loadMore){
+  <div class="centerBtn">
+    @if(loadMoreLoader){
+    <app-mini-loading></app-mini-loading>
+    } @else{
+    <button class="loadMore" (click)="loadMoreProperties()">Load More</button>
+    }
+  </div>
+  }
+</section>

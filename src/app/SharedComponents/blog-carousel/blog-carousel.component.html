@@ -1,0 +1,45 @@
+<div class="dCenter justify-content-between position-relative">
+  <h2 class="wow fadeInDown my-3">Blog & News</h2>
+  <hr class="w-50 wow fadeInDown my-3">
+  <div class="dCenter gap-2 my-3">
+    <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.prev()">
+      <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
+    </button>
+    <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.next()">
+      <fa-icon class="dCenter" [icon]="faChevronCircleRight"></fa-icon>
+    </button>
+  </div>
+</div>
+<owl-carousel-o [options]="customOptions" #owlCar>
+  @for (card of cards; track card) {
+  <ng-container>
+    <ng-template carouselSlide>
+      <div class="card-wrapper swiper-slide">
+        <div class="card rounded-3 w-100">
+          <div class="image-content">
+            <span class="overlay"></span>
+            <div class="w-100">
+              <img [src]="card.imgSrc" alt="Card Image" width="100%" height="100%" class="card-img rounded-3 wow fadeInDown">
+              <div class="blog-img-content mt-3 dCenter justify-content-between">
+                <div class="dCenter justify-content-start gap-2">
+                  <div class="circle wow fadeInDown"></div>
+                  <p class="date text-dark reg smallFont mb-0 wow fadeInDown">{{card.date}}</p>
+                </div>
+                <div class="badge wow fadeInDown">{{card.badge}}</div>
+              </div>
+            </div>
+            <div class="w-100 py-2 px-3">
+              <h5 class="bold text-dark wow fadeInDown">{{ card.name }}</h5>
+              <p class="text-dark reg">{{ card.description }}</p>
+              <a routerLink="/blog-inner" class="dCenter mt-2 gap-2 justify-content-start wow fadeInDown">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+                <span class="smallFont bold">Read more</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+  }
+</owl-carousel-o>

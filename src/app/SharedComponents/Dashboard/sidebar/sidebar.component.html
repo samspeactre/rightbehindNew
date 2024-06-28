@@ -1,0 +1,34 @@
+<div class="sidebar dCenter flex-column align-items-start">
+    @if(width > 1024){
+    <div class="dCenter justify-content-between position-relative">
+        @if(!isSidebarCollapsed){
+        <div class="logo">
+            <a routerLink="/">
+                <img src="../../assets/img/nav-logo.webp" alt="logo" width="100%" height="100%">
+            </a>
+        </div>
+        }
+        <button class="toggler" (click)="toggleSidebar()" [class.active]="isSidebarCollapsed">
+            <img src="../../assets/img/side-bar.webp" alt="toggler" width="100%" height="100%">
+        </button>
+    </div>
+    }
+    <div class="dCenter flex-column">
+        @for (item of routes; track $index) {
+        <button class="btnWhiteNBlueOutline my-1 dCenter justify-content-start gap-2"
+            [class.isSidebarCollapsed]="isSidebarCollapsed" [routerLink]="item?.route" routerLinkActive="active">
+            <fa-icon [icon]="item?.icon"></fa-icon>
+            @if(!isSidebarCollapsed){
+            {{item?.name}}
+            }
+        </button>
+        }
+        <button class="btnWhiteNBlueOutline my-1 dCenter justify-content-start gap-2"
+            [class.isSidebarCollapsed]="isSidebarCollapsed" (click)="logout()" routerLinkActive="active">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            @if(!isSidebarCollapsed){
+            Log Out
+            }
+        </button>
+    </div>
+</div>

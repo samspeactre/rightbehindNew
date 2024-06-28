@@ -7,8 +7,29 @@
     width: 50px;
     height: 50px;
 }
+.iconLight{
+    color: var(--royal-blue);
+}
 .borderLight{
     border-color: rgba(230, 242, 255, 1);
+}
+.borderBlue{
+    border:0.5px solid var(--sec-light)
+}
+.searchHere{
+    background-color: var(--sec-light);
+    border-radius: 100px;
+    width: 40%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input{
+        background: none;
+        border: none;
+        outline: none;
+        width: 100%;
+    }
 }
 .redirect-box button {
     background-color: var(--royal-blue);
@@ -18,4 +39,9 @@
 }
 .icon-analaytics-text .mat-icon {
     color: var(--royal-blue);
+}
+@media only screen and (max-width:1024px){
+    .searchHere{
+        width: 100%;
+    }
 }

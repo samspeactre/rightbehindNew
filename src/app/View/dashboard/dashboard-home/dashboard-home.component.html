@@ -1,12 +1,32 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
-            <h6 class="bold mb-3">Home</h6>
+        <div class="col-lg-3 mb-3 d-flex align-items-center">
+            <h6 class="bold mb-0">Home</h6>
+        </div>
+        <div class="col-lg-9 mb-3 d-flex gap-3 justify-content-end">
+            <div class="searchHere px-3 gap-2 borderLight">
+                <fa-icon [icon]="faSearch" class="iconLight"></fa-icon>
+                <input type="text" placeholder="Search Here...">
+            </div>
+            @if (width > 1024) {
+                <div class="borderLight border iconContainer rounded-5">
+                    <fa-icon [icon]="faEnvelope"></fa-icon>
+                </div>
+                <div class="borderLight border iconContainer rounded-5">
+                    <fa-icon [icon]="faBell"></fa-icon>
+                </div>
+                <div class="userContent dCenter gap-2">
+                    <div class="borderLight border overflow-hidden iconContainer rounded-5">
+                        <img src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png" alt="user image" width="100%" height="100%">
+                    </div>
+                    <p class="mb-0 bold text-capitalize">{{user?.fullName}}</p>
+                </div>
+            }
         </div>
         <div class="col-lg-9">
             <div class="row">
                 <div class="col-lg-4 mb-3">
-                    <div class="border-2 border rounded-3 p-3 borderLight">
+                    <div class="rounded-3 p-3 borderBlue">
                         <div class="dCenter justify-content-between">
                             <h6 class="mb-0 bold">Total Properties</h6>
                             <fa-icon [icon]="faArrowLeft"></fa-icon>
@@ -20,7 +40,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mb-3">
-                    <div class="border-2 border rounded-3 p-3 borderLight">
+                    <div class="rounded-3 p-3 borderBlue">
                         <div class="dCenter justify-content-between">
                             <h6 class="mb-0 bold">For Sale</h6>
                             <fa-icon [icon]="faArrowLeft"></fa-icon>
@@ -34,7 +54,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mb-3">
-                    <div class="border-2 border rounded-3 p-3 borderLight">
+                    <div class="rounded-3 p-3 borderBlue">
                         <div class="dCenter justify-content-between">
                             <h6 class="mb-0 bold">For Rent</h6>
                             <fa-icon [icon]="faArrowLeft"></fa-icon>
@@ -55,7 +75,7 @@
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="border border-2 borderLight rounded-3 p-3 mb-3">
+            <div class="borderBlue rounded-3 p-3 mb-3">
                 <h6 class="bold mb-0">Analytics</h6>
                 <div class="dCenter justify-content-between my-3">
                     <div class="dCenter gap-2 icon-analaytics-text">

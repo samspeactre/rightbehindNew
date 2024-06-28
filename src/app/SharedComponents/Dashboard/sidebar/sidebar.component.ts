@@ -8,11 +8,12 @@ import { faChartLine, faCircleQuestion, faGear, faHomeAlt, faList, faSignOutAlt,
 import { Store } from '@ngrx/store';
 import { removeUserData } from '../../../Ngrx/data.action';
 import { AuthService } from '../../../TsExtras/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [FontAwesomeModule, RouterModule],
+  imports: [FontAwesomeModule, RouterModule, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

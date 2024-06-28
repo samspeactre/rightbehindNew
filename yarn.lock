@@ -4366,6 +4366,11 @@ figures@^3.2.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
+
 fill-range@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-7.1.1.tgz#44265d3cac07e3ea7dc247516380643754a05292"
@@ -5657,6 +5662,21 @@ ngx-countup@^13.1.0:
   dependencies:
     countup.js "^2.3.2"
     tslib "^2.0.0"
+
+ngx-filesaver@14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-filesaver/-/ngx-filesaver-14.0.0.tgz#619ce81413f751b04e8b423ea4ee760836ab13cc"
+  integrity sha512-YnSbruOprSpcXZiuhnJ+AannRnSqRWiL0HIlDdwPd48DZYpuU0BTvSNmFj5oFbwLA0RFoOv2EkgedW4k2DEpYA==
+  dependencies:
+    tslib "^2.3.0"
+
+ngx-lightbox@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-lightbox/-/ngx-lightbox-3.0.0.tgz#363893027f32ab5909b4fb0f10bf85acddd21eeb"
+  integrity sha512-gKLy0R3SbbzHkDnAINtT3HFC71XVd86+dkP3LBeKrvjngxB6wMABfY73fF5IGsu9HfKQUN2Ni2Nx6s12xNwXow==
+  dependencies:
+    file-saver "^2.0.5"
+    ngx-filesaver "14.0.0"
 
 ngx-owl-carousel-o@^18.0.0:
   version "18.0.0"

@@ -19,10 +19,10 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { selectUser } from '../../Ngrx/data.reducer';
-
+import { Lightbox, LightboxModule } from 'ngx-lightbox';
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, LightboxModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.scss',
@@ -61,7 +61,7 @@ export class SellPreviewComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private activatedRoute: ActivatedRoute, private dialog: MatDialog, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
+  constructor(private activatedRoute: ActivatedRoute, private lightbox: Lightbox, private dialog: MatDialog, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
       if (!param?.type || !param?.id) {
         this.location.back()
@@ -84,6 +84,20 @@ export class SellPreviewComponent implements OnInit {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  open(index: number): void {
+    
+    const images = this.propertyDetails.propertyImages.map((img:any) => ({
+      src: this.src + img.imageUrl,
+      caption: 'Image caption',
+      thumb: this.src + img.imageUrl
+    }));
+    console.log(images);
+    this.lightbox.open(images, index);
+  }
+
+  close(): void {
+    this.lightbox.close();
   }
   async share(){
     try {

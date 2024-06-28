@@ -85,6 +85,13 @@ export class SellPreviewComponent implements OnInit {
     this.destroy$.next();
     this.destroy$.complete();
   }
+  async share(){
+    try {
+      await navigator.share({ title: this.propertyDetails?.title, url: `preview/?id=${this.id}&type=${this.type}` });
+    } catch (err:any) {
+      console.error("Share failed:", err?.message);
+    }
+  }
   getPropertyDetail() {
     this.http.get(`Property/get/${this.id}`, false)
       .pipe(

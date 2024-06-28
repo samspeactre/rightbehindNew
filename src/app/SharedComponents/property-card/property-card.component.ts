@@ -53,7 +53,7 @@ export class PropertyCardComponent {
       data: {type:'property',id: this.card?.id}
     });
   }
-  navigateAndClose() {
+  async navigateAndClose() {
     this.router.navigate(
       ['/preview'],
       { queryParams: { id: this.card?.id, type: this.card?.propertyType } }

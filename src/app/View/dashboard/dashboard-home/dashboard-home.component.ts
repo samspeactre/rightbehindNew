@@ -3,8 +3,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeftLong, faArrowRightLong, faKey, faMapMarker, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
-import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts'
+import { faArrowRightLong, faKey, faMapMarkerAlt, faTag } from '@fortawesome/free-solid-svg-icons';
+import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 @Component({
   standalone:true,
   imports:[MatIconModule, MatButtonModule, FontAwesomeModule, NgApexchartsModule],

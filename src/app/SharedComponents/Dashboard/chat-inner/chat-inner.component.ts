@@ -39,10 +39,8 @@ export class ChatInnerComponent {
   constructor(private location: Location, private store: Store, private http: HttpService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe((response: any) => {
       this.contactId = response?.id;
-      this.getInquiry()
-    })
-    this.activatedRoute.queryParams.subscribe((response: any) => {
       this.reciever = response?.name
+      this.getInquiry()
     })
     this.user$
       .pipe(

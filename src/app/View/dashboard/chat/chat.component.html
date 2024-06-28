@@ -1,118 +1,127 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col call-chat-sidebar col-sm-12">
-      <div class="card">
-        <div class="card-body chat-body pb-0">
-          <div class="chat-box">
-            <div class="chat-left-aside">
-              <div class="media d-flex align-items-center gap-2">
-                <img class="rounded-circle user-image"
-                  [src]="user?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
-                  alt="">
-                <div class="about">
-                  <div class="name">{{user?.fullName}}</div>
-                </div>
-              </div>
-              <div class="people-list" id="people-list">
-                <div class="search">
-                  <form class="theme-form my-3">
-                    <div class="form-group">
-                      <fa-icon [icon]="faSearch"></fa-icon>
-                      <input class="form-control" [(ngModel)]="searchText" type="text" placeholder="search">
-                    </div>
-                  </form>
-                </div>
-                <ul class="list overflow-y-auto" [style.height.px]="height - 190">
-                  @for (user of searchUsers; track $index) {
-                  <li class="clearfix" *ngIf="user.authenticate != 1">
-                    <a class="d-flex align-items-center gap-2" (click)="userChat(user.id)">
-                      <img class="rounded-circle user-image" [src]="user?.profile" alt="">
-                      <div class="about">
-                        <div class="name">{{user?.name}}</div>
-                        <div class="status">{{user?.status}}</div>
-                      </div>
-                    </a>
-                  </li>
-                  }
-                  <ng-container *ngIf="!searchUsers.length">
-                    <div class="search-not-found chat-search text-center">
-                      <div>
-                        <img src="assets/images/search-not-found.png" alt="" class="second-search">
-                        <p>Sorry, We didn't find any results matching this search</p>
-                      </div>
-                    </div>
-                  </ng-container>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col call-chat-body">
-      <div class="card">
-        <div class="card-body p-0">
-          <div class="row chat-box">
-            <div class="col pr-0 chat-right-aside">
-              <div class="chat">
-                <div class="chat-header clearfix d-flex align-items-center gap-2">
-                  <img class="rounded-circle" [src]="chatUser?.profile" alt="profile picture">
+    @if(showSidebar){
+      <div class="col call-chat-sidebar col-sm-12">
+        <div class="card">
+          <div class="card-body chat-body pb-0">
+            <div class="chat-box">
+              <div class="chat-left-aside">
+                <div class="media d-flex align-items-center gap-2">
+                  <img class="rounded-circle user-image"
+                    [src]="user?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                    alt="">
                   <div class="about">
-                    <div class="name">{{chatUser?.name}}</div>
+                    <div class="name">{{user?.fullName}}</div>
                   </div>
                 </div>
-                <div class="chat-history chat-msg-box custom-scrollbar overflow-y-auto"
-                  [style.height.px]="height - 207">
-                  <ul>
-                    <li *ngFor="let chat of chats?.message" [ngClass]="{'clearfix': chat.sender == profile.id }">
-                      <div class="message my-message mb-0" *ngIf="chat.sender != profile.id; else myChat">
-                        <img class="rounded-circle float-left chat-user-img img-30" [src]="chatUser?.profile" alt="">
-                        <div class="message-data text-right">
-                          <span class="message-data-time">{{chat?.time}}</span>
-                        </div> {{chat?.text}}
+                <div class="people-list" id="people-list">
+                  <div class="search">
+                    <form class="theme-form my-3">
+                      <div class="form-group position-relative">
+                        <fa-icon [icon]="faSearch" class="faSearch position-absolute top-50"></fa-icon>
+                        <input class="form-control ps-4" [(ngModel)]="searchText" type="text" placeholder="search">
                       </div>
-                      <ng-template #myChat>
-                        <div class="message other-message pull-right">
-                          <img class="rounded-circle float-right chat-user-img img-30" [src]="profile?.profile" alt="">
-                          <div class="message-data">
-                            <span class="message-data-time">{{chat?.time}}</span>
-                          </div> {{chat?.text}}
+                    </form>
+                  </div>
+                  <ul class="list overflow-y-auto" [style.height.px]="height - 207">
+                    @for (user of searchUsers; track $index) {
+                    <li class="clearfix" *ngIf="user.authenticate != 1">
+                      <a class="d-flex align-items-center gap-2" (click)="selectChat(user)">
+                        <img class="rounded-circle user-image" [src]="user?.profile" alt="">
+                        <div class="about">
+                          <div class="name">{{user?.name}}</div>
+                          <div class="status">{{user?.status}}</div>
                         </div>
-                      </ng-template>
+                      </a>
                     </li>
-                    <ng-container *ngIf="!chats?.message.length">
-                      <div class="image-not-found">
-                        <div class="d-block start-conversion">
-                          <img src="assets/images/start-conversion.jpg" class="img-fluid">
+                    }
+                    <ng-container *ngIf="!searchUsers.length">
+                      <div class="search-not-found chat-search text-center">
+                        <div>
+                          <img src="assets/images/search-not-found.png" alt="" class="second-search">
+                          <p>Sorry, We didn't find any results matching this search</p>
                         </div>
                       </div>
                     </ng-container>
                   </ul>
                 </div>
-                <form #chatForm="ngForm" (ngSubmit)="sendMessage(chatForm)">
-                  <div class="chat-message clearfix">
-                    <div class="row">
-                      <div class="col-xl-12 d-flex">
-                        <div class="input-group text-box">
-                          <input class="form-control input-txt-bx" [class.border-danger]="error" [(ngModel)]="chatText"
-                            id="message-to-send" type="text" name="message" placeholder="Type a message......">
-                          <div class="input-group-append">
-                            <button class="btn btn-primary" (click)="sendMessage(chatForm)" type="button">SEND</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                <!-- end chat-message-->
-                <!-- chat end-->
-                <!-- Chat right side ends-->
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    }
+    @if(showChat){
+      <div class="col call-chat-body">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="row chat-box">
+              <div class="col pr-0 chat-right-aside">
+                <div class="chat">
+                  <div class="chat-header clearfix d-flex align-items-center gap-2">
+                    @if(width <= 1024){
+                      <fa-icon class="cursor" (click)="removeQueryParam()" [icon]="faArrowLeft"></fa-icon>
+                    }
+                    <img class="rounded-circle" [src]="chatUser?.profile" alt="profile picture">
+                    <div class="about">
+                      <div class="name">{{chatUser?.name}}</div>
+                    </div>
+                  </div>
+                  <div #messagesContainer class="chat-history chat-msg-box custom-scrollbar overflow-y-auto"
+                    [style.height.px]="height - 207">
+                    <ul>
+                      <li *ngFor="let chat of chats?.message" [ngClass]="{'clearfix': chat.sender == profile.id }">
+                        <div class="message my-message mb-0" *ngIf="chat.sender != profile.id; else myChat">
+                          <img class="rounded-circle float-left chat-user-img img-30" [src]="chatUser?.profile" alt="">
+                          <div class="message-data text-right">
+                            <span class="message-data-time">{{chat?.time}}</span>
+                          </div> {{chat?.text}}
+                        </div>
+                        <ng-template #myChat>
+                          <div class="message other-message pull-right">
+                            <img class="rounded-circle float-right chat-user-img img-30" [src]="profile?.profile" alt="">
+                            <div class="message-data">
+                              <span class="message-data-time">{{chat?.time}}</span>
+                            </div> {{chat?.text}}
+                          </div>
+                        </ng-template>
+                      </li>
+                      <ng-container *ngIf="!chats?.message.length">
+                        <div class="image-not-found">
+                          <div class="d-block start-conversion">
+                            <img src="assets/images/start-conversion.jpg" class="img-fluid">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ul>
+                  </div>
+                  <form #chatForm="ngForm" (ngSubmit)="sendMessage()">
+                    <div class="chat-message clearfix">
+                      <div class="row">
+                        <div class="col-xl-12 d-flex">
+                          <div class="input-group text-box">
+                            <input class="form-control input-txt-bx" [class.border-danger]="error" [(ngModel)]="chatText"
+                              id="message-to-send" type="text" name="message" placeholder="Type a message......">
+                            <div class="input-group-append">
+                              <button class="btnPrimary rounded-start-0 border-0" (click)="sendMessage()" type="button">
+                                <fa-icon [icon]="faPaperPlane"></fa-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- end chat-message-->
+                  <!-- chat end-->
+                  <!-- Chat right side ends-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
   </div>
 </div>
 <!-- Container-fluid Ends -->

@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from '../../../services/chat.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { HttpService } from '../../../Services/http.service';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   standalone:true,
@@ -17,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   public users : any = []
   public searchUsers : any = []
   public chatUser : any;
@@ -25,12 +27,23 @@ export class ChatComponent implements OnInit {
   public error : boolean = false;
   public notFound: boolean = false;
   public searchText! : string;
-  faSearch=faSearch
+  faSearch=faSearch;
+  faPaperPlane=faPaperPlane
+  faArrowLeft=faArrowLeft
   height: number = 0;
+  width:number = window.innerWidth;
   user$ = this.store.select(selectUser);
   private destroy$ = new Subject<void>();
   user: any;
-  constructor(private chatService: ChatService, private http:HttpService, private store:Store) {   
+  contactId:any = null;
+  recieverInfo:any;
+  messages: any = [];
+  showChat:boolean = window.innerWidth > 1024 ? true : false;
+  showSidebar:boolean = window.innerWidth > 1024 ? true : false;
+  messageForm = this.fb.group({
+    message: ['', Validators.required],
+  });
+  constructor(private chatService: ChatService, private fb:FormBuilder, private http:HttpService, private store:Store, private router:Router, private activatedRoute:ActivatedRoute) {   
     this.chatService.getUsers().subscribe(users => { 
       this.searchUsers = users
       this.users = users
@@ -46,6 +59,23 @@ export class ChatComponent implements OnInit {
         console.log(user);
         
         this.user = user
+      })
+      this.activatedRoute.queryParams.subscribe((res:any)=>{
+        this.contactId = res?.data?.id;
+        this.recieverInfo = res?.data?.info;
+        if(window.innerWidth <= 1024){
+          if(res?.data){
+            this.showChat = true;
+            this.showSidebar = false;
+          }
+          else{
+            this.showChat = false;
+            this.showSidebar = true;
+          }
+        }
+        console.log('====================================');
+        console.log(res?.data?.id);
+        console.log('====================================');
       })
   }
   ngOnInit() { 
@@ -67,25 +97,65 @@ export class ChatComponent implements OnInit {
       this.height = element.offsetHeight;
     }
   }
+  selectChat(data:any) {
+    this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(data) } });
+  }
+  removeQueryParam() {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        data: null
+      },
+      queryParamsHandling: 'merge' // keeps other query params untouched
+    });
+  }
   // User Chat
   public userChat(){    
     this.chatService.chatToUser(1).subscribe(chatUser => this.chatUser = chatUser)
     this.chatService.getChatHistory(1).subscribe(chats => this.chats = chats)
   }
   
-  // Send Message to User
-  public sendMessage(form:any) {
-    // this.error = false
-    // let chat = {
-    //   sender: this.profile.id,
-    //   receiver: this.chatUser.id,
-    //   receiver_name: this.chatUser.name,
-    //   message: form.value.message
-    // }
-    // this.chatService.sendMessage(chat) 
-    // this.chatText = ''
-    // this.chatUser.seen = 'online'
-    // this.chatUser.online = true
+  sendMessage() {
+    const data = {
+      chatContactId: this.contactId,
+      message: this.messageForm.controls['message'].value
+    }
+    this.http.loaderPost('Chat/send', data, true).subscribe((response) => {
+      this.messageForm.reset();
+      this.messages.push({
+        sender: this.user?.fullName,
+        receiver: this.recieverInfo || null,
+        text: data?.message,
+        time: new Date()
+      })
+      setTimeout(() => {
+        this.scrollToBottom();
+      });
+    })
+  }
+  getInquiry() {
+    this.http.loaderGet(`Chat/get/${this.contactId}`, true, true).subscribe((response) => {
+      this.recieverInfo = response?.modelList?.[0]?.chatContact?.buyer?.fullName
+      response?.modelList?.map((item: any) => {
+        this.messages.push({
+          sender: item?.sender?.fullName,
+          receiver: item?.chatContact?.buyer?.fullName,
+          text: item?.message,
+          time: item?.createdOn
+        })
+      })
+      setTimeout(() => {
+        this.scrollToBottom();
+      });
+    })
+  }
+  private scrollToBottom(): void {
+    try {
+      this.messagesContainer?.nativeElement.scrollTo({
+        top: this.messagesContainer?.nativeElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    } catch (err) { }
   }
 
   searchTerm(term: any) {

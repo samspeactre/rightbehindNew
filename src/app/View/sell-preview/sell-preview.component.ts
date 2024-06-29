@@ -145,7 +145,7 @@ export class SellPreviewComponent implements OnInit {
   }
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      width: this.resize.isWidthGreaterThan1024 ? '33%' : '100%',
+      width: window.innerWidth > 1024 ? '33%' : '100%',
       data: { type: 'property', id: this.id }
     });
   }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
@@ -28,11 +28,16 @@ export class SidebarComponent {
   faSetting = faGear;
   faUser = faUser;
   faSignOutAlt=faSignOutAlt
-  @Input() isSidebarCollapsed: boolean = window.innerWidth > 1024 ? false : true;
+  width:number=window.innerWidth
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.width = window.innerWidth
+  }
+  @Input() isSidebarCollapsed: boolean = this.width > 1024 ? false : true;
   @Output() isSidebarCollapsedEvent = new EventEmitter<boolean>();
   constructor(private store:Store,private router:Router, private auth:AuthService,public resize:ResizeService){}
   toggleSidebar() {
-    if(window.innerWidth > 1024){
+    if(this.width > 1024){
       this.isSidebarCollapsed = !this.isSidebarCollapsed;
       this.isSidebarCollapsedEvent.emit(this.isSidebarCollapsed)
     }

@@ -68,10 +68,16 @@ export class PropertyCardComponent {
   }
   createContact() {
     this.helper.createContact(this.card?.id).subscribe((response) => {
-      const id = response?.model?.id;
-      if (id) {
-        this.router.navigateByUrl(`/dashboard/inquiries/chat/${id}`);
+      const routeData = {
+        property:{
+          id:this.card?.id,
+          title:this.card?.title,
+          type:this.card?.propertyType
+        },
+        sender:{fullName:this.card?.propertyContacts?.[0]?.fullName,imageUrl:this.card?.propertyContacts?.[0]?.imageUrl},
+        contactId:response?.model?.id
       }
+      this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });
     })
   }
 }

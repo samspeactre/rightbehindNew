@@ -87,7 +87,6 @@ export class SellPreviewComponent implements OnInit {
     this.destroy$.complete();
   }
   open(index: number): void {
-
     const images = this.propertyDetails.propertyImages.map((img: any) => ({
       src: this.src + img.imageUrl,
       caption: 'Property Images',
@@ -137,10 +136,16 @@ export class SellPreviewComponent implements OnInit {
   }
   createContact() {
     this.helper.createContact(this.id).subscribe((response) => {
-      const id = response?.model?.id;
-      if (id) {
-        this.router.navigate(['/dashboard/inquiries/chat', id], { queryParams: { name: this.propertyDetails?.propertyContacts[0]?.fullName } });
+      const routeData = {
+        property:{
+          id:this.id,
+          title:this.propertyDetails?.title,
+          type:this.propertyDetails?.propertyType
+        },
+        sender:{fullName:this.propertyDetails?.propertyContacts?.[0]?.fullName,imageUrl:this.propertyDetails?.propertyContacts?.[0]?.imageUrl && this.src + this.propertyDetails?.propertyContacts?.[0]?.imageUrl},
+        contactId:response?.model?.id
       }
+      this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });
     })
   }
   openPopup(): void {

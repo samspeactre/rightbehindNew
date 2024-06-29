@@ -45,6 +45,9 @@ ul{
     margin-right: 10px;
     font-weight: bold;
 }
+.msg-text{
+    font-size: 12px;
+}
 
 .msg-info-time {
     font-size: 0.85em;
@@ -65,5 +68,20 @@ ul{
 }
 
 .right-msg .msg-img {
+    img{
+        object-fit: contain;
+    }
     margin: 0 0 0 10px;
+}
+.start-conversion{
+    img{
+        object-fit: cover;
+    }
+}
+.dropdown-toggle:after{
+    content: unset;
+}
+.imgContainer{
+    width: 40px;
+    height: 40px;
 }

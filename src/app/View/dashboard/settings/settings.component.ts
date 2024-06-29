@@ -6,13 +6,17 @@ import { InputComponent } from '../../../SharedComponents/input/input.component'
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../../Services/http.service';
 import { updateUserData } from '../../../Ngrx/data.action';
+import { LoaderService } from '../../../Services/loader.service';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { assetUrl } from '../../../Services/helper.service';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, InputComponent, FormsModule, ReactiveFormsModule],
+  imports: [MatIconModule, MatButtonModule, InputComponent, FontAwesomeModule, FormsModule, ReactiveFormsModule],
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'
@@ -21,6 +25,7 @@ export class SettingsComponent {
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
+  faPlus = faPlusCircle
   settingForm: any = this.fb.group({
     fullName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -32,6 +37,7 @@ export class SettingsComponent {
     state: [''],
     zip: [''],
   });
+  profileImage: any;
   securityForm = this.fb.group({
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
@@ -56,6 +62,7 @@ export class SettingsComponent {
           state: user?.state || user?.userAddresses?.[0]?.state,
           zip: user?.zip || user?.userAddresses?.[0]?.zipCode
         })
+        this.profileImage = user?.imageUrl && assetUrl + user?.imageUrl
       });
   }
   ngOnDestroy() {
@@ -68,5 +75,22 @@ export class SettingsComponent {
     this.http.loaderPost('User/profile/update', formData, true).subscribe((response: any) => {
       this.store.dispatch(updateUserData({ user: formData }));
     })
+  }
+  imgUpload(event: any) {
+    LoaderService.loader.next(true);
+    this.http
+      .profileImageUpload(event?.target?.files[0], this.user?.token)
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        ),
+        finalize(() => {
+          LoaderService.loader.next(false)
+        })
+      )
+      .subscribe((res: any) => {
+        this.store.dispatch(updateUserData({ user: { imageUrl: res?.model?.imageUrl } }));
+      });
   }
 }

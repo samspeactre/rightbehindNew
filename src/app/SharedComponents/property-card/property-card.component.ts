@@ -74,7 +74,7 @@ export class PropertyCardComponent {
           title:this.card?.title,
           type:this.card?.propertyType
         },
-        sender:{fullName:this.card?.propertyContacts?.[0]?.fullName,imageUrl:this.card?.propertyContacts?.[0]?.imageUrl},
+        sender:{fullName:this.card?.propertyContacts?.[0]?.fullName,imageUrl:this.card?.propertyContacts?.[0]?.imageUrl && this.src + this.card?.propertyContacts?.[0]?.imageUrl},
         contactId:response?.model?.id
       }
       this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });

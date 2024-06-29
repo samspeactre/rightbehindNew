@@ -8,6 +8,13 @@
         </div>
     </div>
     <form [formGroup]="settingForm" (ngSubmit)="onSubmit()" class="row">
+        <div class="col-lg-12 my-3 mx-auto d-flex align-items-center justify-content-center">
+            <input id="profile" type="file" class="d-none" (change)="imgUpload($event)">
+            <label for="profile" class="profileImage cursor">
+              <img [src]="profileImage || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'">
+              <fa-icon [icon]="faPlus"></fa-icon>
+            </label>
+          </div>
         <div class="col-lg-6">
             <app-input type="text" [form]="settingForm" control="fullName" label="Full Name"
                 placeholder="Enter your full name*"></app-input>

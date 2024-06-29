@@ -7,9 +7,11 @@
           <div class="chat-box">
             <div class="chat-left-aside">
               <div class="media d-flex align-items-center gap-2">
-                <img class="rounded-circle user-image"
-                  [src]="user?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
-                  alt="">
+                <div class="imgContainer">
+                  <img class="rounded-circle user-image" style="object-fit: contain;" width="100%" height="100%"
+                    [src]="(user?.imageUrl && src + user?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                    alt="profile image">
+                </div>
                 <div class="about">
                   <div class="name">{{user?.fullName}}</div>
                 </div>
@@ -23,16 +25,18 @@
                     </div>
                   </div>
                 </div>
-                <ul class="list overflow-y-auto" [style.height.px]="height - 207">
+                <ul class="list overflow-y-auto" [style.height.px]="height - 180">
                   @for (user of searchUsers; track $index) {
                   <li class="clearfix">
                     <a class="d-flex align-items-center gap-2" (click)="selectChat(user)">
-                      <img class="rounded-circle user-image"
-                        [src]="user?.chat?.sender?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
-                        alt="">
+                      <div class="imgContainer">
+                        <img class="rounded-circle user-image" style="object-fit: contain;" width="100%" height="100%"
+                          [src]="(user?.sender?.imageUrl && src + user?.sender?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                          alt="profile image">
+                      </div>
                       <div class="about">
-                        <div class="name">{{user?.chat?.sender?.fullName}}</div>
-                        <div class="status">{{user?.chat?.message}}</div>
+                        <p class="name mb-0">{{user?.sender?.fullName}}</p>
+                        <p class="status mb-0 smallFont">{{user?.chat?.message}}</p>
                       </div>
                     </a>
                   </li>
@@ -40,7 +44,7 @@
                   @if(!searchUsers.length){
                   <div class="search-not-found chat-search text-center">
                     <div>
-                      <img src="assets/img/search-not-found.png" alt="" class="second-search">
+                      <img src="assets/img/search-not-found.png" alt="image" width="100%" height="100%" class="second-search">
                       <p>Sorry, We didn't find any results matching this search</p>
                     </div>
                   </div>
@@ -54,52 +58,65 @@
     </div>
     }
     @if(showChat){
+    @if(contactId){
     <div class="col call-chat-body">
       <div class="card">
         <div class="card-body p-0">
           <div class="row chat-box">
             <div class="col pr-0 chat-right-aside">
               <div class="chat">
-                <div class="chat-header clearfix d-flex align-items-center gap-2">
+                <div class="chat-header clearfix d-flex align-items-center gap-2 my-3">
                   @if((resize.windowSize$ | async)?.width <= 1024){ <fa-icon class="cursor" (click)="removeQueryParam()"
                     [icon]="faArrowLeft"></fa-icon>
                     }
-                    <img class="rounded-circle"
-                      [src]="recieverInfo?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
-                      alt="profile picture">
-                    <div class="about">
-                      <div class="name">{{recieverInfo?.fullName}}</div>
+                    <div class="imgContainer">
+                      <img class="rounded-circle" style="object-fit: contain;" width="100%" height="100%"
+                        [src]="recieverInfo?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                        alt="profile picture">
                     </div>
+                      <div class="about">
+                        <div class="name">{{recieverInfo?.fullName}}</div>
+                      </div>
+                      <div ngbDropdown class="d-inline-block ms-auto">
+                        <button type="button" class="optionBtn" id="dropdownBasic1" ngbDropdownToggle>
+                          <fa-icon [icon]="faEllipsisVertical"></fa-icon>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                          <button ngbDropdownItem (click)="route()">View Property</button>
+                          <!-- <button ngbDropdownItem (click)="deleteChat()">Delete Chat</button> -->
+                            <!-- {{propertyInfo?.title}} -->
+                        </div>
+                      </div>
                 </div>
                 <div #messagesContainer class="chat-history chat-msg-box custom-scrollbar overflow-y-auto"
-                  [style.height.px]="height - 207">
+                  [style.height.px]="height - 205">
                   @if(loader){
-                    <app-mini-loading></app-mini-loading>
+                  <app-mini-loading></app-mini-loading>
                   }
                   @else{
-                    @for (item of messages; track $index) {
-                    <div [ngClass]="[item?.sender == userDetails?.fullName ? 'right-msg' : 'left-msg']" class="msg">
-                      <div class="msg-img">
-                        <img
-                          src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png"
-                          width="100%" height="100%" alt="">
-                      </div>
-                      <div class="msg-bubble">
-                        <div class="msg-info">
-                          <div class="msg-info-name">{{item?.sender}}</div>
-                          <div class="msg-info-time">{{item?.time | date:'shortTime'}}</div>
-                        </div>
-                        <div class="msg-text">{{item?.text}}</div>
-                      </div>
+                  @for (item of messages; track $index) {
+                  <div [ngClass]="[item?.sender == user?.fullName ? 'right-msg' : 'left-msg']" class="msg">
+                    <div class="msg-img imgContainer">
+                      <img
+                        [src]=" (item?.imageUrl && src+item?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                        width="100%" height="100%" alt="">
                     </div>
-                    }
-                    @if(!messages?.length){
-                      <div class="image-not-found">
-                        <div class="d-block start-conversion">
-                          <img src="assets/img/start-conversion.jpg" width="100%" height="100%" class="img-fluid">
-                        </div>
+                    <div class="msg-bubble">
+                      <div class="msg-info">
+                        <div class="msg-info-name">{{item?.sender}}</div>
+                        <div class="msg-info-time">{{item?.time | date:'shortTime'}}</div>
                       </div>
-                    }
+                      <p class="msg-text mb-0">{{item?.text}}</p>
+                    </div>
+                  </div>
+                  }
+                  @if(!messages?.length){
+                  <div class="image-not-found h-100">
+                    <div class="d-block start-conversion h-100">
+                      <img src="assets/img/start-conversion.jpg" width="100%" height="100%">
+                    </div>
+                  </div>
+                  }
                   }
                 </div>
                 <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
@@ -121,15 +138,27 @@
                     </div>
                   </div>
                 </form>
-                <!-- end chat-message-->
-                <!-- chat end-->
-                <!-- Chat right side ends-->
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    }@else{
+    <div class="col call-chat-body" [style.height.px]="height - 40">
+      <div class="card h-100">
+        <div class="card-body p-0 h-100">
+          <div class="row chat-box h-100">
+            <div class="image-not-found h-100">
+              <div class="d-block start-conversion h-100">
+                <img src="assets/img/start-conversion.jpg" width="100%" height="100%">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
     }
   </div>
 </div>

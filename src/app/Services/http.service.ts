@@ -6,7 +6,7 @@ import {
   HttpHeaders,
   HttpParams,
 } from '@angular/common/http';
-import { Subject, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, distinctUntilChanged, finalize, shareReplay, takeUntil, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { selectUser } from '../Ngrx/data.reducer';
@@ -186,5 +186,30 @@ export class HttpService {
         }
       }
     }
+  }
+  profileImageUpload(selectedFile: File,token:string): Observable<any> {
+    return new Observable((observer) => {
+      const formData = new FormData();
+      formData.append('file', selectedFile, selectedFile.name);
+      const HttpUploadOptions = {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*',
+          Authorization: `Bearer ${token}`,
+        }),
+      };
+      this.http.post(baseUrl + 'user/profile/image', formData, HttpUploadOptions).subscribe(
+        (response: any) => {
+            observer.next(response);
+            observer.complete();
+        },
+        (error: any) => {
+          LoaderService.loader.next(false);
+          console.error('Error uploading profile image:', error);
+          observer.error(error);
+        }
+      );
+      return () => {
+      };
+    });
   }
 }

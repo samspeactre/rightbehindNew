@@ -8,7 +8,7 @@
             <div class="chat-left-aside">
               <div class="media d-flex align-items-center gap-2">
                 <div class="imgContainer">
-                  <img class="rounded-circle user-image" style="object-fit: contain;" width="100%" height="100%"
+                  <img style="object-fit: contain;" width="100%" height="100%"
                     [src]="(user?.imageUrl && src + user?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
                     alt="profile image">
                 </div>
@@ -20,8 +20,8 @@
                 <div class="search">
                   <div class="theme-form my-3">
                     <div class="form-group position-relative">
-                      <fa-icon [icon]="faSearch" class="faSearch position-absolute top-50"></fa-icon>
-                      <input class="form-control ps-4" [(ngModel)]="searchText" type="text" placeholder="search">
+                      <fa-icon [icon]="faSearch" class="faSearch position-absolute top-50 ms-2"></fa-icon>
+                      <input class="form-control ps-5" [(ngModel)]="searchText" type="text" placeholder="search">
                     </div>
                   </div>
                 </div>
@@ -30,7 +30,7 @@
                   <li class="clearfix">
                     <a class="d-flex align-items-center gap-2" (click)="selectChat(user)">
                       <div class="imgContainer">
-                        <img class="rounded-circle user-image" style="object-fit: contain;" width="100%" height="100%"
+                        <img style="object-fit: contain;" width="100%" height="100%"
                           [src]="(user?.sender?.imageUrl && src + user?.sender?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
                           alt="profile image">
                       </div>
@@ -65,12 +65,12 @@
           <div class="row chat-box">
             <div class="col pr-0 chat-right-aside">
               <div class="chat">
-                <div class="chat-header clearfix d-flex align-items-center gap-2 my-3">
+                <div class="chat-header clearfix d-flex align-items-center gap-2 py-3">
                   @if((resize.windowSize$ | async)?.width <= 1024){ <fa-icon class="cursor" (click)="removeQueryParam()"
                     [icon]="faArrowLeft"></fa-icon>
                     }
                     <div class="imgContainer">
-                      <img class="rounded-circle" style="object-fit: contain;" width="100%" height="100%"
+                      <img style="object-fit: contain;" width="100%" height="100%"
                         [src]="recieverInfo?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
                         alt="profile picture">
                     </div>
@@ -89,7 +89,7 @@
                       </div>
                 </div>
                 <div #messagesContainer class="chat-history chat-msg-box custom-scrollbar overflow-y-auto"
-                  [style.height.px]="height - 205">
+                  [style.height.px]="height - 203">
                   @if(loader){
                   <app-mini-loading></app-mini-loading>
                   }
@@ -126,7 +126,7 @@
                         <div class="input-group text-box">
                           <input class="form-control input-txt-bx" [class.border-danger]="error"
                             formControlName="message" id="message-to-send" type="text" name="message"
-                            placeholder="Type a item?......">
+                            placeholder="Type here">
                           <div class="input-group-append">
                             <button class="btnPrimary rounded-start-0 border-0" [disabled]="messageForm?.invalid"
                               type="submit">

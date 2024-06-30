@@ -22,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HelperService, types } from '../../Services/helper.service';
 import { MapDrawComponent } from '../mapDraw/mapDraw.component';
+import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
+import { CommunityCardComponent } from '../community-card/community-card.component';
 
 @Component({
   standalone: true,
@@ -46,7 +48,8 @@ import { MapDrawComponent } from '../mapDraw/mapDraw.component';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    MapDrawComponent
+    MapDrawComponent,
+    CommunityCardComponent
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -90,6 +93,7 @@ export class ListingPageComponent implements OnInit {
     lat: -34.4009703,
     lng: 150.4826715,
   };
+  url!: string;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
   constructor(
@@ -101,9 +105,8 @@ export class ListingPageComponent implements OnInit {
   ) {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
     // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
-    setTimeout(() => {
-      this.showMap = true 
-    });
+    this.url = this.router.url;    
+    this.showMap = true
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];

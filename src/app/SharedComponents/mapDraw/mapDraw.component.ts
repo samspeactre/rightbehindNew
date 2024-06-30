@@ -4,6 +4,7 @@ import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
+import { CommunityCardComponent } from '../community-card/community-card.component';
 
 declare const google: any;
 declare var $: any;
@@ -19,6 +20,7 @@ export class MapDrawComponent {
   @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
   @Input() infoContents: any[] = [];
   @Input() height: any;
+  @Input() community: boolean = false;
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -134,7 +136,7 @@ export class MapDrawComponent {
   }
 
   createInfoWindowContent(index: number): HTMLElement {
-    const factory = this.resolver.resolveComponentFactory(PropertyCardMapComponent);
+    const factory = this.resolver.resolveComponentFactory( this.community ? CommunityCardComponent : PropertyCardMapComponent);
     const componentRef:any = factory.create(this.injector);
     componentRef.instance.card = this.infoContents[index];
     componentRef.instance.loader = false;

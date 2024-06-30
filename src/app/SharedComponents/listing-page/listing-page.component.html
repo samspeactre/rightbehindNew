@@ -2,10 +2,15 @@
   <app-banner>
     <div class="container">
       <div class="sec-1 pb-3">
-        <h1 class="bigFont wow fadeInDown text-dark text-center">The best rental deals in Miami.</h1>
+        @if(url == '/communities'){
+          <h1 class="bigFont wow fadeInDown text-dark text-center">The best communities Miami.</h1>
+        }
+        @else{
+          <h1 class="bigFont wow fadeInDown text-dark text-center">The best rental deals in Miami.</h1>
           <p class="wow fadeInDown text-center mb-3">
             Move in with just a security deposit, a month free and more 🔥
           </p>
+        }
         <!-- <div class="dCenter w-100">
           <button class="btnWhiteNBlue me-2 wow fadeInDown" routerLinkActive="active" routerLink="/buy">
             Buy
@@ -18,67 +23,68 @@
           <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
             [searching]="loader"></app-search-bar>
         </div>
-        @if(!loader && !loadMoreLoader){
-          <div class="row">
-            <div class="col-lg-2 col-4">
-              <div class="ngs-select">
-                <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()" [searchable]="false">
-                  @if(types){
-                    @for (item of types; track $index) {
-                    <ng-option [value]="item?.value">{{item?.name}}</ng-option>
-                    }
-                  }
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-lg-2 col-4">
-              <div class="ngs-select">
-                <ng-select [(ngModel)]="maxPrice" placeholder="Price" (change)="onFilterChange()" [searchable]="false">
-                  @if(maxPriceArray){
-                  @for (item of maxPriceArray; track $index) {
-                  <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
-                  }
+        @if(!loader && !loadMoreLoader && url != '/communities'){
+        <div class="row">
+          <div class="col-lg-2 col-4">
+            <div class="ngs-select">
+              <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()"
+                [searchable]="false">
+                @if(types){
+                @for (item of types; track $index) {
+                <ng-option [value]="item?.value">{{item?.name}}</ng-option>
                 }
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-lg-2 col-4">
-              <div class="ngs-select">
-                <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
-                  @if(bedsArray){
-                  @for (item of bedsArray; track $index) {
-                  <ng-option [value]="item">{{item}} Beds</ng-option>
-                  }
                 }
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-lg-2 col-4">
-              <div class="ngs-select">
-                <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
-                  @if(bathArray){
-                  @for (item of bathArray; track $index) {
-                  <ng-option [value]="item">{{item}} Bathroom</ng-option>
-                  }
-                }
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-lg-2 col-4">
-              <div class="ngs-select">
-                <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
-                  @if(bathArray){
-                  @for (item of sortsArray; track $index) {
-                  <ng-option [value]="item">{{item}}</ng-option>
-                  }
-                }
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-lg-2 col-4 ms-auto dCenter">
-              <button class="btnDanger w-100 py-3" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
+              </ng-select>
             </div>
           </div>
+          <div class="col-lg-2 col-4">
+            <div class="ngs-select">
+              <ng-select [(ngModel)]="maxPrice" placeholder="Price" (change)="onFilterChange()" [searchable]="false">
+                @if(maxPriceArray){
+                @for (item of maxPriceArray; track $index) {
+                <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
+                }
+                }
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-lg-2 col-4">
+            <div class="ngs-select">
+              <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
+                @if(bedsArray){
+                @for (item of bedsArray; track $index) {
+                <ng-option [value]="item">{{item}} Beds</ng-option>
+                }
+                }
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-lg-2 col-4">
+            <div class="ngs-select">
+              <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
+                @if(bathArray){
+                @for (item of bathArray; track $index) {
+                <ng-option [value]="item">{{item}} Bathroom</ng-option>
+                }
+                }
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-lg-2 col-4">
+            <div class="ngs-select">
+              <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
+                @if(bathArray){
+                @for (item of sortsArray; track $index) {
+                <ng-option [value]="item">{{item}}</ng-option>
+                }
+                }
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-lg-2 col-4 ms-auto dCenter">
+            <button class="btnDanger w-100 py-3" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
+          </div>
+        </div>
         }
       </div>
     </div>
@@ -88,21 +94,33 @@
       <div class="row">
         <div class="col-lg-6 wow fadeInDown" #listing>
           @if(loader){
-            <p style="height: 16px;" class="w-75 skeleton my-3"></p>
+          <p style="height: 16px;" class="w-75 skeleton my-3"></p>
+          }
+          @else {
+          <p class="my-3">{{cards?.length}} 
+            @if(url == '/communities'){
+              Communities 
+            }@else{
+              Properties 
             }
-            @else {
-            <p class="my-3">{{cards?.length}} Properties Found</p>
-            }
+            Found
+          </p>
+          }
           <div class="row">
             @if(cards?.length){
             @for (card of cards; track card) {
             <div class="col-lg-6 mb-3 wow fadeInDown">
-              <app-property-card background="#e6f2ff" [card]="card" [loader]="loader" type="component"></app-property-card>
+              @if(url == '/communities'){
+                <app-community-card></app-community-card>
+              }@else {
+                <app-property-card background="#e6f2ff" [card]="card" [loader]="loader"
+                  type="component"></app-property-card>
+              }
             </div>
             }
             }
             @else {
-            <p class="text-danger text-center">No properties found</p>
+            <p class="text-danger text-center">No {{url == '/communities' ? 'communities' : 'properties'}} found</p>
             }
             <div class="col-lg-12">
               @if(loadMore){
@@ -123,12 +141,17 @@
           <div class="mapElement">
             <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
             @if(latLngArray?.length){
-              <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
+              @if(url == '/communities'){
+                <app-map-draw [communityMarkers]="latLngArray" [community]="true" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
+              }
+              @else{
+                <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
+              }
             }
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
 </div>

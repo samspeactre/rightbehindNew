@@ -92,11 +92,11 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'community',
+        path: 'communities',
         data: { footer: true, header: true },
         loadChildren: () =>
-          import('./view/community-view/community.route').then(
-            (m) => m.Community_Routes
+          import('./SharedComponents/listing-page/listing-page.route').then(
+            (m) => m.Listing_Page_Routes
           ),
       },
     ]

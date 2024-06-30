@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 import { CommunityCardComponent } from '../community-card/community-card.component';
+import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 
 declare const google: any;
 declare var $: any;
@@ -115,7 +116,7 @@ export class MapDrawComponent {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(commMarkerData.lat, commMarkerData.lng),
         map: this.map,
-        icon: '/img/markerC.webp',
+        icon: '/assets/img/markerC.webp',
       });
 
       const infoWindow = new google.maps.InfoWindow({
@@ -136,7 +137,8 @@ export class MapDrawComponent {
   }
 
   createInfoWindowContent(index: number): HTMLElement {
-    const factory = this.resolver.resolveComponentFactory( this.community ? CommunityCardComponent : PropertyCardMapComponent);
+    const component:any = this.community ? CommunityCardMapComponent : PropertyCardMapComponent
+    const factory = this.resolver.resolveComponentFactory(component);
     const componentRef:any = factory.create(this.injector);
     componentRef.instance.card = this.infoContents[index];
     componentRef.instance.loader = false;

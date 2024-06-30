@@ -111,7 +111,7 @@
             @for (card of cards; track card) {
             <div class="col-lg-6 mb-3 wow fadeInDown">
               @if(url == '/communities'){
-                <app-community-card></app-community-card>
+                <app-community-card [loader]="loader"></app-community-card>
               }@else {
                 <app-property-card background="#e6f2ff" [card]="card" [loader]="loader"
                   type="component"></app-property-card>
@@ -142,7 +142,7 @@
             <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
             @if(latLngArray?.length){
               @if(url == '/communities'){
-                <app-map-draw [communityMarkers]="latLngArray" [community]="true" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
+                <app-map-draw [communityMarkerPositions]="latLngArray" [community]="true" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
               }
               @else{
                 <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>

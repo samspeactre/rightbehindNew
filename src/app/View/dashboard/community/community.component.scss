@@ -1,28 +1,33 @@
-.imgBox{
+.imgBox {
     width: 50px;
     height: 50px;
     border-radius: 100px;
-    img{
+
+    img {
         object-fit: contain;
     }
 }
-.reg{
+
+.reg {
     overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  max-width: 90%;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-width: 90%;
 }
-.msgRow{
+
+.msgRow {
     width: 95%;
     margin: auto;
 }
-.content{
+
+.content {
     width: 60%;
 }
+
 @media only screen and (max-width:400px) {
-    .content{
+    .content {
         width: 50%;
     }
 }

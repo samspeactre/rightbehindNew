@@ -16,4 +16,5 @@ import { MapComponent } from '../map/map.component';
   styleUrl: './community-card.component.scss'
 })
 export class CommunityCardComponent {
+  @Input() loader:boolean = true;
 }

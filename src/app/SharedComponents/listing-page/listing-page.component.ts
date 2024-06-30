@@ -94,6 +94,7 @@ export class ListingPageComponent implements OnInit {
     lng: 150.4826715,
   };
   url!: string;
+  screenHeight:number = window.innerHeight   
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
   constructor(
@@ -105,7 +106,7 @@ export class ListingPageComponent implements OnInit {
   ) {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
     // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
-    this.url = this.router.url;    
+    this.url = this.router.url; 
     this.showMap = true
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {

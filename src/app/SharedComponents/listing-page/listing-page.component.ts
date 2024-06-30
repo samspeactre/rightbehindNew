@@ -24,6 +24,7 @@ import { HelperService, types } from '../../Services/helper.service';
 import { MapDrawComponent } from '../mapDraw/mapDraw.component';
 import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
 import { CommunityCardComponent } from '../community-card/community-card.component';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -102,7 +103,8 @@ export class ListingPageComponent implements OnInit {
     private http: HttpService,
     private router: Router,
     public dialog: MatDialog,
-    private helper: HelperService
+    private helper: HelperService,
+    public resize: ResizeService
   ) {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
     // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');

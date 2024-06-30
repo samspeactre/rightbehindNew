@@ -25,7 +25,7 @@
         </div>
         @if(!loader && !loadMoreLoader && url != '/communities'){
         <div class="row">
-          <div class="col-lg-2 col-4">
+          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
             <div class="ngs-select">
               <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()"
                 [searchable]="false">
@@ -37,7 +37,7 @@
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-4">
+          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
             <div class="ngs-select">
               <ng-select [(ngModel)]="maxPrice" placeholder="Price" (change)="onFilterChange()" [searchable]="false">
                 @if(maxPriceArray){
@@ -48,7 +48,7 @@
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-4">
+          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
             <div class="ngs-select">
               <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
                 @if(bedsArray){
@@ -59,7 +59,7 @@
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-4">
+          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
             <div class="ngs-select">
               <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
                 @if(bathArray){
@@ -70,7 +70,7 @@
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-4">
+          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
             <div class="ngs-select">
               <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
                 @if(bathArray){
@@ -81,7 +81,7 @@
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-4 ms-auto dCenter">
+          <div class="col-lg-2 col-6 ms-auto dCenter" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
             <button class="btnDanger w-100 py-3" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
           </div>
         </div>

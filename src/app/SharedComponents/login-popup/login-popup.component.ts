@@ -9,6 +9,7 @@ import { RegisterPopupComponent } from '../../View/register-popup/register-popup
 import { HelperService } from '../../Services/helper.service';
 import { InputComponent } from '../input/input.component';
 import { AuthService } from '../../TsExtras/auth.service';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -26,7 +27,8 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
     private helper: HelperService,
-    private auth: AuthService
+    private auth: AuthService,
+    private resize:ResizeService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -68,7 +70,6 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   openRegisterPopup(): void {
     this.dialogRef.close();
     this.dialog.open(RegisterPopupComponent, {
-      height: '92%',
       width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }

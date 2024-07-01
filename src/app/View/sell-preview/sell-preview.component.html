@@ -20,10 +20,10 @@
       @if(propertyDetails?.propertyImages?.length){
       @if(propertyDetails?.propertyImages?.length >= 4){
       <owl-carousel-o [options]="customOptions" #owlCar>
-        @for (card of propertyDetails?.propertyImages; track card) {
+        @for (card of propertyDetails?.propertyImages; let i = $index; track card) {
         <ng-container>
           <ng-template carouselSlide>
-            <img [src]="src + card?.imageUrl" alt="image" />
+            <img [src]="src + card?.imageUrl" alt="image" (click)="open(i)" />
           </ng-template>
         </ng-container>
         }
@@ -31,9 +31,9 @@
       }
       @else{
       <div class="row">
-        @for (card of propertyDetails?.propertyImages; track card) {
+        @for (card of propertyDetails?.propertyImages; let i = $index; track card) {
         <div class="col-lg-4">
-          <img [src]="src + card?.imageUrl" class="carouselImg" alt="image" />
+          <img [src]="src + card?.imageUrl" class="carouselImg" alt="image" (click)="open(i)" />
         </div>
         }
       </div>
@@ -58,7 +58,7 @@
                 <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
               </a>
               <a>
-                <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
+                <fa-icon class="dCenter" [icon]="faShare" (click)="share()"></fa-icon>
               </a>
               <a>
                 <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
@@ -797,7 +797,7 @@
             <hr />
           </div>
           <div class="dCenter flex-wrap mt-3">
-            <a class="btnPrimary cstm-width-full" (click)="createContact()">
+            <a class="btnPrimary cstm-width-full" (click)="userDetails ? createContact() : openPopup()">
               Contact An Agent
             </a>
             <a class="btnPrimary cstm-width-full mt-3">

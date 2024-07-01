@@ -8,13 +8,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { addUserData } from '../../Ngrx/data.action';
-import { HttpService } from '../../Services/http.service';
+import { Subject, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
 import { InputComponent } from '../../SharedComponents/input/input.component';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -35,7 +33,8 @@ export class RegisterPopupComponent {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    public resize:ResizeService
   ) {
     this.registerForm = this.fb.group({
       userAccountTypeId: [2],
@@ -52,34 +51,30 @@ export class RegisterPopupComponent {
     this.destroy$.complete();
   }
   onSubmit(): void {
-    this.authService.register(this.registerForm.value)
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
-      )
-      .subscribe((response: any) => {
-        const data ={
-          email:this.registerForm.controls['email'].value,
-          password:this.registerForm.controls['password'].value,
-        }
-        this.authService.login(data)
-          .pipe(
-            takeUntil(this.destroy$),
-            distinctUntilChanged(
-              (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-            )
-          ).subscribe((loginResponse) => {
-            this.authService.handleLoginResponse(loginResponse);
-            this.dialogRef.close();
-          });
-      });
+    this.authService.register(this.registerForm.value).pipe(
+      takeUntil(this.destroy$),
+      switchMap((registerResponse: any) => {
+        const data = {
+          email: this.registerForm.controls['email'].value,
+          password: this.registerForm.controls['password'].value
+        };
+        return this.authService.login(data).pipe(
+          takeUntil(this.destroy$)
+        );
+      })
+    ).subscribe({
+      next: (loginResponse: any) => {
+        this.authService.handleLoginResponse(loginResponse);
+        this.dialogRef.close();
+      },
+      error: (err: any) => {
+        console.error('An error occurred:', err);
+      }
+    });
   }
   openLoginPopup(): void {
     this.dialogRef.close();
     this.dialog.open(LoginPopupComponent, {
-      height: '85%',
       width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }

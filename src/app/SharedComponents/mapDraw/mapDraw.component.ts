@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ApplicationRef, Component, ComponentFactoryResolver, Injector, Input } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, Injector, Input, HostListener } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
+import { CommunityCardComponent } from '../community-card/community-card.component';
+import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 
 declare const google: any;
 declare var $: any;
@@ -19,6 +21,7 @@ export class MapDrawComponent {
   @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
   @Input() infoContents: any[] = [];
   @Input() height: any;
+  @Input() community: boolean = false;
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -41,6 +44,7 @@ export class MapDrawComponent {
     zoom: 10,
     center: { lat: 25.761681, lng: -80.191788 },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true,
   };
   shapeCoordinates: any[] = [];
   shapePromise: any;
@@ -112,7 +116,7 @@ export class MapDrawComponent {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(commMarkerData.lat, commMarkerData.lng),
         map: this.map,
-        icon: '/img/markerC.webp',
+        icon: '/assets/img/markerC.webp',
       });
 
       const infoWindow = new google.maps.InfoWindow({
@@ -133,7 +137,8 @@ export class MapDrawComponent {
   }
 
   createInfoWindowContent(index: number): HTMLElement {
-    const factory = this.resolver.resolveComponentFactory(PropertyCardMapComponent);
+    const component:any = this.community ? CommunityCardMapComponent : PropertyCardMapComponent
+    const factory = this.resolver.resolveComponentFactory(component);
     const componentRef:any = factory.create(this.injector);
     componentRef.instance.card = this.infoContents[index];
     componentRef.instance.loader = false;
@@ -141,7 +146,7 @@ export class MapDrawComponent {
     this.appRef.attachView(componentRef.hostView);
 
     const div = document.createElement('div');
-    div.appendChild(componentRef.location.nativeElement);
+    div.appendChild(componentRef.location?.nativeElement);
     return div;
   }
 
@@ -184,6 +189,7 @@ export class MapDrawComponent {
       this.clearMarkers();
       this.drawingMode = true;
       this.again(this.drawFreeHand.bind(this));
+      this.disablePageScroll();
     } else {
       this.clearDrawing();
     }
@@ -194,30 +200,45 @@ export class MapDrawComponent {
     const path = poly.getPath();
     this.shapeCoordinates = [];
 
-    const move = google.maps.event.addListener(this.map, 'mousemove', (e: any) => {
+    const moveHandler = (e: any) => {
       path.push(e.latLng);
       this.shapeCoordinates.push({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-    });
+    };
 
-    google.maps.event.addListenerOnce(this.map, 'mouseup', (e: any) => {
-      google.maps.event.removeListener(move);
-      poly.setMap(null);
-      const polygon = new google.maps.Polygon({ map: this.map, path });
-      this.drawnShapes.push(polygon);
-      google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
-      this.enableMapInteractions();
-      this.shapePromise = Promise.resolve(this.shapeCoordinates);
+    const startDrawing = (e: any) => {
+      if (e?.domEvent?.type === 'mousedown' || e?.domEvent?.type === 'touchstart' ) {
+        this.map.addListener('mousemove', moveHandler);
+        this.map.addListener('touchmove', moveHandler);
+      }
+    };
 
-      // Log the shape coordinates to the console
-      console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
+    const stopDrawing = (e: any) => {
+      if (e?.domEvent?.type === 'mouseup' || e?.domEvent?.type === 'touchend') {
+        google.maps.event.clearListeners(this.map, 'mousemove');
+        google.maps.event.clearListeners(this.map, 'touchmove');
+        poly.setMap(null);
+        const polygon = new google.maps.Polygon({ map: this.map, path });
+        this.drawnShapes.push(polygon);
+        google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
+        google.maps.event.clearListeners(this.map.getDiv(), 'touchstart');
+        this.enableMapInteractions();
+        this.shapePromise = Promise.resolve(this.shapeCoordinates);
+        console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
 
-      const bounds = new google.maps.LatLngBounds();
-      this.shapeCoordinates.forEach(coord => bounds.extend(coord));
-      this.map.fitBounds(bounds);
+        const bounds = new google.maps.LatLngBounds();
+        this.shapeCoordinates.forEach(coord => bounds.extend(coord));
+        this.map.fitBounds(bounds);
+        $('#drawpoly button').show();
+        $('#clearButton').show();
+        this.enablePageScroll();
+      }
+    };
 
-      $('#drawpoly button').show();
-      $('#clearButton').show();
-    });
+    google.maps.event.addListenerOnce(this.map, 'mousedown', startDrawing);
+    google.maps.event.addListenerOnce(this.map, 'touchmove', startDrawing);
+    google.maps.event.addListenerOnce(this.map, 'touchstart', startDrawing);
+    google.maps.event.addListenerOnce(this.map, 'mouseup', stopDrawing);
+    google.maps.event.addListenerOnce(this.map, 'touchend', stopDrawing);
   }
 
   clearDrawing() {
@@ -235,6 +256,7 @@ export class MapDrawComponent {
     $('#clearButton').hide();
     $('#drawpoly button').show();
     this.drawingMode = false;
+    this.enablePageScroll();
   }
 
   clearShapes() {
@@ -244,16 +266,19 @@ export class MapDrawComponent {
 
   again(drawFreeHand: any) {
     this.disableMapInteractions();
-    google.maps.event.addDomListener(
-      this.map.getDiv(),
-      'mousedown',
-      (e: any) => {
-        drawFreeHand();
-      }
-    );
+    google.maps.event.addDomListener(this.map.getDiv(), 'mousedown', drawFreeHand);
+    google.maps.event.addDomListener(this.map.getDiv(), 'touchstart', drawFreeHand);
   }
 
   getShapeCoordinates(): Promise<google.maps.LatLng[]> {
     return this.shapePromise || Promise.resolve([]);
+  }
+
+  disablePageScroll() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  enablePageScroll() {
+    document.body.style.overflow = 'auto';
   }
 }

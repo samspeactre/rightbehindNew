@@ -14,7 +14,6 @@ import { MapComponent } from '../map/map.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { HttpService } from '../../Services/http.service';
-
 @Component({
   standalone: true,
   imports: [InputComponent, SweetAlert2Module, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
@@ -58,7 +57,6 @@ export class ContactPopupComponent {
         password: this.propertyForm.controls['password'].value,
         email: this.propertyForm.controls['email'].value
       };
-
       this.auth.register(data).pipe(
         takeUntil(this.destroy$),
         switchMap((registerResponse) => this.auth.login(data).pipe(

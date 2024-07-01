@@ -12,7 +12,8 @@ import { PopupComponent } from '../popup/popup.component';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-
+import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, FontAwesomeModule, RouterModule],
@@ -33,7 +34,7 @@ export class PropertyCardComponent {
   @Input() background!:string;
   @Input() page!:string;
   private destroy$ = new Subject<void>();
-  constructor(private router:Router, private store:Store,private dialog: MatDialog, private helper:HelperService){
+  constructor(private router:Router, public resize:ResizeService, private store:Store,private dialog: MatDialog, private helper:HelperService){
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -47,12 +48,17 @@ export class PropertyCardComponent {
     this.destroy$.complete();
   }
   ngOnInit(){}
-  openPopup(card: any): void {
-    this.dialog?.open(PopupComponent, {
-      height: '650px',
-      width: '98%',
-      data: { card: card }
+  openPopup(): void {
+    this.dialog?.open(ContactPopupComponent, {
+      width: window.innerWidth > 1024 ? '33%' : '100%',
+      data: {type:'property',id: this.card?.id}
     });
+  }
+  async navigateAndClose() {
+    this.router.navigate(
+      ['/preview'],
+      { queryParams: { id: this.card?.id, type: this.card?.propertyType } }
+    );
   }
   routeToContact(card:any){
     this.router.navigate(
@@ -62,10 +68,16 @@ export class PropertyCardComponent {
   }
   createContact() {
     this.helper.createContact(this.card?.id).subscribe((response) => {
-      const id = response?.model?.id;
-      if (id) {
-        this.router.navigateByUrl(`/dashboard/inquiries/chat/${id}`);
+      const routeData = {
+        property:{
+          id:this.card?.id,
+          title:this.card?.title,
+          type:this.card?.propertyType
+        },
+        sender:{fullName:this.card?.propertyContacts?.[0]?.fullName,imageUrl:this.card?.propertyContacts?.[0]?.imageUrl && this.src + this.card?.propertyContacts?.[0]?.imageUrl},
+        contactId:response?.model?.id
       }
+      this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });
     })
   }
 }

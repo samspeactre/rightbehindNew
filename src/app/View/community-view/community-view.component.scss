@@ -1,0 +1,225 @@
+.bgView {
+  background-color: #e6f2ff;
+}
+
+.post {
+  width: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+  min-height: 100px;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+  padding: 12px 18px;
+}
+
+.col-lg-2 {
+  padding: 0;
+  background-color: #fff;
+}
+
+.stickyCol {
+  position: sticky;
+  top: 0;
+  height: 98vh;
+  overflow-y: auto;
+}
+
+.headingContainer {
+  position: sticky;
+  top: 0;
+  background: #efefef;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.smallFont {
+  font-size: 10px;
+}
+
+.inputBox {
+  width: 100%;
+  z-index: 0;
+
+  fa-icon {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 100px;
+
+  img {
+    object-fit: contain;
+  }
+}
+
+.btnTrans {
+  background: none;
+  border: none;
+  transition: 0.5s all ease-in-out;
+
+  &:hover {
+    background-color: #424242;
+    color: #fff
+  }
+}
+
+.post__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post__top-left {
+  display: flex;
+  align-items: center;
+}
+
+.post__profile-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.post__profile-name {
+  color: #424242;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.post__profile-name:hover {
+  text-decoration: underline;
+}
+
+.post__date-posted {
+  font-size: 14px;
+  color: #aaaaaa;
+}
+
+.post__content {
+  padding: 14px 8px;
+}
+
+.p {
+  font-size: 16px;
+  color: #1d2129;
+}
+
+.post__footer {
+  padding: 2px 10px;
+
+}
+
+.footer-link {
+  color: red;
+  margin: 0 30px 0 0;
+  text-decoration: none;
+  font-size: 14px;
+  color: #aaa;
+  background: none;
+  border: none;
+  outline: none;
+  transition: 0.5s all ease-in-out;
+}
+
+.footer-link:hover {
+  color: #F44336;
+}
+
+.footer-icon {
+  fill: currentColor;
+  margin-right: 4px;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.footer-link:nth-child(2):hover {
+  color: #1da1f2;
+}
+
+.footer-link:nth-child(3):hover {
+  color: #17bf63;
+}
+
+.post__comments {
+  border-top: 1px solid #efefef;
+  padding: 16px 0;
+  margin-top: 10px;
+}
+
+.removeBorder {
+  border-top: 0;
+  margin-top: 0;
+}
+
+.comment-create {
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.comment__profile-img {
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 6px 14px;
+  border: none;
+  background-color: #eee;
+  height: 34px;
+}
+
+.comment {
+  display: flex;
+  margin: 20px 0;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.comment__text {
+  background-color: #eee;
+  font-size: 14px;
+  padding: 8px 6px;
+}
+
+.comment-name {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #424242;
+}
+
+.comment-name:hover {
+  text-decoration: underline
+}
+
+.border1 {
+  border-top: 1px solid #aaaaaa42;
+  border-right: 1px solid #aaaaaa42;
+  border-bottom: 1px solid #aaaaaa42;
+}
+
+.border2 {
+  border-top: 1px solid #aaaaaa42;
+}
+
+.border3 {
+  border-top: 1px solid #aaaaaa42;
+  border-left: 1px solid #aaaaaa42;
+  border-bottom: 1px solid #aaaaaa42;
+}

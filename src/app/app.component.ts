@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -13,6 +13,7 @@ import { LoaderService } from './Services/loader.service';
 import { FooterComponent } from './SharedComponents/footer/footer.component';
 import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
+import { ResizeService } from './Services/resize.service';
 declare var WOW: any;
 @Component({
   standalone: true,
@@ -24,10 +25,15 @@ declare var WOW: any;
 export class AppComponent {
   loader: boolean = false;
   private destroy$ = new Subject<void>();
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.resizeService.onResize();
+  }
   constructor(
     private cd: ChangeDetectorRef,
     private router: Router,
-    private helper: HelperService
+    private helper: HelperService,
+    private resizeService:ResizeService
   ) {
     this.router.events
       .pipe(
@@ -64,6 +70,9 @@ export class AppComponent {
       }
       this.cd.detectChanges();
     });
+  }
+  ngOnInit(){
+    // this.helper.appendScript('')
   }
   ngOnDestroy() {
     this.destroy$.next();

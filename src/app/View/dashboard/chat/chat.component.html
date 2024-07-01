@@ -1,0 +1,165 @@
+<div class="container-fluid">
+  <div class="row">
+    @if(showSidebar){
+    <div class="col call-chat-sidebar col-sm-12">
+      <div class="card">
+        <div class="card-body chat-body pb-0">
+          <div class="chat-box">
+            <div class="chat-left-aside">
+              <div class="media d-flex align-items-center gap-2">
+                <div class="imgContainer">
+                  <img style="object-fit: contain;" width="100%" height="100%"
+                    [src]="(user?.imageUrl && src + user?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                    alt="profile image">
+                </div>
+                <div class="about">
+                  <div class="name">{{user?.fullName}}</div>
+                </div>
+              </div>
+              <div class="people-list" id="people-list">
+                <div class="search">
+                  <div class="theme-form my-3">
+                    <div class="form-group position-relative">
+                      <fa-icon [icon]="faSearch" class="faSearch position-absolute top-50 ms-2"></fa-icon>
+                      <input class="form-control ps-5" [(ngModel)]="searchText" type="text" placeholder="search">
+                    </div>
+                  </div>
+                </div>
+                <ul class="list overflow-y-auto" [style.height.px]="height - 180">
+                  @for (user of searchUsers; track $index) {
+                  <li class="clearfix">
+                    <a class="d-flex align-items-center gap-2" (click)="selectChat(user)">
+                      <div class="imgContainer">
+                        <img style="object-fit: contain;" width="100%" height="100%"
+                          [src]="(user?.sender?.imageUrl && src + user?.sender?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                          alt="profile image">
+                      </div>
+                      <div class="about">
+                        <p class="name mb-0">{{user?.sender?.fullName}}</p>
+                        <p class="status mb-0 smallFont">{{user?.chat?.message}}</p>
+                      </div>
+                    </a>
+                  </li>
+                  }
+                  @if(!searchUsers.length){
+                  <div class="search-not-found chat-search text-center">
+                    <div>
+                      <img src="assets/img/search-not-found.png" alt="image" width="100%" height="100%" class="second-search">
+                      <p>Sorry, We didn't find any results matching this search</p>
+                    </div>
+                  </div>
+                  }
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+    @if(showChat){
+    @if(contactId){
+    <div class="col call-chat-body">
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="row chat-box">
+            <div class="col pr-0 chat-right-aside">
+              <div class="chat">
+                <div class="chat-header clearfix d-flex align-items-center gap-2 py-3">
+                  @if((resize.windowSize$ | async)?.width <= 1024){ <fa-icon class="cursor" (click)="removeQueryParam()"
+                    [icon]="faArrowLeft"></fa-icon>
+                    }
+                    <div class="imgContainer">
+                      <img style="object-fit: contain;" width="100%" height="100%"
+                        [src]="recieverInfo?.imageUrl || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                        alt="profile picture">
+                    </div>
+                      <div class="about">
+                        <div class="name">{{recieverInfo?.fullName}}</div>
+                      </div>
+                      <div ngbDropdown class="d-inline-block ms-auto">
+                        <button type="button" class="optionBtn" id="dropdownBasic1" ngbDropdownToggle>
+                          <fa-icon [icon]="faEllipsisVertical"></fa-icon>
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                          <button ngbDropdownItem (click)="route()">View Property</button>
+                          <!-- <button ngbDropdownItem (click)="deleteChat()">Delete Chat</button> -->
+                            <!-- {{propertyInfo?.title}} -->
+                        </div>
+                      </div>
+                </div>
+                <div #messagesContainer class="chat-history chat-msg-box custom-scrollbar overflow-y-auto"
+                  [style.height.px]="height - 203">
+                  @if(loader){
+                  <app-mini-loading></app-mini-loading>
+                  }
+                  @else{
+                  @for (item of messages; track $index) {
+                  <div [ngClass]="[item?.sender == user?.fullName ? 'right-msg' : 'left-msg']" class="msg">
+                    <div class="msg-img imgContainer">
+                      <img
+                        [src]=" (item?.imageUrl && src+item?.imageUrl) || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'"
+                        width="100%" height="100%" alt="">
+                    </div>
+                    <div class="msg-bubble">
+                      <div class="msg-info">
+                        <div class="msg-info-name">{{item?.sender}}</div>
+                        <div class="msg-info-time">{{item?.time | date:'shortTime'}}</div>
+                      </div>
+                      <p class="msg-text mb-0">{{item?.text}}</p>
+                    </div>
+                  </div>
+                  }
+                  @if(!messages?.length){
+                  <div class="image-not-found h-100">
+                    <div class="d-block start-conversion h-100">
+                      <img src="assets/img/start-conversion.jpg" width="100%" height="100%">
+                    </div>
+                  </div>
+                  }
+                  }
+                </div>
+                <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+                  <div class="chat-message clearfix">
+                    <div class="row">
+                      <div class="col-xl-12 d-flex">
+                        <div class="input-group text-box">
+                          <input class="form-control input-txt-bx" [class.border-danger]="error"
+                            formControlName="message" id="message-to-send" type="text" name="message"
+                            placeholder="Type here">
+                          <div class="input-group-append">
+                            <button class="btnPrimary rounded-start-0 border-0" [disabled]="messageForm?.invalid"
+                              type="submit">
+                              <fa-icon [icon]="faPaperPlane"></fa-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }@else{
+    <div class="col call-chat-body" [style.height.px]="height - 40">
+      <div class="card h-100">
+        <div class="card-body p-0 h-100">
+          <div class="row chat-box h-100">
+            <div class="image-not-found h-100">
+              <div class="d-block start-conversion h-100">
+                <img src="assets/img/start-conversion.jpg" width="100%" height="100%">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+    }
+  </div>
+</div>
+<!-- Container-fluid Ends -->

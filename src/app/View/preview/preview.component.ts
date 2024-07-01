@@ -137,7 +137,7 @@ export class PreviewComponent implements OnInit {
 
   toggleVideo() {
     this.showVideo = true;
-    this.videoPlayer.nativeElement.play();
+    this.videoPlayer?.nativeElement.play();
   }
 
   contactInfo = [

@@ -22,6 +22,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HelperService, types } from '../../Services/helper.service';
 import { MapDrawComponent } from '../mapDraw/mapDraw.component';
+import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
+import { CommunityCardComponent } from '../community-card/community-card.component';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -46,7 +49,8 @@ import { MapDrawComponent } from '../mapDraw/mapDraw.component';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    MapDrawComponent
+    MapDrawComponent,
+    CommunityCardComponent
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -66,7 +70,6 @@ export class ListingPageComponent implements OnInit {
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
-  screenHeight: number = window.innerHeight;
   latLngArray: any;
   types = types;
   maxPriceArray: any;
@@ -91,6 +94,8 @@ export class ListingPageComponent implements OnInit {
     lat: -34.4009703,
     lng: 150.4826715,
   };
+  url!: string;
+  screenHeight:number = window.innerHeight   
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
   constructor(
@@ -98,13 +103,13 @@ export class ListingPageComponent implements OnInit {
     private http: HttpService,
     private router: Router,
     public dialog: MatDialog,
-    private helper: HelperService
+    private helper: HelperService,
+    public resize: ResizeService
   ) {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
     // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
-    setTimeout(() => {
-      this.showMap = true 
-    });
+    this.url = this.router.url; 
+    this.showMap = true
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
@@ -216,7 +221,7 @@ export class ListingPageComponent implements OnInit {
   }
   scrollToListing(): void {
     if (this.listing) {
-      this.listing.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.listing?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
   loadMoreProperties() {

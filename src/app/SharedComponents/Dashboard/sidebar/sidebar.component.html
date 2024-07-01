@@ -1,6 +1,6 @@
 <div class="sidebar dCenter flex-column align-items-start">
-    @if(width > 1024){
-    <div class="dCenter justify-content-between position-relative">
+    @if((resize.windowSize$ | async)?.width > 1024){
+    <div class="dCenter justify-content-between position-relative mb-3">
         @if(!isSidebarCollapsed){
         <div class="logo">
             <a routerLink="/">
@@ -15,7 +15,8 @@
     }
     <div class="dCenter flex-column">
         @for (item of routes; track $index) {
-        <button class="btnWhiteNBlueOutline my-1 dCenter justify-content-start gap-2"
+        <button class="btnWhiteNBlueOutline py-2 my-2 dCenter gap-2"
+            [ngClass]="[isSidebarCollapsed? 'justify-content-center': 'justify-content-start ps-3']"
             [class.isSidebarCollapsed]="isSidebarCollapsed" [routerLink]="item?.route" routerLinkActive="active">
             <fa-icon [icon]="item?.icon"></fa-icon>
             @if(!isSidebarCollapsed){
@@ -23,7 +24,8 @@
             }
         </button>
         }
-        <button class="btnWhiteNBlueOutline my-1 dCenter justify-content-start gap-2"
+        <button class="btnWhiteNBlueOutline py-2 my-2 dCenter gap-2"
+            [ngClass]="[isSidebarCollapsed? 'justify-content-center': 'justify-content-start ps-3']"
             [class.isSidebarCollapsed]="isSidebarCollapsed" (click)="logout()" routerLinkActive="active">
             <fa-icon [icon]="faSignOutAlt"></fa-icon>
             @if(!isSidebarCollapsed){

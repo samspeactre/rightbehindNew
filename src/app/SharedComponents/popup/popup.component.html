@@ -1,13 +1,11 @@
 <mat-dialog-content>
   <div class="container">
     <div class="row">
-
       <div class="col-lg-6">
         <div class="carousel-img dCenter flex-wrap justify-content-between">
           @if(propertyData?.propertyImages?.length){
           @for (item of propertyData?.propertyImages; let i = $index; track item) {
-          <img width="100%" height="100%"
-            [src]="src+item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
+          <img width="100%" height="100%" [src]="src+item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
             [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half']" />
           }
           }
@@ -25,7 +23,7 @@
           <div class="dCenter justify-content-between">
             <h1 class="bold text-dark">{{ propertyData.title }}</h1>
             @if(propertyData?.rentSpecialTag){
-            <div class="special">{{propertyData?.rentSpecialTag}}</div>
+              <div class="special">{{propertyData?.rentSpecialTag}}</div>
             }
           </div>
           <p class="text-dark">{{ propertyData?.description }}</p>
@@ -52,18 +50,18 @@
               </div>
             </div>
             <div class="col-lg-5 d-flex gap-1">
-              <button class="dCenter optionBtns ms-auto" ngbTooltip="Click open in a new tab"
+              <button class="dCenter optionBtn ms-auto" ngbTooltip="Click open in a new tab"
                 (click)="navigateAndClose()">
-                <fa-icon class="dCenter popup-icon-links" [icon]="faRedirect"></fa-icon>
+                <fa-icon class="dCenter" [icon]="faRedirect"></fa-icon>
               </button>
-              <button class="dCenter optionBtns ms-auto" ngbTooltip="Click to like a property">
-                <fa-icon class="dCenter popup-icon-links" [icon]="faHeart"></fa-icon>
+              <button class="dCenter optionBtn ms-auto" ngbTooltip="Click to like a property">
+                <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
               </button>
-              <button class="dCenter optionBtns" ngbTooltip="Click to share">
-                <fa-icon class="dCenter popup-icon-links" [icon]="faShare"></fa-icon>
+              <button class="dCenter optionBtn" ngbTooltip="Click to share">
+                <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
               </button>
-              <button class="dCenter optionBtns" ngbTooltip="More Options">
-                <fa-icon class="dCenter popup-icon-links" [icon]="faEllipsisVertical"></fa-icon>
+              <button class="dCenter optionBtn" ngbTooltip="More Options">
+                <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
               </button>
             </div>
             <div class="col-lg-3 my-3">
@@ -74,7 +72,6 @@
             </div>
           </div>
         </div>
-
         <div class="py-3">
           <div class="slider">
             <div class="dCenter justify-content-start flex-wrap gap-2">

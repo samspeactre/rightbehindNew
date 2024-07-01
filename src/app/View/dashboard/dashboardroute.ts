@@ -26,15 +26,15 @@ export const Dashboard_Routes: Routes = [{
         {
             path: 'inquiries',
             loadChildren: () =>
-                import('./inquiries/inquiriesRoute').then(
+                import('./chat/chatRoute').then(
                     (m) => m.Inquiries_Routes
                 ),
         },
         {
             path: 'communities-groups',
             loadChildren: () =>
-                import('./inquiries/inquiriesRoute').then(
-                    (m) => m.Inquiries_Routes
+                import('./community/communityRoute').then(
+                    (m) => m.Community_Routes
                 ),
         },
         {

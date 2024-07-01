@@ -20,7 +20,7 @@
   align-items: center;
 }
 .trash {
-  right: 8%;
+  right: 60px;
   display: none;
 }
 .hidden {
@@ -47,5 +47,6 @@
     right: 0;
     outline: none;
     background: #ff3932 !important;
+    z-index: 12 !important;
   }
 }

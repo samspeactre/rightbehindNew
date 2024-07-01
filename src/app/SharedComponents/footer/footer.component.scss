@@ -47,7 +47,7 @@ p {
     font-family: "reg";
     color: var(--white);
     width: 86%;
-    line-height: 1.6vw;
+    // line-height: 1.6vw
     letter-spacing: 0.028vw;
 }
 
@@ -110,7 +110,6 @@ p {
 .brand-info img {
     object-fit: contain;
     object-position: top;
-    margin-bottom: 1vw;
 }
 
 .brand-info {

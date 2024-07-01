@@ -48,59 +48,29 @@ h4 {
     border: 0;
 }
 
-.check-pass a {
+.check-pass a{
     font-family: 'reg';
     color: var(--black);
 }
 
 
-.register-link {
+.register-link{
     text-align: center;
     font-family: 'bold';
     color: var(--black);
 }
 
-.register-link a {
+.register-link a{
     font-family: 'bold';
     color: var(--royal-blue);
     cursor: pointer;
 }
-
-p {
+p{
     font-size: 14px;
     font-family: "reg";
 }
-
-.para-1 {
-    font-size: 1vw;
-    text-align: center;
-}
-
-.head-1 {
-    font-size: 2.5vw;
-    margin-top: 1vw;
-}
-
-.main {
-    padding: 0vw 2vw;
-}
-
-.display {
-    display: flex;
-    justify-content: space-between;
-}
-
-.input-width {
-    width: 49%;
-}
-
-.btnPrimary {
-    width: 30%;
-}
-
-
-@media only screen and (max-width:1024px) {
-    p {
+@media only screen and (max-width:1024px){
+    p{
         font-size: 12px;
     }
 }

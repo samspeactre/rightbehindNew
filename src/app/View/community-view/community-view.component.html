@@ -1,0 +1,130 @@
+<div class="bgView">
+  <div class="cstmContainer">
+    <div class="row">
+      @if((resize.windowSize$ | async)?.width > 1024){
+      <div class="col-lg-2 mt-2 border1">
+        <div class="stickyCol">
+          <div class="headingContainer">
+            <p class="mb-0 bold">All Communities</p>
+          </div>
+          @for (item of arr; track $index) {
+          <button
+            class="btnTrans d-flex align-items-center gap-2 justify-content-start my-1 smallFont w-100 p-2 text-start rounded-2">
+            <div class="icon">
+              <img width="100%" height="100%"
+                [src]="item?.image ? item?.image : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
+                alt="icon">
+            </div>
+            {{item?.title}}
+          </button>
+          }
+        </div>
+      </div>
+      }
+      <div class="col-lg-8 border2">
+        <div class="feed">
+          <div class="post mt-2 mb-3">
+            <div class="post__comments removeBorder">
+              <div class="comment-create" style="
+              background:  #eee;
+              padding: 8px 4px;
+              padding: 12px 8px;
+              padding-bottom: 12px;
+          ">
+                <img class="comment__profile-img"
+                  src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
+                <div class="inputBox position-relative">
+                  <input class="input" placeholder="Share what you've been working on..."
+                    style="background-color: #fff" />
+                  <fa-icon [icon]="faPlus" class="position-absolute btnIcon"></fa-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          @for (item of arr; track $index) {
+          <div class="post mt-2 mb-3">
+            <div class="post__top">
+              <div class="post__top-left">
+                <img class="post__profile-img"
+                  src="https://www.mahardhi.com/wordpress/tfm/MT01/shree/wp-content/uploads/2019/08/client-1.jpg"
+                  alt="">
+                <a class="post__profile-name" href="#">Camden Foucht</a>
+              </div>
+              <div>
+                <span class="post__date-posted">3m</span>
+              </div>
+            </div>
+            <div class="post__content">
+              <p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi perspiciatis praesentium
+                omnis, nisi quae tempora. Provident natus sint, est labore ratione quam repellat laborum itaque
+                voluptatem
+                magnam perspiciatis aperiam unde.</p>
+            </div>
+            <div class="post__footer">
+              <a class="footer-link">
+                <fa-icon [icon]="faHeart"></fa-icon>
+                12K
+              </a>
+              <a class="footer-link">
+                <fa-icon [icon]="faComment"></fa-icon>
+                39K
+              </a>
+              <a class="footer-link">
+                <fa-icon [icon]="faShare"></fa-icon>
+                2K
+              </a>
+            </div>
+            <div class="post__comments">
+              <div class="comment"
+                style="background-color: #eee; align-items: flex-start; padding: 6px 8px; padding-bottom: 0; margin: 10px 0">
+                <img class="comment__profile-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabpp9cRSP2RA-PsVT6watU3wUMgam3AI_ow&s"
+                  alt="">
+                <div class="comment__content" style="padding: 4px 0">
+                  <a class="comment-name">Peyton Couch</a>
+                  <p class="comment__text" style="padding: 4px 6px; padding-left: 0">Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Eligendi sapiente possimus beatae laboriosam aperiam facere id,
+                    architecto nobis ut aspernatur!</p>
+                </div>
+              </div>
+              <div class="comment-create" style="
+              background:  #eee;
+              padding: 8px 4px;
+              padding: 12px 8px;
+              padding-bottom: 12px;
+          ">
+                <img class="comment__profile-img"
+                  src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
+                <div class="inputBox position-relative">
+                  <input class="input" placeholder="Add a comment" style="background-color: #fff" />
+                  <fa-icon [icon]="faPaperPlane" class="position-absolute btnIcon"></fa-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      @if((resize.windowSize$ | async)?.width > 1024){
+      <div class="col-lg-2 mt-2 border3">
+        <div class="stickyCol">
+          <div class="headingContainer">
+            <p class="mb-0 bold">Related Communities</p>
+          </div>
+          @for (item of arr2; track $index) {
+          <button
+            class="btnTrans d-flex align-items-center gap-2 justify-content-start my-1 smallFont w-100 p-2 text-start rounded-2">
+            <div class="icon">
+              <img width="100%" height="100%"
+                [src]="item?.image ? item?.image : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
+                alt="icon">
+            </div>
+            {{item?.title}}
+          </button>
+          }
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

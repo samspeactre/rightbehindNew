@@ -7,23 +7,24 @@ import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { ResizeService } from '../../Services/resize.service';
+import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, FontAwesomeModule],
+  imports: [MatIconModule, MatFormFieldModule, MatInputModule, CommonModule, MatButtonModule, FormsModule, FontAwesomeModule],
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
   mentorSearchQueryUpdate = new Subject<any>();
-  screenWidth:number = window.innerWidth
   @Input() searching: boolean = false;
   @Input() search!: string;
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
   faSearch = faSearch
   private destroy$ = new Subject<void>();
 
-  constructor() {
+  constructor(public resize:ResizeService) {
     this.mentorSearchQueryUpdate
       .pipe(
         debounceTime(500),

@@ -9,17 +9,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle, faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { Subject, finalize, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { HttpService } from '../../Services/http.service';
 import { HelperService, assetUrl } from '../../Services/helper.service';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { selectUser } from '../../Ngrx/data.reducer';
+import { Lightbox, LightboxModule } from 'ngx-lightbox';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, LightboxModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.scss',
@@ -36,6 +40,8 @@ export class SellPreviewComponent implements OnInit {
   id!: number;
   propertyDetails: any;
   loader: boolean = true;
+  user$ = this.store.select(selectUser);
+  userDetails: any;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -56,7 +62,7 @@ export class SellPreviewComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
+  constructor(private activatedRoute: ActivatedRoute, public resize:ResizeService, private lightbox: Lightbox, private dialog: MatDialog, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
       if (!param?.type || !param?.id) {
         this.location.back()
@@ -64,6 +70,13 @@ export class SellPreviewComponent implements OnInit {
       this.type = Number(param?.type)
       this.id = Number(param?.id)
     })
+    this.user$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)))
+      .subscribe((user) => {
+        this.userDetails = user;
+      });
   }
   private destroy$ = new Subject<void>();
   ngOnInit(): void {
@@ -72,6 +85,25 @@ export class SellPreviewComponent implements OnInit {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  open(index: number): void {
+    const images = this.propertyDetails.propertyImages.map((img: any) => ({
+      src: this.src + img.imageUrl,
+      caption: 'Property Images',
+      thumb: this.src + img.imageUrl
+    }));
+    this.lightbox.open(images, index, { wrapAround: true, showImageNumberLabel: true, alwaysShowNavOnTouchDevices: true, centerVertically: true, fitImageInViewPort: true });
+  }
+
+  close(): void {
+    this.lightbox.close();
+  }
+  async share() {
+    try {
+      await navigator.share({ title: this.propertyDetails?.title, url: `preview/?id=${this.id}&type=${this.type}` });
+    } catch (err: any) {
+      console.error("Share failed:", err?.message);
+    }
   }
   getPropertyDetail() {
     this.http.get(`Property/get/${this.id}`, false)
@@ -104,11 +136,23 @@ export class SellPreviewComponent implements OnInit {
   }
   createContact() {
     this.helper.createContact(this.id).subscribe((response) => {
-      const id = response?.model?.id;
-      if (id) {
-        this.router.navigate(['/dashboard/inquiries/chat', id], { queryParams: { name: this.propertyDetails?.propertyContacts[0]?.fullName } });
+      const routeData = {
+        property:{
+          id:this.id,
+          title:this.propertyDetails?.title,
+          type:this.propertyDetails?.propertyType
+        },
+        sender:{fullName:this.propertyDetails?.propertyContacts?.[0]?.fullName,imageUrl:this.propertyDetails?.propertyContacts?.[0]?.imageUrl && this.src + this.propertyDetails?.propertyContacts?.[0]?.imageUrl},
+        contactId:response?.model?.id
       }
+      this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });
     })
+  }
+  openPopup(): void {
+    this.dialog?.open(ContactPopupComponent, {
+      width: window.innerWidth > 1024 ? '33%' : '100%',
+      data: { type: 'property', id: this.id }
+    });
   }
   clickAnalytic(type: string) {
     const api = type == 'email' ? `PropertyAnalytic/email/${this.id}` : `PropertyAnalytic/phone/${this.id}`

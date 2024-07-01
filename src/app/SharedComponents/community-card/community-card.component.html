@@ -1,0 +1,31 @@
+@if(loader){
+<div class="pb-3 cstm-property-card">
+  <div class="property-card">
+    <div class="property-img skeleton"></div>
+    <div class="card-content mt-3 px-3">
+      <h5 class="skeleton title"></h5>
+      <p class="skeleton description"></p>
+    </div>
+  </div>
+</div>
+} @else{
+<div class="card w-100 rounded-2 heightGet">
+  <app-map height="200" [center]="{lat:25.761681,lng:-80.191788}"
+    [communityMarkerPositions]="[{lat:25.761681,lng:-80.191788}]" [mapDraggable]="false"></app-map>
+  <div class="card-content p-3">
+    <div class="dCenter justify-content-between flex-wrap">
+      <h5 class="card-name text-dark wow fadeInDown">Cmmunity</h5>
+      <div class="card-tag text-light rounded-2">
+        <span class="wow fadeInDown text-light">Miami</span>
+      </div>
+    </div>
+    <p class="text-dark mt-3 wow fadeInDown">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident ut
+      eaque quod ullam recusandae obcaecati necessitatibus neque quas vitae hic omnis temporibus</p>
+    <div class="dCenter">
+      <button class="btnDanger wow fadeInDown py-2" routerLink="/communities/community">
+        Join Now
+      </button>
+    </div>
+  </div>
+</div>
+}

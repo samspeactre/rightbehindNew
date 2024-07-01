@@ -99,8 +99,14 @@ export const routes: Routes = [
             (m) => m.Blog_Inner_Routes
           ),
       },
-      
-      
+      {
+        path: 'communities',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('./SharedComponents/listing-page/listing-page.route').then(
+            (m) => m.Listing_Page_Routes
+          ),
+      },
     ]
   },
   {

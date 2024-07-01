@@ -27,13 +27,13 @@
   </div>
   }
   @else if(matType == 'select') {
-    <div [formGroup]="form">
-      <ng-select class="cstmNg" [formControlName]="control" [searchable]="false">
-        @for (item of array; track $index) {
-        <ng-option [value]="item?.value" selected>{{item?.name}}</ng-option>
-        }
-      </ng-select>
-    </div>
+  <div [formGroup]="form">
+    <ng-select class="cstmNg" [formControlName]="control" [searchable]="false">
+      @for (item of array; track $index) {
+      <ng-option [value]="item?.value" selected>{{item?.name}}</ng-option>
+      }
+    </ng-select>
+  </div>
   }
   @if (error && errorName && (value != '' || !value)) {
   <small>

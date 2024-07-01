@@ -9,8 +9,8 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus
         sit amet luctus venenatis,
       </p>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <app-input type="email" classes="w-100" [form]="loginForm" control="email" label="Email address"
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">`
+        <app-input type="email" classes="w-100 mb-2" [form]="loginForm" control="email" label="Email address"
           placeholder="Enter your email address*"></app-input>
         <app-input type="password" [password]="true" classes="w-100" [form]="loginForm" control="password"
           label="Password" placeholder="Enter your password*"></app-input>

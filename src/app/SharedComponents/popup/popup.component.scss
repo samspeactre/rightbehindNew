@@ -222,14 +222,18 @@ p {
   padding: 0vw 1vw 0vw;
 }
 
+.ameneties h3,
+.map h3{
+  padding-top: 1vw;
+}
+
 .sm-font{
   font-size: 1vw;
   font-family: 'reg';
   color: var(--black);
 }
 
-.Prop-info,
-.ameneties {
+.Prop-info {
   padding: 1vw 0vw;
 }
 

@@ -10,7 +10,7 @@
 </div>
 }
 @if(mapScriptLoad){
-<google-map class="map-img" [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
+<google-map class="map-img" [height]="height  || '180px'" width="100%" [center]="center" [zoom]="zoom"
     (mapClick)="addMarker && addMarkerPoint($event);moveMap($event)" (mapMousemove)="move($event)">
     @for (position of markerPositions; let i = $index; track position) {
     <map-marker [position]="position" [options]="propertyMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"

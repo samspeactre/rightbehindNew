@@ -17,6 +17,8 @@ import { CountUpModule } from 'ngx-countup';
 import { Store } from '@ngrx/store';
 import { selectRental, selectSell } from '../../Ngrx/data.reducer';
 import { MapComponent } from '../../SharedComponents/map/map.component';
+import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 @Component({
   standalone: true,
   imports: [
@@ -30,7 +32,8 @@ import { MapComponent } from '../../SharedComponents/map/map.component';
     BannerComponent,
     MiniLoadingComponent,
     CountUpModule,
-    MapComponent
+    MapComponent,
+    MatDialogModule
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -72,7 +75,7 @@ export class HomeComponent {
       this.setMapHeight()
     }
   }
-  constructor(private router: Router, private http: HttpService, private store: Store) {
+  constructor(private router: Router,private dialog: MatDialog, private http: HttpService, private store: Store) {
     this.rent$
       .pipe(
         takeUntil(this.destroy$),
@@ -117,5 +120,12 @@ export class HomeComponent {
 
   navigateToNextPage() {
     this.router.navigate(['/off-market']);
+  }
+
+  openPopup(): void {
+    this.dialog?.open(ContactPopupComponent, {
+      width: window.innerWidth > 1024 ? '28%' : '100%',
+      data: {type:'contact'}
+    });
   }
 }

@@ -1,0 +1,38 @@
+.inq-para {
+    width: 85%;
+    margin: auto;
+}
+
+form{
+    margin-top: 1vw;
+}
+
+.inquiry button {
+    font-size: 1vw;
+    font-family: 'bold';
+    color: var(--white);
+    background-color: var(--royal-blue);
+    border-radius: 0.5vw;
+    border: 0;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out, border 0.3s ease-out;
+    padding: 0vw 2.5vw;
+    height: 3.5vw;
+    margin-bottom: 1vw;
+}
+
+.inquiry button:hover {
+    background-color: transparent;
+    color: var(--royal-blue);
+    border: 0.1vw solid var(--royal-blue);
+}
+
+.logo {
+    width: 45%;
+    margin: auto;
+    margin-bottom: 0.5vw;
+}
+
+.logo img {
+    width: 100%;
+    object-fit: cover;
+}

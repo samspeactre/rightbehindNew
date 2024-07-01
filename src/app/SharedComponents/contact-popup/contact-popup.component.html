@@ -1,33 +1,32 @@
 <div class="container p-3">
+    <div class="logo">
+        <img src="../../../assets/img/nav-logo.webp" alt="">
+    </div>
     <div class="row">
         <div class="col-lg-12">
-            <h4 class="text-center text-dark bold my-3">Inquiry</h4>
+            <h4 class="text-center">Inquiry</h4>
+            <p class="text-center inq-para">Please fill out the form below for any inquiries or assistance you may need.
+            </p>
         </div>
     </div>
     <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
-        <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
-                label="First Name" placeholder="Enter your First Name*"></app-input>
-        </div>
-        <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
-                label="Last Name" placeholder="Enter your Last Name*"></app-input>
-        </div>
-        <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="email" [form]="propertyForm" control="email"
-                label="Email" placeholder="Enter Your Email Address"></app-input>
-        </div>
-        @if(active?.type == 'property'){
-        <div class="col-lg-6">
-            <app-input classes="w-100 mb-1" type="password" [password]="true" [form]="propertyForm" control="password"
-                label="Password" placeholder="Enter your Password*"></app-input>
-        </div>
-        }
         <div class="col-lg-12">
-            <app-input classes="w-100 mb-1" [readOnly]="user" inputType="textArea" type="text" [form]="propertyForm"
-                control="message" label="Message" rows="1" placeholder="Enter your Message*"></app-input>
+            <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
+                label="First Name"></app-input>
         </div>
-        <div class="dCenter mt-3">
+        <div class="col-lg-12">
+            <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
+                label="Last Name"></app-input>
+        </div>
+        <div class="col-lg-12">
+            <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email"
+                label="Email"></app-input>
+        </div>
+        <div class="col-lg-12">
+            <app-input classes="w-100 mb-2" [readOnly]="user" inputType="textArea" type="text" [form]="propertyForm"
+                control="message" label="Message" rows="2"></app-input>
+        </div>
+        <div class="dCenter mt-3 inquiry">
             <button class="btnPrimary" [disabled]="propertyForm.invalid">Submit</button>
         </div>
     </form>

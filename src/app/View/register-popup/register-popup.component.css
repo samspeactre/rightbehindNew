@@ -1,6 +1,6 @@
-section{
+section {
     height: 100%;
-    border: 1vw solid var( --add-prop-bg);
+    border: 1vw solid var(--add-prop-bg);
     border-radius: 1.5vw;
 }
 

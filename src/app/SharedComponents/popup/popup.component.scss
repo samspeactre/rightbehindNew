@@ -1,6 +1,7 @@
 h1 {
   font-family: 'bold';
   color: var(--black);
+  text-transform: capitalize;
 }
 
 h2 {
@@ -9,7 +10,8 @@ h2 {
 }
 
 h3 {
-  font-family: 'med';
+  font-size: 1.2vw;
+  font-family: 'bold';
   color: var(--black);
 }
 
@@ -46,10 +48,8 @@ p {
 
 .first-box {
   background-color: var(--add-prop-bg);
+  border-radius: 1vw;
 }
-
-
-.first-box h1 {}
 
 .address {
   color: var(--carousel-add);
@@ -98,11 +98,15 @@ p {
 
 .Prop-info {
   background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  margin-bottom: 1vw;
 }
 
 .white-box {
   background-color: var(--white);
   width: 49.25%;
+  margin-bottom: 0.5vw;
+  padding-left: 1vw;
 }
 
 .transparent-box {
@@ -117,6 +121,8 @@ p {
 
 .ameneties {
   background-color: var(--add-prop-bg);
+  border-radius: 1vw;
+  margin-bottom: 1vw;
 }
 .facility-group {
   list-style: none;
@@ -129,13 +135,12 @@ p {
 
 .facility {
   color: var(--black);
+  padding-left: 1vw;
 }
 
 .gallery {
   background-color: var(--add-prop-bg);
 }
-
-.gallery-img {}
 
 .gallery-img img {
   width: 100%;
@@ -178,11 +183,17 @@ p {
 
 .map {
   background-color: var(--add-prop-bg);
-  width: 94%;
+  width: 100%;
+  margin-bottom: 1vw;
+  border-radius: 1vw;
 }
 
 .map-img {
   width: 100%;
+}
+
+.map-head{
+  margin-bottom: 1vw;
 }
 
 .map-img img {
@@ -198,6 +209,46 @@ p {
 .hide {
   display: none;
 }
+
+.popup-icon-links{
+  font-size: 1.5vw;
+  color: var(--black);
+}
+
+.Prop-info h3,
+.ameneties h3,
+.map h3{
+  font-size: 1.2vw;
+  padding: 0vw 1vw 0vw;
+}
+
+.ameneties h3,
+.map h3{
+  padding-top: 1vw;
+}
+
+.sm-font{
+  font-size: 1vw;
+  font-family: 'reg';
+  color: var(--black);
+}
+
+.Prop-info {
+  padding: 1vw 0vw;
+}
+
+.optionBtns {
+  background-color: transparent;
+  color: #bbb;
+  border: none;
+  width: 25px;
+  height: 40px;
+  border-radius: 30px;
+  transition: .5s all ease-in-out;
+  outline: none;
+  margin-right: auto;
+}
+
 
 @media only screen and (max-width:1024px) {
   .prop-detail-img img {

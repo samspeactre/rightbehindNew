@@ -1,4 +1,10 @@
 
+.popup-head{
+    font-size: 2vw;
+    font-family: 'bold';
+    color: var(--black);
+}
+
 .plus-img{
     width: 50px;
     height: 50px;
@@ -8,6 +14,10 @@
 .plus-img img{
     width: 100%;
     object-fit: cover;
+}
+
+.input-width{
+    width: 32.5%;
 }
 
 :host ::ng-deep .btns .rent-btn{

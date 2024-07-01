@@ -37,8 +37,8 @@ export class ContactPopupComponent {
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ContactPopupComponent>,
     private router: Router, private fb: FormBuilder, private auth: AuthService,
     private store: Store,
-    private http:HttpService,
-    private helper:HelperService,
+    private http: HttpService,
+    private helper: HelperService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.active = data
@@ -57,7 +57,6 @@ export class ContactPopupComponent {
         password: this.propertyForm.controls['password'].value,
         email: this.propertyForm.controls['email'].value
       };
-  
       this.auth.register(data).pipe(
         takeUntil(this.destroy$),
         switchMap((registerResponse) => this.auth.login(data).pipe(
@@ -96,5 +95,4 @@ export class ContactPopupComponent {
       console.log('hello');
     }
   }
-  
 }

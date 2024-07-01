@@ -20,6 +20,14 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'off-market',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('./SharedComponents/off-market/off-market.route').then(
+            (m) => m.Off_Market_Routes
+          ),
+      },
+      {
         path: 'rent',
         data: { footer: true, header: true },
         loadChildren: () =>

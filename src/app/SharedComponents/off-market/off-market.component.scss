@@ -1,0 +1,134 @@
+h1 {
+    font-size: 2.5rem;
+    font-family: 'bold';
+    color: var(--black);
+    text-transform: capitalize;
+}
+
+p {
+    font-family: 'reg';
+    color: var(--black);
+    margin: 0;
+}
+
+.div-width {
+    width: 48.5%;
+}
+
+.search-bar {
+    width: 85%;
+    margin: 1vw auto 0vw;
+}
+
+.content {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    height: 30vw;
+    align-content: center;
+}
+
+.sec-bg {
+    background-image: url('../../../assets/img/offMarket-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30vw;
+}
+
+.content h1 {
+    font-size: 3rem;
+    color: var(--white);
+}
+
+.content p {
+    color: var(--white);
+}
+
+.main {
+    align-items: center;
+    margin-top: 4vw;
+}
+
+.container-site {
+    padding: 0vw 3.55vw;
+}
+
+.right img {
+    width: 100%;
+    height: 28vw;
+    object-fit: cover;
+}
+
+.listing img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1vw;
+    object-fit: cover;
+    box-shadow: 0vw 0vw 2.5vw rgba(0, 0, 0, 0.5);
+}
+
+.offMarket-list {
+    margin-top: 1vw;
+}
+
+li {
+    align-items: center;
+    margin-bottom: 0.5vw;
+}
+
+li span {
+    font-size: 1.2vw;
+    color: var(--royal-blue);
+    font-family: 'reg';
+    // width: 88%;
+}
+
+li span .mat-icon {
+    width: 1.5vw;
+    font-size: 1.4vw;
+    height: 1.2vw;
+    color: var(--royal-blue);
+}
+
+.left-content button {
+    margin-top: 0.5vw;
+    font-size: 1vw;
+    font-family: med;
+    color: var(--white);
+    border-radius: 0.5vw;
+    padding: 0.7vw 2vw;
+    border: 0;
+    background-color: var(--royal-blue);
+    transition: background-color .3s ease, border .3s ease, color .3s ease;
+}
+
+.left-content button:hover {
+    background-color: transparent;
+    color: var(--royal-blue);
+    border: 0.1vw solid var(--royal-blue);
+}
+
+.main-property{
+    margin-top: 4vw;
+}
+
+.property-content{
+    margin-top: 5vw;
+}
+
+.prop-owner {
+    width: 84%;
+    margin: auto;
+}
+
+.prop-owner img{
+    width: 100%;
+    object-fit: cover;
+    height: 32vw;
+}
+
+.carousel-main {
+    margin-top: 4vw;
+    margin-bottom: 2vw;
+}

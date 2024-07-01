@@ -1,9 +1,11 @@
-<div id="drawpoly">
-  <button title="Click to draw on map" class="drawButton customBtn" id="editButton">
-    <fa-icon [icon]="faEdit"></fa-icon>
+<div class="position-relative">
+  <div id="drawpoly">
+    <button title="Click to draw on map" class="drawButton customBtn" id="editButton">
+      <fa-icon [icon]="faEdit"></fa-icon>
+    </button>
+  </div>
+  <button title="Click to clear drawn shapes on map" class="drawButton customBtn trash" id="clearButton">
+    <fa-icon [icon]="faTrash"></fa-icon>
   </button>
+  <div id="map_canvas" [style.height.px]="height || 200"></div>
 </div>
-<button title="Click to clear drawn shapes on map" class="drawButton customBtn trash" id="clearButton">
-  <fa-icon [icon]="faTrash"></fa-icon>
-</button>
-<div id="map_canvas" [style.height.px]="height  || 200"></div>

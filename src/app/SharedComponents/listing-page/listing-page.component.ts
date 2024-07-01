@@ -25,6 +25,9 @@ import { MapDrawComponent } from '../mapDraw/mapDraw.component';
 import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
 import { CommunityCardComponent } from '../community-card/community-card.component';
 import { ResizeService } from '../../Services/resize.service';
+import { faMap } from '@fortawesome/free-regular-svg-icons';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   standalone: true,
@@ -50,7 +53,8 @@ import { ResizeService } from '../../Services/resize.service';
     ReactiveFormsModule,
     NgSelectModule,
     MapDrawComponent,
-    CommunityCardComponent
+    CommunityCardComponent,
+    FontAwesomeModule
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -62,6 +66,9 @@ export class ListingPageComponent implements OnInit {
   pageType!: string;
   private destroy$ = new Subject<void>();
   showMap: boolean = false;
+  showMapClicked: boolean = false;
+  faMap=faMap;
+  faBuilding=faBuilding;
   search: any = '';
   pageNo: number = 1;
   pageSize: number = 10;

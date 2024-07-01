@@ -45,7 +45,7 @@
         <h5 class="text-light mb-3 wow fadeInDown">Post your residential/commercial property</h5>
       </div>
       <div class="col-lg-3 dCenter flex-column text-center">
-        <button class="btnWhite mx-auto mb-3 wow fadeInDown" (click)="openPopup()">
+        <button class="btnWhite mx-auto mb-3 wow fadeInDown">
           Submit Your Property FREE
         </button>
         <div class="counter dCenter align-items-start">
@@ -60,7 +60,7 @@
       </div>
     </div>
   </div>
-  <div class="row dream-home" >
+  <div class="row dream-home">
     <div class="col-lg-6 ms-auto">
       <div class="pe-4 homefourth-heading heading-width">
         <h2 class="wow fadeInDown">Ready to make your dream home a reality?</h2>
@@ -84,7 +84,7 @@
             or selling, join our exclusive network to unlock unparalleled
             opportunities. Submit your property or explore listings now!
           </p>
-          <button class="btnBlackNWhite wow fadeInDown" (click)="openPopup()">Know More</button>
+          <button class="btnBlackNWhite wow fadeInDown" (click)="navigateToNextPage()">Know More</button>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
       <div class="col-lg-6">
         <div class="rounded-4 overflow-hidden">
           <app-map [height]="mapHeight" [video]="true" [center]="{lat:25.761681,lng:-80.191788}"
-          [markerPositions]="array"></app-map>
+            [markerPositions]="array"></app-map>
         </div>
       </div>
       <div class="col-lg-6" #secondCol>

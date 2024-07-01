@@ -18,8 +18,7 @@ import { Store } from '@ngrx/store';
 import { selectRental, selectSell } from '../../Ngrx/data.reducer';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
-import { MatDialog } from '@angular/material/dialog';
-import { ResizeService } from '../../Services/resize.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 @Component({
   standalone: true,
   imports: [
@@ -33,7 +32,8 @@ import { ResizeService } from '../../Services/resize.service';
     BannerComponent,
     MiniLoadingComponent,
     CountUpModule,
-    MapComponent
+    MapComponent,
+    MatDialogModule
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -41,6 +41,7 @@ import { ResizeService } from '../../Services/resize.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
+
   counters: { name: string; count: number; }[] = [
     { name: ' Property Listings', count: 350 },
     { name: 'Monthly Users', count: 200 },
@@ -48,6 +49,7 @@ export class HomeComponent {
   ];
   faChevronCircleLeft = faChevronLeft;
   faChevronCircleRight = faChevronRight;
+  screenWidth: number = window.innerWidth;
   intervalIds: any[] = [];
   scrollPosition: number = 0;
   rent$ = this.store.select(selectRental);
@@ -55,6 +57,7 @@ export class HomeComponent {
   sell$ = this.store.select(selectSell);
   sell: any;
   mapHeight:number = 0;
+  windowInnerWidth:number = window.innerWidth;
   private destroy$ = new Subject<void>();
   array = [
     { "lat": 25.853681, "lng": -80.191788 }, // ~10 km north
@@ -72,7 +75,7 @@ export class HomeComponent {
       this.setMapHeight()
     }
   }
-  constructor(private router: Router, public resize:ResizeService, private dialog: MatDialog, private http: HttpService, private store: Store) {
+  constructor(private router: Router,private dialog: MatDialog, private http: HttpService, private store: Store) {
     this.rent$
       .pipe(
         takeUntil(this.destroy$),
@@ -111,12 +114,17 @@ export class HomeComponent {
   }
   setMapHeight() {
     if (this.secondCol) {
-      this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
+      this.mapHeight = this.secondCol.nativeElement.offsetHeight;
     }
   }
+
+  navigateToNextPage() {
+    this.router.navigate(['/off-market']);
+  }
+
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      width: window.innerWidth > 1024 ? '33%' : '100%',
+      width: window.innerWidth > 1024 ? '28%' : '100%',
       data: {type:'contact'}
     });
   }

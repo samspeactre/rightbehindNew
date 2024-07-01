@@ -54,6 +54,13 @@ export class PropertyCardComponent {
       data: {type:'property',id: this.card?.id}
     });
   }
+  openPreviewPopup(card: any): void {
+    this.dialog?.open(PopupComponent, {
+      height: '650px',
+      width: '98%',
+      data: { card: card }
+    });
+  }
   async navigateAndClose() {
     this.router.navigate(
       ['/preview'],

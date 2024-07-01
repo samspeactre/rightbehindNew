@@ -97,14 +97,16 @@ export class MapComponent implements OnInit, OnDestroy {
       this.map.googleMap.setZoom(this.zoom);
       this.map.googleMap.setOptions({disableDefaultUI: true})
     }
-
     if (this.search) {
-      this.initAutocomplete();
+      setTimeout(() => {
+        this.initAutocomplete();
+      }, 500);
     }
   }
 
   initAutocomplete(): void {
     this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput?.nativeElement);
+
     this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
       const place = this.autocomplete.getPlace();
       if (place.geometry && place.geometry.location) {

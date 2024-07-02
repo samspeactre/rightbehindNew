@@ -25,6 +25,9 @@ import { MapDrawComponent } from '../mapDraw/mapDraw.component';
 import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
 import { CommunityCardComponent } from '../community-card/community-card.component';
 import { ResizeService } from '../../Services/resize.service';
+import { faMap } from '@fortawesome/free-regular-svg-icons';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   standalone: true,
@@ -50,7 +53,8 @@ import { ResizeService } from '../../Services/resize.service';
     ReactiveFormsModule,
     NgSelectModule,
     MapDrawComponent,
-    CommunityCardComponent
+    CommunityCardComponent,
+    FontAwesomeModule
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -62,6 +66,9 @@ export class ListingPageComponent implements OnInit {
   pageType!: string;
   private destroy$ = new Subject<void>();
   showMap: boolean = false;
+  showMapClicked: boolean = false;
+  faMap = faMap;
+  faBuilding = faBuilding;
   search: any = '';
   pageNo: number = 1;
   pageSize: number = 10;
@@ -95,7 +102,7 @@ export class ListingPageComponent implements OnInit {
     lng: 150.4826715,
   };
   url!: string;
-  screenHeight:number = window.innerHeight   
+  screenHeight: number = window.innerHeight
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
   constructor(
@@ -108,7 +115,7 @@ export class ListingPageComponent implements OnInit {
   ) {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
     // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
-    this.url = this.router.url; 
+    this.url = this.router.url;
     this.showMap = true
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
@@ -121,7 +128,12 @@ export class ListingPageComponent implements OnInit {
         }
       }
       this.scrollToListing();
-      this.getProperties(false);
+      if (this.url == '/communities') {
+        this.getInquiries(false)
+      }
+      else {
+        this.getProperties(false);
+      }
     });
   }
 
@@ -149,7 +161,7 @@ export class ListingPageComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe(
-        (response: any) => this.handleResponse(response, loadMore),
+        (response: any) => this.handleResponse(response?.model?.properties, loadMore, 'properties'),
         (err: any) => this.handleError(loadMore)
       );
   }
@@ -176,10 +188,9 @@ export class ListingPageComponent implements OnInit {
     }
   }
 
-  private handleResponse(response: any, loadMore: boolean): void {
-    if (response?.model?.properties) {
-      const newProperties = response?.model?.properties || [];
-
+  private handleResponse(response: any, loadMore: boolean, type: string): void {
+    if (response) {
+      const newProperties = response || [];
       if (loadMore) {
         this.cards = [...this.cards, ...newProperties];
       } else {
@@ -190,11 +201,11 @@ export class ListingPageComponent implements OnInit {
           lat: location.latitude,
           lng: location.longitude
         }));
-
-        this.maxPriceArray = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
-        this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
-        this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
-
+        if (type == 'properties') {
+          this.maxPriceArray = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
+          this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
+          this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
+        }
         this.sorting();
       }
 
@@ -224,10 +235,15 @@ export class ListingPageComponent implements OnInit {
       this.listing?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-  loadMoreProperties() {
+  loadMoreProperties(type: string) {
     this.pageNo++;
     this.loadMoreLoader = true;
-    this.getProperties(true);
+    if (type == 'properties') {
+      this.getProperties(true);
+    }
+    else {
+      this.getInquiries(true);
+    }
   }
 
   searchProperties(event: string) {
@@ -290,5 +306,23 @@ export class ListingPageComponent implements OnInit {
       !this.beds &&
       !this.baths
     );
+  }
+  getInquiries(loadMore: boolean) {
+    if (!loadMore) {
+      this.loader = true;
+    }
+    const urlParams = this.buildUrlParams();
+    const Url = `Forum/get?${urlParams.toString()}`;
+
+    this.http.loaderGet(Url, false, true, true, false)
+      .pipe(
+        finalize(() => {
+          this.loadMoreLoader = false;
+          this.loader = false;
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((response: any) => this.handleResponse(response?.model?.forums, loadMore, 'communities'),
+        (err: any) => this.handleError(loadMore))
   }
 }

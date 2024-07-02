@@ -20,21 +20,13 @@
   align-items: center;
 }
 .trash {
-  right: 60px;
+  right: 2%;
   display: none;
 }
 .hidden {
   display: none;
 }
 :host ::ng-deep {
-  .gmnoprint.gm-style-mtc-bbw,
-  .gm-control-active.gm-fullscreen-control,
-  .gm-svpc,
-  .gm-style-moc,
-  .gmnoprint,
-  img[alt='Google'] {
-    display: none;
-  }
   .gm-style-iw-ch {
     display: none;
   }

@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,20 +15,19 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelect } from '@angular/material/select';
 
+import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CommonModule, Location } from '@angular/common';
-import { BannerComponent } from '../../SharedComponents/banner/banner.component';
-import { HttpService } from '../../Services/http.service';
-import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { CharacterLimitDirective } from '../../TsExtras/character-limit.directive';
-import { SharedModule } from '../../TsExtras/shared.module';
-import { HelperService, types } from '../../Services/helper.service';
-import { MapComponent } from '../../SharedComponents/map/map.component';
-import { ToastrService } from 'ngx-toastr';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrService } from 'ngx-toastr';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { HelperService, types } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
+import { BannerComponent } from '../../SharedComponents/banner/banner.component';
+import { MapComponent } from '../../SharedComponents/map/map.component';
+import { SharedModule } from '../../TsExtras/shared.module';
 
 
 @Component({

@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { Loader } from '@googlemaps/js-api-loader';
 import { assetUrl } from '../../Services/helper.service';
-import { PropertyCardComponent } from '../property-card/property-card.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
@@ -95,14 +92,16 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.map && this.map.googleMap) {
       this.map.googleMap.setCenter(this.center);
       this.map.googleMap.setZoom(this.zoom);
-      this.map.googleMap.setOptions({disableDefaultUI: true})
-    }
-
-    if (this.search) {
-      this.initAutocomplete();
+      this.map.googleMap.setOptions({ disableDefaultUI: true })
     }
   }
-
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.search) {
+        this.initAutocomplete();
+      }
+    }, 500);
+  }
   initAutocomplete(): void {
     this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput?.nativeElement);
     this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {

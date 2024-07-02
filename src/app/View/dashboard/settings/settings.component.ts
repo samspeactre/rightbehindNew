@@ -72,7 +72,14 @@ export class SettingsComponent {
   onSubmit() {
     const formData = { ...this.settingForm.value };
     delete formData.email;
-    this.http.loaderPost('User/profile/update', formData, true).subscribe((response: any) => {
+    this.http.loaderPost('User/profile/update', formData, true)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      )
+    )
+    .subscribe((response: any) => {
       this.store.dispatch(updateUserData({ user: formData }));
     })
   }

@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperPlane, faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowUp, faComment, faHeart, faShare } from '@fortawesome/free-solid-svg-icons';
 import { ResizeService } from '../../Services/resize.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   standalone: true,
   imports: [FontAwesomeModule, CommonModule],
@@ -91,8 +92,11 @@ arr2=[
   {"image": "https://picsum.photos/200/200?random=69", "title": "Technical Consultant"},
   {"image": "https://picsum.photos/200/200?random=70", "title": "Brand Manager"}
 ]
-constructor(public resize:ResizeService){
-
+title!:string
+constructor(public resize:ResizeService, private activatedRoute:ActivatedRoute){
+  this.activatedRoute.queryParams.subscribe((param:any)=>{
+    this.title = param?.title
+  })
 }
 
 }

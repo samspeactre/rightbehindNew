@@ -5,11 +5,11 @@
 :host ::ng-deep {
   .owl-carousel .owl-item img,
   .carouselImg {
-    height: 200px;
+    height: 350px;
     object-fit: cover;
-    box-shadow: 0 0 10px 0px #a3a3a3;
+    object-position: top;
     margin: 20px 0;
-    border-radius: 12px;
+    border-radius: 0px;
     width: 100%;
   }
   .accordion-button::after {
@@ -183,7 +183,10 @@
     width: 98%;
     margin: auto;
   }
-
+  .owl-carousel .owl-item img,
+  .carouselImg {
+    height: 200px;
+  }
   .inner-heading h1 {
     font-size: 24px;
   }

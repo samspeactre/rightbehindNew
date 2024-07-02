@@ -38,7 +38,6 @@ export class InquiriesComponent {
   }
   getInquiries(){
     this.http.loaderGet('ChatContact/get',true).subscribe((response)=>{
-      console.log(response);
       this.inquiries = response?.modelList
     })
   }

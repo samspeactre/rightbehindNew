@@ -1,23 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft, faEllipsisVertical, faPaperPlane, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, finalize, takeUntil } from 'rxjs/operators';
 import { selectUser } from '../../../Ngrx/data.reducer';
+import { assetUrl } from '../../../Services/helper.service';
 import { HttpService } from '../../../Services/http.service';
 import { ResizeService } from '../../../Services/resize.service';
 import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { assetUrl } from '../../../Services/helper.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, FontAwesomeModule, NgbDropdownModule, ReactiveFormsModule, MiniLoadingComponent],
+  imports: [CommonModule, FormsModule, FontAwesomeModule, ReactiveFormsModule, MiniLoadingComponent],
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
@@ -79,6 +78,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.contactId = routeData?.contactId;
       this.recieverInfo = routeData?.sender;
       this.propertyInfo = routeData?.property;
+      console.log(this.propertyInfo);
+      
       if (this.contactId) this.getInquiry();
 
       this.updateChatSidebarVisibility();
@@ -192,7 +193,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   route() {
     this.router.navigate(
       ['/preview'],
-      { queryParams: { id: this.propertyInfo?.id, type: this.propertyInfo?.propertyType } }
+      { queryParams: { id: this.propertyInfo?.id, type: this.propertyInfo?.propertyType || this.propertyInfo?.type } }
     );
   }
   // deleteChat(){

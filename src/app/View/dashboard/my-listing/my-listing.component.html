@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <h6 class="bold mb-3">My Listing</h6>
         </div>
-        <div class="col-lg-3 col-md-6 col-6">
+        <!-- <div class="col-lg-3 col-md-6 col-6">
             <mat-form-field class="listing-id w-100">
                 <mat-label>Enter Listing ID</mat-label>
                 <mat-select>
@@ -46,7 +46,7 @@
                     <mat-option value="option3">Option 3</mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
+        </div> -->
     </div>
     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
         <li [ngbNavItem]="1">
@@ -55,7 +55,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }
@@ -68,7 +68,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }
@@ -81,7 +81,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }
@@ -94,7 +94,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }
@@ -107,7 +107,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }
@@ -120,7 +120,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }
@@ -133,7 +133,7 @@
                 <div class="row">
                     @for (item of properties; track $index) {
                     <div class="col-lg-4 col-md-6 my-3">
-                        <app-property-card background="#e6f2ff" [card]="item" [loader]="false"
+                        <app-property-card [animation]="false" background="#e6f2ff" [card]="item" [loader]="false"
                             type="component" page="mylisting"></app-property-card>
                     </div>
                     }

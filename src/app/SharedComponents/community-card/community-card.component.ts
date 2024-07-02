@@ -24,6 +24,6 @@ export class CommunityCardComponent {
     this.url = this.router.url
   }
   routeToCommunity(){
-    this.router.navigate(['/communities/community'], { queryParams: { id:this.item?.id } });
+    this.router.navigate(['/communities/community'], { queryParams: { id:this.item?.id,title:this.item?.title } });
   }
 }

@@ -48,7 +48,7 @@ export class SellPreviewComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     autoplay: true,
-    margin: 20,
+    margin: 5,
     dots: false,
     navSpeed: 700,
     navText: ['', ''],

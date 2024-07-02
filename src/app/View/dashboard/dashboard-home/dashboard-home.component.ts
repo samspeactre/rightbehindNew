@@ -6,16 +6,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightLong, faKey, faMapMarkerAlt, faSearch, faTag } from '@fortawesome/free-solid-svg-icons';
 import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
-import { selectUser } from '../../../Ngrx/data.reducer';
+import { selectRental, selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { RentalCarouselComponent } from '../../../SharedComponents/rental-carousel/rental-carousel.component';
 import { MapComponent } from '../../../SharedComponents/map/map.component';
 import { ResizeService } from '../../../Services/resize.service';
 import { CommonModule } from '@angular/common';
+import { PropertyCardComponent } from '../../../SharedComponents/property-card/property-card.component';
+import { RouterModule } from '@angular/router';
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, CommonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
+  imports: [MatIconModule, RentalCarouselComponent, RouterModule, PropertyCardComponent, MatButtonModule, CommonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.scss'
@@ -39,6 +41,8 @@ export class DashboardHomeComponent {
   private destroy$ = new Subject<void>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   mapHeight:number=0;
+  rent$ = this.store.select(selectRental);
+  rent: any;
   constructor(public dialog: MatDialog, public resize:ResizeService, private store: Store) {
     this.user$
       .pipe(
@@ -50,6 +54,16 @@ export class DashboardHomeComponent {
       .subscribe((user) => {
         this.user = user
       })
+      this.rent$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((rent:any) => {
+        this.rent = rent.slice(0, window.innerWidth > 1024 ? 4 : 2);
+      });
     this.chartOptions = {
       series: [
         {

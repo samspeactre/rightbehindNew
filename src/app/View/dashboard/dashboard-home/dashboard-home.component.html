@@ -141,5 +141,21 @@
                 </button>
             </div>
         </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="dCenter justify-content-between mb-3">
+                        <h6 class="bold mb-0">My Listing</h6>
+                        <button class="btnPrimary py-2 px-5" routerLink="/dashboard/my-listings">View All</button>
+                    </div>
+                </div>
+                @for (card of rent; let i = $index; track card) {
+                <div class="col-lg-3">
+                    <app-property-card page="mylisting" [card]="card" [animation]="false" [showBadge]="true"
+                        [loader]="false" type="component" [background]="background"></app-property-card>
+                </div>
+                }
+            </div>
+        </div>
     </div>
 </div>

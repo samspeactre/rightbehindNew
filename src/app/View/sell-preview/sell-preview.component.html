@@ -7,23 +7,23 @@
     } @else {
     <div class="col-lg-12">
       <div class="pages-links display mb-3">
-        <a routerLink="/" class="smallFont">Home</a>
-        <div class="slash smallFont">/</div>
-        @if(propertyDetails?.propertyType == 1){
-        <a routerLink="/buy" class="smallFont">Buy</a>
+        <a routerLink="/" class="smallFont text-dark">Home</a>
+        <div class="slash smallFont text-dark">/</div>
+        <!-- @if(propertyDetails?.propertyType == 1){
+        <a routerLink="/buy" class="smallFont text-dark">Buy</a>
         } @else{
-        <a routerLink="/rent" class="smallFont">Rent</a>
-        }
-        <div class="slash smallFont">/</div>
-        <a class="smallFont">{{ propertyDetails?.title }}</a>
+        } -->
+        <a routerLink="/rent" class="smallFont text-dark">Rent</a>
+        <div class="slash smallFont text-dark">/</div>
+        <a class="smallFont text-dark">{{ propertyDetails?.title }}</a>
       </div>
       @if(propertyDetails?.propertyImages?.length){
       @if(propertyDetails?.propertyImages?.length >= 4){
       <owl-carousel-o [options]="customOptions" #owlCar>
         @for (card of propertyDetails?.propertyImages; let i = $index; track card) {
-          <ng-template carouselSlide>
-            <img [src]="src + card?.imageUrl" alt="image" (click)="open(i)" />
-          </ng-template>
+        <ng-template carouselSlide>
+          <img [src]="src + card?.imageUrl" alt="image" (click)="open(i)" />
+        </ng-template>
         }
       </owl-carousel-o>
       }
@@ -771,12 +771,12 @@
             <p>{{ info?.description }}</p>
           </div>
           <div class="dCenter flex-wrap">
-            <a class="btnPrimary cstm-width-full" (click)="clickAnalytic('phone')" [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact">
+            <a class="btnPrimary cstm-width-full" (click)="clickAnalytic('phone')"
+              [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact">
               <fa-icon [icon]="faPhoneAlt"></fa-icon>
               {{propertyDetails?.propertyContacts?.[0]?.contact}}
             </a>
-            <a class="btnPrimary cstm-width-full mt-3"
-            (click)="clickAnalytic('email')"
+            <a class="btnPrimary cstm-width-full mt-3" (click)="clickAnalytic('email')"
               [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email">
               @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
               <fa-icon [icon]="faCheck" class="me-3"></fa-icon>

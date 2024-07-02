@@ -30,6 +30,7 @@ export class PropertyCardComponent {
   @Input() card!:any;
   @Input() showBadge:boolean = false;
   @Input() loader:boolean = true;
+  @Input() animation:boolean = true;
   @Input() type!:string;
   @Input() background!:string;
   @Input() page!:string;

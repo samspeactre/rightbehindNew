@@ -65,7 +65,7 @@
           <div class="row chat-box">
             <div class="col pr-0 chat-right-aside">
               <div class="chat">
-                <div class="chat-header clearfix d-flex align-items-center gap-2 py-3">
+                <div class="chat-header px-3 clearfix d-flex align-items-center gap-2 py-3">
                   @if((resize.windowSize$ | async)?.width <= 1024){ <fa-icon class="cursor" (click)="removeQueryParam()"
                     [icon]="faArrowLeft"></fa-icon>
                     }
@@ -77,16 +77,7 @@
                       <div class="about">
                         <div class="name">{{recieverInfo?.fullName}}</div>
                       </div>
-                      <div ngbDropdown class="d-inline-block ms-auto">
-                        <button type="button" class="optionBtn" id="dropdownBasic1" ngbDropdownToggle>
-                          <fa-icon [icon]="faEllipsisVertical"></fa-icon>
-                        </button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                          <button ngbDropdownItem (click)="route()">View Property</button>
-                          <!-- <button ngbDropdownItem (click)="deleteChat()">Delete Chat</button> -->
-                            <!-- {{propertyInfo?.title}} -->
-                        </div>
-                      </div>
+                      <button class="btnPrimary h-auto py-2 px-3 ms-auto smallFont" (click)="route()">View Property</button>
                 </div>
                 <div #messagesContainer class="chat-history chat-msg-box custom-scrollbar overflow-y-auto"
                   [style.height.px]="height - 203">

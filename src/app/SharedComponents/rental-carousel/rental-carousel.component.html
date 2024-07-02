@@ -1,8 +1,7 @@
+@if(heading){
 <div class="dCenter justify-content-between position-relative">
-  @if(heading){
   <h2 class="wow fadeInDown my-3">{{heading}}</h2>
   <hr class="w-50 wow fadeInDown my-3">
-  }
   <div class="dCenter gap-2 my-3">
     <button class="carosuelBtn dCenter wow fadeInDown" (click)="owlCar.prev()">
       <fa-icon class="dCenter" [icon]="faChevronCircleLeft"></fa-icon>
@@ -12,6 +11,7 @@
     </button>
   </div>
 </div>
+}
 <owl-carousel-o [options]="customOptions" #owlCar>
   @for (card of cards; let i = $index; track card) {
   <ng-template carouselSlide>
@@ -19,7 +19,9 @@
         [background]="background"></app-property-card>
   </ng-template>  
   }</owl-carousel-o>
+  @if(heading){
 <div class="rental-btn py-3 wow fadeInDown">
   <button [ngClass]="[ cards?.[cards?.length-1]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
     [routerLink]="cards?.[cards?.length-1]?.propertyType == 1 ? '/rent' : '/buy'">View More</button>
 </div>
+  }

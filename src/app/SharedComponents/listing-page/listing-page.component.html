@@ -152,11 +152,11 @@
             <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
             @if(latLngArray?.length){
             @if(url == '/communities'){
-            <app-map-draw [communityMarkerPositions]="latLngArray" [community]="true" [infoContents]="cards"
+            <app-map-draw [communityMarkerPositions]="latLngArray" [center]="latLngArray?.[1]" [community]="true" [infoContents]="cards"
               [height]="screenHeight"></app-map-draw>
             }
             @else{
-            <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
+            <app-map-draw [markerPositions]="latLngArray" [center]="latLngArray?.[0]" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
             }
             }
             @else {

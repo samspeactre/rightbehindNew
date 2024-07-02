@@ -1,19 +1,19 @@
-
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
-  standalone:true,
+  standalone: true,
   imports: [MatIconModule, RouterModule, MatButtonModule, CarouselModule, FontAwesomeModule],
   selector: 'app-blog-carousel',
   templateUrl: './blog-carousel.component.html',
-  styleUrl: './blog-carousel.component.scss'
+  styleUrls: ['./blog-carousel.component.scss']
 })
+
 export class BlogCarouselComponent implements OnInit {
   faArrowRight=faArrowRight
   cards = [
@@ -52,8 +52,12 @@ export class BlogCarouselComponent implements OnInit {
     },
     nav: false
   }
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateToBlogInner() {
+    this.router.navigate(['/blog-inner']);
   }
 }

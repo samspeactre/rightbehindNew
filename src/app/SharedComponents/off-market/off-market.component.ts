@@ -43,6 +43,14 @@ export class OffMarketComponent {
     'Visit properties in person to speak directly with owners about selling their property.'
   ];
 
+  marketInsight = [
+    'Stay updated with market trends specific to off-market properties.',
+    'Utilize our data to identify emerging opportunities and make strategic investment decisions.',
+    'Get expert analysis and predictions for investment guidance..',
+    'Explore market reports and neighborhood demographics.',
+    'Participate in webinars and live Q&A sessions with real estate experts to deepen your market knowledge.'
+  ];
+
   scrollToCarousel() {
     if (this.carouselSection) {
       this.carouselSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });

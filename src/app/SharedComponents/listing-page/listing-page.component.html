@@ -3,13 +3,13 @@
     <div class="container">
       <div class="sec-1 pb-3">
         @if(url == '/communities'){
-          <h1 class="bigFont wow fadeInDown text-dark text-center">The best communities in Miami.</h1>
+        <h1 class="bigFont wow fadeInDown text-dark text-center">The best communities in Miami.</h1>
         }
         @else{
-          <h1 class="bigFont wow fadeInDown text-dark text-center">The best rental deals in Miami.</h1>
-          <p class="wow fadeInDown text-center mb-3">
-            Move in with just a security deposit, a month free and more 🔥
-          </p>
+        <h1 class="bigFont wow fadeInDown text-dark text-center">The best rental deals in Miami.</h1>
+        <p class="wow fadeInDown text-center mb-3">
+          Move in with just a security deposit, a month free and more 🔥
+        </p>
         }
         <!-- <div class="dCenter w-100">
           <button class="btnWhiteNBlue me-2 wow fadeInDown" routerLinkActive="active" routerLink="/buy">
@@ -89,19 +89,21 @@
       </div>
     </div>
   </app-banner>
+
   <div class="position-relative">
     <div class="cstmContainer">
       <div class="row">
+        
         <div class="col-lg-6 wow fadeInDown" #listing>
           @if(loader){
           <p style="height: 16px;" class="w-75 skeleton my-3"></p>
           }
           @else {
-          <p class="my-3">{{cards?.length}} 
+          <p class="my-3">{{cards?.length}}
             @if(url == '/communities'){
-              Communities 
+            Communities
             }@else{
-              Properties 
+            Properties
             }
             Found
           </p>
@@ -111,10 +113,10 @@
             @for (card of cards; track card) {
             <div class="col-lg-6 mb-3 wow fadeInDown">
               @if(url == '/communities'){
-                <app-community-card [loader]="loader"></app-community-card>
+              <app-community-card [loader]="loader"></app-community-card>
               }@else {
-                <app-property-card background="#e6f2ff" [card]="card" [loader]="loader"
-                  type="component"></app-property-card>
+              <app-property-card background="#e6f2ff" [card]="card" [loader]="loader"
+                type="component"></app-property-card>
               }
             </div>
             }
@@ -137,16 +139,18 @@
             </div>
           </div>
         </div>
+
         <div class="col-lg-6 wow fadeInDown rightP">
           <div class="mapElement">
             <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
             @if(latLngArray?.length){
-              @if(url == '/communities'){
-                <app-map-draw [communityMarkerPositions]="latLngArray" [community]="true" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
-              }
-              @else{
-                <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
-              }
+            @if(url == '/communities'){
+            <app-map-draw [communityMarkerPositions]="latLngArray" [community]="true" [infoContents]="cards"
+              [height]="screenHeight"></app-map-draw>
+            }
+            @else{
+            <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
+            }
             }
           </div>
         </div>

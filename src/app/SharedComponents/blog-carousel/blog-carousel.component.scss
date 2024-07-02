@@ -45,8 +45,13 @@
     background-color: var(--royal-blue);
 }
 
+.card-wrapper{
+    cursor: pointer;
+}
+
 .card-img {
     object-fit: cover;
+    height: 10rem;
 }
 
 p {

@@ -3,13 +3,6 @@
       <div class="col-lg-12">
           <h6 class="bold mb-0">{{heading}}</h6>
       </div>
-      @if(heading == 'Inquiries'){
-      <div class="col-lg-12">
-          <app-input type="text" classes="w-100" [form]="searchForm" control="search" label="Search"
-              placeholder="Search Here..."></app-input>
-      </div>
-      }
-      @else{
       <div class="col-lg-10 col-8">
           <app-input type="text" classes="w-100" [form]="searchForm" control="search" label="Search"
               placeholder="Search Here..."></app-input>
@@ -20,7 +13,6 @@
               <p class="mb-0 smallFont">New Chat</p>
           </button>
       </div>
-      }
       @for (item of inquiries; track $index) {
       <div class="col-lg-12 my-3">
           <div class="dCenter msgRow rounded-3 shadow p-3 justify-content-start gap-2 w-100 cursor"

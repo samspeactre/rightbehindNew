@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpService } from '../../../Services/http.service';
 import { ChatPopupComponent } from '../../../SharedComponents/add-chat-popup/add-chat-popup.component';
+import { InputComponent } from '../../../SharedComponents/input/input.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, FontAwesomeModule, ReactiveFormsModule, MiniLoadingComponent],
+  imports: [CommonModule, InputComponent, FormsModule, FontAwesomeModule, ReactiveFormsModule, MiniLoadingComponent],
   selector: 'app-community',
   templateUrl: './community.component.html',
   styleUrls: ['./community.component.scss']

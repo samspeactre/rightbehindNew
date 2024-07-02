@@ -197,7 +197,11 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     });
     const path = poly.getPath();
     this.shapeCoordinates = [];
-
+    google.maps.event.addListener(this.map, 'dragstart', (e: any) => {
+      console.log('====================================');
+      console.log(e,'moving');
+      console.log('====================================');
+    })
     this.mapMouseMoveListener = google.maps.event.addListener(this.map, 'mousemove', (e: any) => {
       path.push(e.latLng);
       this.shapeCoordinates.push({ lat: e.latLng.lat(), lng: e.latLng.lng() });

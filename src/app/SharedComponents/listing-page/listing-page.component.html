@@ -149,8 +149,8 @@
         @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
         <div class="col-lg-6 wow fadeInDown rightP">
           <div [ngClass]="{'mapElement' : (resize.windowSize$ | async)?.width > 1024}">
-            <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map>
-            <!-- @if(latLngArray?.length){
+            <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
+            @if(latLngArray?.length){
             @if(url == '/communities'){
             <app-map-draw [communityMarkerPositions]="latLngArray" [community]="true" [infoContents]="cards"
               [height]="screenHeight"></app-map-draw>
@@ -158,7 +158,7 @@
             @else{
             <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
             }
-            } -->
+            }
           </div>
         </div>
         }

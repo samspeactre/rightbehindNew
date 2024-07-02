@@ -9,7 +9,7 @@
           </div>
           @for (item of arr; track $index) {
           <button
-            class="btnTrans d-flex align-items-center gap-2 justify-content-start my-1 smallFont w-100 p-2 text-start rounded-2">
+            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2">
             <div class="icon">
               <img width="100%" height="100%"
                 [src]="item?.image ? item?.image : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
@@ -21,28 +21,25 @@
         </div>
       </div>
       }
-      <div class="col-lg-8 border2">
+      <div class="col-lg-5 mx-auto border2">
         <div class="feed">
           <div class="post mt-2 mb-3">
             <div class="post__comments removeBorder">
               <div class="comment-create" style="
-              background:  #eee;
-              padding: 8px 4px;
+              background:  #e6f2ff;
               padding: 12px 8px;
-              padding-bottom: 12px;
           ">
                 <img class="comment__profile-img"
                   src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
                 <div class="inputBox position-relative">
-                  <input class="input" placeholder="Share what you've been working on..."
-                    style="background-color: #fff" />
+                  <input class="input" placeholder="Share what's on your mind..." style="background-color: #fff" />
                   <fa-icon [icon]="faPlus" class="position-absolute btnIcon"></fa-icon>
                 </div>
               </div>
             </div>
           </div>
           @for (item of arr; track $index) {
-          <div class="post mt-2 mb-3">
+          <div class="post mt-2 mb-3 rounded-3">
             <div class="post__top">
               <div class="post__top-left">
                 <img class="post__profile-img"
@@ -75,8 +72,9 @@
               </a>
             </div>
             <div class="post__comments">
-              <div class="comment"
-                style="background-color: #eee; align-items: flex-start; padding: 6px 8px; padding-bottom: 0; margin: 10px 0">
+              <h6 class="bold">Comments</h6>
+              <div class="comment rounded-3"
+                style="background-color: #e6f2ff; align-items: flex-start; padding: 6px 8px; padding-bottom: 0; margin: 10px 0">
                 <img class="comment__profile-img"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabpp9cRSP2RA-PsVT6watU3wUMgam3AI_ow&s"
                   alt="">
@@ -87,11 +85,9 @@
                     architecto nobis ut aspernatur!</p>
                 </div>
               </div>
-              <div class="comment-create" style="
-              background:  #eee;
-              padding: 8px 4px;
+              <div class="comment-create rounded-3" style="
+              background:  #e6f2ff;
               padding: 12px 8px;
-              padding-bottom: 12px;
           ">
                 <img class="comment__profile-img"
                   src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
@@ -113,7 +109,7 @@
           </div>
           @for (item of arr2; track $index) {
           <button
-            class="btnTrans d-flex align-items-center gap-2 justify-content-start my-1 smallFont w-100 p-2 text-start rounded-2">
+            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2">
             <div class="icon">
               <img width="100%" height="100%"
                 [src]="item?.image ? item?.image : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"

@@ -12,7 +12,6 @@
 </div>
 <owl-carousel-o [options]="customOptions" #owlCar>
   @for (card of cards; track card) {
-  <ng-container>
     <ng-template carouselSlide>
       <div class="card-wrapper swiper-slide" (click)="navigateToBlogInner()">
         <div class="card rounded-3 w-100">
@@ -40,6 +39,5 @@
         </div>
       </div>
     </ng-template>
-  </ng-container>
   }
 </owl-carousel-o>

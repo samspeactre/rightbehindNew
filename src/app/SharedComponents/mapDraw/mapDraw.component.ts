@@ -18,8 +18,22 @@ declare var $: any;
   styleUrls: ['./mapDraw.component.scss']
 })
 export class MapDrawComponent implements OnInit, OnDestroy {
-  @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
+  private _center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
+  
+  @Input()
+  get center(): google.maps.LatLngLiteral {
+    return this._center;
+  }
 
+  set center(value: google.maps.LatLngLiteral) {
+    this._center = value;
+    if (this.mapOptions) {
+      this.mapOptions.center = this._center;
+    }
+    if (this.map) {
+      this.map.setCenter(this._center);
+    }
+  }
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
@@ -44,7 +58,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   map: any;
   mapOptions: any = {
     zoom: 10,
-    center: this.center,
+    center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     gestureHandling: 'greedy',
     draggable: true,
@@ -242,7 +256,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   clearDrawing() {
     this.mapOptions = {
       zoom: 10,
-      center: new google.maps.LatLng(this.center?.lat, this.center?.lng),
+      center: new google.maps.LatLng(this._center?.lat, this._center?.lng),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy',
       draggable: true,

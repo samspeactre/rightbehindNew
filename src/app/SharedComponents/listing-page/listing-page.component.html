@@ -94,7 +94,7 @@
     <div class="cstmContainer">
       <div class="row">
 
-        <div class="col-lg-6 wow fadeInDown" #listing>
+        <div class="col-lg-7 wow fadeInDown" #listing>
           @if(loader){
           <p style="height: 16px;" class="w-75 skeleton my-3"></p>
           }
@@ -122,19 +122,20 @@
             [infoContents]="cards" [height]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200"></app-map-draw>
           }
           @else {
-          <div [style.height.px]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200" class="skeleton box w-100"></div>
+          <div [style.height.px]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200" class="skeleton box w-100">
+          </div>
           }
         </div>
         }
         }
         @if(!showMapClicked){
-        <div class="col-lg-12 wow fadeInDown" #listing>
+        <div class="wow fadeInDown" [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-6']" #listing>
           <div class="row">
             @if(cards?.length){
             @for (card of cards; track card) {
             <div class="mb-3 wow fadeInDown" [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-6']">
               @if(url == '/communities'){
-              <app-community-card [loader]="loader"></app-community-card>
+              <app-community-card [item]="card" [loader]="loader"></app-community-card>
               }@else {
               <app-property-card background="#e6f2ff" [card]="card" [loader]="loader"
                 type="component"></app-property-card>

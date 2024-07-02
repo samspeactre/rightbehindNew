@@ -18,7 +18,8 @@ import { Store } from '@ngrx/store';
 import { selectRental, selectSell } from '../../Ngrx/data.reducer';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone: true,
   imports: [
@@ -32,8 +33,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     BannerComponent,
     MiniLoadingComponent,
     CountUpModule,
-    MapComponent,
-    MatDialogModule
+    MapComponent
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -41,7 +41,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
-
   counters: { name: string; count: number; }[] = [
     { name: ' Property Listings', count: 350 },
     { name: 'Monthly Users', count: 200 },
@@ -49,33 +48,31 @@ export class HomeComponent {
   ];
   faChevronCircleLeft = faChevronLeft;
   faChevronCircleRight = faChevronRight;
-  screenWidth: number = window.innerWidth;
   intervalIds: any[] = [];
   scrollPosition: number = 0;
   rent$ = this.store.select(selectRental);
   rent: any;
   sell$ = this.store.select(selectSell);
   sell: any;
-  mapHeight:number = 0;
-  windowInnerWidth:number = window.innerWidth;
+  mapHeight: number = 0;
   private destroy$ = new Subject<void>();
   array = [
     { "lat": 25.853681, "lng": -80.191788 }, // ~10 km north
-  { "lat": 25.669681, "lng": -80.191788 }, // ~10 km south
-  { "lat": 25.761681, "lng": -80.091788 }, // ~10 km east
-  { "lat": 25.761681, "lng": -80.291788 }, // ~10 km west
-  { "lat": 25.829681, "lng": -80.115788 }  // ~10 km northeast
+    { "lat": 25.669681, "lng": -80.191788 }, // ~10 km south
+    { "lat": 25.761681, "lng": -80.091788 }, // ~10 km east
+    { "lat": 25.761681, "lng": -80.291788 }, // ~10 km west
+    { "lat": 25.829681, "lng": -80.115788 }  // ~10 km northeast
   ]
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: Event) {
     this.scrollSubject.next(event);
-    if(this.mapHeight == 0){
+    if (this.mapHeight == 0) {
       this.setMapHeight()
     }
   }
-  constructor(private router: Router,private dialog: MatDialog, private http: HttpService, private store: Store) {
+  constructor(private router: Router, public resize: ResizeService, private dialog: MatDialog, private http: HttpService, private store: Store) {
     this.rent$
       .pipe(
         takeUntil(this.destroy$),
@@ -86,7 +83,7 @@ export class HomeComponent {
       .subscribe((rent) => {
         this.rent = rent;
       });
-      this.sell$
+    this.sell$
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(
@@ -114,18 +111,14 @@ export class HomeComponent {
   }
   setMapHeight() {
     if (this.secondCol) {
-      this.mapHeight = this.secondCol.nativeElement.offsetHeight;
+      this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
     }
   }
-
-  navigateToNextPage() {
-    this.router.navigate(['/off-market']);
-  }
-
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      width: window.innerWidth > 1024 ? '28%' : '100%',
-      data: {type:'contact'}
+      height: '100%',
+      width: window.innerWidth > 1024 ? '33%' : '100%',
+      data: { type: 'contact' }
     });
   }
 }

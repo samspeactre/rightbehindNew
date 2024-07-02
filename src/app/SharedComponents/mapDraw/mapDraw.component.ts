@@ -19,6 +19,7 @@ declare var $: any;
 })
 export class MapDrawComponent implements OnInit, OnDestroy {
   @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
+
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
@@ -43,7 +44,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   map: any;
   mapOptions: any = {
     zoom: 10,
-    center: { lat: 25.761681, lng: -80.191788 },
+    center: this.center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     gestureHandling: 'greedy',
     draggable: true,
@@ -67,19 +68,20 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     public resize: ResizeService
   ) { }
 
-  async ngOnInit() {
-    console.log('====================================');
-    console.log(this.communityMarkers,'checkarraytype');
-    console.log('====================================');
-    await this.initiateMap();
-    this.setupButtonClickListeners();
-  }
+  async ngOnInit() { }
 
   ngOnDestroy() {
     this.clearDrawing();
     if (this.mapMouseMoveListener) {
       google.maps.event.removeListener(this.mapMouseMoveListener);
     }
+  }
+  async ngAfterViewInit() {
+    console.log('====================================');
+    console.log(this.mapOptions);
+    console.log('====================================');
+    await this.initiateMap();
+    this.setupButtonClickListeners();
   }
 
   async initiateMap() {
@@ -112,7 +114,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
         map: this.map,
         icon: iconUrl,
       });
-      console.log(marker)
       const infoWindow = new google.maps.InfoWindow({
         content: this.createInfoWindowContent(index),
       });
@@ -241,7 +242,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   clearDrawing() {
     this.mapOptions = {
       zoom: 10,
-      center: new google.maps.LatLng(this.center.lat, this.center.lng),
+      center: new google.maps.LatLng(this.center?.lat, this.center?.lng),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy',
       draggable: true,

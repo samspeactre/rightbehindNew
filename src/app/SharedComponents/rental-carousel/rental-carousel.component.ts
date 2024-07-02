@@ -64,6 +64,7 @@ export class RentalCarouselComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {}
+  public ngAfterViewInit(): void {window.dispatchEvent(new Event('resize'));}
 }
 
 // openPopup(): void {

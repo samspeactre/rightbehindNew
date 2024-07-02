@@ -20,8 +20,13 @@
 .stickyCol {
   position: sticky;
   top: 0;
-  height: 98vh;
+  height: 99vh;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.stickyCol::-webkit-scrollbar {
+  display: none;
 }
 
 .headingContainer {
@@ -62,7 +67,7 @@
   background: none;
   border: none;
   transition: 0.5s all ease-in-out;
-
+  width: 95%;
   &:hover {
     background-color: #424242;
     color: #fff
@@ -179,9 +184,14 @@
   box-sizing: border-box;
   border-radius: 3px;
   padding: 6px 14px;
+  font-size: 12px;
   border: none;
   background-color: #eee;
   height: 34px;
+  outline: none;
+  &:focus{
+    box-shadow: none;
+  }
 }
 
 .comment {
@@ -193,7 +203,7 @@
 
 .comment__text {
   background-color: #eee;
-  font-size: 14px;
+  font-size: 12px;
   padding: 8px 6px;
 }
 

@@ -21,11 +21,9 @@
       @if(propertyDetails?.propertyImages?.length >= 4){
       <owl-carousel-o [options]="customOptions" #owlCar>
         @for (card of propertyDetails?.propertyImages; let i = $index; track card) {
-        <ng-container>
           <ng-template carouselSlide>
             <img [src]="src + card?.imageUrl" alt="image" (click)="open(i)" />
           </ng-template>
-        </ng-container>
         }
       </owl-carousel-o>
       }

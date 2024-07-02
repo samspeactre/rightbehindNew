@@ -12,16 +12,13 @@
     </button>
   </div>
 </div>
-<owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging" #owlCar>
-  @for (card of cards; track card) {
-  <ng-container>
-    <ng-template carouselSlide [id]="card.id">
-      <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
+<owl-carousel-o [options]="customOptions" #owlCar>
+  @for (card of cards; let i = $index; track card) {
+  <ng-template carouselSlide>
+    <app-property-card [card]="card" [showBadge]="true" [loader]="false" type="carousel"
         [background]="background"></app-property-card>
-    </ng-template>
-  </ng-container>
-  }
-</owl-carousel-o>
+  </ng-template>  
+  }</owl-carousel-o>
 <div class="rental-btn py-3 wow fadeInDown">
   <button [ngClass]="[ cards?.[cards?.length-1]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
     [routerLink]="cards?.[cards?.length-1]?.propertyType == 1 ? '/rent' : '/buy'">View More</button>

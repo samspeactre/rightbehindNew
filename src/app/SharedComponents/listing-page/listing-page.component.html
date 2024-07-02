@@ -19,7 +19,7 @@
             Rent
           </button>
         </div> -->
-        <div class="my-3 wow fadeInDown">
+        <div class="my-3 wow fadeInDown search-bar">
           <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
             [searching]="loader"></app-search-bar>
         </div>
@@ -89,15 +89,17 @@
       </div>
     </div>
   </app-banner>
+
   <div class="position-relative">
     <div class="cstmContainer">
       <div class="row">
-        <div class="col-lg-12 d-flex justify-content-between align-content-center my-3">
+
+        <div class="col-lg-6 wow fadeInDown" #listing>
           @if(loader){
-          <p style="height: 16px;" class="w-50 skeleton"></p>
+          <p style="height: 16px;" class="w-75 skeleton my-3"></p>
           }
           @else {
-          <p class="w-75 mb-0 d-flex align-items-center">{{cards?.length}}
+          <p class="my-3">{{cards?.length}}
             @if(url == '/communities'){
             Communities
             }@else{
@@ -106,20 +108,12 @@
             Found
           </p>
           }
-          @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
-            title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
-            <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
-            </button>
-            }
-        </div>
-        @if(!showMapClicked){
-        <div class="col-lg-6 wow fadeInDown" #listing>
           <div class="row">
             @if(cards?.length){
             @for (card of cards; track card) {
             <div class="col-lg-6 mb-3 wow fadeInDown">
               @if(url == '/communities'){
-              <app-community-card [item]="card" [loader]="loader"></app-community-card>
+              <app-community-card [loader]="loader"></app-community-card>
               }@else {
               <app-property-card background="#e6f2ff" [card]="card" [loader]="loader"
                 type="component"></app-property-card>
@@ -138,17 +132,16 @@
                   <app-mini-loading></app-mini-loading>
                 </div>
                 } @else{
-                <button class="btnPrimary py-1 wow fadeInDown mb-3" (click)="loadMoreProperties(url == '/communities' ? 'communities' : 'properties')">Load More</button>
+                <button class="btnPrimary py-1 wow fadeInDown mb-3" (click)="loadMoreProperties()">Load More</button>
                 }
               </div>
               }
             </div>
           </div>
         </div>
-        }
-        @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
+
         <div class="col-lg-6 wow fadeInDown rightP">
-          <div [ngClass]="{'mapElement' : (resize.windowSize$ | async)?.width > 1024}">
+          <div class="mapElement">
             <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
             @if(latLngArray?.length){
             @if(url == '/communities'){
@@ -159,12 +152,9 @@
             <app-map-draw [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map-draw>
             }
             }
-            @else {
-              <div [style.height.px]="screenHeight" class="skeleton box w-100"></div>
-            }
           </div>
         </div>
-        }
+        
       </div>
     </div>
   </div>

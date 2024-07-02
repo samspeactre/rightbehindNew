@@ -1,58 +1,58 @@
 @if(loader || !card){
-  <div class="pb-3 cstm-property-card" >
-    <div class="property-card">
-      <div class="property-img skeleton"></div>
-      <div class="card-content mt-3 px-3">
-        <h5 class="skeleton title"></h5>
-        <p class="skeleton description"></p>
-      </div>
+<div class="pb-3 cstm-property-card">
+  <div class="property-card">
+    <div class="property-img skeleton"></div>
+    <div class="card-content mt-3 px-3">
+      <h5 class="skeleton title"></h5>
+      <p class="skeleton description"></p>
     </div>
   </div>
-  } @else{
-  <div class="cstm-property-card" [ngStyle]="{ background: background }" (click)="openPopup(card)">
-    <div class="property-img position-relative">
-      <img
-        [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-        [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
-        @if(card?.rentSpecialTag){
-          <div class="special">{{card?.rentSpecialTag}} 🔥</div>
-        }
-    </div>
-    <div class="property-content">
-      <div class="p-2">
-        <div class="d-flex justify-content-between align-items-center card-property-heading">
-          <h6 class="bold mb-0">{{card?.title || 'N/A'}}</h6>
-          <!-- <a class="view-tag">View</a> -->
+</div>
+} @else{
+<div class="cstm-property-card" [ngStyle]="{ background: background }" (click)="openPopup(card)">
+  <div class="property-img position-relative">
+    <img
+      [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
+      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
+    @if(card?.rentSpecialTag){
+    <div class="special">{{card?.rentSpecialTag}} 🔥</div>
+    }
+  </div>
+  <div class="property-content">
+    <div class="p-2">
+      <div class="d-flex justify-content-between align-items-center card-property-heading">
+        <h6 class="bold mb-0">{{card?.title || 'N/A'}}</h6>
+        <!-- <a class="view-tag">View</a> -->
+      </div>
+      <div class="span-text my-1 dCenter justify-content-start gap-1 location">
+        <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon> <span class="elip">{{card?.location}}</span>
+      </div>
+      <div class="d-flex mt-3 flex-wrap space-gap w-100 description-para">
+        <div class="dCenter d-flex">
+          <img src="../../assets/img/bed.webp" alt="bed" class="smallImg mx-auto" />
+          <p class="mb-0 num-value">{{card?.noOfBed || 0}}</p>
         </div>
-        <div class="span-text my-1 dCenter justify-content-start gap-1 location">
-          <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon> <span class="elip">{{card?.location}}</span>
+        <div class="dCenter centerBox">
+          <img src="../../assets/img/bath.webp" alt="bed" class="smallImg mx-auto" />
+          <p class="mb-0 num-value">{{card?.noOfBath || 0}}</p>
         </div>
-        <div class="d-flex mt-3 flex-wrap space-gap w-100 description-para">
-          <div class="dCenter d-flex">
-            <img src="../../assets/img/bed.webp" alt="bed" class="smallImg mx-auto" />
-            <p class="mb-0 num-value">{{card?.noOfBed || 0}}</p>
-          </div>
-          <div class="dCenter centerBox">
-            <img src="../../assets/img/bath.webp" alt="bed" class="smallImg mx-auto" />
-            <p class="mb-0 num-value">{{card?.noOfBath || 0}}</p>
-          </div>
-          <div class="dCenter">
-            <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg mx-auto" />
-            <p class="mb-0 num-value">{{card.area || 0}} sq ft</p>
-          </div>
+        <div class="dCenter">
+          <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg mx-auto" />
+          <p class="mb-0 num-value">{{card.area || 0}} sq ft</p>
         </div>
       </div>
-      @if(page != 'mylisting'){
-        <div class="btnContainer dCenter justify-content-between px-2 pb-2">
-          <button class="whitBtn rounded-0 w-50 bold text-start" (click)="openPopup(card)">
-            {{ card.price || 0 | currency : "USD" }}
-          </button>
-          <button class="btnPrimary rounded-5 py-2 w-50" (click)="userDetails ? createContact() : routeToContact(card)">
-            Contact Agent
-          </button>
-        </div>
-      }
-      @else {}
     </div>
+    @if(page != 'mylisting'){
+    <div class="btnContainer dCenter justify-content-between px-2 pb-2">
+      <button class="whitBtn rounded-0 w-50 bold text-start" (click)="openPopup(card)">
+        {{ card.price || 0 | currency : "USD" }}
+      </button>
+      <button class="btnPrimary rounded-5 py-2 w-50" (click)="userDetails ? createContact() : routeToContact(card)">
+        Contact Agent
+      </button>
+    </div>
+    }
+    @else {}
   </div>
-  }
+</div>
+}

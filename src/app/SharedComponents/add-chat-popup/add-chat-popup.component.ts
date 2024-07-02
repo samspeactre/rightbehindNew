@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { Subject } from 'rxjs';
+import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { AuthService } from '../../TsExtras/auth.service';
 import { InputComponent } from '../input/input.component';
 import { MapComponent } from '../map/map.component';
@@ -27,7 +27,7 @@ export class ChatPopupComponent {
     ForumImage: ['', Validators.required],
     Latitude: ['', Validators.required],
     Longitude: ['', Validators.required],
-    Address: ['', Validators.required],
+    Location: ['', Validators.required],
     City: ['', Validators.required],
   });
   user: any;
@@ -36,7 +36,6 @@ export class ChatPopupComponent {
   constructor(public dialog: MatDialog, private http:HttpService, public dialogRef: MatDialogRef<ChatPopupComponent>,
     private router: Router, private fb: FormBuilder, private auth: AuthService,
     private store: Store,
-
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
   ngOnDestroy(): void {
@@ -46,14 +45,21 @@ export class ChatPopupComponent {
   onSubmit() {
     const formData = this.convertFormToFormData(this.communityForm.value);
     console.log(formData);
-    this.http.loaderPost('Forum/create',formData,true).subscribe((response)=>{
-      console.log(response);
+    this.http.loaderPost('Forum/create',formData,true)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      )
+    )
+    .subscribe((response)=>{
+      this.dialogRef.close({ data:this.communityForm.value });
     })
   }
   setFormValue(event: any, control: string) {
-    if (control == 'Address') {
+    if (control == 'Location') {
       this.communityForm.patchValue({
-        Address: event?.address,
+        Location: event?.address,
         City: event?.city,
       })
     } else {

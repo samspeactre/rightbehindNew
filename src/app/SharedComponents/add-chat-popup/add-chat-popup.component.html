@@ -24,7 +24,7 @@
                 label="Community Short Description" placeholder="Enter Community Short Description*"></app-input>
         </div>
         <div class="col-lg-12">
-            <app-map [addMarker]="true" [draggable]="true" [search]="true" (mapMarkerCordinates)="setFormValue($event,'Latitude')" (mapMarkerCordinates)="setFormValue($event,'Longitude')" (mapSearchLocation)="setFormValue($event,'Address')"></app-map>
+            <app-map [addMarker]="true" [draggable]="true" [search]="true" (mapMarkerCordinates)="setFormValue($event,'Latitude')" (mapMarkerCordinates)="setFormValue($event,'Longitude')" (mapSearchLocation)="setFormValue($event,'Location')"></app-map>
         </div>
         <div class="dCenter mt-3">
             <button class="btnPrimary" [disabled]="communityForm.invalid">Create</button>

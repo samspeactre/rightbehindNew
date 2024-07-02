@@ -8,6 +8,8 @@ import { faChevronCircleRight, faChevronLeft, faChevronRight } from '@fortawesom
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { MapComponent } from '../map/map.component';
 import { CommunityCardComponent } from '../community-card/community-card.component';
+import { HttpService } from '../../Services/http.service';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 
 @Component({
   standalone:true,
@@ -17,16 +19,12 @@ import { CommunityCardComponent } from '../community-card/community-card.compone
   styleUrl: './card-carousel.component.scss'
 })
 export class CardCarouselComponent implements OnInit{
-  cards = [
-    { buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
-    { buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
-    { buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
-    { buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus. ' },
-    { buttonUrl: '', name: 'Community Title', tag: 'miami', description: 'Lorem ipsum dolor sit amet consectetur. A urna dolor neque quis tortor. Cras auctor mauris tincidunt sed fusce rhoncus.  ' },
-  ];
+  cards:any=[1,2,3,4,5]
   faChevronCircleLeft=faChevronLeft
   faChevronCircleRight=faChevronRight
   faChevronCircleRight2=faChevronCircleRight
+  loader:boolean = false;
+  private destroy$ = new Subject<void>();
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
@@ -46,11 +44,33 @@ export class CardCarouselComponent implements OnInit{
     },
     nav: false
   }
-  constructor() { }
+  constructor(private http:HttpService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getInquiries()
+  }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   getHeight(){
     const height = document.getElementsByClassName('heightGet')[0]?.clientHeight
     return height
+  }
+  getInquiries() {
+    this.loader = true
+    this.http.get('Forum/get?pageSize=5', false)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      ),
+      finalize(()=>{
+        this.loader = false
+      })
+    )
+    .subscribe((response) => {
+      this.cards = response?.model?.forums
+    })
   }
 }

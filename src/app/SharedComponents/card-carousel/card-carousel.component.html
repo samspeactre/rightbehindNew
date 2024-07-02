@@ -14,7 +14,7 @@
   @for (card of cards; track card) {
   <ng-container>
     <ng-template carouselSlide>
-      <app-community-card [loader]="false"></app-community-card>
+      <app-community-card [item]="card" [loader]="loader"></app-community-card>
     </ng-template>
   </ng-container>
   }

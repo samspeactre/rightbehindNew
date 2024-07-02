@@ -45,9 +45,13 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     zoom: 10,
     center: { lat: 25.761681, lng: -80.191788 },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    disableDefaultUI: true,
     gestureHandling: 'greedy',
-    draggable: true
+    draggable: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   };
   shapeCoordinates: google.maps.LatLngLiteral[] = [];
   shapePromise: Promise<google.maps.LatLngLiteral[]> | undefined;
@@ -60,10 +64,13 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
     private appRef: ApplicationRef,
-    public resize:ResizeService
+    public resize: ResizeService
   ) { }
 
   async ngOnInit() {
+    console.log('====================================');
+    console.log(this.communityMarkers,'checkarraytype');
+    console.log('====================================');
     await this.initiateMap();
     this.setupButtonClickListeners();
   }
@@ -105,7 +112,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
         map: this.map,
         icon: iconUrl,
       });
-
+      console.log(marker)
       const infoWindow = new google.maps.InfoWindow({
         content: this.createInfoWindowContent(index),
       });
@@ -197,11 +204,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     });
     const path = poly.getPath();
     this.shapeCoordinates = [];
-    google.maps.event.addListener(this.map, 'dragstart', (e: any) => {
-      console.log('====================================');
-      console.log(e,'moving');
-      console.log('====================================');
-    })
     this.mapMouseMoveListener = google.maps.event.addListener(this.map, 'mousemove', (e: any) => {
       path.push(e.latLng);
       this.shapeCoordinates.push({ lat: e.latLng.lat(), lng: e.latLng.lng() });
@@ -241,9 +243,13 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       zoom: 10,
       center: new google.maps.LatLng(this.center.lat, this.center.lng),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI: true,
       gestureHandling: 'greedy',
-      draggable: true
+      draggable: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     };
     this.map.setOptions(this.mapOptions);
     this.enableMapInteractions();

@@ -14,6 +14,7 @@ import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { ResizeService } from '../../Services/resize.service';
+// import { PreviewComponent } from '../../view/preview/preview.component';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, FontAwesomeModule, RouterModule],
@@ -48,11 +49,11 @@ export class PropertyCardComponent {
     this.destroy$.complete();
   }
   ngOnInit(){}
-  openPopup(): void {
-    this.dialog?.open(ContactPopupComponent, {
-      height: '100%',
-      width: window.innerWidth > 1024 ? '33%' : '100%',
-      data: {type:'property',id: this.card?.id}
+  openPopup(card: any): void {
+    this.dialog?.open(PopupComponent, {
+      height: '650px',
+      width: '98%',
+      data: { card: card }
     });
   }
   async navigateAndClose() {

@@ -121,4 +121,8 @@ export class HomeComponent {
       data: { type: 'contact' }
     });
   }
+
+  navigateToOffMarket() {
+    this.router.navigate(['/off-market']);
+  }
 }

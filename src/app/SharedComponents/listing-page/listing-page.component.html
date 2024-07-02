@@ -106,7 +106,7 @@
             Found
           </p>
           }
-          @if((resize.windowSize$ | async)?.width < 1024){ <button class="btnToggler"
+          @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
             title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
             <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
             </button>

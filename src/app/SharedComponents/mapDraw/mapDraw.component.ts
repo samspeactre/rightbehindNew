@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
+import { ResizeService } from '../../Services/resize.service';
 
 declare const google: any;
 declare var $: any;
@@ -58,7 +59,8 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   constructor(
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
-    private appRef: ApplicationRef
+    private appRef: ApplicationRef,
+    public resize:ResizeService
   ) { }
 
   async ngOnInit() {

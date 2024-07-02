@@ -1,8 +1,14 @@
+h6,h6 strong {
+  font-size: 1.25rem;
+  font-family: 'med';
+}
+
 .inner-heading h1 {
   font-size: 30px;
 }
 
 :host ::ng-deep {
+
   .owl-carousel .owl-item img,
   .carouselImg {
     height: 350px;
@@ -12,10 +18,12 @@
     border-radius: 0px;
     width: 100%;
   }
+
   .accordion-button::after {
     position: absolute;
     right: 10px;
   }
+
   .accordion-item .accordion-header .accordion-button {
     padding: 1rem 0;
   }
@@ -68,21 +76,35 @@
   color: #0160c9;
 }
 
+.labelCheck label {
+  font-size: 15px;
+  font-family: 'reg';
+  color: var(--black);
+}
+
 .blue-box label {
   width: 49%;
   // padding: 6px 10px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-family: 'reg';
+  color: var(--black);
+}
+
+.white-box-text{
+  font-size: 15px;
+  font-family: 'reg';
 }
 
 .white-label {
-  background-color: #fff;
+  background-color: var(--sec-light);
   padding: 6px 10px;
+  margin-bottom: 5px;
 }
 
 .yellow-label {
-  background-color: #f7fbff;
+  background-color: white;
   padding: 6px 10px;
+  margin-bottom: 5px;
 }
 
 .accordion-item .accordion-header .accordion-button {
@@ -97,7 +119,9 @@
 .inner-home-list ul li {
   width: 25%;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 15px;
+  font-family: 'reg';
+  color: var(--black);
 }
 
 .right-site {
@@ -163,6 +187,7 @@
   background: #dddddd;
   margin: 0;
 }
+
 @media only screen and (max-width: 1025px) {
   .right-site {
     padding: 2rem 10px;

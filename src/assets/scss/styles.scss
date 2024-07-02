@@ -122,3 +122,7 @@ body {
 a {
   cursor: pointer;
 }
+
+.ng-select .ng-select-container:after{
+  border-bottom: 0;
+}

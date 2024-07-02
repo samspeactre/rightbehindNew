@@ -13,12 +13,12 @@
 <owl-carousel-o [options]="customOptions" #owlCar>
   @for (card of cards; track card) {
     <ng-template carouselSlide>
-      <div class="card-wrapper swiper-slide">
+      <div class="card-wrapper swiper-slide" (click)="navigateToBlogInner()">
         <div class="card rounded-3 w-100">
           <div class="image-content">
             <span class="overlay"></span>
             <div class="w-100">
-              <img [src]="card.imgSrc" alt="Card Image" width="100%" height="100%" class="card-img rounded-3 wow fadeInDown">
+              <img [src]="card.imgSrc" alt="Card Image" width="100%" class="card-img rounded-3 wow fadeInDown">
               <div class="blog-img-content mt-3 dCenter justify-content-between">
                 <div class="dCenter justify-content-start gap-2">
                   <div class="circle wow fadeInDown"></div>

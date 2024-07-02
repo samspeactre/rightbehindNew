@@ -108,7 +108,7 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '100%',
+      height: '85%',
       width: window.innerWidth > 1024 ? '27%' : '100%',
 
     });
@@ -116,7 +116,7 @@ export class NavbarComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '100%',
+      height: '97%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
       data: type,
     });

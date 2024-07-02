@@ -14,13 +14,13 @@
     <div class="d-flex justify-content-between container-site main">
         <div class="div-width">
             <div class="left-content wow fadeInDown">
-                <h1 class="wow fadeInDown">heading no 1</h1>
-                <p class="wow fadeInDown">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error reprehenderit
-                    dicta voluptatibus
-                    corporis, incidunt delectus earum molestiae quisquam ratione optio quia labore. Et quo sit
-                    voluptatum. Ullam rerum illum deleniti.Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Error reprehenderit dicta voluptatibus corporis, incidunt delectus earum molestiae quisquam ratione
-                    optio quia labore. Et quo sit voluptatum. Ullam rerum illum deleniti.</p>
+                <h1 class="wow fadeInDown">Access Market Insights</h1>
+                <div class="offMarket-list">
+                    <li class="d-flex" *ngFor="let item of marketInsight">
+                        <span><mat-icon>check</mat-icon>{{item}}</span>
+                    </li>
+                </div>
+                <button (click)="openLoginPopup()">UPGRADE NOW</button>
             </div>
         </div>
         <div class="div-width">

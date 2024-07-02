@@ -51,12 +51,18 @@ export class PropertyCardComponent {
   }
   ngOnInit(){}
   openPopup(card: any): void {
-    this.dialog?.open(PopupComponent, {
-      height: '650px',
-      width: '98%',
-      data: { card: card }
+    // this.dialog?.open(PopupComponent, {
+    //   height: '650px',
+    //   width: '98%',
+    //   data: { card: card }
+    // });
+    this.dialog?.open(ContactPopupComponent, {
+      height: '85%',
+      width: window.innerWidth > 1024 ? '28%' : '100%',
+      data: { type: 'property',id:this.card?.id }
     });
   }
+  
   async navigateAndClose() {
     this.router.navigate(
       ['/preview'],

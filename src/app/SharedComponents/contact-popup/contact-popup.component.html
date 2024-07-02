@@ -22,6 +22,12 @@
             <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email"
                 label="Email"></app-input>
         </div>
+        @if(active?.type === 'property'){
+        <div class="col-lg-12">
+            <app-input classes="w-100 mb-2" type="password" [form]="propertyForm" control="password"
+                label="Password"></app-input>
+        </div>
+        }
         <div class="col-lg-12">
             <app-input classes="w-100 mb-2" [readOnly]="user" inputType="textArea" type="text" [form]="propertyForm"
                 control="message" label="Message" rows="2"></app-input>

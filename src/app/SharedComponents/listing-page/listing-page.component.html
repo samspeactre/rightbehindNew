@@ -93,26 +93,27 @@
   <div class="position-relative">
     <div class="cstmContainer">
       <div class="row">
-
         <div class="col-lg-7 wow fadeInDown" #listing>
           @if(loader){
           <p style="height: 16px;" class="w-75 skeleton my-3"></p>
           }
           @else {
-          <p class="my-3">{{cards?.length}}
-            @if(url == '/communities'){
-            Communities
-            }@else{
-            Properties
-            }
-            Found
-          </p>
+            <div class="dCenter justify-content-between">
+              <p class="my-3">{{cards?.length}}
+                @if(url == '/communities'){
+                Communities
+                }@else{
+                Properties
+                }
+                Found
+              </p>
+              @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
+                title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
+                <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
+                </button>
+                }
+            </div>
           }
-          @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
-            title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
-            <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
-            </button>
-            }
         </div>
         @if(url == '/communities'){
         @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
@@ -120,10 +121,6 @@
           @if(latLngArray?.length){
           <app-map-draw [communityMarkerPositions]="latLngArray" [center]="latLngArray?.[1]" [community]="true"
             [infoContents]="cards" [height]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200"></app-map-draw>
-          }
-          @else {
-          <div [style.height.px]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200" class="skeleton box w-100">
-          </div>
           }
         </div>
         }
@@ -167,13 +164,9 @@
         @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
         <div class="col-lg-6 wow fadeInDown rightP">
           <div class="mapElement">
-            <!-- <app-map [markerPositions]="latLngArray" [infoContents]="cards" [height]="screenHeight"></app-map> -->
             @if(latLngArray?.length){
             <app-map-draw [markerPositions]="latLngArray" [center]="latLngArray?.[0]" [infoContents]="cards"
               [height]="screenHeight"></app-map-draw>
-            }
-            @else {
-            <div [style.height.px]="screenHeight" class="skeleton box w-100"></div>
             }
           </div>
         </div>

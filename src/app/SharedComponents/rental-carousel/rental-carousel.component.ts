@@ -34,35 +34,39 @@ export class RentalCarouselComponent implements OnInit {
   faChevronCircleRight=faChevronRight
   noData: boolean = false;
   isDragging: boolean = false;
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    margin: 20,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      740: {
-        items: 3
-      },
-      1024:{
-        items: 4
-      }
-    },
-    nav: false
-  }
+  customOptions!: OwlOptions
   constructor(
     public dialog: MatDialog,
     private http: HttpService,
     private store: Store
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.customOptions = {
+      loop: true,
+      mouseDrag: true,
+      touchDrag: true,
+      pullDrag: true,
+      autoHeight:true,
+      autoWidth:true,
+      margin: 20,
+      dots: false,
+      navSpeed: 700,
+      navText: ['', ''],
+      responsive: {
+        0: {
+          items: 1
+        },
+        740: {
+          items: 3
+        },
+        1024:{
+          items: 4
+        }
+      },
+      nav: false
+    }
+  }
   public ngAfterViewInit(): void {window.dispatchEvent(new Event('resize'));}
 }
 

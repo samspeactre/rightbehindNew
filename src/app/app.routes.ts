@@ -107,6 +107,22 @@ export const routes: Routes = [
             (m) => m.Listing_Page_Routes
           ),
       },
+      {
+        path: 'payment-success',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('../app/SharedComponents/payment/payment.route').then(
+            (m) => m.Payment_Routes
+          ),
+      },
+      {
+        path: 'payment-failed',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('../app/SharedComponents/payment/payment.route').then(
+            (m) => m.Payment_Routes
+          ),
+      },
     ]
   },
   {

@@ -13,10 +13,11 @@
   <app-map height="200" [center]="{lat:item?.latitude,lng:item?.longitude}"
     [communityMarkerPositions]="[{lat:item?.latitude,lng:item?.longitude}]" [mapDraggable]="false"></app-map>
   <div class="card-content p-3">
-    <h5 class="card-name text-dark wow fadeInDown">{{item?.title}}</h5>
-    <p class="text-dark wow fadeInDown">{{item?.description}}</p>
+    <h5 class="card-name text-dark" [ngClass]="{'wow fadeInDown':animation}">{{item?.title}}</h5>
+    <p class="text-dark" [ngClass]="{'wow fadeInDown':animation}">{{item?.description}}</p>
     <div class="dCenter">
-      <button class="btnDanger wow fadeInDown py-2"
+      <button class="btnDanger py-2"
+      [ngClass]="{'wow fadeInDown':animation}"
        (click)="routeToCommunity()">
         {{url?.includes('dashboard') ? 'View' : 'Join Now'}}
       </button>

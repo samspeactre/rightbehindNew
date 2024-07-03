@@ -17,6 +17,7 @@ import { MapComponent } from '../map/map.component';
 })
 export class CommunityCardComponent {
   @Input() loader:boolean = true;
+  @Input() animation:boolean = true;
   @Input() item:any;
   url!:string;
   constructor(private router:Router){}

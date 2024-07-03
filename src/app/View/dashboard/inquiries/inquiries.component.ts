@@ -9,6 +9,7 @@ import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Router, RouterModule } from '@angular/router';
 import { ChatPopupComponent } from '../../../SharedComponents/add-chat-popup/add-chat-popup.component';
 import { HttpService } from '../../../Services/http.service';
+import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -24,11 +25,16 @@ export class InquiriesComponent {
   faPlus = faPlus;
   heading: string;
   inquiries:any;
+  private destroy$ = new Subject<void>();
   constructor(private fb: FormBuilder, private router: Router, public dialog: MatDialog, private http:HttpService) {
     this.heading = this.router.url.includes('inquiries') ? 'Inquiries' : 'Community Groups'
     if(this.heading == 'Inquiries'){
       this.getInquiries()
     }
+  }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
   openPopup(): void {
     let dialogRef = this.dialog.open(ChatPopupComponent, {
@@ -37,7 +43,14 @@ export class InquiriesComponent {
     });
   }
   getInquiries(){
-    this.http.loaderGet('ChatContact/get',true).subscribe((response)=>{
+    this.http.loaderGet('ChatContact/get',true)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      )
+    )
+    .subscribe((response)=>{
       this.inquiries = response?.modelList
     })
   }

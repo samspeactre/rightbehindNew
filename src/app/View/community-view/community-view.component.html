@@ -7,12 +7,13 @@
           <div class="headingContainer">
             <p class="mb-0 bold">All Communities</p>
           </div>
-          @for (item of arr; track $index) {
+          @for (item of inquiries; track $index) {
           <button
+          (click)="routeToCommunity(item?.id, item?.title)"
             class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2">
             <div class="icon">
               <img width="100%" height="100%"
-                [src]="item?.image ? item?.image : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
+                [src]="item?.imagePath ? (src+item?.imagePath) : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
                 alt="icon">
             </div>
             {{item?.title}}
@@ -42,13 +43,15 @@
                 <img class="comment__profile-img"
                   src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
                 <div class="inputBox position-relative">
-                  <input class="input" placeholder="Share what's on your mind..." style="background-color: #fff" />
-                  <fa-icon [icon]="faPlus" class="position-absolute btnIcon"></fa-icon>
+                  <input class="input" placeholder="Share what's on your mind..." [(ngModel)]="post" style="background-color: #fff" />
+                  <button [disabled]="!post" class="bg-transparent border-0" (click)="createPost()">
+                    <fa-icon [icon]="faPlus" class="position-absolute btnIcon"></fa-icon>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          @for (item of arr; track $index) {
+          @for (item of arr2; track $index) {
           <div class="post mt-2 mb-3 rounded-3">
             <div class="post__top">
               <div class="post__top-left">

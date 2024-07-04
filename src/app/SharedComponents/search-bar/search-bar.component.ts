@@ -28,7 +28,6 @@ export class SearchBarComponent {
     this.mentorSearchQueryUpdate
       .pipe(
         debounceTime(500),
-        distinctUntilChanged(),
         takeUntil(this.destroy$),
         distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
       )

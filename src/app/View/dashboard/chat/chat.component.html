@@ -21,7 +21,8 @@
                   <div class="theme-form my-3">
                     <div class="form-group position-relative">
                       <fa-icon [icon]="faSearch" class="faSearch position-absolute top-50 ms-2"></fa-icon>
-                      <input class="form-control ps-5" [(ngModel)]="searchText" type="text" placeholder="search">
+                      <input class="form-control ps-5" [(ngModel)]="searchText"
+                      (ngModelChange)="searchQueryUpdate.next($event)" type="text" placeholder="search">
                     </div>
                   </div>
                 </div>

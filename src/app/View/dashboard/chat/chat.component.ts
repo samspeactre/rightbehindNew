@@ -7,7 +7,7 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft, faEllipsisVertical, faPaperPlane, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { distinctUntilChanged, finalize, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, finalize, takeUntil } from 'rxjs/operators';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { assetUrl } from '../../../Services/helper.service';
 import { HttpService } from '../../../Services/http.service';
@@ -26,12 +26,14 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public users: any[] = [];
   public searchUsers: any[] = [];
+  public originalsearchUsers: any;
   public chatUser: any;
   public chats: any;
   public chatText!: string;
   public error = false;
   public notFound = false;
   public searchText!: string;
+  searchQueryUpdate = new Subject<any>();
   public faSearch = faSearch;
   public faPaperPlane = faPaperPlane;
   public faArrowLeft = faArrowLeft;
@@ -65,6 +67,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
+    this.searchQueryUpdate
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((value) => {
+        this.filterChat(value)
+      });
     this.user$.pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged()
@@ -112,6 +123,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       distinctUntilChanged()
     ).subscribe(response => {
       this.searchUsers = response?.modelList || [];
+      this.originalsearchUsers = response?.modelList || [];
     });
   }
 
@@ -205,4 +217,16 @@ export class ChatComponent implements OnInit, OnDestroy {
   //       }
   //   })
   // }
+  private filterChat(searchTerm: string): void {
+    console.log(searchTerm,'search reuly');
+    
+    if (!searchTerm) {
+      this.searchUsers = this.originalsearchUsers;
+    } else {
+      this.searchUsers = this.originalsearchUsers.filter((inquiry: any) =>
+        (inquiry?.sender?.fullName && inquiry?.sender?.fullName.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (inquiry?.chat?.message && inquiry?.chat?.message.toLowerCase().includes(searchTerm.toLowerCase()))
+     );
+    }
+  }
 }

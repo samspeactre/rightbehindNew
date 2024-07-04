@@ -12,7 +12,7 @@
   padding: 12px 18px;
 }
 
-.col-lg-2 {
+.col-lg-2,.col-3 {
   padding: 0;
   background-color: #fff;
 }
@@ -234,4 +234,15 @@
 }
 .smallFont{
   font-size: 10px;
+}
+@media only screen and (max-width:1024px) {
+  .border1{
+    button{
+
+    }
+  }
+  .icon {
+    // width: 30px;
+    // height: 30px;
+  }
 }

@@ -21,6 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
+import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   standalone: true,
@@ -51,12 +53,14 @@ export class CommunityViewComponent {
   private destroy$ = new Subject<void>();
   user$ = this.store.select(selectUser);
   userDetails: any;
+  join:boolean = false;
   constructor(
     public resize: ResizeService,
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    public dialog: MatDialog
   ) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
       this.title = param?.title;
@@ -197,5 +201,26 @@ export class CommunityViewComponent {
     this.router.navigate(['/communities/community'], {
       queryParams: { id, title, city, imagePath },
     });
+  }
+  leave(){}
+  joinNow(){
+    if(this.userDetails){
+      this.joining()
+    }
+    else{
+      const dialogRef = this.dialog.open(LoginPopupComponent, {
+        height: '85%',
+        width: window.innerWidth > 1024 ? '27%' : '100%',
+        data:'joinRequest'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result?.data) {
+          this.joining()
+        }
+      });
+    }
+  }
+  joining(){
+    console.log('joining')
   }
 }

@@ -140,7 +140,7 @@
     <div class="dCenter mt-2 flex-column">
       @if(user){
       <button class="btnSecondary" (click)="show(false); logout()">
-        <img class="proifle" width="100%" height="100%" [src]="user?.imageUrl ||
+        <img class="proifle" width="100%" height="100%" [src]="src + user?.imageUrl ||
           'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
         " alt="profiel picture"> Logout
       </button>

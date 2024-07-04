@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +17,7 @@ import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
+import { assetUrl } from '../../Services/helper.service';
 
 @Component({
   standalone: true,
@@ -31,6 +32,7 @@ export class NavbarComponent {
   sidebar: boolean = false;
   private destroy$ = new Subject<void>();
   faUser = faUser
+  src=assetUrl
   faTimes = faTimes
   faBars = faBars
   faHeadphones = faHeadphones
@@ -41,8 +43,10 @@ export class NavbarComponent {
   faCircleChevronDown = faCircleChevronDown
   faAt = faAt
   sellHide: boolean = false
-  constructor(private store: Store,public resize:ResizeService, public dialog: MatDialog, private auth: AuthService, private router: Router, private actiavtedRoute: ActivatedRoute) {
-    this.user$
+  
+  constructor(private store: Store,
+    public resize:ResizeService, public dialog: MatDialog, private auth: AuthService, private router: Router, private actiavtedRoute: ActivatedRoute) {
+      this.user$
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(

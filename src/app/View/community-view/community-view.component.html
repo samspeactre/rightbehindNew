@@ -29,7 +29,7 @@
           }
         </div>
       </div>
-      }
+    }
       <div class="col-lg-5 mx-auto border2">
         <div class="feed">
           <div class="post mt-2 mb-3 rounded-3">
@@ -47,7 +47,7 @@
                   />
                   <p class="mb-0 bold text-capitalize">{{ title }}</p>
                 </div>
-                <button class="btnPrimary py-1 px-3 smallFont">Join Now</button>
+                <button class="btnPrimary py-1 px-3 smallFont" (click)="join ? leave() : joinNow()">{{join ? 'Leave' : 'Join Now'}}</button>
               </div>
             </div>
             <div class="post__comments removeBorder">

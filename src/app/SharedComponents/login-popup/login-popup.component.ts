@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../Services/http.service';
 import { RegisterPopupComponent } from '../../View/register-popup/register-popup.component';
@@ -21,15 +21,17 @@ import { ResizeService } from '../../Services/resize.service';
 export class LoginPopupComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   private destroy$ = new Subject<void>();
-
+  request:any = null
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
     private helper: HelperService,
     private auth: AuthService,
-    private resize:ResizeService
+    private resize:ResizeService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
+    this.request = data
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -62,7 +64,12 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
           } else {
             this.clearCredentials();
           }
-          this.dialogRef.close();
+          if(this.request){
+            this.dialogRef.close({ data:true });
+          }
+          else{
+            this.dialogRef.close();
+          }
         });
     }
   }

@@ -41,7 +41,7 @@ export class CommunityViewComponent {
   faPaperPlane = faPaperPlane;
   faPlus = faPlusSquare;
   title!: string;
-  imagePath!:string;
+  imagePath!: string;
   id: any;
   city!: string;
   inquiries: any;
@@ -53,7 +53,7 @@ export class CommunityViewComponent {
   private destroy$ = new Subject<void>();
   user$ = this.store.select(selectUser);
   userDetails: any;
-  join:boolean = false;
+  join: boolean = false;
   constructor(
     public resize: ResizeService,
     private activatedRoute: ActivatedRoute,
@@ -67,6 +67,7 @@ export class CommunityViewComponent {
       this.id = param?.id;
       this.imagePath = param?.imagePath;
       this.city = param?.city;
+      this.join = param?.userExistInForum && JSON.parse(param?.userExistInForum);
       this.getInquiry();
     });
     this.user$
@@ -134,9 +135,11 @@ export class CommunityViewComponent {
       )
       .subscribe((response) => {
         this.inquiry = response?.model;
+        this.join = response?.model?.userExistInForum
       });
   }
   getPosts() {
+    this.posts = []
     this.http
       .loaderGet(`Forum/get/${this.id}/post`, true)
       .pipe(takeUntil(this.destroy$))
@@ -146,29 +149,44 @@ export class CommunityViewComponent {
   }
   createPost() {
     const data = {
-      forumId:  Number(this.id),
+      forumId: Number(this.id),
       title: this.post,
     };
     this.http
       .loaderPost(`Forum/post/create`, data, true)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        this.posts.unshift({
-          user: {
-            imageUrl: this.userDetails?.imageUrl,
-            fullName: this.userDetails?.fullName,
-          },
-          createdAt: new Date(),
-          title: this.post,
-        });
+        if(this.posts?.length){
+          this.posts.unshift({
+            user: {
+              imageUrl: this.userDetails?.imageUrl,
+              fullName: this.userDetails?.fullName,
+            },
+            createdAt: new Date(),
+            title: this.post,
+            id:this.posts?.length + 2,
+            forumPostAnswers:[]
+          });
+        }
+        else{
+          this.posts.push({
+            user: {
+              imageUrl: this.userDetails?.imageUrl,
+              fullName: this.userDetails?.fullName,
+            },
+            createdAt: new Date(),
+            title: this.post,
+            id:this.posts?.length + 2,
+            forumPostAnswers:[]
+          });
+        }
         this.post = null;
       });
   }
   createComment(commentId: any) {
     const data = {
-      id: commentId,
       userId: this.userDetails?.id,
-      forumId: Number(this.id),
+      forumPostId: Number(commentId),
       answer: this.comment,
     };
     this.http
@@ -176,51 +194,78 @@ export class CommunityViewComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         const postToUpdate = this.posts.find(
-          (post: any) => post.id === this.id
+          (post: any) => post.id === commentId
         );
-
+        console.log(postToUpdate);
+        
         if (postToUpdate) {
-          postToUpdate.forumPostAnswers.unshift({
-            id: response.id,
-            forumPostId: this.id,
-            userId: this.userDetails?.id,
-            answer: this.comment,
-            createdAt: new Date(),
-            user: {
-              imageUrl: this.userDetails?.imageUrl,
-              fullName: this.userDetails?.fullName,
-            },
-          });
-
+          if(postToUpdate.forumPostAnswers?.length){
+            postToUpdate.forumPostAnswers.unshift({
+              id: response.id,
+              forumPostId: commentId,
+              userId: this.userDetails?.id,
+              answer: this.comment,
+              createdAt: new Date(),
+              user: {
+                imageUrl: this.userDetails?.imageUrl,
+                fullName: this.userDetails?.fullName,
+              },
+            });
+          }
+          else{
+            postToUpdate.forumPostAnswers.push({
+              id: response.id,
+              forumPostId: commentId,
+              userId: this.userDetails?.id,
+              answer: this.comment,
+              createdAt: new Date(),
+              user: {
+                imageUrl: this.userDetails?.imageUrl,
+                fullName: this.userDetails?.fullName,
+              },
+            });
+          }
           // Reset the comment input
           this.comment = null;
         }
       });
   }
-  routeToCommunity(id: any, title: string, city: string, imagePath:string) {
+  routeToCommunity(
+    id: any,
+    title: string,
+    city: string,
+    imagePath: string,
+    userExistInForum: string
+  ) {
     this.router.navigate(['/communities/community'], {
-      queryParams: { id, title, city, imagePath },
+      queryParams: { id, title, city, imagePath, userExistInForum },
     });
   }
-  leave(){}
-  joinNow(){
-    if(this.userDetails){
-      this.joining()
-    }
-    else{
+  leave() {
+    this.http.loaderGet(`forum/${this.id}/user/remove`,true).subscribe((response)=>{
+      this.join = false;
+    })
+  }
+  joinNow() {
+    if (this.userDetails) {
+      this.joining();
+    } else {
       const dialogRef = this.dialog.open(LoginPopupComponent, {
         height: '85%',
         width: window.innerWidth > 1024 ? '27%' : '100%',
-        data:'joinRequest'
+        data: 'joinRequest',
       });
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         if (result?.data) {
-          this.joining()
+          this.joining();
         }
       });
     }
   }
-  joining(){
-    console.log('joining')
+  joining() {
+    this.http.loaderPost(`forum/${this.id}/user`,{},true).subscribe((response)=>{
+      this.join = true;
+    })
+    console.log('joining');
   }
 }

@@ -59,7 +59,7 @@ export class CardCarouselComponent implements OnInit{
   }
   getInquiries() {
     this.loader = true
-    this.http.get('Forum/get?pageSize=5', false)
+    this.http.get('Forum/get?pageSize=5&byUser=false', false)
     .pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged(

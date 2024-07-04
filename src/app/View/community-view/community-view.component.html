@@ -9,7 +9,14 @@
           </div>
           @for (item of inquiries; track $index) {
           <button
-            (click)="routeToCommunity(item?.id, item?.title, item?.city, item?.imagePath)"
+            (click)="
+              routeToCommunity(
+                item?.id,
+                item?.title,
+                item?.city,
+                item?.imagePath
+              )
+            "
             class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2"
           >
             <div class="icon">
@@ -29,7 +36,7 @@
           }
         </div>
       </div>
-    }
+      }
       <div class="col-lg-5 mx-auto border2">
         <div class="feed">
           <div class="post mt-2 mb-3 rounded-3">
@@ -47,7 +54,12 @@
                   />
                   <p class="mb-0 bold text-capitalize">{{ title }}</p>
                 </div>
-                <button class="btnPrimary py-1 px-3 smallFont" (click)="join ? leave() : joinNow()">{{join ? 'Leave' : 'Join Now'}}</button>
+                <button
+                  class="btnPrimary py-1 px-3 smallFont"
+                  (click)="join ? leave() : joinNow()"
+                >
+                  {{ join ? "Leave" : "Join Now" }}
+                </button>
               </div>
             </div>
             <div class="post__comments removeBorder">
@@ -67,6 +79,8 @@
                 <div class="inputBox position-relative">
                   <input
                     class="input"
+                    [title]="join ? 'yout Post here' : 'Join first to add post'"
+                    [readOnly]="!join"
                     placeholder="Share what's on your mind..."
                     [(ngModel)]="post"
                     style="background-color: #fff"
@@ -180,6 +194,8 @@
                 />
                 <div class="inputBox position-relative">
                   <input
+                    [title]="join ? 'Comment here' : 'Join first to comment'"
+                    [readOnly]="!join"
                     class="input"
                     placeholder="Add a comment"
                     [(ngModel)]="comment"

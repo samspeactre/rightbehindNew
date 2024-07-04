@@ -9,14 +9,22 @@
           </div>
           @for (item of inquiries; track $index) {
           <button
-          (click)="routeToCommunity(item?.id, item?.title)"
-            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2">
+            (click)="routeToCommunity(item?.id, item?.title, item?.city, item?.imagePath)"
+            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2"
+          >
             <div class="icon">
-              <img width="100%" height="100%"
-                [src]="item?.imagePath ? (src+item?.imagePath) : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
-                alt="icon">
+              <img
+                width="100%"
+                height="100%"
+                [src]="
+                  item?.imagePath
+                    ? src + item?.imagePath
+                    : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                "
+                alt="icon"
+              />
             </div>
-            {{item?.title}}
+            {{ item?.title }}
           </button>
           }
         </div>
@@ -28,47 +36,80 @@
             <div class="headingContainer w-100 rounded-3">
               <div class="dCenter justify-content-between">
                 <div class="dCenter justify-content-start">
-                  <img class="comment__profile-img"
-                    src="https://picsum.photos/200/200?random=39" alt="">
-                  <p class="mb-0 bold text-capitalize">{{title}}</p>
+                  <img
+                    class="comment__profile-img"
+                    [src]="
+                      imagePath
+                        ? src + imagePath
+                        : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                    "
+                    alt=""
+                  />
+                  <p class="mb-0 bold text-capitalize">{{ title }}</p>
                 </div>
                 <button class="btnPrimary py-1 px-3 smallFont">Join Now</button>
               </div>
             </div>
             <div class="post__comments removeBorder">
-              <div class="comment-create rounded-3" style="
-              background:  #e6f2ff;
-              padding: 12px 8px;
-          ">
-                <img class="comment__profile-img"
-                  src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
+              <div
+                class="comment-create rounded-3"
+                style="background: #e6f2ff; padding: 12px 8px"
+              >
+                <img
+                  class="comment__profile-img"
+                  [src]="
+                    userDetails?.imageUrl
+                      ? src + userDetails?.imageUrl
+                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                  "
+                  alt="My Profile Picture"
+                />
                 <div class="inputBox position-relative">
-                  <input class="input" placeholder="Share what's on your mind..." [(ngModel)]="post" style="background-color: #fff" />
-                  <button [disabled]="!post" class="bg-transparent border-0" (click)="createPost()">
-                    <fa-icon [icon]="faPlus" class="position-absolute btnIcon"></fa-icon>
+                  <input
+                    class="input"
+                    placeholder="Share what's on your mind..."
+                    [(ngModel)]="post"
+                    style="background-color: #fff"
+                  />
+                  <button
+                    [disabled]="!post"
+                    class="bg-transparent border-0"
+                    (click)="createPost()"
+                  >
+                    <fa-icon
+                      [icon]="faPlus"
+                      class="position-absolute btnIcon"
+                    ></fa-icon>
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          @for (item of arr2; track $index) {
+          @for (item of posts; track $index) {
           <div class="post mt-2 mb-3 rounded-3">
             <div class="post__top">
               <div class="post__top-left">
-                <img class="post__profile-img"
-                  src="https://www.mahardhi.com/wordpress/tfm/MT01/shree/wp-content/uploads/2019/08/client-1.jpg"
-                  alt="">
-                <a class="post__profile-name" href="#">Camden Foucht</a>
+                <img
+                  class="post__profile-img"
+                  [src]="
+                    item?.user?.imageUrl
+                      ? src + item?.user?.imageUrl
+                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                  "
+                  alt="profile pic"
+                />
+                <a class="post__profile-name">{{ item?.user?.fullName }}</a>
               </div>
               <div>
-                <span class="post__date-posted">3m</span>
+                <span class="post__date-posted">{{
+                  item?.createdAt | amTimeAgo
+                }}</span>
               </div>
             </div>
             <div class="post__content">
-              <p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi perspiciatis praesentium
-                omnis, nisi quae tempora. Provident natus sint, est labore ratione quam repellat laborum itaque
-                voluptatem
-                magnam perspiciatis aperiam unde.</p>
+              <p class="p">
+                {{ item?.title }}
+              </p>
             </div>
             <div class="post__footer">
               <a class="footer-link">
@@ -86,27 +127,74 @@
             </div>
             <div class="post__comments">
               <h6 class="bold">Comments</h6>
-              <div class="comment rounded-3"
-                style="background-color: #e6f2ff; align-items: flex-start; padding: 6px 8px; padding-bottom: 0; margin: 10px 0">
-                <img class="comment__profile-img"
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRabpp9cRSP2RA-PsVT6watU3wUMgam3AI_ow&s"
-                  alt="">
-                <div class="comment__content" style="padding: 4px 0">
-                  <a class="comment-name">Peyton Couch</a>
-                  <p class="comment__text" style="padding: 4px 6px; padding-left: 0">Lorem ipsum dolor sit amet
-                    consectetur, adipisicing elit. Eligendi sapiente possimus beatae laboriosam aperiam facere id,
-                    architecto nobis ut aspernatur!</p>
+              @for (comment of item?.forumPostAnswers; track $index) {
+              <div
+                class="comment rounded-3"
+                style="
+                  background-color: #e6f2ff;
+                  align-items: flex-start;
+                  padding: 6px 8px;
+                  padding-bottom: 0;
+                  margin: 10px 0;
+                "
+              >
+                <img
+                  class="comment__profile-img"
+                  [src]="
+                    comment?.user?.imageUrl
+                      ? src + comment?.user?.imageUrl
+                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                  "
+                  alt=""
+                />
+                <div class="comment__content w-100" style="padding: 4px 0">
+                  <div
+                    class="d-flex justify-content-between align-items-center w-100"
+                  >
+                    <a class="comment-name">{{ comment?.user?.fullName }}</a>
+                    <span class="post__date-posted smallFont mb-0">{{
+                      comment?.createdAt | amTimeAgo
+                    }}</span>
+                  </div>
+                  <p
+                    class="comment__text"
+                    style="padding: 4px 6px; padding-left: 0"
+                  >
+                    {{ comment?.answer }}
+                  </p>
                 </div>
               </div>
-              <div class="comment-create rounded-3" style="
-              background:  #e6f2ff;
-              padding: 12px 8px;
-          ">
-                <img class="comment__profile-img"
-                  src="https://www.asf-signs.co.uk/wp-content/uploads/2017/06/team-1.jpg" alt="">
+              }
+              <div
+                class="comment-create rounded-3"
+                style="background: #e6f2ff; padding: 12px 8px"
+              >
+                <img
+                  class="comment__profile-img"
+                  [src]="
+                    userDetails?.imageUrl
+                      ? src + userDetails?.imageUrl
+                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                  "
+                  alt="My Profile Picture"
+                />
                 <div class="inputBox position-relative">
-                  <input class="input" placeholder="Add a comment" style="background-color: #fff" />
-                  <fa-icon [icon]="faPaperPlane" class="position-absolute btnIcon"></fa-icon>
+                  <input
+                    class="input"
+                    placeholder="Add a comment"
+                    [(ngModel)]="comment"
+                    style="background-color: #fff"
+                  />
+                  <button
+                    [disabled]="!comment"
+                    class="bg-transparent border-0"
+                    (click)="createComment(item?.id)"
+                  >
+                    <fa-icon
+                      [icon]="faPaperPlane"
+                      class="position-absolute btnIcon"
+                    ></fa-icon>
+                  </button>
                 </div>
               </div>
             </div>
@@ -120,15 +208,31 @@
           <div class="headingContainer">
             <p class="mb-0 bold">Related Communities</p>
           </div>
-          @for (item of arr2; track $index) {
+          @for (item of relatedInquiries; track $index) {
           <button
-            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2">
+            (click)="
+              routeToCommunity(
+                item?.id,
+                item?.title,
+                item?.city,
+                item?.imagePath
+              )
+            "
+            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2"
+          >
             <div class="icon">
-              <img width="100%" height="100%"
-                [src]="item?.image ? item?.image : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'"
-                alt="icon">
+              <img
+                width="100%"
+                height="100%"
+                [src]="
+                  item?.imagePath
+                    ? src + item?.imagePath
+                    : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                "
+                alt="icon"
+              />
             </div>
-            {{item?.title}}
+            {{ item?.title }}
           </button>
           }
         </div>

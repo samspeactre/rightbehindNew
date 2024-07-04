@@ -16,15 +16,15 @@ import { MapComponent } from '../map/map.component';
   styleUrl: './community-card.component.scss'
 })
 export class CommunityCardComponent {
-  @Input() loader:boolean = true;
-  @Input() animation:boolean = true;
-  @Input() item:any;
-  url!:string;
-  constructor(private router:Router){}
-  ngOnInit(){
+  @Input() loader: boolean = true;
+  @Input() animation: boolean = true;
+  @Input() item: any;
+  url!: string;
+  constructor(private router: Router) { }
+  ngOnInit() {
     this.url = this.router.url;
   }
-  routeToCommunity(){
-    this.router.navigate(['/communities/community'], { queryParams: { id:this.item?.id,title:this.item?.title } });
+  routeToCommunity() {
+    this.router.navigate(['/communities/community'], { queryParams: { id: this.item?.id, title: this.item?.title, city: this.item?.city, imagePath:this.item?.imagePath } });
   }
 }

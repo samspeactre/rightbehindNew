@@ -18,5 +18,8 @@
             <app-community-card [animation]="false" [item]="item" [loader]="false"></app-community-card>
         </div>
         }
+        @if(!inquiries?.length){
+            <p class="text-center my-3">No Community Found</p>
+        }
     </div>
 </div>

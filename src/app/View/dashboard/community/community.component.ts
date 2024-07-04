@@ -64,10 +64,7 @@ export class CommunityComponent implements OnInit, OnDestroy {
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe((result:any) => {
-        // Handle the filtered result
-        console.log(result);
-      });
+      .subscribe(() => {});
   }
 
   openPopup(): void {

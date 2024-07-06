@@ -12,7 +12,7 @@ import { addRental, addSell } from './Ngrx/data.action';
 import { RentalReducer, SellReducer, userReducer } from './Ngrx/data.reducer';
 import { CacheInterceptor } from './TsExtras/cache.interceptor';
 import { routes } from './app.routes';
-
+import { StarRatingModule } from 'angular-star-rating';
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
 };
@@ -70,6 +70,7 @@ export const appConfig: ApplicationConfig = {
         rent: RentalReducer,
         sell: SellReducer
       }),
+      StarRatingModule.forRoot(),
       ToastrModule.forRoot({
         timeOut: 2000,
         positionClass: 'toast-bottom-left',

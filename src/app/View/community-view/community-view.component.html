@@ -1,9 +1,9 @@
-<div class="bgView">
+<div class="bgView py-3">
   <div class="cstmContainer">
     <div class="row">
       @if((resize.windowSize$ | async)?.width > 1024){
-      <div class="col-lg-2 mt-2 border1">
-        <div class="stickyCol">
+      <div class="col-lg-2">
+        <div class="stickyCol border1 bg-white">
           <div class="headingContainer">
             <p class="mb-0 bold">All Communities</p>
           </div>
@@ -38,224 +38,239 @@
         </div>
       </div>
       }
-      <div class="col-lg-5 mx-auto border2">
-        <div class="feed">
-          <div class="post mt-2 mb-3 rounded-3">
-            <div class="headingContainer w-100 rounded-3">
-              <div class="dCenter justify-content-between">
-                <div class="dCenter justify-content-start">
-                  <img
-                    class="comment__profile-img"
-                    [src]="
-                      imagePath
-                        ? src + imagePath
-                        : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
-                    "
-                    alt=""
-                  />
-                  <p class="mb-0 bold text-capitalize">{{ title }}</p>
-                </div>
-                <button
-                  class="btnPrimary py-1 px-3 smallFont"
-                  (click)="join ? leave() : joinNow()"
-                >
-                  {{ join ? "Leave" : "Join Now" }}
-                </button>
-              </div>
-            </div>
-            <div class="post__comments removeBorder">
-              <div
-                class="comment-create rounded-3"
-                style="background: #e6f2ff; padding: 12px 8px"
-              >
-                <img
-                  class="comment__profile-img"
-                  [src]="
-                    userDetails?.imageUrl
-                      ? src + userDetails?.imageUrl
-                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                  "
-                  alt="My Profile Picture"
-                />
-                <div class="inputBox position-relative">
-                  <input
-                    class="input"
-                    [title]="join ? 'yout Post here' : 'Join first to add post'"
-                    [readOnly]="!join"
-                    placeholder="Share what's on your mind..."
-                    [(ngModel)]="post"
-                    style="background-color: #fff"
-                  />
-                  <button
-                    [disabled]="!post"
-                    class="bg-transparent border-0"
-                    (click)="createPost()"
-                  >
-                    <fa-icon
-                      [icon]="faPlus"
-                      class="position-absolute btnIcon"
-                    ></fa-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          @for (item of posts; track $index) {
-          <div class="post mt-2 mb-3 rounded-3">
-            <div class="post__top">
-              <div class="post__top-left">
-                <img
-                  class="post__profile-img"
-                  [src]="
-                    item?.user?.imageUrl
-                      ? src + item?.user?.imageUrl
-                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                  "
-                  alt="profile pic"
-                />
-                <a class="post__profile-name">{{ item?.user?.fullName }}</a>
-              </div>
-              <div>
-                <span class="post__date-posted">{{
-                  item?.createdAt | amTimeAgo
-                }}</span>
-              </div>
-            </div>
-            <div class="post__content">
-              <p class="p">
-                {{ item?.title }}
-              </p>
-            </div>
-            <div class="post__footer">
-              <a class="footer-link">
-                <fa-icon [icon]="faHeart"></fa-icon>
-                12K
-              </a>
-              <a class="footer-link">
-                <fa-icon [icon]="faComment"></fa-icon>
-                39K
-              </a>
-              <a class="footer-link">
-                <fa-icon [icon]="faShare"></fa-icon>
-                2K
-              </a>
-            </div>
-            <div class="post__comments">
-              <h6 class="bold">Comments</h6>
-              @for (comment of item?.forumPostAnswers; track $index) {
-              <div
-                class="comment rounded-3"
-                style="
-                  background-color: #e6f2ff;
-                  align-items: flex-start;
-                  padding: 6px 8px;
-                  padding-bottom: 0;
-                  margin: 10px 0;
-                "
-              >
-                <img
-                  class="comment__profile-img"
-                  [src]="
-                    comment?.user?.imageUrl
-                      ? src + comment?.user?.imageUrl
-                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                  "
-                  alt=""
-                />
-                <div class="comment__content w-100" style="padding: 4px 0">
-                  <div
-                    class="d-flex justify-content-between align-items-center w-100"
-                  >
-                    <a class="comment-name">{{ comment?.user?.fullName }}</a>
-                    <span class="post__date-posted smallFont mb-0">{{
-                      comment?.createdAt | amTimeAgo
-                    }}</span>
+      <div class="col-lg-10 mx-auto">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="headingContainer rounded-3">
+                <div class="d-flex justify-content-between w-100 align-items-end">
+                  <div class="d-flex justify-content-start w-100 align-items-end">
+                    <img
+                      class="comment__profile-img big"
+                      [src]="
+                        imagePath
+                          ? src + imagePath
+                          : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                      "
+                      alt=""
+                    />
+                    <h1 class="mb-0 linheigh bold text-capitalize">{{ title }}</h1>
+                    <star-rating [starType]="'svg'" [rating]="2.63"></star-rating>
+                    <button
+                      class="btnPrimary joinNow ms-auto py-1 px-3 smallFont"
+                      (click)="join ? leave() : joinNow()"
+                    >
+                      {{ join ? "Leave" : "Join Now" }}
+                    </button>
                   </div>
-                  <p
-                    class="comment__text"
-                    style="padding: 4px 6px; padding-left: 0"
-                  >
-                    {{ comment?.answer }}
-                  </p>
                 </div>
               </div>
-              }
-              <div
-                class="comment-create rounded-3"
-                style="background: #e6f2ff; padding: 12px 8px"
-              >
-                <img
-                  class="comment__profile-img"
-                  [src]="
-                    userDetails?.imageUrl
-                      ? src + userDetails?.imageUrl
-                      : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+            </div>
+            <div class="col-lg-8">
+              <div class="feed">
+                <div class="post mt-2 mb-3 rounded-3">
+                  <div class="post__comments removeBorder">
+                    <div
+                      class="comment-create rounded-3"
+                      style="background: #e6f2ff; padding: 12px 8px"
+                    >
+                      <img
+                        class="comment__profile-img"
+                        [src]="
+                          userDetails?.imageUrl
+                            ? src + userDetails?.imageUrl
+                            : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                        "
+                        alt="My Profile Picture"
+                      />
+                      <div class="inputBox position-relative">
+                        <input
+                          class="input"
+                          [title]="
+                            join ? 'yout Post here' : 'Join first to add post'
+                          "
+                          [readOnly]="!join"
+                          placeholder="Share what's on your mind..."
+                          [(ngModel)]="post"
+                          style="background-color: #fff"
+                        />
+                        <button
+                          [disabled]="!post"
+                          class="bg-transparent border-0"
+                          (click)="createPost()"
+                        >
+                          <fa-icon
+                            [icon]="faPlus"
+                            class="position-absolute btnIcon"
+                          ></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @for (item of posts; track $index) {
+                <div class="post mt-2 mb-3 rounded-3">
+                  <div class="post__top">
+                    <div class="post__top-left">
+                      <img
+                        class="post__profile-img"
+                        [src]="
+                          item?.user?.imageUrl
+                            ? src + item?.user?.imageUrl
+                            : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                        "
+                        alt="profile pic"
+                      />
+                      <a class="post__profile-name">{{ item?.user?.fullName }}</a>
+                    </div>
+                    <div>
+                      <span class="post__date-posted">{{
+                        item?.createdAt | amTimeAgo
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="post__content">
+                    <p class="p">
+                      {{ item?.title }}
+                    </p>
+                  </div>
+                  <div class="post__footer">
+                    <a class="footer-link">
+                      <fa-icon [icon]="faHeart"></fa-icon>
+                      12K
+                    </a>
+                    <a class="footer-link">
+                      <fa-icon [icon]="faComment"></fa-icon>
+                      39K
+                    </a>
+                    <a class="footer-link">
+                      <fa-icon [icon]="faShare"></fa-icon>
+                      2K
+                    </a>
+                  </div>
+                  <div class="post__comments">
+                    <h6 class="bold">Comments</h6>
+                    @for (comment of item?.forumPostAnswers; track $index) {
+                    <div
+                      class="comment rounded-3"
+                      style="
+                        background-color: #e6f2ff;
+                        align-items: flex-start;
+                        padding: 6px 8px;
+                        padding-bottom: 0;
+                        margin: 10px 0;
+                      "
+                    >
+                      <img
+                        class="comment__profile-img"
+                        [src]="
+                          comment?.user?.imageUrl
+                            ? src + comment?.user?.imageUrl
+                            : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                        "
+                        alt=""
+                      />
+                      <div class="comment__content w-100" style="padding: 4px 0">
+                        <div
+                          class="d-flex justify-content-between align-items-center w-100"
+                        >
+                          <a class="comment-name">{{
+                            comment?.user?.fullName
+                          }}</a>
+                          <span class="post__date-posted smallFont mb-0">{{
+                            comment?.createdAt | amTimeAgo
+                          }}</span>
+                        </div>
+                        <p
+                          class="comment__text"
+                          style="padding: 4px 6px; padding-left: 0"
+                        >
+                          {{ comment?.answer }}
+                        </p>
+                      </div>
+                    </div>
+                    }
+                    <div
+                      class="comment-create rounded-3"
+                      style="background: #e6f2ff; padding: 12px 8px"
+                    >
+                      <img
+                        class="comment__profile-img"
+                        [src]="
+                          userDetails?.imageUrl
+                            ? src + userDetails?.imageUrl
+                            : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+                        "
+                        alt="My Profile Picture"
+                      />
+                      <div class="inputBox position-relative">
+                        <input
+                          [title]="
+                            join ? 'Comment here' : 'Join first to comment'
+                          "
+                          [readOnly]="!join"
+                          class="input"
+                          placeholder="Add a comment"
+                          [(ngModel)]="comment"
+                          style="background-color: #fff"
+                        />
+                        <button
+                          [disabled]="!comment"
+                          class="bg-transparent border-0"
+                          (click)="createComment(item?.id)"
+                        >
+                          <fa-icon
+                            [icon]="faPaperPlane"
+                            class="position-absolute btnIcon"
+                          ></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+            @if((resize.windowSize$ | async)?.width > 1024 && relatedInquiries?.length){
+            <div class="col-lg-4 mt-2">
+              <div class="stickyCol border3 bg-white h-auto">
+                <div class="headingContainer">
+                  <p class="mb-0 bold">Related Communities</p>
+                </div>
+                @for (item of relatedInquiries; track $index) {
+                <button
+                  (click)="
+                    routeToCommunity(
+                      item?.id,
+                      item?.title,
+                      item?.city,
+                      item?.imagePath,
+                      item?.userExistInForum
+                    )
                   "
-                  alt="My Profile Picture"
-                />
-                <div class="inputBox position-relative">
-                  <input
-                    [title]="join ? 'Comment here' : 'Join first to comment'"
-                    [readOnly]="!join"
-                    class="input"
-                    placeholder="Add a comment"
-                    [(ngModel)]="comment"
-                    style="background-color: #fff"
-                  />
-                  <button
-                    [disabled]="!comment"
-                    class="bg-transparent border-0"
-                    (click)="createComment(item?.id)"
-                  >
-                    <fa-icon
-                      [icon]="faPaperPlane"
-                      class="position-absolute btnIcon"
-                    ></fa-icon>
-                  </button>
-                </div>
+                  class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2"
+                >
+                  <div class="icon">
+                    <img
+                      width="100%"
+                      height="100%"
+                      [src]="
+                        item?.imagePath
+                          ? src + item?.imagePath
+                          : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                      "
+                      alt="icon"
+                    />
+                  </div>
+                  {{ item?.title }}
+                </button>
+                }
               </div>
             </div>
+            }
           </div>
-          }
         </div>
       </div>
-      @if((resize.windowSize$ | async)?.width > 1024){
-      <div class="col-lg-2 mt-2 border3">
-        <div class="stickyCol">
-          <div class="headingContainer">
-            <p class="mb-0 bold">Related Communities</p>
-          </div>
-          @for (item of relatedInquiries; track $index) {
-          <button
-            (click)="
-              routeToCommunity(
-                item?.id,
-                item?.title,
-                item?.city,
-                item?.imagePath,
-                item?.userExistInForum
-              )
-            "
-            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2"
-          >
-            <div class="icon">
-              <img
-                width="100%"
-                height="100%"
-                [src]="
-                  item?.imagePath
-                    ? src + item?.imagePath
-                    : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
-                "
-                alt="icon"
-              />
-            </div>
-            {{ item?.title }}
-          </button>
-          }
-        </div>
-      </div>
-      }
     </div>
   </div>
 </div>

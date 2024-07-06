@@ -23,10 +23,10 @@ import { selectUser } from '../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { StarRatingModule } from 'angular-star-rating';
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, MomentModule, FormsModule],
+  imports: [FontAwesomeModule, CommonModule, StarRatingModule, MomentModule, FormsModule],
   selector: 'app-community-view',
   templateUrl: './community-view.component.html',
   styleUrls: ['./community-view.component.scss'],

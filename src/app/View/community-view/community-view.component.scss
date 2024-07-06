@@ -12,15 +12,16 @@
   padding: 12px 18px;
 }
 
-.col-lg-2,.col-3 {
-  padding: 0;
-  background-color: #fff;
+.col-lg-2,.col-lg-4,.col-3 {
+  // padding: 0;
+  // background-color: #fff;
 }
 
 .stickyCol {
   position: sticky;
   top: 0;
   height: 99vh;
+  z-index: 10;
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -30,6 +31,7 @@
 }
 
 .headingContainer {
+  z-index: 12;
   position: sticky;
   top: 0;
   background: #efefef;
@@ -234,6 +236,16 @@
 }
 .smallFont{
   font-size: 10px;
+}
+.big{
+  width: 150px;
+  height: 150px;
+}
+.linheigh{
+  line-height: 1;
+}
+.joinNow{
+  margin-bottom: 5px;
 }
 @media only screen and (max-width:1024px) {
   .border1{

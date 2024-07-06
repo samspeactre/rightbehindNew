@@ -49,6 +49,7 @@
               "src/assets/scss/root.scss",
               "src/assets/scss/chat.scss",
               "src/assets/scss/scrollBar.scss",
+              "node_modules/css-star-rating/css/star-rating.min.css",
               "src/assets/scss/styles.scss"
             ],
             "scripts": [

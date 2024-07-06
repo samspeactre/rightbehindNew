@@ -247,14 +247,9 @@
 .joinNow{
   margin-bottom: 5px;
 }
-@media only screen and (max-width:1024px) {
-  .border1{
-    button{
-
-    }
-  }
-  .icon {
-    // width: 30px;
-    // height: 30px;
+@media only screen and (max-width:560px) {
+  .big{
+    width: 120px;
+    height: 120px;
   }
 }

@@ -44,7 +44,7 @@
             <div class="col-lg-12">
               <div class="headingContainer rounded-3">
                 <div class="d-flex justify-content-between w-100 align-items-end">
-                  <div class="d-flex justify-content-start w-100 align-items-end">
+                  <div class="d-flex justify-content-start w-100 align-items-end flex-wrap">
                     <img
                       class="comment__profile-img big"
                       [src]="
@@ -55,9 +55,12 @@
                       alt=""
                     />
                     <h1 class="mb-0 linheigh bold text-capitalize">{{ title }}</h1>
-                    <star-rating [starType]="'svg'" [rating]="2.63"></star-rating>
+                    <star-rating
+                    [ngClass]="{'ms-auto': (resize.windowSize$ | async)?.width <= 1024}"
+                    [starType]="'svg'" [rating]="5"></star-rating>
                     <button
-                      class="btnPrimary joinNow ms-auto py-1 px-3 smallFont"
+                    [ngClass]="{'ms-auto': (resize.windowSize$ | async)?.width > 1024}"
+                      class="btnPrimary joinNow py-1 px-3 smallFont"
                       (click)="join ? leave() : joinNow()"
                     >
                       {{ join ? "Leave" : "Join Now" }}

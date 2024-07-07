@@ -162,6 +162,7 @@ export class RentPropertyPageComponent implements OnInit {
         this.location.back()
       } else {
         this.previousData = JSON.parse(response?.data);
+        this.patchFormWithPreviousData(this.previousData);
         this.propertyAddForm.patchValue({
           PropertyContact: {
             FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
@@ -401,6 +402,152 @@ export class RentPropertyPageComponent implements OnInit {
       } else {
         this.propertyAddForm.controls[control].setValue(event?.lng);
       }
+    }
+  }
+  patchFormWithPreviousData(data: any): void {
+    // Patch main property details
+    this.propertyAddForm.patchValue({
+      Title: data?.title,
+      Description: data?.description,
+      Category: data?.category,
+      AmentiyCategory: data?.amentiyCategory,
+      PropertyType: data?.propertyType,
+      NoOfBed: data?.noOfBed,
+      LeaseMonth: data?.leaseMonth,
+      NoOfBath: data?.noOfBath,
+      Area: data?.area,
+      Price: data?.price,
+      Deposit: data?.deposit,
+      Location: data?.location,
+      Country: data?.country,
+      Landmark: data?.landmark,
+      State: data?.state,
+      City: data?.city,
+      ZipCode: data?.zipCode,
+      Unit: data?.unit,
+      Plot: data?.plot,
+      Street: data?.street,
+      Building: data?.building,
+      VideoUrl: data?.videoUrl,
+      Latitude: data?.latitude,
+      Longitude: data?.longitude,
+      PetPolicy: data?.petPolicy,
+      Parking: data?.parking,
+      ParkingFees: data?.parkingFees,
+      Laundry: data?.laundry,
+      Terms: data?.terms,
+      IsFurnished: data?.isFurnished,
+    });
+  
+    // Patch PropertyContact
+    const propertyContactGroup = this.propertyAddForm.get('PropertyContact');
+    propertyContactGroup.patchValue({
+      UserRole: data?.propertyContact?.userRole,
+      FullName: data?.propertyContact?.fullName,
+      Email: data?.propertyContact?.email,
+      Contact: data?.propertyContact?.contact,
+      IsEmailPrefered: data?.propertyContact?.isEmailPrefered,
+    });
+  
+    // Patch RentSpecial if available
+    if (data?.rentSpecial) {
+      const rentSpecialGroup = this.propertyAddForm.get('RentSpecial');
+      rentSpecialGroup.patchValue({
+        Title: data.rentSpecial.title,
+        Description: data.rentSpecial.description,
+        Tag: data.rentSpecial.tag,
+        StartDate: data.rentSpecial.startDate,
+        EndDate: data.rentSpecial.endDate,
+      });
+    } else {
+      this.propertyAddForm.removeControl('RentSpecial');
+    }
+  
+    // Patch HomeFact
+    const homeFactGroup = this.propertyAddForm.get('HomeFact');
+    homeFactGroup.patchValue({
+      NoOfBeds: data?.homeFact?.noOfBeds,
+      NoOfBaths: data?.homeFact?.noOfBaths,
+      FinishedSqrFt: data?.homeFact?.finishedSqrFt,
+      SqrFt: data?.homeFact?.sqrFt,
+      RemodelYear: data?.homeFact?.remodelYear,
+      BasementSqrFt: data?.homeFact?.basementSqrFt,
+      LotSize: data?.homeFact?.lotSize,
+      ConstructedYear: data?.homeFact?.constructedYear,
+      HaoDues: data?.homeFact?.haoDues,
+      GarageSqrFt: data?.homeFact?.garageSqrFt,
+    });
+  
+    // Patch property images if available
+    if (data?.propertyImageFiles && data?.propertyImageFiles.length > 0) {
+      const propertyImageFilesArray = this.propertyAddForm.get('PropertyImageFiles') as FormArray;
+      data.propertyImageFiles.forEach((image:any) => {
+        // propertyImageFilesArray.push(this.fb.control(image));
+      });
+    }
+  
+    // Patch amenities if available
+    if (data?.amenities && data?.amenities.length > 0) {
+      const amenitiesArray = this.propertyAddForm.get('Amenities') as FormArray;
+      data.amenities.forEach((amenity:any) => {
+        amenitiesArray.push(this.fb.group({
+          id: amenity.id,
+          amenityId: amenity.amenityId,
+          amenityName: amenity.amenityName,
+        }));
+      });
+    }
+  
+    // Patch utilities if available
+    if (data?.utilities && data?.utilities.length > 0) {
+      const utilitiesArray = this.propertyAddForm.get('Utilities') as FormArray;
+      data.utilities.forEach((utility:any) => {
+        utilitiesArray.push(this.fb.group({
+          id: utility.id,
+          utilityId: utility.utilityId,
+          utilityName: utility.utilityName,
+        }));
+      });
+    }
+  
+    // Patch floor plans if available
+    if (data?.floorPlans && data?.floorPlans.length > 0) {
+      const floorPlansArray = this.propertyAddForm.get('FloorPlans') as FormArray;
+      data.floorPlans.forEach((plan:any) => {
+        const floorPlanGroup:any = this.fb.group({
+          PlanName: plan.PlanName,
+          NoOfBed: plan.NoOfBed,
+          NoOfBath: plan.NoOfBath,
+          Area: plan.Area,
+          StartPrice: plan.StartPrice,
+          EndPrice: plan.EndPrice,
+          Description: plan.Description,
+        });
+  
+        // Patch floor plan units if available
+        if (plan.FloorPlanUnits && plan.FloorPlanUnits.length > 0) {
+          const floorPlanUnitsArray = floorPlanGroup.get('FloorPlanUnits') as FormArray;
+          plan.FloorPlanUnits.forEach((unit:any) => {
+            floorPlanUnitsArray.push(this.fb.group({
+              Price: unit.Price,
+              AvailabilityDate: unit.AvailabilityDate,
+            }));
+          });
+        }
+  
+        floorPlansArray.push(floorPlanGroup);
+      });
+    }
+  
+    // Patch open houses if available
+    if (data?.openHouses && data?.openHouses.length > 0) {
+      const openHousesArray = this.propertyAddForm.get('OpenHouses') as FormArray;
+      data.openHouses.forEach((openHouse:any) => {
+        openHousesArray.push(this.fb.group({
+          StartDateTime: openHouse.StartDateTime,
+          EndDateTime: openHouse.EndDateTime,
+        }));
+      });
     }
   }
 }

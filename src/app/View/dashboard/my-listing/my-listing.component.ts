@@ -29,7 +29,7 @@ export class MyListingComponent {
     this.getInquiries()
   }
   getInquiries() {
-    this.http.loaderGet('Forum/get?pageSize=1000&byUser=true', true)
+    this.http.loaderGet('Property/get?pageNo=1&pageSize=1000&type=1', true)
     .pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged(
@@ -37,7 +37,7 @@ export class MyListingComponent {
       )
     )
     .subscribe((response) => {
-      this.properties = response?.model?.forums
+      this.properties = response?.model?.properties
     })
   }
 }

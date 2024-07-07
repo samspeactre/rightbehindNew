@@ -113,7 +113,7 @@ export class DashboardHomeComponent {
     }
   }
   getInquiries() {
-    this.http.loaderGet('Forum/get?pageSize=4&byUser=true', true)
+    this.http.loaderGet('Property/get/me?pageSize=4', true)
     .pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged(
@@ -121,7 +121,7 @@ export class DashboardHomeComponent {
       )
     )
     .subscribe((response) => {
-      this.rent = response?.model?.forums
+      this.rent = response?.model?.properties
     })
   }
 }

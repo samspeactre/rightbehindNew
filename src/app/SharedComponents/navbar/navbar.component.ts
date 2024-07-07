@@ -79,6 +79,9 @@ export class NavbarComponent {
     if (this.router.url.includes('communities')) {
       this.communityHeader = true;
     }
+    if (this.router.url.includes('-add-property')) {
+      this.sellHide = true;
+    }
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -89,9 +92,6 @@ export class NavbarComponent {
       .subscribe((user) => {
         this.user = user;
       });
-    if (this.router.url.includes('-add-property')) {
-      this.sellHide = true;
-    }
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -115,7 +115,7 @@ export class NavbarComponent {
           )
           .subscribe((data: any) => {
             this.sellHide = data['sellHide'] || false;
-            this.communityHeader =  data['communityHeader'] || false;
+            this.communityHeader = data['communityHeader'] || false;
           });
       });
   }

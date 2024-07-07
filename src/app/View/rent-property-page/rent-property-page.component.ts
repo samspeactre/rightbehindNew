@@ -14,7 +14,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelect } from '@angular/material/select';
-
 import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -187,6 +186,8 @@ export class RentPropertyPageComponent implements OnInit {
         this.propertyAddForm.patchValue({
           Category: this.previousData?.active == 'rent' ? 2 : 1
         })
+        console.log(this.previousData);
+        
       }
     })
   }

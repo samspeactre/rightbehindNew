@@ -15,6 +15,7 @@ import { ResizeService } from '../../../Services/resize.service';
 import { CommonModule } from '@angular/common';
 import { PropertyCardComponent } from '../../../SharedComponents/property-card/property-card.component';
 import { RouterModule } from '@angular/router';
+import { HttpService } from '../../../Services/http.service';
 @Component({
   standalone: true,
   imports: [MatIconModule, RentalCarouselComponent, RouterModule, PropertyCardComponent, MatButtonModule, CommonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
@@ -41,9 +42,8 @@ export class DashboardHomeComponent {
   private destroy$ = new Subject<void>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   mapHeight:number=0;
-  rent$ = this.store.select(selectRental);
   rent: any;
-  constructor(public dialog: MatDialog, public resize:ResizeService, private store: Store) {
+  constructor(private http:HttpService,public dialog: MatDialog, public resize:ResizeService, private store: Store) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -54,16 +54,6 @@ export class DashboardHomeComponent {
       .subscribe((user) => {
         this.user = user
       })
-      this.rent$
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
-      )
-      .subscribe((rent:any) => {
-        this.rent = rent.slice(0, window.innerWidth > 1024 ? 4 : 2);
-      });
     this.chartOptions = {
       series: [
         {
@@ -108,7 +98,7 @@ export class DashboardHomeComponent {
     { leads: '10', call: '12', emails: '8', view: '5', click: '3', ctr: '5' },
   ]
   ngOnInit() {
-    
+    this.getInquiries()
   }
   ngAfterViewInit(){
     if(this.mapHeight == 0){
@@ -121,5 +111,17 @@ export class DashboardHomeComponent {
     if (this.secondCol) {
       this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
     }
+  }
+  getInquiries() {
+    this.http.loaderGet('Forum/get?pageSize=4&byUser=true', true)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      )
+    )
+    .subscribe((response) => {
+      this.rent = response?.model?.forums
+    })
   }
 }

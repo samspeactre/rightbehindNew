@@ -3,7 +3,7 @@
     <div class="row">
       @if((resize.windowSize$ | async)?.width > 1024){
       <div class="col-lg-2">
-        <div class="stickyCol border1 bg-white">
+        <div class="stickyCol border1 bg-white rounded-3">
           <div class="headingContainer">
             <p class="mb-0 bold">All Communities</p>
           </div>
@@ -54,13 +54,13 @@
                       "
                       alt=""
                     />
-                    <h1 class="mb-0 linheigh bold text-capitalize">{{ title }}</h1>
-                    <star-rating
-                    [ngClass]="{'ms-auto': (resize.windowSize$ | async)?.width <= 1024}"
-                    [starType]="'svg'" [rating]="5"></star-rating>
+                    <div class="d-flex align-items-baseline flex-wrap">
+                      <h1 class="mb-0 linheigh bold text-capitalize">{{ title }}</h1>
+                      <star-rating
+                      [starType]="'svg'" [rating]="5"></star-rating>
+                    </div>
                     <button
-                    [ngClass]="{'ms-auto': (resize.windowSize$ | async)?.width > 1024}"
-                      class="btnPrimary joinNow py-1 px-3 smallFont"
+                      class="btnPrimary ms-auto joinNow py-1 px-3 smallFont"
                       (click)="join ? leave() : joinNow()"
                     >
                       {{ join ? "Leave" : "Join Now" }}
@@ -236,7 +236,7 @@
             </div>
             @if((resize.windowSize$ | async)?.width > 1024 && relatedInquiries?.length){
             <div class="col-lg-4 mt-2">
-              <div class="stickyCol border3 bg-white h-auto">
+              <div class="stickyCol border3 bg-white h-auto rounded-3">
                 <div class="headingContainer">
                   <p class="mb-0 bold">Related Communities</p>
                 </div>

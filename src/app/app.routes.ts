@@ -101,7 +101,7 @@ export const routes: Routes = [
       },
       {
         path: 'communities',
-        data: { footer: true, header: true },
+        data: { footer: true, header: true, communityHeader:true },
         loadChildren: () =>
           import('./SharedComponents/listing-page/listing-page.route').then(
             (m) => m.Listing_Page_Routes

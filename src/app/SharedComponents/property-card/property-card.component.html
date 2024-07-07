@@ -10,52 +10,110 @@
 </div>
 } @else{
 <div class="cstm-property-card" [ngStyle]="{ background: background }">
-  <div class="property-img position-relative" [ngClass]="{'wow fadeInDown':animation}">
+  <div
+    class="property-img position-relative"
+    [ngClass]="{ 'wow fadeInDown': animation }"
+  >
     <img
       [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
+      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl"
+      alt="Card Image"
+    />
     @if(card?.rentSpecialTag){
-    <div class="special">{{card?.rentSpecialTag}} 🔥</div>
+    <div class="special">{{ card?.rentSpecialTag }} 🔥</div>
     }
   </div>
   <div class="property-content">
     <div class="p-2">
-      <div class="d-flex justify-content-between align-items-center card-property-heading">
-        <h6 class="bold mb-0" [ngClass]="{'wow fadeInDown':animation}">{{card?.title || 'N/A'}}</h6>
+      <div
+        class="d-flex justify-content-between align-items-center card-property-heading"
+      >
+        <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
+          {{ card?.title || "N/A" }}
+        </h6>
       </div>
-      <div class="span-text my-1 dCenter justify-content-start gap-1 location" [ngClass]="{'wow fadeInDown':animation}">
-        <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon> <span class="elip">{{card?.location}}</span>
+      <div
+        class="span-text my-1 dCenter justify-content-start gap-1 location"
+        [ngClass]="{ 'wow fadeInDown': animation }"
+      >
+        <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon>
+        <span class="elip">{{ card?.location }}</span>
       </div>
       <div class="d-flex mt-3 flex-wrap gap-5 w-100 description-para">
         <div class="dCenter flex-column">
-          <img src="../../assets/img/bed.webp" alt="bed" class="smallImg mx-auto"
-            [ngClass]="{'wow fadeInDown':animation}" />
-          <p class="mb-0" [ngClass]="{'wow fadeInDown':animation}">{{card?.noOfBed || 0}}</p>
+          <img
+            src="../../assets/img/bed.webp"
+            alt="bed"
+            class="smallImg mx-auto"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+          />
+          <p class="mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
+            {{ card?.noOfBed || 0 }}
+          </p>
         </div>
         <div class="dCenter flex-column centerBox">
-          <img src="../../assets/img/bath.webp" alt="bed" class="smallImg mx-auto "
-            [ngClass]="{'wow fadeInDown':animation}" />
-          <p class="mb-0" [ngClass]="{'wow fadeInDown':animation}">{{card?.noOfBath || 0}}</p>
+          <img
+            src="../../assets/img/bath.webp"
+            alt="bed"
+            class="smallImg mx-auto"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+          />
+          <p class="mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
+            {{ card?.noOfBath || 0 }}
+          </p>
         </div>
         <div class="dCenter flex-column">
-          <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg mx-auto "
-            [ngClass]="{'wow fadeInDown':animation}" />
-          <p class="mb-0" [ngClass]="{'wow fadeInDown':animation}">{{card.area || 0}} sq ft</p>
+          <img
+            src="../../assets/img/sq.ft.webp"
+            alt="bed"
+            class="smallImg mx-auto"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+          />
+          <p class="mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
+            {{ card.area || 0 }} sq ft
+          </p>
         </div>
       </div>
     </div>
 
     <div class="btnContainer dCenter justify-content-between px-2 pb-2">
-      <button class="whitBtn rounded-0 w-50 bold text-start" [ngClass]="{'wow fadeInDown':animation, 'ms-auto text-end w-100':page == 'mylisting'}"
-        (click)="navigateAndClose()">
-        @if(page == 'mylisting'){
-          Price: 
-        }
+      @if(page == 'mylisting'){
+      <button
+        class="whitBtn rounded-0 w-50 bold text-start"
+        [ngClass]="{
+          'wow fadeInDown': animation,
+          'ms-auto text-end w-100': page == 'mylisting'
+        }"
+        (click)="navigateAndClose()"
+      >
+        View
+      </button>
+      <button
+        class="whitBtn rounded-0 w-50 bold text-start"
+        [ngClass]="{
+          'wow fadeInDown': animation,
+          'ms-auto text-end w-100': page == 'mylisting'
+        }"
+        (click)="navigateAndClose()"
+      >
+        Edit
+      </button>
+      } @if(page != 'mylisting'){
+      <button
+        class="whitBtn rounded-0 w-50 bold text-start"
+        [ngClass]="{
+          'wow fadeInDown': animation,
+          'ms-auto text-end w-100': page == 'mylisting'
+        }"
+        (click)="navigateAndClose()"
+      >
         {{ card.price || 0 | currency : "USD" }}
       </button>
-      @if(page != 'mylisting'){
-      <button class="btnPrimary rounded-5 py-2 w-50" [ngClass]="{'wow fadeInDown':animation}"
-        (click)="userDetails ? createContact() : openPopup()">
+      <button
+        class="btnPrimary rounded-5 py-2 w-50"
+        [ngClass]="{ 'wow fadeInDown': animation }"
+        (click)="userDetails ? createContact() : openPopup()"
+      >
         Contact Agent
       </button>
       }

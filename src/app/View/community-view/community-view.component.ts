@@ -26,7 +26,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { StarRatingModule } from 'angular-star-rating';
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, StarRatingModule, MomentModule, FormsModule],
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    StarRatingModule,
+    MomentModule,
+    FormsModule,
+  ],
   selector: 'app-community-view',
   templateUrl: './community-view.component.html',
   styleUrls: ['./community-view.component.scss'],
@@ -67,7 +73,8 @@ export class CommunityViewComponent {
       this.id = param?.id;
       this.imagePath = param?.imagePath;
       this.city = param?.city;
-      this.join = param?.userExistInForum && JSON.parse(param?.userExistInForum);
+      this.join =
+        param?.userExistInForum && JSON.parse(param?.userExistInForum);
       this.getInquiry();
     });
     this.user$
@@ -135,11 +142,11 @@ export class CommunityViewComponent {
       )
       .subscribe((response) => {
         this.inquiry = response?.model;
-        this.join = response?.model?.userExistInForum
+        this.join = response?.model?.userExistInForum;
       });
   }
   getPosts() {
-    this.posts = []
+    this.posts = [];
     this.http
       .loaderGet(`Forum/get/${this.id}/post`, true)
       .pipe(takeUntil(this.destroy$))
@@ -156,7 +163,7 @@ export class CommunityViewComponent {
       .loaderPost(`Forum/post/create`, data, true)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        if(this.posts?.length){
+        if (this.posts?.length) {
           this.posts.unshift({
             user: {
               imageUrl: this.userDetails?.imageUrl,
@@ -164,11 +171,10 @@ export class CommunityViewComponent {
             },
             createdAt: new Date(),
             title: this.post,
-            id:this.posts?.length + 2,
-            forumPostAnswers:[]
+            id: this.posts?.length + 2,
+            forumPostAnswers: [],
           });
-        }
-        else{
+        } else {
           this.posts.push({
             user: {
               imageUrl: this.userDetails?.imageUrl,
@@ -176,8 +182,8 @@ export class CommunityViewComponent {
             },
             createdAt: new Date(),
             title: this.post,
-            id:this.posts?.length + 2,
-            forumPostAnswers:[]
+            id: this.posts?.length + 2,
+            forumPostAnswers: [],
           });
         }
         this.post = null;
@@ -197,9 +203,9 @@ export class CommunityViewComponent {
           (post: any) => post.id === commentId
         );
         console.log(postToUpdate);
-        
+
         if (postToUpdate) {
-          if(postToUpdate.forumPostAnswers?.length){
+          if (postToUpdate.forumPostAnswers?.length) {
             postToUpdate.forumPostAnswers.unshift({
               id: response.id,
               forumPostId: commentId,
@@ -211,8 +217,7 @@ export class CommunityViewComponent {
                 fullName: this.userDetails?.fullName,
               },
             });
-          }
-          else{
+          } else {
             postToUpdate.forumPostAnswers.push({
               id: response.id,
               forumPostId: commentId,
@@ -242,9 +247,11 @@ export class CommunityViewComponent {
     });
   }
   leave() {
-    this.http.loaderGet(`forum/${this.id}/user/remove`,true).subscribe((response)=>{
-      this.join = false;
-    })
+    this.http
+      .loaderGet(`forum/${this.id}/user/remove`, true)
+      .subscribe((response) => {
+        this.join = false;
+      });
   }
   joinNow() {
     if (this.userDetails) {
@@ -263,9 +270,33 @@ export class CommunityViewComponent {
     }
   }
   joining() {
-    this.http.loaderPost(`forum/${this.id}/user`,{},true).subscribe((response)=>{
-      this.join = true;
-    })
-    console.log('joining');
+    this.http
+      .loaderPost(`forum/${this.id}/user`, {}, true)
+      .subscribe((response) => {
+        this.join = true;
+      });
+  }
+  react(react: boolean, postId: number) {
+    const data = {
+      forumPostId: postId,
+      reaction: react,
+    };
+    this.http.loaderPost(`Forum/post/reaction`, data, true).subscribe(() => {
+      const post = this.posts.find((post: any) => post.id === postId);
+      if (post) {
+        if (react) {
+          post.likeCount = post.likeCount + 1;
+        } else {
+          post.dislikeCount = post.dislikeCount + 1;
+        }
+      }
+    });
+  }
+  rating(react: boolean) {
+    const data = {
+      forumId: this.id,
+      reaction: react,
+    };
+    this.http.loaderPost(`Forum/rating`, data, true).subscribe(() => {});
   }
 }

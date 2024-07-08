@@ -26,7 +26,7 @@
         </div>
         <div class="col-lg-9">
             <div class="row">
-                <div class="col-lg-4 mb-3">
+                <!-- <div class="col-lg-4 mb-3">
                     <div class="rounded-3 p-3 borderBlue">
                         <div class="dCenter justify-content-between">
                             <h6 class="mb-0 bold">Total Properties</h6>
@@ -67,7 +67,7 @@
                             <h3 class="mb-0 bold">20</h3>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-9" #secondCol>
                     <h6 class="mb-0 bold">Total Listings</h6>
                     <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
@@ -90,7 +90,7 @@
                         <mat-icon>tty</mat-icon>
                         <p class="smallFont mb-0">Leads</p>
                     </div>
-                    <p class="mb-0">12</p>
+                    <p class="mb-0">{{dashboard?.analyticCountsData?.callCounts}}</p>
                 </div>
                 <hr class="my-1">
                 <div class="dCenter justify-content-between my-3">
@@ -106,7 +106,7 @@
                         <mat-icon>mail</mat-icon>
                         <p class="smallFont mb-0">Email</p>
                     </div>
-                    <p class="mb-0">12</p>
+                    <p class="mb-0">{{dashboard?.analyticCountsData?.emailCounts}}</p>
                 </div>
                 <hr class="my-1">
                 <div class="dCenter justify-content-between my-3">
@@ -114,7 +114,7 @@
                         <mat-icon>visibilityy</mat-icon>
                         <p class="smallFont mb-0">View</p>
                     </div>
-                    <p class="mb-0">12</p>
+                    <p class="mb-0">{{dashboard?.analyticCountsData?.viewCounts}}</p>
                 </div>
                 <hr class="my-1">
                 <div class="dCenter justify-content-between my-3">
@@ -122,24 +122,15 @@
                         <mat-icon>ads_click</mat-icon>
                         <p class="smallFont mb-0">Click</p>
                     </div>
-                    <p class="mb-0">12</p>
-                </div>
-                <hr class="my-1">
-                <div class="dCenter justify-content-between my-3">
-                    <div class="dCenter gap-2 icon-analaytics-text">
-                        <mat-icon>web_traffic</mat-icon>
-                        <p class="smallFont mb-0">CTR (Click Through
-                            Rate)</p>
-                    </div>
-                    <p class="mb-0">12</p>
+                    <p class="mb-0">{{dashboard?.analyticCountsData?.clickCounts}}</p>
                 </div>
             </div>
-            <div class="redirect-box">
+            <!-- <div class="redirect-box">
                 <button class="py-5" mat-raised-button (click)="viewOffMarket()">
                     <mat-icon>north_east</mat-icon>
                     Go to market.
                 </button>
-            </div>
+            </div> -->
         </div>
         <div class="col-lg-12">
             <div class="row">

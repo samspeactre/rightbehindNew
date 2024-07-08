@@ -14,6 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelect } from '@angular/material/select';
+
 import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -162,32 +163,30 @@ export class RentPropertyPageComponent implements OnInit {
         this.location.back()
       } else {
         this.previousData = JSON.parse(response?.data);
-        if(this.previousData?.getData){
-          this.callData()
-        }
-        else{
-          this.propertyAddForm.patchValue({
-            PropertyContact: {
-              FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
-              Email: this.previousData?.email
-            },
-            PropertyType: this.previousData?.propertyType,
-            Location: this.previousData?.address?.address,
-            Latitude: this.previousData?.latLng?.lat,
-            Longitude: this.previousData?.latLng?.lng,
-            City: this.previousData?.address?.city,
-            State: this.previousData?.address?.state,
-            Country: this.previousData?.address?.country,
-            ZipCode: this.previousData?.address?.zipCode,
-            Street: this.previousData?.address?.street
-          })
-        }
+        this.propertyAddForm.patchValue({
+          PropertyContact: {
+            FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
+            Email: this.previousData?.email
+          },
+          PropertyType: this.previousData?.propertyType,
+          Location: this.previousData?.address?.address,
+          Latitude: this.previousData?.latLng?.lat,
+          Longitude: this.previousData?.latLng?.lng,
+          City: this.previousData?.address?.city,
+          State: this.previousData?.address?.state,
+          Country: this.previousData?.address?.country,
+          ZipCode: this.previousData?.address?.zipCode,
+          Street: this.previousData?.address?.street
+        })
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');
         }
         else {
           this.propertyAddForm.removeControl('OpenHouses');
         }
+        this.propertyAddForm.patchValue({
+          Category: this.previousData?.active == 'rent' ? 2 : 1
+        })
       }
     })
   }
@@ -225,7 +224,7 @@ export class RentPropertyPageComponent implements OnInit {
   }
   checkboxSelect(event: any, value: number, type: string) {
     const formArray = this.propertyAddForm.controls[type] as FormArray;
-    if (event.target.checked || event) {
+    if (event.target.checked) {
       if (!formArray.value.includes(value)) {
         formArray.push(new FormControl(value));
       }
@@ -402,164 +401,5 @@ export class RentPropertyPageComponent implements OnInit {
         this.propertyAddForm.controls[control].setValue(event?.lng);
       }
     }
-  }
-  callData(){
-    this.http.loaderGet(`Property/get/${this.previousData?.id}`,true).subscribe((response)=>{
-      this.previousData = {
-        ...this.previousData,
-        ...response?.model
-      }
-      this.patchFormWithPreviousData(this.previousData);
-    })
-  }
-  patchFormWithPreviousData(data: any): void {
-    console.log(data);
-    
-    // Patch main property details
-    this.propertyAddForm.patchValue({
-      Title: data?.title,
-      Description: data?.description,
-      Category: data?.category,
-      AmentiyCategory: data?.amentiyCategory,
-      PropertyType: data?.propertyType,
-      NoOfBed: data?.noOfBed,
-      LeaseMonth: data?.leaseMonth,
-      NoOfBath: data?.noOfBath,
-      Area: data?.area,
-      Price: data?.price,
-      Deposit: data?.deposit,
-      Location: data?.location,
-      Country: data?.country,
-      Landmark: data?.landmark,
-      State: data?.state,
-      City: data?.city,
-      ZipCode: data?.zipCode,
-      Unit: data?.unit,
-      Plot: data?.plot,
-      Street: data?.street,
-      Building: data?.building,
-      VideoUrl: data?.videoUrl,
-      Latitude: data?.latitude,
-      Longitude: data?.longitude,
-      PetPolicy: data?.petPolicy,
-      Parking: data?.parking,
-      ParkingFees: data?.parkingFees,
-      Laundry: data?.laundry,
-      Terms: data?.terms,
-      IsFurnished: data?.isFurnished,
-    });
-  
-    // Patch PropertyContact
-    const propertyContactGroup = this.propertyAddForm.get('PropertyContact');
-    propertyContactGroup.patchValue({
-      UserRole: data?.propertyContacts?.[0]?.userRole,
-      FullName: data?.propertyContacts?.[0]?.fullName,
-      Email: data?.propertyContacts?.[0]?.email,
-      Contact: data?.propertyContacts?.[0]?.contact,
-      IsEmailPrefered: data?.propertyContacts?.[0]?.isEmailPrefered,
-    });
-  
-    // Patch RentSpecial if available
-    if (data?.rentSpecial) {
-      const rentSpecialGroup = this.propertyAddForm.get('RentSpecial');
-      rentSpecialGroup.patchValue({
-        Title: data.rentSpecial.title,
-        Description: data.rentSpecial.description,
-        Tag: data.rentSpecial.tag,
-        StartDate: data.rentSpecial.startDate,
-        EndDate: data.rentSpecial.endDate,
-      });
-    } else {
-      this.propertyAddForm.removeControl('RentSpecial');
-    }
-  
-    // Patch HomeFact
-    const homeFactGroup = this.propertyAddForm.get('HomeFact');
-    homeFactGroup.patchValue({
-      NoOfBeds: data?.homeFact?.noOfBeds,
-      NoOfBaths: data?.homeFact?.noOfBaths,
-      FinishedSqrFt: data?.homeFact?.finishedSqrFt,
-      SqrFt: data?.homeFact?.sqrFt,
-      RemodelYear: data?.homeFact?.remodelYear,
-      BasementSqrFt: data?.homeFact?.basementSqrFt,
-      LotSize: data?.homeFact?.lotSize,
-      ConstructedYear: data?.homeFact?.constructedYear,
-      HaoDues: data?.homeFact?.haoDues,
-      GarageSqrFt: data?.homeFact?.garageSqrFt,
-    });
-  
-    // Patch property images if available
-    if (data?.propertyImageFiles && data?.propertyImageFiles.length > 0) {
-      const propertyImageFilesArray = this.propertyAddForm.get('PropertyImageFiles') as FormArray;
-      data.propertyImageFiles.forEach((image:any) => {
-        // propertyImageFilesArray.push(this.fb.control(image));
-      });
-    }
-  
-    // Patch amenities if available
-    if (data?.amenities && data?.amenities.length > 0) {
-      const amenitiesArray = this.propertyAddForm.get('Amenities') as FormArray;
-      data.amenities.forEach((amenity:any) => {
-        amenitiesArray.push(this.fb.group({
-          id: amenity.id,
-          amenityId: amenity.amenityId,
-          amenityName: amenity.amenityName,
-        }));
-      });
-    }
-  
-    // Patch utilities if available
-    if (data?.utilities && data?.utilities.length > 0) {
-      const utilitiesArray = this.propertyAddForm.get('Utilities') as FormArray;
-      data.utilities.forEach((utility:any) => {
-        utilitiesArray.push(this.fb.group({
-          id: utility.id,
-          utilityId: utility.utilityId,
-          utilityName: utility.utilityName,
-        }));
-      });
-    }
-  
-    // Patch floor plans if available
-    if (data?.floorPlans && data?.floorPlans.length > 0) {
-      const floorPlansArray = this.propertyAddForm.get('FloorPlans') as FormArray;
-      data.floorPlans.forEach((plan:any) => {
-        const floorPlanGroup:any = this.fb.group({
-          PlanName: plan.PlanName,
-          NoOfBed: plan.NoOfBed,
-          NoOfBath: plan.NoOfBath,
-          Area: plan.Area,
-          StartPrice: plan.StartPrice,
-          EndPrice: plan.EndPrice,
-          Description: plan.Description,
-        });
-  
-        // Patch floor plan units if available
-        if (plan.FloorPlanUnits && plan.FloorPlanUnits.length > 0) {
-          const floorPlanUnitsArray = floorPlanGroup.get('FloorPlanUnits') as FormArray;
-          plan.FloorPlanUnits.forEach((unit:any) => {
-            floorPlanUnitsArray.push(this.fb.group({
-              Price: unit.Price,
-              AvailabilityDate: unit.AvailabilityDate,
-            }));
-          });
-        }
-  
-        floorPlansArray.push(floorPlanGroup);
-      });
-    }
-  
-    // Patch open houses if available
-    if (data?.openHouses && data?.openHouses.length > 0) {
-      const openHousesArray = this.propertyAddForm.get('OpenHouses') as FormArray;
-      data.openHouses.forEach((openHouse:any) => {
-        openHousesArray.push(this.fb.group({
-          StartDateTime: openHouse.StartDateTime,
-          EndDateTime: openHouse.EndDateTime,
-        }));
-      });
-    }
-    console.log(this.propertyAddForm.value);
-    
   }
 }

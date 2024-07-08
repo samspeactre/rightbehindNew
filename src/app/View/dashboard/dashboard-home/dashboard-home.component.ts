@@ -8,7 +8,7 @@ import { faArrowRightLong, faKey, faMapMarkerAlt, faSearch, faTag } from '@forta
 import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { selectRental, selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { RentalCarouselComponent } from '../../../SharedComponents/rental-carousel/rental-carousel.component';
 import { MapComponent } from '../../../SharedComponents/map/map.component';
 import { ResizeService } from '../../../Services/resize.service';
@@ -42,6 +42,7 @@ export class DashboardHomeComponent {
   private destroy$ = new Subject<void>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   mapHeight:number=0;
+  dashboard: any;
   rent: any;
   constructor(private http:HttpService,public dialog: MatDialog, public resize:ResizeService, private store: Store) {
     this.user$
@@ -118,10 +119,25 @@ export class DashboardHomeComponent {
       takeUntil(this.destroy$),
       distinctUntilChanged(
         (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-      )
+      ),
+      finalize(()=>{
+        this.getDashboard()
+      })
     )
     .subscribe((response) => {
       this.rent = response?.model?.properties
+    })
+  }
+  getDashboard() {
+    this.http.loaderGet('Dashboard/get', true)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      )
+    )
+    .subscribe((response) => {
+      this.dashboard = response?.model
     })
   }
 }

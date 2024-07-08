@@ -162,33 +162,32 @@ export class RentPropertyPageComponent implements OnInit {
         this.location.back()
       } else {
         this.previousData = JSON.parse(response?.data);
-        this.patchFormWithPreviousData(this.previousData);
-        this.propertyAddForm.patchValue({
-          PropertyContact: {
-            FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
-            Email: this.previousData?.email
-          },
-          PropertyType: this.previousData?.propertyType,
-          Location: this.previousData?.address?.address,
-          Latitude: this.previousData?.latLng?.lat,
-          Longitude: this.previousData?.latLng?.lng,
-          City: this.previousData?.address?.city,
-          State: this.previousData?.address?.state,
-          Country: this.previousData?.address?.country,
-          ZipCode: this.previousData?.address?.zipCode,
-          Street: this.previousData?.address?.street
-        })
+        if(this.previousData?.getData){
+          this.callData()
+        }
+        else{
+          this.propertyAddForm.patchValue({
+            PropertyContact: {
+              FullName: this.previousData?.firstName + ' ' + this.previousData?.lastName,
+              Email: this.previousData?.email
+            },
+            PropertyType: this.previousData?.propertyType,
+            Location: this.previousData?.address?.address,
+            Latitude: this.previousData?.latLng?.lat,
+            Longitude: this.previousData?.latLng?.lng,
+            City: this.previousData?.address?.city,
+            State: this.previousData?.address?.state,
+            Country: this.previousData?.address?.country,
+            ZipCode: this.previousData?.address?.zipCode,
+            Street: this.previousData?.address?.street
+          })
+        }
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');
         }
         else {
           this.propertyAddForm.removeControl('OpenHouses');
         }
-        this.propertyAddForm.patchValue({
-          Category: this.previousData?.active == 'rent' ? 2 : 1
-        })
-        console.log(this.previousData);
-        
       }
     })
   }
@@ -226,7 +225,7 @@ export class RentPropertyPageComponent implements OnInit {
   }
   checkboxSelect(event: any, value: number, type: string) {
     const formArray = this.propertyAddForm.controls[type] as FormArray;
-    if (event.target.checked) {
+    if (event.target.checked || event) {
       if (!formArray.value.includes(value)) {
         formArray.push(new FormControl(value));
       }
@@ -404,7 +403,18 @@ export class RentPropertyPageComponent implements OnInit {
       }
     }
   }
+  callData(){
+    this.http.loaderGet(`Property/get/${this.previousData?.id}`,true).subscribe((response)=>{
+      this.previousData = {
+        ...this.previousData,
+        ...response?.model
+      }
+      this.patchFormWithPreviousData(this.previousData);
+    })
+  }
   patchFormWithPreviousData(data: any): void {
+    console.log(data);
+    
     // Patch main property details
     this.propertyAddForm.patchValue({
       Title: data?.title,
@@ -442,11 +452,11 @@ export class RentPropertyPageComponent implements OnInit {
     // Patch PropertyContact
     const propertyContactGroup = this.propertyAddForm.get('PropertyContact');
     propertyContactGroup.patchValue({
-      UserRole: data?.propertyContact?.userRole,
-      FullName: data?.propertyContact?.fullName,
-      Email: data?.propertyContact?.email,
-      Contact: data?.propertyContact?.contact,
-      IsEmailPrefered: data?.propertyContact?.isEmailPrefered,
+      UserRole: data?.propertyContacts?.[0]?.userRole,
+      FullName: data?.propertyContacts?.[0]?.fullName,
+      Email: data?.propertyContacts?.[0]?.email,
+      Contact: data?.propertyContacts?.[0]?.contact,
+      IsEmailPrefered: data?.propertyContacts?.[0]?.isEmailPrefered,
     });
   
     // Patch RentSpecial if available
@@ -549,5 +559,7 @@ export class RentPropertyPageComponent implements OnInit {
         }));
       });
     }
+    console.log(this.propertyAddForm.value);
+    
   }
 }

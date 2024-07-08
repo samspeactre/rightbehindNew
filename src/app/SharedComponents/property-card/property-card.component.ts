@@ -104,6 +104,7 @@ export class PropertyCardComponent {
       },
       latLng: { lat: this.card?.latitude, lng: this.card?.longitude },
       active:'sell',
+      getData:true,
       ...this.card
     };
     this.router.navigate(['/rent-add-property'], {

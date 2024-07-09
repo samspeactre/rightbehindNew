@@ -174,6 +174,7 @@ export class RentPropertyPageComponent implements OnInit {
       GarageSqrFt: [''],
     }),
   });
+  radioValues = ['1 Month Free', '50% Off', 'Free Move-in'];
   readonly MAX_FILES = 10;
   readonly MAX_SIZE_MB = 8;
   readonly ALLOWED_TYPES = [
@@ -632,7 +633,14 @@ export class RentPropertyPageComponent implements OnInit {
     }
     return this.fb.group({});
   }
+  isRadioSelected(value: string): boolean {
+    return this.propertyAddForm.get('Tag')?.value === value;
+  }
 
+  isCustomTag(): boolean {
+    const tagValue = this.propertyAddForm.get('Tag')?.value;
+    return !this.radioValues.includes(tagValue);
+  }
   isDateString(value: any): boolean {
     return (
       typeof value === 'string' &&

@@ -282,27 +282,30 @@
                   <input placeholder="End Date" formControlName="EndDate" type="date" />
                 </div>
                 <div class="col-lg-12 special-tags">Special Offers:</div>
-                <div class="col-lg-4 my-3">
-                  <div class="dCenter check-box justify-content-start gap-2">
-                    <input type="radio" id="1 Month Free" formControlName="Tag" value="1 Month Free" />
-                    <label for="1 Month Free">1 Month Free</label>
+                @for (value of radioValues; track $index) {
+                  <div class="col-lg-4 my-3">
+                    <div class="dCenter check-box justify-content-start gap-2">
+                      <input 
+                        type="radio" 
+                        [id]="value" 
+                        formControlName="Tag" 
+                        [value]="value" 
+                        [checked]="isRadioSelected(value)" 
+                      />
+                      <label [for]="value">{{ value }}</label>
+                    </div>
                   </div>
-                </div>
-                <div class="col-lg-4 my-3">
-                  <div class="dCenter check-box justify-content-start gap-2">
-                    <input type="radio" id="50% Off" formControlName="Tag" value="50% Off" />
-                    <label for="50% Off">50% Off</label>
-                  </div>
-                </div>
-                <div class="col-lg-4 my-3">
-                  <div class="dCenter check-box justify-content-start gap-2">
-                    <input type="radio" id="Free Move-in" formControlName="Tag" value="Free Move-in" />
-                    <label for="Free Move-in">Free Move-in</label>
-                  </div>
-                </div>
+                }
                 <div class="col-lg-4">
                   <p class="text-start mb-0">Custom Offer</p>
-                  <input placeholder="Custom Offer" formControlName="Tag" type="text" appCharacterLimit [limit]="10" />
+                  <input 
+                    placeholder="Custom Offer" 
+                    [value]="isCustomTag() ? propertyAddForm.get('Tag')?.value : ''"
+                    formControlName="Tag" 
+                    type="text" 
+                    appCharacterLimit 
+                    [limit]="10" 
+                  />
                 </div>
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Description</p>

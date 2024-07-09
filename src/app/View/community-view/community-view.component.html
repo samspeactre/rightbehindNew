@@ -67,7 +67,7 @@
                         [starType]="'svg'"
                         [rating]="inquiry?.rating"
                         [hoverEnabled]="true"
-                        [disabled]="true"
+                        [disabled]="inquiry?.ratingAvailable"
                       ></star-rating>
                     </div>
                     <button
@@ -151,18 +151,18 @@
                     </p>
                   </div>
                   <div class="post__footer">
-                    <a class="footer-link" (click)="react(true, item?.id)">
+                    <button class="footer-link bg-transparent border-0" [disabled]="item?.likeAvailable" (click)="react(true, item?.id)">
                       <fa-icon [icon]="faArrowUp"></fa-icon>
                       {{ item?.likeCount }}
-                    </a>
-                    <a class="footer-link" (click)="react(false, item?.id)">
+                    </button>
+                    <button class="footer-link bg-transparent border-0" [disabled]="item?.dislikeAvailable" (click)="react(false, item?.id)">
                       <fa-icon [icon]="faArrowDown"></fa-icon>
                       {{ item?.dislikeCount }}
-                    </a>
-                    <a class="footer-link">
+                    </button>
+                    <button class="footer-link bg-transparent border-0">
                       <fa-icon [icon]="faComment"></fa-icon>
                       {{ item?.forumPostAnswers?.length }}
-                    </a>
+                    </button>
                   </div>
                   <div class="post__comments">
                     <h6 class="bold">Comments</h6>

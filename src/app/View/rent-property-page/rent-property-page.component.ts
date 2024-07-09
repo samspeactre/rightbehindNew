@@ -414,13 +414,11 @@ export class RentPropertyPageComponent implements OnInit {
   onPropertyImageSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files) {
-      const currentFileCount = this.propertyImageFiles.length;
+      const currentFileCount = this.propertyImageFiles.length || this.propertyAddForm?.controls['PropertyImageFiles']?.value?.length;
       const filesToAdd = Array.from(fileInput.files).slice(
         0,
         this.MAX_FILES - currentFileCount
       );
-      console.log(fileInput.files.length , filesToAdd.length);
-      
       if (fileInput.files.length > filesToAdd.length) {
         this.toastr.warning('No more than 10 images allowed.');
       }
@@ -437,7 +435,6 @@ export class RentPropertyPageComponent implements OnInit {
           );
           return;
         }
-
         this.propertyImageFiles.push(this.fb.control(file));
       });
     }

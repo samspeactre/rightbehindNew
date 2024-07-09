@@ -28,7 +28,9 @@
             "allowedCommonJsDependencies": [
               "apexcharts",
               "crypto-js",
-              "sweetalert2"
+              "sweetalert2", 
+              "moment",
+              "file-saver"
             ],
             "assets": [
               "src/favicon.ico",

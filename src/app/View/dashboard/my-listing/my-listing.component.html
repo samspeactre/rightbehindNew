@@ -1,8 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
-      <h6 class="bold mb-3">My Listing</h6>
+    <div class="col-lg-12 mb-2">
+      <h6 class="bold">My Listing</h6>
     </div>
+    <div class="col-lg-12">
+      <app-input
+        type="text"
+        classes="w-100"
+        [form]="searchForm"
+        control="search"
+        label="Search"
+        placeholder="Search Here..."
+      ></app-input>
+    </div>
+    @for (item of properties; track $index) {
+    <div class="col-lg-4 my-3">
+      <app-property-card
+        [animation]="false"
+        background="#e6f2ff"
+        [card]="item"
+        [loader]="false"
+        type="component"
+        page="mylisting"
+      ></app-property-card>
+    </div>
+    }
     <!-- <div class="col-lg-3 col-md-6 col-6">
             <mat-form-field class="listing-id w-100">
                 <mat-label>Enter Listing ID</mat-label>
@@ -48,7 +70,7 @@
             </mat-form-field>
         </div> -->
   </div>
-  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <!-- <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
       <button ngbNavLink>Active</button>
       <ng-template ngbNavContent>
@@ -106,7 +128,7 @@
         </div>
       </ng-template>
     </li>
-  </ul>
+  </ul> -->
 
-  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  <!-- <div [ngbNavOutlet]="nav" class="mt-2"></div> -->
 </div>

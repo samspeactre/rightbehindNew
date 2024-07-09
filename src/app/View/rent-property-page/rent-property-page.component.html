@@ -106,7 +106,7 @@
                 <p class="text-start mb-0">Property Type</p>
                 <ng-select formControlName="PropertyType" [searchable]="false">
                   @for (item of types; track $index) {
-                  <ng-option [value]="item?.value" selected>{{item?.name}}</ng-option>
+                  <ng-option [value]="item?.value">{{item?.name}}</ng-option>
                   }
                 </ng-select>
               </div>
@@ -222,7 +222,7 @@
                 <p class="text-start mb-0">Category</p>
                 <ng-select formControlName="AmentiyCategory" [searchable]="false">
                   @for (item of amenityCategories; track $index) {
-                  <ng-option [value]="item?.amenityCategoryName" selected>{{item?.amenityCategoryName}}</ng-option>
+                  <ng-option [value]="item?.amenityCategoryName">{{item?.amenityCategoryName}}</ng-option>
                   }
                 </ng-select>
               </div>
@@ -237,7 +237,7 @@
               track amenity) {
               <div class="col-lg-3">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" [id]="'amenity'+amenity?.id"
+                  <input type="checkbox" [checked]="propertyAddForm.get('Amenities').value?.includes(amenity?.id)" [id]="'amenity'+amenity?.id"
                     (change)="checkboxSelect($event ,amenity?.id, 'Amenities')" />
                   <label [for]="'amenity'+amenity?.id">{{ amenity?.amenityName }}</label>
                 </div>
@@ -254,7 +254,7 @@
               track utility) {
               <div class="col-lg-3">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" [id]="'utility'+utility?.id"
+                  <input type="checkbox" [checked]="propertyAddForm.get('Utilities').value?.includes(utility?.id)" [id]="'utility'+utility?.id"
                     (change)="checkboxSelect($event ,utility?.id,'Utilities')" />
                   <label [for]="'utility'+utility?.id">{{ utility?.utilityName }}</label>
                 </div>

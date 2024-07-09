@@ -103,7 +103,7 @@ export class PropertyCardComponent {
         street:this.card?.street,
       },
       latLng: { lat: this.card?.latitude, lng: this.card?.longitude },
-      active:'sell',
+      active:'rent',
       getData:true,
       ...this.card
     };

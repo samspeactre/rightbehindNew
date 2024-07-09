@@ -21,7 +21,7 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling
 const initializeApp = (httpClient: HttpClient, store: Store): (() => Observable<any>) => {
   return () => {
     return new Observable((observer) => {
-      httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=1').pipe(
+      httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=2').pipe(
         tap((response: any) => {
           if (response?.model?.properties) {
             const properties = response.model.properties;
@@ -32,7 +32,7 @@ const initializeApp = (httpClient: HttpClient, store: Store): (() => Observable<
         complete: () => {
           observer.next();
           observer.complete();
-          // httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=2').pipe(
+          // httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=1').pipe(
           //   tap((response: any) => {
           //     if (response?.model?.properties) {
           //       const properties = response.model.properties;

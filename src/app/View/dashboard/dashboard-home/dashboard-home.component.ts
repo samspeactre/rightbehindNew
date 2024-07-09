@@ -114,7 +114,7 @@ export class DashboardHomeComponent {
     }
   }
   getInquiries() {
-    this.http.loaderGet('Property/get/me?pageSize=4', true)
+    this.http.loaderGet('Property/get/me?pageSize=4&type=2&pageNo=1', true)
     .pipe(
       takeUntil(this.destroy$),
       distinctUntilChanged(

@@ -30,7 +30,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, finalize, takeUntil } from 'rxjs';
-import { HelperService, types } from '../../Services/helper.service';
+import { assetUrl, HelperService, types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { MapComponent } from '../../SharedComponents/map/map.component';
@@ -120,7 +120,7 @@ export class RentPropertyPageComponent implements OnInit {
     Laundry: [''],
     Terms: ['', Validators.required],
     IsFurnished: [true],
-    PropertyImageFiles: this.fb.array([]),
+    PropertyImageFiles: [''],
     Amenities: [''],
     Utilities: [''],
     FloorPlans: this.fb.array([
@@ -185,6 +185,7 @@ export class RentPropertyPageComponent implements OnInit {
   ];
   sections: any;
   section: string = 'property-information';
+  src=assetUrl
   constructor(
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -225,6 +226,7 @@ export class RentPropertyPageComponent implements OnInit {
                   Utilities: utilitiesIds,
                   RentSpecial: response?.model?.rentSpecials,
                   PropertyContact: response?.model?.propertyContacts,
+                  PropertyImageFiles:response?.model?.propertyImages
                 };
                 await this.patchFormValues();
                 await this.getAmeneties();
@@ -417,7 +419,8 @@ export class RentPropertyPageComponent implements OnInit {
         0,
         this.MAX_FILES - currentFileCount
       );
-
+      console.log(fileInput.files.length , filesToAdd.length);
+      
       if (fileInput.files.length > filesToAdd.length) {
         this.toastr.warning('No more than 10 images allowed.');
       }
@@ -441,6 +444,9 @@ export class RentPropertyPageComponent implements OnInit {
   }
   getImageSrc(file: File) {
     return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
+  }
+  returnImageSrc(filePath: any) {
+    return this.src+filePath?.imageurl
   }
   removePropertyImage(index: number): void {
     this.propertyImageFiles.removeAt(index);
@@ -536,6 +542,8 @@ export class RentPropertyPageComponent implements OnInit {
       previousDataLower.propertycontact
     );
     await this.patchNestedArray('FloorPlans', previousDataLower.floorplans);
+    console.log(this.propertyAddForm.value);
+    
   }
 
   lowercaseKeys(obj: any): any {
@@ -632,14 +640,6 @@ export class RentPropertyPageComponent implements OnInit {
       });
     }
     return this.fb.group({});
-  }
-  isRadioSelected(value: string): boolean {
-    return this.propertyAddForm.get('Tag')?.value === value;
-  }
-
-  isCustomTag(): boolean {
-    const tagValue = this.propertyAddForm.get('Tag')?.value;
-    return !this.radioValues.includes(tagValue);
   }
   isDateString(value: any): boolean {
     return (

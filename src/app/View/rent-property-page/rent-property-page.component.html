@@ -289,8 +289,7 @@
                         type="radio" 
                         [id]="value" 
                         formControlName="Tag" 
-                        [value]="value" 
-                        [checked]="isRadioSelected(value)" 
+                        [value]="value"
                       />
                       <label [for]="value">{{ value }}</label>
                     </div>
@@ -299,8 +298,7 @@
                 <div class="col-lg-4">
                   <p class="text-start mb-0">Custom Offer</p>
                   <input 
-                    placeholder="Custom Offer" 
-                    [value]="isCustomTag() ? propertyAddForm.get('Tag')?.value : ''"
+                    placeholder="Custom Offer"
                     formControlName="Tag" 
                     type="text" 
                     appCharacterLimit 
@@ -391,14 +389,14 @@
                 urna, porttitor.
               </p>
               <div class="upload-container">
-                @if (propertyAddForm.controls['PropertyImageFiles'].length > 0) {
+                @if (propertyAddForm.controls['PropertyImageFiles']?.value?.length || propertyAddForm.controls['PropertyImageFiles'].length) {
                 <div>
-                  <p class="text-start bold">Selected Images ({{ propertyAddForm.controls['PropertyImageFiles'].length
+                  <p class="text-start bold">Selected Images ({{ propertyAddForm.controls['PropertyImageFiles']?.value?.length || propertyAddForm.controls['PropertyImageFiles'].length
                     }}/10)</p>
                   <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
                     @for (file of propertyAddForm.controls['PropertyImageFiles'].value; track file; let i = $index) {
                     <div class="image-preview display">
-                      <img [src]="getImageSrc(file)" alt="images" />
+                      <img [src]="previousData?.getData ?  returnImageSrc(file) : getImageSrc(file)" alt="images" />
                       <button mat-fab color="warn" (click)="removePropertyImage(i)">
                         <mat-icon>delete</mat-icon>
                       </button>
@@ -410,7 +408,7 @@
 
                 <div class="row align-items-center mt-3">
                   <div class="col-lg-8">
-                    <button [disabled]="propertyAddForm.controls['PropertyImageFiles'].length == 10" class="upload-imgs"
+                    <button [disabled]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10" class="upload-imgs"
                       (click)="fileInput.click()">
                       <span>Browse Photo</span>
                     </button>
@@ -418,13 +416,13 @@
                   <div class="col-lg-4">
                     <div class="dCenter justify-content-end">
                       <button mat-raised-button color="primary"
-                        [disabled]="propertyAddForm.controls['PropertyImageFiles'].length == 10"
+                        [disabled]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10"
                         (click)="fileInput.click()">
                         <mat-icon>cloud_upload</mat-icon>
                         Upload Photos
                       </button>
                       <input type="file" #fileInput multiple
-                        [readonly]="propertyAddForm.controls['PropertyImageFiles'].length == 10"
+                        [readonly]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10"
                         (change)="onPropertyImageSelected($event)" style="display: none" />
                     </div>
                   </div>

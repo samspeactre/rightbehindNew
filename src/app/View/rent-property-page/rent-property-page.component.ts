@@ -112,17 +112,17 @@ export class RentPropertyPageComponent implements OnInit {
     Street: [''],
     Building: [''],
     VideoUrl: [''],
-    Latitude: [''],
-    Longitude: [''],
+    Latitude: [25.761681],
+    Longitude: [-80.191788],
     PetPolicy: [''],
     Parking: [''],
     ParkingFees: [''],
     Laundry: [''],
     Terms: ['', Validators.required],
     IsFurnished: [true],
-    PropertyImageFiles: [''],
-    Amenities: [''],
-    Utilities: [''],
+    PropertyImageFiles: this.fb.array([]),
+    Amenities: this.fb.array([]),
+    Utilities: this.fb.array([]),
     FloorPlans: this.fb.array([
       this.fb.group({
         PlanName: ['', Validators.required],
@@ -185,7 +185,7 @@ export class RentPropertyPageComponent implements OnInit {
   ];
   sections: any;
   section: string = 'property-information';
-  src=assetUrl
+  src = assetUrl;
   constructor(
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -196,25 +196,18 @@ export class RentPropertyPageComponent implements OnInit {
     private http: HttpService,
     private fb: FormBuilder
   ) {
-    this.activatedRoute.queryParams.subscribe((response: any) => {
+    this.activatedRoute.queryParams.subscribe(async (response: any) => {
       if (!response?.data) {
         this.location.back();
       } else {
         this.previousData = JSON.parse(response?.data);
+        await this.getAmeneties();
         if (this.previousData?.getData) {
           this.http
             .loaderGet(`Property/get/${this.previousData?.id}`, false)
             .pipe(takeUntil(this.destroy$))
             .subscribe(
               async (response) => {
-                const amenityIds =
-                  response?.model?.propertyAmenities?.map(
-                    (amenity: any) => amenity?.amenityId
-                  ) || [];
-                const utilitiesIds =
-                  response?.model?.propertyUtilities?.map(
-                    (amenity: any) => amenity?.utilityId
-                  ) || [];
                 this.previousData = {
                   ...this.previousData,
                   floorPlans: response?.model?.floorPlans,
@@ -222,15 +215,32 @@ export class RentPropertyPageComponent implements OnInit {
                   AmentiyCategory:
                     response?.model?.propertyAmenities?.[0]?.amenity
                       ?.amenityCategory?.amenityCategoryName,
-                  Amenities: amenityIds,
-                  Utilities: utilitiesIds,
                   RentSpecial: response?.model?.rentSpecials,
                   PropertyContact: response?.model?.propertyContacts,
-                  PropertyImageFiles:response?.model?.propertyImages
                 };
+                response?.model?.propertyImages?.map((image: any) => {
+                  this.propertyImageFiles.push(
+                    this.fb.control(image?.imageUrl)
+                  );
+                });
                 await this.patchFormValues();
-                await this.getAmeneties();
-                console.log(this.previousData, this.propertyAddForm?.value);
+                response?.model?.propertyAmenities?.map((amenity: any) => {
+                  this.checkboxSelect(
+                    null,
+                    amenity?.amenityId,
+                    'Amenities',
+                    true
+                  );
+                });
+                response?.model?.propertyUtilities?.map((amenity: any) => {
+                  this.checkboxSelect(
+                    null,
+                    amenity?.utilityId,
+                    'Utilities',
+                    true
+                  );
+                });
+                
               },
               (err) => {
                 this.location.back();
@@ -302,11 +312,18 @@ export class RentPropertyPageComponent implements OnInit {
         this.utilities = response?.modelList;
       });
   }
-  checkboxSelect(event: any, value: number, type: string) {
+  checkboxSelect(
+    event: any,
+    value: number,
+    type: string,
+    fill: boolean = false
+  ) {
     const formArray = this.propertyAddForm.controls[type] as FormArray;
-    if (event?.target?.checked) {
+    if (event?.target?.checked || fill) {
+      console.log(event,value,type,fill, formArray, this.propertyAddForm.value);
+      
       if (!formArray.value.includes(value)) {
-        formArray.push(new FormControl(value));
+        formArray?.push(new FormControl(value));
       }
     } else {
       const index = formArray.value.indexOf(value);
@@ -322,6 +339,8 @@ export class RentPropertyPageComponent implements OnInit {
         '/' +
         this.propertyAddForm.controls['State'].value
     );
+    console.log(this.propertyAddForm.value, this.propertyAddForm);
+
     const formData = new FormData();
     const appendFormData = (data: any, rootName: string = '') => {
       if (data instanceof FileList) {
@@ -414,7 +433,9 @@ export class RentPropertyPageComponent implements OnInit {
   onPropertyImageSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files) {
-      const currentFileCount = this.propertyImageFiles.length || this.propertyAddForm?.controls['PropertyImageFiles']?.value?.length;
+      const currentFileCount =
+        this.propertyImageFiles.length ||
+        this.propertyAddForm?.controls['PropertyImageFiles']?.value?.length;
       const filesToAdd = Array.from(fileInput.files).slice(
         0,
         this.MAX_FILES - currentFileCount
@@ -439,11 +460,12 @@ export class RentPropertyPageComponent implements OnInit {
       });
     }
   }
-  getImageSrc(file: File) {
-    return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
-  }
-  returnImageSrc(filePath: any) {
-    return this.src+filePath?.imageurl
+  getImageSrc(file: string | File): string | any {
+    if (typeof file === 'string') {
+      return this.src + file;
+    } else {
+      return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
+    }
   }
   removePropertyImage(index: number): void {
     this.propertyImageFiles.removeAt(index);
@@ -540,7 +562,6 @@ export class RentPropertyPageComponent implements OnInit {
     );
     await this.patchNestedArray('FloorPlans', previousDataLower.floorplans);
     console.log(this.propertyAddForm.value);
-    
   }
 
   lowercaseKeys(obj: any): any {
@@ -575,8 +596,6 @@ export class RentPropertyPageComponent implements OnInit {
           const formControlKey = this.findFormControlKey(formGroup, key);
           if (formControlKey) {
             let value = valuesLower[0][key];
-
-            // Check if the value is a date string and format it
             if (this.isDateString(value)) {
               value = this.formatDate(value);
             }
@@ -623,10 +642,16 @@ export class RentPropertyPageComponent implements OnInit {
         value.floorplanunits.forEach((unit: any) => {
           const unitGroup = this.fb.group({
             Price: [unit.price, Validators.required],
-            AvailabilityDate: [this.formatDate(unit.availabilitydate), Validators.required],
+            AvailabilityDate: [
+              this.formatDate(unit.availabilitydate),
+              Validators.required,
+            ],
           });
           (floorPlanGroup.get('FloorPlanUnits') as FormArray).push(unitGroup);
         });
+      }
+      if (value.planimage) {
+        (floorPlanGroup.get('FloorPlanImage') as FormArray).push(this.fb.control(value.planimage));
       }
 
       return floorPlanGroup;

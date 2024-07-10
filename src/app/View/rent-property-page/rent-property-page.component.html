@@ -389,14 +389,14 @@
                 urna, porttitor.
               </p>
               <div class="upload-container">
-                @if (propertyAddForm.controls['PropertyImageFiles']?.value?.length || propertyAddForm.controls['PropertyImageFiles'].length) {
+                @if (propertyAddForm.controls['PropertyImageFiles'].length) {
                 <div>
-                  <p class="text-start bold">Selected Images ({{ propertyAddForm.controls['PropertyImageFiles']?.value?.length || propertyAddForm.controls['PropertyImageFiles'].length
+                  <p class="text-start bold">Selected Images ({{ propertyAddForm.controls['PropertyImageFiles'].length
                     }}/10)</p>
                   <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
                     @for (file of propertyAddForm.controls['PropertyImageFiles'].value; track file; let i = $index) {
                     <div class="image-preview display">
-                      <img [src]="previousData?.getData ?  returnImageSrc(file) : getImageSrc(file)" alt="images" />
+                      <img [src]="getImageSrc(file)" alt="images" />
                       <button mat-fab color="warn" (click)="removePropertyImage(i)">
                         <mat-icon>delete</mat-icon>
                       </button>
@@ -684,7 +684,7 @@
               </div>
             </div>
             <button class="btnPrimary wow fadeInDown my-3"
-              [disabled]="propertyAddForm?.invalid || !propertyAddForm.get('Terms').value" (click)="onSubmit()">
+              [disabled]="!propertyAddForm.get('Terms').value" (click)="onSubmit()">
               Add Property
             </button>
           </form>

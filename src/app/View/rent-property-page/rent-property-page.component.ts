@@ -320,8 +320,6 @@ export class RentPropertyPageComponent implements OnInit {
   ) {
     const formArray = this.propertyAddForm.controls[type] as FormArray;
     if (event?.target?.checked || fill) {
-      console.log(event,value,type,fill, formArray, this.propertyAddForm.value);
-      
       if (!formArray.value.includes(value)) {
         formArray?.push(new FormControl(value));
       }
@@ -339,8 +337,6 @@ export class RentPropertyPageComponent implements OnInit {
         '/' +
         this.propertyAddForm.controls['State'].value
     );
-    console.log(this.propertyAddForm.value, this.propertyAddForm);
-
     const formData = new FormData();
     const appendFormData = (data: any, rootName: string = '') => {
       if (data instanceof FileList) {
@@ -561,7 +557,6 @@ export class RentPropertyPageComponent implements OnInit {
       previousDataLower.propertycontact
     );
     await this.patchNestedArray('FloorPlans', previousDataLower.floorplans);
-    console.log(this.propertyAddForm.value);
   }
 
   lowercaseKeys(obj: any): any {

@@ -292,11 +292,13 @@ export class CommunityViewComponent {
       }
     });
   }
-  rating(react: boolean) {
-    const data = {
-      forumId: this.id,
-      reaction: react,
-    };
-    this.http.loaderPost(`Forum/rating`, data, true).subscribe(() => {});
+  rating(react:any) {
+    if(react != null){
+      const data = {
+        forumId: this.id,
+        reaction: react,
+      };
+      this.http.loaderPost(`Forum/rating`, data, true).subscribe(() => {});
+    }
   }
 }

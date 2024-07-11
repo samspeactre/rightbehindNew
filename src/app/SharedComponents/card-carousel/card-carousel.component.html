@@ -12,12 +12,11 @@
 </div>
 <owl-carousel-o [options]="customOptions" #owlCar>
   @for (card of cards; track card) {
-    <ng-template carouselSlide>
-      <app-community-card [item]="card" [loader]="loader"></app-community-card>
-    </ng-template>
+  <ng-template carouselSlide>
+    <app-community-card [item]="card" [loader]="loader"></app-community-card>
+  </ng-template>
   }
 </owl-carousel-o>
 <div class="rental-btn py-3 wow fadeInDown dCenter w-100">
-  <button class="btnWhiteNBlue"
-  routerLink="/communities">View All</button>
+  <button class="btnWhiteNBlue" routerLink="/communities">View All</button>
 </div>

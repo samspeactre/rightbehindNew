@@ -668,7 +668,7 @@ export class RentPropertyPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {
-        this.router.navigateByUrl('/rent');
+        this.router.navigateByUrl('/dashboard/my-listings');
       }
     });
   }

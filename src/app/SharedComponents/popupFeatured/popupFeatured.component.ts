@@ -57,7 +57,7 @@ export class PopupFeaturedComponent implements OnInit {
     this.dialogRef.close({ data:true });
   }
   getFeaturedList(){
-    this.http.loaderGet('ProductPrice/prices/62',true).subscribe((response)=>{
+    this.http.loaderGet('ProductPrice/prices/52',true).subscribe((response)=>{
       console.log(response);
     })
   }

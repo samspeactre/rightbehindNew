@@ -50,9 +50,15 @@ export class PopupFeaturedComponent implements OnInit {
     this.destroy$.complete();
   }
   ngOnInit() {
+    this.getFeaturedList()
   }
 
   navigateAndClose() {
     this.dialogRef.close({ data:true });
+  }
+  getFeaturedList(){
+    this.http.loaderGet('ProductPrice/prices/62',true).subscribe((response)=>{
+      console.log(response);
+    })
   }
 }

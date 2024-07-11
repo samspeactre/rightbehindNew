@@ -683,8 +683,11 @@
                 </div>
               </div>
             </div>
-            <button class="btnPrimary wow fadeInDown my-3"
-              [disabled]="!propertyAddForm.get('Terms').value" (click)="onSubmit()">
+            <!-- <button class="btnPrimary wow fadeInDown my-3"
+              [disabled]="!propertyAddForm.get('Terms').value" (click)="openFeatured()">
+              Add Property
+            </button> -->
+            <button class="btnPrimary wow fadeInDown my-3"(click)="showFeatured()">
               Add Property
             </button>
           </form>

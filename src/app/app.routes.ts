@@ -134,4 +134,8 @@ export const routes: Routes = [
         (m) => m.Dashboard_Routes
       ),
   },
+  {
+    path:'**',
+    redirectTo:'/'
+  }
 ];

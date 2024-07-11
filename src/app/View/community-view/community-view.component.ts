@@ -49,6 +49,7 @@ export class CommunityViewComponent {
   title!: string;
   imagePath!: string;
   id: any;
+  ratingDisabled: boolean = false;
   city!: string;
   inquiries: any;
   relatedInquiries: any[] = [];
@@ -202,8 +203,6 @@ export class CommunityViewComponent {
         const postToUpdate = this.posts.find(
           (post: any) => post.id === commentId
         );
-        console.log(postToUpdate);
-
         if (postToUpdate) {
           if (postToUpdate.forumPostAnswers?.length) {
             postToUpdate.forumPostAnswers.unshift({
@@ -274,6 +273,11 @@ export class CommunityViewComponent {
       .loaderPost(`forum/${this.id}/user`, {}, true)
       .subscribe((response) => {
         this.join = true;
+        this.router.navigate([], {
+          relativeTo: this.activatedRoute,
+          queryParams: { userExistInForum: true },
+          queryParamsHandling: 'merge',
+        });
       });
   }
   react(react: boolean, postId: number) {
@@ -285,18 +289,44 @@ export class CommunityViewComponent {
       const post = this.posts.find((post: any) => post.id === postId);
       if (post) {
         if (react) {
-          post.likeCount = post.likeCount + 1;
+          if (post.userReaction) {
+            if (post.isReactedByUser) {
+              post.likeCount -= 1;
+            } else {
+              post.dislikeCount -= 1;
+              post.likeCount += 1;
+            }
+          } else {
+            post.likeCount += 1;
+          }
+          post.userReaction = true;
+          post.isReactedByUser = true;
         } else {
-          post.dislikeCount = post.dislikeCount + 1;
+          if (post.userReaction) {
+            if (post.isReactedByUser) {
+              post.likeCount -= 1;
+              post.dislikeCount += 1;
+            } else {
+              post.dislikeCount -= 1;
+            }
+          } else {
+            post.dislikeCount += 1;
+          }
+          post.userReaction = true;
+          post.isReactedByUser = false;
         }
       }
     });
   }
-  rating(react: boolean) {
-    const data = {
-      forumId: this.id,
-      reaction: react,
-    };
-    this.http.loaderPost(`Forum/rating`, data, true).subscribe(() => {});
+  rating(react: any) {
+    if (react != null) {
+      const data = {
+        forumId: this.id,
+        reaction: react?.rating,
+      };
+      this.http.loaderPost(`Forum/rating`, data, true).subscribe(() => {
+        this.ratingDisabled = true;
+      });
+    }
   }
 }

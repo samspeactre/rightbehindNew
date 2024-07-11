@@ -63,11 +63,11 @@
                         {{ title }}
                       </h1>
                       <star-rating
-                        (ratingChange)="rating($event)"
+                        (starClickChange)="rating($event)"
                         [starType]="'svg'"
                         [rating]="inquiry?.rating"
                         [hoverEnabled]="true"
-                        [disabled]="inquiry?.ratingAvailable"
+                        [disabled]="inquiry?.isRatedByUser || ratingDisabled || !join"
                       ></star-rating>
                     </div>
                     <button
@@ -151,11 +151,11 @@
                     </p>
                   </div>
                   <div class="post__footer">
-                    <button class="footer-link bg-transparent border-0" [disabled]="item?.likeAvailable" (click)="react(true, item?.id)">
+                    <button class="footer-link bg-transparent border-0" [disabled]="(item?.userReaction && item?.isReactedByUser) || !join" (click)="react(true, item?.id)">
                       <fa-icon [icon]="faArrowUp"></fa-icon>
                       {{ item?.likeCount }}
                     </button>
-                    <button class="footer-link bg-transparent border-0" [disabled]="item?.dislikeAvailable" (click)="react(false, item?.id)">
+                    <button class="footer-link bg-transparent border-0" [disabled]="(item?.userReaction && !item?.isReactedByUser) || !join" (click)="react(false, item?.id)">
                       <fa-icon [icon]="faArrowDown"></fa-icon>
                       {{ item?.dislikeCount }}
                     </button>

@@ -13,6 +13,7 @@ import { RentalReducer, SellReducer, userReducer } from './Ngrx/data.reducer';
 import { CacheInterceptor } from './TsExtras/cache.interceptor';
 import { routes } from './app.routes';
 import { StarRatingModule } from 'angular-star-rating';
+import { AuthInterceptor } from './TsExtras/auth.interceptor';
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
 };
@@ -61,6 +62,11 @@ export const appConfig: ApplicationConfig = {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
       deps: [HttpClient, Store],
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
     importProvidersFrom(

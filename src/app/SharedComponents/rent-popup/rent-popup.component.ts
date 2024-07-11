@@ -161,6 +161,7 @@ export class RentPopupComponent {
       confirmButtonText: 'Yes, this is a residential rental',
       showCancelButton: true,
       cancelButtonText: 'No, this is not a residential rental',
+      allowOutsideClick:false
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.fireDisclaimerSwal();
@@ -187,6 +188,7 @@ export class RentPopupComponent {
       confirmButtonText: unitCount > 20 ? 'Get A Quote' : 'I Acknowledge',
       showCancelButton: true,
       cancelButtonText: 'Go Back',
+      allowOutsideClick:false
     }).then((result) => {
       if (result.isConfirmed) {
         if (unitCount > 20) {

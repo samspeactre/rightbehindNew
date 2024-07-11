@@ -679,6 +679,7 @@ export class RentPropertyPageComponent implements OnInit {
       confirmButtonText: 'Feature your property',
       showCancelButton: true,
       cancelButtonText: 'Skip',
+      allowOutsideClick:false
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.showFeatured();

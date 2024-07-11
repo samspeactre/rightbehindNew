@@ -13,14 +13,13 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEllipsisVertical, faHeart, faShare, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { HelperService, assetUrl } from '../../Services/helper.service';
+import { HelperService } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { MapComponent } from '../map/map.component';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
@@ -33,6 +32,7 @@ export class PopupFeaturedComponent implements OnInit {
   propertyData: any;
   faCheck=faCheckCircle
   private destroy$ = new Subject<void>();
+  packages:any=[1,2]
   constructor(
     public dialogRef: MatDialogRef<PopupFeaturedComponent>,
     private router: Router,
@@ -42,8 +42,6 @@ export class PopupFeaturedComponent implements OnInit {
     public helper:HelperService
   ) {
     this.propertyData = data?.card
-    console.log(data);
-    
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -58,7 +56,10 @@ export class PopupFeaturedComponent implements OnInit {
   }
   getFeaturedList(){
     this.http.loaderGet('ProductPrice/prices/52',true).subscribe((response)=>{
-      console.log(response);
+      this.packages = response?.modelList
     })
+  }
+  submit(){
+    
   }
 }

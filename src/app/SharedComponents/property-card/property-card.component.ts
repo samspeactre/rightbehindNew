@@ -17,7 +17,6 @@ import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { ResizeService } from '../../Services/resize.service';
-import { PopupComponent } from '../popup/popup.component';
 @Component({
   standalone: true,
   imports: [
@@ -78,13 +77,6 @@ export class PropertyCardComponent {
       height: '85%',
       width: window.innerWidth > 1024 ? '28%' : '100%',
       data: { type: 'property', id: this.card?.id },
-    });
-  }
-
-  openCarouselPreviewPopup(){
-    this.dialog.open(PopupComponent, {
-      height: '85%',
-      width: window.innerWidth > 1024 ? '90%' : '100%',
     });
   }
 

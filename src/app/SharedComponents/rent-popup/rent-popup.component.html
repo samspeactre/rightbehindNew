@@ -74,8 +74,8 @@
         placeholder="Enter your Password*"
       ></app-input>
     </div>
-    } @if(active == 'sell'){
-    <div class="col-lg-6">
+    } @if(active == 'sell' || checkUnitValidator()){
+    <div class="col-lg-12">
       <app-input
         classes="w-100 mb-2"
         type="number"

@@ -161,26 +161,34 @@ export class ListingPageComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe(
-        (response: any) => this.handleResponse(response?.model?.properties, loadMore, 'properties'),
+        (response: any) => this.handleResponse(response?.model?.properties, loadMore, 'properties', response?.model),
         (err: any) => this.handleError(loadMore)
       );
   }
 
   private buildUrlParams(): URLSearchParams {
-    const urlParams = new URLSearchParams();
+    const urlParams = new URLSearchParams({
+        pageNo: String(this.pageNo),
+        pageSize: String(this.pageSize),
+        type: this.router.url.includes('buy') ? '1' : '2',
+    });
 
-    urlParams.set('pageNo', String(this.pageNo));
-    urlParams.set('pageSize', String(this.pageSize));
-    urlParams.set('type', this.router.url.includes('buy') ? '1' : '2');
+    const optionalParams = {
+        search: this.search,
+        maxPrice: this.maxPrice,
+        noOfBeds: this.beds,
+        noOfBaths: this.baths,
+        type: this.type,
+    };
 
-    this.addParamIfExists(urlParams, 'search', this.search);
-    this.addParamIfExists(urlParams, 'maxPrice', this.maxPrice);
-    this.addParamIfExists(urlParams, 'noOfBeds', this.beds);
-    this.addParamIfExists(urlParams, 'noOfBaths', this.baths);
-    this.addParamIfExists(urlParams, 'type', this.type);
+    for (const [key, value] of Object.entries(optionalParams)) {
+        if (value !== undefined && value !== null) {
+            urlParams.set(key, String(value));
+        }
+    }
 
     return urlParams;
-  }
+}
 
   private addParamIfExists(params: URLSearchParams, key: string, value: any): void {
     if (value !== null && value !== undefined) {
@@ -188,7 +196,7 @@ export class ListingPageComponent implements OnInit {
     }
   }
 
-  private handleResponse(response: any, loadMore: boolean, type: string): void {
+  private handleResponse(response: any, loadMore: boolean, type: string, mainResponse:any): void {
     if (response) {
       const newProperties = response || [];
       if (loadMore) {
@@ -209,11 +217,10 @@ export class ListingPageComponent implements OnInit {
         this.sorting();
       }
 
-      this.noData = response?.model?.properties?.length === 0;
-
-      if (response?.model?.totalResults) {
-        this.loadMore = this.cards?.length < response?.model?.totalResults;
-      }
+      this.noData = mainResponse?.properties?.length === 0;
+      this.loadMore = this.cards?.length < mainResponse?.totalResults;
+      console.log(loadMore,this.cards?.length,mainResponse,mainResponse?.totalResults);
+      
     } else {
       if (!loadMore) {
         this.noDataError();
@@ -322,7 +329,7 @@ export class ListingPageComponent implements OnInit {
         }),
         takeUntil(this.destroy$),
       )
-      .subscribe((response: any) => this.handleResponse(response?.model?.forums, loadMore, 'communities'),
+      .subscribe((response: any) => this.handleResponse(response?.model?.forums, loadMore, 'communities',response?.model),
         (err: any) => this.handleError(loadMore))
   }
 }

@@ -68,17 +68,20 @@ export class PropertyCardComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  ngOnInit() {}
+  ngOnInit() {
+  }
   openPopup(card: any): void {
-    // this.dialog?.open(PopupComponent, {
-    //   height: '650px',
-    //   width: '98%',
-    //   data: { card: card }
-    // });
     this.dialog?.open(ContactPopupComponent, {
       height: '85%',
       width: window.innerWidth > 1024 ? '28%' : '100%',
       data: { type: 'property', id: this.card?.id },
+    });
+  }
+  naviagteThroughPopup(card: any) {
+    this.dialog?.open(PopupComponent, {
+      height: '650px',
+      width: '98%',
+      data: { card: card },
     });
   }
 
@@ -95,20 +98,20 @@ export class PropertyCardComponent {
       unit: this.card?.unit,
       email: this.userDetails.email,
       address: {
-        address:this.card?.location,
-        city:this.card?.city,
-        state:this.card?.state,
-        country:this.card?.country,
-        zipCode:this.card?.zipCode,
-        street:this.card?.street,
+        address: this.card?.location,
+        city: this.card?.city,
+        state: this.card?.state,
+        country: this.card?.country,
+        zipCode: this.card?.zipCode,
+        street: this.card?.street,
       },
       latLng: { lat: this.card?.latitude, lng: this.card?.longitude },
-      active:'rent',
-      getData:true,
-      ...this.card
+      active: 'rent',
+      getData: true,
+      ...this.card,
     };
     this.router.navigate(['/rent-add-property'], {
-      queryParams: { data: JSON.stringify(data)  },
+      queryParams: { data: JSON.stringify(data) },
     });
   }
   routeToContact(card: any) {

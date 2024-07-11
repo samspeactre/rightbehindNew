@@ -1,10 +1,3 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -24,17 +17,20 @@ import { MatSelect } from '@angular/material/select';
 
 import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
-import { Subject, finalize, takeUntil } from 'rxjs';
+import { finalize, Subject, takeUntil } from 'rxjs';
 import { assetUrl, HelperService, types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { MapComponent } from '../../SharedComponents/map/map.component';
+import { PopupFeaturedComponent } from '../../SharedComponents/popupFeatured/popupFeatured.component';
 import { SharedModule } from '../../TsExtras/shared.module';
+import Swal from 'sweetalert2';
 
 @Component({
   standalone: true,
@@ -61,26 +57,6 @@ import { SharedModule } from '../../TsExtras/shared.module';
   selector: 'app-rent-property-page',
   templateUrl: './rent-property-page.component.html',
   styleUrls: ['./rent-property-page.component.scss'],
-  animations: [
-    trigger('fadeInOut', [
-      state(
-        'void',
-        style({
-          opacity: 0,
-          height: '0px',
-          overflow: 'hidden',
-        })
-      ),
-      state(
-        '*',
-        style({
-          opacity: 1,
-          height: '*',
-        })
-      ),
-      transition('void <=> *', animate('300ms ease-in-out')),
-    ]),
-  ],
 })
 export class RentPropertyPageComponent implements OnInit {
   previousData: any;
@@ -194,7 +170,8 @@ export class RentPropertyPageComponent implements OnInit {
     public helper: HelperService,
     private location: Location,
     private http: HttpService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.activatedRoute.queryParams.subscribe(async (response: any) => {
       if (!response?.data) {
@@ -240,7 +217,6 @@ export class RentPropertyPageComponent implements OnInit {
                     true
                   );
                 });
-                
               },
               (err) => {
                 this.location.back();
@@ -366,11 +342,17 @@ export class RentPropertyPageComponent implements OnInit {
       .loaderPost('Property/create', formData, true)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
-        if (this.previousData?.active == 'rent') {
-          this.router.navigateByUrl('/rent');
-        } else {
-          this.router.navigateByUrl('/buy');
-        }
+        // if (this.previousData?.newData) {
+        //   this.router.navigateByUrl('/dashboard/my-listings');
+        // } else {
+          
+        // }
+        this.fireSwal()
+        // if (this.previousData?.active == 'rent') {
+        //   this.router.navigateByUrl('/rent');
+        // } else {
+        //   this.router.navigateByUrl('/buy');
+        // }
       });
   }
   addFloorPlan(): void {
@@ -646,7 +628,9 @@ export class RentPropertyPageComponent implements OnInit {
         });
       }
       if (value.planimage) {
-        (floorPlanGroup.get('FloorPlanImage') as FormArray).push(this.fb.control(value.planimage));
+        (floorPlanGroup.get('FloorPlanImage') as FormArray).push(
+          this.fb.control(value.planimage)
+        );
       }
 
       return floorPlanGroup;
@@ -667,5 +651,41 @@ export class RentPropertyPageComponent implements OnInit {
 
   formatDate(dateString: string): string {
     return dateString.split('T')[0];
+  }
+
+  openFeatured() {
+    if (this.previousData?.newData) {
+      this.onSubmit();
+    } else {
+      this.onSubmit();
+    }
+  }
+  showFeatured(){
+    const dialogRef = this.dialog.open(PopupFeaturedComponent, {
+      height: '97%',
+      width: window.innerWidth > 1024 ? '50%' : '100%',
+      data: this.previousData,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.data) {
+        this.router.navigateByUrl('/rent');
+      }
+    });
+  }
+  fireSwal() {
+    Swal.fire({
+      text: 'Your Property has been uploaded successfully!',
+      icon: 'success',
+      confirmButtonText: 'Feature your property',
+      showCancelButton: true,
+      cancelButtonText: 'Skip',
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.showFeatured();
+      }
+      else{
+        this.router.navigateByUrl('/dashboard/my-listings')
+      }
+    });
   }
 }

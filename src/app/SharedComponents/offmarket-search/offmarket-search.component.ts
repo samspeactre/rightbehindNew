@@ -51,7 +51,7 @@ export class OffmarketSearchComponent {
   }
 
   openSellPopup(type: string): void {
-    let dialogRef = this.dialog.open(LoginPopupComponent, {
+    this.dialog.open(LoginPopupComponent, {
       height: '85%',
       width: window.innerWidth > 1024 ? '27%' : '100%',
     });

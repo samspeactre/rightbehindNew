@@ -20,8 +20,10 @@
   </div>
   <div class="property-content">
     <div class="p-2">
-      <div class="d-flex justify-content-between align-items-center card-property-heading">
-        <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }" (click)="navigateAndClose()">
+      <div
+        class="d-flex justify-content-between align-items-center card-property-heading"
+      >
+        <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }" (click)="page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()">
           {{ card?.title || "N/A" }}
         </h6>
       </div>
@@ -66,7 +68,9 @@
       } @if(page != 'mylisting'){
       <button class="whitBtn rounded-0 w-50 bold text-start" [ngClass]="{
           'wow fadeInDown': animation
-        }" (click)="navigateAndClose()">
+        }"
+        (click)="page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()"
+      >
         {{ card.price || 0 | currency : "USD" }}
       </button>
       <button class="btnPrimary rounded-5 py-2 w-50" [ngClass]="{ 'wow fadeInDown': animation }"

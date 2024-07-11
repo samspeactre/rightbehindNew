@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -48,7 +49,7 @@ export class RentPopupComponent {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     propertyType: ['', Validators.required],
-    unit: [''],
+    unit: [],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     address: ['', Validators.required],
@@ -64,9 +65,10 @@ export class RentPopupComponent {
     private auth: AuthService,
     private http: HttpService,
     private store: Store,
-
+    
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.active = data;
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -82,10 +84,12 @@ export class RentPopupComponent {
             lastName: user?.fullName.split(' ')[1],
             email: user?.email,
           });
+        }
+        if(this.active == 'sell' || user){
+          this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
           this.propertyForm.removeControl('password');
         }
       });
-    this.active = data;
   }
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -131,7 +135,20 @@ export class RentPopupComponent {
           });
       }
     } else {
-      this.http.loaderPost('', {}, true);
+      const data = {
+        propertyType: 1,
+        firstName: this.propertyForm.controls['firstName'].value,
+        lastName: this.propertyForm.controls['lastName'].value,
+        email: this.propertyForm.controls['email'].value,
+        contactNo: this.propertyForm.controls['contactNo'].value,
+        units: Number(this.propertyForm.controls['unit'].value),
+        address: this.propertyForm.controls['address'].value?.address,
+        latitude: JSON.stringify(this.propertyForm.controls['latLng'].value?.lat),
+        longitude: JSON.stringify(this.propertyForm.controls['latLng'].value?.lng),
+      };
+      this.http.loaderPost('sellinquiry/create', data, true).subscribe((response)=>{
+        this.dialogRef.close();
+      });
     }
   }
   fireSwal() {

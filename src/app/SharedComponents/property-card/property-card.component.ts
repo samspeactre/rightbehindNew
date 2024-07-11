@@ -79,7 +79,7 @@ export class PropertyCardComponent {
   }
   naviagteThroughPopup(card: any) {
     this.dialog?.open(PopupComponent, {
-      height: '650px',
+      height: '85%',
       width: '98%',
       data: { card: card },
     });

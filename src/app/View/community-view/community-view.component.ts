@@ -249,6 +249,11 @@ export class CommunityViewComponent {
     this.http
       .loaderGet(`forum/${this.id}/user/remove`, true)
       .subscribe((response) => {
+        this.router.navigate([], {
+          relativeTo: this.activatedRoute,
+          queryParams: { userExistInForum: false },
+          queryParamsHandling: 'merge',
+        });
         this.join = false;
       });
   }
@@ -272,12 +277,12 @@ export class CommunityViewComponent {
     this.http
       .loaderPost(`forum/${this.id}/user`, {}, true)
       .subscribe((response) => {
-        this.join = true;
         this.router.navigate([], {
           relativeTo: this.activatedRoute,
           queryParams: { userExistInForum: true },
           queryParamsHandling: 'merge',
         });
+        this.join = true;
       });
   }
   react(react: boolean, postId: number) {

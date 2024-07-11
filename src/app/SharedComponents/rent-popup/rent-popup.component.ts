@@ -85,10 +85,14 @@ export class RentPopupComponent {
             email: user?.email,
           });
         }
-        if(this.active == 'sell' || user){
+        if(this.active == 'sell'){
           this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
+        }
+        if(user || this.active == 'sell'){
           this.propertyForm.removeControl('password');
         }
+        console.log(this.propertyForm.controls,this.active);
+        
       });
   }
   ngOnDestroy(): void {

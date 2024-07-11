@@ -77,7 +77,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   openRegisterPopup(): void {
     this.dialogRef.close();
     this.dialog.open(RegisterPopupComponent, {
-      height: '100%',
+      height: '600px',
       width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }

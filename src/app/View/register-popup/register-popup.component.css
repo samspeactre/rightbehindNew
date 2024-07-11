@@ -8,10 +8,16 @@ h4 {
     font-family: 'bold';
 }
 
+p{
+    text-align: center;
+    font-size: 12px;
+    font-family: 'reg';
+}
+
 .logo {
     width: 150px;
     margin: auto;
-    margin-top: 1.5vw;
+    margin-top: 8px;
 }
 
 .logo img {

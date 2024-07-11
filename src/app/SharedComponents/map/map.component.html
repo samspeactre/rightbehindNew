@@ -9,7 +9,7 @@
     </div>
 </div>
 }
-<google-map [height]="height  || '200px'" width="100%" [center]="center" [zoom]="zoom"
+<google-map [height]="height  || '180px'" width="100%" [center]="center" [zoom]="zoom"
 class="position-relative"
     (mapClick)="addMarker && addMarkerPoint($event);">
     @for (position of markerPositions; let i = $index; track position) {

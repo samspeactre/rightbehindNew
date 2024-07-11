@@ -218,7 +218,7 @@
             <div class="checkbox-portion row">
               @if(amenityCategories?.length){
               <h2 id="amenities">Amenities</h2>
-              <div class="col-lg-12" >
+              <div class="col-lg-12">
                 <p class="text-start mb-0">Category</p>
                 <ng-select formControlName="AmentiyCategory" [searchable]="false">
                   @for (item of amenityCategories; track $index) {
@@ -237,8 +237,8 @@
               track amenity) {
               <div class="col-lg-3">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" [checked]="propertyAddForm.get('Amenities').value?.includes(amenity?.id)" [id]="'amenity'+amenity?.id"
-                    (change)="checkboxSelect($event ,amenity?.id, 'Amenities')" />
+                  <input type="checkbox" [checked]="propertyAddForm.get('Amenities').value?.includes(amenity?.id)"
+                    [id]="'amenity'+amenity?.id" (change)="checkboxSelect($event ,amenity?.id, 'Amenities')" />
                   <label [for]="'amenity'+amenity?.id">{{ amenity?.amenityName }}</label>
                 </div>
               </div>
@@ -254,8 +254,8 @@
               track utility) {
               <div class="col-lg-3">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input type="checkbox" [checked]="propertyAddForm.get('Utilities').value?.includes(utility?.id)" [id]="'utility'+utility?.id"
-                    (change)="checkboxSelect($event ,utility?.id,'Utilities')" />
+                  <input type="checkbox" [checked]="propertyAddForm.get('Utilities').value?.includes(utility?.id)"
+                    [id]="'utility'+utility?.id" (change)="checkboxSelect($event ,utility?.id,'Utilities')" />
                   <label [for]="'utility'+utility?.id">{{ utility?.utilityName }}</label>
                 </div>
               </div>
@@ -283,27 +283,16 @@
                 </div>
                 <div class="col-lg-12 special-tags">Special Offers:</div>
                 @for (value of radioValues; track $index) {
-                  <div class="col-lg-4 my-3">
-                    <div class="dCenter check-box justify-content-start gap-2">
-                      <input 
-                        type="radio" 
-                        [id]="value" 
-                        formControlName="Tag" 
-                        [value]="value"
-                      />
-                      <label [for]="value">{{ value }}</label>
-                    </div>
+                <div class="col-lg-4 my-3">
+                  <div class="dCenter check-box justify-content-start gap-2">
+                    <input type="radio" [id]="value" formControlName="Tag" [value]="value" />
+                    <label [for]="value">{{ value }}</label>
                   </div>
+                </div>
                 }
                 <div class="col-lg-4">
                   <p class="text-start mb-0">Custom Offer</p>
-                  <input 
-                    placeholder="Custom Offer"
-                    formControlName="Tag" 
-                    type="text" 
-                    appCharacterLimit 
-                    [limit]="10" 
-                  />
+                  <input placeholder="Custom Offer" formControlName="Tag" type="text" appCharacterLimit [limit]="10" />
                 </div>
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Description</p>
@@ -408,8 +397,9 @@
 
                 <div class="row align-items-center mt-3">
                   <div class="col-lg-8">
-                    <button [disabled]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10" class="upload-imgs"
-                      (click)="fileInput.click()">
+                    <button
+                      [disabled]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10"
+                      class="upload-imgs" (click)="fileInput.click()">
                       <span>Browse Photo</span>
                     </button>
                   </div>
@@ -603,8 +593,7 @@
                             <mat-icon>cloud_upload</mat-icon>
                             Upload Photos
                           </button>
-                          <input type="file" #fileInput
-                            [readonly]="plan.get('FloorPlanImage').value.length == 10"
+                          <input type="file" #fileInput [readonly]="plan.get('FloorPlanImage').value.length == 10"
                             (change)="onFloorPlanImageSelected($event, i)" style="display: none" />
                         </div>
                       </div>
@@ -687,7 +676,7 @@
               [disabled]="!propertyAddForm.get('Terms').value" (click)="openFeatured()">
               Add Property
             </button> -->
-            <button class="btnPrimary wow fadeInDown my-3"(click)="showFeatured()">
+            <button class="btnPrimary wow fadeInDown my-3" (click)="showFeatured()">
               Add Property
             </button>
           </form>

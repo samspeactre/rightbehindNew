@@ -59,7 +59,7 @@ export class OffMarketComponent {
 
   openLoginPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '85%',
+      height: '530px',
       width: window.innerWidth > 1024 ? '27%' : '100%',
       data: 'any'
     });

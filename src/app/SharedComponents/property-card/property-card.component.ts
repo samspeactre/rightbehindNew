@@ -17,6 +17,7 @@ import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { ResizeService } from '../../Services/resize.service';
+import { PopupComponent } from '../popup/popup.component';
 @Component({
   standalone: true,
   imports: [

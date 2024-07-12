@@ -69,14 +69,14 @@ export class CommunityViewComponent {
     private store: Store,
     public dialog: MatDialog
   ) {
-    this.activatedRoute.queryParams.subscribe((param: any) => {      
+    this.activatedRoute.queryParams.subscribe((param: any) => {
       this.title = param?.title;
       this.id = param?.id;
       this.imagePath = param?.imagePath;
       this.city = param?.city;
       this.join =
         param?.userExistInForum && JSON.parse(param?.userExistInForum);
-      console.log(param,this.join);
+      console.log(param, this.join);
       this.getInquiry();
     });
     this.user$
@@ -144,8 +144,6 @@ export class CommunityViewComponent {
       )
       .subscribe((response) => {
         this.inquiry = response?.model;
-        this.join = response?.model?.userExistInForum;
-      console.log(response,this.join);
       });
   }
   getPosts() {

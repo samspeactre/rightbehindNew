@@ -91,20 +91,22 @@ export class RentPopupComponent {
             new FormControl('', Validators.required)
           );
         }
+        else{
+          this.propertyForm.get('unit').valueChanges.subscribe((value:any) => {
+            if (Number(value) > 20) {
+              if (!this.propertyForm.contains('contactNo')) {
+                this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
+              }
+            } else {
+              if (this.propertyForm.contains('contactNo')) {
+                this.propertyForm.removeControl('contactNo');
+              }
+            }
+          });
+        }
         if (user || this.active == 'sell') {
           this.propertyForm.removeControl('password');
         }
-        this.propertyForm.get('unit').valueChanges.subscribe((value:any) => {
-          if (Number(value) > 20) {
-            if (!this.propertyForm.contains('contactNo')) {
-              this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
-            }
-          } else {
-            if (this.propertyForm.contains('contactNo')) {
-              this.propertyForm.removeControl('contactNo');
-            }
-          }
-        });
       });
   }
   ngOnDestroy(): void {

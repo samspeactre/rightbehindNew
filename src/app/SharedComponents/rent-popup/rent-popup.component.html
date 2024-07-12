@@ -26,7 +26,7 @@
       <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
         placeholder="Enter Unit"></app-input>
     </div>
-    <div [ngClass]="[user ? 'full-lenght' : 'half-input']">
+    <div [ngClass]="[user || active == 'sell' ? 'full-lenght' : 'half-input']">
       <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email" label="Email"
         placeholder="Enter Your Email Address"></app-input>
     </div>
@@ -35,7 +35,8 @@
       <app-input classes="w-100 mb-2" type="password" [password]="true" [form]="propertyForm" control="password"
         label="Password" placeholder="Enter your Password*"></app-input>
     </div>
-    } @if(active == 'sell' || checkUnitValidator()){
+    } 
+    @if(active == 'sell' || checkUnitValidator()){
     <div class="full-lenght">
       <app-input
         classes="w-100 mb-2"

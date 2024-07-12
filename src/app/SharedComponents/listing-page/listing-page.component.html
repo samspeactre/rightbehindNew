@@ -99,14 +99,14 @@
           }
           @else {
             <div class="dCenter justify-content-between">
-              <p class="my-3">{{cards?.length}}
+              <h5 class="my-3">{{cards?.length}}
                 @if(url == '/communities'){
                 Communities
                 }@else{
                 Properties
                 }
                 Found
-              </p>
+              </h5>
               @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
                 title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
                 <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>

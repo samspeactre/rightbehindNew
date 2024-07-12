@@ -1,121 +1,129 @@
 .cstmsContainer {
-    .cstmInputBox {
-      background-color: #ffffff;
-      border-radius: 0;
-      padding: 1.3rem 1rem 0.3rem 1rem;
-      position: relative;
+  .cstmInputBox {
+    background-color: #ffffff;
+    border-radius: 0;
+    padding: 1rem 1rem .4rem;
+    position: relative;
+    border: none;
+    background-color: #F5F5F5;
+    // border-bottom: 2px solid #0160c9;
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.5s all ease-in-out;
+    border-radius: 0.5vw;
+
+    input,
+    textarea {
+      padding-left: 0;
+      padding-right: 2rem;
+      background: none;
       border: none;
-      border-bottom: 2px solid #0160c9;
-      transition: 0.5s all ease-in-out;
-      box-shadow: 0px 8px 20px rgba(161, 161, 161, 0.3);
-      border-top-left-radius: 0.5vw;
-      border-top-right-radius: 0.5vw;
-  
-      input,
-      textarea {
-        padding-left: 0;
-        padding-right: 2rem;
-        background: none;
-        border: none;
-        outline: none;
-        box-shadow: none;
-        width: 100%;
-        position: relative;
-        z-index: 10;
-  
-        &::placeholder {
-          font-size: 10px;
-        }
-      }
-  
-      textarea {
-        width: 97%;
-      }
-      fa-icon {
-        color: #5581f2;
-        position: absolute;
-        bottom: 0;
-        transform: translateY(-50%);
-        transition: 0.5s all ease-in-out;
-        z-index: 12;
-      }
-      label {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 1rem;
-        font-size: 12px;
-        transition: 0.5s all ease-in-out;
-        z-index: 0;
-      }
-  
-      .circle {
-        right: 10px;
-      }
-  
-      .eye {
-        right: 10px;
-      }
-  
-      input::placeholder,
-      textarea::placeholder {
-        opacity: 0;
-        transition: 0.5s all ease-in-out;
-      }
-  
-      input.show-placeholder::placeholder,
-      textarea.show-placeholder::placeholder {
-        opacity: 1;
-      }
-  
-      label.focused {
-        top: 12px;
+      outline: none;
+      box-shadow: none;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+
+      &::placeholder {
         font-size: 10px;
-        color: rgb(47, 47, 47);
-      }
-  
-      &.error {
-        border-bottom: 2px solid #ff000054;
       }
     }
-  
-    // .cstmInputBox:hover {
-    //   background-color: #e6e6e6e8;
-    // }
-  
-    // .FocusedBackground.cstmInputBox {
-    //   background-color: #e6e6e6e8;
-    // }
+
+    textarea {
+      width: 97%;
+    }
+
+    fa-icon {
+      color: #5581f2;
+      position: absolute;
+      bottom: 0;
+      transform: translateY(-50%);
+      transition: 0.5s all ease-in-out;
+      z-index: 12;
+    }
+
+    label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 1rem;
+      font-size: 12px;
+      transition: 0.5s all ease-in-out;
+      z-index: 0;
+    }
+
+    .circle {
+      right: 10px;
+    }
+
+    .eye {
+      right: 10px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 0;
+      transition: 0.5s all ease-in-out;
+    }
+
+    input.show-placeholder::placeholder,
+    textarea.show-placeholder::placeholder {
+      opacity: 1;
+    }
+
+    label.focused {
+      top: 12px;
+      font-size: 10px;
+      color: rgb(47, 47, 47);
+    }
+
+    &.error {
+      border-bottom: 2px solid #ff000054;
+    }
   }
-  
-  
-  :host ::ng-deep {
-    .cstmNg {
-      padding-bottom: 0;
-      margin-top: 0;
-      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+
+  // .cstmInputBox:hover {
+  //   background-color: #e6e6e6e8;
+  // }
+
+  // .FocusedBackground.cstmInputBox {
+  //   background-color: #e6e6e6e8;
+  // }
+}
+
+
+:host ::ng-deep {
+  .cstmNg {
+    padding-bottom: 0;
+    margin-top: 0;
+
+  }
+
+  .ng-select .ng-select-container {
+    padding: 0 0.5rem 0 1rem;
+    background-color: #F5F5F5;
+
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    &:after {
+      // border-bottom: 2px solid #0160c9;
+      background-color: #F5F5F5;
+      // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
     }
-    .ng-select .ng-select-container{
-      padding: 0 0rem 0 1rem;
-      &:after {
-      border-bottom: 2px solid #0160c9;
-    }}
   }
-  
-  small {
-    text-transform: capitalize;
-    font-size: 12px;
-    color: rgb(228, 0, 0);
+}
+
+small {
+  text-transform: capitalize;
+  font-size: 12px;
+  color: rgb(228, 0, 0);
+}
+
+textarea {
+  resize: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cstmInputBox .eyeRight {
+    right: 15px;
   }
-  
-  textarea {
-    resize: none;
-  }
-  
-  @media only screen and (max-width: 1024px) {
-    .cstmInputBox .eyeRight {
-      right: 15px;
-    }
-  }
-  
+}

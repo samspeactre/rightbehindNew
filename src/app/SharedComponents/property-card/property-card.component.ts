@@ -12,13 +12,12 @@ import {
   faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupComponent } from '../popup/popup.component';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { ResizeService } from '../../Services/resize.service';
-// import { PreviewComponent } from '../../view/preview/preview.component';
+import { PopupComponent } from '../popup/popup.component';
 @Component({
   standalone: true,
   imports: [

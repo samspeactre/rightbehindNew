@@ -18,13 +18,15 @@
     .ngs-select {
         background-color: white;
         border-radius: 100px;
-        padding: 5px 15px;
+        padding: 0px 15px;
     }
     .ng-select {
         padding-bottom: 0 !important;
     }
     .ng-select .ng-select-container:after{
         content: unset !important;
+        min-height: 51.5px;
+        padding-bottom: 6px;
     }
 }
 

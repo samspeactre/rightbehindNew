@@ -342,6 +342,10 @@ export class RentPropertyPageComponent implements OnInit {
       .loaderPost('Property/create', formData, true)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
+        this.previousData = {
+          ...this.previousData,
+          id:response?.model?.id
+        }
         // if (this.previousData?.newData) {
         //   this.router.navigateByUrl('/dashboard/my-listings');
         // } else {
@@ -664,7 +668,7 @@ export class RentPropertyPageComponent implements OnInit {
     const dialogRef = this.dialog.open(PopupFeaturedComponent, {
       height: '97%',
       width: window.innerWidth > 1024 ? '50%' : '100%',
-      data: this.previousData,
+      data: this.previousData?.id,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

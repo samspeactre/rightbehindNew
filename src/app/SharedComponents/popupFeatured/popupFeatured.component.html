@@ -31,7 +31,7 @@
         @for (item of packages; let i = $index; track item) {
         <div class="cstmCheck w-100 d-flex justify-content-between" [ngClass]="{'skeleton' : !item?.name}">
           @if(item?.name){
-            <label [for]="i" class="w-75">
+            <label [for]="item?.id" class="w-75">
               <div class="d-flex w-100 justify-content-between">
                 <div class="firstCol">
                   <p class="text-dark mb-0 bold">{{ item?.name }}</p>
@@ -44,7 +44,7 @@
                 </div>
               </div>
             </label>
-            <input type="checkbox" class="ms-auto" [id]="i" />
+            <input type="checkbox" class="ms-auto" [id]="item?.id" (change)="onCheckboxChange(item)" />
           }
         </div>
         }

@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  Inject,
-  OnInit
-} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -23,43 +19,87 @@ import { MapComponent } from '../map/map.component';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, MapComponent, FontAwesomeModule, CommonModule, MatDialogContent, MatButtonModule, RouterModule,FontAwesomeModule, NgbTooltipModule],
+  imports: [
+    MatIconModule,
+    MapComponent,
+    FontAwesomeModule,
+    CommonModule,
+    MatDialogContent,
+    MatButtonModule,
+    RouterModule,
+    FontAwesomeModule,
+    NgbTooltipModule,
+  ],
   selector: 'app-popup-featured',
   templateUrl: './popupFeatured.component.html',
   styleUrl: './popupFeatured.component.scss',
 })
 export class PopupFeaturedComponent implements OnInit {
   propertyData: any;
-  faCheck=faCheckCircle
+  faCheck = faCheckCircle;
   private destroy$ = new Subject<void>();
-  packages:any=[1,2]
+  packages: any = [1, 2];
+  selectedIds:any = { featuredId: null, promotionId: null };
   constructor(
     public dialogRef: MatDialogRef<PopupFeaturedComponent>,
     private router: Router,
     private store: Store,
     private http: HttpService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public helper:HelperService
+    public helper: HelperService
   ) {
-    this.propertyData = data?.card
+    this.propertyData = data;
+    console.log(this.propertyData);
+    
   }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
   ngOnInit() {
-    this.getFeaturedList()
+    this.getFeaturedList();
   }
 
   navigateAndClose() {
-    this.dialogRef.close({ data:true });
+    this.dialogRef.close({ data: true });
   }
-  getFeaturedList(){
-    this.http.loaderGet('ProductPrice/prices/51',true).subscribe((response)=>{
-      this.packages = response?.modelList
-    })
+  getFeaturedList() {
+    this.http
+      .loaderGet(`ProductPrice/prices/${this.propertyData}`, true)
+      .subscribe((response) => {
+        this.packages = response?.modelList;
+      });
   }
-  submit(){
 
+  onCheckboxChange(item: any): void {
+    const checkbox = document.getElementById(item.id.toString()) as HTMLInputElement;
+    if (checkbox.checked) {
+      if (item.name === 'Featured') {
+        this.selectedIds.featuredId = item.id;
+      } else if (item.name === 'Promotion') {
+        this.selectedIds.promotionId = item.id;
+      }
+    } else {
+      if (item.name === 'Featured') {
+        this.selectedIds.featuredId = null;
+      } else if (item.name === 'Promotion') {
+        this.selectedIds.promotionId = null;
+      }
+    }
+  }
+  submit() {
+    const { featuredId, promotionId } = this.selectedIds;
+    let url = `Payment/checkout/${this.propertyData}`;
+    if (featuredId) {
+      url += `/${featuredId}`;
+    }
+    if (promotionId) {
+      url += `/${promotionId}`;
+    }
+
+    this.http.loaderGet(url, true).subscribe((response) => {
+      const url = response?.model?.checkoutUrl;
+      window.open(url,'_parent')
+    });
   }
 }

@@ -1,0 +1,36 @@
+.blueBg {
+  background-color: var(--auth-pages);
+}
+
+.fixedHeight {
+  height: 95vh;
+}
+
+.logo {
+  width: 50%;
+  height: 30px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.cstmContainer {
+  margin-left: auto;
+  margin-right: 12px;
+  width: 95vw;
+}
+
+@media only screen and (min-width:1441px) {
+  .cstmContainer {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-height: 821px) {
+  .fixedHeight {
+    height: 820px;
+    min-height: 820px;
+  }
+}

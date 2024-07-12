@@ -11,7 +11,7 @@ import { selectUser } from '../Ngrx/data.reducer';
 @Injectable({
   providedIn: 'root',
 })
-export class InnerGuard implements CanActivate {
+export class InnerAdminGuard implements CanActivate {
   user$ = this.store.select(selectUser);
   user: any;
   constructor(private router: Router, private store: Store) {
@@ -24,7 +24,7 @@ export class InnerGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (!this.user || this.user?.userType === 'SuperAdmin') {
+    if (!this.user || this.user?.userType !== 'SuperAdmin') {
       this.router.navigateByUrl('/');
       return false;
     }

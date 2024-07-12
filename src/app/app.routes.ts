@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { InnerGuard } from './Guards/inner.gaurd';
 import { LayoutComponent } from './SharedComponents/layout/layout.component';
+import { InnerAdminGuard } from './Guards/innerAdmin.gaurd';
 
 export const routes: Routes = [
   {
@@ -131,6 +132,15 @@ export const routes: Routes = [
     data: { footer: false, header: false },
     loadChildren: () =>
       import('./view/dashboard/dashboardroute').then(
+        (m) => m.Dashboard_Routes
+      ),
+  },
+  {
+    path: 'admin-dashboard',
+    canActivate: [InnerAdminGuard],
+    data: { footer: false, header: false },
+    loadChildren: () =>
+      import('./view/AdminDashboard/adminDashboardroute').then(
         (m) => m.Dashboard_Routes
       ),
   },

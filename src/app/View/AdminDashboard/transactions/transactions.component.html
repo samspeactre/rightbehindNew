@@ -1,25 +1,50 @@
 <div class="container">
     <div class="row align-items-end">
-        <div class="col-lg-12">
-            <h6 class="bold mb-0">Communities</h6>
+      <div class="col-lg-12">
+        <h6 class="bold mb-0">Transactions</h6>
+      </div>
+      <div class="col-lg-12 mt-3">
+        <app-input
+          type="text"
+          classes="w-100"
+          [form]="searchForm"
+          control="search"
+          label="Search"
+          placeholder="Search Here..."
+        ></app-input>
+      </div>
+      <div class="col-lg-12 my-3">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of inquiries | paginate: { itemsPerPage: itemsPerPage, currentPage:
+              p, totalItems:totalItems }; track $index) {
+              <tr>
+                <th scope="row">{{ item?.id }}</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
-        <div class="col-lg-10 col-8 mt-3">
-            <app-input type="text" classes="w-100" [form]="searchForm" control="search" label="Search"
-                placeholder="Search Here..."></app-input>
+        <div class="d-flex w-100 justify-content-end">
+          <pagination-controls 
+          (pageChange)="onPageChange($event)">
+        </pagination-controls>
         </div>
-        <div class="col-lg-2 col-4 mt-3 d-flex justify-content-end align-items-baseline">
-            <button class="btnPrimary smallFont py-1 rounded-1 w-100" (click)="openPopup()">
-                <fa-icon [icon]="faPlus"></fa-icon>
-                <p class="mb-0 smallFont">New Community</p>
-            </button>
-        </div>
-        @for (item of inquiries; track $index) {
-        <div class="col-lg-3 my-3">
-            <app-community-card [animation]="false" [item]="item" [loader]="false"></app-community-card>
-        </div>
-        }
-        @if(!inquiries?.length){
-            <p class="text-center my-3">No Community Found</p>
-        }
+      </div>
     </div>
-</div>
+  </div>
+  

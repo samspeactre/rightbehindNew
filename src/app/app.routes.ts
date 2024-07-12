@@ -137,7 +137,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin-dashboard',
-    canActivate: [InnerAdminGuard],
+    // canActivate: [InnerAdminGuard],
     data: { footer: false, header: false },
     loadChildren: () =>
       import('./view/AdminDashboard/adminDashboardroute').then(

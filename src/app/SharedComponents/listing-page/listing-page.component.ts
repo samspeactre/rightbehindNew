@@ -54,14 +54,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgSelectModule,
     MapDrawComponent,
     CommunityCardComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.scss',
 })
 export class ListingPageComponent implements OnInit {
-  cards: any = [1, 2, 3]
+  cards: any = [1, 2, 3];
   zoom = 15;
   pageType!: string;
   private destroy$ = new Subject<void>();
@@ -90,7 +90,7 @@ export class ListingPageComponent implements OnInit {
     'Bathrooms: Low to High',
     'Bathrooms: High to Low',
     'Date: Early to Late',
-    'Date: Late to Early'
+    'Date: Late to Early',
   ];
   type: any = null;
   maxPrice: any = null;
@@ -102,7 +102,7 @@ export class ListingPageComponent implements OnInit {
     lng: 150.4826715,
   };
   url!: string;
-  screenHeight: number = window.innerHeight
+  screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
   constructor(
@@ -116,29 +116,26 @@ export class ListingPageComponent implements OnInit {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
     // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
     this.url = this.router.url;
-    this.showMap = true
+    this.showMap = true;
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
         if (params['search']) {
-          this.param = true
-        }
-        else {
-          this.param = false
+          this.param = true;
+        } else {
+          this.param = false;
         }
       }
       this.scrollToListing();
       if (this.url == '/communities') {
-        this.getInquiries(false)
-      }
-      else {
+        this.getInquiries(false);
+      } else {
         this.getProperties(false);
       }
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -152,7 +149,8 @@ export class ListingPageComponent implements OnInit {
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
 
-    this.http.loaderGet(Url, false, true, true, false)
+    this.http
+      .loaderGet(Url, false, true, true, false)
       .pipe(
         finalize(() => {
           this.loadMoreLoader = false;
@@ -161,42 +159,46 @@ export class ListingPageComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe(
-        (response: any) => this.handleResponse(response?.model?.properties, loadMore, 'properties', response?.model),
+        (response: any) =>
+          this.handleResponse(
+            response?.model?.properties,
+            loadMore,
+            'properties',
+            response?.model
+          ),
         (err: any) => this.handleError(loadMore)
       );
   }
 
   private buildUrlParams(): URLSearchParams {
     const urlParams = new URLSearchParams({
-        pageNo: String(this.pageNo),
-        pageSize: String(this.pageSize),
-        type: this.router.url.includes('buy') ? '1' : '2',
+      pageNo: String(this.pageNo),
+      pageSize: String(this.pageSize),
+      type: this.router.url.includes('buy') ? '1' : '2',
     });
 
     const optionalParams = {
-        search: this.search,
-        maxPrice: this.maxPrice,
-        noOfBeds: this.beds,
-        noOfBaths: this.baths,
-        type: this.type,
+      search: this.search,
+      maxPrice: this.maxPrice,
+      noOfBeds: this.beds,
+      noOfBaths: this.baths,
+      type: this.type,
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {
-        if (value !== undefined && value !== null) {
-            urlParams.set(key, String(value));
-        }
+      if (value !== undefined && value !== null) {
+        urlParams.set(key, String(value));
+      }
     }
 
     return urlParams;
-}
-
-  private addParamIfExists(params: URLSearchParams, key: string, value: any): void {
-    if (value !== null && value !== undefined) {
-      params.set(key, String(value));
-    }
   }
-
-  private handleResponse(response: any, loadMore: boolean, type: string, mainResponse:any): void {
+  private handleResponse(
+    response: any,
+    loadMore: boolean,
+    type: string,
+    mainResponse: any
+  ): void {
     if (response) {
       const newProperties = response || [];
       if (loadMore) {
@@ -207,20 +209,30 @@ export class ListingPageComponent implements OnInit {
       if (this.cards?.length) {
         this.latLngArray = this.cards.map((location: any) => ({
           lat: location.latitude,
-          lng: location.longitude
+          lng: location.longitude,
         }));
         if (type == 'properties') {
-          this.maxPriceArray = [...new Set(this.cards.map((data: any) => data.price ?? 0))].sort((a: any, b: any) => a - b);
-          this.bedsArray = [...new Set(this.cards.map((data: any) => data.noOfBed ?? 0))].sort((a: any, b: any) => a - b);
-          this.bathArray = [...new Set(this.cards.map((data: any) => data.noOfBath ?? 0))].sort((a: any, b: any) => a - b);
+          this.maxPriceArray = [
+            ...new Set(this.cards.map((data: any) => data.price ?? 0)),
+          ].sort((a: any, b: any) => a - b);
+          this.bedsArray = [
+            ...new Set(this.cards.map((data: any) => data.noOfBed ?? 0)),
+          ].sort((a: any, b: any) => a - b);
+          this.bathArray = [
+            ...new Set(this.cards.map((data: any) => data.noOfBath ?? 0)),
+          ].sort((a: any, b: any) => a - b);
         }
         this.sorting();
       }
 
       this.noData = mainResponse?.properties?.length === 0;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
-      console.log(loadMore,this.cards?.length,mainResponse,mainResponse?.totalResults);
-      
+      console.log(
+        loadMore,
+        this.cards?.length,
+        mainResponse,
+        mainResponse?.totalResults
+      );
     } else {
       if (!loadMore) {
         this.noDataError();
@@ -239,7 +251,10 @@ export class ListingPageComponent implements OnInit {
   }
   scrollToListing(): void {
     if (this.listing) {
-      this.listing?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.listing?.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
     }
   }
   loadMoreProperties(type: string) {
@@ -247,8 +262,7 @@ export class ListingPageComponent implements OnInit {
     this.loadMoreLoader = true;
     if (type == 'properties') {
       this.getProperties(true);
-    }
-    else {
+    } else {
       this.getInquiries(true);
     }
   }
@@ -256,9 +270,11 @@ export class ListingPageComponent implements OnInit {
   searchProperties(event: string) {
     this.search = event;
     if (event) {
-      this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent'], { queryParams: { search: event } });
-    }
-    else {
+      this.router.navigate(
+        [this.router.url.includes('buy') ? '/buy' : 'rent'],
+        { queryParams: { search: event } }
+      );
+    } else {
       this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent']);
     }
   }
@@ -278,22 +294,38 @@ export class ListingPageComponent implements OnInit {
         this.cards.sort((a: any, b: any) => (b.price || 0) - (a.price || 0));
         break;
       case 'Beds: Low to High':
-        this.cards.sort((a: any, b: any) => (a.noOfBed || 0) - (b.noOfBed || 0));
+        this.cards.sort(
+          (a: any, b: any) => (a.noOfBed || 0) - (b.noOfBed || 0)
+        );
         break;
       case 'Beds: High to Low':
-        this.cards.sort((a: any, b: any) => (b.noOfBed || 0) - (a.noOfBed || 0));
+        this.cards.sort(
+          (a: any, b: any) => (b.noOfBed || 0) - (a.noOfBed || 0)
+        );
         break;
       case 'Bathrooms: Low to High':
-        this.cards.sort((a: any, b: any) => (a.noOfBath || 0) - (b.noOfBath || 0));
+        this.cards.sort(
+          (a: any, b: any) => (a.noOfBath || 0) - (b.noOfBath || 0)
+        );
         break;
       case 'Bathrooms: High to Low':
-        this.cards.sort((a: any, b: any) => (b.noOfBath || 0) - (a.noOfBath || 0));
+        this.cards.sort(
+          (a: any, b: any) => (b.noOfBath || 0) - (a.noOfBath || 0)
+        );
         break;
       case 'Date: Early to Late':
-        this.cards.sort((a: any, b: any) => (new Date(a.createdAt).getTime() || 0) - (new Date(b.createdAt).getTime() || 0));
+        this.cards.sort(
+          (a: any, b: any) =>
+            (new Date(a.createdAt).getTime() || 0) -
+            (new Date(b.createdAt).getTime() || 0)
+        );
         break;
       case 'Date: Late to Early':
-        this.cards.sort((a: any, b: any) => (new Date(b.createdAt).getTime() || 0) - (new Date(a.createdAt).getTime() || 0));
+        this.cards.sort(
+          (a: any, b: any) =>
+            (new Date(b.createdAt).getTime() || 0) -
+            (new Date(a.createdAt).getTime() || 0)
+        );
         break;
       default:
         break;
@@ -304,15 +336,11 @@ export class ListingPageComponent implements OnInit {
     this.maxPrice = null;
     this.beds = null;
     this.baths = null;
-    this.sort = 'Date: Early to Late'
+    this.sort = 'Date: Early to Late';
     this.getProperties(false);
   }
   isResetDisabled(): boolean {
-    return (
-      !this.maxPrice &&
-      !this.beds &&
-      !this.baths
-    );
+    return !this.maxPrice && !this.beds && !this.baths;
   }
   getInquiries(loadMore: boolean) {
     if (!loadMore) {
@@ -321,15 +349,24 @@ export class ListingPageComponent implements OnInit {
     const urlParams = this.buildUrlParams();
     const Url = `Forum/get?${urlParams.toString()}`;
 
-    this.http.loaderGet(Url, false, true, true, false)
+    this.http
+      .loaderGet(Url, false, true, true, false)
       .pipe(
         finalize(() => {
           this.loadMoreLoader = false;
           this.loader = false;
         }),
-        takeUntil(this.destroy$),
+        takeUntil(this.destroy$)
       )
-      .subscribe((response: any) => this.handleResponse(response?.model?.forums, loadMore, 'communities',response?.model),
-        (err: any) => this.handleError(loadMore))
+      .subscribe(
+        (response: any) =>
+          this.handleResponse(
+            response?.model?.forums,
+            loadMore,
+            'communities',
+            response?.model
+          ),
+        (err: any) => this.handleError(loadMore)
+      );
   }
 }

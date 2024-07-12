@@ -12,12 +12,13 @@ import { InputComponent } from '../../../SharedComponents/input/input.component'
 import { CommunityCardComponent } from '../../../SharedComponents/community-card/community-card.component';
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   standalone: true,
   imports: [
     CommonModule,
-    CommunityCardComponent,
+    NgxPaginationModule,
     InputComponent,
     FormsModule,
     FontAwesomeModule,
@@ -30,12 +31,15 @@ import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/o
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
-  searchForm:any = this.fb.group({
+  searchForm: any = this.fb.group({
     search: [''],
   });
   faPlus = faPlus;
   inquiries: any;
   originalInquiries: any;
+  p: number = 1;
+  totalItems!: number;
+  itemsPerPage: number = 10;
 
   constructor(
     private fb: FormBuilder,
@@ -55,59 +59,58 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   }
 
   private initializeSearch(): void {
-    this.searchForm.get('search').valueChanges
-      .pipe(
+    this.searchForm
+      .get('search')
+      .valueChanges.pipe(
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((searchTerm: string) => {
-          return of(this.filterInquiries(searchTerm));
+          return of(this.getInquiries());
         }),
         takeUntil(this.destroy$)
       )
       .subscribe(() => {});
   }
 
-  openPopup(): void {
-    const dialogRef = this.dialog.open(ChatPopupComponent, {
-      height: '100%',
-      width: window.innerWidth > 1024 ? '33%' : '100%',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result?.data) {
-        this.inquiries.push({
-          description: result.data.Description,
-          latitude: result.data.Latitude,
-          longitude: result.data.Longitude,
-          title: result.data.Title,
-        });
-      }
-    });
-  }
-
-  private getInquiries(): void {
+  getInquiries(): void {
+    const urlParams = this.buildUrlParams();
+    const Url = `Property/get?${urlParams.toString()}`;
     this.http
-      .loaderGet('Forum/get?pageSize=500&byUser=true', true, true)
+      .loaderGet(Url, true, true)
       .pipe(
         takeUntil(this.destroy$),
-        distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
       )
       .subscribe((response) => {
-        this.inquiries = response?.model?.forums;
-        this.originalInquiries = response?.model?.forums;
+        this.inquiries = response?.model?.properties;
+        this.originalInquiries = response?.model?.properties;
+        this.totalItems = response?.model?.totalResults;
       });
   }
+  private buildUrlParams(): URLSearchParams {
+    const urlParams = new URLSearchParams({
+      pageNo: String(this.p),
+      pageSize: String(this.itemsPerPage),
+      type: this.router.url.includes('buy') ? '1' : '2',
+    });
 
-  private filterInquiries(searchTerm: string): void {
-    if (!searchTerm) {
-      this.inquiries = this.originalInquiries;
-    } else {
-      this.inquiries = this.originalInquiries.filter((inquiry: any) =>
-        (inquiry.city && inquiry.city.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (inquiry.address && inquiry.address.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (inquiry.title && inquiry.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (inquiry.description && inquiry.description.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+    const optionalParams = {
+      search: this.searchForm.controls['search'].value,
+      type: 2,
+    };
+
+    for (const [key, value] of Object.entries(optionalParams)) {
+      if (value !== undefined && value !== null && value !== '') {
+        urlParams.set(key, String(value));
+      }
     }
+
+    return urlParams;
+  }
+  onPageChange(event: number): void {
+    this.p = event;
+    this.getInquiries();
   }
 }

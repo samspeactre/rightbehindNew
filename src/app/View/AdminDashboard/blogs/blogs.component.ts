@@ -6,98 +6,103 @@ import { InputComponent } from '../../../SharedComponents/input/input.component'
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, finalize, of, switchMap, takeUntil } from 'rxjs';
 import { HttpService } from '../../../Services/http.service';
 import { updateUserData } from '../../../Ngrx/data.action';
 import { LoaderService } from '../../../Services/loader.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { assetUrl } from '../../../Services/helper.service';
+import { Router } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, InputComponent, FontAwesomeModule, FormsModule, ReactiveFormsModule],
+  imports: [InputComponent, NgxPaginationModule, FontAwesomeModule, FormsModule, ReactiveFormsModule],
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
   styleUrl: './blogs.component.scss'
 })
-export class BlogsComponent {
-  user$ = this.store.select(selectUser);
-  user: any;
-  private destroy$ = new Subject<void>();
-  faPlus = faPlusCircle
-  settingForm: any = this.fb.group({
-    fullName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    contact: ['', Validators.minLength(8)],
-    country: [''],
-    address: [''],
-    apt: [''],
-    city: [''],
-    state: [''],
-    zip: [''],
+export class BlogsComponent { private destroy$ = new Subject<void>();
+  searchForm: any = this.fb.group({
+    search: [''],
   });
-  profileImage: any;
-  securityForm = this.fb.group({
-    password: ['', [Validators.required, Validators.minLength(8)]],
-  });
-  constructor(private fb: FormBuilder, private store: Store, private http: HttpService) {
-    this.user$
+  inquiries: any;
+  originalInquiries: any;
+  p: number = 1;
+  totalItems!: number;
+  itemsPerPage: number = 10;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    public dialog: MatDialog,
+    private http: HttpService
+  ) {}
+
+  ngOnInit(): void {
+    this.getInquiries();
+    this.initializeSearch();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private initializeSearch(): void {
+    this.searchForm
+      .get('search')
+      .valueChanges.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((searchTerm: string) => {
+          return of(this.getInquiries());
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {});
+  }
+
+  getInquiries(): void {
+    const urlParams = this.buildUrlParams();
+    const Url = `Property/get?${urlParams.toString()}`;
+    this.http
+      .loaderGet(Url, true, true)
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(
           (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
         )
       )
-      .subscribe((user) => {
-        this.user = user;
-        this.settingForm.patchValue({
-          fullName: user?.fullName,
-          email: user?.email,
-          contact: user?.contact,
-          country: user?.country || user?.userAddresses?.[0]?.country,
-          address: user?.address || user?.userAddresses?.[0]?.address,
-          apt: user?.apt || user?.userAddresses?.[0]?.apt,
-          city: user?.city || user?.userAddresses?.[0]?.city,
-          state: user?.state || user?.userAddresses?.[0]?.state,
-          zip: user?.zip || user?.userAddresses?.[0]?.zipCode
-        })
-        this.profileImage = user?.imageUrl && assetUrl + user?.imageUrl
+      .subscribe((response) => {
+        this.inquiries = response?.model?.properties;
+        this.originalInquiries = response?.model?.properties;
+        this.totalItems = response?.model?.totalResults;
       });
   }
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+  private buildUrlParams(): URLSearchParams {
+    const urlParams = new URLSearchParams({
+      pageNo: String(this.p),
+      pageSize: String(this.itemsPerPage),
+      type: this.router.url.includes('buy') ? '1' : '2',
+    });
+
+    const optionalParams = {
+      search: this.searchForm.controls['search'].value,
+      type: 2,
+    };
+
+    for (const [key, value] of Object.entries(optionalParams)) {
+      if (value !== undefined && value !== null && value !== '') {
+        urlParams.set(key, String(value));
+      }
+    }
+
+    return urlParams;
   }
-  onSubmit() {
-    const formData = { ...this.settingForm.value };
-    delete formData.email;
-    this.http.loaderPost('User/profile/update', formData, true)
-    .pipe(
-      takeUntil(this.destroy$),
-      distinctUntilChanged(
-        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-      )
-    )
-    .subscribe((response: any) => {
-      this.store.dispatch(updateUserData({ user: formData }));
-    })
-  }
-  imgUpload(event: any) {
-    LoaderService.loader.next(true);
-    this.http
-      .profileImageUpload(event?.target?.files[0], this.user?.token)
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        ),
-        finalize(() => {
-          LoaderService.loader.next(false)
-        })
-      )
-      .subscribe((res: any) => {
-        this.store.dispatch(updateUserData({ user: { imageUrl: res?.model?.imageUrl } }));
-      });
+  onPageChange(event: number): void {
+    this.p = event;
+    this.getInquiries();
   }
 }

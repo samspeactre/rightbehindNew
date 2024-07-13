@@ -16,6 +16,7 @@ import {
 import { HttpService } from '../../../Services/http.service';
 import { InputComponent } from '../../../SharedComponents/input/input.component';
 import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
+import { faEdit, faEye } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
@@ -38,11 +39,12 @@ export class UsersComponent implements OnInit, OnDestroy {
     search: [''],
   });
   faPlus = faPlus;
+  faEye = faEye;
   inquiries: any;
   originalInquiries: any;
   p: number = 1;
   totalItems!: number;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 7;
 
   constructor(
     private fb: FormBuilder,
@@ -79,7 +81,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
     this.http
-      .loaderGet(Url, true, true)
+      .loaderGet(Url, true)
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(
@@ -115,5 +117,10 @@ export class UsersComponent implements OnInit, OnDestroy {
   onPageChange(event: number): void {
     this.p = event;
     this.getInquiries();
+  }
+  route(id: any) {
+    this.router.navigate(['/admin-dashboard/users/user-detail'], {
+      queryParams: { id },
+    });
   }
 }

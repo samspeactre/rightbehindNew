@@ -40,7 +40,7 @@ export class InquiriesComponent implements OnInit, OnDestroy {
   originalInquiries: any;
   p: number = 1;
   totalItems!: number;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 7;
 
   constructor(
     private fb: FormBuilder,

@@ -47,6 +47,7 @@
         cursor: not-allowed;
     }
 }
+
 .btnDark {
     background-color: #000;
     border-radius: 100px;
@@ -70,6 +71,7 @@
         cursor: not-allowed;
     }
 }
+
 .btnDanger {
     background-color: #e02c27;
     border-radius: 100px;
@@ -183,6 +185,7 @@
         cursor: not-allowed;
     }
 }
+
 .btnWhiteNBlueOutline {
     background-color: transparent;
     border-radius: 100px;
@@ -207,6 +210,7 @@
         cursor: not-allowed;
     }
 }
+
 @media only screen and (max-width:1024px) {
 
     .btnWhite,

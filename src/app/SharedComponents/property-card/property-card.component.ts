@@ -71,7 +71,7 @@ export class PropertyCardComponent {
   }
   openPopup(card: any): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '85%',
+      height: '560px',
       width: window.innerWidth > 1024 ? '28%' : '100%',
       data: { type: 'property', id: this.card?.id },
     });

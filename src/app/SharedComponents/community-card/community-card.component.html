@@ -16,10 +16,8 @@
     <h5 class="card-name text-dark" [ngClass]="{'wow fadeInDown':animation}">{{item?.title}}</h5>
     <p class="text-dark" [ngClass]="{'wow fadeInDown':animation}">{{item?.description}}</p>
     <div class="dCenter">
-      <button class="btnDanger py-2"
-      [ngClass]="{'wow fadeInDown':animation}"
-       (click)="routeToCommunity()">
-       View
+      <button class="btnDanger py-2" [ngClass]="{'wow fadeInDown':animation}" (click)="routeToCommunity()">
+        View
         <!-- {{url?.includes('dashboard') ? 'View' : 'Join Now'}} -->
       </button>
     </div>

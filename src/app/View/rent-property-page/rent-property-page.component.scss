@@ -18,8 +18,9 @@
     padding: 0;
     margin: 10px 0;
     padding: 0.8vw;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-    border-bottom: 0.15vw solid var(--royal-blue);
+    background-color: var(--white);
+    border-radius: 0.3vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 
   .ng-select .ng-select-container .ng-value-container {
@@ -35,16 +36,15 @@ input[type="datetime-local"],
 input[type="date"],
 textarea {
   border: none;
-  border-bottom: 0.15vw solid var(--royal-blue);
   outline: none;
   width: 100%;
-  background: var(--white);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  background-color: var(--white);
+  border-radius: 0.3vw;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 0.8vw;
 }
 
 textarea {
-  border: 0.14vw solid var(--royal-blue);
   resize: none;
   padding: 1rem;
 }
@@ -190,10 +190,7 @@ a {
   display: none;
 }
 
-:host
-  ::ng-deep
-  .mat-mdc-form-field:not(.mat-form-field-disabled)
-  .mat-mdc-floating-label.mdc-floating-label {
+:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
   cursor: inherit;
   font-size: 15px;
   font-family: "reg";
@@ -202,19 +199,13 @@ a {
   color: var(--property-text);
 }
 
-:host
-  ::ng-deep
-  .mat-options
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
 }
 
-:host
-  ::ng-deep
-  .mat-options-3
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options-3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
@@ -224,27 +215,24 @@ a {
   margin-top: 0.5vw;
 }
 
-:host
-  ::ng-deep
-  .mdc-checkbox
-  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
-    [data-indeterminate="true"]
-  )
-  ~ .mdc-checkbox__background {
+:host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
   background-color: var(--sec-light) !important;
   border: 0 !important;
   padding: 0;
   width: 1.5vw;
   height: 1.5vw;
 }
+
 :host ::ng-deep {
   .ng-select .ng-select-container .ng-value-container {
     border-top: none;
   }
+
   .ng-select {
     padding: 10.5px 1rem;
   }
 }
+
 .check-box label {
   cursor: pointer;
   font-size: 15px;
@@ -335,10 +323,10 @@ a {
   background-color: var(--royal-blue);
 }
 
-:host ::ng-deep .mat-mdc-button > .mat-icon,
-.mat-mdc-unelevated-button > .mat-icon,
-.mat-mdc-raised-button > .mat-icon,
-.mat-mdc-outlined-button > .mat-icon {
+:host ::ng-deep .mat-mdc-button>.mat-icon,
+.mat-mdc-unelevated-button>.mat-icon,
+.mat-mdc-raised-button>.mat-icon,
+.mat-mdc-outlined-button>.mat-icon {
   font-size: 22px;
   height: 24px;
   width: 24px;
@@ -364,19 +352,13 @@ a {
   font-size: 28px;
 }
 
-:host
-  ::ng-deep
-  .mat-options-social
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options-social .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
 }
 
-:host
-  ::ng-deep
-  .mat-options-link
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .mat-options-link .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
@@ -450,10 +432,7 @@ a {
   display: block;
 }
 
-:host
-  ::ng-deep
-  .category-select
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host ::ng-deep .category-select .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   margin-top: 0.5vw;
   background-color: transparent;
 }

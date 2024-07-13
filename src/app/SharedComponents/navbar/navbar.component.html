@@ -52,7 +52,7 @@
               <a (click)="navigateToOffMarket('#blogSection')" class="text-dark wow fadeInDown">Property Trend</a>
             </li>
             <li>
-              <a routerLink="/off-market" class="text-dark wow fadeInDown">Off Market</a>
+              <a routerLink="/communities" class="text-dark wow fadeInDown">Communities</a>
             </li>
             <li>
               <a routerLink="/contact-us" class="text-dark wow fadeInDown">Contact Us</a>
@@ -132,7 +132,8 @@
         <a (click)="navigateToOffMarket('#blogSection')" (click)="show(false)">Property Trend</a>
       </li>
       <li>
-        <a (click)="navigateToOffMarket('#offMarket')">Off Market</a>
+        <!-- <a (click)="navigateToOffMarket('#offMarket')">Off Market</a> -->
+        <a routerLink="/communities">Communities</a>
       </li>
       <li>
         <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>
@@ -157,7 +158,7 @@
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
       } @if(!sellHide){
-      <button class="btnDanger py-2 mt-4 " (click)="show(false); openSellPopup('rent')">
+      <button class="btnDanger py-2 mt-4" (click)="show(false); openSellPopup('rent')">
         Submit A Deal
       </button>
       }

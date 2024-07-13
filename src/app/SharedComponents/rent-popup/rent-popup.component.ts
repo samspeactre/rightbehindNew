@@ -237,8 +237,13 @@ export class RentPopupComponent {
     this.http
       .loaderPost('sellinquiry/create', data, true)
       .subscribe((response) => {
-        this.dialogRef.close();
+        this.getAQuote(response?.model?.id)
       });
+  }
+  getAQuote(id:any){
+    this.http.loaderPost('QuoteRequest/create',{sellInquiryId:id},true).subscribe((response)=>{
+      this.dialogRef.close();
+    })
   }
   checkUnitValidator(){
     const unitCount = Number(this.propertyForm?.controls['unit']?.value);

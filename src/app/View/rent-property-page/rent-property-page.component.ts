@@ -178,6 +178,8 @@ export class RentPropertyPageComponent implements OnInit {
         this.location.back();
       } else {
         this.previousData = JSON.parse(response?.data);
+        console.log(this.previousData);
+        
         await this.getAmeneties();
         if (this.previousData?.getData) {
           this.http
@@ -338,20 +340,18 @@ export class RentPropertyPageComponent implements OnInit {
       }
     };
     appendFormData(this.propertyAddForm.value);
+    const url = this.previousData?.getData ? 'Property/update' : 'Property/create'
     this.http
-      .loaderPost('Property/create', formData, true)
+      .loaderPost(url, formData, true)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.previousData = {
           ...this.previousData,
           id:response?.model?.id
         }
-        // if (this.previousData?.newData) {
-        //   this.router.navigateByUrl('/dashboard/my-listings');
-        // } else {
-          
-        // }
-        this.fireSwal()
+        if (!this.previousData?.getData) {
+          this.fireSwal()
+        }
         // if (this.previousData?.active == 'rent') {
         //   this.router.navigateByUrl('/rent');
         // } else {
@@ -657,13 +657,6 @@ export class RentPropertyPageComponent implements OnInit {
     return dateString.split('T')[0];
   }
 
-  openFeatured() {
-    if (this.previousData?.newData) {
-      this.onSubmit();
-    } else {
-      this.onSubmit();
-    }
-  }
   showFeatured(){
     const dialogRef = this.dialog.open(PopupFeaturedComponent, {
       height: '97%',

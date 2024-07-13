@@ -9,8 +9,8 @@
   </div>
 </div>
 } @else{
-<div class="cstm-property-card" [ngStyle]="{ background: background }" (click)="page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()">
-  <div class="property-img position-relative" [ngClass]="{ 'wow fadeInDown': animation }">
+<div class="cstm-property-card" [ngStyle]="{ background: background }">
+  <div class="property-img position-relative" [ngClass]="{ 'wow fadeInDown': animation }" (click)="page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()">
     <img
       [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
       [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />

@@ -1,8 +1,7 @@
 <div class="container-site">
   <div class="row">
     <div class="full-lenght">
-      <h4 class="text-center text-dark bold popup-head">Add New Property</h4>
-      <p>Fill out the form to add a new property with all necessary details and submit.</p>
+      <h4 class="text-center text-dark bold popup-head">{{active}} Blog</h4>
     </div>
   </div>
   <form class=" row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
@@ -13,10 +12,6 @@
     <div class="half-input">
       <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
         label="Last Name" placeholder="Enter your Last Name*"></app-input>
-    </div>
-    <div class="half-input">
-      <app-input classes="w-100 mb-2" matType="select" [array]="types" [form]="propertyForm" control="propertyType"
-        label="Property Type"></app-input>
     </div>
     <div class="half-input">
       <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
@@ -44,11 +39,6 @@
       ></app-input>
     </div>
     }
-    <div class="full-lenght">
-      <app-map [addMarker]="true" [draggable]="true" [search]="true"
-        (mapMarkerCordinates)="setFormValue($event, 'latLng')"
-        (mapSearchLocation)="setFormValue($event, 'address')"></app-map>
-    </div>
     <div class="dCenter mt-3">
       <button class="btnPrimary" [disabled]="propertyForm.invalid">
         Submit

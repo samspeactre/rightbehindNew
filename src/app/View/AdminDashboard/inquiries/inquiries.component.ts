@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpService } from '../../../Services/http.service';
@@ -13,6 +13,7 @@ import { CommunityCardComponent } from '../../../SharedComponents/community-card
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
@@ -35,7 +36,8 @@ export class InquiriesComponent implements OnInit, OnDestroy {
   searchForm: any = this.fb.group({
     search: [''],
   });
-  faPlus = faPlus;
+  faEnvelope = faEnvelope;
+  faPhone = faPhoneAlt;
   inquiries: any;
   originalInquiries: any;
   p: number = 1;

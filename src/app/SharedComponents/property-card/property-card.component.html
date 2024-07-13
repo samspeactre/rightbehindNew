@@ -1,5 +1,5 @@
 @if(loader || !card){
-<div class="pb-3 cstm-property-card" >
+<div class="pb-3 cstm-property-card">
   <div class="property-card">
     <div class="property-img skeleton"></div>
     <div class="card-content mt-3 px-3">
@@ -10,10 +10,18 @@
 </div>
 } @else{
 <div class="cstm-property-card" [ngStyle]="{ background: background }">
-  <div class="property-img position-relative" [ngClass]="{ 'wow fadeInDown': animation }" (click)="page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()">
+  <div
+    class="property-img position-relative"
+    [ngClass]="{ 'wow fadeInDown': animation }"
+    (click)="
+      page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
+    "
+  >
     <img
       [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
+      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl"
+      alt="Card Image"
+    />
     @if(card?.rentSpecialTag){
     <div class="special">{{ card?.rentSpecialTag }} 🔥</div>
     }
@@ -23,33 +31,47 @@
       <div
         class="d-flex justify-content-between align-items-center card-property-heading"
       >
-        <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }" >
+        <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
           {{ card?.title || "N/A" }}
         </h6>
       </div>
-      <div class="span-text my-1 dCenter justify-content-start gap-1 location"
-        [ngClass]="{ 'wow fadeInDown': animation }">
+      <div
+        class="span-text my-1 dCenter justify-content-start gap-1 location"
+        [ngClass]="{ 'wow fadeInDown': animation }"
+      >
         <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon>
         <span class="elip">{{ card?.location }}</span>
       </div>
       <div class="d-flex mt-3 flex-wrap gap-3 w-100 description-para">
-        <div class="dCenter ">
-          <img src="../../assets/img/bed.webp" alt="bed" class="smallImg mx-auto"
-            [ngClass]="{ 'wow fadeInDown': animation }" />
+        <div class="dCenter">
+          <img
+            src="../../assets/img/bed.webp"
+            alt="bed"
+            class="smallImg mx-auto"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+          />
           <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
             {{ card?.noOfBed || 0 }}
           </p>
         </div>
-        <div class="dCenter  centerBox">
-          <img src="../../assets/img/bath.webp" alt="bed" class="smallImg mx-auto"
-            [ngClass]="{ 'wow fadeInDown': animation }" />
+        <div class="dCenter centerBox">
+          <img
+            src="../../assets/img/bath.webp"
+            alt="bed"
+            class="smallImg mx-auto"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+          />
           <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
             {{ card?.noOfBath || 0 }}
           </p>
         </div>
-        <div class="dCenter ">
-          <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg mx-auto"
-            [ngClass]="{ 'wow fadeInDown': animation }" />
+        <div class="dCenter">
+          <img
+            src="../../assets/img/sq.ft.webp"
+            alt="bed"
+            class="smallImg mx-auto"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+          />
           <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
             {{ card.area || 0 }} sq ft
           </p>
@@ -59,25 +81,46 @@
 
     <div class="btnContainer dCenter justify-content-between px-2 pb-2 gap-3">
       @if(page == 'mylisting'){
-      <button class="btnPrimary py-1 w-50 bold text-center" (click)="navigateAndClose()">
+      <button
+        class="btnPrimary py-1 w-50 bold text-center"
+        (click)="navigateAndClose()"
+      >
         View
       </button>
-      <button class="btnPrimary py-1 w-50 bold text-center" (click)="navigateEditAndClose()">
+      <button
+        class="btnPrimary py-1 w-50 bold text-center"
+        (click)="navigateEditAndClose()"
+      >
         Edit
       </button>
       } @if(page != 'mylisting'){
-      <button class="whitBtn rounded-0 w-50 bold text-start" [ngClass]="{
+      <button
+        class="whitBtn rounded-0 w-50 bold text-start"
+        [ngClass]="{
           'wow fadeInDown': animation
         }"
-        (click)="page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()"
+        (click)="
+          page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
+        "
       >
         {{ card.price || 0 | currency : "USD" }}
       </button>
-      <button class="btnPrimary rounded-5 py-2 w-50" [ngClass]="{ 'wow fadeInDown': animation }"
-        (click)="userDetails ? createContact() : openPopup()">
+      @if(page != 'dashboard'){
+      <button
+        class="btnPrimary rounded-5 py-2 w-50"
+        [ngClass]="{ 'wow fadeInDown': animation }"
+        (click)="userDetails ? createContact() : openPopup()"
+      >
         Contact Agent
       </button>
-      }
+      } @else {
+      <button
+        class="btnPrimary py-1 w-50 bold text-center"
+        (click)="navigateAndClose()"
+      >
+        View
+      </button>
+      } }
     </div>
   </div>
 </div>

@@ -10,11 +10,13 @@ import { Subject, debounceTime, distinctUntilChanged, finalize, of, switchMap, t
 import { HttpService } from '../../../Services/http.service';
 import { updateUserData } from '../../../Ngrx/data.action';
 import { LoaderService } from '../../../Services/loader.service';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { assetUrl } from '../../../Services/helper.service';
 import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { BlogComponent } from './blog/blog.component';
 
 @Component({
   standalone: true,
@@ -32,7 +34,9 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
   p: number = 1;
   totalItems!: number;
   itemsPerPage: number = 7;
-
+  faTimes=faTimes;
+  faEdit=faEdit
+  faPlus=faPlus;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -104,5 +108,12 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
   onPageChange(event: number): void {
     this.p = event;
     this.getInquiries();
+  }
+  openPopup(type: string): void {
+    this.dialog.open(BlogComponent, {
+      height: '80%',
+      width: window.innerWidth > 1024 ? '33%' : '100%',
+      data: type,
+    });
   }
 }

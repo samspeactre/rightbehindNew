@@ -134,6 +134,7 @@ export class NavbarComponent {
       behavior: 'smooth',
     });
   }
+  
   socialLinks = [
     { url: 'https://www.facebook.com/', imageUrl: '../../assets/img/fb.png' },
     {

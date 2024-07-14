@@ -22,26 +22,23 @@
       <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
         placeholder="Enter Unit"></app-input>
     </div>
-    <div [ngClass]="[user || active == 'sell' ? 'full-lenght' : 'half-input']">
+    <div [ngClass]="[active === 'sell' ? 'half-input' : 'half-input']">
       <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email" label="Email"
-        placeholder="Enter Your Email Address"></app-input>
+        placeholder="Enter Your Email Address">
+      </app-input>
     </div>
+
+
     @if(!user && active == 'rent'){
     <div class="half-input">
       <app-input classes="w-100 mb-2" type="password" [password]="true" [form]="propertyForm" control="password"
         label="Password" placeholder="Enter your Password*"></app-input>
     </div>
-    } 
+    }
     @if(active == 'sell' || checkUnitValidator()){
-    <div class="full-lenght">
-      <app-input
-        classes="w-100 mb-2"
-        type="number"
-        [form]="propertyForm"
-        control="contactNo"
-        label="Contact No"
-        placeholder="Enter your Contact No*"
-      ></app-input>
+    <div class="half-input">
+      <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="contactNo" label="Contact No"
+        placeholder="Enter your Contact No*"></app-input>
     </div>
     }
     <div class="full-lenght">
@@ -49,7 +46,7 @@
         (mapMarkerCordinates)="setFormValue($event, 'latLng')"
         (mapSearchLocation)="setFormValue($event, 'address')"></app-map>
     </div>
-    <div class="dCenter mt-3">
+    <div class="dCenter mt-3 form-btn">
       <button class="btnPrimary" [disabled]="propertyForm.invalid">
         Submit
       </button>

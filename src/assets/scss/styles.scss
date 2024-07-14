@@ -129,3 +129,17 @@ a {
 .ngx-pagination .current {
   background: #ff0a0a !important;
 }
+th,td{
+  align-content: center;
+  height: 51px;
+}
+@media only screen and (min-width:1024px) {
+  pagination-controls{
+    height: 30px !important;
+  }
+}
+@media only screen and (max-width:1024px) {
+  pagination-controls{
+    margin-top: 1rem;
+  }
+}

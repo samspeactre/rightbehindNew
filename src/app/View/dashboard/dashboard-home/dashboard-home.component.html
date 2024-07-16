@@ -4,15 +4,15 @@
             <h6 class="bold mb-0">Home</h6>
         </div>
         <div class="col-lg-9 mb-3 d-flex gap-3 justify-content-end">
-            <div class="searchHere px-3 gap-2 borderLight">
+            <!-- <div class="searchHere px-3 gap-2 borderLight">
                 <fa-icon [icon]="faSearch" class="iconLight"></fa-icon>
                 <input type="text" placeholder="Search Here...">
-            </div>
+            </div> -->
             @if ((resize.windowSize$ | async)?.width > 1024) {
-            <div class="borderLight border iconContainer rounded-5">
-                <fa-icon [icon]="faEnvelope"></fa-icon>
+            <div class="borderLight border iconContainer rounded-5 cursor" routerLink="/dashboard/communities-groups">
+                <fa-icon [icon]="faUsers"></fa-icon>
             </div>
-            <div class="borderLight border iconContainer rounded-5">
+            <div class="borderLight border iconContainer rounded-5 cursor" routerLink="/dashboard/inquiries">
                 <fa-icon [icon]="faBell"></fa-icon>
             </div>
             <div class="userContent dCenter gap-2">
@@ -26,58 +26,16 @@
         </div>
         <div class="col-lg-9">
             <div class="row">
-                <!-- <div class="col-lg-4 mb-3">
-                    <div class="rounded-3 p-3 borderBlue">
-                        <div class="dCenter justify-content-between">
-                            <h6 class="mb-0 bold">Total Properties</h6>
-                            <fa-icon [icon]="faArrowLeft"></fa-icon>
-                        </div>
-                        <div class="dCenter justify-content-start gap-3 mt-3">
-                            <div class="iconContainer iconContainerBig dCenter">
-                                <fa-icon [icon]="faMapMarker" size="2x"></fa-icon>
-                            </div>
-                            <h3 class="mb-0 bold">20</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-3">
-                    <div class="rounded-3 p-3 borderBlue">
-                        <div class="dCenter justify-content-between">
-                            <h6 class="mb-0 bold">For Sale</h6>
-                            <fa-icon [icon]="faArrowLeft"></fa-icon>
-                        </div>
-                        <div class="dCenter justify-content-start gap-3 mt-3">
-                            <div class="iconContainer iconContainerBig dCenter">
-                                <fa-icon [icon]="faSaleTag" size="2x"></fa-icon>
-                            </div>
-                            <h3 class="mb-0 bold">20</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-3">
-                    <div class="rounded-3 p-3 borderBlue">
-                        <div class="dCenter justify-content-between">
-                            <h6 class="mb-0 bold">For Rent</h6>
-                            <fa-icon [icon]="faArrowLeft"></fa-icon>
-                        </div>
-                        <div class="dCenter justify-content-start gap-3 mt-3">
-                            <div class="iconContainer iconContainerBig dCenter">
-                                <fa-icon [icon]="faKey" size="2x"></fa-icon>
-                            </div>
-                            <h3 class="mb-0 bold">20</h3>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-lg-9" #secondCol>
                     <h6 class="mb-0 bold">Total Listings</h6>
-                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                    <apx-chart #chart [series]="chartOptions.series" [yaxis]="chartOptions?.yaxis" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
                         [plotOptions]="chartOptions.plotOptions" [dataLabels]="chartOptions.dataLabels"
                         [fill]="chartOptions.fill" [colors]="chartOptions.colors"></apx-chart>
                 </div>
                 <div class="col-lg-3">
                     <div class="overflow-hidden rounded-3">
-                        <app-map [height]="mapHeight - 50" [zoom]="15" [center]="{lat:25.761681,lng:-80.191788}"
-                            [markerPositions]="[{lat:25.761681,lng:-80.191788}]"></app-map>
+                        <app-map [height]="mapHeight - 50" [zoom]="5" [center]="dashboard?.propertyLatLongData?.[0]"
+                            [markerPositions]="dashboard?.propertyLatLongData"></app-map>
                     </div>
                 </div>
             </div>
@@ -136,7 +94,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="dCenter justify-content-between mb-3">
-                        <h6 class="bold mb-0">My Listing</h6>
+                        <h6 class="bold mb-0">Properties</h6>
                         <button class="btnPrimary py-2 px-5" routerLink="/dashboard/my-listings">View All</button>
                     </div>
                 </div>

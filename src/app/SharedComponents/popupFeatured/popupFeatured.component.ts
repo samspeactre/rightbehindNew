@@ -49,7 +49,9 @@ export class PopupFeaturedComponent implements OnInit {
     public helper: HelperService
   ) {
     this.propertyData = data;
-    console.log(this.propertyData);
+    if(data){
+      localStorage.setItem('propertyData',JSON.stringify(data))
+    }
   }
   ngOnDestroy() {
     this.destroy$.next();

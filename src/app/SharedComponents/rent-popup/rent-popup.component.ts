@@ -91,8 +91,8 @@ export class RentPopupComponent {
             new FormControl('', Validators.required)
           );
         }
-        else{
-          this.propertyForm.get('unit').valueChanges.subscribe((value:any) => {
+        else {
+          this.propertyForm.get('unit').valueChanges.subscribe((value: any) => {
             if (Number(value) > 20) {
               if (!this.propertyForm.contains('contactNo')) {
                 this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
@@ -116,6 +116,7 @@ export class RentPopupComponent {
   makeActive(type: string) {
     this.active = type;
   }
+
   onSubmit() {
     if (this.active == 'rent') {
       if (this.user) {
@@ -156,6 +157,7 @@ export class RentPopupComponent {
       this.sendInquiry();
     }
   }
+
   fireSwal() {
     Swal.fire({
       text: 'Are you sure this is a residential rental?',
@@ -163,7 +165,7 @@ export class RentPopupComponent {
       confirmButtonText: 'Yes, this is a residential rental',
       showCancelButton: true,
       cancelButtonText: 'No, this is not a residential rental',
-      allowOutsideClick:false
+      allowOutsideClick: false
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.fireDisclaimerSwal();
@@ -190,7 +192,7 @@ export class RentPopupComponent {
       confirmButtonText: unitCount > 20 ? 'Get A Quote' : 'I Acknowledge',
       showCancelButton: true,
       cancelButtonText: 'Go Back',
-      allowOutsideClick:false
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         if (unitCount > 20) {
@@ -240,12 +242,12 @@ export class RentPopupComponent {
         this.dialogRef.close();
       });
   }
-  checkUnitValidator(){
+  checkUnitValidator() {
     const unitCount = Number(this.propertyForm?.controls['unit']?.value);
-    if(unitCount > 20){
+    if (unitCount > 20) {
       return true
     }
-    else{
+    else {
       return false
     }
   }

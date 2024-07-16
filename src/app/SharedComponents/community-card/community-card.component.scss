@@ -1,5 +1,11 @@
 @import url("../../../assets/scss/skeleton.scss");
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .title.skeleton {
   width: 90%;
   height: 24px;
@@ -15,9 +21,11 @@
   height: 49px;
   margin: 0vw 1.3vw;
 }
-.property-img.skeleton{
+
+.property-img.skeleton {
   height: 200px;
 }
+
 .smallImg {
   width: 30px !important;
   height: 30px !important;
@@ -30,38 +38,67 @@
 }
 
 .carosuelBtn {
-    background: transparent;
-    border: 1px solid #3b3b3b;
-    outline: none;
-    padding: 10px;
-    border-radius: 100px;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    color: white;
+  background: transparent;
+  border: 1px solid #3b3b3b;
+  outline: none;
+  padding: 10px;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  color: white;
 }
 
 .card-img {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .card-tag {
-    background-color: var(--red);
-    padding: 0vw 1.2vw;
-    text-transform: capitalize;
+  background-color: var(--red);
+  padding: 0vw 1.2vw;
+  text-transform: capitalize;
 }
 
 p {
-    font-size: 12px;
+  font-size: 14px;
 }
-hr{
-    color: white;
+
+hr {
+  color: white;
 }
+
+.card-content {
+  padding: 0.8vw 1vw;
+}
+
+.card-name {
+  font-family: 'bold';
+  text-transform: capitalize;
+}
+
+.community-button {
+  background-color: #e02c27;
+  border-radius: 0.5vw;
+  color: #fff;
+  padding: 1vw 3vw;
+  border: 1px solid #e02c27;
+  transition: .5s all ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    border: 1px solid #e02c27;
+    background-color: #fff;
+    color: #e02c27;
+  }
+}
+
 @media only screen and (max-width:1024px) {
-    p {
-        font-size: 10px;
-    }
-    hr{
-        display: none;
-    }
+  p {
+    font-size: 10px;
+  }
+
+  hr {
+    display: none;
+  }
 }

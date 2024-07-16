@@ -688,7 +688,7 @@ export class RentPropertyPageComponent implements OnInit {
     const dialogRef = this.dialog.open(PopupFeaturedComponent, {
       height: '97%',
       width: window.innerWidth > 1024 ? '50%' : '100%',
-      data: this.previousData?.id,
+      data: {id:this.previousData?.id,show:'Featured'},
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

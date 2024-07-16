@@ -264,6 +264,7 @@ export class RentPropertyPageComponent implements OnInit {
           Country: this.previousData?.address?.country,
           ZipCode: this.previousData?.address?.zipCode,
           Street: this.previousData?.address?.street,
+          Unit:Number(this.previousData?.unit)
         });
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');

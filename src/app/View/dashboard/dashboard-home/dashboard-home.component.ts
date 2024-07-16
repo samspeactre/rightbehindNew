@@ -1,10 +1,27 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBell, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faArrowRightLong, faKey, faMapMarkerAlt, faSearch, faTag } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  faEnvelope,
+  faUser,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faArrowRightLong,
+  faKey,
+  faMapMarkerAlt,
+  faSearch,
+  faTag,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
 import { selectRental, selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
@@ -18,33 +35,61 @@ import { RouterModule } from '@angular/router';
 import { HttpService } from '../../../Services/http.service';
 @Component({
   standalone: true,
-  imports: [MatIconModule, RentalCarouselComponent, RouterModule, PropertyCardComponent, MatButtonModule, CommonModule, FontAwesomeModule, NgApexchartsModule, MapComponent],
+  imports: [
+    MatIconModule,
+    RentalCarouselComponent,
+    RouterModule,
+    PropertyCardComponent,
+    MatButtonModule,
+    CommonModule,
+    FontAwesomeModule,
+    NgApexchartsModule,
+    MapComponent,
+  ],
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
-  styleUrl: './dashboard-home.component.scss'
+  styleUrl: './dashboard-home.component.scss',
 })
 export class DashboardHomeComponent {
   display: any;
-  faArrowLeft = faArrowRightLong
-  faMapMarker = faMapMarkerAlt
-  faSaleTag = faTag
-  faKey = faKey
-  @Output() viewAllListingsEvent = new EventEmitter<void>();
-  @Output() viewOffMarketEvent = new EventEmitter<void>();
-  @ViewChild("chart") chart!: ChartComponent;
+  faArrowLeft = faArrowRightLong;
+  faMapMarker = faMapMarkerAlt;
+  faSaleTag = faTag;
+  faKey = faKey;
+  faUsers = faUsers;
+  @ViewChild('chart') chart!: ChartComponent;
   public chartOptions: any;
-  faUser = faUser
-  faBell = faBell
-  faEnvelope = faEnvelope
-  faSearch = faSearch
+  faUser = faUser;
+  faBell = faBell;
+  faEnvelope = faEnvelope;
+  faSearch = faSearch;
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
   @ViewChild('secondCol') secondCol!: ElementRef;
-  mapHeight:number=0;
+  mapHeight: number = 0;
   dashboard: any;
   rent: any;
-  constructor(private http:HttpService,public dialog: MatDialog, public resize:ResizeService, private store: Store) {
+  months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  constructor(
+    private http: HttpService,
+    public dialog: MatDialog,
+    public resize: ResizeService,
+    private store: Store
+  ) {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -53,18 +98,18 @@ export class DashboardHomeComponent {
         )
       )
       .subscribe((user) => {
-        this.user = user
-      })
+        this.user = user;
+      });
     this.chartOptions = {
       series: [
         {
           name: 'Example Series',
-          data: [10, 20, 30, 40, 50]
-        }
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        },
       ],
       chart: {
         type: 'bar',
-        height: 350
+        height: 350,
       },
       plotOptions: {
         bar: {
@@ -72,40 +117,46 @@ export class DashboardHomeComponent {
           horizontal: true,
           barHeight: '15%',
           borderRadius: 2,
-          borderRadiusApplication: 'end'
-        }
+          borderRadiusApplication: 'end',
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+        categories: this.months,
       },
-      colors: ['#607D8B', '#8BC34A', '#FF9800', '#E91E63', '#2196F3'],
+      yaxis: {
+        min: 1,
+      },
+      colors: [
+        '#607D8B',
+        '#8BC34A',
+        '#FF9800',
+        '#E91E63',
+        '#2196F3',
+        '#607D8B',
+        '#8BC34A',
+        '#FF9800',
+        '#E91E63',
+        '#2196F3',
+        '#607D8B',
+        '#8BC34A',
+      ],
     };
   }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  viewAllListings() {
-    this.viewAllListingsEvent.emit();
-  }
-
-  viewOffMarket() {
-    this.viewOffMarketEvent.emit();
-  }
-  Analaytics = [
-    { leads: '10', call: '12', emails: '8', view: '5', click: '3', ctr: '5' },
-  ]
   ngOnInit() {
-    this.getInquiries()
+    this.getInquiries();
   }
-  ngAfterViewInit(){
-    if(this.mapHeight == 0){
+  ngAfterViewInit() {
+    if (this.mapHeight == 0) {
       setTimeout(() => {
-        this.setMapHeight()
-      },500);
+        this.setMapHeight();
+      }, 500);
     }
   }
   setMapHeight() {
@@ -114,30 +165,54 @@ export class DashboardHomeComponent {
     }
   }
   getInquiries() {
-    this.http.loaderGet('Property/get/me?pageSize=4&type=2&pageNo=1', true)
-    .pipe(
-      takeUntil(this.destroy$),
-      distinctUntilChanged(
-        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-      ),
-      finalize(()=>{
-        this.getDashboard()
-      })
-    )
-    .subscribe((response) => {
-      this.rent = response?.model?.properties
-    })
+    this.http
+      .loaderGet('Property/get/me?pageSize=4&type=2&pageNo=1', true)
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        ),
+        finalize(() => {
+          this.getDashboard();
+        })
+      )
+      .subscribe((response) => {
+        this.rent = response?.model?.properties;
+      });
   }
   getDashboard() {
-    this.http.loaderGet('Dashboard/get', true)
-    .pipe(
-      takeUntil(this.destroy$),
-      distinctUntilChanged(
-        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+    this.http
+      .loaderGet('dashboard/property/get', true)
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
       )
-    )
-    .subscribe((response) => {
-      this.dashboard = response?.model
-    })
+      .subscribe((response) => {
+        this.dashboard = response?.model;
+        const propertyCountsData = this.dashboard?.propertyCountsData;
+        const data = this.months.map((month) => {
+          const monthData = propertyCountsData.find((item: any) =>
+            item.month?.includes(month)
+          );
+          return monthData ? monthData.propertyCount : 0;
+        });
+        this.chart.updateSeries([
+          {
+            name: 'Property Counts',
+            data: data,
+          },
+        ]);
+        const propertyLatLongDataWithoutId =
+          this.dashboard.propertyLatLongData.map((item: any) => ({
+            lat: item.latitude,
+            lng: item.longitude,
+          }));
+        this.dashboard = {
+          ...this.dashboard,
+          propertyLatLongData: propertyLatLongDataWithoutId,
+        };
+      });
   }
 }

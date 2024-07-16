@@ -178,8 +178,6 @@ export class RentPropertyPageComponent implements OnInit {
         this.location.back();
       } else {
         this.previousData = JSON.parse(response?.data);
-        console.log(this.previousData);
-        
         await this.getAmeneties();
         if (this.previousData?.getData) {
           this.http
@@ -202,6 +200,32 @@ export class RentPropertyPageComponent implements OnInit {
                     this.fb.control(image?.imageUrl)
                   );
                 });
+                this.propertyAddForm.addControl(
+                  'Id',
+                  this.fb.control(response?.model?.id)
+                );
+                const propertyContactsGroup = this.propertyAddForm.get(
+                  'PropertyContact'
+                ) as FormGroup;
+                propertyContactsGroup.addControl('Id', this.fb.control(null));
+                const RentSpecialGroup = this.propertyAddForm.get(
+                  'RentSpecial'
+                ) as FormGroup;
+                RentSpecialGroup.addControl('Id', this.fb.control(null));
+                const homeFactGroupArray = this.propertyAddForm.get(
+                  'HomeFact'
+                ) as FormGroup;
+                if (homeFactGroupArray) {
+                  homeFactGroupArray.addControl('Id', this.fb.control(null));
+                }
+                const FloorPlansArray = this.propertyAddForm.get(
+                  'FloorPlans'
+                ) as FormArray;
+                if (FloorPlansArray) {
+                  FloorPlansArray.controls.forEach((group: any) => {
+                    group.addControl('Id', this.fb.control(null));
+                  });
+                }
                 await this.patchFormValues();
                 response?.model?.propertyAmenities?.map((amenity: any) => {
                   this.checkboxSelect(
@@ -340,17 +364,19 @@ export class RentPropertyPageComponent implements OnInit {
       }
     };
     appendFormData(this.propertyAddForm.value);
-    const url = this.previousData?.getData ? 'Property/update' : 'Property/create'
+    const url = this.previousData?.getData
+      ? 'Property/update'
+      : 'Property/create';
     this.http
       .loaderPost(url, formData, true)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response) => {
         this.previousData = {
           ...this.previousData,
-          id:response?.model?.id
-        }
+          id: response?.model?.id,
+        };
         if (!this.previousData?.getData) {
-          this.fireSwal()
+          this.fireSwal();
         }
         // if (this.previousData?.active == 'rent') {
         //   this.router.navigateByUrl('/rent');
@@ -516,7 +542,6 @@ export class RentPropertyPageComponent implements OnInit {
   }
   async patchFormValues() {
     const previousDataLower = await this.lowercaseKeys(this.previousData);
-
     await Promise.all(
       Object.keys(previousDataLower).map(async (key) => {
         const formControlKey = this.findFormControlKey(
@@ -595,6 +620,7 @@ export class RentPropertyPageComponent implements OnInit {
 
       await Promise.all(
         values.map(async (value) => {
+          console.log(value, values, 'check3');
           const newGroup = this.createFormGroup(
             formArrayName,
             this.lowercaseKeys(value)
@@ -617,6 +643,7 @@ export class RentPropertyPageComponent implements OnInit {
         Description: [value.description, Validators.required],
         FloorPlanImage: this.fb.array([]),
         FloorPlanUnits: this.fb.array([]),
+        Id: [value.id, Validators.required],
       });
 
       if (value.floorplanunits) {
@@ -657,7 +684,7 @@ export class RentPropertyPageComponent implements OnInit {
     return dateString.split('T')[0];
   }
 
-  showFeatured(){
+  showFeatured() {
     const dialogRef = this.dialog.open(PopupFeaturedComponent, {
       height: '97%',
       width: window.innerWidth > 1024 ? '50%' : '100%',
@@ -676,13 +703,12 @@ export class RentPropertyPageComponent implements OnInit {
       confirmButtonText: 'Feature your property',
       showCancelButton: true,
       cancelButtonText: 'Skip',
-      allowOutsideClick:false
+      allowOutsideClick: false,
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.showFeatured();
-      }
-      else{
-        this.router.navigateByUrl('/dashboard/my-listings')
+      } else {
+        this.router.navigateByUrl('/dashboard/my-listings');
       }
     });
   }

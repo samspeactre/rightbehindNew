@@ -98,21 +98,21 @@
           <p style="height: 16px;" class="w-75 skeleton my-3"></p>
           }
           @else {
-            <div class="dCenter justify-content-between">
-              <h5 class="my-3">{{cards?.length}}
-                @if(url == '/communities'){
-                Communities
-                }@else{
-                Properties
-                }
-                Found
-              </h5>
-              @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
-                title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
-                <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
-                </button>
-                }
-            </div>
+          <div class="dCenter justify-content-between">
+            <h5 class="my-3">{{cards?.length}}
+              @if(url == '/communities'){
+              Communities
+              }@else{
+              Properties
+              }
+              Found
+            </h5>
+            @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
+              title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
+              <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
+              </button>
+              }
+          </div>
           }
         </div>
         @if(url == '/communities'){

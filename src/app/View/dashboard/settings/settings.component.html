@@ -11,21 +11,22 @@
         <div class="col-lg-12 my-3 mx-auto d-flex align-items-center justify-content-center">
             <input id="profile" type="file" class="d-none" (change)="imgUpload($event)">
             <label for="profile" class="profileImage cursor">
-              <img [src]="profileImage || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'">
-              <fa-icon [icon]="faPlus"></fa-icon>
+                <img
+                    [src]="profileImage || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'">
+                <fa-icon [icon]="faPlus"></fa-icon>
             </label>
-          </div>
+        </div>
         <div class="col-lg-6">
             <app-input classes="mb-2" type="text" [form]="settingForm" control="fullName" label="Full Name"
                 placeholder="Enter your full name*"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="mb-2" type="email" [form]="settingForm" control="email" [readOnly]="true" label="Email address"
-                placeholder="Enter your email address*"></app-input>
+            <app-input classes="mb-2" type="email" [form]="settingForm" control="email" [readOnly]="true"
+                label="Email address" placeholder="Enter your email address*"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="mb-2" type="number" [form]="settingForm" control="contact" label="Phone Number (Optional)"
-                placeholder="Enter your phone number"></app-input>
+            <app-input classes="mb-2" type="number" [form]="settingForm" control="contact"
+                label="Phone Number (Optional)" placeholder="Enter your phone number"></app-input>
         </div>
         <div class="col-lg-12">
             <h6 class="bold mt-3">Address (Optional)</h6>
@@ -35,7 +36,8 @@
                 placeholder="Enter your Address"></app-input>
         </div>
         <div class="col-lg-6">
-            <app-input classes="mb-2" type="text" [form]="settingForm" control="apt" label="Apt, Suite, Unit, Building, Floot, etc."
+            <app-input classes="mb-2" type="text" [form]="settingForm" control="apt"
+                label="Apt, Suite, Unit, Building, Floot, etc."
                 placeholder="Apt, Suite, Unit, Building, Floot, etc"></app-input>
         </div>
         <div class="col-lg-6">
@@ -55,7 +57,7 @@
                 placeholder="Enter your Country"></app-input>
         </div>
         <div class="col-lg-6 mx-auto dCenter align-items-end">
-            <button class="btnPrimary py-1 w-100 my-3" type="submit">Save</button>
+            <button class="btnPrimary my-3 save-btn" type="submit">Save</button>
         </div>
     </form>
     <form [formGroup]="securityForm" class="row">
@@ -63,11 +65,11 @@
             <h6 class="bold mb-3">Security Information</h6>
         </div>
         <div class="col-lg-10">
-            <app-input classes="mb-2" type="password" [form]="securityForm" [password]="true" control="password" label="New Password"
-                placeholder="Enter your New password"></app-input>
+            <app-input type="password" [form]="securityForm" [password]="true" control="password"
+                label="New Password" placeholder="Enter your New password"></app-input>
         </div>
         <div class="col-lg-2 d-flex align-items-end">
-            <button class="btnPrimary py-1 my-3 w-100" type="submit">Change</button>
+            <button class="btnPrimary py-2 .save-btn" type="submit">Change</button>
         </div>
     </form>
     <div class="row">
@@ -77,7 +79,7 @@
                 in</p>
         </div>
         <div class="col-lg-3">
-            <button class="btnDanger py-1 w-100">Deactivate</button>
+            <button class="btnDanger py-2 .save-btn">Deactivate</button>
         </div>
     </div>
 </div>

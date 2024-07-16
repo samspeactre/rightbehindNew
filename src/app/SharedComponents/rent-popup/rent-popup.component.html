@@ -5,7 +5,7 @@
       <p>Fill out the form to add a new property with all necessary details and submit.</p>
     </div>
   </div>
-  <form class=" row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+  <form class="row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
     <div class="half-input">
       <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
         label="First Name" placeholder="Enter your First Name*"></app-input>

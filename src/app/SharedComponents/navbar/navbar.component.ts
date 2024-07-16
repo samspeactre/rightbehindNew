@@ -162,6 +162,7 @@ export class NavbarComponent {
       data: type,
     });
   }
+  
   logout() {
     this.store.dispatch(removeUserData());
     this.router.navigateByUrl('/');

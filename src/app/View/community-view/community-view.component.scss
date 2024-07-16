@@ -14,6 +14,7 @@
   margin: 0 auto;
   border-radius: 3px;
   padding: 16px 18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .stickyCol {
@@ -23,6 +24,8 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   padding-bottom: 0.5vw;
+  margin-bottom: 1.5vw;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .top25 {
   position: sticky;
@@ -60,7 +63,6 @@
 }
 
 .btnTrans {
-  background: none;
   border: none;
   transition: 0.5s all ease-in-out;
   width: 95%;
@@ -72,8 +74,8 @@
 
   &:hover {
     border-bottom: 0;
-    background-color: var(--auth-pages);
-    color: #fff;
+    background-color: #0b25587d;
+    color: #fff
   }
 }
 
@@ -237,13 +239,13 @@
   border-radius: 2vw;
   border: 0;
   color: var(--white);
-  background-color: var(--royal-blue);
+  background-color: var(--red);
   transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 
   &:hover {
     background-color: transparent;
-    color: var(--royal-blue);
-    border: 1px solid var(--royal-blue);
+    color: var(--red);
+    border: 1px solid var(--red);
   }
 }
 

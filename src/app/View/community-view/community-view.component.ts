@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  faNewspaper,
   faPaperPlane,
   faPlusSquare,
 } from '@fortawesome/free-regular-svg-icons';
@@ -11,6 +12,7 @@ import {
   faComment,
   faHeart,
   faShare,
+  faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import { ResizeService } from '../../Services/resize.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +26,7 @@ import { Store } from '@ngrx/store';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { StarRatingModule } from 'angular-star-rating';
+import { CountUpModule } from 'ngx-countup';
 @Component({
   standalone: true,
   imports: [
@@ -32,6 +35,7 @@ import { StarRatingModule } from 'angular-star-rating';
     StarRatingModule,
     MomentModule,
     FormsModule,
+    CountUpModule
   ],
   selector: 'app-community-view',
   templateUrl: './community-view.component.html',
@@ -46,6 +50,8 @@ export class CommunityViewComponent {
   faShare = faShare;
   faPaperPlane = faPaperPlane;
   faPlus = faPlusSquare;
+  faUsers = faUsers
+  faNewsPaper = faNewspaper
   title!: string;
   imagePath!: string;
   id: any;

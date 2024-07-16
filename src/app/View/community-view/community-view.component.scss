@@ -17,8 +17,6 @@
 }
 
 .stickyCol {
-  position: sticky;
-  top: 0;
   height: 99vh;
   z-index: 10;
   overflow-y: auto;
@@ -26,14 +24,17 @@
   scrollbar-width: none;
   padding-bottom: 0.5vw;
 }
-
+.top25 {
+  position: sticky;
+  top: 1rem;
+}
 .stickyCol::-webkit-scrollbar {
   display: none;
 }
 
 .smallFont {
   font-size: 14px;
-  font-family: 'med';
+  font-family: "med";
 }
 
 .inputBox {
@@ -64,14 +65,15 @@
   transition: 0.5s all ease-in-out;
   width: 95%;
   // background-color: #f5f5f5;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   text-transform: capitalize;
   transition: background-color 0.3s ease-in, color 0.3s ease-in;
 
   &:hover {
     border-bottom: 0;
     background-color: var(--auth-pages);
-    color: #fff
+    color: #fff;
   }
 }
 
@@ -121,7 +123,6 @@
 
 .post__footer {
   padding: 2px 10px;
-
 }
 
 .footer-link {
@@ -148,7 +149,7 @@
 }
 
 .footer-link:nth-child(2):hover {
-  color: #F44336;
+  color: #f44336;
 }
 
 .footer-link:nth-child(3):hover {
@@ -165,7 +166,8 @@
   align-items: center;
   border-radius: 3px;
   background-color: var(--white);
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .comment__profile-img {
@@ -213,7 +215,7 @@
 }
 
 .comment-name:hover {
-  text-decoration: underline
+  text-decoration: underline;
 }
 
 .big {
@@ -232,7 +234,6 @@
 
 .joinNow {
   margin-bottom: 5px;
-  height: 3vw;
   border-radius: 2vw;
   border: 0;
   color: var(--white);
@@ -260,7 +261,7 @@
   margin: 0 auto;
   background-color: #e6f2ff;
   border-top: 1px solid rgb(219 215 215);
-  padding: 0vw 3rem;
+  padding: 0 3rem;
 }
 
 .left {
@@ -277,25 +278,21 @@
   z-index: 12;
   position: sticky;
   top: 0;
-  background-color: var(--royal-blue);
+  background-color: rgb(0 53 107);
   padding: 10px;
   font-size: 14px;
   color: var(--white);
 }
 
-.com-head {
-  background-color: var(--royal-blue);
-}
-
 .com-head p {
   font-size: 16px;
-  font-family: 'bold';
+  font-family: "bold";
 }
 
 .com-banner {
   height: 170px;
   z-index: 1;
-  background-image: url('../../../assets/img/community-bg.jpg');
+  background-image: url("../../../assets/img/community-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0 -11vw;
@@ -313,9 +310,16 @@
   margin-left: 0.5vw;
 }
 
-@media only screen and (max-width:560px) {
+@media only screen and (max-width: 560px) {
   .big {
     width: 120px;
     height: 120px;
+  }
+  .full-view {
+    padding: 0 1rem;
+  }
+  .right {
+    width: 100%;
+    padding: 0;
   }
 }

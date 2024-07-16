@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -39,7 +39,7 @@ export class PopupFeaturedComponent implements OnInit {
   faCheck = faCheckCircle;
   private destroy$ = new Subject<void>();
   packages: any = [1, 2];
-  selectedIds:any = { featuredId: null, promotionId: null };
+  selectedIds: any = { featuredId: null, promotionId: null };
   constructor(
     public dialogRef: MatDialogRef<PopupFeaturedComponent>,
     private router: Router,
@@ -50,7 +50,6 @@ export class PopupFeaturedComponent implements OnInit {
   ) {
     this.propertyData = data;
     console.log(this.propertyData);
-    
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -65,14 +64,16 @@ export class PopupFeaturedComponent implements OnInit {
   }
   getFeaturedList() {
     this.http
-      .loaderGet(`ProductPrice/prices/${this.propertyData}`, true)
+      .loaderGet(`ProductPrice/prices/${this.propertyData?.id}`, true)
       .subscribe((response) => {
         this.packages = response?.modelList;
       });
   }
 
   onCheckboxChange(item: any): void {
-    const checkbox = document.getElementById(item.id.toString()) as HTMLInputElement;
+    const checkbox = document.getElementById(
+      item.id.toString()
+    ) as HTMLInputElement;
     if (checkbox.checked) {
       if (item.name === 'Featured') {
         this.selectedIds.featuredId = item.id;
@@ -89,7 +90,7 @@ export class PopupFeaturedComponent implements OnInit {
   }
   submit() {
     const { featuredId, promotionId } = this.selectedIds;
-    let url = `Payment/checkout/${this.propertyData}`;
+    let url = `Payment/checkout/${this.propertyData?.id}`;
     if (featuredId) {
       url += `/${featuredId}`;
     }
@@ -99,7 +100,7 @@ export class PopupFeaturedComponent implements OnInit {
 
     this.http.loaderGet(url, true).subscribe((response) => {
       const url = response?.model?.checkoutUrl;
-      window.open(url,'_parent')
+      window.open(url, '_parent');
     });
   }
 }

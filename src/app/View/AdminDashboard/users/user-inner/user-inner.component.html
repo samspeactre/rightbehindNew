@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="user-profile">
+    <div class="row">
+        <div class="col-sm-12 position-relative" style="z-index:10">
+            <a routerLink="/admin-dashboard/users">
+                <fa-icon [icon]="faArrowLeft"></fa-icon>
+            </a>
+        </div>
+      <div class="col-sm-12">
+        <div class="card hovercard text-center">
+          <div class="cardheader"></div>
+          <div class="user-image">
+            <div class="avatar">
+              <img
+                alt="profile"
+                src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+              />
+            </div>
+          </div>
+          <div class="info">
+            <div class="row">
+              <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="ttl-info text-left">
+                      <h6><i class="fa fa-envelope"></i>   Email</h6>
+                      <span>Marekjecnoyahoo.com</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="ttl-info text-left">
+                      <h6><i class="fa fa-phone"></i>   Contact Us</h6>
+                      <span>+91 123-456-7890</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
+                <div class="user-designation">
+                  <div class="title">
+                    <a class="bold">Mark jecno</a>
+                  </div>
+                  <div class="desc mt-2">Seller</div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="ttl-info text-left">
+                      <h6><i class="fa fa-calendar"></i>   Address</h6>
+                      <span>Miami, USA</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="ttl-info text-left">
+                      <h6><i class="fa fa-phone"></i>   Total Properties</h6>
+                      <span [countUp]="25869">0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 mt-3">
+        <div class="card p-3">
+          <div class="row">
+            <div class="col-lg-12">
+              <h6 class="bold text-dark">Property Listing</h6>
+            </div>
+            @if(rent?.length>0){ @for (card of rent; let i = $index; track card)
+            {
+            <div class="col-lg-4 mt-3">
+              <app-property-card
+                page="dashboard"
+                [card]="card"
+                [animation]="false"
+                [showBadge]="true"
+                [loader]="false"
+                type="component"
+                background="#e6f2ff"
+              ></app-property-card>
+            </div>
+            }} @else{
+            <p class="text-dark text-center">No Property Yet</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid Ends-->

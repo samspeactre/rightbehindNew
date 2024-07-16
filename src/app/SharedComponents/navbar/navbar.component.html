@@ -71,7 +71,7 @@
             </button>
             <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a class="dropdown-item" ngbDropdownItem routerLink="/dashboard">Dashboard</a>
+                <a class="dropdown-item" ngbDropdownItem [routerLink]="user?.userType == 'SuperAdmin' ? '/admin-dashboard' : '/dashboard'">Dashboard</a>
               </li>
               <li>
                 <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
@@ -140,7 +140,7 @@
       </li>
       @if(user){
       <li>
-        <a (click)="show(false)" routerLink="/dashboard">Dashboard</a>
+        <a (click)="show(false)" [routerLink]="user?.userType == 'SuperAdmin' ? '/admin-dashboard' : '/dashboard'">Dashboard</a>
       </li>
       }
     </ul>

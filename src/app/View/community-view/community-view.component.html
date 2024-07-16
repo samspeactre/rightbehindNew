@@ -1,14 +1,15 @@
-<div class="bgView ">
+<div class="bgView">
   <div class="full-view">
     <div class="row">
       @if((resize.windowSize$ | async)?.width > 1024){
-      <div class="left ">
-        <div class="stickyCol border1 bg-white rounded-3 mt-3">
+      <div class="left">
+        <div class="stickyCol top25 border1 bg-white rounded-3 my-3">
           <div class="com-head">
             <p class="mb-0 bold">All Communities</p>
           </div>
           @for (item of inquiries; track $index) {
-          <button (click)="
+          <button
+            (click)="
               routeToCommunity(
                 item?.id,
                 item?.title,
@@ -17,13 +18,19 @@
                 item?.userExistInForum
               )
             "
-            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-2 smallFont p-2 text-start rounded-2">
+            class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-2 smallFont p-2 text-start rounded-2"
+          >
             <div class="icon">
-              <img width="100%" height="100%" [src]="
+              <img
+                width="100%"
+                height="100%"
+                [src]="
                   item?.imagePath
                     ? src + item?.imagePath
                     : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
-                " alt="icon" />
+                "
+                alt="icon"
+              />
             </div>
             {{ item?.title }}
           </button>
@@ -35,16 +42,18 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <div class="rounded-3 com-banner">
-
-              </div>
+              <div class="rounded-3 com-banner"></div>
               <div class="d-flex">
-                <img class="comment__profile-img big" [src]="
-              imagePath
-                ? src + imagePath
-                : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
-            " alt="" />
-                <div class="d-flex justify-content-between w-100 ">
+                <img
+                  class="comment__profile-img big"
+                  [src]="
+                    imagePath
+                      ? src + imagePath
+                      : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                  "
+                  alt=""
+                />
+                <div class="d-flex justify-content-between w-100">
                   <div class="d-flex w-100 flex-wrap align-items-center">
                     <!-- <div class="img-space"></div> -->
                     <div class="d-flex flex-wrap head-rating">
@@ -52,12 +61,21 @@
                         {{ title }}
                       </h2>
                       <div class="rating-star mt-2">
-                        <star-rating (starClickChange)="rating($event)" [starType]="'svg'" [rating]="inquiry?.rating"
+                        <star-rating
+                          (starClickChange)="rating($event)"
+                          [starType]="'svg'"
+                          [rating]="inquiry?.rating"
                           [hoverEnabled]="true"
-                          [disabled]="inquiry?.isRatedByUser || ratingDisabled || !join"></star-rating>
+                          [disabled]="
+                            inquiry?.isRatedByUser || ratingDisabled || !join
+                          "
+                        ></star-rating>
                       </div>
                     </div>
-                    <button class="ms-auto joinNow py-1 px-3 smallFont" (click)="join ? leave() : joinNow()">
+                    <button
+                      class="ms-auto joinNow py-1 px-3 smallFont"
+                      (click)="join ? leave() : joinNow()"
+                    >
                       {{ join ? "Leave" : "Join Now" }}
                     </button>
                   </div>
@@ -68,19 +86,39 @@
               <div class="feed me-3 mt-4">
                 <div class="post rounded-3">
                   <div class="post__comments removeBorder">
-                    <div class="comment-create rounded-3" style="background: transparent; padding: 12px 8px">
-                      <img class="comment__profile-img" [src]="
+                    <div
+                      class="comment-create rounded-3"
+                      style="background: transparent; padding: 12px 8px"
+                    >
+                      <img
+                        class="comment__profile-img"
+                        [src]="
                           userDetails?.imageUrl
                             ? src + userDetails?.imageUrl
                             : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                        " alt="My Profile Picture" />
+                        "
+                        alt="My Profile Picture"
+                      />
                       <div class="inputBox position-relative">
-                        <input class="input" [title]="
+                        <input
+                          class="input"
+                          [title]="
                             join ? 'yout Post here' : 'Join first to add post'
-                          " [readOnly]="!join" placeholder="Share what's on your mind..." [(ngModel)]="post"
-                          style="background-color: #e6f2ff" />
-                        <button [disabled]="!post" class="bg-transparent border-0" (click)="createPost()">
-                          <fa-icon [icon]="faPlus" class="position-absolute btnIcon"></fa-icon>
+                          "
+                          [readOnly]="!join"
+                          placeholder="Share what's on your mind..."
+                          [(ngModel)]="post"
+                          style="background-color: #e6f2ff"
+                        />
+                        <button
+                          [disabled]="!post"
+                          class="bg-transparent border-0"
+                          (click)="createPost()"
+                        >
+                          <fa-icon
+                            [icon]="faPlus"
+                            class="position-absolute btnIcon"
+                          ></fa-icon>
                         </button>
                       </div>
                     </div>
@@ -90,19 +128,23 @@
                 <div class="post mt-2 mb-3 rounded-3">
                   <div class="post__top">
                     <div class="post__top-left">
-                      <img class="post__profile-img" [src]="
+                      <img
+                        class="post__profile-img"
+                        [src]="
                           item?.user?.imageUrl
                             ? src + item?.user?.imageUrl
                             : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                        " alt="profile pic" />
+                        "
+                        alt="profile pic"
+                      />
                       <a class="post__profile-name">{{
                         item?.user?.fullName
-                        }}</a>
+                      }}</a>
                     </div>
                     <div>
                       <span class="post__date-posted">{{
                         item?.createdAt | amTimeAgo
-                        }}</span>
+                      }}</span>
                     </div>
                   </div>
                   <div class="post__content">
@@ -111,15 +153,23 @@
                     </p>
                   </div>
                   <div class="post__footer">
-                    <button class="footer-link bg-transparent border-0"
-                      [disabled]="(item?.userReaction && item?.isReactedByUser) || !join"
-                      (click)="react(true, item?.id)">
+                    <button
+                      class="footer-link bg-transparent border-0"
+                      [disabled]="
+                        (item?.userReaction && item?.isReactedByUser) || !join
+                      "
+                      (click)="react(true, item?.id)"
+                    >
                       <fa-icon [icon]="faArrowUp"></fa-icon>
                       {{ item?.likeCount }}
                     </button>
-                    <button class="footer-link bg-transparent border-0"
-                      [disabled]="(item?.userReaction && !item?.isReactedByUser) || !join"
-                      (click)="react(false, item?.id)">
+                    <button
+                      class="footer-link bg-transparent border-0"
+                      [disabled]="
+                        (item?.userReaction && !item?.isReactedByUser) || !join
+                      "
+                      (click)="react(false, item?.id)"
+                    >
                       <fa-icon [icon]="faArrowDown"></fa-icon>
                       {{ item?.dislikeCount }}
                     </button>
@@ -131,46 +181,81 @@
                   <div class="post__comments">
                     <h6 class="bold mb-2 mt-2">Comments</h6>
                     @for (comment of item?.forumPostAnswers; track $index) {
-                    <div class="comment rounded-3" style="
+                    <div
+                      class="comment rounded-3"
+                      style="
                         background-color: #e6f2ff;
                         align-items: flex-start;
                         padding: 6px 8px;
                         padding-bottom: 0;
                         margin: 10px 0;
-                      ">
-                      <img class="comment__profile-img" [src]="
+                      "
+                    >
+                      <img
+                        class="comment__profile-img"
+                        [src]="
                           comment?.user?.imageUrl
                             ? src + comment?.user?.imageUrl
                             : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                        " alt="" />
-                      <div class="comment__content w-100" style="padding: 4px 0">
-                        <div class="d-flex justify-content-between align-items-center w-100">
+                        "
+                        alt=""
+                      />
+                      <div
+                        class="comment__content w-100"
+                        style="padding: 4px 0"
+                      >
+                        <div
+                          class="d-flex justify-content-between align-items-center w-100"
+                        >
                           <a class="comment-name">{{
                             comment?.user?.fullName
-                            }}</a>
+                          }}</a>
                           <span class="post__date-posted smallFont mb-0">{{
                             comment?.createdAt | amTimeAgo
-                            }}</span>
+                          }}</span>
                         </div>
-                        <p class="comment__text" style="padding: 4px 6px; padding-left: 0">
+                        <p
+                          class="comment__text"
+                          style="padding: 4px 6px; padding-left: 0"
+                        >
                           {{ comment?.answer }}
                         </p>
                       </div>
                     </div>
                     }
-                    <div class="comment-create rounded-3" style="background: transparent; padding: 12px 8px">
-                      <img class="comment__profile-img" [src]="
+                    <div
+                      class="comment-create rounded-3"
+                      style="background: transparent; padding: 12px 8px"
+                    >
+                      <img
+                        class="comment__profile-img"
+                        [src]="
                           userDetails?.imageUrl
                             ? src + userDetails?.imageUrl
                             : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
-                        " alt="My Profile Picture" />
+                        "
+                        alt="My Profile Picture"
+                      />
                       <div class="inputBox position-relative">
-                        <input [title]="
+                        <input
+                          [title]="
                             join ? 'Comment here' : 'Join first to comment'
-                          " [readOnly]="!join" class="input" placeholder="Add a comment" [(ngModel)]="comment"
-                          style="background-color: #e6f2ff" />
-                        <button [disabled]="!comment" class="bg-transparent border-0" (click)="createComment(item?.id)">
-                          <fa-icon [icon]="faPaperPlane" class="position-absolute btnIcon"></fa-icon>
+                          "
+                          [readOnly]="!join"
+                          class="input"
+                          placeholder="Add a comment"
+                          [(ngModel)]="comment"
+                          style="background-color: #e6f2ff"
+                        />
+                        <button
+                          [disabled]="!comment"
+                          class="bg-transparent border-0"
+                          (click)="createComment(item?.id)"
+                        >
+                          <fa-icon
+                            [icon]="faPaperPlane"
+                            class="position-absolute btnIcon"
+                          ></fa-icon>
                         </button>
                       </div>
                     </div>
@@ -179,37 +264,67 @@
                 }
               </div>
             </div>
-            @if((resize.windowSize$ | async)?.width > 1024 &&
-            relatedInquiries?.length){
-            <div class="col-lg-4 mt-4"> 
-              <div class="stickyCol border3 bg-white h-auto rounded-3 related-border">
-                <div class="headingContainer com-head">
-                  <p class="mb-0 bold">Related Communities</p>
-                </div>
-                @for (item of relatedInquiries; track $index) {
-                <button (click)="
-                    routeToCommunity(
-                      item?.id,
-                      item?.title,
-                      item?.city,
-                      item?.imagePath,
-                      item?.userExistInForum
-                    )
-                  "
-                  class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-1 smallFont p-2 text-start rounded-2">
-                  <div class="icon">
-                    <img width="100%" height="100%" [src]="
-                        item?.imagePath
-                          ? src + item?.imagePath
-                          : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
-                      " alt="icon" />
+            <div class="col-lg-4 my-4">
+              <div class="top25">
+                <div
+                  class="stickyCol position-relative border3 bg-white h-auto rounded-3 related-border pb-3"
+                >
+                  <div class="headingContainer com-head position-relative">
+                    <p class="mb-0 bold">Communities Insights</p>
                   </div>
-                  {{ item?.title }}
-                </button>
+                  <div class="row mt-3">
+                    <div class="col-6 text-center">
+                      <p class="bold">Members</p>
+                      <fa-icon class="text-danger" [icon]="faUsers"></fa-icon>
+                      <p class="smallFont" [countUp]="25869">0</p>
+                    </div>
+                    <div class="col-6 text-center">
+                      <p class="bold">Posts</p>
+                      <fa-icon class="text-danger" [icon]="faNewsPaper"></fa-icon>
+                      <p class="smallFont" [countUp]="posts?.length">0</p>
+                    </div>
+                  </div>
+                </div>
+                @if((resize.windowSize$ | async)?.width > 1024 &&
+                relatedInquiries?.length){
+                <div
+                  class="stickyCol border3 bg-white mt-3 h-auto rounded-3 related-border"
+                >
+                  <div class="headingContainer com-head">
+                    <p class="mb-0 bold">Related Communities</p>
+                  </div>
+                  @for (item of relatedInquiries; track $index) {
+                  <button
+                    (click)="
+                      routeToCommunity(
+                        item?.id,
+                        item?.title,
+                        item?.city,
+                        item?.imagePath,
+                        item?.userExistInForum
+                      )
+                    "
+                    class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start mt-3 mb-1 smallFont p-2 text-start rounded-2"
+                  >
+                    <div class="icon">
+                      <img
+                        width="100%"
+                        height="100%"
+                        [src]="
+                          item?.imagePath
+                            ? src + item?.imagePath
+                            : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                        "
+                        alt="icon"
+                      />
+                    </div>
+                    {{ item?.title }}
+                  </button>
+                  }
+                </div>
                 }
               </div>
             </div>
-            }
           </div>
         </div>
       </div>

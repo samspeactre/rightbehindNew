@@ -16,14 +16,11 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { selectUser } from '../../Ngrx/data.reducer';
-import { types } from '../../Services/helper.service';
-import { AuthService } from '../../TsExtras/auth.service';
-import { InputComponent } from '../input/input.component';
-import { MapComponent } from '../map/map.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
-import { HttpService } from '../../Services/http.service';
+import { InputComponent } from '../../../../SharedComponents/input/input.component';
+import { selectUser } from '../../../../Ngrx/data.reducer';
+import { HttpService } from '../../../../Services/http.service';
 @Component({
   standalone: true,
   imports: [
@@ -34,17 +31,15 @@ import { HttpService } from '../../Services/http.service';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    MapComponent,
   ],
-  selector: 'app-rent-popup',
-  templateUrl: './rent-popup.component.html',
-  styleUrl: './rent-popup.component.scss',
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrl: './blog.component.scss',
 })
-export class RentPopupComponent {
+export class BlogComponent {
   selected: any;
   active: string = 'rent';
   user$ = this.store.select(selectUser);
-  types = types;
   propertyForm: any = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -59,10 +54,9 @@ export class RentPopupComponent {
   private destroy$ = new Subject<void>();
   constructor(
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<RentPopupComponent>,
+    public dialogRef: MatDialogRef<BlogComponent>,
     private router: Router,
     private fb: FormBuilder,
-    private auth: AuthService,
     private http: HttpService,
     private store: Store,
 
@@ -91,8 +85,8 @@ export class RentPopupComponent {
             new FormControl('', Validators.required)
           );
         }
-        else {
-          this.propertyForm.get('unit').valueChanges.subscribe((value: any) => {
+        else{
+          this.propertyForm.get('unit').valueChanges.subscribe((value:any) => {
             if (Number(value) > 20) {
               if (!this.propertyForm.contains('contactNo')) {
                 this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
@@ -116,7 +110,6 @@ export class RentPopupComponent {
   makeActive(type: string) {
     this.active = type;
   }
-
   onSubmit() {
     if (this.active == 'rent') {
       if (this.user) {
@@ -130,34 +123,11 @@ export class RentPopupComponent {
           password: this.propertyForm.controls['password'].value,
           email: this.propertyForm.controls['email'].value,
         };
-        this.auth
-          .register(data)
-          .pipe(
-            takeUntil(this.destroy$),
-            distinctUntilChanged(
-              (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-            )
-          )
-          .subscribe((response: any) => {
-            this.auth
-              .login(data)
-              .pipe(
-                takeUntil(this.destroy$),
-                distinctUntilChanged(
-                  (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-                )
-              )
-              .subscribe((loginResponse) => {
-                this.auth.handleLoginResponse(loginResponse);
-                this.fireSwal();
-              });
-          });
       }
     } else {
       this.sendInquiry();
     }
   }
-
   fireSwal() {
     Swal.fire({
       text: 'Are you sure this is a residential rental?',
@@ -165,7 +135,7 @@ export class RentPopupComponent {
       confirmButtonText: 'Yes, this is a residential rental',
       showCancelButton: true,
       cancelButtonText: 'No, this is not a residential rental',
-      allowOutsideClick: false
+      allowOutsideClick:false
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.fireDisclaimerSwal();
@@ -192,7 +162,7 @@ export class RentPopupComponent {
       confirmButtonText: unitCount > 20 ? 'Get A Quote' : 'I Acknowledge',
       showCancelButton: true,
       cancelButtonText: 'Go Back',
-      allowOutsideClick: false
+      allowOutsideClick:false
     }).then((result) => {
       if (result.isConfirmed) {
         if (unitCount > 20) {
@@ -249,10 +219,10 @@ export class RentPopupComponent {
   }
   checkUnitValidator(){
     const unitCount = Number(this.propertyForm?.controls['unit']?.value);
-    if (unitCount > 20) {
+    if(unitCount > 20){
       return true
     }
-    else {
+    else{
       return false
     }
   }

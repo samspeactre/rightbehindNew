@@ -14,7 +14,7 @@
     </div>
     }
     <div class="dCenter flex-column">
-        @for (item of routes; track $index) {
+        @for (item of admin ? adminRoutes : routes; track $index) {
         <button class="btnWhiteNBlueOutline py-2 my-2 dCenter gap-2"
             [ngClass]="[isSidebarCollapsed? 'justify-content-center': 'justify-content-start ps-3']"
             [class.isSidebarCollapsed]="isSidebarCollapsed" [routerLink]="item?.route" routerLinkActive="active">

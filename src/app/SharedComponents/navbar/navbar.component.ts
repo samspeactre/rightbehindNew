@@ -91,6 +91,8 @@ export class NavbarComponent {
       )
       .subscribe((user) => {
         this.user = user;
+        console.log(this.user?.userType);
+        
       });
     this.router.events
       .pipe(
@@ -148,14 +150,14 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '530px',
+      height: '80%',
       width: window.innerWidth > 1024 ? '27%' : '100%',
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '620px',
+      height: '80%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
       data: type,
     });

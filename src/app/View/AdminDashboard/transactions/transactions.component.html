@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row align-items-end">
+    <div class="col-lg-12">
+      <h6 class="bold mb-0">Transactions</h6>
+    </div>
+    <div class="col-lg-12 mt-3">
+      <app-input
+        type="text"
+        classes="w-100"
+        [form]="searchForm"
+        control="search"
+        label="Search"
+        placeholder="Search Here..."
+      ></app-input>
+    </div>
+    <div class="col-lg-12 my-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col" class="text-center">Name</th>
+                  <th scope="col" class="text-center">Email</th>
+                  <th scope="col" class="text-center">Phone</th>
+                  <th scope="col" class="text-center">Transaction</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of inquiries | paginate: { itemsPerPage:
+                itemsPerPage, currentPage: p, totalItems:totalItems }; track
+                $index) {
+                <tr>
+                  <th scope="row">{{ item?.id }}</th>
+                  <td class="text-center">Mark</td>
+                  <td class="text-center">Otto</td>
+                  <td class="text-center">Otto</td>
+                  <td class="text-center" style="width: 100px">
+                    {{1000 | currency:'USD'}}
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex w-100 justify-content-end">
+            <pagination-controls (pageChange)="onPageChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

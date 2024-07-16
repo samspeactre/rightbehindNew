@@ -1,0 +1,125 @@
+/**=====================
+     22. User profile css start
+==========================**/
+.upload {
+  position: absolute;
+  width: 100px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+.plain-container {
+  img {
+    width: 100% !important;
+    border-radius: 0.25rem !important;
+    max-width: 100%;
+    height: auto;
+  }
+}
+div {
+  .plain-container {
+    align-items: inherit !important;
+  }
+}
+#modal-gallery-wrapper {
+  header {
+    height: auto;
+    background: transparent;
+    .upper-button {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}
+.user-profile {
+  margin-top: 100px;
+  .ttl-info {
+    h6 {
+      font-size: 12px;
+    }
+  }
+  .border-right {
+    border-right: 1px solid #727272;
+  }
+  hr {
+    margin: 30px 0;
+  }
+  .hovercard {
+    .user-image {
+      position: relative;
+      height: 0;
+      text-align: center;
+      .avatar {
+        margin-top: -100px;
+        img {
+          width: 125px;
+          height: 125px;
+          max-width: 155px;
+          max-height: 155px;
+          border-radius: 50%;
+          border: 7px solid #fff;
+        }
+      }
+    }
+    .info {
+      padding: 30px;
+      .title {
+        margin-bottom: 4px;
+        font-size: 24px;
+        line-height: 1;
+        color: #000;
+        vertical-align: middle;
+        a {
+          font-size: 20px;
+          text-transform: uppercase;
+          font-weight: 500;
+        }
+      }
+      .desc {
+        overflow: hidden;
+        font-size: 14px;
+        line-height: 20px;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .follow {
+    margin-top: 20px;
+    .follow-num {
+      font-size: 36px;
+    }
+  }
+  .profile-img-style {
+    padding: 30px;
+    .img-container {
+      margin-top: 30px;
+    }
+    .user-name {
+      font-size: 14px;
+      margin: 0;
+      font-weight: 600;
+    }
+    p {
+      line-height: 30px;
+      font-size: 14px;
+      color: #1d1d1d;
+      margin-bottom: 0;
+    }
+    .media {
+      img {
+        width: 50px;
+      }
+    }
+  }
+  .social-media {
+    a {
+      padding: 0 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+}
+/**=====================
+       22. User profile css Ends
+  ==========================**/

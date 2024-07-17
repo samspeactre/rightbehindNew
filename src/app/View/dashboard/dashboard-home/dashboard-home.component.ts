@@ -128,22 +128,22 @@ export class DashboardHomeComponent {
       },
       yaxis: {
         min: 1,
-        stepCount:10
+        forceNiceScale:true
       },
       colors: [
-        '#607D8B',
-        '#8BC34A',
-        '#FF9800',
-        '#E91E63',
-        '#2196F3',
-        '#607D8B',
-        '#8BC34A',
-        '#FF9800',
-        '#E91E63',
-        '#2196F3',
-        '#607D8B',
-        '#8BC34A',
-      ],
+        '#607D8B', // Blue Grey
+        '#8BC34A', // Light Green
+        '#FF9800', // Orange
+        '#E91E63', // Pink
+        '#2196F3', // Blue
+        '#9C27B0', // Purple
+        '#FFC107', // Amber
+        '#00BCD4', // Cyan
+        '#FFEB3B', // Yellow
+        '#795548', // Brown
+        '#4CAF50', // Green
+        '#F44336'  // Red
+      ]
     };
   }
   ngOnDestroy() {

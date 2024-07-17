@@ -71,7 +71,6 @@ export class BlogComponent {
     this.active = data;
     if(this.active == 'Edit'){
       console.log('edit');
-      
     }
     this.user$
       .pipe(

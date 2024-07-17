@@ -1,7 +1,67 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-3 mb-3 d-flex align-items-center">
-      <h6 class="bold mb-0">My Accounts</h6>
+  <div class="row align-items-end">
+    <div class="col-lg-12">
+      <h6 class="bold mb-0">Transactions</h6>
+    </div>
+    <div class="col-lg-12 mt-3">
+      <app-input
+        type="text"
+        classes="w-100"
+        [form]="searchForm"
+        control="search"
+        label="Search"
+        placeholder="Search Here..."
+      ></app-input>
+    </div>
+    <div class="col-lg-12 my-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col" class="text-center">Payment Gateway</th>
+                  <th scope="col" class="text-center">Date</th>
+                  <th scope="col" class="text-center">Amount</th>
+                  <th scope="col" class="text-center">Featured Property</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of payments | paginate: { itemsPerPage: itemsPerPage,
+                currentPage: p}; track $index) {
+                <tr>
+                  <th scope="row">{{ item?.id }}</th>
+                  <td class="text-center">{{ item?.paymentGatewayName }}</td>
+                  <td class="text-center">
+                    {{ item?.createdOn | date : "longDate" }}
+                  </td>
+                  <td class="text-center">
+                    {{ item?.amount || 0 | currency : "USD" }}
+                  </td>
+                  <td class="text-center" style="width: 200px">
+                    <button
+                      class="btnPrimary py-1 rounded-1" title="View Featured Property"
+                      (click)="navigateAndClose(item?.property)"
+                    >
+                      <fa-icon [icon]="faEye"></fa-icon>
+                    </button>
+                  </td>
+                </tr>
+                } @if(!payments?.length){
+                <tr>
+                  <td colspan="5" class="text-center">No Transactions yet</td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex w-100 justify-content-end">
+            <pagination-controls (pageChange)="p = $event">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -89,7 +89,7 @@ export class SidebarComponent {
       icon: this.faCircleQuestion,
     },
     { name: 'Settings', route: '/dashboard/settings', icon: this.faSetting },
-    { name: 'My Accounts', route: '/dashboard/my-accounts', icon: this.faUser },
+    { name: 'Transactions', route: '/dashboard/transactions', icon: this.faUser },
   ];
   adminRoutes = [
     { name: 'Dashboard', route: '/admin-dashboard/home', icon: this.faHome },

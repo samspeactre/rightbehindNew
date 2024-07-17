@@ -71,15 +71,15 @@ export class PropertyCardComponent {
   }
   openPopup(card: any): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '560px',
-      width: window.innerWidth > 1024 ? '28%' : '100%',
+      height: '570px',
+      width: window.innerWidth > 1024 ? '27%' : '100%',
       data: { type: 'property', id: this.card?.id },
     });
   }
   naviagteThroughPopup(card: any) {
     this.dialog?.open(PopupComponent, {
-      height: '95%',
-      width: '98%',
+      height: '90%',
+      width: '85%',
       data: { card: card },
     });
   }

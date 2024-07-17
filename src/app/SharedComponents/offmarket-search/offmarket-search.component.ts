@@ -52,7 +52,7 @@ export class OffmarketSearchComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '530px',
+      height: '520px',
       width: window.innerWidth > 1024 ? '27%' : '100%',
     });
   }

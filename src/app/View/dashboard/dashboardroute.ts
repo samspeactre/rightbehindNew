@@ -59,7 +59,7 @@ export const Dashboard_Routes: Routes = [{
                 ),
         },
         {
-            path: 'my-accounts',
+            path: 'transactions',
             loadChildren: () =>
                 import('./my-accounts/myAccountsRoute').then(
                     (m) => m.MyAccounts_Routes

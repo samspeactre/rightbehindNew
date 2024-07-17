@@ -126,10 +126,6 @@ export class DashboardHomeComponent {
       xaxis: {
         categories: this.months,
       },
-      yaxis: {
-        min: 1,
-        forceNiceScale:true
-      },
       colors: [
         '#607D8B', // Blue Grey
         '#8BC34A', // Light Green

@@ -227,12 +227,6 @@ export class ListingPageComponent implements OnInit {
 
       this.noData = mainResponse?.properties?.length === 0;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
-      console.log(
-        loadMore,
-        this.cards?.length,
-        mainResponse,
-        mainResponse?.totalResults
-      );
     } else {
       if (!loadMore) {
         this.noDataError();

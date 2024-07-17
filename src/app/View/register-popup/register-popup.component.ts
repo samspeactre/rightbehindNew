@@ -75,8 +75,8 @@ export class RegisterPopupComponent {
   openLoginPopup(): void {
     this.dialogRef.close();
     this.dialog.open(LoginPopupComponent, {
-      height: '530px',
-      width: window.innerWidth > 1024 ? '350px' : '100%'
+      height: '520px',
+      width: window.innerWidth > 1024 ? '27%' : '100%'
     });
   }
 

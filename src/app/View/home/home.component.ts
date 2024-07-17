@@ -20,6 +20,7 @@ import { MapComponent } from '../../SharedComponents/map/map.component';
 import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ResizeService } from '../../Services/resize.service';
+import { RentPopupComponent } from '../../SharedComponents/rent-popup/rent-popup.component';
 @Component({
   standalone: true,
   imports: [
@@ -117,8 +118,16 @@ export class HomeComponent {
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
       height: '500px',
-      width: window.innerWidth > 1024 ? '350px' : '100%',
+      width: window.innerWidth > 1024 ? '360px' : '100%',
       data: { type: 'contact' }
+    });
+  }
+
+  openSellPopup(type: string): void {
+    this.dialog.open(RentPopupComponent, {
+      height: '610px',
+      width: window.innerWidth > 1024 ? '400px' : '100%',
+      data: type,
     });
   }
 

@@ -157,7 +157,7 @@ export class NavbarComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '80%',
+      height: '610px',
       width: window.innerWidth > 1024 ? '33%' : '100%',
       data: type,
     });

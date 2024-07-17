@@ -268,7 +268,7 @@ export class CommunityViewComponent {
     } else {
       const dialogRef = this.dialog.open(LoginPopupComponent, {
         height: '530px',
-        width: window.innerWidth > 1024 ? '27%' : '100%',
+        width: window.innerWidth > 1024 ? '350px' : '100%',
         data: 'joinRequest',
       });
       dialogRef.afterClosed().subscribe((result) => {

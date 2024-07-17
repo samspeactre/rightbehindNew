@@ -150,15 +150,15 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '80%',
-      width: window.innerWidth > 1024 ? '27%' : '100%',
+      height: '500px',
+      width: window.innerWidth > 1024 ? '360px' : '100%',
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
       height: '610px',
-      width: window.innerWidth > 1024 ? '33%' : '100%',
+      width: window.innerWidth > 1024 ? '400px' : '100%',
       data: type,
     });
   }

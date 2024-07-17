@@ -4,43 +4,22 @@
       <h4 class="text-center text-dark bold popup-head">{{active}} Blog</h4>
     </div>
   </div>
-  <form class=" row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
-    <div class="half-input">
-      <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
-        label="First Name" placeholder="Enter your First Name*"></app-input>
-    </div>
-    <div class="half-input">
-      <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
-        label="Last Name" placeholder="Enter your Last Name*"></app-input>
-    </div>
-    <div class="half-input">
-      <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
-        placeholder="Enter Unit"></app-input>
-    </div>
-    <div [ngClass]="[user || active == 'sell' ? 'full-lenght' : 'half-input']">
-      <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email" label="Email"
-        placeholder="Enter Your Email Address"></app-input>
-    </div>
-    @if(!user && active == 'rent'){
-    <div class="half-input">
-      <app-input classes="w-100 mb-2" type="password" [password]="true" [form]="propertyForm" control="password"
-        label="Password" placeholder="Enter your Password*"></app-input>
-    </div>
-    } 
-    @if(active == 'sell' || checkUnitValidator()){
+  <form class=" row justify-content-between" [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+    <div class="col-lg-12 my-3 mx-auto d-flex align-items-center justify-content-center">
+      <input id="profile" type="file" class="d-none" (change)="imgUpload($event)">
+      <label for="profile" class="profileImage cursor">
+          <img
+              [src]="blogForm?.controls['image'].value || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'">
+          <fa-icon [icon]="faPlus"></fa-icon>
+      </label>
+  </div>
     <div class="full-lenght">
-      <app-input
-        classes="w-100 mb-2"
-        type="number"
-        [form]="propertyForm"
-        control="contactNo"
-        label="Contact No"
-        placeholder="Enter your Contact No*"
-      ></app-input>
+      <app-input classes="w-100 mb-2" type="text" [form]="blogForm" control="title"
+        label="Blog Title" placeholder="Enter your Blog Title*"></app-input>
     </div>
-    }
+    <ckeditor [editor]="editor" formControlName="description"></ckeditor>
     <div class="dCenter mt-3">
-      <button class="btnPrimary" [disabled]="propertyForm.invalid">
+      <button class="btnPrimary" [disabled]="blogForm.invalid">
         Submit
       </button>
     </div>

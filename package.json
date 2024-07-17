@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@canvasjs/angular-charts": "^1.2.0",
+    "@ckeditor/ckeditor5-angular": "^8.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^42.0.1",
     "@fortawesome/angular-fontawesome": "0.14.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",

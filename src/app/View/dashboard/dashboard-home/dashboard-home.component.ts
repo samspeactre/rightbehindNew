@@ -128,6 +128,7 @@ export class DashboardHomeComponent {
       },
       yaxis: {
         min: 1,
+        stepCount:10
       },
       colors: [
         '#607D8B',

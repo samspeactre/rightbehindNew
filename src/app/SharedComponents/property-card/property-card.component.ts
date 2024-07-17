@@ -68,6 +68,8 @@ export class PropertyCardComponent {
     this.destroy$.complete();
   }
   ngOnInit() {
+    console.log(this.card?.featuredTill);
+    
   }
   openPopup(card: any): void {
     this.dialog?.open(ContactPopupComponent, {

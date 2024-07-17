@@ -102,6 +102,9 @@ export class PopupFeaturedComponent implements OnInit {
 
     this.http.loaderGet(url, true).subscribe((response) => {
       const url = response?.model?.checkoutUrl;
+      if(this.data.show == 'Promotion'){
+        localStorage.removeItem('propertyData')
+      }
       window.open(url, '_parent');
     });
   }

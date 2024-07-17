@@ -22,7 +22,7 @@
       <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
         placeholder="Enter Unit"></app-input>
     </div>
-    <div [ngClass]="[active === 'sell' ? 'half-input ' : 'full-lenght']">
+    <div [ngClass]="[active === 'sell' || !user ? 'half-input ' : 'full-lenght']">
       <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email" label="Email"
         placeholder="Enter Your Email Address">
       </app-input>

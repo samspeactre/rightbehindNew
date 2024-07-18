@@ -34,3 +34,12 @@
     background-position: left;
     background-size: contain;
 }
+@media only screen and (max-width:1024px) {
+    .home-sec::after {
+        content: unset;
+    }
+    
+    .home-sec::before {
+        content: unset;
+    }
+}

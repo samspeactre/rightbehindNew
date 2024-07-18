@@ -193,7 +193,10 @@ export class RentPropertyPageComponent implements OnInit {
                       ?.amenityCategory?.amenityCategoryName,
                   RentSpecial: response?.model?.rentSpecials,
                   PropertyContact: response?.model?.propertyContacts,
+                  ...response?.model
                 };
+                console.log(this.previousData);
+                
                 response?.model?.propertyImages?.map((image: any) => {
                   this.propertyImageFiles.push(
                     this.fb.control(image?.imageUrl)
@@ -364,6 +367,10 @@ export class RentPropertyPageComponent implements OnInit {
       }
     };
     appendFormData(this.propertyAddForm.value);
+    if(this.previousData?.getData){
+      formData.append('isActive',this.previousData?.isActive)
+      formData.append('isDeleted',this.previousData?.isDeleted)
+    }
     const url = this.previousData?.getData
       ? 'Property/update'
       : 'Property/create';

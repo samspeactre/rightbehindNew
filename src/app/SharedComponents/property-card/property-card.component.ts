@@ -103,10 +103,10 @@ export class PropertyCardComponent {
         zipCode: this.card?.zipCode,
         street: this.card?.street,
       },
+      id:this.card?.id,
       latLng: { lat: this.card?.latitude, lng: this.card?.longitude },
       active: 'rent',
       getData: true,
-      ...this.card,
     };
     this.router.navigate(['/rent-add-property'], {
       queryParams: { data: JSON.stringify(data) },
@@ -137,17 +137,5 @@ export class PropertyCardComponent {
         queryParams: { data: JSON.stringify(routeData) },
       });
     });
-  }
-  redirect() {
-    const email = this.card?.propertyContacts?.[0]?.email;
-    const phone = this.card?.propertyContacts?.[0]?.phone;
-    
-    if (email) {
-      window.location.href = `mailto:${email}`;
-    } else if (phone) {
-      window.location.href = `tel:${phone}`;
-    } else {
-      console.error('Contact information not found');
-    }
   }
 }

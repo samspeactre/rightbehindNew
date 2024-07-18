@@ -126,13 +126,31 @@ export class NavbarComponent {
     this.destroy$.complete();
   }
   navigateToOffMarket(id: any): void {
-    const element: any = document.querySelector(id);
-    const topPos = element.getBoundingClientRect().top + window.pageYOffset;
+    if (this.router.url !== '/') {
+      this.router.navigateByUrl('/').then(() => {
+        this.router.events.pipe(
+          filter(event => event instanceof NavigationEnd)
+        ).subscribe(() => {
+          console.log('scroll');
+          this.scrollToElement(id);
+        });
+      });
+    } else {
+      this.scrollToElement(id);
+    }
+  }
 
-    window.scrollTo({
-      top: topPos,
-      behavior: 'smooth',
-    });
+  private scrollToElement(id: any): void {
+    const element: any = document.querySelector(id);
+    if (element) {
+      const topPos = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: topPos,
+        behavior: 'smooth',
+      });
+    } else {
+      console.error(`Element with id ${id} not found`);
+    }
   }
   
   socialLinks = [

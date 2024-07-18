@@ -18,9 +18,9 @@
 
       <div class="col-lg-6">
         <div class="first-box p-3">
-          <p class="reg text-dark mb-0 smallFont">Propert ID:{{ propertyData?.id }}</p>
+          <p class="reg text-dark mb-0 smallFont">Propert ID:{{ propertyData?.id || propertyData?.listingId }}</p>
           <div class="dCenter justify-content-between">
-            <h1 class="bold text-dark">{{ propertyData?.title }}</h1>
+            <h1 class="bold text-dark">{{ propertyData?.title || 'N/A' }}</h1>
             @if(propertyData?.rentSpecialTag){
               <div class="special">{{propertyData?.rentSpecialTag}}</div>
             }

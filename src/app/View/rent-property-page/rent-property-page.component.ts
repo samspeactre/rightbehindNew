@@ -24,13 +24,13 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { finalize, Subject, takeUntil } from 'rxjs';
-import { assetUrl, HelperService, types } from '../../Services/helper.service';
+import Swal from 'sweetalert2';
+import { HelperService, types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { PopupFeaturedComponent } from '../../SharedComponents/popupFeatured/popupFeatured.component';
 import { SharedModule } from '../../TsExtras/shared.module';
-import Swal from 'sweetalert2';
 
 @Component({
   standalone: true,
@@ -161,7 +161,6 @@ export class RentPropertyPageComponent implements OnInit {
   ];
   sections: any;
   section: string = 'property-information';
-  src = assetUrl;
   constructor(
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -471,7 +470,7 @@ export class RentPropertyPageComponent implements OnInit {
   }
   getImageSrc(file: string | File): string | any {
     if (typeof file === 'string') {
-      return this.src + file;
+      return file;
     } else {
       return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(file));
     }

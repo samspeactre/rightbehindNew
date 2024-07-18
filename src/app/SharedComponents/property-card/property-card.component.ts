@@ -1,22 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
-import { baseUrl } from '../../Services/http.service';
-import { HelperService, assetUrl } from '../../Services/helper.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faEye,
   faMagnifyingGlassPlus,
-  faMapMarkerAlt,
+  faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { selectUser } from '../../Ngrx/data.reducer';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
-import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
+import { selectUser } from '../../Ngrx/data.reducer';
+import { HelperService } from '../../Services/helper.service';
 import { ResizeService } from '../../Services/resize.service';
+import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { PopupComponent } from '../popup/popup.component';
 @Component({
   standalone: true,
@@ -34,7 +32,6 @@ import { PopupComponent } from '../popup/popup.component';
 export class PropertyCardComponent {
   faMagnifyingGlassPlus = faMagnifyingGlassPlus;
   faMapMarkerAlt = faMapMarkerAlt;
-  src = assetUrl;
   user$ = this.store.select(selectUser);
   userDetails: any;
   @Input() card!: any;
@@ -68,7 +65,7 @@ export class PropertyCardComponent {
     this.destroy$.complete();
   }
   ngOnInit() {
-    console.log(this.card?.featuredTill);
+    console.log(this.card?.propertyImages?.[0]?.imageUrl, this.card?.title);
     
   }
   openPopup(card: any): void {
@@ -132,7 +129,7 @@ export class PropertyCardComponent {
           fullName: this.card?.propertyContacts?.[0]?.fullName,
           imageUrl:
             this.card?.propertyContacts?.[0]?.imageUrl &&
-            this.src + this.card?.propertyContacts?.[0]?.imageUrl,
+            this.card?.propertyContacts?.[0]?.imageUrl,
         },
         contactId: response?.model?.id,
       };
@@ -140,5 +137,17 @@ export class PropertyCardComponent {
         queryParams: { data: JSON.stringify(routeData) },
       });
     });
+  }
+  redirect() {
+    const email = this.card?.propertyContacts?.[0]?.email;
+    const phone = this.card?.propertyContacts?.[0]?.phone;
+    
+    if (email) {
+      window.location.href = `mailto:${email}`;
+    } else if (phone) {
+      window.location.href = `tel:${phone}`;
+    } else {
+      console.error('Contact information not found');
+    }
   }
 }

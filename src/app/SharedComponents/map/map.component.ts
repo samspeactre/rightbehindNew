@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { assetUrl } from '../../Services/helper.service';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
@@ -15,7 +14,6 @@ export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit, OnDestroy {
-  src = assetUrl;
   @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
   @Input() zoom: number = 10;
   @Input() height: any;

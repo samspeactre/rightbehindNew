@@ -21,10 +21,11 @@
               <thead>
                 <tr>
                   <th scope="col">Id</th>
+                  <th scope="col" class="text-center">Product</th>
                   <th scope="col" class="text-center">Payment Gateway</th>
                   <th scope="col" class="text-center">Date</th>
                   <th scope="col" class="text-center">Amount</th>
-                  <th scope="col" class="text-center">Featured Property</th>
+                  <th scope="col" class="text-center">View Property</th>
                 </tr>
               </thead>
               <tbody>
@@ -32,6 +33,7 @@
                 currentPage: p}; track $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
+                  <td class="text-center">{{ item?.productName }}</td>
                   <td class="text-center">{{ item?.paymentGatewayName }}</td>
                   <td class="text-center">
                     {{ item?.createdOn | date : "longDate" }}

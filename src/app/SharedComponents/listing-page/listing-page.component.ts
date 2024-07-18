@@ -96,7 +96,7 @@ export class ListingPageComponent implements OnInit {
   maxPrice: any = null;
   beds: any = null;
   baths: any = null;
-  sort: string = 'Date: Early to Late';
+  sort: string = 'Date: Late to Early';
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
     lng: 150.4826715,
@@ -110,7 +110,6 @@ export class ListingPageComponent implements OnInit {
     private http: HttpService,
     private router: Router,
     public dialog: MatDialog,
-    private helper: HelperService,
     public resize: ResizeService
   ) {
     // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
@@ -186,7 +185,7 @@ export class ListingPageComponent implements OnInit {
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {
-      if (value !== undefined && value !== null) {
+      if (value !== undefined && value !== null && value != '') {
         urlParams.set(key, String(value));
       }
     }

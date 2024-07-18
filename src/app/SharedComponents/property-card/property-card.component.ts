@@ -70,8 +70,8 @@ export class PropertyCardComponent {
   }
   openPopup(card: any): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '570px',
-      width: window.innerWidth > 1024 ? '27%' : '100%',
+      height: '580px',
+      width: window.innerWidth > 1024 ? '350px' : '100%',
       data: { type: 'property', id: this.card?.id },
     });
   }

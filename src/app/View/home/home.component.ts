@@ -115,9 +115,10 @@ export class HomeComponent {
       this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
     }
   }
+  
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '500px',
+      height: '550px',
       width: window.innerWidth > 1024 ? '360px' : '100%',
       data: { type: 'contact' }
     });

@@ -126,7 +126,7 @@ export class HomeComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '600px',
+      height: '590px',
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });

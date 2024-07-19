@@ -1,8 +1,3 @@
-.container-site {
-  align-content: center;
-  padding: 35px;
-}
-
 p {
   font-size: 14px;
   font-family: "reg";
@@ -101,8 +96,8 @@ button.Active {
   padding: 12px 45px;
 }
 
-.main{
- align-content: center;
+.main {
+  align-content: center;
 }
 
 .left {
@@ -118,5 +113,16 @@ button.Active {
 
 .right {
   width: 45%;
+  align-content: center;
+}
+
+.main {
+  padding-left: 35px;
+  padding-right: 35px;
+  height: 98%;
+}
+
+.right,
+.left {
   align-content: center;
 }

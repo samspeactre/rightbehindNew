@@ -264,7 +264,7 @@ export class RentPropertyPageComponent implements OnInit {
           Country: this.previousData?.address?.country,
           ZipCode: this.previousData?.address?.zipCode,
           Street: this.previousData?.address?.street,
-          Unit:Number(this.previousData?.unit)
+          Unit: Number(this.previousData?.unit)
         });
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');
@@ -337,8 +337,8 @@ export class RentPropertyPageComponent implements OnInit {
     this.propertyAddForm.removeControl('AmentiyCategory');
     this.propertyAddForm.controls['Country'].setValue(
       this.propertyAddForm.controls['Country'].value +
-        '/' +
-        this.propertyAddForm.controls['State'].value
+      '/' +
+      this.propertyAddForm.controls['State'].value
     );
     const formData = new FormData();
     const appendFormData = (data: any, rootName: string = '') => {
@@ -687,9 +687,9 @@ export class RentPropertyPageComponent implements OnInit {
 
   showFeatured() {
     const dialogRef = this.dialog.open(PopupFeaturedComponent, {
-      height: '97%',
-      width: window.innerWidth > 1024 ? '50%' : '100%',
-      data: {id:this.previousData?.id,show:'Featured'},
+      height: '490px',
+      width: window.innerWidth > 1024 ? '600px' : '100%',
+      data: { id: this.previousData?.id, show: 'Featured' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

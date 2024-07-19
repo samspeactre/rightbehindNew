@@ -125,15 +125,30 @@ export class NavbarComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  navigateToOffMarket(id: any): void {
-    const element: any = document.querySelector(id);
-    const topPos = element.getBoundingClientRect().top + window.pageYOffset;
 
-    window.scrollTo({
-      top: topPos,
-      behavior: 'smooth',
+  navigateToOffMarket(id: string): void {
+  if (this.router.url !== '/') {
+    this.router.navigate(['/']).then(() => {
+      this.scrollToSection(id);
     });
+  } else {
+    this.scrollToSection(id);
   }
+}
+
+// Helper Method to Scroll to Section
+private scrollToSection(id: string): void {
+  setTimeout(() => {
+    const element: any = document.querySelector(id);
+    if (element) {
+      const topPos = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: topPos,
+        behavior: 'smooth',
+      });
+    }
+  }, 100); // Adjust the delay as needed
+}
   
   socialLinks = [
     { url: 'https://www.facebook.com/', imageUrl: '../../assets/img/fb.png' },
@@ -150,15 +165,15 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '490px',
-      width: window.innerWidth > 1024 ? '350px' : '100%',
+      height: '450px',
+      width: window.innerWidth > 1024 ? '330px' : '100%',
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '610px',
-      width: window.innerWidth > 1024 ? '400px' : '100%',
+      height: '600px',
+      width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });
   }

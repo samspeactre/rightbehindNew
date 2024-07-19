@@ -1,9 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+
 .inq-para {
     width: 85%;
     margin: auto;
 }
 
-form{
+form {
     margin-top: 1vw;
 }
 
@@ -34,4 +45,12 @@ form{
 .logo img {
     width: 100%;
     object-fit: cover;
+}
+
+.half-input {
+    width: 48.5%;
+}
+
+.full-lenght {
+    width: 100%;
 }

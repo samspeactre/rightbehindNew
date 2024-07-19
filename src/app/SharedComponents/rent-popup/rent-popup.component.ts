@@ -56,6 +56,8 @@ export class RentPopupComponent {
     latLng: ['', Validators.required],
   });
   user: any;
+  headingText: string = 'Add New Property';
+  videoSrc: string = '../../../assets/video/rent-popup.mp4';
   private destroy$ = new Subject<void>();
   constructor(
     public dialog: MatDialog,
@@ -69,6 +71,8 @@ export class RentPopupComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.active = data;
+    this.updateHeadingText();
+    this.updateVideoSrc();
     this.user$
       .pipe(
         takeUntil(this.destroy$),
@@ -115,6 +119,8 @@ export class RentPopupComponent {
   }
   makeActive(type: string) {
     this.active = type;
+    this.updateHeadingText();
+    this.updateVideoSrc();
   }
 
   onSubmit() {
@@ -256,4 +262,13 @@ export class RentPopupComponent {
       return false
     }
   }
+
+  updateHeadingText() {
+    this.headingText = this.active === 'sell' ? 'Add Sell Property' : 'Add New Property';
+  }
+
+  updateVideoSrc() {
+    this.videoSrc = this.active === 'sell' ? '../../../assets/video/sell-popup.mp4' : '../../../assets/video/rent-popup.mp4';
+  }
+
 }

@@ -118,16 +118,16 @@ export class HomeComponent {
   
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '550px',
-      width: window.innerWidth > 1024 ? '360px' : '100%',
+      height: '450px',
+      width: window.innerWidth > 1024 ? '400px' : '100%',
       data: { type: 'contact' }
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '610px',
-      width: window.innerWidth > 1024 ? '400px' : '100%',
+      height: '600px',
+      width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });
   }

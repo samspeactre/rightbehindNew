@@ -859,22 +859,22 @@
       ></app-map>
     </div>
     @if((resize.windowSize$ | async)?.width <= 1024){
-      <div class="position-sticky bottom-0 d-flex justify-content-between">
+      <div class="position-sticky d-flex justify-content-between stick" >
         <a
-          class="btnPrimary cstmWidthBtn py-2"
+          class="btnPrimary cstmWidthBtn py-3"
           (click)="clickAnalytic('phone')"
           [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact"
         >
           {{propertyDetails?.propertyContacts?.[0]?.contact}}
         </a>
         <a
-          class="btnPrimary cstmWidthBtn py-2"
+          class="btnPrimary cstmWidthBtn py-3"
           (click)="clickAnalytic('email')"
           [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email"
         >
           Send an email
         </a>
-        <a class="btnPrimary cstmWidthBtn py-2"> Request a tour </a>
+        <a class="btnPrimary cstmWidthBtn py-3"> Request a tour </a>
       </div>
       }
     }

@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="col-lg-2 col-6 ms-auto dCenter" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
-            <button class="btnDanger w-100 py-3" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
+            <button class="btnDanger w-100" [ngClass]="{'py-3' : (resize.windowSize$ | async)?.width <= 1024}" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
           </div>
         </div>
         }

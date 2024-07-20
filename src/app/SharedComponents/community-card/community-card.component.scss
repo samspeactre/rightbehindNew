@@ -1,11 +1,5 @@
 @import url("../../../assets/scss/skeleton.scss");
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .title.skeleton {
   width: 90%;
   height: 24px;
@@ -61,6 +55,9 @@
 
 p {
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 hr {
@@ -72,7 +69,7 @@ hr {
 }
 
 .card-name {
-  font-family: 'bold';
+  font-family: "bold";
   text-transform: capitalize;
 }
 
@@ -82,7 +79,7 @@ hr {
   color: #fff;
   padding: 1vw 3vw;
   border: 1px solid #e02c27;
-  transition: .5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
   cursor: pointer;
   text-decoration: none;
 
@@ -93,7 +90,7 @@ hr {
   }
 }
 
-@media only screen and (max-width:1024px) {
+@media only screen and (max-width: 1024px) {
   p {
     font-size: 10px;
   }

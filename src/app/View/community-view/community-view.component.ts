@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faNewspaper,
@@ -14,19 +17,15 @@ import {
   faShare,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
-import { ResizeService } from '../../Services/resize.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpService } from '../../Services/http.service';
-import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { assetUrl } from '../../Services/helper.service';
-import { FormsModule } from '@angular/forms';
-import { MomentModule } from 'ngx-moment';
-import { selectUser } from '../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
-import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
-import { MatDialog } from '@angular/material/dialog';
 import { StarRatingModule } from 'angular-star-rating';
 import { CountUpModule } from 'ngx-countup';
+import { MomentModule } from 'ngx-moment';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
+import { selectUser } from '../../Ngrx/data.reducer';
+import { assetUrl } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone: true,
   imports: [
@@ -35,7 +34,8 @@ import { CountUpModule } from 'ngx-countup';
     StarRatingModule,
     MomentModule,
     FormsModule,
-    CountUpModule
+    CountUpModule,
+    RouterModule,
   ],
   selector: 'app-community-view',
   templateUrl: './community-view.component.html',
@@ -50,8 +50,8 @@ export class CommunityViewComponent {
   faShare = faShare;
   faPaperPlane = faPaperPlane;
   faPlus = faPlusSquare;
-  faUsers = faUsers
-  faNewsPaper = faNewspaper
+  faUsers = faUsers;
+  faNewsPaper = faNewspaper;
   title!: string;
   imagePath!: string;
   id: any;
@@ -63,6 +63,7 @@ export class CommunityViewComponent {
   posts: any;
   post: any;
   comment: any;
+  userExistInForum:any;
   private destroy$ = new Subject<void>();
   user$ = this.store.select(selectUser);
   userDetails: any;
@@ -82,7 +83,7 @@ export class CommunityViewComponent {
       this.city = param?.city;
       this.join =
         param?.userExistInForum && JSON.parse(param?.userExistInForum);
-      console.log(param, this.join);
+        this.userExistInForum = param?.userExistInForum
       this.getInquiry();
     });
     this.user$
@@ -101,51 +102,13 @@ export class CommunityViewComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  getInquiries() {
-    this.http
-      .loaderGet('Forum/get', false)
-      .pipe(
-        takeUntil(this.destroy$),
-        finalize(() => {
-          this.getRelatedInquiries();
-        })
-      )
-      .subscribe((response) => {
-        this.inquiries = response?.model?.forums;
-      });
-  }
-  getRelatedInquiries() {
-    this.http
-      .loaderGet(`Forum/get?city=${this.city}&pageNo=1&pageSize=10`, false)
-      .pipe(
-        takeUntil(this.destroy$),
-        finalize(() => {
-          this.getPosts();
-        })
-      )
-      .subscribe((response) => {
-        if (response?.model?.forums?.length) {
-          this.relatedInquiries = response?.model?.forums;
-        } else {
-          let relatedInquiries = this.inquiries.slice(0, 10);
-          for (let i = relatedInquiries.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [relatedInquiries[i], relatedInquiries[j]] = [
-              relatedInquiries[j],
-              relatedInquiries[i],
-            ];
-          }
-          this.relatedInquiries = relatedInquiries;
-        }
-      });
-  }
   getInquiry() {
     this.http
       .loaderGet(`Forum/get/${this.id}`, true, true)
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => {
-          this.getInquiries();
+          this.getPosts();
         })
       )
       .subscribe((response) => {
@@ -240,55 +203,6 @@ export class CommunityViewComponent {
         }
       });
   }
-  routeToCommunity(
-    id: any,
-    title: string,
-    city: string,
-    imagePath: string,
-    userExistInForum: string
-  ) {
-    this.router.navigate(['/communities/community'], {
-      queryParams: { id, title, city, imagePath, userExistInForum },
-    });
-  }
-  leave() {
-    this.http
-      .loaderGet(`forum/${this.id}/user/remove`, true)
-      .subscribe((response) => {
-        this.router.navigate([], {
-          relativeTo: this.activatedRoute,
-          queryParams: { userExistInForum: false },
-          queryParamsHandling: 'merge',
-        });
-      });
-  }
-  joinNow() {
-    if (this.userDetails) {
-      this.joining();
-    } else {
-      const dialogRef = this.dialog.open(LoginPopupComponent, {
-        height: '490px',
-        width: window.innerWidth > 1024 ? '350px' : '100%',
-        data: 'joinRequest',
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result?.data) {
-          this.joining();
-        }
-      });
-    }
-  }
-  joining() {
-    this.http
-      .loaderPost(`forum/${this.id}/user`, {}, true)
-      .subscribe((response) => {
-        this.router.navigate([], {
-          relativeTo: this.activatedRoute,
-          queryParams: { userExistInForum: true },
-          queryParamsHandling: 'merge',
-        });
-      });
-  }
   react(react: boolean, postId: number) {
     const data = {
       forumPostId: postId,
@@ -327,15 +241,11 @@ export class CommunityViewComponent {
       }
     });
   }
-  rating(react: any) {
-    if (react != null) {
-      const data = {
-        forumId: this.id,
-        reaction: react?.rating,
-      };
-      this.http.loaderPost(`Forum/rating`, data, true).subscribe(() => {
-        this.ratingDisabled = true;
-      });
-    }
+  routeToCommunity(
+    id:any
+  ) {
+    this.router.navigate(['/communities/community/'+id], {
+      queryParams: { id:this.id, title:this.title, city:this.city, imagePath:this.imagePath, userExistInForum:this.userExistInForum },
+    });
   }
 }

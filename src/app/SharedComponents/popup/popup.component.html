@@ -53,14 +53,11 @@
                 (click)="navigateAndClose()">
                 <fa-icon class="dCenter" [icon]="faRedirect"></fa-icon>
               </button>
-              <button class="dCenter optionBtn ms-auto" ngbTooltip="Click to like a property">
+              <!-- <button class="dCenter optionBtn" ngbTooltip="Click to like a property">
                 <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
-              </button>
-              <button class="dCenter optionBtn" ngbTooltip="Click to share">
+              </button> -->
+              <button class="dCenter optionBtn" (click)="share" ngbTooltip="Click to share">
                 <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
-              </button>
-              <button class="dCenter optionBtn" ngbTooltip="More Options">
-                <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
               </button>
             </div>
             <div class="col-lg-3 my-3">

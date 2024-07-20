@@ -117,4 +117,10 @@
   .search-bar {
     width: 100%;
   }
+  :host ::ng-deep{
+    .ngs-select {
+      border: 1px solid #0000002e;
+      margin: 10px 0;
+    }
+  }
 }

@@ -1,0 +1,155 @@
+<div class="bgView">
+    <div class="full-view">
+      <div class="row">
+        @if((resize.windowSize$ | async)?.width > 1024){
+        <div class="left">
+          <div class="stickyCol top25 border1 bg-white rounded-3 my-3">
+            <div class="com-head">
+              <p class="mb-0 bold">All Communities</p>
+            </div>
+            @for (item of inquiries; track $index) {
+            <button
+              (click)="
+                routeToCommunity(
+                  item?.id,
+                  item?.title,
+                  item?.city,
+                  item?.imagePath,
+                  item?.userExistInForum
+                )
+              "
+              class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start my-2 smallFont p-2 text-start rounded-2"
+            >
+              <div class="icon">
+                <img
+                  width="100%"
+                  height="100%"
+                  [src]="
+                    item?.imagePath
+                      ? src + item?.imagePath
+                      : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                  "
+                  alt="icon"
+                />
+              </div>
+              {{ item?.title }}
+            </button>
+            }
+          </div>
+        </div>
+        }
+        <div class="right mx-auto mt-3">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="rounded-3 com-banner"></div>
+                <div class="d-flex">
+                  <img
+                    class="comment__profile-img big"
+                    [src]="
+                      imagePath
+                        ? src + imagePath
+                        : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                    "
+                    alt=""
+                  />
+                  <div class="d-flex justify-content-between w-100">
+                    <div class="d-flex w-100 flex-wrap align-items-center">
+                      <!-- <div class="img-space"></div> -->
+                      <div class="d-flex flex-wrap head-rating">
+                        <h2 class="mb-0 linheigh bold text-capitalize">
+                          {{ title }}
+                        </h2>
+                        <div class="rating-star mt-2">
+                          <star-rating
+                            (starClickChange)="rating($event)"
+                            [starType]="'svg'"
+                            [rating]="inquiry?.rating"
+                            [hoverEnabled]="true"
+                            [disabled]="
+                              inquiry?.isRatedByUser || ratingDisabled || !join
+                            "
+                          ></star-rating>
+                        </div>
+                      </div>
+                      <button
+                        class="ms-auto joinNow py-1 px-3 smallFont"
+                        (click)="join ? leave() : joinNow()"
+                      >
+                        {{ join ? "Leave" : "Join Now" }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <router-outlet></router-outlet>
+              </div>
+              <div class="col-lg-4 my-4">
+                <div class="top25">
+                  <div
+                    class="stickyCol position-relative border3 bg-white h-auto rounded-3 related-border pb-3"
+                  >
+                    <div class="headingContainer com-head position-relative">
+                      <p class="mb-0 bold">Communities Insights</p>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-6 text-center">
+                        <p class="bold">Members</p>
+                        <fa-icon class="text-danger" [icon]="faUsers"></fa-icon>
+                        <p class="smallFont" [countUp]="25869">0</p>
+                      </div>
+                      <div class="col-6 text-center">
+                        <p class="bold">Posts</p>
+                        <fa-icon class="text-danger" [icon]="faNewsPaper"></fa-icon>
+                        <p class="smallFont" [countUp]="posts?.length">0</p>
+                      </div>
+                    </div>
+                  </div>
+                  @if((resize.windowSize$ | async)?.width > 1024 &&
+                  relatedInquiries?.length){
+                  <div
+                    class="stickyCol border3 bg-white mt-3 h-auto rounded-3 related-border"
+                  >
+                    <div class="headingContainer com-head">
+                      <p class="mb-0 bold">Related Communities</p>
+                    </div>
+                    @for (item of relatedInquiries; track $index) {
+                    <button
+                      (click)="
+                        routeToCommunity(
+                          item?.id,
+                          item?.title,
+                          item?.city,
+                          item?.imagePath,
+                          item?.userExistInForum
+                        )
+                      "
+                      class="btnTrans mx-auto d-flex align-items-center gap-2 justify-content-start mt-3 mb-1 smallFont p-2 text-start rounded-2"
+                    >
+                      <div class="icon">
+                        <img
+                          width="100%"
+                          height="100%"
+                          [src]="
+                            item?.imagePath
+                              ? src + item?.imagePath
+                              : 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/93afb4b1-623f-4c7a-bf93-dd76668a0790/d5bee36-4cecedc1-1e14-4167-851c-d6369d44ba75.jpg'
+                          "
+                          alt="icon"
+                        />
+                      </div>
+                      {{ item?.title }}
+                    </button>
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

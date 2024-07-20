@@ -79,4 +79,11 @@ export class PopupComponent implements OnInit {
       );
     });
   }
+  async share() {
+    try {
+      await navigator.share({ title: this.propertyData?.title, url: `preview/?id=${this.propertyData?.id}&type=${this.propertyData?.propertyType}` });
+    } catch (err: any) {
+      console.error("Share failed:", err?.message);
+    }
+  }
 }

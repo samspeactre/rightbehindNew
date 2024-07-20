@@ -45,7 +45,7 @@
         <h5 class="text-light mb-3 wow fadeInDown">Post your residential/commercial property</h5>
       </div>
       <div class="col-lg-3 dCenter flex-column text-center">
-        <button class="btnWhite mx-auto mb-3 wow fadeInDown">
+        <button class="btnWhite mx-auto mb-3 wow fadeInDown" (click)="openSellPopup('rent')">
           Submit Your Property FREE
         </button>
         <div class="counter dCenter align-items-start">
@@ -84,7 +84,7 @@
             or selling, join our exclusive network to unlock unparalleled
             opportunities. Submit your property or explore listings now!
           </p>
-          <button class="btnBlackNWhite wow fadeInDown" (click)="navigateToOffMarket()">Know More</button>
+          <button class="btnBlackNWhite wow fadeInDown" (click)="openPopup()">Know More</button>
         </div>
       </div>
     </div>

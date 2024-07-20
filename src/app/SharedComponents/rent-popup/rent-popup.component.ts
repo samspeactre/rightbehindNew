@@ -248,12 +248,12 @@ export class RentPopupComponent {
         this.getAQuote(response?.model?.id)
       });
   }
-  getAQuote(id:any){
-    this.http.loaderPost('QuoteRequest/create',{sellInquiryId:id},true).subscribe((response)=>{
+  getAQuote(id: any) {
+    this.http.loaderPost('QuoteRequest/create', { sellInquiryId: id }, true).subscribe((response) => {
       this.dialogRef.close();
     })
   }
-  checkUnitValidator(){
+  checkUnitValidator() {
     const unitCount = Number(this.propertyForm?.controls['unit']?.value);
     if (unitCount > 20) {
       return true

@@ -131,8 +131,4 @@ export class HomeComponent {
       data: type,
     });
   }
-
-  navigateToOffMarket() {
-    this.router.navigate(['/off-market']);
-  }
 }

@@ -11,7 +11,12 @@ import { ChatPopupComponent } from '../../../SharedComponents/add-chat-popup/add
 import { InputComponent } from '../../../SharedComponents/input/input.component';
 import { CommunityCardComponent } from '../../../SharedComponents/community-card/community-card.component';
 import { of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
@@ -38,17 +43,44 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   inquiries: any;
   originalInquiries: any;
   p: number = 1;
+  startDate: any;
+  endDate: any;
+  maxDate: any;
   totalItems!: number;
   itemsPerPage: number = 7;
-
+  minDate: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     public dialog: MatDialog,
     private http: HttpService
-  ) {}
-
+  ) {
+    const today = new Date();
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    this.startDate = this.formatDate(firstDayOfMonth);
+    this.endDate = this.formatDate(today);
+    this.maxDate = this.formatDate(today);
+    this.minDate = this.formatDate(this.getNextDay(firstDayOfMonth));
+  }
+  onStartDateChange(newStartDate: string) {
+    this.startDate = newStartDate;
+    const startDateObj = new Date(newStartDate);
+    this.minDate = this.formatDate(this.getNextDay(startDateObj));
+  }
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
+  getNextDay(date: Date): Date {
+    const nextDay = new Date(date);
+    nextDay.setDate(date.getDate() + 1);
+    return nextDay;
+  }
   ngOnInit(): void {
+    console.log(this.startDate, this.endDate);
+
     this.getInquiries();
     this.initializeSearch();
   }
@@ -65,7 +97,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((searchTerm: string) => {
-          return of(this.getInquiries());
+          return of(this.search());
         }),
         takeUntil(this.destroy$)
       )
@@ -74,7 +106,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   getInquiries(): void {
     const urlParams = this.buildUrlParams();
-    const Url = `Property/get?${urlParams.toString()}`;
+    const Url = `admindashboard/get/payments?${urlParams.toString()}`;
     this.http
       .loaderGet(Url, true, true)
       .pipe(
@@ -84,33 +116,28 @@ export class TransactionsComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((response) => {
-        this.inquiries = response?.model?.properties;
-        this.originalInquiries = response?.model?.properties;
-        this.totalItems = response?.model?.totalResults;
+        this.inquiries = response?.modelList;
+        this.originalInquiries = response?.modelList;
       });
   }
   private buildUrlParams(): URLSearchParams {
     const urlParams = new URLSearchParams({
-      pageNo: String(this.p),
-      pageSize: String(this.itemsPerPage),
-      type: this.router.url.includes('buy') ? '1' : '2',
+      startDate: String(this.startDate),
+      endDate: String(this.endDate),
     });
-
-    const optionalParams = {
-      search: this.searchForm.controls['search'].value,
-      type: 2,
-    };
-
-    for (const [key, value] of Object.entries(optionalParams)) {
-      if (value !== undefined && value !== null && value !== '') {
-        urlParams.set(key, String(value));
-      }
-    }
-
     return urlParams;
   }
-  onPageChange(event: number): void {
-    this.p = event;
-    this.getInquiries();
+  search(): void {
+    if (!this.searchForm?.controls['search'].value) {
+      this.inquiries = this.originalInquiries;
+    } else {
+      const lowerSearchTerm = this.searchForm?.controls['search'].value.toLowerCase();
+      this.inquiries = this.originalInquiries.filter((inquiry:any) => 
+        inquiry.id.toString().includes(lowerSearchTerm) ||
+        inquiry.paymentNumber.toLowerCase().includes(lowerSearchTerm) ||
+        inquiry.status.toLowerCase().includes(lowerSearchTerm) ||
+        inquiry.amount.toString().includes(lowerSearchTerm)
+      );
+    }
   }
 }

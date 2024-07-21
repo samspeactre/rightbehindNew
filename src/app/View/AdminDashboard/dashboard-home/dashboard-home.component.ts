@@ -40,7 +40,6 @@ export class DashboardHomeComponent {
   user$ = this.store.select(selectUser);
   user: any;
   private destroy$ = new Subject<void>();
-  @ViewChild('secondCol') secondCol!: ElementRef;
   mapHeight:number=0;
   dashboard: any;
   rent: any;
@@ -100,18 +99,6 @@ export class DashboardHomeComponent {
   ]
   ngOnInit() {
     this.getInquiries()
-  }
-  ngAfterViewInit(){
-    if(this.mapHeight == 0){
-      setTimeout(() => {
-        this.setMapHeight()
-      },500);
-    }
-  }
-  setMapHeight() {
-    if (this.secondCol) {
-      this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
-    }
   }
   getInquiries() {
     this.http.loaderGet('Property/get/me?pageSize=4&type=2&pageNo=1', true)

@@ -77,7 +77,7 @@ export class InquiriesComponent implements OnInit, OnDestroy {
 
   getInquiries(): void {
     const urlParams = this.buildUrlParams();
-    const Url = `Property/get?${urlParams.toString()}`;
+    const Url = `inquiry/get?${urlParams.toString()}`;
     this.http
       .loaderGet(Url, true, true)
       .pipe(
@@ -87,8 +87,8 @@ export class InquiriesComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((response) => {
-        this.inquiries = response?.model?.properties;
-        this.originalInquiries = response?.model?.properties;
+        this.inquiries = response?.modelList;
+        this.originalInquiries = response?.modelList;
         this.totalItems = response?.model?.totalResults;
       });
   }
@@ -96,12 +96,10 @@ export class InquiriesComponent implements OnInit, OnDestroy {
     const urlParams = new URLSearchParams({
       pageNo: String(this.p),
       pageSize: String(this.itemsPerPage),
-      type: this.router.url.includes('buy') ? '1' : '2',
     });
 
     const optionalParams = {
       search: this.searchForm.controls['search'].value,
-      type: 2,
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {

@@ -17,56 +17,69 @@
         <div class="slash smallFont text-dark">/</div>
         <a class="smallFont text-dark">{{ propertyDetails?.title }}</a>
       </div>
-      @if(propertyDetails?.propertyImages?.length){
-      @if(propertyDetails?.propertyImages?.length >= 4){
-      <owl-carousel-o [options]="customOptions" #owlCar>
-        @for (card of propertyDetails?.propertyImages; let i = $index; track
-        card) {
-        <ng-template carouselSlide>
-          <img [src]="card?.imageUrl" alt="image" (click)="open(i)" />
-        </ng-template>
-        }
-      </owl-carousel-o>
-      } @else{ @if((resize.windowSize$ | async)?.width > 1024){
-      <div class="row">
-        @for (card of propertyDetails?.propertyImages; let i = $index; track
-        card) {
-        <div class="col-lg-4">
-          <img
-            [src]="card?.imageUrl"
-            class="carouselImg"
-            alt="image"
-            (click)="open(i)"
-          />
+      <div class="position-relative">
+        @if(propertyDetails?.propertyImages?.length){
+        @if(propertyDetails?.propertyImages?.length >= 4){
+        <owl-carousel-o [options]="customOptions" #owlCar>
+          @for (card of propertyDetails?.propertyImages; let i = $index; track
+          card) {
+          <ng-template carouselSlide>
+            <img [src]="card?.imageUrl" alt="image" (click)="open(i)" />
+          </ng-template>
+          }
+        </owl-carousel-o>
+        } @else{ @if((resize.windowSize$ | async)?.width > 1024){
+        <div class="row">
+          @for (card of propertyDetails?.propertyImages; let i = $index; track
+          card) {
+          <div class="col-lg-4">
+            <img
+              [src]="card?.imageUrl"
+              class="carouselImg"
+              alt="image"
+              (click)="open(i)"
+            />
+          </div>
+          }
+        </div>
+        } @else {
+        <owl-carousel-o [options]="customOptions" #owlCar>
+          @for (card of propertyDetails?.propertyImages; let i = $index; track
+          card) {
+          <ng-template carouselSlide>
+            <img [src]="card?.imageUrl" alt="image" (click)="open(i)" />
+          </ng-template>
+          }
+        </owl-carousel-o>
+        } } } @else {
+        <div class="dCenter">
+          <div class="banner-review-img">
+            <img
+              class="NoImageFound"
+              src="https://homes.madeeasy.app/img/no-propertyfound.png"
+              alt="noimage found"
+            />
+          </div>
+        </div>
+        } @if(propertyDetails?.featuredTill || propertyDetails?.isPromoted){
+        <div class="special featured end-0">
+          💲
+          {{ propertyDetails?.featuredTill ? "Featured" : "" }}
+          {{
+            propertyDetails?.featuredTill && propertyDetails?.isPromoted
+              ? " & "
+              : " "
+          }}
+          {{ propertyDetails?.isPromoted ? "Promoted" : "" }}
         </div>
         }
       </div>
-      } @else {
-      <owl-carousel-o [options]="customOptions" #owlCar>
-        @for (card of propertyDetails?.propertyImages; let i = $index; track
-        card) {
-        <ng-template carouselSlide>
-          <img [src]="card?.imageUrl" alt="image" (click)="open(i)" />
-        </ng-template>
-        }
-      </owl-carousel-o>
-      } } } @else {
-      <div class="dCenter">
-        <div class="banner-review-img">
-          <img
-            class="NoImageFound"
-            src="https://homes.madeeasy.app/img/no-propertyfound.png"
-            alt="noimage found"
-          />
-        </div>
-      </div>
-      }
     </div>
     <div class="col-lg-8 mt-3">
       <div class="left-site-box">
         <div class="first-box">
           <div class="d-flex align-items-start justify-content-between">
-            <div class="inner-heading">
+            <div class="inner-heading position-relative w-sm-50">
               <h1>{{ propertyDetails?.title || "N/A" }}</h1>
             </div>
             <div class="d-flex share-icon-div">
@@ -859,24 +872,23 @@
       ></app-map>
     </div>
     @if((resize.windowSize$ | async)?.width <= 1024){
-      <div class="position-sticky d-flex justify-content-between stick" >
-        <a
-          class="btnPrimary cstmWidthBtn py-3"
-          (click)="clickAnalytic('phone')"
-          [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact"
-        >
-          {{propertyDetails?.propertyContacts?.[0]?.contact}}
-        </a>
-        <a
-          class="btnPrimary cstmWidthBtn py-3"
-          (click)="clickAnalytic('email')"
-          [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email"
-        >
-          Send an email
-        </a>
-        <a class="btnPrimary cstmWidthBtn py-3"> Request a tour </a>
-      </div>
-      }
-    }
+    <div class="position-sticky d-flex justify-content-between stick">
+      <a
+        class="btnPrimary cstmWidthBtn py-3"
+        (click)="clickAnalytic('phone')"
+        [href]="'tel:' + propertyDetails?.propertyContacts?.[0]?.contact"
+      >
+        {{propertyDetails?.propertyContacts?.[0]?.contact}}
+      </a>
+      <a
+        class="btnPrimary cstmWidthBtn py-3"
+        (click)="clickAnalytic('email')"
+        [href]="'mailto:' + propertyDetails?.propertyContacts?.[0]?.email"
+      >
+        Send an email
+      </a>
+      <a class="btnPrimary cstmWidthBtn py-3"> Request a tour </a>
+    </div>
+    } }
   </div>
 </div>

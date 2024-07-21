@@ -2,23 +2,32 @@
   <app-banner>
     <div class="container">
       <div class="sec-1 pb-3">
+
         @if(url == '/communities'){
-        <h1 class="bigFont wow fadeInDown text-dark text-center">The best communities in Miami.</h1>
+        <div class="community-main">
+          <h1 id="typing-heading" class="bigFont wow fadeInDown text-dark text-center typing-animation">
+           
+            <!-- {{ getHeaderText() }} -->
+          </h1>
+        </div>
         }
         @else{
-        <h1 class="bigFont wow fadeInDown text-dark text-center">The best rental deals in Miami.</h1>
+        <div class="rental-main">
+          <h1 id="typing-heading" class="bigFont wow fadeInDown text-dark text-center typing-animation">
+           
+            <!-- {{ getHeaderText() }} -->
+          </h1>
+        </div>
+
         <p class="wow fadeInDown text-center mb-3">
-          Move in with just a security deposit, a month free and more 🔥
+          Move in with just a security deposit, a month free and more
+
+          <img src="../../../assets/video/fire.gif" class="fire-animation" alt="">
+
         </p>
         }
-        <!-- <div class="dCenter w-100">
-          <button class="btnWhiteNBlue me-2 wow fadeInDown" routerLinkActive="active" routerLink="/buy">
-            Buy
-          </button>
-          <button class="btnWhiteNBlue ms-2 wow fadeInDown" routerLinkActive="active" routerLink="/rent">
-            Rent
-          </button>
-        </div> -->
+
+
         <div class="my-3 wow fadeInDown search-bar">
           <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
             [searching]="loader"></app-search-bar>

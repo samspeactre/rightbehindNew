@@ -17,7 +17,6 @@ p{
 .logo {
     width: 150px;
     margin: auto;
-    margin-top: 8px;
 }
 
 .logo img {
@@ -75,6 +74,14 @@ p{
     font-size: 14px;
     font-family: "reg";
 }
+
+.main{
+    height: 98%;
+    align-content: center;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
 @media only screen and (max-width:1024px){
     p{
         font-size: 12px;

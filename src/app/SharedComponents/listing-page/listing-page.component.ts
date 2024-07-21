@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
@@ -28,6 +28,7 @@ import { ResizeService } from '../../Services/resize.service';
 import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import TWriter from 't-writer.js';
 
 @Component({
   standalone: true,
@@ -55,12 +56,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MapDrawComponent,
     CommunityCardComponent,
     FontAwesomeModule,
+    
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.scss',
 })
-export class ListingPageComponent implements OnInit {
+export class ListingPageComponent implements AfterViewInit {
   cards: any = [1, 2, 3];
   zoom = 15;
   pageType!: string;
@@ -105,7 +107,33 @@ export class ListingPageComponent implements OnInit {
   screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
-  constructor(
+  ngOnInit() {}
+
+  ngAfterViewInit(): void {
+    const element = document.getElementById('typing-heading');
+    if (element) {
+      const writer = new TWriter(element, {
+        loop: false, // Ensure the animation does not loop
+        typeSpeed: 100, // Adjust typing speed
+        eraseSpeed: 50, // Adjust erase speed if needed
+      });
+
+      // Start the typewriter effect
+      writer.type(this.getHeaderText()).start();
+
+      // Stop the animation after a fixed duration
+      setTimeout(() => writer.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
+    }
+  }
+
+  getHeaderText(): string {
+    const url = this.router.url;
+    return url === '/communities'
+      ? 'The best communities in Miami.'
+      : 'The best rental deals in Miami.';
+  }
+
+    constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
     private router: Router,
@@ -134,7 +162,6 @@ export class ListingPageComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

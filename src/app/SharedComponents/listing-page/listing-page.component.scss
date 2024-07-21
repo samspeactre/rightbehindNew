@@ -15,24 +15,26 @@
   //     padding: 0vw 0vw 0vw 1vw;
   // }
 
-  .ngs-select {
-    background-color: white;
-    border-radius: 100px;
-    padding: 0px 15px;
-  }
-  .ng-select {
-    padding-bottom: 0 !important;
-  }
-  .ng-select .ng-select-container:after {
-    content: unset !important;
-    min-height: 51.5px;
-    padding-bottom: 6px;
-  }
+    .ngs-select {
+        background-color: white;
+        border-radius: 100px;
+        padding: 0px 15px;
+    }
+
+    .ng-select {
+        padding-bottom: 0 !important;
+    }
+
+    .ng-select .ng-select-container:after {
+        content: unset !important;
+        min-height: 51.5px;
+        padding-bottom: 6px;
+    }
 }
 
 .search-bar {
-  width: 60%;
-  margin: auto;
+    width: 60%;
+    margin: auto;
 }
 
 // :host ::ng-deep .mat-mdc-form-field-infix {
@@ -95,14 +97,48 @@
   right: 0;
   height: 100%;
 }
+
 .bigFont {
   margin-top: 3rem;
 }
-@media only screen and (max-width: 1024px) {
-  .bigFont {
-    margin-top: 4rem;
-    // margin-bottom: 2rem;
+
+.fire-animation {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 9px;
+}
+
+.typing-animation span {
+    border-right: none; 
+    font-family: 'bold'!important;
   }
+
+.typing-animation {
+    font-family: 'bold'!important;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: black;
+    }
+}
+
+
+
+@media only screen and (max-width:1024px) {
+    .bigFont {
+        margin-top: 4rem;
+        // margin-bottom: 2rem;
+    }
 
   .rightP {
     position: unset;
@@ -122,5 +158,12 @@
       border: 1px solid #0000002e;
       margin: 10px 0;
     }
-  }
+
+    .btnToggler {
+        background: #f3392c;
+        color: #fff;
+        border: none;
+        padding: 8px 1rem;
+    }
+}
 }

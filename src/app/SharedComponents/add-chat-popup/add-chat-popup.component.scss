@@ -1,14 +1,3 @@
-.plus-img {
-    width: 35px;
-    height: 35px;
-    margin: auto;
-}
-
-.plus-img img {
-    width: 100%;
-    object-fit: cover;
-}
-
 :host ::ng-deep .btns .rent-btn {
     font-size: 0.8vw;
     letter-spacing: -0.03vw;
@@ -70,4 +59,30 @@ button.Active {
         color: #fff;
         cursor: not-allowed;
     }
+}
+
+.left {
+    width: 50%;
+    align-content: center;
+}
+
+.left video {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.right {
+    width: 45%;
+}
+
+.main{
+    padding-left: 35px;
+    padding-right: 35px;
+    height: 98%;
+}
+
+.right,
+.left{
+    align-content: center;
 }

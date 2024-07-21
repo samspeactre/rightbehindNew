@@ -1,37 +1,43 @@
-<div class="container p-3">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="plus-img">
-                <img src="../../assets/img/popup-plus.webp" alt="">
-            </div>
-            <h4 class="text-center text-dark bold">New Community</h4>
-        </div>
+<div class="d-flex justify-content-between container main">
+
+    <div class="left">
+        <video src="../../../assets/video/community-popup.mp4" autoplay muted></video>
     </div>
-    <form class="row mt-1" [formGroup]="communityForm" (ngSubmit)="onSubmit()">
-        <div class="col-lg-12 mb-2 mx-auto d-flex align-items-center justify-content-center">
-            <input id="profile" type="file" class="d-none" (change)="imgUpload($event)">
-            <label for="profile" class="profileImage cursor">
-                <img
-                    [src]="communityForm?.controls['ForumImage']?.value || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'">
-                <fa-icon [icon]="faPlus"></fa-icon>
-            </label>
+
+    <div class="right">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="text-center text-dark bold">New Community</h4>
+            </div>
         </div>
-        <div class="col-lg-12">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="communityForm" control="Title"
-                label="Community Name" placeholder="Enter Community Name*"></app-input>
-        </div>
-        <div class="col-lg-12">
-            <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="communityForm" control="Description"
-                label="Community Short Description" placeholder="Enter Community Short Description*"></app-input>
-        </div>
-        <div class="col-lg-12">
-            <app-map [addMarker]="true" [draggable]="true" [search]="true"
-                (mapMarkerCordinates)="setFormValue($event,'Latitude')"
-                (mapMarkerCordinates)="setFormValue($event,'Longitude')"
-                (mapSearchLocation)="setFormValue($event,'Location')"></app-map>
-        </div>
-        <div class="dCenter mt-3">
-            <button class="community-btn" [disabled]="communityForm.invalid">Create</button>
-        </div>
-    </form>
+        <form class="row mt-1" [formGroup]="communityForm" (ngSubmit)="onSubmit()">
+            <div class="col-lg-12 mb-2 mx-auto d-flex align-items-center justify-content-center">
+                <input id="profile" type="file" class="d-none" (change)="imgUpload($event)">
+                <label for="profile" class="profileImage cursor">
+                    <img
+                        [src]="communityForm?.controls['ForumImage']?.value || 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                </label>
+            </div>
+            <div class="col-lg-12">
+                <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="communityForm" control="Title"
+                    label="Community Name" placeholder="Enter Community Name*"></app-input>
+            </div>
+            <div class="col-lg-12">
+                <app-input classes="w-100 mb-1" [readOnly]="user" type="text" [form]="communityForm"
+                    control="Description" label="Community Short Description"
+                    placeholder="Enter Community Short Description*"></app-input>
+            </div>
+            <div class="col-lg-12">
+                <app-map [addMarker]="true" [draggable]="true" [search]="true"
+                    (mapMarkerCordinates)="setFormValue($event,'Latitude')"
+                    (mapMarkerCordinates)="setFormValue($event,'Longitude')"
+                    (mapSearchLocation)="setFormValue($event,'Location')"></app-map>
+            </div>
+            <div class="dCenter mt-3">
+                <button class="community-btn" [disabled]="communityForm.invalid">Create</button>
+            </div>
+        </form>
+    </div>
+
 </div>

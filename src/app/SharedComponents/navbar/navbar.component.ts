@@ -92,7 +92,6 @@ export class NavbarComponent {
       .subscribe((user) => {
         this.user = user;
         console.log(this.user?.userType);
-        
       });
     this.router.events
       .pipe(
@@ -128,12 +127,12 @@ export class NavbarComponent {
   navigateToOffMarket(id: any): void {
     if (this.router.url !== '/') {
       this.router.navigateByUrl('/').then(() => {
-        this.router.events.pipe(
-          filter(event => event instanceof NavigationEnd)
-        ).subscribe(() => {
-          console.log('scroll');
-          this.scrollToElement(id);
-        });
+        this.router.events
+          .pipe(filter((event) => event instanceof NavigationEnd))
+          .subscribe(() => {
+            console.log('scroll');
+            this.scrollToElement(id);
+          });
       });
     } else {
       this.scrollToElement(id);
@@ -152,7 +151,6 @@ export class NavbarComponent {
       console.error(`Element with id ${id} not found`);
     }
   }
-  
   socialLinks = [
     { url: 'https://www.facebook.com/', imageUrl: '../../assets/img/fb.png' },
     {
@@ -168,19 +166,19 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '490px',
-      width: window.innerWidth > 1024 ? '350px' : '100%',
+      height: '450px',
+      width: window.innerWidth > 1024 ? '330px' : '100%',
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '610px',
-      width: window.innerWidth > 1024 ? '400px' : '100%',
+      height: '600px',
+      width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });
   }
-  
+
   logout() {
     this.store.dispatch(removeUserData());
     this.router.navigateByUrl('/');

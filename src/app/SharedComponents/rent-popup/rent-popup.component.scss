@@ -1,7 +1,3 @@
-.container-site {
-  padding: 15px 24px 0px;
-}
-
 p {
   font-size: 14px;
   font-family: "reg";
@@ -9,7 +5,7 @@ p {
 }
 
 .popup-head {
-  font-size: 30px;
+  font-size: 33px;
   font-family: "bold";
   color: var(--black);
   margin-bottom: 8px;
@@ -40,14 +36,16 @@ p {
     border-radius: 3vw;
     border: 0.1vw solid rgba(217, 217, 217, 1);
   }
+
   .ng-select .ng-select-container {
     align-items: center;
     min-height: 45px;
     border-radius: 10px;
   }
+
   .ng-select .ng-select-container .ng-value-container {
     border-top: none;
-}
+  }
 }
 
 :host ::ng-deep .sell-btn {
@@ -90,11 +88,41 @@ button.Active {
 }
 
 .full-lenght p {
-  padding: 0px 45px;
-  text-align: center;
   line-height: 20px;
+  padding: 0px 60px;
 }
 
-.form-btn button{
+.form-btn button {
   padding: 12px 45px;
+}
+
+.main {
+  align-content: center;
+}
+
+.left {
+  width: 50%;
+  align-content: center;
+}
+
+.left video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.right {
+  width: 45%;
+  align-content: center;
+}
+
+.main {
+  padding-left: 35px;
+  padding-right: 35px;
+  height: 98%;
+}
+
+.right,
+.left {
+  align-content: center;
 }

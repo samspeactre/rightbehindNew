@@ -75,13 +75,13 @@ export class PopupComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(
         ['/preview'],
-        { queryParams: { id: this.propertyData?.id, type: this.propertyData?.propertyType } }
+        { queryParams: { id: this.propertyData?.listingId || this.propertyData?.id, type: this.propertyData?.listingId ? 'mls' : '2' } }
       );
     });
   }
   async share() {
     try {
-      await navigator.share({ title: this.propertyData?.title, url: `preview/?id=${this.propertyData?.id}&type=${this.propertyData?.propertyType}` });
+      await navigator.share({ title: this.propertyData?.title, url: `preview/?id=${this.propertyData?.listingId || this.propertyData?.id}&type=2` });
     } catch (err: any) {
       console.error("Share failed:", err?.message);
     }

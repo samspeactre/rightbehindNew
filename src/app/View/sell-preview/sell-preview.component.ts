@@ -6,7 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faCheckCircle, faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheckCircle,
+  faEllipsisVertical,
+  faHeart,
+  faPhoneAlt,
+  faShareAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Lightbox, LightboxModule } from 'ngx-lightbox';
@@ -23,20 +29,33 @@ import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component'
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 @Component({
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, LightboxModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
+  imports: [
+    FontAwesomeModule,
+    CommonModule,
+    NgbAccordionModule,
+    LightboxModule,
+    MapComponent,
+    RentalCarouselComponent,
+    MatIconModule,
+    NavbarComponent,
+    MatButtonModule,
+    RouterModule,
+    MiniLoadingComponent,
+    CarouselModule,
+  ],
   selector: 'app-sell-preview',
   templateUrl: './sell-preview.component.html',
   styleUrl: './sell-preview.component.scss',
 })
 export class SellPreviewComponent implements OnInit {
   faHeart = faHeart;
-  faShare = faShareAlt
-  faEllipsisVertical = faEllipsisVertical
-  faPhoneAlt = faPhoneAlt
-  faEnvelope = faEnvelope
-  faCheck = faCheckCircle
-  type!: number;
-  id!: number;
+  faShare = faShareAlt;
+  faEllipsisVertical = faEllipsisVertical;
+  faPhoneAlt = faPhoneAlt;
+  faEnvelope = faEnvelope;
+  faCheck = faCheckCircle;
+  type!: any;
+  id!: any;
   propertyDetails: any;
   loader: boolean = true;
   user$ = this.store.select(selectUser);
@@ -53,33 +72,49 @@ export class SellPreviewComponent implements OnInit {
     navText: ['', ''],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       740: {
-        items: 4
-      }
+        items: 4,
+      },
     },
-    nav: false
-  }
-  constructor(private activatedRoute: ActivatedRoute, public resize:ResizeService, private lightbox: Lightbox, private dialog: MatDialog, private router: Router, private http: HttpService, private store: Store, private location: Location, public helper: HelperService) {
+    nav: false,
+  };
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public resize: ResizeService,
+    private lightbox: Lightbox,
+    private dialog: MatDialog,
+    private router: Router,
+    private http: HttpService,
+    private store: Store,
+    private location: Location,
+    public helper: HelperService
+  ) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
-      if (!param?.type || !param?.id) {
-        this.location.back()
+      if (!param?.id) {
+        this.location.back();
+      } else {
+        this.id = param?.type && param?.type == 'mls' ? param?.id : Number(param?.id);
       }
-      this.type = Number(param?.type)
-      this.id = Number(param?.id)
-    })
+      if (param?.type) {
+        this.type = param?.type;
+      }
+    });
     this.user$
       .pipe(
         takeUntil(this.destroy$),
-        distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)))
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
       .subscribe((user) => {
         this.userDetails = user;
       });
   }
   private destroy$ = new Subject<void>();
   ngOnInit(): void {
-    this.getPropertyDetail()
+    this.getPropertyDetail();
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -89,9 +124,15 @@ export class SellPreviewComponent implements OnInit {
     const images = this.propertyDetails.propertyImages.map((img: any) => ({
       src: img.imageUrl,
       caption: 'Property Images',
-      thumb: img.imageUrl
+      thumb: img.imageUrl,
     }));
-    this.lightbox.open(images, index, { wrapAround: true, showImageNumberLabel: true, alwaysShowNavOnTouchDevices: true, centerVertically: true, fitImageInViewPort: true });
+    this.lightbox.open(images, index, {
+      wrapAround: true,
+      showImageNumberLabel: true,
+      alwaysShowNavOnTouchDevices: true,
+      centerVertically: true,
+      fitImageInViewPort: true,
+    });
   }
 
   close(): void {
@@ -99,13 +140,18 @@ export class SellPreviewComponent implements OnInit {
   }
   async share() {
     try {
-      await navigator.share({ title: this.propertyDetails?.title, url: `preview/?id=${this.id}&type=${this.type}` });
+      await navigator.share({
+        title: this.propertyDetails?.title,
+        url: `preview/?id=${this.id}&type=${this.type}`,
+      });
     } catch (err: any) {
-      console.error("Share failed:", err?.message);
+      console.error('Share failed:', err?.message);
     }
   }
   getPropertyDetail() {
-    this.http.get(`Property/get/${this.id}`, false)
+    const src = this.type && this.type == 'mls' ? `Property/get/mls/${this.id}` : `Property/get/${this.id}`
+    this.http
+      .get(src, false)
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => {
@@ -116,9 +162,10 @@ export class SellPreviewComponent implements OnInit {
         (response) => {
           this.propertyDetails = response?.model;
           setTimeout(() => {
-            this.getClass()
+            this.getClass();
           }, 1000);
-        }, err => {
+        },
+        (err) => {
           this.location.back()
         }
       );
@@ -136,25 +183,35 @@ export class SellPreviewComponent implements OnInit {
   createContact() {
     this.helper.createContact(this.id).subscribe((response) => {
       const routeData = {
-        property:{
-          id:this.id,
-          title:this.propertyDetails?.title,
-          type:this.propertyDetails?.propertyType
+        property: {
+          id: this.id,
+          title: this.propertyDetails?.title,
+          type: this.propertyDetails?.propertyType,
         },
-        sender:{fullName:this.propertyDetails?.propertyContacts?.[0]?.fullName,imageUrl:this.propertyDetails?.propertyContacts?.[0]?.imageUrl && this.propertyDetails?.propertyContacts?.[0]?.imageUrl},
-        contactId:response?.model?.id
-      }
-      this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });
-    })
+        sender: {
+          fullName: this.propertyDetails?.propertyContacts?.[0]?.fullName,
+          imageUrl:
+            this.propertyDetails?.propertyContacts?.[0]?.imageUrl &&
+            this.propertyDetails?.propertyContacts?.[0]?.imageUrl,
+        },
+        contactId: response?.model?.id,
+      };
+      this.router.navigate(['/dashboard/inquiries'], {
+        queryParams: { data: JSON.stringify(routeData) },
+      });
+    });
   }
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
       width: window.innerWidth > 1024 ? '420px' : '100%',
-      data: { type: 'property', id: this.id }
+      data: { type: 'property', id: this.id },
     });
   }
   clickAnalytic(type: string) {
-    const api = type == 'email' ? `PropertyAnalytic/email/${this.id}` : `PropertyAnalytic/phone/${this.id}`
-    this.http.get(api, false).subscribe((response) => { })
+    const api =
+      type == 'email'
+        ? `PropertyAnalytic/email/${this.id}`
+        : `PropertyAnalytic/phone/${this.id}`;
+    this.http.get(api, false).subscribe((response) => {});
   }
 }

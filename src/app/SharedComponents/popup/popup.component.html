@@ -6,7 +6,7 @@
           @if(propertyData?.propertyImages?.length){
           @for (item of propertyData?.propertyImages; let i = $index; track item) {
           <img width="100%" height="100%"
-            [src]="src+item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
+            [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
             [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half']" />
           }
           }

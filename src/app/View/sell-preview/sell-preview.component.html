@@ -107,31 +107,31 @@
             class="d-flex align-items-center justify-content-between flex-wrap"
           >
             <div class="prop-details display content-between">
-              @if(propertyDetails.noOfBed){
+              @if(propertyDetails?.noOfBed){
               <div class="dCenter bath-box right-border-gray">
                 <div class="bath-img">
                   <img src="../../assets/img/bed.webp" alt="bed" />
                 </div>
                 <div class="bath-text">
-                  <h6>{{ propertyDetails.noOfBed }}</h6>
+                  <h6>{{ propertyDetails?.noOfBed }}</h6>
                 </div>
               </div>
-              } @if(propertyDetails.noOfBath){
+              } @if(propertyDetails?.noOfBath){
               <div class="dCenter bath-box right-border-gray">
                 <div class="bath-img">
                   <img src="../../assets/img/bed.webp" alt="bed" />
                 </div>
                 <div class="bath-text">
-                  <h6>{{ propertyDetails.noOfBath }}</h6>
+                  <h6>{{ propertyDetails?.noOfBath }}</h6>
                 </div>
               </div>
-              } @if(propertyDetails.area){
+              } @if(propertyDetails?.area){
               <div class="dCenter bath-box right-border-gray">
                 <div class="bath-img">
                   <img src="../../assets/img/bed.webp" alt="bed" />
                 </div>
                 <div class="bath-text">
-                  <h6>{{ propertyDetails.area }} Sq.Ft</h6>
+                  <h6>{{ propertyDetails?.area }} Sq.Ft</h6>
                 </div>
               </div>
               }
@@ -158,39 +158,39 @@
               }}</label>
             </div>
           </div>
-          } @if(propertyDetails.noOfBed){
+          } @if(propertyDetails?.noOfBed){
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>No. of Bedrooms: </label>
-              <label>{{ propertyDetails.noOfBed }}</label>
+              <label>{{ propertyDetails?.noOfBed }}</label>
             </div>
           </div>
-          } @if(propertyDetails.noOfBath){
+          } @if(propertyDetails?.noOfBath){
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>No. of Bathrooms: </label>
-              <label>{{ propertyDetails.noOfBath }}</label>
+              <label>{{ propertyDetails?.noOfBath }}</label>
             </div>
           </div>
-          } @if(propertyDetails.area){
+          } @if(propertyDetails?.area){
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>Finished Sq.FT: </label>
-              <label>{{ propertyDetails.area }} Sq Ft</label>
+              <label>{{ propertyDetails?.area }} Sq Ft</label>
             </div>
           </div>
-          } @if(propertyDetails.area){
+          } @if(propertyDetails?.area){
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>Lot Size: </label>
-              <label>{{ propertyDetails.area }}</label>
+              <label>{{ propertyDetails?.area }}</label>
             </div>
           </div>
-          } @if(propertyDetails.area){
+          } @if(propertyDetails?.area){
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>Sq.FT: </label>
-              <label>{{ propertyDetails.area }} Sq.Ft</label>
+              <label>{{ propertyDetails?.area }} Sq.Ft</label>
             </div>
           </div>
           } @if(propertyDetails?.homeFacts?.[0]?.constructedYear){
@@ -309,7 +309,7 @@
             </div>
           </div>
         </div>
-        } @if(propertyDetails.videoUrl){
+        } @if(propertyDetails?.videoUrl){
         <div class="row mt-5 blue-box">
           <div class="col-lg-12 mb-3">
             <h6><Strong>Virtual Tour Url</Strong></h6>
@@ -318,12 +318,12 @@
             <div class="white-box d-flex labelCheck yellow-label">
               <div class="white-box-text text-info">Url:</div>
               <div class="white-box-text ms-3">
-                {{ propertyDetails.videoUrl }}
+                {{ propertyDetails?.videoUrl }}
               </div>
             </div>
           </div>
         </div>
-        } @if(propertyDetails.petPolicy){
+        } @if(propertyDetails?.petPolicy){
         <div class="row mt-5 blue-box">
           <div class="col-lg-12 mb-3">
             <h6><Strong>Policy</Strong></h6>
@@ -334,7 +334,7 @@
             >
               <div class="white-box-text text-info">Pet Policy</div>
               <div class="white-box-text">
-                {{ propertyDetails.petPolicy }}
+                {{ propertyDetails?.petPolicy }}
               </div>
             </div>
           </div>
@@ -481,14 +481,14 @@
               </div>
             </div>
           </div>
-          } @if(propertyDetails.description){
+          } @if(propertyDetails?.description){
           <div class="col-lg-12">
             <div
               class="white-box dCenter justify-content-start gap-3 labelCheck"
             >
               <div class="white-box-text text-info">Description</div>
               <div class="white-box-text">
-                {{ propertyDetails.description }}
+                {{ propertyDetails?.description }}
               </div>
             </div>
           </div>

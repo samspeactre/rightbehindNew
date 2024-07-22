@@ -85,7 +85,7 @@ export class PropertyCardComponent {
 
   async navigateAndClose() {
     this.router.navigate(['/preview'], {
-      queryParams: { id: this.card?.id, type: this.card?.propertyType },
+      queryParams: { id: this.card?.listingId || this.card?.id, type: this.card?.listingId ? 'mls' : '2' },
     });
   }
   async navigateEditAndClose() {
@@ -123,7 +123,7 @@ export class PropertyCardComponent {
         property: {
           id: this.card?.id,
           title: this.card?.title,
-          type: this.card?.propertyType,
+          type: '2',
         },
         sender: {
           fullName: this.card?.propertyContacts?.[0]?.fullName,

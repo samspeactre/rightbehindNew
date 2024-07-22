@@ -13,7 +13,7 @@ import { CommunityCardComponent } from '../../../SharedComponents/community-card
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope, faEye } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   standalone: true,
@@ -38,6 +38,7 @@ export class InquiriesComponent implements OnInit, OnDestroy {
   });
   faEnvelope = faEnvelope;
   faPhone = faPhoneAlt;
+  faEye = faEye;
   inquiries: any;
   originalInquiries: any;
   p: number = 1;
@@ -113,5 +114,12 @@ export class InquiriesComponent implements OnInit, OnDestroy {
   onPageChange(event: number): void {
     this.p = event;
     this.getInquiries();
+  }
+  route(contactInfo: string, type: string): void {
+    if (type === 'phone') {
+      window.location.href = `tel:${contactInfo}`;
+    } else if (type === 'email') {
+      window.location.href = `mailto:${contactInfo}`;
+    }
   }
 }

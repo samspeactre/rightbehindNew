@@ -60,12 +60,12 @@ export const routes: Routes = [
             (m) => m.Contact_Us_Routes
           ),
       },
-      {
-        path: 'rent-preview',
-        data: { footer: true, header: true },
-        loadChildren: () =>
-          import('./view/preview/preview.route').then((m) => m.Preview_Routes),
-      },
+      // {
+      //   path: 'rent-preview',
+      //   data: { footer: true, header: true },
+      //   loadChildren: () =>
+      //     import('./view/preview/preview.route').then((m) => m.Preview_Routes),
+      // },
       {
         path: 'rent-add-property',
         canActivate: [InnerGuard],

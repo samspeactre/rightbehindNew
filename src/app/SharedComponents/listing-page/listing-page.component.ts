@@ -122,7 +122,7 @@ export class ListingPageComponent implements AfterViewInit {
       writer.type(this.getHeaderText()).start();
 
       // Stop the animation after a fixed duration
-      setTimeout(() => writer.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
+      setTimeout(() => writer?.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
     }
   }
 

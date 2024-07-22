@@ -126,7 +126,7 @@ export class InquiriesComponent implements OnInit, OnDestroy {
   openPopup(data: any): void {
     this.dialog.open(InquiryPopupComponent, {
       height: '80%',
-      width: window.innerWidth > 1024 ? '850px' : '100%',
+      width: window.innerWidth > 1024 ? '50%' : '100%',
       data:data
     });
   }

@@ -1,39 +1,43 @@
-<div class="d-flex justify-content-between main">
+<div class="d-flex justify-content-between main align-items-center">
   <div class="row">
     <div class="col-lg-12 text-center">
       <h1 class="text-dark bold popup-head mb-3">Inquiry Detail</h1>
     </div>
     <div class="col-lg-6">
-      <p>First Name: {{active?.firstName}}</p>
+      <p>First Name: {{ active?.firstName }}</p>
     </div>
     <div class="col-lg-6">
-      <p>Last Name: {{active?.lastName}}</p>
+      <p>Last Name: {{ active?.lastName }}</p>
     </div>
     <div class="col-lg-6">
-      <p>Email: {{active?.email}}</p>
+      <p>Email: {{ active?.email }}</p>
     </div>
     <div class="col-lg-6">
-      <p>Contact No.: {{active?.contactNo}}</p>
+      <p>Contact No.: {{ active?.contactNo }}</p>
     </div>
     <div class="col-lg-6">
-      <p>Property Type: {{active?.propertyType}}</p>
+      <p>Property Type: {{ active?.propertyType }}</p>
     </div>
     <div class="col-lg-6">
-      <p>Units: {{active?.units}}</p>
+      <p>Units: {{ active?.units }}</p>
     </div>
     <div class="col-lg-12">
-      <p>Address: {{active?.address}}</p>
+      <p>Address: {{ active?.address }}</p>
     </div>
     @if(active?.message){
-      <div class="col-lg-12">
-        <p>Message: {{active?.message}}</p>
-      </div>
+    <div class="col-lg-12">
+      <p>Message: {{ active?.message }}</p>
+    </div>
+    } @if(active?.latitude && active?.longitude){
+    <div class="col-lg-12">
+      <app-map
+        [center]="{ lat: active?.latitude, lng: active?.longitude }"
+        [markerPositions]="[{ lat: active?.latitude, lng: active?.longitude }]"
+      ></app-map>
+    </div>
     }
-    @if(active?.latitude && active?.longitude){
-      <div class="col-lg-12">
-        <app-map [center]="{lat:active?.latitude,lng:active?.longitude}"
-            [markerPositions]="[{lat:active?.latitude,lng:active?.longitude}]"></app-map>  
-       </div>
-    }
+    <div class="col-lg-12 mt-3 d-flex align-items-center justify-content-between">
+      <button class="btnPrimary py-2 mx-auto" (click)="dialogRef.close()">Close</button>
+    </div>
   </div>
 </div>

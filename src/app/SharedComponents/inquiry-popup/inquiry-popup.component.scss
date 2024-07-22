@@ -8,9 +8,15 @@ p {
   padding-right: 35px;
   align-content: center;
 }
+.btnPrimary{
+  min-width: 33%;
+}
 @media only screen and (max-width: 1024px) {
   .main {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+  .btnPrimary{
+    min-width: 100%;
   }
 }

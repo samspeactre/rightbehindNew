@@ -33,14 +33,14 @@
                 $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
-                  <td class="text-center">{{item?.firstName}}</td>
-                  <td class="text-center">{{item?.email}}</td>
-                  <td class="text-center">{{item?.contactNo}}</td>
+                  <td class="text-center">{{ item?.firstName }}</td>
+                  <td class="text-center">{{ item?.email }}</td>
+                  <td class="text-center">{{ item?.contactNo }}</td>
                   <td class="text-center" style="width: 100px">
                     <div
                       class="d-flex gap-3 align-items-center justify-content-center"
                     >
-                    <button
+                      <button
                         class="btnPrimary py-1 rounded-1"
                         (click)="route(item?.contactNo, 'phone')"
                       >
@@ -74,3 +74,4 @@
     </div>
   </div>
 </div>
+

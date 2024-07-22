@@ -9,10 +9,6 @@
       <div class="pages-links display mt-3">
         <a routerLink="/" class="smallFont text-dark">Home</a>
         <div class="slash smallFont text-dark">/</div>
-        <!-- @if(propertyDetails?.propertyType == 1){
-        <a routerLink="/buy" class="smallFont text-dark">Buy</a>
-        } @else{
-        } -->
         <a routerLink="/rent" class="smallFont text-dark">Rent</a>
         <div class="slash smallFont text-dark">/</div>
         <a class="smallFont text-dark">{{ propertyDetails?.title }}</a>
@@ -75,7 +71,7 @@
         }
       </div>
     </div>
-    <div class="col-lg-8 mt-3">
+    <div class="col-lg-8 mt-3" [ngClass]="{ 'col-lg-12' : this.type == 'mls'}">
       <div class="left-site-box">
         <div class="first-box">
           <div class="d-flex align-items-start justify-content-between">
@@ -701,43 +697,45 @@
         </div>
       </div>
       }
-      <div class="row mt-5 blue-box">
-        <div class="col-lg-12 mb-3">
-          <h6><Strong>Contact Information</Strong></h6>
-        </div>
-        <div class="col-lg-6">
-          <div class="white-box dCenter justify-content-between labelCheck">
-            <div class="white-box-text text-info">Full Name</div>
-            <div class="white-box-text">
-              {{ propertyDetails?.propertyContacts[0]?.fullName }}
+      @if(propertyDetails?.propertyContacts){
+        <div class="row mt-5 blue-box">
+          <div class="col-lg-12 mb-3">
+            <h6><Strong>Contact Information</Strong></h6>
+          </div>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Full Name</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.propertyContacts?.[0]?.fullName }}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Phone</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.propertyContacts?.[0]?.contact }}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Email</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.propertyContacts?.[0]?.email }}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="white-box dCenter justify-content-between labelCheck">
+              <div class="white-box-text text-info">Contact Person</div>
+              <div class="white-box-text">
+                {{ propertyDetails?.propertyContacts?.[0]?.userRole }}
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="white-box dCenter justify-content-between labelCheck">
-            <div class="white-box-text text-info">Phone</div>
-            <div class="white-box-text">
-              {{ propertyDetails?.propertyContacts[0]?.contact }}
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="white-box dCenter justify-content-between labelCheck">
-            <div class="white-box-text text-info">Email</div>
-            <div class="white-box-text">
-              {{ propertyDetails?.propertyContacts[0]?.email }}
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="white-box dCenter justify-content-between labelCheck">
-            <div class="white-box-text text-info">Contact Person</div>
-            <div class="white-box-text">
-              {{ propertyDetails?.propertyContacts[0]?.userRole }}
-            </div>
-          </div>
-        </div>
-      </div>
+      }
       <div class="row mt-5 blue-box">
         <div class="col-lg-12 mb-3">
           <h6><Strong>Location</Strong></h6>
@@ -810,7 +808,7 @@
         }
       </div>
     </div>
-    @if((resize.windowSize$ | async)?.width > 1024){
+    @if((resize.windowSize$ | async)?.width > 1024 && this.type != 'mls'){
     <div class="col-lg-4 mt-3">
       <div class="right-site text-center">
         <div class="row">
@@ -871,7 +869,7 @@
         ]"
       ></app-map>
     </div>
-    @if((resize.windowSize$ | async)?.width <= 1024){
+    @if((resize.windowSize$ | async)?.width <= 1024 && this.type != 'mls'){
     <div class="position-sticky d-flex justify-content-between stick">
       <a
         class="btnPrimary cstmWidthBtn py-3"

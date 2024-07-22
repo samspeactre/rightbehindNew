@@ -14,6 +14,7 @@ import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { faEnvelope, faEye } from '@fortawesome/free-regular-svg-icons';
+import { InquiryPopupComponent } from '../../../SharedComponents/inquiry-popup/inquiry-popup.component';
 
 @Component({
   standalone: true,
@@ -121,5 +122,12 @@ export class InquiriesComponent implements OnInit, OnDestroy {
     } else if (type === 'email') {
       window.location.href = `mailto:${contactInfo}`;
     }
+  }
+  openPopup(data: any): void {
+    this.dialog.open(InquiryPopupComponent, {
+      height: '80%',
+      width: window.innerWidth > 1024 ? '850px' : '100%',
+      data:data
+    });
   }
 }

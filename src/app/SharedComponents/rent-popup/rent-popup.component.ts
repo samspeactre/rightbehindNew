@@ -24,6 +24,7 @@ import { MapComponent } from '../map/map.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { HttpService } from '../../Services/http.service';
+import { ResizeService } from '../../Services/resize.service';
 @Component({
   standalone: true,
   imports: [
@@ -67,7 +68,7 @@ export class RentPopupComponent {
     private auth: AuthService,
     private http: HttpService,
     private store: Store,
-
+    public resize:ResizeService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.active = data;

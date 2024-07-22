@@ -1,56 +1,110 @@
-<div class="d-flex justify-content-between main">
-
+<div class="d-flex justify-content-between main py-3">
+  @if((resize.windowSize$ | async)?.width > 1024){
   <div class="left">
     <video [src]="videoSrc" autoplay muted></video>
   </div>
-  <div class="right ">
-
+  }
+  <div [ngClass]="[(resize.windowSize$ | async)?.width > 1024 ? 'right' : 'container-fluid']">
     <div class="row">
       <div class="full-lenght text-center">
         <h1 class="text-dark bold popup-head mb-3">{{ headingText }}</h1>
         <!-- <p>Fill out the form to add a New property.</p> -->
       </div>
     </div>
-    <form class="row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+    <form
+      class="row justify-content-between"
+      [formGroup]="propertyForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="half-input">
-        <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
-          label="First Name" placeholder="Enter your First Name*"></app-input>
+        <app-input
+          classes="w-100 mb-2"
+          [readOnly]="user"
+          type="text"
+          [form]="propertyForm"
+          control="firstName"
+          label="First Name"
+          placeholder="Enter your First Name*"
+        ></app-input>
       </div>
       <div class="half-input">
-        <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
-          label="Last Name" placeholder="Enter your Last Name*"></app-input>
+        <app-input
+          classes="w-100 mb-2"
+          [readOnly]="user"
+          type="text"
+          [form]="propertyForm"
+          control="lastName"
+          label="Last Name"
+          placeholder="Enter your Last Name*"
+        ></app-input>
       </div>
       <div class="half-input">
-        <app-input classes="w-100 mb-2" matType="select" [array]="types" [form]="propertyForm" control="propertyType"
-          label="Property Type"></app-input>
+        <app-input
+          classes="w-100 mb-2"
+          matType="select"
+          [array]="types"
+          [form]="propertyForm"
+          control="propertyType"
+          label="Property Type"
+        ></app-input>
       </div>
       <div class="half-input">
-        <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="unit" label="Unit (If Applicable)"
-          placeholder="Enter Unit"></app-input>
+        <app-input
+          classes="w-100 mb-2"
+          type="number"
+          [form]="propertyForm"
+          control="unit"
+          label="Unit (If Applicable)"
+          placeholder="Enter Unit"
+        ></app-input>
       </div>
-      <div [ngClass]="[active === 'sell' || !user ? 'half-input ' : 'full-lenght']">
-        <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email"
-          label="Email" placeholder="Enter Your Email Address">
+      <div
+        [ngClass]="[active === 'sell' || !user ? 'half-input ' : 'full-lenght']"
+      >
+        <app-input
+          classes="w-100 mb-2"
+          [readOnly]="user"
+          type="email"
+          [form]="propertyForm"
+          control="email"
+          label="Email"
+          placeholder="Enter Your Email Address"
+        >
         </app-input>
       </div>
 
-
       @if(!user && active == 'rent'){
       <div class="half-input">
-        <app-input classes="w-100 mb-2" type="password" [password]="true" [form]="propertyForm" control="password"
-          label="Password" placeholder="Enter your Password*"></app-input>
+        <app-input
+          classes="w-100 mb-2"
+          type="password"
+          [password]="true"
+          [form]="propertyForm"
+          control="password"
+          label="Password"
+          placeholder="Enter your Password*"
+        ></app-input>
       </div>
-      }
-      @if(active == 'sell' || checkUnitValidator()){
+      } @if(active == 'sell' || checkUnitValidator()){
       <div class="half-input">
-        <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="contactNo" label="Contact No"
-          placeholder="Enter your Contact No*"></app-input>
+        <app-input
+          classes="w-100 mb-2"
+          type="number"
+          [form]="propertyForm"
+          control="contactNo"
+          label="Contact No"
+          placeholder="Enter your Contact No*"
+        ></app-input>
       </div>
       }
       <div class="full-lenght map-height">
-        <app-map [addMarker]="true" [draggable]="true" [search]="true"
+        <app-map
+          [addMarker]="true"
+          [draggable]="true"
+          [search]="true"
           (mapMarkerCordinates)="setFormValue($event, 'latLng')"
-          (mapSearchLocation)="setFormValue($event, 'address')"></app-map>
+          (mapSearchLocation)="setFormValue($event, 'address')"
+        ></app-map>
       </div>
       <div class="dCenter mt-3 form-btn">
         <button class="btnPrimary" [disabled]="propertyForm.invalid">
@@ -58,6 +112,5 @@
         </button>
       </div>
     </form>
-
   </div>
 </div>

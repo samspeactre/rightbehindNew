@@ -212,4 +212,29 @@ export class HttpService {
       };
     });
   }
+  blogImageUpload(selectedFile: File,token:string): Observable<any> {
+    return new Observable((observer) => {
+      const formData = new FormData();
+      formData.append('file', selectedFile, selectedFile.name);
+      const HttpUploadOptions = {
+        headers: new HttpHeaders({
+          'Access-Control-Allow-Origin': '*',
+          Authorization: `Bearer ${token}`,
+        }),
+      };
+      this.http.post(baseUrl + 'blog/upload/image', formData, HttpUploadOptions).subscribe(
+        (response: any) => {
+            observer.next(response);
+            observer.complete();
+        },
+        (error: any) => {
+          LoaderService.loader.next(false);
+          console.error('Error uploading profile image:', error);
+          observer.error(error);
+        }
+      );
+      return () => {
+      };
+    });
+  }
 }

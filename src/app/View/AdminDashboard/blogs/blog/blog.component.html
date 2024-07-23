@@ -17,6 +17,10 @@
       <app-input classes="w-100 mb-2" type="text" [form]="blogForm" control="title"
         label="Blog Title" placeholder="Enter your Blog Title*"></app-input>
     </div>
+    <div class="full-lenght">
+      <app-input classes="w-100 mb-2" type="text" [form]="blogForm" control="tags"
+        label="Tag" placeholder="Enter your Blog Tag*"></app-input>
+    </div>
     <ckeditor [editor]="editor" formControlName="description"></ckeditor>
     <div class="dCenter mt-3">
       <button class="btnPrimary" [disabled]="blogForm.invalid">

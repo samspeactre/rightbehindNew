@@ -54,6 +54,7 @@ export class BlogComponent {
     title: ['', Validators.required],
     description: ['', Validators.required],
     image: ['', Validators.required],
+    tags: ['', Validators.required],
   });
   user: any;
   src = assetUrl;
@@ -91,21 +92,23 @@ export class BlogComponent {
   }
   onSubmit() {
     const url = this.data?.status == 'Edit' ? 'Blog/update' : 'Blog/create'
-    const formData: FormData = new FormData();
-    formData.append('Title', this.blogForm.get('title').value);
-    formData.append('Description', this.blogForm.get('description').value);
-    formData.append('BlogImage', this.blogForm.get('image').value);
-    if(this.data?.status == 'Edit'){
-      formData.append('Id', this.blogForm.get('id').value)
+    const data:any = {
+      Title:this.blogForm.get('title').value,
+      Description:this.blogForm.get('description').value,
+      imagePath:this.blogForm.get('image').value,
+      Tags:[this.blogForm.get('tags').value],
     }
-    this.http.loaderPost(url, formData, true).subscribe((response)=>{
+    if(this.data?.status == 'Edit'){
+      data['Id']= this.blogForm.get('id').value
+    }
+    this.http.loaderPost(url, data, true).subscribe((response)=>{
       this.dialogRef.close({ data:true });
     });
   }
   imgUpload(event: any) {
     LoaderService.loader.next(true);
     this.http
-      .profileImageUpload(event?.target?.files[0], this.user?.token)
+      .blogImageUpload(event?.target?.files[0], this.user?.token)
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(
@@ -116,7 +119,7 @@ export class BlogComponent {
         })
       )
       .subscribe((res: any) => {
-        this.blogForm.get('image').setValue(this.src + res?.model?.imageUrl);
+        this.blogForm.get('image').setValue(this.src + res?.model?.imagePath);
       });
   }
   editPatch() {
@@ -124,6 +127,7 @@ export class BlogComponent {
       title: this.data?.content?.title,
       description: this.data?.content?.description,
       image: this.data?.content?.imagePath,
+      tags: this.data?.content?.tags,
     });
     this.blogForm.addControl('id', new FormControl(this.data?.content?.id));    
   }

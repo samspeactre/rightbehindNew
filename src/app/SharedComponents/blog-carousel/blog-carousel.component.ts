@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   standalone: true,
@@ -52,11 +53,13 @@ export class BlogCarouselComponent implements OnInit {
     },
     nav: false
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http:HttpService) { }
 
   ngOnInit(): void {
   }
+  getBlogs(){
 
+  }
   navigateToBlogInner() {
     this.router.navigate(['/blog-inner']);
   }

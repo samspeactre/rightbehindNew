@@ -1,7 +1,7 @@
   <div class="cstm-property-card">
     <div class="property-img">
       <img
-        [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
+        [src]="card?.propertyImages?.[0]?.imageUrl ? card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
         [class.NoImageFound]="!card?.imgSrc" alt="Card Image" />
     </div>
     <div class="property-content">

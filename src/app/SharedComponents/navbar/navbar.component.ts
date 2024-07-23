@@ -125,6 +125,7 @@ export class NavbarComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
+<<<<<<< HEAD
 
   navigateToOffMarket(id: string): void {
   if (this.router.url !== '/') {
@@ -133,6 +134,34 @@ export class NavbarComponent {
     });
   } else {
     this.scrollToSection(id);
+=======
+  navigateToOffMarket(id: any): void {
+    if (this.router.url !== '/') {
+      this.router.navigateByUrl('/').then(() => {
+        this.router.events.pipe(
+          filter(event => event instanceof NavigationEnd)
+        ).subscribe(() => {
+          console.log('scroll');
+          this.scrollToElement(id);
+        });
+      });
+    } else {
+      this.scrollToElement(id);
+    }
+  }
+
+  private scrollToElement(id: any): void {
+    const element: any = document.querySelector(id);
+    if (element) {
+      const topPos = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: topPos,
+        behavior: 'smooth',
+      });
+    } else {
+      console.error(`Element with id ${id} not found`);
+    }
+>>>>>>> newVersion
   }
 }
 

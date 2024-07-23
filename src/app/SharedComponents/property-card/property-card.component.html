@@ -18,11 +18,18 @@
     "
   >
     <img
-      [src]="card?.propertyImages?.[0]?.imageUrl ? src + card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl"
+      [src]="card?.propertyImages?.length ? card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
+      [class.NoImageFound]="!card?.propertyImages?.length"
       alt="Card Image"
     />
-    @if(card?.rentSpecialTag){
+    @if(card?.featuredTill || card?.isPromoted){
+    <div class="special featured">
+      💲
+      {{ card?.featuredTill ? "Featured" : "" }}
+      {{ card?.featuredTill && card?.isPromoted ? " & " : " " }}
+      {{ card?.isPromoted ? "Promoted" : "" }}
+    </div>
+    } @if(card?.rentSpecialTag){
     <div class="special">{{ card?.rentSpecialTag }} 🔥</div>
     }
   </div>
@@ -110,7 +117,7 @@
       >
         {{ card.price || 0 | currency : "USD" }}
       </button>
-      @if(page != 'dashboard'){
+      @if(page != 'dashboard'){ @if(!card?.listingId){
       <button
         class="btnPrimary rounded-5 py-2 w-50"
         [ngClass]="{ 'wow fadeInDown': animation }"
@@ -118,7 +125,7 @@
       >
         Contact Agent
       </button>
-      } @else {
+      } } @else {
       <button
         class="btnPrimary py-1 w-50 bold text-center"
         (click)="navigateAndClose()"

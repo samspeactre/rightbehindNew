@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
-import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { CommonModule, Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faCheckCircle, faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
+import { Lightbox, LightboxModule } from 'ngx-lightbox';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { HttpService } from '../../Services/http.service';
-import { HelperService, assetUrl } from '../../Services/helper.service';
-import { MapComponent } from '../../SharedComponents/map/map.component';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
-import { MatDialog } from '@angular/material/dialog';
 import { selectUser } from '../../Ngrx/data.reducer';
-import { Lightbox, LightboxModule } from 'ngx-lightbox';
+import { HelperService } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
+import { ContactPopupComponent } from '../../SharedComponents/contact-popup/contact-popup.component';
+import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
+import { MapComponent } from '../../SharedComponents/map/map.component';
+import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
+import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 @Component({
   standalone: true,
   imports: [FontAwesomeModule, CommonModule, NgbAccordionModule, LightboxModule, MapComponent, RentalCarouselComponent, MatIconModule, NavbarComponent, MatButtonModule, RouterModule, MiniLoadingComponent, CarouselModule],
@@ -29,7 +29,6 @@ import { ResizeService } from '../../Services/resize.service';
   styleUrl: './sell-preview.component.scss',
 })
 export class SellPreviewComponent implements OnInit {
-  src = assetUrl
   faHeart = faHeart;
   faShare = faShareAlt
   faEllipsisVertical = faEllipsisVertical
@@ -88,9 +87,9 @@ export class SellPreviewComponent implements OnInit {
   }
   open(index: number): void {
     const images = this.propertyDetails.propertyImages.map((img: any) => ({
-      src: this.src + img.imageUrl,
+      src: img.imageUrl,
       caption: 'Property Images',
-      thumb: this.src + img.imageUrl
+      thumb: img.imageUrl
     }));
     this.lightbox.open(images, index, { wrapAround: true, showImageNumberLabel: true, alwaysShowNavOnTouchDevices: true, centerVertically: true, fitImageInViewPort: true });
   }
@@ -142,7 +141,7 @@ export class SellPreviewComponent implements OnInit {
           title:this.propertyDetails?.title,
           type:this.propertyDetails?.propertyType
         },
-        sender:{fullName:this.propertyDetails?.propertyContacts?.[0]?.fullName,imageUrl:this.propertyDetails?.propertyContacts?.[0]?.imageUrl && this.src + this.propertyDetails?.propertyContacts?.[0]?.imageUrl},
+        sender:{fullName:this.propertyDetails?.propertyContacts?.[0]?.fullName,imageUrl:this.propertyDetails?.propertyContacts?.[0]?.imageUrl && this.propertyDetails?.propertyContacts?.[0]?.imageUrl},
         contactId:response?.model?.id
       }
       this.router.navigate(['/dashboard/inquiries'], { queryParams: { data:JSON.stringify(routeData) } });

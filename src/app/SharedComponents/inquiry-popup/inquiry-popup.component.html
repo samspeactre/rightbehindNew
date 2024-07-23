@@ -15,20 +15,27 @@
     <div class="col-lg-6">
       <p>Contact No.: {{ active?.contactNo }}</p>
     </div>
-    <div class="col-lg-6">
-      <p>Property Type: {{ active?.propertyType }}</p>
-    </div>
-    <div class="col-lg-6">
-      <p>Units: {{ active?.units }}</p>
-    </div>
-    <div class="col-lg-12">
-      <p>Address: {{ active?.address }}</p>
-    </div>
+    @if(active?.propertyType){
+      <div class="col-lg-6">
+        <p>Property Type: {{ active?.propertyType }}</p>
+      </div>
+    }
+    @if(active?.units){
+      <div class="col-lg-6">
+        <p>Units: {{ active?.units }}</p>
+      </div>
+    }
+    @if(active?.address){
+      <div class="col-lg-12">
+        <p>Address: {{ active?.address }}</p>
+      </div>
+    }
     @if(active?.message){
     <div class="col-lg-12">
       <p>Message: {{ active?.message }}</p>
     </div>
-    } @if(active?.latitude && active?.longitude){
+    }
+    @if(active?.latitude && active?.longitude){
     <div class="col-lg-12">
       <app-map
         [center]="{ lat: active?.latitude, lng: active?.longitude }"

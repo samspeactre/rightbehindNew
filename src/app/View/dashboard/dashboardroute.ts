@@ -65,6 +65,10 @@ export const Dashboard_Routes: Routes = [{
                     (m) => m.MyAccounts_Routes
                 ),
         },
+        {
+            path:'**',
+            redirectTo:'home'
+          }
     ]
 }
 ];

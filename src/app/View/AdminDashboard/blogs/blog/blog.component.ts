@@ -68,9 +68,9 @@ export class BlogComponent {
 
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.active = data;
-    if(this.active == 'Edit'){
-      console.log('edit');
+    this.active = data?.status;
+    if (this.active == 'Edit') {
+      this.editPatch()
     }
     this.user$
       .pipe(
@@ -89,11 +89,18 @@ export class BlogComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  makeActive(type: string) {
-    this.active = type;
-  }
   onSubmit() {
-    console.log('check', this.blogForm.value);
+    const url = this.data?.status == 'Edit' ? 'Blog/update' : 'Blog/create'
+    const formData: FormData = new FormData();
+    formData.append('Title', this.blogForm.get('title').value);
+    formData.append('Description', this.blogForm.get('description').value);
+    formData.append('BlogImage', this.blogForm.get('image').value);
+    if(this.data?.status == 'Edit'){
+      formData.append('Id', this.blogForm.get('id').value)
+    }
+    this.http.loaderPost(url, formData, true).subscribe((response)=>{
+      this.dialogRef.close({ data:true });
+    });
   }
   imgUpload(event: any) {
     LoaderService.loader.next(true);
@@ -112,12 +119,12 @@ export class BlogComponent {
         this.blogForm.get('image').setValue(this.src + res?.model?.imageUrl);
       });
   }
-  editPatch(data: any) {
+  editPatch() {
     this.blogForm.patchValue({
-      title: data?.title,
-      description: data?.description,
-      image: data?.image,
+      title: this.data?.content?.title,
+      description: this.data?.content?.description,
+      image: this.data?.content?.imagePath,
     });
-    this.blogForm.addControl('id', new FormControl(data?.id));
+    this.blogForm.addControl('id', new FormControl(this.data?.content?.id));    
   }
 }

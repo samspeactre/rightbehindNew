@@ -8,16 +8,16 @@ export const Dashboard_Routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'users',
         pathMatch: 'full',
       },
-      {
-        path: 'home',
-        loadChildren: () =>
-          import('./dashboard-home/dashboardHomeRoute').then(
-            (m) => m.Dashboard_Home_Routes
-          ),
-      },
+      // {
+      //   path: 'home',
+      //   loadChildren: () =>
+      //     import('./dashboard-home/dashboardHomeRoute').then(
+      //       (m) => m.Dashboard_Home_Routes
+      //     ),
+      // },
       {
         path: 'users',
         loadChildren: () =>
@@ -43,6 +43,10 @@ export const Dashboard_Routes: Routes = [
         loadChildren: () =>
           import('./settings/settingsRoute').then((m) => m.Settings_Routes),
       },
+      {
+        path:'**',
+        redirectTo:'users'
+      }
     ],
   },
 ];

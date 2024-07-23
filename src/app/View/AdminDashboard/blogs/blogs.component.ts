@@ -3,14 +3,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { InputComponent } from '../../../SharedComponents/input/input.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { Store } from '@ngrx/store';
-import { Subject, debounceTime, distinctUntilChanged, finalize, of, switchMap, takeUntil } from 'rxjs';
+import {
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  of,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 import { HttpService } from '../../../Services/http.service';
 import { updateUserData } from '../../../Ngrx/data.action';
 import { LoaderService } from '../../../Services/loader.service';
-import { faPlus, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faPlusCircle,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { assetUrl } from '../../../Services/helper.service';
 import { Router } from '@angular/router';
@@ -20,12 +37,19 @@ import { BlogComponent } from './blog/blog.component';
 
 @Component({
   standalone: true,
-  imports: [InputComponent, NgxPaginationModule, FontAwesomeModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    InputComponent,
+    NgxPaginationModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrl: './blogs.component.scss'
+  styleUrl: './blogs.component.scss',
 })
-export class BlogsComponent { private destroy$ = new Subject<void>();
+export class BlogsComponent {
+  private destroy$ = new Subject<void>();
   searchForm: any = this.fb.group({
     search: [''],
   });
@@ -34,9 +58,9 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
   p: number = 1;
   totalItems!: number;
   itemsPerPage: number = 7;
-  faTimes=faTimes;
-  faEdit=faEdit
-  faPlus=faPlus;
+  faTimes = faTimes;
+  faEdit = faEdit;
+  faPlus = faPlus;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -70,7 +94,7 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
 
   getInquiries(): void {
     const urlParams = this.buildUrlParams();
-    const Url = `Property/get?${urlParams.toString()}`;
+    const Url = `Blog/get?${urlParams.toString()}`;
     this.http
       .loaderGet(Url, true, true)
       .pipe(
@@ -80,8 +104,7 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
         )
       )
       .subscribe((response) => {
-        this.inquiries = response?.model?.properties;
-        this.originalInquiries = response?.model?.properties;
+        this.inquiries = response?.model?.blogs;
         this.totalItems = response?.model?.totalResults;
       });
   }
@@ -89,12 +112,10 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
     const urlParams = new URLSearchParams({
       pageNo: String(this.p),
       pageSize: String(this.itemsPerPage),
-      type: this.router.url.includes('buy') ? '1' : '2',
     });
 
     const optionalParams = {
       search: this.searchForm.controls['search'].value,
-      type: 2,
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {
@@ -109,11 +130,16 @@ export class BlogsComponent { private destroy$ = new Subject<void>();
     this.p = event;
     this.getInquiries();
   }
-  openPopup(type: string): void {
-    this.dialog.open(BlogComponent, {
+  openPopup(type: string, data: any): void {
+    const dialogRef = this.dialog.open(BlogComponent, {
       height: '80%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
-      data: type,
+      data: { status: type, content: data },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.data) {
+        this.getInquiries();
+      }
     });
   }
 }

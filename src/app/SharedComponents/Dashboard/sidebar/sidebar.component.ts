@@ -92,7 +92,7 @@ export class SidebarComponent {
     { name: 'Transactions', route: '/dashboard/transactions', icon: this.faUser },
   ];
   adminRoutes = [
-    { name: 'Dashboard', route: '/admin-dashboard/home', icon: this.faHome },
+    // { name: 'Dashboard', route: '/admin-dashboard/home', icon: this.faHome },
     { name: 'Users', route: '/admin-dashboard/users', icon: this.faUsers },
     { name: 'Inquiries', route: '/admin-dashboard/inquiries', icon: this.faComments },
     { name: 'Blogs', route: '/admin-dashboard/blogs', icon: this.faNewsPaper },

@@ -14,7 +14,7 @@
       ></app-input>
     </div>
     <div class="col-lg-2 mt-3">
-      <button class="btnPrimary py-1 rounded-1" (click)="openPopup('Add')">
+      <button class="btnPrimary py-1 rounded-1" (click)="openPopup('Add',null)">
         <fa-icon [icon]="faPlus"></fa-icon> Add Blog
       </button>
     </div>
@@ -26,9 +26,9 @@
               <thead>
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col" class="text-center">Name</th>
-                  <th scope="col" class="text-center">Email</th>
-                  <th scope="col" class="text-center">Phone</th>
+                  <th scope="col" class="text-center">Title</th>
+                  <th scope="col" class="text-center">Description</th>
+                  <!-- <th scope="col" class="text-center">Phone</th> -->
                   <th scope="col" class="text-center">Action</th>
                 </tr>
               </thead>
@@ -38,16 +38,16 @@
                 $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
-                  <td class="text-center">Mark</td>
-                  <td class="text-center">Otto</td>
-                  <td class="text-center">Otto</td>
+                  <td class="text-center">{{item?.title}}</td>
+                  <td class="text-center">{{ item?.description?.length > 20 ? item.description.slice(0, 20) + '...' : item?.description }}</td>
+                  <!-- <td class="text-center">Otto</td> -->
                   <td class="text-center" style="width: 100px">
                     <div
                       class="d-flex gap-3 align-items-center justify-content-center"
                     >
                       <button
                         class="btnPrimary py-1 rounded-1"
-                        (click)="openPopup('Edit')"
+                        (click)="openPopup('Edit',item)"
                       >
                         <fa-icon [icon]="faEdit"></fa-icon>
                       </button>

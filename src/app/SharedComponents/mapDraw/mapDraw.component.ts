@@ -91,9 +91,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     }
   }
   async ngAfterViewInit() {
-    console.log('====================================');
-    console.log(this.mapOptions);
-    console.log('====================================');
     await this.initiateMap();
     this.setupButtonClickListeners();
   }

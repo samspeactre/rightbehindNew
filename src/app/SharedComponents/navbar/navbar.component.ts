@@ -91,7 +91,6 @@ export class NavbarComponent {
       )
       .subscribe((user) => {
         this.user = user;
-        console.log(this.user?.userType);
       });
     this.router.events
       .pipe(
@@ -130,7 +129,6 @@ export class NavbarComponent {
         this.router.events
           .pipe(filter((event) => event instanceof NavigationEnd))
           .subscribe(() => {
-            console.log('scroll');
             this.scrollToElement(id);
           });
       });

@@ -91,8 +91,6 @@ export class ContactPopupComponent {
           console.error('An error occurred:', err);
         }
       });
-    } else {
-      console.log('hello');
     }
   }
 }

@@ -12,9 +12,17 @@
         <app-input
         type="text"
         [form]="registerForm"
-        control="fullName"
-        label="Full Name"
-        placeholder="Enter your full name*"
+        control="firstName"
+        label="First Name"
+        placeholder="Enter your first name*"
+        classes="mb-2"
+      ></app-input>
+      <app-input
+        type="text"
+        [form]="registerForm"
+        control="lastName"
+        label="Last Name"
+        placeholder="Enter your last name*"
         classes="mb-2"
       ></app-input>
       <app-input

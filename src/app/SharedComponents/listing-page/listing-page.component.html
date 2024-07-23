@@ -2,96 +2,140 @@
   <app-banner>
     <div class="container">
       <div class="sec-1 pb-3">
-
-        @if(url == '/communities'){
-        <div class="community-main">
-          <h1 id="typing-heading" class="bigFont wow fadeInDown text-dark text-center typing-animation">
-           
-            <!-- {{ getHeaderText() }} -->
-          </h1>
-        </div>
-        }
-        @else{
-        <div class="rental-main">
-          <h1 id="typing-heading" class="bigFont wow fadeInDown text-dark text-center typing-animation">
-           
-            <!-- {{ getHeaderText() }} -->
-          </h1>
-        </div>
-
+        <ngx-typed-writer
+          [strings]="[
+            url == '/communities'
+              ? '<h1>The best communities in Miami.</h1>'
+              : '<h1>The best rental deals in Miami.</h1>'
+          ]"
+          [isHTML]="true"
+          [typeSpeed]="30"
+          [loop]="false"
+          [cursorChar]="'|'"
+          [showCursor]="true"
+        ></ngx-typed-writer>
+        @if(url != '/communities'){
         <p class="wow fadeInDown text-center mb-3">
           Move in with just a security deposit, a month free and more
 
-          <img src="../../../assets/video/fire.gif" class="fire-animation" alt="">
-
+          <img
+            src="../../../assets/video/fire.gif"
+            class="fire-animation"
+            alt=""
+          />
         </p>
         }
 
-
         <div class="my-3 wow fadeInDown search-bar">
-          <app-search-bar [search]="search" (searchEvent)="searchProperties($event)"
-            [searching]="loader"></app-search-bar>
+          <app-search-bar
+            [search]="search"
+            (searchEvent)="searchProperties($event)"
+            [searching]="loader"
+          ></app-search-bar>
         </div>
         @if(!loader && !loadMoreLoader && url != '/communities'){
         <div class="row">
-          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
+          <div
+            class="col-lg-2 col-6"
+            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
+          >
             <div class="ngs-select">
-              <ng-select [(ngModel)]="type" placeholder="Property Type" (change)="onFilterChange()"
-                [searchable]="false">
-                @if(types){
-                @for (item of types; track $index) {
-                <ng-option [value]="item?.value">{{item?.name}}</ng-option>
-                }
-                }
+              <ng-select
+                [(ngModel)]="type"
+                placeholder="Property Type"
+                (change)="onFilterChange()"
+                [searchable]="false"
+              >
+                @if(types){ @for (item of types; track $index) {
+                <ng-option [value]="item?.value">{{ item?.name }}</ng-option>
+                } }
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
+          <div
+            class="col-lg-2 col-6"
+            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
+          >
             <div class="ngs-select">
-              <ng-select [(ngModel)]="maxPrice" placeholder="Price" (change)="onFilterChange()" [searchable]="false">
-                @if(maxPriceArray){
-                @for (item of maxPriceArray; track $index) {
-                <ng-option [value]="item">{{item | currency:'USD'}}</ng-option>
-                }
-                }
+              <ng-select
+                [(ngModel)]="maxPrice"
+                placeholder="Price"
+                (change)="onFilterChange()"
+                [searchable]="false"
+              >
+                @if(maxPriceArray){ @for (item of maxPriceArray; track $index) {
+                <ng-option [value]="item">{{
+                  item | currency : "USD"
+                }}</ng-option>
+                } }
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
+          <div
+            class="col-lg-2 col-6"
+            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
+          >
             <div class="ngs-select">
-              <ng-select [(ngModel)]="beds" placeholder="Beds" (change)="onFilterChange()" [searchable]="false">
-                @if(bedsArray){
-                @for (item of bedsArray; track $index) {
-                <ng-option [value]="item">{{item}} Beds</ng-option>
-                }
-                }
+              <ng-select
+                [(ngModel)]="beds"
+                placeholder="Beds"
+                (change)="onFilterChange()"
+                [searchable]="false"
+              >
+                @if(bedsArray){ @for (item of bedsArray; track $index) {
+                <ng-option [value]="item">{{ item }} Beds</ng-option>
+                } }
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
+          <div
+            class="col-lg-2 col-6"
+            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
+          >
             <div class="ngs-select">
-              <ng-select [(ngModel)]="baths" placeholder="Bathrooms" (change)="onFilterChange()" [searchable]="false">
-                @if(bathArray){
-                @for (item of bathArray; track $index) {
-                <ng-option [value]="item">{{item}} Bathroom</ng-option>
-                }
-                }
+              <ng-select
+                [(ngModel)]="baths"
+                placeholder="Bathrooms"
+                (change)="onFilterChange()"
+                [searchable]="false"
+              >
+                @if(bathArray){ @for (item of bathArray; track $index) {
+                <ng-option [value]="item">{{ item }} Bathroom</ng-option>
+                } }
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-6" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
+          <div
+            class="col-lg-2 col-6"
+            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
+          >
             <div class="ngs-select">
-              <ng-select [(ngModel)]="sort" placeholder="Sort" (change)="sorting()" [searchable]="false">
-                @if(bathArray){
-                @for (item of sortsArray; track $index) {
-                <ng-option [value]="item">{{item}}</ng-option>
-                }
-                }
+              <ng-select
+                [(ngModel)]="sort"
+                placeholder="Sort"
+                (change)="sorting()"
+                [searchable]="false"
+              >
+                @if(bathArray){ @for (item of sortsArray; track $index) {
+                <ng-option [value]="item">{{ item }}</ng-option>
+                } }
               </ng-select>
             </div>
           </div>
-          <div class="col-lg-2 col-6 ms-auto dCenter" [ngClass]="{'my-1' : (resize.windowSize$ | async)?.width > 1024}">
-            <button class="btnDanger w-100" [ngClass]="{'py-3' : (resize.windowSize$ | async)?.width <= 1024}" [disabled]="isResetDisabled()" (click)="reset()">Reset</button>
+          <div
+            class="col-lg-2 col-6 ms-auto dCenter"
+            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
+          >
+            <button
+              class="btnDanger w-100"
+              [ngClass]="{
+                'py-3': (resize.windowSize$ | async)?.width <= 1024
+              }"
+              [disabled]="isResetDisabled()"
+              (click)="reset()"
+            >
+              Reset
+            </button>
           </div>
         </div>
         }
@@ -104,53 +148,70 @@
       <div class="row">
         <div class="col-lg-7 wow fadeInDown" #listing>
           @if(loader){
-          <p style="height: 16px;" class="w-75 skeleton my-3"></p>
-          }
-          @else {
+          <p style="height: 16px" class="w-75 skeleton my-3"></p>
+          } @else {
           <div class="dCenter justify-content-between">
-            <h5 class="my-3">{{cards?.length}}
-              @if(url == '/communities'){
-              Communities
-              }@else{
-              Properties
-              }
-              Found
+            <h5 class="my-3">
+              {{ cards?.length }}
+              @if(url == '/communities'){ Communities }@else{ Properties } Found
             </h5>
-            @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
-              title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
+            @if((resize.windowSize$ | async)?.width <= 1024){
+            <button
+              class="btnToggler"
+              title="Show Properties On {{ showMapClicked ? 'List' : 'Map' }}"
+              (click)="showMapClicked = !showMapClicked"
+            >
               <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
-              </button>
-              }
+            </button>
+            }
           </div>
           }
         </div>
-        @if(url == '/communities'){
-        @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
+        @if(url == '/communities'){ @if((resize.windowSize$ | async)?.width >
+        1024 || showMapClicked){
         <div class="col-lg-12 wow fadeInDown mb-3">
           @if(latLngArray?.length){
-          <app-map-draw [communityMarkerPositions]="latLngArray" [center]="latLngArray?.[1]" [community]="true"
-            [infoContents]="cards" [height]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200"></app-map-draw>
+          <app-map-draw
+            [communityMarkerPositions]="latLngArray"
+            [center]="latLngArray?.[1]"
+            [community]="true"
+            [infoContents]="cards"
+            [height]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200"
+          ></app-map-draw>
           }
         </div>
-        }
-        }
-        @if(!showMapClicked){
-        <div class="wow fadeInDown" [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-6']" #listing>
+        } } @if(!showMapClicked){
+        <div
+          class="wow fadeInDown"
+          [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-6']"
+          #listing
+        >
           <div class="row">
-            @if(cards?.length){
-            @for (card of cards; track card) {
-            <div class="mb-3 wow fadeInDown" [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-6']">
+            @if(cards?.length){ @for (card of cards; track card) {
+            <div
+              class="mb-3 wow fadeInDown"
+              [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-6']"
+            >
               @if(url == '/communities'){
-              <app-community-card [item]="card" [loader]="loader"></app-community-card>
+              <app-community-card
+                [item]="card"
+                [loader]="loader"
+              ></app-community-card>
               }@else {
-              <app-property-card page="listView" background="#e6f2ff" [card]="card" [loader]="loader"
-                type="component"></app-property-card>
+              <app-property-card
+                page="listView"
+                background="#e6f2ff"
+                [card]="card"
+                [loader]="loader"
+                type="component"
+              ></app-property-card>
               }
             </div>
-            }
-            }
-            @else {
-            <p class="text-danger text-center">No {{url == '/communities' ? 'communities' : 'properties'}} found</p>
+            } } @else {
+            <p class="text-danger text-center">
+              No
+              {{ url == "/communities" ? "communities" : "properties" }} found
+            </p>
             }
             <div class="col-lg-12">
               @if(loadMore){
@@ -160,29 +221,38 @@
                   <app-mini-loading></app-mini-loading>
                 </div>
                 } @else{
-                <button class="btnPrimary py-1 wow fadeInDown mb-3"
-                  (click)="loadMoreProperties(url == '/communities' ? 'communities' : 'properties')">Load More</button>
+                <button
+                  class="btnPrimary py-1 wow fadeInDown mb-3"
+                  (click)="
+                    loadMoreProperties(
+                      url == '/communities' ? 'communities' : 'properties'
+                    )
+                  "
+                >
+                  Load More
+                </button>
                 }
               </div>
               }
             </div>
           </div>
         </div>
-        }
-        @if(url != '/communities'){
-        @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
+        } @if(url != '/communities'){ @if((resize.windowSize$ | async)?.width >
+        1024 || showMapClicked){
         <div class="col-lg-6 wow fadeInDown rightP">
           <div class="mapElement">
             @if(latLngArray?.length){
-            <app-map-draw [markerPositions]="latLngArray" [center]="latLngArray?.[0]" [infoContents]="cards"
-              [height]="screenHeight"></app-map-draw>
+            <app-map-draw
+              [markerPositions]="latLngArray"
+              [center]="latLngArray?.[0]"
+              [infoContents]="cards"
+              [height]="screenHeight"
+            ></app-map-draw>
             }
           </div>
         </div>
-        }
-        }
+        } }
       </div>
     </div>
   </div>
-
 </div>

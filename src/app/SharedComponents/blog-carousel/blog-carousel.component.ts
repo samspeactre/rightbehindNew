@@ -56,9 +56,12 @@ export class BlogCarouselComponent implements OnInit {
   constructor(private router: Router, private http:HttpService) { }
 
   ngOnInit(): void {
+    this.getBlogs()
   }
   getBlogs(){
-
+    this.http.loaderGet('Blog/get',false).subscribe((response)=>{
+      console.log(response);
+    })
   }
   navigateToBlogInner() {
     this.router.navigate(['/blog-inner']);

@@ -89,8 +89,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.contactId = routeData?.contactId;
       this.recieverInfo = routeData?.sender;
       this.propertyInfo = routeData?.property;
-      console.log(this.propertyInfo);
-      
       if (this.contactId) this.getInquiry();
 
       this.updateChatSidebarVisibility();
@@ -218,8 +216,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   //   })
   // }
   private filterChat(searchTerm: string): void {
-    console.log(searchTerm,'search reuly');
-    
     if (!searchTerm) {
       this.searchUsers = this.originalsearchUsers;
     } else {

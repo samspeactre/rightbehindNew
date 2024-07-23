@@ -79,8 +79,6 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     return nextDay;
   }
   ngOnInit(): void {
-    console.log(this.startDate, this.endDate);
-
     this.getInquiries();
     this.initializeSearch();
   }

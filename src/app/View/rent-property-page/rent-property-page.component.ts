@@ -195,8 +195,6 @@ export class RentPropertyPageComponent implements OnInit {
                   PropertyContact: response?.model?.propertyContacts,
                   ...response?.model
                 };
-                console.log(this.previousData);
-                
                 response?.model?.propertyImages?.map((image: any) => {
                   this.propertyImageFiles.push(
                     this.fb.control(image?.imageUrl)
@@ -627,7 +625,6 @@ export class RentPropertyPageComponent implements OnInit {
 
       await Promise.all(
         values.map(async (value) => {
-          console.log(value, values, 'check3');
           const newGroup = this.createFormGroup(
             formArrayName,
             this.lowercaseKeys(value)

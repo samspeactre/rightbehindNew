@@ -95,7 +95,6 @@ export class CommunityViewComponent {
       )
       .subscribe((user) => {
         this.userDetails = user;
-        console.log(user);
       });
   }
   ngOnDestroy() {

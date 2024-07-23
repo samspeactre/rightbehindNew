@@ -44,7 +44,6 @@ export class ChatPopupComponent {
   }
   onSubmit() {
     const formData = this.convertFormToFormData(this.communityForm.value);
-    console.log(formData);
     this.http.loaderPost('Forum/create',formData,true)
     .pipe(
       takeUntil(this.destroy$),

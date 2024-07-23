@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
@@ -8,28 +15,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatLabel, MatSelect } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Subject, finalize, takeUntil } from 'rxjs';
-import { HttpService } from '../../Services/http.service';
-import { PopupComponent } from '../popup/popup.component';
-import { BannerComponent } from '../banner/banner.component';
-import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { PropertyCardComponent } from '../property-card/property-card.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { MapComponent } from '../map/map.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { HelperService, types } from '../../Services/helper.service';
-import { MapDrawComponent } from '../mapDraw/mapDraw.component';
-import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
-import { CommunityCardComponent } from '../community-card/community-card.component';
-import { ResizeService } from '../../Services/resize.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import TWriter from 't-writer.js';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxTypedWriterModule } from 'ngx-typed-writer';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { types } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
+import { ResizeService } from '../../Services/resize.service';
+import { BannerComponent } from '../banner/banner.component';
+import { CommunityCardComponent } from '../community-card/community-card.component';
+import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
+import { MapComponent } from '../map/map.component';
+import { MapDrawComponent } from '../mapDraw/mapDraw.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PopupComponent } from '../popup/popup.component';
+import { PropertyCardComponent } from '../property-card/property-card.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 @Component({
   standalone: true,
   imports: [
@@ -56,7 +59,7 @@ import TWriter from 't-writer.js';
     MapDrawComponent,
     CommunityCardComponent,
     FontAwesomeModule,
-    
+    NgxTypedWriterModule
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -111,29 +114,21 @@ export class ListingPageComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const element = document.getElementById('typing-heading');
-    if (element) {
-      const writer = new TWriter(element, {
-        loop: false, // Ensure the animation does not loop
-        typeSpeed: 100, // Adjust typing speed
-        eraseSpeed: 50, // Adjust erase speed if needed
-      });
+    // if (element) {
+    //   const writer = new TWriter(element, {
+    //     loop: false, // Ensure the animation does not loop
+    //     typeSpeed: 100, // Adjust typing speed
+    //     eraseSpeed: 50, // Adjust erase speed if needed
+    //   });
 
-      // Start the typewriter effect
-      writer.type(this.getHeaderText()).start();
+    //   // Start the typewriter effect
+    //   writer.type(this.getHeaderText()).start();
 
-      // Stop the animation after a fixed duration
-      setTimeout(() => writer?.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
-    }
+    //   // Stop the animation after a fixed duration
+    //   setTimeout(() => writer?.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
+    // }
   }
-
-  getHeaderText(): string {
-    const url = this.router.url;
-    return url === '/communities'
-      ? 'The best communities in Miami.'
-      : 'The best rental deals in Miami.';
-  }
-
-    constructor(
+  constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
     private router: Router,

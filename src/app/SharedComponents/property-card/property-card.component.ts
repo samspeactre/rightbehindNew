@@ -64,10 +64,6 @@ export class PropertyCardComponent {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  ngOnInit() {
-    console.log(this.card?.propertyImages?.[0]?.imageUrl, this.card?.title);
-    
-  }
   openPopup(card: any): void {
     this.dialog?.open(ContactPopupComponent, {
       height: '500px',

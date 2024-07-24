@@ -195,8 +195,6 @@ export class RentPropertyPageComponent implements OnInit {
                   PropertyContact: response?.model?.propertyContacts,
                   ...response?.model
                 };
-                console.log(this.previousData);
-                
                 response?.model?.propertyImages?.map((image: any) => {
                   this.propertyImageFiles.push(
                     this.fb.control(image?.imageUrl)
@@ -369,6 +367,8 @@ export class RentPropertyPageComponent implements OnInit {
     appendFormData(this.propertyAddForm.value);
     if(this.previousData?.getData){
       formData.append('isActive',this.previousData?.isActive)
+      formData.append('isLive',this.previousData?.isLive)
+      formData.append('createdAt',this.previousData?.createdAt)
       formData.append('isDeleted',this.previousData?.isDeleted)
     }
     const url = this.previousData?.getData
@@ -627,7 +627,6 @@ export class RentPropertyPageComponent implements OnInit {
 
       await Promise.all(
         values.map(async (value) => {
-          console.log(value, values, 'check3');
           const newGroup = this.createFormGroup(
             formArrayName,
             this.lowercaseKeys(value)

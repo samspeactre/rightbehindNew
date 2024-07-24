@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row align-items-center">
     <div class="col-lg-12">
-      <h6 class="bold mb-0">Blogs</h6>
+      <h6 class="bold mb-0">Where's Bryan</h6>
     </div>
     <div class="col-lg-10 mt-3">
       <app-input
@@ -15,7 +15,7 @@
     </div>
     <div class="col-lg-2 mt-3">
       <button class="btnPrimary py-1 rounded-1" (click)="openPopup('Add',null)">
-        <fa-icon [icon]="faPlus"></fa-icon> Add Blog
+        <fa-icon [icon]="faPlus"></fa-icon> Add
       </button>
     </div>
     <div class="col-lg-12 my-3">
@@ -26,20 +26,20 @@
               <thead>
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col" class="text-center">Title</th>
-                  <th scope="col" class="text-center">Description</th>
+                  <th scope="col" class="text-center">Video URL</th>
+                  <th scope="col" class="text-center">Blog URL</th>
                   <!-- <th scope="col" class="text-center">Phone</th> -->
                   <th scope="col" class="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
                 @for (item of inquiries | paginate: { itemsPerPage:
-                itemsPerPage, currentPage: p, totalItems:totalItems }; track
+                itemsPerPage, currentPage: p }; track
                 $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
-                  <td class="text-center">{{item?.title}}</td>
-                  <td class="text-center">{{ item?.description?.length > 20 ? item.description.slice(0, 20) + '...' : item?.description }}</td>
+                  <td class="text-center">{{item?.videoUrl}}</td>
+                  <td class="text-center">{{ item?.blogUrl }}</td>
                   <!-- <td class="text-center">Otto</td> -->
                   <td class="text-center" style="width: 100px">
                     <div
@@ -60,7 +60,7 @@
                 }
                 @if(!inquiries?.length){
                   <tr>
-                    <td colspan="5" class="text-center">No Blogs Found</td>
+                    <td colspan="5" class="text-center">No Where's Bryan Found</td>
                   </tr>
                   }
               </tbody>

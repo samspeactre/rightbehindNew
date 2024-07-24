@@ -23,18 +23,18 @@
                   <th scope="col">Id</th>
                   <th scope="col" class="text-center">Name</th>
                   <th scope="col" class="text-center">Email</th>
-                  <th scope="col" class="text-center">Phone</th>
+                  <th scope="col" class="text-center">Properties</th>
                   <th scope="col" class="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
                 @for (item of inquiries | paginate: { itemsPerPage: itemsPerPage,
-                currentPage: p, totalItems:totalItems }; track $index) {
+                currentPage: p }; track $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
-                  <td class="text-center">Mark</td>
-                  <td class="text-center">Otto</td>
-                  <td class="text-center">Otto</td>
+                  <td class="text-center">{{item?.fullName}}</td>
+                  <td class="text-center">{{item?.email}}</td>
+                  <td class="text-center">{{item?.userProperties?.length}}</td>
                   <td class="text-center" style="width:100px;">
                     <button class="btnPrimary py-1 rounded-1" (click)="route(item?.id)">
                       <fa-icon [icon]="faEye"></fa-icon>
@@ -42,6 +42,11 @@
                   </td>
                 </tr>
                 }
+                @if(!inquiries?.length){
+                  <tr>
+                    <td colspan="5" class="text-center">No Users Found</td>
+                  </tr>
+                  }
               </tbody>
             </table>
           </div>

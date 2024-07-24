@@ -20,10 +20,12 @@ import { Subject } from 'rxjs';
 import { HelperService } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { MapComponent } from '../map/map.component';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, MapComponent, CommonModule, MatDialogContent, MatButtonModule, RouterModule,FontAwesomeModule, NgbTooltipModule],
+  imports: [MatIconModule, MapComponent, CarouselModule, CommonModule, MatDialogContent, MatButtonModule, RouterModule,FontAwesomeModule, NgbTooltipModule],
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.scss',
@@ -41,7 +43,8 @@ export class PopupComponent implements OnInit {
     private store: Store,
     private http: HttpService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public helper:HelperService
+    public helper:HelperService,
+    public resize:ResizeService
   ) {
     this.propertyData = data?.card
   }
@@ -55,6 +58,22 @@ export class PopupComponent implements OnInit {
     { id: 'Map', title: 'map' },
   ];
   chunkedFacilities: any[] = [];
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    margin: 20,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      }
+    },
+    nav: false
+  }
   ngOnInit() {
   }
 

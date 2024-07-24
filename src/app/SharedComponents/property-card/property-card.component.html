@@ -9,7 +9,7 @@
   </div>
 </div>
 } @else{
-<div class="cstm-property-card" [ngStyle]="{ background: background }">
+<div class="cstm-property-card" [id]="'card-'+card?.id" [ngStyle]="{ background: background }">
   <div
     class="property-img position-relative"
     [ngClass]="{ 'wow fadeInDown': animation }"
@@ -44,7 +44,7 @@
         class="d-flex justify-content-between align-items-center card-property-heading"
       >
         <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
-          {{ card?.title || "N/A" }}
+          {{ card?.title }}
         </h6>
       </div>
       <div

@@ -70,8 +70,6 @@ export class CardCarouselComponent implements OnInit{
       })
     )
     .subscribe((response) => {
-      console.log(response?.model?.forums);
-      
       this.cards = response?.model?.forums
     })
   }

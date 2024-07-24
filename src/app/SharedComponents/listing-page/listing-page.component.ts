@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
@@ -8,28 +10,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatLabel, MatSelect } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Subject, finalize, takeUntil } from 'rxjs';
-import { HttpService } from '../../Services/http.service';
-import { PopupComponent } from '../popup/popup.component';
-import { BannerComponent } from '../banner/banner.component';
-import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { PropertyCardComponent } from '../property-card/property-card.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { MapComponent } from '../map/map.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { HelperService, types } from '../../Services/helper.service';
-import { MapDrawComponent } from '../mapDraw/mapDraw.component';
-import { CardCarouselComponent } from '../card-carousel/card-carousel.component';
-import { CommunityCardComponent } from '../community-card/community-card.component';
-import { ResizeService } from '../../Services/resize.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import TWriter from 't-writer.js';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxTypedWriterModule } from 'ngx-typed-writer';
+import { Subject, finalize, takeUntil } from 'rxjs';
+import { types } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
+import { ResizeService } from '../../Services/resize.service';
+import { BannerComponent } from '../banner/banner.component';
+import { CommunityCardComponent } from '../community-card/community-card.component';
+import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
+import { MapComponent } from '../map/map.component';
+import { MapDrawComponent } from '../mapDraw/mapDraw.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { PopupComponent } from '../popup/popup.component';
+import { PropertyCardComponent } from '../property-card/property-card.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 @Component({
   standalone: true,
   imports: [
@@ -56,13 +54,13 @@ import TWriter from 't-writer.js';
     MapDrawComponent,
     CommunityCardComponent,
     FontAwesomeModule,
-    
+    NgxTypedWriterModule,
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.scss',
 })
-export class ListingPageComponent implements AfterViewInit {
+export class ListingPageComponent {
   cards: any = [1, 2, 3];
   zoom = 15;
   pageType!: string;
@@ -107,41 +105,13 @@ export class ListingPageComponent implements AfterViewInit {
   screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
-  ngOnInit() {}
-
-  ngAfterViewInit(): void {
-    const element = document.getElementById('typing-heading');
-    if (element) {
-      const writer = new TWriter(element, {
-        loop: false, // Ensure the animation does not loop
-        typeSpeed: 100, // Adjust typing speed
-        eraseSpeed: 50, // Adjust erase speed if needed
-      });
-
-      // Start the typewriter effect
-      writer.type(this.getHeaderText()).start();
-
-      // Stop the animation after a fixed duration
-      setTimeout(() => writer?.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
-    }
-  }
-
-  getHeaderText(): string {
-    const url = this.router.url;
-    return url === '/communities'
-      ? 'The best communities in Miami.'
-      : 'The best rental deals in Miami.';
-  }
-
-    constructor(
+  constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
     private router: Router,
     public dialog: MatDialog,
     public resize: ResizeService
   ) {
-    // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
-    // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
     this.url = this.router.url;
     this.showMap = true;
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -165,8 +135,6 @@ export class ListingPageComponent implements AfterViewInit {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    // this.helper.removeScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
-    // this.helper.removeScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js')
   }
   getProperties(loadMore: boolean) {
     if (!loadMore) {
@@ -388,5 +356,36 @@ export class ListingPageComponent implements AfterViewInit {
           ),
         (err: any) => this.handleError(loadMore)
       );
+  }
+  hover(event: any) {
+    console.log(event);
+    const cardElement = document.getElementById(`card-${event}`);
+
+    if (cardElement) {
+      // Check if the card is in view
+      const rect = cardElement.getBoundingClientRect();
+      const isInView =
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <=
+          (window.innerWidth || document.documentElement.clientWidth);
+
+      if (!isInView) {
+        // Scroll to the card if it is not in view
+        cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Highlight the card
+      this.highlightCard(cardElement);
+    }
+  }
+
+  highlightCard(cardElement: HTMLElement) {
+    cardElement.classList.add('highlight');
+    setTimeout(() => {
+      cardElement.classList.remove('highlight');
+    }, 5000);
   }
 }

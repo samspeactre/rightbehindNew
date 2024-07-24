@@ -46,13 +46,11 @@ export class ChatPopupComponent {
   }
   onSubmit() {
     const formData = this.convertFormToFormData(this.communityForm.value);
-    console.log(formData);
-    this.http.loaderPost('Forum/create', formData, true)
-      .pipe(
-        takeUntil(this.destroy$),
-        distinctUntilChanged(
-          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
-        )
+    this.http.loaderPost('Forum/create',formData,true)
+    .pipe(
+      takeUntil(this.destroy$),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
       )
       .subscribe((response) => {
         this.dialogRef.close({ data: this.communityForm.value });

@@ -40,7 +40,8 @@ export class RegisterPopupComponent {
   ) {
     this.registerForm = this.fb.group({
       userAccountTypeId: [2],
-      fullName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -53,7 +54,16 @@ export class RegisterPopupComponent {
     this.destroy$.complete();
   }
   onSubmit(): void {
-    this.authService.register(this.registerForm.value).pipe(
+    const data = {
+      userAccountTypeId: 2,
+      fullName: this.registerForm.get('firstName')?.value + ' ' + this.registerForm.get('lastName')?.value,
+      email: this.registerForm.get('email')?.value,
+      phoneNumber: this.registerForm.get('phoneNumber')?.value,
+      password: this.registerForm.get('password')?.value,
+      confirmPassword: this.registerForm.get('confirmPassword')?.value,
+      receiveUpdates: this.registerForm.get('receiveUpdates')?.value
+    }
+    this.authService.register(data).pipe(
       takeUntil(this.destroy$),
       switchMap((registerResponse: any) => {
         const data = {

@@ -2,7 +2,8 @@
   <app-banner>
     <div class="container">
       <div class="sec-1 pb-3">
-        <ngx-typed-writer
+        <h1>The best communities in Miami.</h1>
+        <!-- <ngx-typed-writer
           [strings]="[
             url == '/communities'
               ? '<h1>The best communities in Miami.</h1>'
@@ -13,7 +14,7 @@
           [loop]="false"
           [cursorChar]="'|'"
           [showCursor]="true"
-        ></ngx-typed-writer>
+        ></ngx-typed-writer> -->
         @if(url != '/communities'){
         <p class="wow fadeInDown text-center mb-3">
           Move in with just a security deposit, a month free and more
@@ -172,6 +173,7 @@
         <div class="col-lg-12 wow fadeInDown mb-3">
           @if(latLngArray?.length){
           <app-map-draw
+            (propertyHover)="hover($event)"
             [communityMarkerPositions]="latLngArray"
             [center]="latLngArray?.[1]"
             [community]="true"
@@ -243,6 +245,8 @@
           <div class="mapElement">
             @if(latLngArray?.length){
             <app-map-draw
+              (propertyHoverOut)="hoverOut($event)"
+              (propertyHover)="hover($event)"
               [markerPositions]="latLngArray"
               [center]="latLngArray?.[0]"
               [infoContents]="cards"

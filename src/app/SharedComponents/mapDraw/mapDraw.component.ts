@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ApplicationRef, Component, ComponentFactoryResolver, Injector, Input, OnDestroy, OnInit } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, EventEmitter, Injector, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -37,6 +37,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
+  @Output() propertyHover = new EventEmitter<any>();
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -135,7 +136,10 @@ export class MapDrawComponent implements OnInit, OnDestroy {
         this.map.setCenter(marker.getPosition());
         this.map.setZoom(12);
       });
-
+      marker.addListener('mouseover', () => {
+        const data = this.infoContents[index]
+        this.propertyHover.emit(data?.id)
+      });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
       this.googleMarkers.push(marker);
@@ -150,7 +154,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     componentRef.instance.loader = false;
     componentRef.instance.routeDirect = true;
     this.appRef.attachView(componentRef.hostView);
-
     const div = document.createElement('div');
     div.appendChild(componentRef.location.nativeElement);
     return div;
@@ -237,8 +240,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
       this.enableMapInteractions();
       this.shapePromise = Promise.resolve(this.shapeCoordinates);
-
-      // Log the shape coordinates to the console
       console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
 
       const bounds = new google.maps.LatLngBounds();

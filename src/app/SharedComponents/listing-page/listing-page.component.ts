@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
@@ -59,13 +54,13 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
     MapDrawComponent,
     CommunityCardComponent,
     FontAwesomeModule,
-    NgxTypedWriterModule
+    NgxTypedWriterModule,
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
   styleUrl: './listing-page.component.scss',
 })
-export class ListingPageComponent implements AfterViewInit {
+export class ListingPageComponent {
   cards: any = [1, 2, 3];
   zoom = 15;
   pageType!: string;
@@ -110,24 +105,6 @@ export class ListingPageComponent implements AfterViewInit {
   screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
 
-  ngOnInit() {}
-
-  ngAfterViewInit(): void {
-    const element = document.getElementById('typing-heading');
-    // if (element) {
-    //   const writer = new TWriter(element, {
-    //     loop: false, // Ensure the animation does not loop
-    //     typeSpeed: 100, // Adjust typing speed
-    //     eraseSpeed: 50, // Adjust erase speed if needed
-    //   });
-
-    //   // Start the typewriter effect
-    //   writer.type(this.getHeaderText()).start();
-
-    //   // Stop the animation after a fixed duration
-    //   setTimeout(() => writer?.stop(), this.getHeaderText().length * 100); // Adjust timing based on typeSpeed
-    // }
-  }
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
@@ -135,8 +112,6 @@ export class ListingPageComponent implements AfterViewInit {
     public dialog: MatDialog,
     public resize: ResizeService
   ) {
-    // helper.appendScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
-    // helper.appendScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js');
     this.url = this.router.url;
     this.showMap = true;
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -160,8 +135,6 @@ export class ListingPageComponent implements AfterViewInit {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    // this.helper.removeScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&sensor=false&libraries=geometry,places&ext=.js')
-    // this.helper.removeScript('https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js')
   }
   getProperties(loadMore: boolean) {
     if (!loadMore) {
@@ -383,5 +356,36 @@ export class ListingPageComponent implements AfterViewInit {
           ),
         (err: any) => this.handleError(loadMore)
       );
+  }
+  hover(event: any) {
+    console.log(event);
+    const cardElement = document.getElementById(`card-${event}`);
+
+    if (cardElement) {
+      // Check if the card is in view
+      const rect = cardElement.getBoundingClientRect();
+      const isInView =
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <=
+          (window.innerWidth || document.documentElement.clientWidth);
+
+      if (!isInView) {
+        // Scroll to the card if it is not in view
+        cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Highlight the card
+      this.highlightCard(cardElement);
+    }
+  }
+
+  highlightCard(cardElement: HTMLElement) {
+    cardElement.classList.add('highlight');
+    setTimeout(() => {
+      cardElement.classList.remove('highlight');
+    }, 5000);
   }
 }

@@ -89,7 +89,9 @@ hr {
     color: #e02c27;
   }
 }
-
+.highlight{
+  box-shadow: 0 0 4px 1px #ff0e00 !important;
+}
 @media only screen and (max-width: 1024px) {
   p {
     font-size: 10px;

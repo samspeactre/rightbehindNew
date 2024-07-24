@@ -9,7 +9,7 @@
   </div>
 </div>
 } @else{
-<div class="card w-100 rounded-2 heightGet">
+<div class="card w-100 rounded-2 heightGet" [id]="'card-'+item?.id">
   <app-map height="150" [center]="{lat:item?.latitude,lng:item?.longitude}"
     [communityMarkerPositions]="[{lat:item?.latitude,lng:item?.longitude}]" [mapDraggable]="false"></app-map>
   <div class="card-content">

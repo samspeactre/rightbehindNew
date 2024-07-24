@@ -26,7 +26,7 @@ import { Store } from '@ngrx/store';
 import { StarRatingModule } from 'angular-star-rating';
 import { CountUpModule } from 'ngx-countup';
 import { MomentModule } from 'ngx-moment';
-import { Subject, finalize, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { selectUser } from '../../../Ngrx/data.reducer';
 import { assetUrl } from '../../../Services/helper.service';
 import { HttpService } from '../../../Services/http.service';
@@ -90,6 +90,16 @@ export class LayoutComponent {
       this.join =
         param?.userExistInForum && JSON.parse(param?.userExistInForum);
     });
+    this.user$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((user) => {
+        this.userDetails = user;
+      });
   }
   ngOnInit(){
     this.getInquiries()
@@ -154,6 +164,8 @@ export class LayoutComponent {
       });
   }
   joinNow() {
+    console.log(this.userDetails);
+    
     if (this.userDetails) {
       this.joining();
     } else {

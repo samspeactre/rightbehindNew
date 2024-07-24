@@ -126,3 +126,20 @@ button.Active {
 .left {
   align-content: center;
 }
+
+.close-popup{
+  width: 30px;
+}
+
+.close-popup button{
+  height: 30px;
+  width: 100%;
+  background-color: red;
+  border: 0;
+}
+
+.close-popup button .mat-icon{
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}

@@ -68,6 +68,7 @@ export class NavbarComponent {
   sellHide: boolean = false;
   communityHeader: boolean = false;
   url: any;
+  dialogRef: any;
   constructor(
     private store: Store,
     public resize: ResizeService,
@@ -179,6 +180,8 @@ export class NavbarComponent {
     });
   }
 
+  
+
   logout() {
     this.store.dispatch(removeUserData());
     this.router.navigateByUrl('/');
@@ -193,3 +196,7 @@ export class NavbarComponent {
     }
   }
 }
+function closeDialog() {
+  throw new Error('Function not implemented.');
+}
+

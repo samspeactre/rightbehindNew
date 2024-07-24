@@ -13,9 +13,10 @@ import { MapComponent } from '../map/map.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { HttpService } from '../../Services/http.service';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   standalone: true,
-  imports: [InputComponent, FontAwesomeModule, SweetAlert2Module, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
+  imports: [InputComponent, FontAwesomeModule, SweetAlert2Module, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent, MatIconModule],
   selector: 'app-add-chat-popup',
   templateUrl: './add-chat-popup.component.html',
   styleUrl: './add-chat-popup.component.scss'
@@ -33,7 +34,8 @@ export class ChatPopupComponent {
   user: any;
   faPlus = faPlus
   private destroy$ = new Subject<void>();
-  constructor(public dialog: MatDialog, private http:HttpService, public dialogRef: MatDialogRef<ChatPopupComponent>,
+  constructor(public dialog: MatDialog,
+     private http: HttpService, public dialogRef: MatDialogRef<ChatPopupComponent>,
     private router: Router, private fb: FormBuilder, private auth: AuthService,
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -45,16 +47,16 @@ export class ChatPopupComponent {
   onSubmit() {
     const formData = this.convertFormToFormData(this.communityForm.value);
     console.log(formData);
-    this.http.loaderPost('Forum/create',formData,true)
-    .pipe(
-      takeUntil(this.destroy$),
-      distinctUntilChanged(
-        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+    this.http.loaderPost('Forum/create', formData, true)
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
       )
-    )
-    .subscribe((response)=>{
-      this.dialogRef.close({ data:this.communityForm.value });
-    })
+      .subscribe((response) => {
+        this.dialogRef.close({ data: this.communityForm.value });
+      })
   }
   setFormValue(event: any, control: string) {
     if (control == 'Location') {
@@ -91,4 +93,9 @@ export class ChatPopupComponent {
     }
     return formData;
   }
+
+  closePopup(): void {
+    this.dialogRef.close();
+  }
+
 }

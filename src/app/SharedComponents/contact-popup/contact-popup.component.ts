@@ -14,9 +14,11 @@ import { MapComponent } from '../map/map.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { HttpService } from '../../Services/http.service';
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   standalone: true,
-  imports: [InputComponent, SweetAlert2Module, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
+  imports: [InputComponent, SweetAlert2Module, MatIconModule, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
   selector: 'app-contact-popup',
   templateUrl: './contact-popup.component.html',
   styleUrl: './contact-popup.component.scss'
@@ -94,5 +96,9 @@ export class ContactPopupComponent {
     } else {
       console.log('hello');
     }
+  }
+
+  closePopup(): void {
+    this.dialogRef.close();
   }
 }

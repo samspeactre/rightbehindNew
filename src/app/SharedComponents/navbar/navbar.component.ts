@@ -167,7 +167,7 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '450px',
+      height: '460px',
       width: window.innerWidth > 1024 ? '330px' : '100%',
     });
   }
@@ -179,8 +179,6 @@ export class NavbarComponent {
       data: type,
     });
   }
-
-  
 
   logout() {
     this.store.dispatch(removeUserData());

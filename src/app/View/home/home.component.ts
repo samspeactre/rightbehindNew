@@ -118,7 +118,7 @@ export class HomeComponent {
   
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '450px',
+      height: '470px',
       width: window.innerWidth > 1024 ? '400px' : '100%',
       data: { type: 'contact' }
     });

@@ -1,0 +1,29 @@
+.filterBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  width: 50%;
+  min-height: 90vh;
+  z-index: 10;
+  background-color: #fff;
+}
+:host ::ng-deep {
+  .ngs-select {
+    border: 1px solid #0000002e;
+    margin: 10px 0;
+  }
+  .mat-mdc-slider {
+    width: 97% !important;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .filterBox {
+    position: fixed;
+    width: 95%;
+    min-height: 60vh;
+    z-index: 100;
+  }
+}

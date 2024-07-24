@@ -15,7 +15,7 @@
     margin-top: 5rem;
     text-align: center;
     color: black;
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin-bottom: 0;
     font-family: "bold";
   }
@@ -62,7 +62,7 @@
   margin: auto;
 }
 .sec-1 {
-  min-height: 57vh;
+  min-height: 40vh;
 }
 
 :host ::ng-deep .mat-mdc-select-arrow {
@@ -92,7 +92,9 @@
   height: 25px;
   margin-bottom: 9px;
 }
-
+.cstmZIndex{
+  z-index: -2;
+}
 @keyframes blink-caret {
   from,
   to {
@@ -103,7 +105,11 @@
     border-color: black;
   }
 }
-
+.btnFilter{
+  background:none;
+  border: none;
+  color: #0147b8;
+}
 @media only screen and (max-width: 1024px) {
   :host ::ng-deep {
     h1 {

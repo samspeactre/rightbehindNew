@@ -21,6 +21,7 @@ import { ContactPopupComponent } from '../../SharedComponents/contact-popup/cont
 import { MatDialog } from '@angular/material/dialog';
 import { ResizeService } from '../../Services/resize.service';
 import { RentPopupComponent } from '../../SharedComponents/rent-popup/rent-popup.component';
+import { CommonModule } from '@angular/common';
 @Component({
   standalone: true,
   imports: [
@@ -34,7 +35,8 @@ import { RentPopupComponent } from '../../SharedComponents/rent-popup/rent-popup
     BannerComponent,
     MiniLoadingComponent,
     CountUpModule,
-    MapComponent
+    MapComponent,
+    CommonModule
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',

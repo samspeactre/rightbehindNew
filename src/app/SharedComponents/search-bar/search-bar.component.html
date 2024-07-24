@@ -8,11 +8,10 @@
       class="input-text"
       placeholder="Enter an address, neighborhood, city, or ZIP code"
     />
-    <button class="btnPrimary login-btn dCenter" (click)="submit()" [disabled]="searching">
-      <fa-icon [icon]="faSearch" size="2x" [class.me-2]="(resize.windowSize$ | async)?.width > 1024"></fa-icon>
-      @if((resize.windowSize$ | async)?.width > 1024){
-        Search
-      }
+    @if(filter){
+    <button class="btnPrimary login-btn dCenter" (click)="showFilt()">
+      <fa-icon [icon]="faBars"></fa-icon>
     </button>
+    }
   </div>
 </div>

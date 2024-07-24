@@ -1,155 +1,71 @@
 <div class="main-section">
-  <app-banner>
+  <app-banner [show]="show">
     <div class="container">
       <div class="sec-1 pb-3">
-        <ngx-typed-writer
-          [strings]="[
-            url == '/communities'
-              ? '<h1>The best communities in Miami.</h1>'
-              : '<h1>The best rental deals in Miami.</h1>'
-          ]"
-          [isHTML]="true"
-          [typeSpeed]="30"
-          [loop]="false"
-          [showCursor]="false"
-        ></ngx-typed-writer>
-        @if(url != '/communities'){
-        <p class="wow fadeInDown text-center mb-3">
-          Move in with just a security deposit, a month free and more
-
-          <img
-            src="../../../assets/video/fire.gif"
-            class="fire-animation"
-            alt=""
-          />
-        </p>
-        }
-
-        <div class="my-3 wow fadeInDown search-bar">
-          <app-search-bar
-            [search]="search"
-            (searchEvent)="searchProperties($event)"
-            [searching]="loader"
-          ></app-search-bar>
+        <div [ngClass]="{'d-none':show}">
+          <ngx-typed-writer
+            [strings]="[
+              url == '/communities'
+                ? '<h1>Find The Best Communities In Miami.</h1>'
+                : '<h1>Find The Best Rental Deals In Miami.</h1>'
+            ]"
+            [isHTML]="true"
+            [typeSpeed]="30"
+            [loop]="false"
+            [showCursor]="false"
+          ></ngx-typed-writer>
+          @if(url != '/communities'){
+          <h5 class="wow fadeInDown text-center mb-3">
+            Move in with just a <strong>security deposit, a month free</strong>  and more
+  
+            <img
+              src="../../../assets/video/fire.gif"
+              class="fire-animation"
+              alt=""
+            />
+          </h5>
+          }
         </div>
-        @if(!loader && !loadMoreLoader && url != '/communities'){
-        <div class="row">
-          <div
-            class="col-lg-2 col-6"
-            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
-          >
-            <div class="ngs-select">
-              <ng-select
-                [(ngModel)]="type"
-                placeholder="Property Type"
-                (change)="onFilterChange()"
-                [searchable]="false"
-              >
-                @if(types){ @for (item of types; track $index) {
-                <ng-option [value]="item?.value">{{ item?.name }}</ng-option>
-                } }
-              </ng-select>
-            </div>
+        <div class="my-3 wow fadeInDown search-bar position-relative">
+          <div [ngClass]="{'d-none':show}">
+            <app-search-bar
+              [search]="search"
+              (searchEvent)="searchProperties($event)"
+              [searching]="loader"
+              [filter]="url != '/communities'"
+              (showFilter)="showFil($event)"
+              [show]="show"
+            ></app-search-bar>
           </div>
-          <div
-            class="col-lg-2 col-6"
-            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
-          >
-            <div class="ngs-select">
-              <ng-select
-                [(ngModel)]="maxPrice"
-                placeholder="Price"
-                (change)="onFilterChange()"
-                [searchable]="false"
-              >
-                @if(maxPriceArray){ @for (item of maxPriceArray; track $index) {
-                <ng-option [value]="item">{{
-                  item | currency : "USD"
-                }}</ng-option>
-                } }
-              </ng-select>
-            </div>
-          </div>
-          <div
-            class="col-lg-2 col-6"
-            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
-          >
-            <div class="ngs-select">
-              <ng-select
-                [(ngModel)]="beds"
-                placeholder="Beds"
-                (change)="onFilterChange()"
-                [searchable]="false"
-              >
-                @if(bedsArray){ @for (item of bedsArray; track $index) {
-                <ng-option [value]="item">{{ item }} Beds</ng-option>
-                } }
-              </ng-select>
-            </div>
-          </div>
-          <div
-            class="col-lg-2 col-6"
-            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
-          >
-            <div class="ngs-select">
-              <ng-select
-                [(ngModel)]="baths"
-                placeholder="Bathrooms"
-                (change)="onFilterChange()"
-                [searchable]="false"
-              >
-                @if(bathArray){ @for (item of bathArray; track $index) {
-                <ng-option [value]="item">{{ item }} Bathroom</ng-option>
-                } }
-              </ng-select>
-            </div>
-          </div>
-          <div
-            class="col-lg-2 col-6"
-            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
-          >
-            <div class="ngs-select">
-              <ng-select
-                [(ngModel)]="sort"
-                placeholder="Sort"
-                (change)="sorting()"
-                [searchable]="false"
-              >
-                @if(bathArray){ @for (item of sortsArray; track $index) {
-                <ng-option [value]="item">{{ item }}</ng-option>
-                } }
-              </ng-select>
-            </div>
-          </div>
-          <div
-            class="col-lg-2 col-6 ms-auto dCenter"
-            [ngClass]="{ 'my-1': (resize.windowSize$ | async)?.width > 1024 }"
-          >
-            <button
-              class="btnDanger w-100"
-              [ngClass]="{
-                'py-3': (resize.windowSize$ | async)?.width <= 1024
-              }"
-              [disabled]="isResetDisabled()"
-              (click)="reset()"
-            >
-              Reset
-            </button>
+          <div class="show" [ngClass]="[show ? 'd-block' : 'd-none']">
+            <app-filter
+              [searching]="loader"
+              [types]="types"
+              [bedsArray]="bedsArray"
+              [bathArray]="bathArray"
+              [sortsArray]="sortsArray"
+              [minPrices]="minPrices"
+              [maxPrices]="maxPrices"
+              [isResetDisabled]="isResetDisabled()"
+              (onChangeFilter)="onFilterChange($event.event, $event.type)"
+              (rest)="reset()"
+              (sorted)="sorting($event)"
+              (closed)="showFil(false)"
+            ></app-filter>
           </div>
         </div>
-        }
       </div>
     </div>
   </app-banner>
 
-  <div class="position-relative">
-    <div class="cstmContainer">
-      <div class="row">
-        <div class="col-lg-7 wow fadeInDown" #listing>
+  <div class="position-relative" [ngClass]="{'cstmZIndex':show}">
+    <div class="cstmContainer ">
+      <div class="row ">
+        <div class="col-lg-7 wow fadeInDown " #listing>
           @if(loader){
           <p style="height: 16px" class="w-75 skeleton my-3"></p>
           } @else {
-          <div class="dCenter justify-content-between">
+          <div class="dCenter justify-content-between ">
             <h5 class="my-3">
               {{ cards?.length }}
               @if(url == '/communities'){ Communities }@else{ Properties } Found

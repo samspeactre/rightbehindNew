@@ -5,8 +5,8 @@
         <div class="carousel-img dCenter flex-wrap justify-content-between">
           @if(propertyData?.propertyImages?.length){ @if((resize.windowSize$ |
           async)?.width > 1024){ @for (item of
-          propertyData?.propertyImages?.length > 13 ?
-          propertyData?.propertyImages?.slice(0,13) :
+          propertyData?.propertyImages?.length > 11 ?
+          propertyData?.propertyImages?.slice(0,11) :
           propertyData?.propertyImages; let i = $index; track item) {
           <img
             width="100%"
@@ -43,7 +43,7 @@
             <div class="special">{{ propertyData?.rentSpecialTag }}</div>
             }
           </div>
-          <p class="text-dark">{{ propertyData?.description }}</p>
+          <p class="text-dark smallFont">{{ propertyData?.description }}</p>
           <p class="address mb-3">
             {{ propertyData?.street + ", " + propertyData?.city }}
           </p>
@@ -126,9 +126,9 @@
           </div>
         </div>
 
-        <div id="Prop-info" class="Prop-info">
-          <h3>Property Information</h3>
-          <div class="dCenter justify-content-between flex-wrap px-3">
+        <div id="Prop-info" class="Prop-info px-3">
+          <h6>Property Information</h6>
+          <div class="dCenter justify-content-between flex-wrap">
             @if(propertyData?.propertyType){
             <div class="white-box d-flex py-2 gap-2 py-2">
               <div class="text-dark sm-font text-info">Type:</div>
@@ -176,7 +176,7 @@
 
         @if(propertyData?.propertyAmenities?.length){
         <div id="Ameneties" class="ameneties">
-          <h3>Ameneties</h3>
+          <h6>Ameneties</h6>
           <div class="facilities">
             <ul class="facility-group dCenter justify-content-start">
               @for (group of propertyData?.propertyAmenities; let i = $index;
@@ -195,20 +195,18 @@
         </div>
         }
 
-        <div id="Map" class="map">
-          <h3 class="map-head">View on map</h3>
-          <div class="px-3 pb-3">
-            <app-map
-            class="map-img"
-            [center]="{
-              lat: propertyData?.latitude,
-              lng: propertyData?.longitude
-            }"
-            [markerPositions]="[
-            { lat: propertyData?.latitude, lng: propertyData?.longitude }
-            ]"
-            ></app-map>
-          </div>
+        <div id="Map" class="map p-3">
+          <h6 class="map-head">View on map</h6>
+          <app-map
+          class="map-img"
+          [center]="{
+            lat: propertyData?.latitude,
+            lng: propertyData?.longitude
+          }"
+          [markerPositions]="[
+          { lat: propertyData?.latitude, lng: propertyData?.longitude }
+          ]"
+          ></app-map>
         </div>
       </div>
     </div>

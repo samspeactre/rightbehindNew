@@ -1,4 +1,5 @@
 <mat-dialog-content>
+
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
@@ -33,6 +34,11 @@
       </div>
 
       <div class="col-lg-6">
+        <div class="close-popup">
+          <button (click)="closePopup()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
         <div class="first-box p-3">
           <p class="reg text-dark mb-0 smallFont">
             Propert ID:{{ propertyData?.id || propertyData?.listingId }}

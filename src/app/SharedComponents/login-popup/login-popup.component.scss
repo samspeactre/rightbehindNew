@@ -47,3 +47,23 @@
 .container{
     background-color: var(--sec-blue);
 }
+
+.close-popup {
+    width: 35px;
+    float: right;
+  }
+  
+  .close-popup button {
+    background-color: red;
+    border: 0;
+    border-radius: 0.3vw;
+    width: 100%;
+    height: 25px;
+  }
+  
+  .close-popup button .mat-icon {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    align-content: center;
+  }

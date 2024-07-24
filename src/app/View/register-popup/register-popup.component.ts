@@ -13,6 +13,7 @@ import { InputComponent } from '../../SharedComponents/input/input.component';
 import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -21,6 +22,7 @@ import { ResizeService } from '../../Services/resize.service';
     MatButtonModule,
     ReactiveFormsModule,
     InputComponent,
+    MatIconModule
   ],
   selector: 'app-register-popup',
   templateUrl: './register-popup.component.html',
@@ -34,7 +36,7 @@ export class RegisterPopupComponent {
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
     private authService: AuthService,
-    public resize:ResizeService
+    public resize: ResizeService
   ) {
     this.registerForm = this.fb.group({
       userAccountTypeId: [2],
@@ -88,6 +90,10 @@ export class RegisterPopupComponent {
       height: '490px',
       width: window.innerWidth > 1024 ? '350px' : '100%'
     });
+  }
+
+  closePopup(): void {
+    this.dialogRef.close();
   }
 
 }

@@ -12,6 +12,7 @@ import { InputComponent } from '../../../SharedComponents/input/input.component'
 import { CommunityCardComponent } from '../../../SharedComponents/community-card/community-card.component';
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -23,6 +24,7 @@ import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/o
     FontAwesomeModule,
     ReactiveFormsModule,
     MiniLoadingComponent,
+    MatIconModule
   ],
   selector: 'app-community',
   templateUrl: './community.component.html',
@@ -30,7 +32,7 @@ import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/o
 })
 export class CommunityComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
-  searchForm:any = this.fb.group({
+  searchForm: any = this.fb.group({
     search: [''],
   });
   faPlus = faPlus;
@@ -42,7 +44,7 @@ export class CommunityComponent implements OnInit, OnDestroy {
     private router: Router,
     public dialog: MatDialog,
     private http: HttpService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getInquiries();
@@ -64,12 +66,12 @@ export class CommunityComponent implements OnInit, OnDestroy {
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe(() => {});
+      .subscribe(() => { });
   }
 
   openPopup(): void {
     const dialogRef = this.dialog.open(ChatPopupComponent, {
-      height: '570px',
+      height: '590px',
       width: window.innerWidth > 1024 ? '780px' : '100%',
     });
 
@@ -110,4 +112,5 @@ export class CommunityComponent implements OnInit, OnDestroy {
       );
     }
   }
+
 }

@@ -105,4 +105,8 @@ export class PopupComponent implements OnInit {
       console.error("Share failed:", err?.message);
     }
   }
+
+  closePopup(): void {
+    this.dialogRef.close();
+  }
 }

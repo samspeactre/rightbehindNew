@@ -10,10 +10,12 @@ import { HelperService } from '../../Services/helper.service';
 import { InputComponent } from '../input/input.component';
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   standalone: true,
-  imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule],
+  imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule, MatIconModule],
   selector: 'app-login-popup',
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.scss'],
@@ -103,5 +105,9 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
         rememberMe: true
       });
     }
+  }
+
+  closePopup(): void {
+    this.dialogRef.close();
   }
 }

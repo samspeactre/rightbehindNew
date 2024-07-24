@@ -95,8 +95,10 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="rounded-4 overflow-hidden">
-          <app-map [height]="mapHeight" [video]="true" [center]="{lat:25.761681,lng:-80.191788}"
-            [markerPositions]="array"></app-map>
+          @if(array?.length){
+            <app-map [height]="mapHeight" [video]="true" [center]="array?.[0]"
+              [markerPositions]="array"></app-map>
+          }
         </div>
       </div>
       <div class="col-lg-6" #secondCol>

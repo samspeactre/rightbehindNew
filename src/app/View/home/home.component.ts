@@ -57,13 +57,8 @@ export class HomeComponent {
   sell: any;
   mapHeight: number = 0;
   private destroy$ = new Subject<void>();
-  array = [
-    { "lat": 25.853681, "lng": -80.191788 }, // ~10 km north
-    { "lat": 25.669681, "lng": -80.191788 }, // ~10 km south
-    { "lat": 25.761681, "lng": -80.091788 }, // ~10 km east
-    { "lat": 25.761681, "lng": -80.291788 }, // ~10 km west
-    { "lat": 25.829681, "lng": -80.115788 }  // ~10 km northeast
-  ]
+  bryan:any=[]
+  array:any = []
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   @HostListener('window:scroll', ['$event'])
@@ -100,6 +95,7 @@ export class HomeComponent {
       const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
       this.scrollPosition = scrollPosition;
     });
+    this.wheres()
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -130,5 +126,13 @@ export class HomeComponent {
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });
+  }
+  wheres(){
+    this.http.loaderGet('Home/get/propertyTour',true,true).subscribe((response:any)=>{
+      this.bryan = response?.model?.homePropertyTourList;
+      this.bryan?.map((item:any)=>{
+        this.array.push({lat:item?.latitude,lng:item?.longitude})
+      })
+    })
   }
 }

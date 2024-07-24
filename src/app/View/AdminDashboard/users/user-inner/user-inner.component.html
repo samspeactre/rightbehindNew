@@ -13,7 +13,7 @@
             <div class="avatar">
               <img
                 alt="profile"
-                src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+                [src]="rent?.imageUrl || 'https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png'"
               />
             </div>
           </div>
@@ -24,13 +24,13 @@
                   <div class="col-md-6">
                     <div class="ttl-info text-left">
                       <h6><i class="fa fa-envelope"></i>   Email</h6>
-                      <span>Marekjecnoyahoo.com</span>
+                      <span>{{rent?.email || 'N/A'}}</span>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="ttl-info text-left">
                       <h6><i class="fa fa-phone"></i>   Contact Us</h6>
-                      <span>+91 123-456-7890</span>
+                      <span>{{rent?.contact || 'N/A'}}</span>
                     </div>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
               <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
                 <div class="user-designation">
                   <div class="title">
-                    <a class="bold">Mark jecno</a>
+                    <a class="bold">{{rent?.fullName}}</a>
                   </div>
                   <div class="desc mt-2">Seller</div>
                 </div>
@@ -48,13 +48,13 @@
                   <div class="col-md-6">
                     <div class="ttl-info text-left">
                       <h6><i class="fa fa-calendar"></i>   Address</h6>
-                      <span>Miami, USA</span>
+                      <span>N/A</span>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="ttl-info text-left">
                       <h6><i class="fa fa-phone"></i>   Total Properties</h6>
-                      <span [countUp]="25869">0</span>
+                      <span [countUp]="rent?.userProperties?.length">0</span>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="col-lg-12">
               <h6 class="bold text-dark">Property Listing</h6>
             </div>
-            @if(rent?.length>0){ @for (card of rent; let i = $index; track card)
+            @if(rent?.userProperties?.length>0){ @for (card of rent?.userProperties; let i = $index; track card)
             {
             <div class="col-lg-4 mt-3">
               <app-property-card

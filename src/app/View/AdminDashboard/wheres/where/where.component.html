@@ -1,0 +1,48 @@
+<div class="container-site">
+  <div class="row">
+    <div class="full-lenght">
+      <h4 class="text-center text-dark bold popup-head">{{ active }} Where's Bryan</h4>
+    </div>
+  </div>
+  <form
+    class="row justify-content-between"
+    [formGroup]="blogForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="full-lenght">
+      <app-input
+        classes="w-100 mb-2"
+        type="text"
+        [form]="blogForm"
+        control="videoUrl"
+        label="Video Url"
+        placeholder="Enter your Video Url*"
+      ></app-input>
+    </div>
+    <div class="full-lenght">
+      <app-input
+        classes="w-100 mb-2"
+        type="text"
+        [form]="blogForm"
+        control="blogUrl"
+        label="Blog Url"
+        placeholder="Enter your Blog Url*"
+      ></app-input>
+    </div>
+    <div class="full-lenght">
+      <app-map
+        [addMarker]="true"
+        [draggable]="true"
+        [search]="true"
+        (mapMarkerCordinates)="setFormValue($event, 'latitude')"
+        (mapMarkerCordinates)="setFormValue($event, 'longitude')"
+        [center]="{lat:blogForm.get('latitude').value,lng:blogForm.get('longitude').value}"
+        [markerPositions]="[{lat:blogForm.get('latitude').value,lng:blogForm.get('longitude').value}]"
+        
+      ></app-map>
+    </div>
+    <div class="dCenter mt-3">
+      <button class="btnPrimary" [disabled]="blogForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>

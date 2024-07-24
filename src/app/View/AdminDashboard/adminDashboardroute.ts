@@ -41,7 +41,7 @@ export const Dashboard_Routes: Routes = [
       {
         path: 'bryan',
         loadChildren: () =>
-          import('./settings/settingsRoute').then((m) => m.Settings_Routes),
+          import('./wheres/wheresRoute').then((m) => m.Wheres_Routes),
       },
       {
         path:'**',

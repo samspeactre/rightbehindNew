@@ -59,9 +59,9 @@ export class BlogCarouselComponent implements OnInit {
     this.getBlogs()
   }
   getBlogs(){
-    // this.http.loaderGet('Blog/get',false).subscribe((response)=>{
-    //   console.log(response);
-    // })
+    this.http.loaderGet('Blog/get',true).subscribe((response)=>{
+      console.log(response);
+    })
   }
   navigateToBlogInner() {
     this.router.navigate(['/blog-inner']);

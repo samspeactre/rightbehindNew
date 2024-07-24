@@ -1,0 +1,59 @@
+.container-site {
+  padding: 15px 24px 0px;
+}
+
+p {
+  font-size: 14px;
+  font-family: "reg";
+  color: rgb(170, 169, 169);
+}
+
+.popup-head {
+  font-size: 30px;
+  font-family: "bold";
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.plus-img {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.plus-img img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.input-width {
+  width: 32.5%;
+}
+
+.full-lenght {
+  width: 100%;
+  padding: 0;
+}
+
+.half-input {
+  width: 49%;
+  padding: 0;
+}
+
+.full-lenght p {
+  padding: 0px 45px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.profileImage img{
+  border-radius: 50%;
+  object-fit: cover!important;
+  border: 1.5px solid var(--royal-blue);
+}
+
+:host ::ng-deep {
+  ckeditor {
+    padding: 0;
+  }
+}

@@ -367,6 +367,8 @@ export class RentPropertyPageComponent implements OnInit {
     appendFormData(this.propertyAddForm.value);
     if(this.previousData?.getData){
       formData.append('isActive',this.previousData?.isActive)
+      formData.append('isLive',this.previousData?.isLive)
+      formData.append('createdAt',this.previousData?.createdAt)
       formData.append('isDeleted',this.previousData?.isDeleted)
     }
     const url = this.previousData?.getData

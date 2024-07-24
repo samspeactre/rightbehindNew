@@ -5,7 +5,7 @@ import { distinctUntilChanged, finalize, Subject, takeUntil } from 'rxjs';
 import { PropertyCardComponent } from '../../../../SharedComponents/property-card/property-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-inner',
@@ -23,8 +23,12 @@ export class UserInnerComponent {
   rent: any = [];
   faArrowLeft = faArrowLeft;
   private destroy$ = new Subject<void>();
-
-  constructor(private http: HttpService) {}
+  id:any;
+  constructor(private http: HttpService, private activatedRoute:ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((response:any)=>{
+      this.id = response?.id
+    })
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -34,7 +38,7 @@ export class UserInnerComponent {
   }
   getInquiries() {
     this.http
-      .loaderGet('Property/get/me?pageSize=4&type=2&pageNo=1', true, true)
+      .loaderGet(`admindashboard/user/property/get/${this.id}`, true, true)
       .pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(
@@ -42,7 +46,7 @@ export class UserInnerComponent {
         )
       )
       .subscribe((response) => {
-        this.rent = response?.model?.properties;
+        this.rent = response?.model;
       });
   }
 }

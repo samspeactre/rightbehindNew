@@ -3,48 +3,82 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="carousel-img dCenter flex-wrap justify-content-between">
-          @if(propertyData?.propertyImages?.length){
-          @for (item of propertyData?.propertyImages; let i = $index; track item) {
-          <img width="100%" height="100%"
-            [src]="item?.imageUrl || 'https://homes.madeeasy.app/img/no-propertyfound.png'" alt="propertyimages"
-            [ngClass]="[i==0 ? 'carousel-img-full mt-3' : 'carousel-img-half']" />
-          }
-          }
-          @else{
-          <img width="100%" height="100%" src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="propertyimages"
-            class="carousel-img-full mt-3" />
+          @if(propertyData?.propertyImages?.length){ @if((resize.windowSize$ |
+          async)?.width > 1024){ @for (item of
+          propertyData?.propertyImages?.length > 13 ?
+          propertyData?.propertyImages?.slice(0,13) :
+          propertyData?.propertyImages; let i = $index; track item) {
+          <img
+            width="100%"
+            height="100%"
+            [src]="
+              item?.imageUrl ||
+              'https://homes.madeeasy.app/img/no-propertyfound.png'
+            "
+            alt="propertyimages"
+            [ngClass]="[
+              i == 0 ? 'carousel-img-full mt-3' : 'carousel-img-half'
+            ]"
+          />
+          } } } @else{
+          <img
+            width="100%"
+            height="100%"
+            src="https://homes.madeeasy.app/img/no-propertyfound.png"
+            alt="propertyimages"
+            class="carousel-img-full mt-3"
+          />
           }
         </div>
       </div>
 
       <div class="col-lg-6">
         <div class="first-box p-3">
-          <p class="reg text-dark mb-0 smallFont">Propert ID:{{ propertyData?.id || propertyData?.listingId }}</p>
+          <p class="reg text-dark mb-0 smallFont">
+            Propert ID:{{ propertyData?.id || propertyData?.listingId }}
+          </p>
           <div class="dCenter justify-content-between">
             <h1 class="bold text-dark">{{ propertyData?.title }}</h1>
             @if(propertyData?.rentSpecialTag){
-            <div class="special">{{propertyData?.rentSpecialTag}}</div>
+            <div class="special">{{ propertyData?.rentSpecialTag }}</div>
             }
           </div>
           <p class="text-dark">{{ propertyData?.description }}</p>
-          <p class="address mb-3">{{ propertyData?.street + ", " + propertyData?.city }}</p>
+          <p class="address mb-3">
+            {{ propertyData?.street + ", " + propertyData?.city }}
+          </p>
           <div class="row align-items-center">
             <div class="d-flex justify-content-between col-lg-12">
               <div class="col-lg-7 d-flex gap-3">
                 <div class="prop-detail-img dCenter gap-2">
-                  <img width="100%" height="100%" src="../../assets/img/bed.webp" alt="bed" />
+                  <img
+                    width="100%"
+                    height="100%"
+                    src="../../assets/img/bed.webp"
+                    alt="bed"
+                  />
                   <div class="prop-detail-text">
                     {{ propertyData?.noOfBed }}
                   </div>
                 </div>
                 <div class="prop-detail-img dCenter gap-2">
-                  <img width="100%" height="100%" src="../../assets/img/bath.webp" alt="bath" />
+                  <img
+                    width="100%"
+                    height="100%"
+                    src="../../assets/img/bath.webp"
+                    alt="bath"
+                  />
                   <div class="prop-detail-text">
                     {{ propertyData?.noOfBath }}
                   </div>
                 </div>
                 <div class="prop-detail-img dCenter gap-2">
-                  <img width="100%" height="100%" src="../../assets/img/sq.ft.webp" alt="area" />
+                  <img
+                    width="100%"
+                    height="100%"
+                    src="../../assets/img/sq.ft.webp"
+                    alt="area"
+                  />
                   <div class="prop-detail-text">
                     {{ propertyData?.area }}Sq.Ft
                   </div>
@@ -52,10 +86,18 @@
               </div>
 
               <div class="col-lg-3 d-flex gap-2">
-                <button class="dCenter optionBtn" ngbTooltip="Click open in a new tab" (click)="navigateAndClose()">
+                <button
+                  class="dCenter optionBtn"
+                  ngbTooltip="Click open in a new tab"
+                  (click)="navigateAndClose()"
+                >
                   <fa-icon class="dCenter" [icon]="faRedirect"></fa-icon>
                 </button>
-                <button class="dCenter optionBtn" (click)="share" ngbTooltip="Click to share">
+                <button
+                  class="dCenter optionBtn"
+                  (click)="(share)"
+                  ngbTooltip="Click to share"
+                >
                   <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
                 </button>
               </div>
@@ -73,7 +115,10 @@
           <div class="slider">
             <div class="dCenter justify-content-start flex-wrap gap-2">
               @for (heading of headings; track heading; let i = $index) {
-              <button class="btnWhiteNBlueOutline p-1 rounded-1" (click)="onHeadingClick(heading.id)">
+              <button
+                class="btnWhiteNBlueOutline p-1 rounded-1"
+                (click)="onHeadingClick(heading.id)"
+              >
                 {{ heading.title }}
               </button>
               }
@@ -81,77 +126,91 @@
           </div>
         </div>
 
-        <div id="Prop-info" class="Prop-info ">
+        <div id="Prop-info" class="Prop-info">
           <h3>Property Information</h3>
-          <div class="dCenter justify-content-between flex-wrap">
+          <div class="dCenter justify-content-between flex-wrap px-3">
             @if(propertyData?.propertyType){
-              <div class="white-box d-flex py-2 gap-2 py-2">
-                <div class="text-dark sm-font text-info">Type:</div>
-                <div class="text-dark sm-font">{{ helper.returnType(propertyData?.propertyType) }}</div>
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark sm-font text-info">Type:</div>
+              <div class="text-dark sm-font">
+                {{ helper.returnType(propertyData?.propertyType) }}
               </div>
-            }
-            @if(propertyData?.area){
-              <div class="white-box d-flex py-2 gap-2 py-2">
-                <div class="text-dark sm-font text-info">Area:</div>
-                <div class="text-dark sm-font">{{ propertyData?.area }} Sqft</div>
+            </div>
+            } @if(propertyData?.area){
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark sm-font text-info">Area:</div>
+              <div class="text-dark sm-font">{{ propertyData?.area }} Sqft</div>
+            </div>
+            } @if(propertyData?.price){
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark sm-font text-info">Price:</div>
+              <div class="text-dark sm-font">
+                {{ propertyData?.price || 0 | currency : "USD" }}
               </div>
-            }
-            @if(propertyData?.price){
-              <div class="white-box d-flex py-2 gap-2 py-2">
-                <div class="text-dark sm-font text-info">Price:</div>
-                <div class="text-dark sm-font">{{ propertyData?.price || 0 | currency : "USD" }}</div>
+            </div>
+            } @if(propertyData?.noOfBed){
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark sm-font text-info">Bedroom(s):</div>
+              <div class="text-dark sm-font">{{ propertyData?.noOfBed }}</div>
+            </div>
+            } @if(propertyData?.noOfBath){
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark sm-font text-info">Bath(s):</div>
+              <div class="text-dark sm-font">{{ propertyData?.noOfBath }}</div>
+            </div>
+            } @if(propertyData?.createdAt){
+            <div class="white-box d-flex py-2 gap-2 py-2">
+              <div class="text-dark sm-font text-info">Added(s):</div>
+              <div class="text-dark sm-font">
+                {{ propertyData?.createdAt | date : "d MMMM y" }}
               </div>
-            }
-            @if(propertyData?.noOfBed){
-              <div class="white-box d-flex py-2 gap-2 py-2">
-                <div class="text-dark sm-font text-info">Bedroom(s):</div>
-                <div class="text-dark sm-font">{{ propertyData?.noOfBed }}</div>
-              </div>
-            }
-            @if(propertyData?.noOfBath){
-              <div class="white-box d-flex py-2 gap-2 py-2">
-                <div class="text-dark sm-font text-info">Bath(s):</div>
-                <div class="text-dark sm-font">{{ propertyData?.noOfBath }}</div>
-              </div>
-            }
-            @if(propertyData?.createdAt){
-              <div class="white-box d-flex py-2 gap-2 py-2">
-                <div class="text-dark sm-font text-info">Added(s):</div>
-                <div class="text-dark sm-font">{{ propertyData?.createdAt | date : "d MMMM y" }}</div>
-              </div>
-            }
-            @if(propertyData?.location){
-              <div class="white-box d-flex py-2 gap-2 py-2 w-100">
-                <div class="text-dark sm-font text-info">Address:</div>
-                <div class="text-dark sm-font">{{ propertyData?.location }}</div>
-              </div>
+            </div>
+            } @if(propertyData?.location){
+            <div class="white-box d-flex py-2 gap-2 py-2 w-100">
+              <div class="text-dark sm-font text-info">Address:</div>
+              <div class="text-dark sm-font">{{ propertyData?.location }}</div>
+            </div>
             }
           </div>
         </div>
 
         @if(propertyData?.propertyAmenities?.length){
-        <div id="Ameneties" class="ameneties ">
+        <div id="Ameneties" class="ameneties">
           <h3>Ameneties</h3>
           <div class="facilities">
             <ul class="facility-group dCenter justify-content-start">
-              @for (group of propertyData?.propertyAmenities; let i = $index; track group) {
-              <li class="facility mb-3 sm-font" [ngClass]="{'me-3': propertyData?.propertyAmenities?.length > 1}">{{ i +
-                1 +
-                '.' + group?.amenity?.amenityName }}</li>
+              @for (group of propertyData?.propertyAmenities; let i = $index;
+              track group) {
+              <li
+                class="facility mb-3 sm-font"
+                [ngClass]="{
+                  'me-3': propertyData?.propertyAmenities?.length > 1
+                }"
+              >
+                {{ i + 1 + "." + group?.amenity?.amenityName }}
+              </li>
               }
             </ul>
           </div>
         </div>
         }
 
-        <div id="Map" class="map ">
+        <div id="Map" class="map">
           <h3 class="map-head">View on map</h3>
-          <app-map class="map-img" [center]="{lat:propertyData?.latitude,lng:propertyData?.longitude}"
-            [markerPositions]="[{lat:propertyData?.latitude,lng:propertyData?.longitude}]"></app-map>
+          <div class="px-3 pb-3">
+            <app-map
+            class="map-img"
+            [center]="{
+              lat: propertyData?.latitude,
+              lng: propertyData?.longitude
+            }"
+            [markerPositions]="[
+            { lat: propertyData?.latitude, lng: propertyData?.longitude }
+            ]"
+            ></app-map>
+          </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </mat-dialog-content>

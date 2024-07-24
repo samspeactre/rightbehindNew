@@ -128,7 +128,7 @@ export class ContactPopupComponent {
         });
     } else {
       const data = {
-        fullName: `${this.propertyForm.controls['firstName'].value} ${this.propertyForm.controls['lastName'].value}`,
+        name: `${this.propertyForm.controls['firstName'].value} ${this.propertyForm.controls['lastName'].value}`,
         email: this.propertyForm.controls['email'].value,
         contactNo: this.propertyForm.controls['contactNo'].value,
         message: this.propertyForm.controls['message'].value,

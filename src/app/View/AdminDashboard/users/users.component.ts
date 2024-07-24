@@ -43,7 +43,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   inquiries: any;
   originalInquiries: any;
   p: number = 1;
-  totalItems!: number;
   itemsPerPage: number = 7;
 
   constructor(
@@ -70,7 +69,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((searchTerm: string) => {
-          return of(this.getInquiries());
+          return of(this.search());
         }),
         takeUntil(this.destroy$)
       )
@@ -78,8 +77,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   getInquiries(): void {
-    const urlParams = this.buildUrlParams();
-    const Url = `Property/get?${urlParams.toString()}`;
+    const Url = `AdminDashboard/user/property/get`;
     this.http
       .loaderGet(Url, true)
       .pipe(
@@ -89,38 +87,28 @@ export class UsersComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((response) => {
-        this.inquiries = response?.model?.properties;
-        this.originalInquiries = response?.model?.properties;
-        this.totalItems = response?.model?.totalResults;
+        this.inquiries = response?.modelList;
+        this.originalInquiries = response?.modelList;
       });
-  }
-  private buildUrlParams(): URLSearchParams {
-    const urlParams = new URLSearchParams({
-      pageNo: String(this.p),
-      pageSize: String(this.itemsPerPage),
-      type: this.router.url.includes('buy') ? '1' : '2',
-    });
-
-    const optionalParams = {
-      search: this.searchForm.controls['search'].value,
-      type: 2,
-    };
-
-    for (const [key, value] of Object.entries(optionalParams)) {
-      if (value !== undefined && value !== null && value !== '') {
-        urlParams.set(key, String(value));
-      }
-    }
-
-    return urlParams;
   }
   onPageChange(event: number): void {
     this.p = event;
-    this.getInquiries();
   }
   route(id: any) {
     this.router.navigate(['/admin-dashboard/users/user-detail'], {
       queryParams: { id },
     });
+  }
+  search(): void {
+    if (!this.searchForm?.controls['search'].value) {
+      this.inquiries = this.originalInquiries;
+    } else {
+      const lowerSearchTerm = this.searchForm?.controls['search'].value.toLowerCase();
+      this.inquiries = this.originalInquiries.filter((inquiry:any) => 
+        inquiry.id.toString().includes(lowerSearchTerm) ||
+        inquiry.fullName.toLowerCase().includes(lowerSearchTerm) ||
+        inquiry.email.toLowerCase().includes(lowerSearchTerm)
+      );
+    }
   }
 }

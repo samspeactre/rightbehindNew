@@ -39,7 +39,7 @@ export const Dashboard_Routes: Routes = [
           import('./transactions/transactionsRoute').then((m) => m.Transactions_Routes),
       },
       {
-        path: 'settings',
+        path: 'bryan',
         loadChildren: () =>
           import('./settings/settingsRoute').then((m) => m.Settings_Routes),
       },

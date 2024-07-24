@@ -96,8 +96,8 @@ export class SidebarComponent {
     { name: 'Users', route: '/admin-dashboard/users', icon: this.faUsers },
     { name: 'Inquiries', route: '/admin-dashboard/inquiries', icon: this.faComments },
     { name: 'Blogs', route: '/admin-dashboard/blogs', icon: this.faNewsPaper },
+    { name: "Where's Bryan", route: '/admin-dashboard/bryan', icon: this.faSetting },
     { name: 'Transactions', route: '/admin-dashboard/transactions', icon: this.faDollar },
-    { name: 'Settings', route: '/admin-dashboard/settings', icon: this.faSetting },
   ];
   logout() {
     this.store.dispatch(removeUserData());

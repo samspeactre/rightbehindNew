@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -25,6 +26,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
+
 @Component({
   standalone: true,
   imports: [
@@ -36,6 +38,7 @@ import { ResizeService } from '../../Services/resize.service';
     ReactiveFormsModule,
     CommonModule,
     MapComponent,
+    MatIconModule
   ],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
@@ -60,6 +63,7 @@ export class RentPopupComponent {
   headingText: string = 'Add New Property';
   videoSrc: string = '../../../assets/video/rent-popup.mp4';
   private destroy$ = new Subject<void>();
+closeDialog: any;
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RentPopupComponent>,
@@ -270,6 +274,10 @@ export class RentPopupComponent {
 
   updateVideoSrc() {
     this.videoSrc = this.active === 'sell' ? '../../../assets/video/sell-popup.mp4' : '../../../assets/video/rent-popup.mp4';
+  }
+
+  closePopup(): void {
+    this.dialogRef.close();
   }
 
 }

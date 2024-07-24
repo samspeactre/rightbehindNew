@@ -1,0 +1,99 @@
+<div class="filterBox">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-dark bold">Property Filters</h2>
+      </div>
+      <div class="col-lg-12">
+        <p class="smallFont mb-0">Property Type</p>
+        <div class="ngs-select">
+          @if(!searching){
+          <ng-select
+            [(ngModel)]="a"
+            placeholder="Property Type"
+            (change)="onFilterChange($event, 'type')"
+            [searchable]="false"
+          >
+            @if(types){ @for (item of types; track $index) {
+            <ng-option [value]="item?.value">{{ item?.name }}</ng-option>
+            } }
+          </ng-select>
+          }
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <p class="smallFont mb-0">Price Range</p>
+        <mat-slider min="200" max="500">
+          <input value="300" matSliderStartThumb />
+          <input value="400" matSliderEndThumb />
+        </mat-slider>
+      </div>
+      <div class="col-lg-12">
+        <p class="smallFont mb-0">No Of Beds</p>
+        <div class="ngs-select">
+          @if(!searching){
+          <ng-select
+            [(ngModel)]="b"
+            placeholder="Beds"
+            (change)="onFilterChange($event, 'beds')"
+            [searchable]="false"
+          >
+            @if(bedsArray){ @for (item of bedsArray; track $index) {
+            <ng-option [value]="item">{{ item }} Beds</ng-option>
+            } }
+          </ng-select>
+          }
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <p class="smallFont mb-0">No. Of Baths</p>
+        <div class="ngs-select">
+          @if(!searching){
+          <ng-select
+            [(ngModel)]="c"
+            placeholder="Bathrooms"
+            (change)="onFilterChange($event, 'baths')"
+            [searchable]="false"
+          >
+            @if(bathArray){ @for (item of bathArray; track $index) {
+            <ng-option [value]="item">{{ item }} Bathroom</ng-option>
+            } }
+          </ng-select>
+          }
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <p class="smallFont mb-0">Sort</p>
+        <div class="ngs-select">
+          @if(!searching){
+          <ng-select
+            [(ngModel)]="d"
+            placeholder="Sort"
+            (change)="sorting($event)"
+            [searchable]="false"
+          >
+            @if(sortsArray){ @for (item of sortsArray; track $index) {
+            <ng-option [value]="item">{{ item }}</ng-option>
+            } }
+          </ng-select>
+          }
+        </div>
+      </div>
+      <div class="col-lg-12 d-flex justify-content-between gap-3">
+        <button
+          class="btnDanger w-50 py-2"
+          [disabled]="isResetDisabled"
+          (click)="reset()"
+        >
+          Reset
+        </button>
+        <button
+          class="btnDanger w-50 py-2"
+          (click)="close()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

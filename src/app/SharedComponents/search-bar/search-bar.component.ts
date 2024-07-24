@@ -6,12 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { ResizeService } from '../../Services/resize.service';
 import { CommonModule } from '@angular/common';
+import { FilterComponent } from '../filter/filter.component';
 @Component({
   standalone: true,
-  imports: [MatIconModule, MatFormFieldModule, MatInputModule, CommonModule, MatButtonModule, FormsModule, FontAwesomeModule],
+  imports: [MatIconModule, FilterComponent, MatFormFieldModule, MatInputModule, CommonModule, MatButtonModule, FormsModule, FontAwesomeModule],
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
@@ -19,9 +20,12 @@ import { CommonModule } from '@angular/common';
 export class SearchBarComponent {
   mentorSearchQueryUpdate = new Subject<any>();
   @Input() searching: boolean = false;
+  @Input() filter: boolean = false;
   @Input() search!: string;
+  @Input() show:boolean = false
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
-  faSearch = faSearch
+  @Output() showFilter: EventEmitter<any> = new EventEmitter<any>();
+  faBars = faFilter
   private destroy$ = new Subject<void>();
 
   constructor(public resize:ResizeService) {
@@ -43,5 +47,9 @@ export class SearchBarComponent {
   }
   submit() {
     this.searchEvent.emit(this.search)
+  }
+  showFilt(){
+    this.show = !this.show
+    this.showFilter.emit(this.show)
   }
 }

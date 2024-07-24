@@ -186,9 +186,9 @@ export class NavbarComponent {
   show(condition: boolean) {
     this.sidebar = condition;
     if (condition) {
-      document?.body?.classList?.add('sideBarOpenBody');
+      document?.body?.classList?.add('bodyLoader', 'backdropFront');
     } else {
-      document?.body?.classList?.remove('sideBarOpenBody');
+      document?.body?.classList?.remove('bodyLoader', 'backdropFront');
     }
   }
 }

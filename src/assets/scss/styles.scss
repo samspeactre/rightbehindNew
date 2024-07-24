@@ -129,23 +129,44 @@ a {
 .ngx-pagination .current {
   background: #ff0a0a !important;
 }
-th,td{
+th,
+td {
   align-content: center;
   height: 51px;
 }
-@media only screen and (min-width:1024px) {
-  pagination-controls{
+.bodyLoader {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden !important;
+  position: relative;
+  &::before {
+    content: "";
+    backdrop-filter: blur(2px) !important;
+    background-color: #6c6c6cc2 !important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+}
+.backdropFront.bodyLoader::before {
+  z-index: 5;
+}
+@media only screen and (min-width: 1024px) {
+  pagination-controls {
     height: 30px !important;
   }
 }
-@media only screen and (max-width:1024px) {
-  pagination-controls{
+@media only screen and (max-width: 1024px) {
+  pagination-controls {
     margin-top: 1rem;
   }
   .cdk-overlay-pane.mat-mdc-dialog-panel {
-      max-width: 90vw !important;
+    max-width: 90vw !important;
   }
-  .cdk-global-overlay-wrapper{
+  .cdk-global-overlay-wrapper {
     justify-content: center !important;
   }
 }

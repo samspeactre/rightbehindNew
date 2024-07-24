@@ -12,7 +12,7 @@ import { MatLabel, MatSelect } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMap } from '@fortawesome/free-regular-svg-icons';
-import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxTypedWriterModule } from 'ngx-typed-writer';
 import { Subject, finalize, takeUntil } from 'rxjs';
@@ -28,6 +28,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { FilterComponent } from '../filter/filter.component';
 @Component({
   standalone: true,
   imports: [
@@ -55,6 +56,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
     CommunityCardComponent,
     FontAwesomeModule,
     NgxTypedWriterModule,
+    FilterComponent,
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -68,10 +70,11 @@ export class ListingPageComponent {
   showMap: boolean = false;
   showMapClicked: boolean = false;
   faMap = faMap;
+  show: boolean = false;
   faBuilding = faBuilding;
   search: any = '';
   pageNo: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 20;
   loader: boolean = true;
   noData: boolean = false;
   loadMore: boolean = false;
@@ -79,9 +82,11 @@ export class ListingPageComponent {
   param: boolean = false;
   latLngArray: any;
   types = types;
-  maxPriceArray: any;
+  maxPrices: any;
+  minPrices: any;
   bedsArray: any;
   bathArray: any;
+  faBars = faFilter;
   sortsArray: any = [
     'Price: Low to High',
     'Price: High to Low',
@@ -206,9 +211,9 @@ export class ListingPageComponent {
           lng: location.longitude,
         }));
         if (type == 'properties') {
-          this.maxPriceArray = [
-            ...new Set(this.cards.map((data: any) => data.price ?? 0)),
-          ].sort((a: any, b: any) => a - b);
+          const prices = this.cards.map((data) => data.price ?? 0);
+          this.minPrices = Math.min(...prices);
+          this.maxPrices = Math.max(...prices);
           this.bedsArray = [
             ...new Set(this.cards.map((data: any) => data.noOfBed ?? 0)),
           ].sort((a: any, b: any) => a - b);
@@ -216,7 +221,7 @@ export class ListingPageComponent {
             ...new Set(this.cards.map((data: any) => data.noOfBath ?? 0)),
           ].sort((a: any, b: any) => a - b);
         }
-        this.sorting();
+        this.sorting(null);
       }
 
       this.noData = mainResponse?.properties?.length === 0;
@@ -270,10 +275,16 @@ export class ListingPageComponent {
   openPopup(): void {
     this.dialog.open(PopupComponent);
   }
-  onFilterChange() {
+  onFilterChange(event: any, type: any) {
+    this[type] = event;
+    this.showFil(false)
     this.getProperties(false);
   }
-  sorting() {
+  sorting(event) {
+    if (event) {
+      this.showFil(false)
+      this.sort = event;
+    }
     switch (this.sort) {
       case 'Price: Low to High':
         this.cards.sort((a: any, b: any) => (a.price || 0) - (b.price || 0));
@@ -320,6 +331,7 @@ export class ListingPageComponent {
     }
   }
   reset() {
+    this.showFil(false)
     this.search = null;
     this.maxPrice = null;
     this.beds = null;
@@ -328,7 +340,7 @@ export class ListingPageComponent {
     this.getProperties(false);
   }
   isResetDisabled(): boolean {
-    return !this.maxPrice && !this.beds && !this.baths;
+    return !this.maxPrice && !this.beds && !this.baths && !this.type;
   }
   getInquiries(loadMore: boolean) {
     if (!loadMore) {
@@ -358,9 +370,7 @@ export class ListingPageComponent {
       );
   }
   hover(event: any) {
-    console.log(event);
     const cardElement = document.getElementById(`card-${event}`);
-
     if (cardElement) {
       // Check if the card is in view
       const rect = cardElement.getBoundingClientRect();
@@ -387,5 +397,14 @@ export class ListingPageComponent {
     setTimeout(() => {
       cardElement.classList.remove('highlight');
     }, 5000);
+  }
+  showFil(event: boolean) {
+    if(event){
+      document.body.classList.add('bodyLoader')
+    }
+    else{
+      document.body.classList.remove('bodyLoader')
+    }
+    this.show = event;
   }
 }

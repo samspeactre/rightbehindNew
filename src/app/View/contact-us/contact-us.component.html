@@ -58,33 +58,32 @@
       <h1>Get in Touch</h1>
       <p>Lorem ipsum dolor sit amet consectetur. Bibendum neque pellentesque quis adipiscing convallis.</p>
 
-      <form>
+      <form [formGroup]="contactForm">
         <mat-form-field class="input-padding">
           <mat-label>Full Name</mat-label>
           <mat-icon class="form-icon" matPrefix>person</mat-icon>
-          <input matInput>
+          <input matInput formControlName="name">
         </mat-form-field>
-
+      
         <mat-form-field class="input-padding">
           <mat-label>Email Address</mat-label>
           <mat-icon class="form-icon" matPrefix>mail</mat-icon>
-          <input matInput>
+          <input matInput formControlName="email">
         </mat-form-field>
-
+      
         <mat-form-field class="input-padding">
           <mat-label>Mobile No</mat-label>
           <mat-icon class="form-icon" matPrefix>call</mat-icon>
-          <input matInput>
+          <input matInput formControlName="contactNo">
         </mat-form-field>
         
         <mat-form-field class="input-padding text-padding">
           <mat-label>Write your message here....</mat-label>
           <mat-icon class="text-icon" matPrefix>mail</mat-icon>
-          <textarea matInput></textarea>
+          <textarea matInput formControlName="message"></textarea>
         </mat-form-field>
-
-        <button mat-raised-button class="contact-form">Send</button>
-
+      
+        <button mat-raised-button class="contact-form" (click)="onSubmit()">Send</button>
       </form>
     </div>
   </div>

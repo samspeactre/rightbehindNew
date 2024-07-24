@@ -45,6 +45,9 @@ export class ContactPopupComponent {
     if (this.active?.type === 'property') {
       this.propertyForm.addControl('password', this.fb.control('', [Validators.required, Validators.minLength(8)]));
     }
+    else{
+      this.propertyForm.addControl('contactNo', this.fb.control('', [Validators.required]));
+    }
   }
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -91,6 +94,20 @@ export class ContactPopupComponent {
           console.error('An error occurred:', err);
         }
       });
+    }
+    else{
+      const data = {
+        fullName: `${this.propertyForm.controls['firstName'].value} ${this.propertyForm.controls['lastName'].value}`,
+        email: this.propertyForm.controls['email'].value,
+        contactNo:this.propertyForm.controls['contactNo'].value,
+        message: this.propertyForm.controls['message'].value
+      };
+      this.http
+          .loaderPost('ContactUs/create', data, true)
+          .subscribe((response: any) => {
+            this.propertyForm.reset();
+          this.dialogRef.close();
+          });
     }
   }
 }

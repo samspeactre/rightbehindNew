@@ -1,10 +1,58 @@
 <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h6 class="bold mb-3">Analytics</h6>
-        </div>
-        <div class="col-lg-12">
-            
-        </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h6 class="bold mb-3">Analytics</h6>
     </div>
+    @for (item of anylytics; track $index) {
+    <div class="col-lg-12 mb-3">
+      <div class="row">
+        <div class="col-lg-6">
+          <app-property-card
+            page="dashboard"
+            [loader]="loader"
+            background="#e6f2ff"
+            [card]="item"
+            type="component"
+            [animation]="false"
+          ></app-property-card>
+        </div>
+        <div class="col-lg-6">
+          <div class="dCenter justify-content-between mb-3">
+            <div class="dCenter gap-2 icon-analaytics-text">
+              <mat-icon>call</mat-icon>
+              <p class="smallFont mb-0">Calls</p>
+            </div>
+            <p class="mb-0">12</p>
+          </div>
+          <hr class="my-1" />
+          <div class="dCenter justify-content-between my-3">
+            <div class="dCenter gap-2 icon-analaytics-text">
+              <mat-icon>mail</mat-icon>
+              <p class="smallFont mb-0">Email</p>
+            </div>
+            <p class="mb-0">
+              {{ item?.propertyAnalytics?.[0]?.emailClickCount }}
+            </p>
+          </div>
+          <hr class="my-1" />
+          <div class="dCenter justify-content-between my-3">
+            <div class="dCenter gap-2 icon-analaytics-text">
+              <mat-icon>visibilityy</mat-icon>
+              <p class="smallFont mb-0">View</p>
+            </div>
+            <p class="mb-0">{{ item?.propertyAnalytics?.[0]?.searchCount }}</p>
+          </div>
+          <hr class="my-1" />
+          <div class="dCenter justify-content-between my-3">
+            <div class="dCenter gap-2 icon-analaytics-text">
+              <mat-icon>ads_click</mat-icon>
+              <p class="smallFont mb-0">Click</p>
+            </div>
+            <p class="mb-0">{{ item?.propertyAnalytics?.[0]?.clickCount }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
 </div>

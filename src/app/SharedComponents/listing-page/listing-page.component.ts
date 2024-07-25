@@ -87,6 +87,7 @@ export class ListingPageComponent {
   bedsArray: any;
   bathArray: any;
   faBars = faFilter;
+  loadFirstTime: boolean = true;
   sortsArray: any = [
     'Price: Low to High',
     'Price: High to Low',
@@ -99,6 +100,7 @@ export class ListingPageComponent {
   ];
   type: any = null;
   maxPrice: any = null;
+  minPrice: any = null;
   beds: any = null;
   baths: any = null;
   sort: string = 'Date: Late to Early';
@@ -158,13 +160,14 @@ export class ListingPageComponent {
         takeUntil(this.destroy$)
       )
       .subscribe(
-        (response: any) =>
+        (response: any) => {
           this.handleResponse(
             response?.model?.properties,
             loadMore,
             'properties',
             response?.model
-          ),
+          );
+        },
         (err: any) => this.handleError(loadMore)
       );
   }
@@ -179,6 +182,7 @@ export class ListingPageComponent {
     const optionalParams = {
       search: this.search,
       maxPrice: this.maxPrice,
+      minPrice: this.minPrice,
       noOfBeds: this.beds,
       noOfBaths: this.baths,
       type: this.type,
@@ -211,9 +215,14 @@ export class ListingPageComponent {
           lng: location.longitude,
         }));
         if (type == 'properties') {
-          const prices = this.cards.map((data) => data.price ?? 0);
-          this.minPrices = Math.min(...prices);
-          this.maxPrices = Math.max(...prices);
+          if (this.loadFirstTime) {
+            const prices = this.cards.map((data) => data.price ?? 0);
+            this.minPrices = Math.min(...prices);
+            this.maxPrices = Math.max(...prices);
+            this.minPrice = this.minPrices;
+            this.maxPrice = this.maxPrices;
+            this.loadFirstTime = false;
+          }
           this.bedsArray = [
             ...new Set(this.cards.map((data: any) => data.noOfBed ?? 0)),
           ].sort((a: any, b: any) => a - b);
@@ -277,12 +286,13 @@ export class ListingPageComponent {
   }
   onFilterChange(event: any, type: any) {
     this[type] = event;
-    this.showFil(false)
+  }
+  onRangeFilter() {
+    this.showFil(false);
     this.getProperties(false);
   }
   sorting(event) {
     if (event) {
-      this.showFil(false)
       this.sort = event;
     }
     switch (this.sort) {
@@ -331,16 +341,23 @@ export class ListingPageComponent {
     }
   }
   reset() {
-    this.showFil(false)
+    this.showFil(false);
     this.search = null;
     this.maxPrice = null;
+    this.minPrice = null;
     this.beds = null;
     this.baths = null;
     this.sort = 'Date: Early to Late';
     this.getProperties(false);
   }
   isResetDisabled(): boolean {
-    return !this.maxPrice && !this.beds && !this.baths && !this.type;
+    return (
+      !this.maxPrice &&
+      !this.minPrice &&
+      !this.beds &&
+      !this.baths &&
+      !this.type
+    );
   }
   getInquiries(loadMore: boolean) {
     if (!loadMore) {
@@ -399,11 +416,10 @@ export class ListingPageComponent {
     }, 5000);
   }
   showFil(event: boolean) {
-    if(event){
-      document.body.classList.add('bodyLoader')
-    }
-    else{
-      document.body.classList.remove('bodyLoader')
+    if (event) {
+      document.body.classList.add('bodyLoader');
+    } else {
+      document.body.classList.remove('bodyLoader');
     }
     this.show = event;
   }

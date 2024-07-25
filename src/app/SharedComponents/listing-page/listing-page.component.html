@@ -38,20 +38,29 @@
             ></app-search-bar>
           </div>
           <div class="show" [ngClass]="[show ? 'd-block' : 'd-none']">
-            <app-filter
-              [searching]="loader"
-              [types]="types"
-              [bedsArray]="bedsArray"
-              [bathArray]="bathArray"
-              [sortsArray]="sortsArray"
-              [minPrices]="minPrices"
-              [maxPrices]="maxPrices"
-              [isResetDisabled]="isResetDisabled()"
-              (onChangeFilter)="onFilterChange($event.event, $event.type)"
-              (rest)="reset()"
-              (sorted)="sorting($event)"
-              (closed)="showFil(false)"
-            ></app-filter>
+            @if(show){
+              <app-filter
+                [searching]="loader"
+                [types]="types"
+                [bedsArray]="bedsArray"
+                [bathArray]="bathArray"
+                [sortsArray]="sortsArray"
+                [minPrices]="minPrices"
+                [maxPrices]="maxPrices"
+                [a]="type"
+                [b]="beds"
+                [c]="baths"
+                [d]="sort"
+                [e]="minPrice"
+                [f]="maxPrice"
+                [isResetDisabled]="isResetDisabled()"
+                (onChangeFilter)="onFilterChange($event.event, $event.type)"
+                (onRangeFilter)="onRangeFilter()"
+                (rest)="reset()"
+                (sorted)="sorting($event)"
+                (closed)="showFil(false)"
+              ></app-filter>
+            }
           </div>
         </div>
       </div>

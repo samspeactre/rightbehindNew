@@ -165,8 +165,8 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '470px',
-      width: window.innerWidth > 1024 ? '330px' : '100%',
+      height: '480px',
+      width: window.innerWidth > 1330 ? '330px' : '100%',
     });
   }
 

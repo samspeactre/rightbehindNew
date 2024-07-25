@@ -92,7 +92,7 @@
 </div>
 <div class="where py-5">
   <div class="cstmContainer">
-    <div class="row" [ngClass]="{'flex-column-reverse mb-3':(resize.windowSize$ | async)?.width <= 1024}">
+    <div class="row" [ngClass]="{'flex-column-reverse':(resize.windowSize$ | async)?.width <= 1024}">
       <div class="col-lg-6">
         <div class="rounded-4 overflow-hidden">
           @if(array?.length){
@@ -118,7 +118,7 @@
             passion make him a trusted voice in Miami's real estate market and beyond.
           }
         </p>
-        <button class="btnPrimary wow fadeInDown">Know More</button>
+        <button class="btnPrimary wow fadeInDown" [ngClass]="{'mb-3':(resize.windowSize$ | async)?.width <= 1024}">Know More</button>
       </div>
       <div class="col-lg-12 mt-5">
         @defer{

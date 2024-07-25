@@ -48,10 +48,10 @@
                 <div class="dCenter justify-content-start gap-2">
                   <div class="circle wow fadeInDown"></div>
                   <p class="date text-dark reg smallFont mb-0 wow fadeInDown">
-                    {{ card?.date }}
+                    {{ card?.createdAt | date:'longDate' }}
                   </p>
                 </div>
-                <div class="badge wow fadeInDown">{{ card.badge }}</div>
+                <div class="badge wow fadeInDown">{{ card?.blogTags?.[0]?.tag?.name }}</div>
               </div>
             </div>
             <div class="w-100 py-2 px-3">

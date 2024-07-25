@@ -7,10 +7,11 @@ import { faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-s
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { HttpService } from '../../Services/http.service';
 import { finalize } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [MatIconModule, RouterModule, MatButtonModule, CarouselModule, FontAwesomeModule],
+  imports: [MatIconModule, RouterModule, MatButtonModule, CarouselModule, CommonModule, FontAwesomeModule],
   selector: 'app-blog-carousel',
   templateUrl: './blog-carousel.component.html',
   styleUrls: ['./blog-carousel.component.scss']

@@ -149,16 +149,18 @@
                   <app-mini-loading></app-mini-loading>
                 </div>
                 } @else{
-                <button
-                  class="btnPrimary py-1 wow fadeInDown mb-3"
-                  (click)="
-                    loadMoreProperties(
-                      url == '/communities' ? 'communities' : 'properties'
-                    )
-                  "
-                >
-                  Load More
-                </button>
+                  @if(cards?.length >= 20){
+                    <button
+                      class="btnPrimary py-1 wow fadeInDown mb-3"
+                      (click)="
+                        loadMoreProperties(
+                          url == '/communities' ? 'communities' : 'properties'
+                        )
+                      "
+                    >
+                      Load More
+                    </button>
+                  }
                 }
               </div>
               }

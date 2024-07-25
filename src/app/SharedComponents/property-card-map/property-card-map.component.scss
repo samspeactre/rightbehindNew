@@ -9,6 +9,9 @@
   font-size: 24px;
   font-weight: 900;
 }
+.property-content {
+  width: 300px;
+}
 .NoImageFound {
   object-fit: contain !important;
   background: #dddddd;
@@ -48,10 +51,10 @@
   background-color: #0160c9;
   border-radius: 8px;
 }
-.whitBtn{
+.whitBtn {
   background-color: transparent;
   font-size: 20px;
-  color:#0160c9;
+  color: #0160c9;
   border: 1px solid transparent;
   outline: none;
 }

@@ -2,7 +2,7 @@
   <div class="property-img">
     <img
       [src]="card?.propertyImages?.[0]?.imageUrl ? card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-      [class.NoImageFound]="!card?.imgSrc"
+      [class.NoImageFound]="!card?.propertyImages?.[0]?.imageUrl"
       alt="Card Image"
     />
   </div>

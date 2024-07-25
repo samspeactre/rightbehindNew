@@ -220,8 +220,6 @@ export class ListingPageComponent {
             const prices = this.cards.map((data) => data.price ?? 0);
             this.minPrices = Math.min(...prices);
             this.maxPrices = Math.max(...prices);
-            this.minPrice = this.minPrices;
-            this.maxPrice = this.maxPrices;
             this.loadFirstTime = false;
           }
           this.bedsArray = [
@@ -388,7 +386,6 @@ export class ListingPageComponent {
       );
   }
   hover(event){
-    console.log(event);
     this.highlighted = event
   }
   showFil(event: boolean) {

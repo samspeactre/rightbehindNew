@@ -92,7 +92,7 @@
 </div>
 <div class="where py-5">
   <div class="cstmContainer">
-    <div class="row">
+    <div class="row" [ngClass]="{'flex-column-reverse mb-3':(resize.windowSize$ | async)?.width <= 1024}">
       <div class="col-lg-6">
         <div class="rounded-4 overflow-hidden">
           @if(array?.length){
@@ -110,10 +110,13 @@
           Welcome to Where's Bryan, your guide to Miami's real estate scene and beyond. Bryan, a seasoned Miami real
           estate broker, explores diverse communities, providing insights into neighborhoods, property trends, and
           lifestyle choices. Follow Bryan's journey through engaging videos and articles where he shares expert analysis
-          on market dynamics, investment strategies, and the latest in urban living. Whether you're a prospective buyer,
-          seller, or simply curious about Miami's vibrant culture, Bryan offers valuable perspectives to help you
-          navigate the city's ever-changing landscape. Join the conversation and discover why Bryan's expertise and
-          passion make him a trusted voice in Miami's real estate market and beyond.
+          on market dynamics, investment strategies, and the latest in urban living.
+          @if((resize.windowSize$ | async)?.width > 1024){
+            Whether you're a prospective buyer,
+            seller, or simply curious about Miami's vibrant culture, Bryan offers valuable perspectives to help you
+            navigate the city's ever-changing landscape. Join the conversation and discover why Bryan's expertise and
+            passion make him a trusted voice in Miami's real estate market and beyond.
+          }
         </p>
         <button class="btnPrimary wow fadeInDown">Know More</button>
       </div>

@@ -224,14 +224,12 @@ h5 {
   .heading-width {
     width: 100%;
   }
-
+  .dream-home{
+    margin-top: 1rem;
+    min-height: auto;
+  }
   .dream-home::after {
-    content: "";
-    width: 100%;
-    top: 10px;
-    position: relative;
-    height: 360px;
-    background-position: center;
+    content: unset;
   }
 
   .where .brainImg {

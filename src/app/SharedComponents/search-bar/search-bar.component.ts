@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,9 +23,13 @@ export class SearchBarComponent {
   @Input() filter: boolean = false;
   @Input() search!: string;
   @Input() show:boolean = false
+  @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
+  autocomplete!: google.maps.places.Autocomplete;
+  autocompleteListener!: google.maps.MapsEventListener;
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
   @Output() showFilter: EventEmitter<any> = new EventEmitter<any>();
   faBars = faFilter
+  faSearch=faSearch
   private destroy$ = new Subject<void>();
 
   constructor(public resize:ResizeService) {
@@ -41,9 +45,24 @@ export class SearchBarComponent {
         }
       });
   }
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.initAutocomplete();
+    }, 500);
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    if (this.autocompleteListener) {
+      google.maps.event.removeListener(this.autocompleteListener);
+    }
+  }
+  initAutocomplete(): void {
+    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput?.nativeElement);
+    this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
+      const place = this.autocomplete.getPlace();
+      this.searchEvent.emit(place.formatted_address)
+    });
   }
   submit() {
     this.searchEvent.emit(this.search)

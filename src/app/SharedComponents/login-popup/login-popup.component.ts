@@ -23,14 +23,14 @@ import { MatIconModule } from '@angular/material/icon';
 export class LoginPopupComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   private destroy$ = new Subject<void>();
-  request:any = null
+  request: any = null
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
     private helper: HelperService,
     private auth: AuthService,
-    private resize:ResizeService,
+    private resize: ResizeService,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.request = data
@@ -54,7 +54,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password, rememberMe } = this.loginForm.value;
-      this.auth.login({email, password})
+      this.auth.login({ email, password })
         .pipe(
           takeUntil(this.destroy$),
           distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
@@ -66,10 +66,10 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
           } else {
             this.clearCredentials();
           }
-          if(this.request){
-            this.dialogRef.close({ data:true });
+          if (this.request) {
+            this.dialogRef.close({ data: true });
           }
-          else{
+          else {
             this.dialogRef.close();
           }
         });

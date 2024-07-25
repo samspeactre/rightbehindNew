@@ -165,14 +165,14 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '460px',
+      height: '470px',
       width: window.innerWidth > 1024 ? '330px' : '100%',
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '600px',
+      height: '580px',
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });

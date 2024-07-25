@@ -15,61 +15,21 @@
         <h4 class="text-center my-3">Register</h4>
         <p>Enter your details to get started.</p>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <app-input
-            type="text"
-            [form]="registerForm"
-            control="firstName"
-            label="First Name"
-            placeholder="Enter your first name*"
-            classes="mb-2"
-          ></app-input>
-          <app-input
-            type="text"
-            [form]="registerForm"
-            control="lastName"
-            label="Last Name"
-            placeholder="Enter your last name*"
-            classes="mb-2"
-          ></app-input>
-          <app-input
-            type="email"
-            [form]="registerForm"
-            control="email"
-            label="Email address"
-            placeholder="Enter your email address*"
-            classes="mb-2"
-          ></app-input>
-          <app-input
-            type="number"
-            [form]="registerForm"
-            control="phoneNumber"
-            label="Phone Number"
-            placeholder="Enter your phone number*"
-            classes="mb-2"
-          ></app-input>
-          <app-input
-            type="password"
-            [password]="true"
-            [form]="registerForm"
-            control="password"
-            label="Password"
-            placeholder="Enter your password*"
-            classes="mb-2"
-          ></app-input>
-          <app-input
-            type="password"
-            [password]="true"
-            [form]="registerForm"
-            control="confirmPassword"
-            label="Confirm Password"
-            placeholder="Enter your Confirm password*"
-            classes="mb-2"
-          ></app-input>
+          <app-input type="text" [form]="registerForm" control="firstName" label="First Name"
+            placeholder="Enter your first name*" classes="mb-2"></app-input>
+          <app-input type="text" [form]="registerForm" control="lastName" label="Last Name"
+            placeholder="Enter your last name*" classes="mb-2"></app-input>
+          <app-input type="email" [form]="registerForm" control="email" label="Email address"
+            placeholder="Enter your email address*" classes="mb-2"></app-input>
+          <app-input type="number" [form]="registerForm" control="phoneNumber" label="Phone Number"
+            placeholder="Enter your phone number*" classes="mb-2"></app-input>
+          <app-input type="password" [password]="true" [form]="registerForm" control="password" label="Password"
+            placeholder="Enter your password*" classes="mb-2"></app-input>
+          <app-input type="password" [password]="true" [form]="registerForm" control="confirmPassword"
+            label="Confirm Password" placeholder="Enter your Confirm password*" classes="mb-2"></app-input>
           <div class="display content-between check-pass">
             <div class="checkbox">
-              <mat-checkbox formControlName="receiveUpdates"
-                >Receive latest updates Via Email</mat-checkbox
-              >
+              <mat-checkbox formControlName="receiveUpdates">Receive latest updates Via Email</mat-checkbox>
             </div>
           </div>
           <div class="dCenter">

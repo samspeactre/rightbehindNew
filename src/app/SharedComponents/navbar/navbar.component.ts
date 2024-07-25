@@ -165,7 +165,7 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '480px',
+      height: '490px',
       width: window.innerWidth > 1330 ? '330px' : '100%',
     });
   }
@@ -173,7 +173,7 @@ export class NavbarComponent {
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
       height: '580px',
-      width: window.innerWidth > 1024 ? '850px' : '100%',
+      width: window.innerWidth > 1330 ? '850px' : '100%',
       data: type,
     });
   }

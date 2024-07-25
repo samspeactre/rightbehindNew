@@ -22,6 +22,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ResizeService } from '../../Services/resize.service';
 import { RentPopupComponent } from '../../SharedComponents/rent-popup/rent-popup.component';
 import { CommonModule } from '@angular/common';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 @Component({
   standalone: true,
   imports: [
@@ -123,7 +124,8 @@ export class HomeComponent {
     this.dialog?.open(ContactPopupComponent, {
       height: '470px',
       width: window.innerWidth > 1024 ? '400px' : '100%',
-      data: { type: 'contact' }
+      data: { type: 'contact' },
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 
@@ -132,6 +134,7 @@ export class HomeComponent {
       height: '580px',
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
   wheres() {

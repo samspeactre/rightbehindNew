@@ -16,6 +16,7 @@ import { HelperService } from '../../Services/helper.service';
 import { ResizeService } from '../../Services/resize.service';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { PopupComponent } from '../popup/popup.component';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 @Component({
   standalone: true,
   imports: [
@@ -70,6 +71,7 @@ export class PropertyCardComponent {
       height: '530px',
       width: window.innerWidth > 1024 ? '400px' : '100%',
       data: { type: 'property', id: this.card?.id },
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
   naviagteThroughPopup(card: any) {

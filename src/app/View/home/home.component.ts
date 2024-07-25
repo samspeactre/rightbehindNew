@@ -59,8 +59,13 @@ export class HomeComponent {
   sell: any;
   mapHeight: number = 0;
   private destroy$ = new Subject<void>();
-  bryan:any=[]
-  array:any = []
+  blogArray:any = []
+  blogLatArray:any = []
+  videoArray:any = []
+  videoLatArray:any = []
+  bothArray:any = []
+  bothLatArray:any = []
+
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;
   @HostListener('window:scroll', ['$event'])
@@ -131,9 +136,17 @@ export class HomeComponent {
   }
   wheres(){
     this.http.loaderGet('Home/get/propertyTour',true,true).subscribe((response:any)=>{
-      this.bryan = response?.model?.homePropertyTourList;
-      this.bryan?.map((item:any)=>{
-        this.array.push({lat:item?.latitude,lng:item?.longitude})
+      this.bothArray = response?.model?.homePropertyTourList?.filter((item:any)=> item?.videoUrl && item?.blogUrl)
+      this.blogArray = response?.model?.homePropertyTourList?.filter((item:any)=> !item?.videoUrl && item?.blogUrl)
+      this.videoArray = response?.model?.homePropertyTourList?.filter((item:any)=> item?.videoUrl && !item?.blogUrl)
+      this.bothArray?.map((item)=>{
+        this.bothLatArray.push({lat:item?.latitude,lng:item?.longitude})
+      })
+      this.videoArray?.map((item)=>{
+        this.videoLatArray.push({lat:item?.latitude,lng:item?.longitude})
+      })
+      this.blogArray?.map((item)=>{
+        this.blogLatArray.push({lat:item?.latitude,lng:item?.longitude})
       })
     })
   }

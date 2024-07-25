@@ -1,20 +1,44 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  GoogleMap,
+  GoogleMapsModule,
+  MapInfoWindow,
+  MapMarker,
+} from '@angular/google-maps';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 
-export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300'
+export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker, CommonModule, PropertyCardMapComponent],
+  imports: [
+    GoogleMapsModule,
+    GoogleMap,
+    MapInfoWindow,
+    MapMarker,
+    CommonModule,
+    PropertyCardMapComponent,
+  ],
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit, OnDestroy {
-  @Input() center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
+  @Input() center: google.maps.LatLngLiteral = {
+    lat: 25.761681,
+    lng: -80.191788,
+  };
   @Input() zoom: number = 10;
   @Input() height: any;
   @Input() addMarker: boolean = false;
@@ -23,9 +47,16 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() search: boolean = false;
   @Input() markerPositions: google.maps.LatLngLiteral[] = [];
   @Input() communityMarkerPositions: google.maps.LatLngLiteral[] = [];
+  @Input() blogArray: google.maps.LatLngLiteral[] = [];
+  @Input() videoArray: google.maps.LatLngLiteral[] = [];
+  @Input() bothArray: google.maps.LatLngLiteral[] = [];
   @Input() infoWindow: any = [];
   @Input() infoContents: any = [];
+  @Input() bothContents: any = [];
+  @Input() blogContents: any = [];
+  @Input() videoContents: any = [];
   @Input() video: boolean = false;
+  @Input() blog: boolean = false;
   @Input() community: boolean = false;
   @Output() mapMarkerCordinates = new EventEmitter<any>();
   @Output() mapSearchLocation = new EventEmitter<any>();
@@ -34,17 +65,21 @@ export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   propertyMarkerOptions!: google.maps.MarkerOptions;
   communityMarkerOptions!: google.maps.MarkerOptions;
+  videoMarkerOptions!: google.maps.MarkerOptions;
+  blogMarkerOptions!: google.maps.MarkerOptions;
+  bothMarkerOptions!: google.maps.MarkerOptions;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   isFocused: boolean = false;
   index!: any;
+  type: any;
   @Input() value: string = '';
   @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   moveMap(event: any) {
-    this.center = (event.latLng.toJSON());
+    this.center = event.latLng.toJSON();
   }
 
   move(event: any) {
@@ -72,8 +107,8 @@ export class MapComponent implements OnInit, OnDestroy {
       optimized: true,
       icon: {
         url: '/assets/img/markerP.webp',
-        scaledSize: new google.maps.Size(50, 50)
-      }
+        scaledSize: new google.maps.Size(50, 50),
+      },
     };
 
     this.communityMarkerOptions = {
@@ -83,14 +118,43 @@ export class MapComponent implements OnInit, OnDestroy {
       optimized: true,
       icon: {
         url: '/assets/img/markerC.webp',
-        scaledSize: new google.maps.Size(50, 50)
-      }
+        scaledSize: new google.maps.Size(50, 50),
+      },
     };
-
+    this.bothMarkerOptions = {
+      draggable: this.draggable,
+      clickable: true,
+      crossOnDrag: true,
+      optimized: true,
+      icon: {
+        url: '/assets/img/sec-6-profile.webp',
+        scaledSize: new google.maps.Size(50, 50),
+      },
+    };
+    this.videoMarkerOptions = {
+      draggable: this.draggable,
+      clickable: true,
+      crossOnDrag: true,
+      optimized: true,
+      icon: {
+        url: '/assets/img/sec-6-profile.webp',
+        scaledSize: new google.maps.Size(50, 50),
+      },
+    };
+    this.blogMarkerOptions = {
+      draggable: this.draggable,
+      clickable: true,
+      crossOnDrag: true,
+      optimized: true,
+      icon: {
+        url: 'https://cdn-icons-png.flaticon.com/512/4363/4363382.png',
+        scaledSize: new google.maps.Size(50, 50),
+      },
+    };
     if (this.map && this.map.googleMap) {
       this.map.googleMap.setCenter(this.center);
       this.map.googleMap.setZoom(this.zoom);
-      this.map.googleMap.setOptions({ disableDefaultUI: true })
+      this.map.googleMap.setOptions({ disableDefaultUI: true });
     }
   }
   ngAfterViewInit(): void {
@@ -101,23 +165,33 @@ export class MapComponent implements OnInit, OnDestroy {
     }, 500);
   }
   initAutocomplete(): void {
-    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput?.nativeElement);
-    this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
-      const place = this.autocomplete.getPlace();
-      if (place.geometry && place.geometry.location) {
-        this.center = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
-        this.addMarkerPoint({ latLng: place.geometry.location });
-        this.mapSearchLocation.emit({ address: place.formatted_address, ...this.returnLocationDetails(place.address_components) });
-        this.mapSearchLocation.emit(place.formatted_address);
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.autocompleteInput?.nativeElement
+    );
+    this.autocompleteListener = this.autocomplete.addListener(
+      'place_changed',
+      () => {
+        const place = this.autocomplete.getPlace();
+        if (place.geometry && place.geometry.location) {
+          this.center = {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+          };
+          this.addMarkerPoint({ latLng: place.geometry.location });
+          this.mapSearchLocation.emit({
+            address: place.formatted_address,
+            ...this.returnLocationDetails(place.address_components),
+          });
+          this.mapSearchLocation.emit(place.formatted_address);
+        }
       }
-    });
+    );
   }
 
   addMarkerPoint(event: any): void {
     if (this.community) {
       this.communityMarkerPositions = [event.latLng.toJSON()];
-    }
-    else {
+    } else {
       this.markerPositions = [event.latLng.toJSON()];
     }
     this.getSearchName(event.latLng.toJSON());
@@ -147,21 +221,29 @@ export class MapComponent implements OnInit, OnDestroy {
     }
   }
 
-  getSearchName(location: { lat: number, lng: number }): void {
+  getSearchName(location: { lat: number; lng: number }): void {
     const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${key}`;
-    this.http.get(geocodeUrl).subscribe((response: any) => {
-      if (response.status === 'OK' && response.results.length > 0) {
-        const placeName = response.results[0].formatted_address;
-        this.mapMarkerCordinates.next(location);
-        this.mapSearchLocation.emit({ address: placeName, ...this.returnLocationDetails(response.results[0].address_components) });
-        this.value = placeName;
-        this.isFocused = true;
-      } else {
-        console.error('Error in reverse geocoding:', response);
+    this.http.get(geocodeUrl).subscribe(
+      (response: any) => {
+        if (response.status === 'OK' && response.results.length > 0) {
+          const placeName = response.results[0].formatted_address;
+          this.mapMarkerCordinates.next(location);
+          this.mapSearchLocation.emit({
+            address: placeName,
+            ...this.returnLocationDetails(
+              response.results[0].address_components
+            ),
+          });
+          this.value = placeName;
+          this.isFocused = true;
+        } else {
+          console.error('Error in reverse geocoding:', response);
+        }
+      },
+      (error) => {
+        console.error('Geocoding API error:', error);
       }
-    }, (error) => {
-      console.error('Geocoding API error:', error);
-    });
+    );
   }
 
   returnLocationDetails(addressComponents: any): any {
@@ -194,5 +276,19 @@ export class MapComponent implements OnInit, OnDestroy {
   openInfoWindow(marker: MapMarker, i: number) {
     this.infosWindow.open(marker);
     this.index = i;
+  }
+  openMapInfoWindow(marker: MapMarker, i: number, type: string) {
+    this.infosWindow.open(marker);
+    this.index = i;
+    this.type = type;
+  }
+  open(type) {
+    if (type == 'blog') {
+      window.open(this.blogContents?.[this.index]?.blogUrl);
+    } else if (type == 'video') {
+      window.open(this.videoContents?.[this.index]?.videoUrl);
+    } else {
+      window.open(this.bothContents?.[this.index]?.bothUrl);
+    }
   }
 }

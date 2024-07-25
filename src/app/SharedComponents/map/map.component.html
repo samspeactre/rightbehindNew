@@ -1,38 +1,94 @@
 @if(search){
 <div class="cstmsContainer mb-3">
-    <div class="cstmInputBox">
-        <label [class.focused]="isFocused">Address</label>
-        <input #autocompleteInput type="text" [value]="value" (input)="
-                  write($event);
-                " placeholder="Enter Your Address" [class.show-placeholder]="isFocused"
-            (focus)="togglePlaceholder(true)" (blur)="togglePlaceholder(false)" />
-    </div>
+  <div class="cstmInputBox">
+    <label [class.focused]="isFocused">Address</label>
+    <input
+      #autocompleteInput
+      type="text"
+      [value]="value"
+      (input)="write($event)"
+      placeholder="Enter Your Address"
+      [class.show-placeholder]="isFocused"
+      (focus)="togglePlaceholder(true)"
+      (blur)="togglePlaceholder(false)"
+    />
+  </div>
 </div>
 }
-<google-map [height]="height  || '180px'" width="100%" [center]="center" [zoom]="zoom" class="position-relative"
-    (mapClick)="addMarker && addMarkerPoint($event);">
-    @for (position of markerPositions; let i = $index; track position) {
-    <map-marker [position]="position" [options]="propertyMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
-        #marker="mapMarker" (mapClick)="(infoContents?.length || video) && openInfoWindow(marker, i);moveMap($event)" />
+<google-map
+  [height]="height || '180px'"
+  width="100%"
+  [center]="center"
+  [zoom]="zoom"
+  class="position-relative"
+  (mapClick)="addMarker && addMarkerPoint($event)"
+>
+  @for (position of markerPositions; let i = $index; track position) {
+  <map-marker
+    [position]="position"
+    [options]="propertyMarkerOptions"
+    (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker"
+    (mapClick)="
+      (infoContents?.length || video) && openInfoWindow(marker, i);
+      moveMap($event)
+    "
+  />
+  } @for (position of communityMarkerPositions; let i = $index; track position)
+  {
+  <map-marker
+    [position]="position"
+    [options]="communityMarkerOptions"
+    (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker"
+    (mapClick)="
+      (infoContents?.length || video) && openInfoWindow(marker, i);
+      moveMap($event)
+    "
+  />
+  } @for (position of blogArray; let i = $index; track position) {
+  <map-marker
+    [position]="position"
+    [options]="blogMarkerOptions"
+    (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker"
+    (mapClick)="openMapInfoWindow(marker, i, 'blog'); moveMap($event)"
+  />
+  } @for (position of videoArray; let i = $index; track position) {
+  <map-marker
+    [position]="position"
+    [options]="videoMarkerOptions"
+    (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker"
+    (mapClick)="openMapInfoWindow(marker, i, 'video'); moveMap($event)"
+  />
+  } @for (position of bothArray; let i = $index; track position) {
+  <map-marker
+    [position]="position"
+    [options]="bothMarkerOptions"
+    (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker"
+    (mapClick)="openMapInfoWindow(marker, i, 'both'); moveMap($event)"
+  />
+  }
+  <map-info-window>
+    @if(video){ @if(type == 'video'){
+    <button class="btnPrimary py-2" (click)="open('video')">Watch A Video</button>
+    } @if(type == 'blog'){
+    <button class="btnPrimary py-2" (click)="open('blog')">View A Blog</button>
+    } @if(type == 'both'){
+    <button class="btnPrimary py-2" (click)="open('both')">Watch A Video</button>
+    <p class="my-3 text-center bold">Or</p>
+    <button class="btnPrimary py-2" (click)="open('both')">View A Blog</button>
     }
-    @for (position of communityMarkerPositions; let i = $index; track position) {
-    <map-marker [position]="position" [options]="communityMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
-        #marker="mapMarker" (mapClick)="(infoContents?.length || video) && openInfoWindow(marker, i);moveMap($event)" />
-    }
-    <map-info-window>
-        @if(video){
-        <video id='video' controls="controls" preload='none' width="100%"
-            poster="https://assets.codepen.io/32795/poster.png">
-            <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
-        </video>
-        }
-        @else{
-        @if(infoContents){
-        <div class="mt-2">
-            <app-property-card-map [card]="infoContents?.[index]" [loader]="false"
-                [routeDirect]="true"></app-property-card-map>
-        </div>
-        }
-        }
-    </map-info-window>
+    } @else{ @if(infoContents){
+    <div class="mt-2">
+      <app-property-card-map
+        [card]="infoContents?.[index]"
+        [loader]="false"
+        [routeDirect]="true"
+      ></app-property-card-map>
+    </div>
+    } }
+  </map-info-window>
 </google-map>

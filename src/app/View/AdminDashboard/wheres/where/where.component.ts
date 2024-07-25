@@ -52,8 +52,8 @@ export class WhereComponent {
   user$ = this.store.select(selectUser);
   faPlus = faPlus;
   blogForm: any = this.fb.group({
-    videoUrl: ['', Validators.required],
-    blogUrl: ['', Validators.required],
+    videoUrl: [''],
+    blogUrl: [''],
     latitude: [25.761681, Validators.required],
     longitude: [-80.191788, Validators.required],
   });

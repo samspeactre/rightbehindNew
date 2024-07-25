@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
-import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faEllipsisVertical, faHeart, faPhoneAlt, faShareAlt } from '@fortawesome/free-solid-svg-icons';
-import { Store } from '@ngrx/store';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { Subject, finalize, takeUntil } from 'rxjs';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons';
+import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
+import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
 import { HttpService } from '../../Services/http.service';
-import { HelperService } from '../../Services/helper.service';
 
 @Component({
   standalone: true,
@@ -25,4 +21,20 @@ import { HelperService } from '../../Services/helper.service';
 })
 export class BlogInnerComponent {
   faUser=faUser
+  id:any;
+  blog:any;
+  constructor(private activatedRoute:ActivatedRoute, private http:HttpService){
+    this.activatedRoute.queryParams.subscribe((res:any)=>{
+      this.id = res?.id
+    })
+  }
+  ngOnInit(){
+    this.getBlog()
+  }
+  getBlog(){
+    this.http.loaderGet(`Blog/get/${this.id}`,true).subscribe((response:any)=>{
+      console.log(response);
+      this.blog = response?.model
+    })
+  }
 }

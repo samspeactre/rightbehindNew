@@ -38,8 +38,8 @@
                 $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
-                  <td class="text-center">{{item?.videoUrl}}</td>
-                  <td class="text-center">{{ item?.blogUrl }}</td>
+                  <td class="text-center">{{item?.videoUrl || 'N/A'}}</td>
+                  <td class="text-center">{{ item?.blogUrl || 'N/A' }}</td>
                   <!-- <td class="text-center">Otto</td> -->
                   <td class="text-center" style="width: 100px">
                     <div

@@ -14,19 +14,18 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import Swal from 'sweetalert2';
-import { InputComponent } from '../../../../SharedComponents/input/input.component';
-import { selectUser } from '../../../../Ngrx/data.reducer';
-import { HttpService } from '../../../../Services/http.service';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { LoaderService } from '../../../../Services/loader.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
+import { selectUser } from '../../../../Ngrx/data.reducer';
 import { assetUrl } from '../../../../Services/helper.service';
+import { HttpService } from '../../../../Services/http.service';
+import { LoaderService } from '../../../../Services/loader.service';
+import { InputComponent } from '../../../../SharedComponents/input/input.component';
 
 @Component({
   standalone: true,

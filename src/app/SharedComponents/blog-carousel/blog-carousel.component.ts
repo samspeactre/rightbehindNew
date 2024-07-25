@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { HttpService } from '../../Services/http.service';
+import { finalize } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -17,17 +18,11 @@ import { HttpService } from '../../Services/http.service';
 
 export class BlogCarouselComponent implements OnInit {
   faArrowRight=faArrowRight
+  loading:boolean = true;
   cards = [
     { imgSrc: '../../assets/img/blog-1.webp', date: 'March 2024', badge: 'Marketing', name: 'How behavioral-based solutions minimize your marketing budget.', description: ' Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet....', buttonUrl: '', },
     { imgSrc: '../../assets/img/blog-2.webp', date: 'April 2024', badge: 'Marketing', name: 'Consistency is the key to achieving marketing success.', description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet.... ', buttonUrl: '', },
     { imgSrc: '../../assets/img/blog-1.webp', date: 'March 2024', badge: 'Marketing', name: 'How behavioral-based solutions minimize your marketing budget.', description: ' Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet....', buttonUrl: '', },
-    { imgSrc: '../../assets/img/blog-2.webp', date: 'April 2024', badge: 'Marketing', name: 'Consistency is the key to achieving marketing success.', description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet.... ', buttonUrl: '', },
-    { imgSrc: '../../assets/img/blog-1.webp', date: 'March 2024', badge: 'Marketing', name: 'How behavioral-based solutions minimize your marketing budget.', description: ' Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet....', buttonUrl: '', },
-    { imgSrc: '../../assets/img/blog-2.webp', date: 'April 2024', badge: 'Marketing', name: 'Consistency is the key to achieving marketing success.', description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet.... ', buttonUrl: '', },
-    { imgSrc: '../../assets/img/blog-1.webp', date: 'March 2024', badge: 'Marketing', name: 'How behavioral-based solutions minimize your marketing budget.', description: ' Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet....', buttonUrl: '', },
-    { imgSrc: '../../assets/img/blog-2.webp', date: 'April 2024', badge: 'Marketing', name: 'Consistency is the key to achieving marketing success.', description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet.... ', buttonUrl: '', },
- 
-    // Add more card data as needed
   ];
   faChevronCircleLeft=faChevronLeft
   faChevronCircleRight=faChevronRight
@@ -59,11 +54,20 @@ export class BlogCarouselComponent implements OnInit {
     this.getBlogs()
   }
   getBlogs(){
-    this.http.loaderGet('Blog/get',true).subscribe((response)=>{
-      console.log(response);
+    this.http.loaderGet('Blog/get',false)
+    .pipe(finalize(()=>{
+      this.loading = false
+    }))
+    .subscribe((response)=>{
+      this.cards = response?.model?.blogs;
+    },err=>{
+      this.cards = []
     })
   }
-  navigateToBlogInner() {
-    this.router.navigate(['/blog-inner']);
+  getTruncatedDescription(description: string, length: number): string {
+    if (!description) {
+      return '';
+    }
+    return description.length > length ? description.slice(0, length) + '...' : description;
   }
 }

@@ -22,6 +22,11 @@
   }
   .gm-style-iw.gm-style-iw-c{
     padding-top: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 150px;
   }
   .gm-ui-hover-effect {
     position: absolute !important;
@@ -33,4 +38,7 @@
 }
 .hidden {
   display: none;
+}
+.btnPrimary{
+  min-width: 150px;
 }

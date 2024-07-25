@@ -1,14 +1,6 @@
 <div class="m-auto">
-  <div class="searchBar dCenter">
+  <div class="searchBar dCenter justify-content-between">
     <input #autocompleteInput [(ngModel)]="search" (ngModelChange)="this.mentorSearchQueryUpdate.next($event)" type="text" class="input-text" placeholder="Enter an address, neighborhood, city, or ZIP code" />
-    <!-- <input
-      [readOnly]="searching"
-      onkeydown="return /[a-zA-Z\s\b\n]/.test(event.key) || /^\d$/.test(event.key)"
-      [(ngModel)]="search"
-      (ngModelChange)="this.mentorSearchQueryUpdate.next($event)"
-      class="input-text"
-      placeholder="Enter an address, neighborhood, city, or ZIP code"
-    /> -->
     @if(filter){
     <button class="btnPrimary login-btn dCenter" (click)="showFilt()">
       <fa-icon [icon]="faBars"></fa-icon>

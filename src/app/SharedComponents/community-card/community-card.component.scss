@@ -89,9 +89,11 @@ hr {
     color: #e02c27;
   }
 }
-.highlight{
+
+.highlight {
   box-shadow: 0 0 4px 1px #ff0e00 !important;
 }
+
 @media only screen and (max-width: 1024px) {
   p {
     font-size: 10px;
@@ -100,4 +102,18 @@ hr {
   hr {
     display: none;
   }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .card-content {
+    padding: 3vw 3vw 4vw;
+  }
+
+  .community-button {
+    border-radius: 1vw;
+    padding: 1vw 7vw;
+  }
+
 }

@@ -54,8 +54,9 @@ export class ChatPopupComponent {
       ))
       .subscribe((response) => {
         this.dialogRef.close({ data: this.communityForm.value });
-      })
+      });
   }
+  
   setFormValue(event: any, control: string) {
     if (control == 'Location') {
       this.communityForm.patchValue({

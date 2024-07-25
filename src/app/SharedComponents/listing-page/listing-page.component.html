@@ -80,20 +80,16 @@
               {{ cards?.length }}
               @if(url == '/communities'){ Communities }@else{ Properties } Found
             </h5>
-            @if((resize.windowSize$ | async)?.width <= 1024){
-            <button
-              class="btnToggler"
-              title="Show Properties On {{ showMapClicked ? 'List' : 'Map' }}"
-              (click)="showMapClicked = !showMapClicked"
-            >
+            @if((resize.windowSize$ | async)?.width <= 1024){ <button class="btnToggler"
+              title="Show Properties On {{showMapClicked ? 'List' :'Map'}}" (click)="showMapClicked = !showMapClicked">
               <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
-            </button>
-            }
+              </button>
+              }
           </div>
           }
         </div>
-        @if(url == '/communities'){ @if((resize.windowSize$ | async)?.width >
-        1024 || showMapClicked){
+        @if(url == '/communities'){
+        @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
         <div class="col-lg-12 wow fadeInDown mb-3">
           @if(latLngArray?.length){
           <app-map-draw
@@ -106,18 +102,14 @@
           ></app-map-draw>
           }
         </div>
-        } } @if(!showMapClicked){
-        <div
-          class="wow fadeInDown"
-          [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-6']"
-          #listing
-        >
+        }
+        }
+        @if(!showMapClicked){
+        <div class="wow fadeInDown" [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-6']" #listing>
           <div class="row">
-            @if(cards?.length){ @for (card of cards; track card) {
-            <div
-              class="mb-3 wow fadeInDown"
-              [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-6']"
-            >
+            @if(cards?.length){
+            @for (card of cards; track card) {
+            <div class="mb-3 wow fadeInDown" [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-6']">
               @if(url == '/communities'){
               <app-community-card
                 (propertyHover)="hover($event)"
@@ -135,11 +127,10 @@
               ></app-property-card>
               }
             </div>
-            } } @else {
-            <p class="text-danger text-center">
-              No
-              {{ url == "/communities" ? "communities" : "properties" }} found
-            </p>
+            }
+            }
+            @else {
+            <p class="text-danger text-center">No {{url == '/communities' ? 'communities' : 'properties'}} found</p>
             }
             <div class="col-lg-12">
               @if(loadMore){
@@ -167,8 +158,9 @@
             </div>
           </div>
         </div>
-        } @if(url != '/communities'){ @if((resize.windowSize$ | async)?.width >
-        1024 || showMapClicked){
+        }
+        @if(url != '/communities'){
+        @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
         <div class="col-lg-6 wow fadeInDown rightP">
           <div class="mapElement">
             @if(latLngArray?.length){
@@ -176,14 +168,11 @@
               [highlighted]="highlighted"
               [markerPositions]="latLngArray"
               [center]="latLngArray?.[0]"
-              [infoContents]="cards"
               [height]="screenHeight"
             ></app-map-draw>
             }
-          </div>
-        </div>
-        } }
       </div>
     </div>
   </div>
+
 </div>

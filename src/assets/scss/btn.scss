@@ -222,3 +222,16 @@
         font-size: 12px;
     }
 }
+
+@media only screen and (max-width: 600px) {
+
+    .btnWhite,
+    .btnDanger,
+    .btnSecondary,
+    .btnBlackNWhite,
+    .btnPrimary,
+    .btnWhiteNBlue {
+        padding: 2vw 3.5vw !important;
+        font-size: 14px !important;
+    }
+}

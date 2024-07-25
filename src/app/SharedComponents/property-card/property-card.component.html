@@ -10,10 +10,7 @@
 </div>
 } @else{
 <div class="cstm-property-card" (mouseenter)="hover()" [id]="'card-'+card?.id" [ngStyle]="{ background: background }">
-  <div
-    class="property-img position-relative"
-    [ngClass]="{ 'wow fadeInDown': animation }"
-    (click)="
+  <div class="property-img position-relative" [ngClass]="{ 'wow fadeInDown': animation }" (click)="
       page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
     ">
     <img
@@ -33,21 +30,16 @@
   <div class="property-content">
     <div class="p-2" (click)="
         page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
-      "
-    >
-    @if(card?.title){
-      <div
-        class="d-flex justify-content-between align-items-center card-property-heading"
-      >
+      ">
+      @if(card?.title){
+      <div class="d-flex justify-content-between align-items-center card-property-heading">
         <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
           {{ card?.title }}
         </h6>
       </div>
-    }
-      <div
-        class="span-text my-1 dCenter justify-content-start gap-1 location"
-        [ngClass]="{ 'wow fadeInDown': animation }"
-      >
+      }
+      <div class="span-text my-1 dCenter justify-content-start gap-1 location"
+        [ngClass]="{ 'wow fadeInDown': animation }">
         <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon>
         <span class="elip">{{ card?.location }}</span>
       </div>

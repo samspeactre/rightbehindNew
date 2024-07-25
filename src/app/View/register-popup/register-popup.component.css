@@ -8,7 +8,7 @@ h4 {
     font-family: 'bold';
 }
 
-p{
+p {
     text-align: center;
     font-size: 12px;
     font-family: 'reg';
@@ -53,29 +53,30 @@ p{
     border: 0;
 }
 
-.check-pass a{
+.check-pass a {
     font-family: 'reg';
     color: var(--black);
 }
 
 
-.register-link{
+.register-link {
     text-align: center;
     font-family: 'bold';
     color: var(--black);
 }
 
-.register-link a{
+.register-link a {
     font-family: 'bold';
     color: var(--royal-blue);
     cursor: pointer;
 }
-p{
+
+p {
     font-size: 14px;
     font-family: "reg";
 }
 
-.main{
+.main {
     height: 98%;
     align-content: center;
     padding-left: 24px;
@@ -83,29 +84,24 @@ p{
 }
 
 .close-popup {
-    width: 40px;
+    padding: 7px 7px 0 0;
     float: right;
-  }
-  
-  .close-popup button {
-    background-color: red;
+}
+
+.close-popup button {
+    background-color: transparent;
     border: 0;
-    border-radius: 0.3vw;
-    width: 100%;
-    height: 30px;
-  }
-  
-  .close-popup button .mat-icon {
+}
+
+.close-popup button .mat-icon {
     font-size: 23px;
     font-weight: 700;
-    color: #fff;
-    align-content: center;
-    margin-top: 2px;
-  }
+    color: black;
+}
 
 
-@media only screen and (max-width:1024px){
-    p{
+@media only screen and (max-width:1024px) {
+    p {
         font-size: 12px;
     }
 }

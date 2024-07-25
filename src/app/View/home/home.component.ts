@@ -59,12 +59,12 @@ export class HomeComponent {
   sell: any;
   mapHeight: number = 0;
   private destroy$ = new Subject<void>();
-  blogArray:any = []
-  blogLatArray:any = []
-  videoArray:any = []
-  videoLatArray:any = []
-  bothArray:any = []
-  bothLatArray:any = []
+  blogArray: any = []
+  blogLatArray: any = []
+  videoArray: any = []
+  videoLatArray: any = []
+  bothArray: any = []
+  bothLatArray: any = []
 
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;
@@ -118,7 +118,7 @@ export class HomeComponent {
       this.mapHeight = this.secondCol?.nativeElement.offsetHeight;
     }
   }
-  
+
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
       height: '470px',
@@ -129,24 +129,24 @@ export class HomeComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '590px',
+      height: '580px',
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
     });
   }
-  wheres(){
-    this.http.loaderGet('Home/get/propertyTour',true,true).subscribe((response:any)=>{
-      this.bothArray = response?.model?.homePropertyTourList?.filter((item:any)=> item?.videoUrl && item?.blogUrl)
-      this.blogArray = response?.model?.homePropertyTourList?.filter((item:any)=> !item?.videoUrl && item?.blogUrl)
-      this.videoArray = response?.model?.homePropertyTourList?.filter((item:any)=> item?.videoUrl && !item?.blogUrl)
-      this.bothArray?.map((item)=>{
-        this.bothLatArray.push({lat:item?.latitude,lng:item?.longitude})
+  wheres() {
+    this.http.loaderGet('Home/get/propertyTour', true, true).subscribe((response: any) => {
+      this.bothArray = response?.model?.homePropertyTourList?.filter((item: any) => item?.videoUrl && item?.blogUrl)
+      this.blogArray = response?.model?.homePropertyTourList?.filter((item: any) => !item?.videoUrl && item?.blogUrl)
+      this.videoArray = response?.model?.homePropertyTourList?.filter((item: any) => item?.videoUrl && !item?.blogUrl)
+      this.bothArray?.map((item) => {
+        this.bothLatArray.push({ lat: item?.latitude, lng: item?.longitude })
       })
-      this.videoArray?.map((item)=>{
-        this.videoLatArray.push({lat:item?.latitude,lng:item?.longitude})
+      this.videoArray?.map((item) => {
+        this.videoLatArray.push({ lat: item?.latitude, lng: item?.longitude })
       })
-      this.blogArray?.map((item)=>{
-        this.blogLatArray.push({lat:item?.latitude,lng:item?.longitude})
+      this.blogArray?.map((item) => {
+        this.blogLatArray.push({ lat: item?.latitude, lng: item?.longitude })
       })
     })
   }

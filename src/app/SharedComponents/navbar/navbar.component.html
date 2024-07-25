@@ -102,30 +102,34 @@
     <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo image" width="100%" height="100%" /></a>
   </div>
 </div>
+
 <div class="sidebar" [ngClass]="{ open: sidebar }">
-  <div class="sidebar-padding d-flex justify-content-between align-items-center">
+
+  <div class="sidebar-padding d-flex justify-content-between ">
+
     <div class="side-nav-logo">
       <a routerLink="/" (click)="show(false)"><img src="../../assets/img/nav-logo.webp" alt="sidebar inside logo"
           width="100%" height="100%" /></a>
     </div>
+
     <div class="dCenter">
       <fa-icon [icon]="faTimes" class="" (click)="show(false)"></fa-icon>
     </div>
+
   </div>
 
-  <div class="cstm-nav-item">
-    <ul class="mb-0 ps-0">
+  <div class="sidebar-content">
+    <ul>
       <li>
         <a routerLink="/" (click)="show(false)">Home</a>
       </li>
-      <!-- <li>
-        <a routerLink="/buy" (click)="show(false)">buy</a>
-      </li> -->
-      @if(!sellHide){
+
+      <!-- @if(!sellHide){
       <li>
         <a (click)="show(false); openSellPopup('sell')">Sell</a>
       </li>
-      }
+      } -->
+
       <li>
         <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
@@ -146,9 +150,9 @@
       </li>
       }
     </ul>
-    <div class="dCenter mt-2 flex-column">
+    <div class="d-flex justify-content-between flex-column">
       @if(user){
-      <button class="btnSecondary" (click)="show(false); logout()">
+      <button class="sidebar-white-btn" (click)="show(false); logout()">
         <img class="proifle" width="100%" height="100%" [src]="
             src + user?.imageUrl ||
             'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
@@ -156,15 +160,18 @@
         Logout
       </button>
       } @else {
-      <button class="btnSecondary" (click)="show(false); openPopup()">
+      <button class="sidebar-white-btn" (click)="show(false); openPopup()">
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
       } @if(!sellHide){
-      <button class="btnDanger py-2 mt-4" (click)="show(false); openSellPopup('rent')">
+      <button class="sidebar-red-btn py-2 mt-4" (click)="show(false); openSellPopup('rent')">
         Submit A Deal
       </button>
       }
     </div>
   </div>
+
+  <h6>Find your dream home with us.</h6>
+
 </div>
 }

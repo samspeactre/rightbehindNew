@@ -70,12 +70,13 @@
     width: 80%;
     height: 100vh;
     overflow-y: auto;
-    background: linear-gradient(197deg, white, #0248b0);
+    background: #b3cfeff3;
     overflow-x: hidden;
     top: 0;
     left: -80%;
     transition: 0.5s all ease-in-out;
     z-index: 15;
+    padding-left: 40px;
   }
 
   .open {
@@ -91,30 +92,14 @@
   .side-nav-logo {
     width: 180px;
     height: 40px;
-    margin: auto;
   }
 
   .sidebar-padding {
-    padding: 4px 10px;
+    padding: 10px 10px 10px 0;
   }
 
   .side-nav-logo img {
     object-fit: contain;
-  }
-
-  .sidebar .cstm-nav-item ul {
-    flex-direction: column;
-    padding-left: 0px;
-  }
-
-  .sidebar .cstm-nav-item ul li a {
-    font-size: 14px;
-    color: #000;
-  }
-
-  .cstm-nav-item ul li {
-    text-align: center;
-    margin: .5rem 0;
   }
 
   .proifle {
@@ -122,4 +107,47 @@
     height: 15px;
     object-fit: contain;
   }
+
+  .sidebar-content {
+    margin-top: 50px;
+
+    ul {
+      padding-left: 0 !important;
+    }
+
+    ul li {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    ul li a {
+      font-family: 'reg';
+      font-size: 20px;
+      color: black;
+    }
+  }
+
+  .sidebar-white-btn,
+  .sidebar-red-btn {
+    width: 70%;
+    height: 45px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+  }
+
+  .sidebar-red-btn {
+    background-color: red;
+    border: none;
+    color: white;
+  }
+
+  .sidebar h6 {
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 10px;
+    font-family: 'bold';
+  }
+
 }

@@ -1,49 +1,81 @@
 <div>
+  <div class="close-popup">
+    <button (click)="closePopup()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
-    <div class="close-popup">
-        <button (click)="closePopup()">
-            <mat-icon>close</mat-icon>
-        </button>
+  <div class="container ps-4 pe-4">
+    <div class="row">
+      <div class="full-lenght">
+        <h2 class="text-center mb-3">Inquiry</h2>
+        <p class="text-center inq-para">
+          Please fill out the form below for any inquiries or assistance you may
+          need.
+        </p>
+      </div>
     </div>
-
-    <div class="container ps-4 pe-4">
-        <div class="row">
-            <div class="full-lenght">
-                <h2 class="text-center mb-3">Inquiry</h2>
-                <p class="text-center inq-para">Please fill out the form below for any inquiries or assistance you may
-                    need.
-                </p>
-            </div>
+    <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+      <div class="d-flex justify-content-between">
+        <div class="half-input">
+          <app-input
+            classes="w-100 mb-2"
+            [readOnly]="user"
+            type="text"
+            [form]="propertyForm"
+            control="firstName"
+            label="First Name"
+          ></app-input>
         </div>
-        <form class="row" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
-            <div class="d-flex justify-content-between">
-                <div class="half-input">
-                    <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm"
-                        control="firstName" label="First Name"></app-input>
-                </div>
-                <div class="half-input">
-                    <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm"
-                        control="lastName" label="Last Name"></app-input>
-                </div>
-            </div>
-            <div class="full-lenght">
-                <app-input classes="w-100 mb-2" [readOnly]="user" type="email" [form]="propertyForm" control="email"
-                    label="Email"></app-input>
-            </div>
-            @if(active?.type === 'property'){
-            <div class="full-lenght">
-                <app-input classes="w-100 mb-2" type="password" [form]="propertyForm" control="password"
-                    label="Password"></app-input>
-            </div>
-            }
-            <div class="full-lenght">
-                <app-input classes="w-100 mb-2" [readOnly]="user" inputType="textArea" type="text" [form]="propertyForm"
-                    control="message" label="Message" rows="2"></app-input>
-            </div>
-            <div class="dCenter mt-3 inquiry">
-                <button class="btnPrimary" [disabled]="propertyForm.invalid">Submit</button>
-            </div>
-        </form>
-    </div>
-
+        <div class="half-input">
+          <app-input
+            classes="w-100 mb-2"
+            [readOnly]="user"
+            type="text"
+            [form]="propertyForm"
+            control="lastName"
+            label="Last Name"
+          ></app-input>
+        </div>
+      </div>
+      <div class="full-lenght">
+        <app-input
+          classes="w-100 mb-2"
+          [readOnly]="user"
+          type="email"
+          [form]="propertyForm"
+          control="email"
+          label="Email"
+        ></app-input>
+      </div>
+      @if(active?.type === 'property'){
+      <div class="full-lenght">
+        <app-input
+          classes="w-100 mb-2"
+          type="password"
+          [form]="propertyForm"
+          control="password"
+          label="Password"
+        ></app-input>
+      </div>
+      }
+      <div class="full-lenght">
+        <app-input
+          classes="w-100 mb-2"
+          [readOnly]="user"
+          inputType="textArea"
+          type="text"
+          [form]="propertyForm"
+          control="message"
+          label="Message"
+          rows="2"
+        ></app-input>
+      </div>
+      <div class="dCenter mt-3 inquiry">
+        <button class="btnPrimary" [disabled]="propertyForm.invalid">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -67,8 +67,8 @@ export class RegisterPopupComponent {
       takeUntil(this.destroy$),
       switchMap((registerResponse: any) => {
         const data = {
-          email: this.registerForm.controls['email'].value,
-          password: this.registerForm.controls['password'].value
+          email: this.registerForm.controls['email']?.value,
+          password: this.registerForm.controls['password']?.value
         };
         return this.authService.login(data).pipe(
           takeUntil(this.destroy$)

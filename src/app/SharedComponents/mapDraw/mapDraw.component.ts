@@ -1,6 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { ApplicationRef, Component, ComponentFactoryResolver, EventEmitter, Injector, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { GoogleMap, GoogleMapsModule, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import {
+  ApplicationRef,
+  Component,
+  ComponentFactoryResolver,
+  EventEmitter,
+  Injector,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import {
+  GoogleMap,
+  GoogleMapsModule,
+  MapInfoWindow,
+  MapMarker,
+} from '@angular/google-maps';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
@@ -13,13 +28,28 @@ declare var $: any;
 @Component({
   selector: 'app-map-draw',
   standalone: true,
-  imports: [GoogleMapsModule, GoogleMap, MapInfoWindow, MapMarker, CommonModule, PropertyCardMapComponent, FontAwesomeModule],
+  imports: [
+    GoogleMapsModule,
+    GoogleMap,
+    MapInfoWindow,
+    MapMarker,
+    CommonModule,
+    PropertyCardMapComponent,
+    FontAwesomeModule,
+  ],
   templateUrl: './mapDraw.component.html',
-  styleUrls: ['./mapDraw.component.scss']
+  styleUrls: ['./mapDraw.component.scss'],
 })
 export class MapDrawComponent implements OnInit, OnDestroy {
-  private _center: google.maps.LatLngLiteral = { lat: 25.761681, lng: -80.191788 };
-  
+  private _center: google.maps.LatLngLiteral = {
+    lat: 25.761681,
+    lng: -80.191788,
+  };
+  @Input() set highlighted(data: any) {
+    if (data) {
+      this.zoomToHighlightedMarker(data);
+    }
+  }
   @Input()
   get center(): google.maps.LatLngLiteral {
     return this._center;
@@ -37,7 +67,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
-  @Output() propertyHover = new EventEmitter<any>();
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -57,6 +86,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   googleMarkers: any[] = [];
   drawnShapes: google.maps.Polygon[] = [];
   map: any;
+  private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
     zoom: 10,
     center: this._center,
@@ -67,7 +97,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     scaleControl: false,
     streetViewControl: false,
     rotateControl: false,
-    fullscreenControl: false
+    fullscreenControl: false,
   };
   shapeCoordinates: google.maps.LatLngLiteral[] = [];
   shapePromise: Promise<google.maps.LatLngLiteral[]> | undefined;
@@ -81,9 +111,9 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     private injector: Injector,
     private appRef: ApplicationRef,
     public resize: ResizeService
-  ) { }
+  ) {}
 
-  async ngOnInit() { }
+  async ngOnInit() {}
 
   ngOnDestroy() {
     this.clearDrawing();
@@ -93,11 +123,33 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   }
   async ngAfterViewInit() {
     await this.initiateMap();
-    this.setupButtonClickListeners();
+    if (!this.communityMarkers?.length) {
+      this.setupButtonClickListeners();
+    }
+  }
+  zoomToHighlightedMarker(highlighted) {
+    if (!this.map || !highlighted) return;
+    const marker =
+      this.markers.find(
+        (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
+      ) ||
+      this.communityMarkers.find(
+        (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
+      );
+    if (marker && marker.markerInstance) {
+      const position = marker.markerInstance.getPosition();
+      if (position) {
+        this.map.setCenter(position);
+        google.maps.event.trigger(marker.markerInstance, 'click');
+      }
+    }
   }
 
   async initiateMap() {
-    this.map = new google.maps.Map(document.getElementById('map_canvas'), this.mapOptions);
+    this.map = new google.maps.Map(
+      document.getElementById('map_canvas'),
+      this.mapOptions
+    );
     this.placeMarkers();
   }
 
@@ -131,14 +183,13 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       });
 
       marker.addListener('click', () => {
-        this.closeInfoWindows();
+        if (this.currentInfoWindow) {
+          this.currentInfoWindow.close();
+        }
         infoWindow.open(this.map, marker);
+        this.currentInfoWindow = infoWindow;
         this.map.setCenter(marker.getPosition());
         this.map.setZoom(12);
-      });
-      marker.addListener('mouseover', () => {
-        const data = this.infoContents[index]
-        this.propertyHover.emit(data?.id)
       });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
@@ -147,7 +198,9 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   }
 
   createInfoWindowContent(index: number): HTMLElement {
-    const component: any = this.community ? CommunityCardMapComponent : PropertyCardMapComponent;
+    const component: any = this.community
+      ? CommunityCardMapComponent
+      : PropertyCardMapComponent;
     const factory = this.resolver.resolveComponentFactory(component);
     const componentRef: any = factory.create(this.injector);
     componentRef.instance.card = this.infoContents[index];
@@ -160,7 +213,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   }
 
   clearMarkers() {
-    this.googleMarkers.forEach(marker => marker.setMap(null));
+    this.googleMarkers.forEach((marker) => marker.setMap(null));
     this.googleMarkers = [];
   }
 
@@ -185,11 +238,10 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   }
 
   closeInfoWindows() {
-    this.markers.forEach(markerData => {
-      if (markerData.infoWindowInstance) {
-        markerData.infoWindowInstance.close();
-      }
-    });
+    if (this.currentInfoWindow) {
+      this.currentInfoWindow.close();
+      this.currentInfoWindow = null;
+    }
   }
 
   toggleDrawingMode() {
@@ -205,7 +257,8 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   }
 
   drawFreeHand() {
-    const isTouchable = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isTouchable =
+      'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouchable) {
       this.map.setOptions({ scrollwheel: false });
     }
@@ -215,14 +268,21 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       clickable: false,
       strokeColor: '#f3392c',
       strokeOpacity: 0.8,
-      strokeWeight: 2
+      strokeWeight: 2,
     });
     const path = poly.getPath();
     this.shapeCoordinates = [];
-    this.mapMouseMoveListener = google.maps.event.addListener(this.map, 'mousemove', (e: any) => {
-      path.push(e.latLng);
-      this.shapeCoordinates.push({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-    });
+    this.mapMouseMoveListener = google.maps.event.addListener(
+      this.map,
+      'mousemove',
+      (e: any) => {
+        path.push(e.latLng);
+        this.shapeCoordinates.push({
+          lat: e.latLng.lat(),
+          lng: e.latLng.lng(),
+        });
+      }
+    );
 
     google.maps.event.addListenerOnce(this.map, 'mouseup', () => {
       google.maps.event.removeListener(this.mapMouseMoveListener);
@@ -234,7 +294,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
         fillColor: '#f3392c',
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillOpacity: 0.35
+        fillOpacity: 0.35,
       });
       this.drawnShapes.push(polygon);
       google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
@@ -243,7 +303,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
 
       const bounds = new google.maps.LatLngBounds();
-      this.shapeCoordinates.forEach(coord => bounds.extend(coord));
+      this.shapeCoordinates.forEach((coord) => bounds.extend(coord));
       this.map.fitBounds(bounds);
       $('#editButton').hide();
       $('#clearButton').show();
@@ -262,7 +322,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       scaleControl: false,
       streetViewControl: false,
       rotateControl: false,
-      fullscreenControl: false
+      fullscreenControl: false,
     };
     this.map.setOptions(this.mapOptions);
     this.enableMapInteractions();
@@ -277,13 +337,15 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   }
 
   clearShapes() {
-    this.drawnShapes.forEach(shape => shape.setMap(null));
+    this.drawnShapes.forEach((shape) => shape.setMap(null));
     this.drawnShapes = [];
   }
 
   again(drawFreeHand: () => void) {
     this.disableMapInteractions();
-    google.maps.event.addDomListener(this.map.getDiv(), 'mousedown', (e: any) => drawFreeHand());
+    google.maps.event.addDomListener(this.map.getDiv(), 'mousedown', (e: any) =>
+      drawFreeHand()
+    );
   }
 
   getShapeCoordinates(): Promise<google.maps.LatLngLiteral[]> {
@@ -296,7 +358,14 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     const ne_lng = bounds.getNorthEast().lng() / 57.2958;
     const c_lat = bounds.getCenter().lat() / 57.2958;
     const c_lng = bounds.getCenter().lng() / 57.2958;
-    return r * Math.acos(Math.sin(c_lat) * Math.sin(ne_lat) + Math.cos(c_lat) * Math.cos(ne_lat) * Math.cos(ne_lng - c_lng)) * 1000;
+    return (
+      r *
+      Math.acos(
+        Math.sin(c_lat) * Math.sin(ne_lat) +
+          Math.cos(c_lat) * Math.cos(ne_lat) * Math.cos(ne_lng - c_lng)
+      ) *
+      1000
+    );
   }
   disablePageScroll() {
     document.body.style.overflow = 'hidden';

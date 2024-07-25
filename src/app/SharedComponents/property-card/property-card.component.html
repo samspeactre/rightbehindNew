@@ -9,7 +9,7 @@
   </div>
 </div>
 } @else{
-<div class="cstm-property-card" [id]="'card-'+card?.id" [ngStyle]="{ background: background }">
+<div class="cstm-property-card" (mouseenter)="hover()" [id]="'card-'+card?.id" [ngStyle]="{ background: background }">
   <div
     class="property-img position-relative"
     [ngClass]="{ 'wow fadeInDown': animation }"
@@ -40,6 +40,7 @@
         page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
       "
     >
+    @if(card?.title){
       <div
         class="d-flex justify-content-between align-items-center card-property-heading"
       >
@@ -47,6 +48,7 @@
           {{ card?.title }}
         </h6>
       </div>
+    }
       <div
         class="span-text my-1 dCenter justify-content-start gap-1 location"
         [ngClass]="{ 'wow fadeInDown': animation }"

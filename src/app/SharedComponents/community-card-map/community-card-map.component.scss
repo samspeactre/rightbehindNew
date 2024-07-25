@@ -1,4 +1,3 @@
-
 .carosuelBtn {
   background: transparent;
   border: 1px solid #3b3b3b;
@@ -10,9 +9,17 @@
   font-size: 18px;
   color: white;
 }
-
+.card {
+  min-width: 300px;
+}
 .card-img {
   object-fit: cover;
+}
+p {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-tag {
@@ -24,14 +31,14 @@
 p {
   font-size: 12px;
 }
-hr{
+hr {
   color: white;
 }
-@media only screen and (max-width:1024px) {
+@media only screen and (max-width: 1024px) {
   p {
-      font-size: 10px;
+    font-size: 10px;
   }
-  hr{
-      display: none;
+  hr {
+    display: none;
   }
 }

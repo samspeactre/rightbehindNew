@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -41,6 +41,7 @@ export class PropertyCardComponent {
   @Input() type!: string;
   @Input() background!: string;
   @Input() page!: string;
+  @Output() propertyHover = new EventEmitter<any>();
   private destroy$ = new Subject<void>();
   constructor(
     private router: Router,
@@ -133,5 +134,8 @@ export class PropertyCardComponent {
         queryParams: { data: JSON.stringify(routeData) },
       });
     });
+  }
+  hover(){
+    this.propertyHover.emit({ lat: this.card?.latitude, lng: this.card?.longitude })
   }
 }

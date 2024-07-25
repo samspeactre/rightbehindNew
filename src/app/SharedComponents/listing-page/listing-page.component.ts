@@ -88,6 +88,7 @@ export class ListingPageComponent {
   bathArray: any;
   faBars = faFilter;
   loadFirstTime: boolean = true;
+  highlighted:any;
   sortsArray: any = [
     'Price: Low to High',
     'Price: High to Low',
@@ -386,34 +387,9 @@ export class ListingPageComponent {
         (err: any) => this.handleError(loadMore)
       );
   }
-  hover(event: any) {
-    const cardElement = document.getElementById(`card-${event}`);
-    if (cardElement) {
-      // Check if the card is in view
-      const rect = cardElement.getBoundingClientRect();
-      const isInView =
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <=
-          (window.innerWidth || document.documentElement.clientWidth);
-
-      if (!isInView) {
-        // Scroll to the card if it is not in view
-        cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-
-      // Highlight the card
-      this.highlightCard(cardElement);
-    }
-  }
-
-  highlightCard(cardElement: HTMLElement) {
-    cardElement.classList.add('highlight');
-    setTimeout(() => {
-      cardElement.classList.remove('highlight');
-    }, 5000);
+  hover(event){
+    console.log(event);
+    this.highlighted = event
   }
   showFil(event: boolean) {
     if (event) {

@@ -1,32 +1,48 @@
-  <div class="cstm-property-card">
-    <div class="property-img">
-      <img
-        [src]="card?.propertyImages?.[0]?.imageUrl ? card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-        [class.NoImageFound]="!card?.imgSrc" alt="Card Image" />
-    </div>
-    <div class="property-content">
-      <div class="d-flex justify-content-between align-items-center card-property-heading">
-        <h3>{{ card?.price || 0 | currency : "USD" }}</h3>
-        <a class="view-tag" (click)="openPopup(card)">View</a>
-      </div>
-      <div class="d-flex flex-wrap w-100 gap-3 description-para mt-2">
-        <div class="dCenter gap-1 justify-content-start">
-          <img src="../../assets/img/bed.webp" alt="bed" class="smallImg" />
-          <p class="mb-0"><strong>{{card?.noOfBed || 0}}</strong> Bed(s)</p>
-        </div>
-        <div class="rifht-left-border px-1">
-          <div class="dCenter gap-1">
-            <img src="../../assets/img/bath.webp" alt="bed" class="smallImg" />
-            <p class="mb-0"><strong>{{card?.noOfBath || 0}}</strong> Bath(s)</p>
-          </div>
-        </div>
-        <div class="dCenter gap-1">
-          <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg" />
-          <p class="mb-0"><strong>{{card?.area || 0}}</strong> sqft</p>
-        </div>
-      </div>
-      <div class="span-text ms-1 mt-2 dCenter justify-content-start gap-2">
-        <fa-icon [icon]="faMapMarkerAlt"></fa-icon> <span class="elip">{{card?.location}}</span>
-      </div>
-    </div>
+<div class="cstm-property-card">
+  <div class="property-img">
+    <img
+      [src]="card?.propertyImages?.[0]?.imageUrl ? card?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
+      [class.NoImageFound]="!card?.imgSrc"
+      alt="Card Image"
+    />
   </div>
+  <div class="property-content">
+    <div
+      class="d-flex justify-content-between align-items-center card-property-heading"
+    >
+      @if(card?.title){
+      <h6 class="bold">{{ card?.title }}</h6>
+      }
+      <a class="view-tag" (click)="openPopup(card)">View</a>
+    </div>
+    <div class="d-flex flex-wrap w-100 gap-3 description-para mt-2">
+      <div class="dCenter gap-1 justify-content-start">
+        <img src="../../assets/img/bed.webp" alt="bed" class="smallImg" />
+        <p class="mb-0">
+          <strong>{{ card?.noOfBed || 0 }}</strong> Bed(s)
+        </p>
+      </div>
+      <div class="rifht-left-border px-1">
+        <div class="dCenter gap-1">
+          <img src="../../assets/img/bath.webp" alt="bed" class="smallImg" />
+          <p class="mb-0">
+            <strong>{{ card?.noOfBath || 0 }}</strong> Bath(s)
+          </p>
+        </div>
+      </div>
+      <div class="dCenter gap-1">
+        <img src="../../assets/img/sq.ft.webp" alt="bed" class="smallImg" />
+        <p class="mb-0">
+          <strong>{{ card?.area || 0 }}</strong> sqft
+        </p>
+      </div>
+    </div>
+    <div class="span-text ms-1 mt-2 dCenter justify-content-start gap-2">
+      <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+      <span class="elip">{{ card?.location }}</span>
+    </div>
+    <button class="whitBtn rounded-0 w-50 bold text-start">
+      {{ card?.price || 0 | currency : "USD" }}
+    </button>
+  </div>
+</div>

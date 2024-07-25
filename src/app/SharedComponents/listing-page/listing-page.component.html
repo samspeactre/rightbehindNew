@@ -2,7 +2,7 @@
   <app-banner [show]="show">
     <div class="container">
       <div class="sec-1 pb-3">
-        <div [ngClass]="{'d-none':show}">
+        <div [ngClass]="{ 'd-none': show }">
           <ngx-typed-writer
             [strings]="[
               url == '/communities'
@@ -16,8 +16,9 @@
           ></ngx-typed-writer>
           @if(url != '/communities'){
           <h5 class="wow fadeInDown text-center mb-3">
-            Move in with just a <strong>security deposit, a month free</strong>  and more
-  
+            Move in with just a
+            <strong>security deposit, a month free</strong> and more
+
             <img
               src="../../../assets/video/fire.gif"
               class="fire-animation"
@@ -27,7 +28,7 @@
           }
         </div>
         <div class="my-3 wow fadeInDown search-bar position-relative">
-          <div [ngClass]="{'d-none':show}">
+          <div [ngClass]="{ 'd-none': show }">
             <app-search-bar
               [search]="search"
               (searchEvent)="searchProperties($event)"
@@ -39,27 +40,27 @@
           </div>
           <div class="show" [ngClass]="[show ? 'd-block' : 'd-none']">
             @if(show){
-              <app-filter
-                [searching]="loader"
-                [types]="types"
-                [bedsArray]="bedsArray"
-                [bathArray]="bathArray"
-                [sortsArray]="sortsArray"
-                [minPrices]="minPrices"
-                [maxPrices]="maxPrices"
-                [a]="type"
-                [b]="beds"
-                [c]="baths"
-                [d]="sort"
-                [e]="minPrice"
-                [f]="maxPrice"
-                [isResetDisabled]="isResetDisabled()"
-                (onChangeFilter)="onFilterChange($event.event, $event.type)"
-                (onRangeFilter)="onRangeFilter()"
-                (rest)="reset()"
-                (sorted)="sorting($event)"
-                (closed)="showFil(false)"
-              ></app-filter>
+            <app-filter
+              [searching]="loader"
+              [types]="types"
+              [bedsArray]="bedsArray"
+              [bathArray]="bathArray"
+              [sortsArray]="sortsArray"
+              [minPrices]="minPrices"
+              [maxPrices]="maxPrices"
+              [a]="type"
+              [b]="beds"
+              [c]="baths"
+              [d]="sort"
+              [e]="minPrice"
+              [f]="maxPrice"
+              [isResetDisabled]="isResetDisabled()"
+              (onChangeFilter)="onFilterChange($event.event, $event.type)"
+              (onRangeFilter)="onRangeFilter()"
+              (rest)="reset()"
+              (sorted)="sorting($event)"
+              (closed)="showFil(false)"
+            ></app-filter>
             }
           </div>
         </div>
@@ -67,14 +68,14 @@
     </div>
   </app-banner>
 
-  <div class="position-relative" [ngClass]="{'cstmZIndex':show}">
-    <div class="cstmContainer ">
-      <div class="row ">
-        <div class="col-lg-7 wow fadeInDown " #listing>
+  <div class="position-relative" [ngClass]="{ cstmZIndex: show }">
+    <div class="cstmContainer">
+      <div class="row">
+        <div class="col-lg-7 wow fadeInDown" #listing>
           @if(loader){
           <p style="height: 16px" class="w-75 skeleton my-3"></p>
           } @else {
-          <div class="dCenter justify-content-between ">
+          <div class="dCenter justify-content-between">
             <h5 class="my-3">
               {{ cards?.length }}
               @if(url == '/communities'){ Communities }@else{ Properties } Found
@@ -96,7 +97,7 @@
         <div class="col-lg-12 wow fadeInDown mb-3">
           @if(latLngArray?.length){
           <app-map-draw
-            (propertyHover)="hover($event)"
+            [highlighted]="highlighted"
             [communityMarkerPositions]="latLngArray"
             [center]="latLngArray?.[1]"
             [community]="true"
@@ -119,6 +120,7 @@
             >
               @if(url == '/communities'){
               <app-community-card
+                (propertyHover)="hover($event)"
                 [item]="card"
                 [loader]="loader"
               ></app-community-card>
@@ -129,6 +131,7 @@
                 [card]="card"
                 [loader]="loader"
                 type="component"
+                (propertyHover)="hover($event)"
               ></app-property-card>
               }
             </div>
@@ -168,8 +171,7 @@
           <div class="mapElement">
             @if(latLngArray?.length){
             <app-map-draw
-              (propertyHoverOut)="hoverOut($event)"
-              (propertyHover)="hover($event)"
+              [highlighted]="highlighted"
               [markerPositions]="latLngArray"
               [center]="latLngArray?.[0]"
               [infoContents]="cards"

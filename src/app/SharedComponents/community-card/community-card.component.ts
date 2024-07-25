@@ -1,14 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faChevronCircleRight,
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { MapComponent } from '../map/map.component';
 
 @Component({
@@ -29,6 +24,7 @@ export class CommunityCardComponent {
   @Input() loader: boolean = true;
   @Input() animation: boolean = true;
   @Input() item: any;
+  @Output() propertyHover = new EventEmitter<any>();
   url!: string;
   constructor(private router: Router) {}
   ngOnInit() {
@@ -44,5 +40,8 @@ export class CommunityCardComponent {
         userExistInForum: this.item?.userExistInForum,
       },
     });
+  }
+  hover(){
+    this.propertyHover.emit({ lat: this.item?.latitude, lng: this.item?.longitude })
   }
 }

@@ -21,10 +21,15 @@ export class CommunityCardMapComponent {
   @Input() card!:any;
   constructor(private router:Router){}
   ngOnInit(){}
-  openPopup(propertyData: any): void {
-    this.router.navigate(
-      ['/preview'],
-      { queryParams: { id: propertyData?.id,type:propertyData?.propertyType } }
-    );
+  routeToCommunity() {
+    this.router.navigate(['/communities/community'], {
+      queryParams: {
+        id: this.card?.id,
+        title: this.card?.title,
+        city: this.card?.city,
+        imagePath: this.card?.imagePath,
+        userExistInForum: this.card?.userExistInForum,
+      },
+    });
   }
 }

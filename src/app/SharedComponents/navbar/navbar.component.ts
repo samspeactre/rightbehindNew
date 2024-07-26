@@ -20,6 +20,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import {
   faAt,
   faBars,
+  faBarsStaggered,
   faCircleChevronDown,
   faHeadphones,
   faTimes,
@@ -59,6 +60,7 @@ export class NavbarComponent {
   src = assetUrl;
   faTimes = faTimes;
   faBars = faBars;
+  faBarsStaggered = faBarsStaggered;
   faHeadphones = faHeadphones;
   faFacebook = faFacebook;
   faLinkedin = faLinkedin;

@@ -29,6 +29,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 @Component({
   standalone: true,
   imports: [
@@ -281,7 +282,9 @@ export class ListingPageComponent {
   }
 
   openPopup(): void {
-    this.dialog.open(PopupComponent);
+    this.dialog.open(PopupComponent,{
+      scrollStrategy: new NoopScrollStrategy(),
+    });
   }
   onFilterChange(event: any, type: any) {
     this[type] = event;

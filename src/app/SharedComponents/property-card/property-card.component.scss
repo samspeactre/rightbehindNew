@@ -71,7 +71,6 @@
       background-color: #dddddd;
       right: -9px;
     }
-
   }
 }
 
@@ -117,7 +116,7 @@
 
 .property-img {
   width: 100%;
-  height: 150px;
+  height: 180px;
   border-radius: 10px;
   overflow: hidden;
 
@@ -132,7 +131,22 @@
     background: #dddddd;
   }
 }
-
+.carosuelBtn {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: black;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sBtn {
+  left: 10px;
+}
+.eBtn {
+  right: 10px;
+}
 .location {
   color: #848484;
   font-size: 10px;

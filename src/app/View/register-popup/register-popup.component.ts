@@ -14,6 +14,7 @@ import { LoginPopupComponent } from '../../SharedComponents/login-popup/login-po
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
 import { MatIconModule } from '@angular/material/icon';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -88,7 +89,8 @@ export class RegisterPopupComponent {
     this.dialogRef.close();
     this.dialog.open(LoginPopupComponent, {
       height: '490px',
-      width: window.innerWidth > 1024 ? '350px' : '100%'
+      width: window.innerWidth > 1024 ? '350px' : '100%',
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 

@@ -13,6 +13,7 @@ import { CommunityCardComponent } from '../../../SharedComponents/community-card
 import { of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { MatIconModule } from '@angular/material/icon';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -73,6 +74,7 @@ export class CommunityComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ChatPopupComponent, {
       height: '600px',
       width: window.innerWidth > 1330 ? '780px' : '100%',
+      scrollStrategy: new NoopScrollStrategy()
     });
 
     dialogRef.afterClosed().subscribe((result) => {

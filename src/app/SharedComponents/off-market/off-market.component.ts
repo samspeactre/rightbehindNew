@@ -7,6 +7,7 @@ import { OffMarketCarouselComponent } from '../off-market-carousel/off-market-ca
 import { OffmarketSearchComponent } from '../offmarket-search/offmarket-search.component';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-off-market',
@@ -61,7 +62,8 @@ export class OffMarketComponent {
     this.dialog.open(LoginPopupComponent, {
       height: '490px',
       width: window.innerWidth > 1024 ? '350px' : '100%',
-      data: 'any'
+      data: 'any',
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 }

@@ -31,6 +31,7 @@ import { BannerComponent } from '../../SharedComponents/banner/banner.component'
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { PopupFeaturedComponent } from '../../SharedComponents/popupFeatured/popupFeatured.component';
 import { SharedModule } from '../../TsExtras/shared.module';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -695,6 +696,7 @@ export class RentPropertyPageComponent implements OnInit {
       height: '490px',
       width: window.innerWidth > 1024 ? '600px' : '100%',
       data: { id: this.previousData?.id, show: 'Featured' },
+      scrollStrategy: new NoopScrollStrategy()
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

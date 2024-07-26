@@ -3,6 +3,7 @@ import { PopupFeaturedComponent } from '../popupFeatured/popupFeatured.component
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -36,6 +37,7 @@ export class PaymentComponent implements OnDestroy {
       height: '97%',
       width: window.innerWidth > 1024 ? '50%' : '100%',
       data: {id:this.previousData?.id,show:'Promotion'},
+      scrollStrategy: new NoopScrollStrategy(),
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

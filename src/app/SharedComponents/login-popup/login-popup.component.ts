@@ -11,6 +11,7 @@ import { InputComponent } from '../input/input.component';
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
 import { MatIconModule } from '@angular/material/icon';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 
 @Component({
@@ -80,7 +81,8 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
     this.dialog.open(RegisterPopupComponent, {
       height: '610px',
-      width: window.innerWidth > 1330 ? '380px' : '100%'
+      width: window.innerWidth > 1330 ? '380px' : '100%',
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 

@@ -45,7 +45,7 @@
 }
 
 .view-tag {
-  font-size: 10px;
+  font-size: 14px;
   padding: 2px 16px;
   color: #fff;
   background-color: #0160c9;
@@ -67,7 +67,7 @@
   img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: contain;
   }
 }
 

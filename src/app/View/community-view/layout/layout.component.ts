@@ -32,6 +32,7 @@ import { assetUrl } from '../../../Services/helper.service';
 import { HttpService } from '../../../Services/http.service';
 import { ResizeService } from '../../../Services/resize.service';
 import { LoginPopupComponent } from '../../../SharedComponents/login-popup/login-popup.component';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -173,6 +174,7 @@ export class LayoutComponent {
         height: '490px',
         width: window.innerWidth > 1024 ? '350px' : '100%',
         data: 'joinRequest',
+        scrollStrategy: new NoopScrollStrategy(),
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result?.data) {

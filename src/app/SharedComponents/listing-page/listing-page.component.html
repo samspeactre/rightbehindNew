@@ -82,11 +82,12 @@
             </h5>
             @if((resize.windowSize$ | async)?.width <= 1024){
             <button
-              class="btnToggler"
+              class="btnToggler smallFont d-flex align-items-center"
               title="Show Properties On {{ showMapClicked ? 'List' : 'Map' }}"
               (click)="showMapClicked = !showMapClicked"
             >
-              <fa-icon [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
+            {{showMapClicked ? 'Grid View' : 'Map View'}}
+              <fa-icon class="ms-1" [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
             </button>
             }
           </div>

@@ -15,6 +15,7 @@ import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/o
 import { NgxPaginationModule } from 'ngx-pagination';
 import { faEnvelope, faEye } from '@fortawesome/free-regular-svg-icons';
 import { InquiryPopupComponent } from '../../../SharedComponents/inquiry-popup/inquiry-popup.component';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -127,7 +128,8 @@ export class InquiriesComponent implements OnInit, OnDestroy {
     this.dialog.open(InquiryPopupComponent, {
       height: '80%',
       width: window.innerWidth > 1024 ? '50%' : '100%',
-      data:data
+      data:data,
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 }

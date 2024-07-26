@@ -1,5 +1,4 @@
 <mat-dialog-content>
-
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
@@ -7,8 +6,8 @@
           @if(propertyData?.propertyImages?.length){ @if((resize.windowSize$ |
           async)?.width > 1024){ @for (item of
           propertyData?.propertyImages?.length > 11 ?
-          propertyData?.propertyImages?.slice(0,11) :
-          propertyData?.propertyImages; let i = $index; track item) {
+          propertyData?.propertyImages?.slice(0, propertyData?.listingId ? 8 :
+          11) : propertyData?.propertyImages; let i = $index; track item) {
           <img
             width="100%"
             height="100%"
@@ -40,18 +39,19 @@
           </button>
         </div>
         <div class="first-box p-3">
-          <p class="reg text-dark mb-0 smallFont">
-            Propert ID:{{ propertyData?.id || propertyData?.listingId }}
-          </p>
-          <div class="dCenter justify-content-between">
+          <div class="dCenter justify-content-between position-relative">
             <h1 class="bold text-dark">{{ propertyData?.title }}</h1>
             @if(propertyData?.rentSpecialTag){
-            <div class="special">{{ propertyData?.rentSpecialTag }}</div>
+            <div class="special top-0">{{ propertyData?.rentSpecialTag }}</div>
             }
           </div>
           <p class="text-dark smallFont">{{ propertyData?.description }}</p>
           <p class="address mb-3">
-            {{ propertyData?.street + ", " + propertyData?.city }}
+            {{
+              propertyData?.street
+                ? propertyData?.street + ", " + propertyData?.city
+                : propertyData?.location
+            }}
           </p>
           <div class="row align-items-center">
             <div class="d-flex justify-content-between col-lg-12">
@@ -97,14 +97,17 @@
                   ngbTooltip="Click open in a new tab"
                   (click)="navigateAndClose()"
                 >
-                  <fa-icon class="dCenter" [icon]="faRedirect"></fa-icon>
+                  <fa-icon
+                    class="dCenter text-dark"
+                    [icon]="faRedirect"
+                  ></fa-icon>
                 </button>
                 <button
                   class="dCenter optionBtn"
-                  (click)="(share)"
+                  (click)="share()"
                   ngbTooltip="Click to share"
                 >
-                  <fa-icon class="dCenter" [icon]="faShare"></fa-icon>
+                  <fa-icon class="dCenter text-dark" [icon]="faShare"></fa-icon>
                 </button>
               </div>
             </div>
@@ -113,7 +116,7 @@
               <h2 class="mb-0">{{ propertyData?.price | currency : "USD" }}</h2>
             </div>
             <div class="col-lg-9 my-3 dCenter justify-content-end gap-3">
-              <button class="btnBlackNWhite">Request a tour</button>
+              <button class="btnDark" (click)="userDetails ? createContact() : openPopup()">Request a tour</button>
             </div>
           </div>
         </div>
@@ -204,14 +207,14 @@
         <div id="Map" class="map p-3">
           <h6 class="map-head">View on map</h6>
           <app-map
-          class="map-img"
-          [center]="{
-            lat: propertyData?.latitude,
-            lng: propertyData?.longitude
-          }"
-          [markerPositions]="[
-          { lat: propertyData?.latitude, lng: propertyData?.longitude }
-          ]"
+            class="map-img"
+            [center]="{
+              lat: propertyData?.latitude,
+              lng: propertyData?.longitude
+            }"
+            [markerPositions]="[
+              { lat: propertyData?.latitude, lng: propertyData?.longitude }
+            ]"
           ></app-map>
         </div>
       </div>

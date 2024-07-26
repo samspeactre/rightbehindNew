@@ -6,8 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  faChevronLeft,
+  faChevronRight,
+  faHeart,
   faMagnifyingGlassPlus,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faShare,
+  faShareAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
@@ -17,6 +22,8 @@ import { ResizeService } from '../../Services/resize.service';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
 import { PopupComponent } from '../popup/popup.component';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { LoginPopupComponent } from '../login-popup/login-popup.component';
 @Component({
   standalone: true,
   imports: [
@@ -25,6 +32,7 @@ import { NoopScrollStrategy } from '@angular/cdk/overlay';
     MatButtonModule,
     FontAwesomeModule,
     RouterModule,
+    CarouselModule,
   ],
   selector: 'app-property-card',
   templateUrl: './property-card.component.html',
@@ -43,7 +51,27 @@ export class PropertyCardComponent {
   @Input() background!: string;
   @Input() page!: string;
   @Output() propertyHover = new EventEmitter<any>();
+  faChevronCircleLeft = faChevronLeft;
+  faChevronCircleRight = faChevronRight;
   private destroy$ = new Subject<void>();
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    autoplay: true,
+    margin: 5,
+    dots: false,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1,
+      },
+    },
+    nav: false,
+  };
+  faHeart = faHeart;
+  faShare = faShareAlt;
   constructor(
     private router: Router,
     public resize: ResizeService,
@@ -71,20 +99,27 @@ export class PropertyCardComponent {
       height: '530px',
       width: window.innerWidth > 1330 ? '400px' : '100%',
       data: { type: 'property', id: this.card?.id },
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
   }
   naviagteThroughPopup(card: any) {
-    this.dialog?.open(PopupComponent, {
-      height: '90%',
-      width: '85%',
-      data: { card: card },
-    });
+    if (window.innerWidth > 1024) {
+      this.dialog?.open(PopupComponent, {
+        height: '90%',
+        width: '85%',
+        data: { card: card },
+      });
+    } else {
+      this.navigateAndClose();
+    }
   }
 
   async navigateAndClose() {
     this.router.navigate(['/preview'], {
-      queryParams: { id: this.card?.listingId || this.card?.id, type: this.card?.listingId ? 'mls' : '2' },
+      queryParams: {
+        id: this.card?.listingId || this.card?.id,
+        type: this.card?.listingId ? 'mls' : '2',
+      },
     });
   }
   async navigateEditAndClose() {
@@ -102,7 +137,7 @@ export class PropertyCardComponent {
         zipCode: this.card?.zipCode,
         street: this.card?.street,
       },
-      id:this.card?.id,
+      id: this.card?.id,
       latLng: { lat: this.card?.latitude, lng: this.card?.longitude },
       active: 'rent',
       getData: true,
@@ -137,7 +172,37 @@ export class PropertyCardComponent {
       });
     });
   }
-  hover(){
-    this.propertyHover.emit({ lat: this.card?.latitude, lng: this.card?.longitude })
+  hover() {
+    this.propertyHover.emit({
+      lat: this.card?.latitude,
+      lng: this.card?.longitude,
+    });
   }
+  favourite(event: MouseEvent) {
+    event.stopPropagation();
+    if (this.userDetails) {
+      // this.createContact();
+    } else {
+      const dialogRef = this.dialog.open(LoginPopupComponent, {
+        height: '490px',
+        width: window.innerWidth > 1330 ? '330px' : '100%',
+        scrollStrategy: new NoopScrollStrategy(),
+        data:'favourite'
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result?.data) {
+          // this.createContact();
+        }
+      });
+    }
+  }
+  async share(event) {
+    event.stopPropagation();
+    try {
+      await navigator.share({ title: this.card?.title, url: `preview/?id=${this.card?.listingId || this.card?.id}&type=2` });
+    } catch (err: any) {
+      console.error("Share failed:", err?.message);
+    }
+  }
+
 }

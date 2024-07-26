@@ -34,6 +34,7 @@ import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { BlogComponent } from './blog/blog.component';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -135,6 +136,7 @@ export class BlogsComponent {
       height: '80%',
       width: window.innerWidth > 1024 ? '33%' : '100%',
       data: { status: type, content: data },
+      scrollStrategy: new NoopScrollStrategy(),
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

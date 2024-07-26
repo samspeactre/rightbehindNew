@@ -7,6 +7,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
+  MatDialog,
   MatDialogContent,
   MatDialogRef,
 } from '@angular/material/dialog';
@@ -16,12 +17,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEllipsisVertical, faHeart, faShare, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { HelperService } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { MapComponent } from '../map/map.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ResizeService } from '../../Services/resize.service';
+import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
+import { selectUser } from '../../Ngrx/data.reducer';
 
 @Component({
   standalone: true,
@@ -36,17 +39,30 @@ export class PopupComponent implements OnInit {
   faEllipsisVertical=faEllipsisVertical
   faRedirect=faShare
   propertyData: any;
+  user$ = this.store.select(selectUser);
+  userDetails: any;
   private destroy$ = new Subject<void>();
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
     private router: Router,
     private store: Store,
     private http: HttpService,
+    private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public helper:HelperService,
     public resize:ResizeService
   ) {
-    this.propertyData = data?.card
+    this.propertyData = data?.card;
+    this.user$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((user) => {
+        this.userDetails = user;
+      });
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -108,5 +124,33 @@ export class PopupComponent implements OnInit {
 
   closePopup(): void {
     this.dialogRef.close();
+  }
+  createContact() {
+    this.helper.createContact(this.propertyData?.id).subscribe((response) => {
+      const routeData = {
+        property: {
+          id: this.propertyData?.id,
+          title: this.propertyData?.title,
+          type: this.propertyData?.propertyType,
+        },
+        sender: {
+          fullName: this.propertyData?.propertyContacts?.[0]?.fullName,
+          imageUrl:
+            this.propertyData?.propertyContacts?.[0]?.imageUrl &&
+            this.propertyData?.propertyContacts?.[0]?.imageUrl,
+        },
+        contactId: response?.model?.id,
+      };
+      this.router.navigate(['/dashboard/inquiries'], {
+        queryParams: { data: JSON.stringify(routeData) },
+      });
+    });
+  }
+  openPopup(): void {
+    this.dialog.closeAll()
+    this.dialog?.open(ContactPopupComponent, {
+      width: window.innerWidth > 1024 ? '420px' : '100%',
+      data: { type: 'property', id: this.propertyData?.id },
+    });
   }
 }

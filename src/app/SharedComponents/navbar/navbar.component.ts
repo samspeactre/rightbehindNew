@@ -34,6 +34,7 @@ import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
 import { assetUrl } from '../../Services/helper.service';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   standalone: true,
@@ -167,6 +168,7 @@ export class NavbarComponent {
     this.dialog.open(LoginPopupComponent, {
       height: '490px',
       width: window.innerWidth > 1330 ? '330px' : '100%',
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 
@@ -175,6 +177,7 @@ export class NavbarComponent {
       height: '580px',
       width: window.innerWidth > 1330 ? '850px' : '100%',
       data: type,
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 

@@ -71,7 +71,6 @@ export class CommunityComponent implements OnInit, OnDestroy {
 
   openPopup(): void {
     const dialogRef = this.dialog.open(ChatPopupComponent, {
-      height: '600px',
       width: window.innerWidth > 1330 ? '780px' : '100%',
     });
 

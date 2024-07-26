@@ -153,6 +153,7 @@ h5 {
 }
 
 @media only screen and (max-width: 1366px) {
+
   .bigFont {
     font-size: 56px;
   }
@@ -259,6 +260,11 @@ h5 {
 }
 
 @media only screen and (max-width: 540px) {
+
+  h5{
+    font-size: 4vw;
+  }
+  
   .dream-home p {
     line-height: normal;
   }
@@ -287,5 +293,17 @@ h5 {
 
   .dream-home::after {
     height: 320px;
+  }
+
+  .submit-btn{
+    background-color: red!important;
+    color: white!important;
+    border: 0;
+  }
+
+  .knowmore-btn{
+    background-color: black;
+    color: white;
+    border: 0;
   }
 }

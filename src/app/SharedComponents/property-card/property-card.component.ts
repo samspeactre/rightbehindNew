@@ -69,7 +69,7 @@ export class PropertyCardComponent {
   openPopup(card: any): void {
     this.dialog?.open(ContactPopupComponent, {
       height: '530px',
-      width: window.innerWidth > 1024 ? '400px' : '100%',
+      width: window.innerWidth > 1330 ? '400px' : '100%',
       data: { type: 'property', id: this.card?.id },
       scrollStrategy: new NoopScrollStrategy()
     });

@@ -9,10 +9,10 @@
   <div class="container main">
     <div class="row">
       <div class="col-lg-12">
-        <div class="logo">
+        <!-- <div class="logo">
           <img src="../../assets/img/nav-logo.webp" alt="logo" />
-        </div>
-        <h4 class="text-center my-3">Register</h4>
+        </div> -->
+        <h4 class="text-center mb-3">Register</h4>
         <p>Enter your details to get started.</p>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <app-input type="text" [form]="registerForm" control="firstName" label="First Name"

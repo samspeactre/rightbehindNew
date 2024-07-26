@@ -45,11 +45,12 @@ export class RentalCarouselComponent implements OnInit {
   ngOnInit(): void {
     this.customOptions = {
       loop: true,
+      skip_validateItems:true,
       mouseDrag: true,
       touchDrag: true,
       pullDrag: true,
       autoHeight:true,
-      autoWidth:true,
+      autoWidth:false,
       margin: 20,
       dots: false,
       navSpeed: 700,

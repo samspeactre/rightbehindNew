@@ -127,20 +127,50 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       this.setupButtonClickListeners();
     }
   }
-  zoomToHighlightedMarker(highlighted) {
+  // zoomToHighlightedMarker(highlighted) {
+  //   if (!this.map || !highlighted) return;
+  //   const marker =
+  //     this.markers.find(
+  //       (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
+  //     ) ||
+  //     this.communityMarkers.find(
+  //       (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
+  //     );
+  //   if (marker && marker.markerInstance) {
+  //     const position = marker.markerInstance.getPosition();
+  //     if (position) {
+  //       this.map.setCenter(position);
+  //       google.maps.event.trigger(marker.markerInstance, 'click');
+  //     }
+  //   }
+  // }
+  zoomToHighlightedMarker(highlighted: any) {
     if (!this.map || !highlighted) return;
-    const marker =
-      this.markers.find(
-        (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
-      ) ||
-      this.communityMarkers.find(
-        (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
-      );
+  
+    const marker = this.markers.find(
+      (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
+    ) || this.communityMarkers.find(
+      (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
+    );
+  
     if (marker && marker.markerInstance) {
       const position = marker.markerInstance.getPosition();
       if (position) {
         this.map.setCenter(position);
-        google.maps.event.trigger(marker.markerInstance, 'click');
+  
+        // const currentIcon = marker.markerInstance.getIcon();
+  
+        // marker.markerInstance.setIcon({
+        //   url: currentIcon.url || currentIcon,
+        //   scaledSize: new google.maps.Size(70, 70)
+        // });
+  
+        // setTimeout(() => {
+        //   marker.markerInstance.setIcon({
+        //     url: currentIcon.url || currentIcon,
+        //     scaledSize: currentIcon.scaledSize || new google.maps.Size(50, 50)
+        //   });
+        // }, 3000);
       }
     }
   }

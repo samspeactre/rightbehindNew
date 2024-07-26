@@ -166,7 +166,6 @@ export class NavbarComponent {
 
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '490px',
       width: window.innerWidth > 1330 ? '330px' : '100%',
       scrollStrategy: new NoopScrollStrategy()
     });
@@ -174,7 +173,6 @@ export class NavbarComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '580px',
       width: window.innerWidth > 1330 ? '850px' : '100%',
       data: type,
       scrollStrategy: new NoopScrollStrategy()

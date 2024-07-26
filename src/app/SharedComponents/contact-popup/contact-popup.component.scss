@@ -6,6 +6,7 @@
 
 .container {
     align-content: center;
+    padding: 0 24px 35px;
 }
 
 .inq-para {
@@ -68,4 +69,15 @@ form {
     font-size: 23px;
     font-weight: 700;
     color: black;
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    .container{
+        padding-top: 35px;
+    }
+
+    .close-popup {
+      margin-left: -8vw;
+    }
   }

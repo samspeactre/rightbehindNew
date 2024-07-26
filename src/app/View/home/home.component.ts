@@ -122,7 +122,6 @@ export class HomeComponent {
 
   openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
-      height: '470px',
       width: window.innerWidth > 1024 ? '400px' : '100%',
       data: { type: 'contact' },
       scrollStrategy: new NoopScrollStrategy()
@@ -131,7 +130,6 @@ export class HomeComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '580px',
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
       scrollStrategy: new NoopScrollStrategy()

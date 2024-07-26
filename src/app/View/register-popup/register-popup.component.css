@@ -80,6 +80,7 @@ p {
     align-content: center;
     padding-left: 24px;
     padding-right: 24px;
+    padding-bottom: 35px;
 }
 
 .close-popup {
@@ -104,3 +105,14 @@ p {
         font-size: 12px;
     }
 }
+
+@media only screen and (max-width: 600px) {
+
+    .main{
+        padding-top: 35px;
+    }
+
+    .close-popup {
+      margin-left: -8vw;
+    }
+  }

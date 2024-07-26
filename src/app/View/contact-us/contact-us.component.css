@@ -1,6 +1,7 @@
-.contact{
+.contact {
     height: 250px;
 }
+
 .sicontainer-te {
     padding: 0vw 3.55vw;
 }
@@ -50,7 +51,7 @@
     width: 44%;
 }
 
-.left-contact{
+.left-contact {
     margin-top: 4.4vw;
 }
 
@@ -60,22 +61,22 @@
     margin-bottom: 5.1vw;
 }
 
-.icon-mail{
+.icon-mail {
     background-color: var(--royal-blue);
     border-radius: 50%;
     margin-bottom: 5.1vw;
 }
 
-.icon .call{
+.icon .call {
     color: var(--royal-blue);
 }
 
-.icon-mail .mail{
+.icon-mail .mail {
     color: var(--white);
 }
 
 .icon .mat-icon,
-.icon-mail .mat-icon{
+.icon-mail .mat-icon {
     font-size: 2.5vw;
     width: 4vw;
     height: 3.6vw;
@@ -83,17 +84,17 @@
     margin-left: 1.3vw;
 }
 
-.icon-text{
+.icon-text {
     margin-left: 3vw;
 }
 
-.icon-text h2{
+.icon-text h2 {
     font-size: 2.1vw;
     font-family: 'bold';
     color: var(--black);
 }
 
-.light-text-num{
+.light-text-num {
     margin-top: 0.2vw;
     font-size: 2.25vw;
     font-family: "reg";
@@ -101,7 +102,7 @@
     letter-spacing: 0.06vw;
 }
 
-.light-text{
+.light-text {
     margin-top: 0.2vw;
     font-size: 2.1vw;
     font-family: "reg";
@@ -109,16 +110,16 @@
     letter-spacing: 0.06vw;
 }
 
-.icon-text-location{
+.icon-text-location {
     width: 60%;
 }
 
-.right-portion{
+.right-portion {
     width: 56%;
     padding: 0vw 0vw 0vw 6.6vw;
 }
 
-.right-portion p{
+.right-portion p {
     margin-top: 0.8vw;
     font-size: 1.1vw;
     font-family: 'reg';
@@ -127,7 +128,7 @@
     padding-right: 15vw;
 }
 
-.right-portion form{
+.right-portion form {
     margin-top: 0.5vw;
 }
 
@@ -137,10 +138,11 @@
 }
 
 :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
-    border:0.01vw solid var(--royal-blue)!important;
+    border: 0.01vw solid var(--royal-blue) !important;
 }
 
-:host ::ng-deep .mat-mdc-form-field-icon-prefix>.mat-icon, .mat-mdc-form-field-icon-suffix>.mat-icon {
+:host ::ng-deep .mat-mdc-form-field-icon-prefix>.mat-icon,
+.mat-mdc-form-field-icon-suffix>.mat-icon {
     color: rgba(122, 122, 122, 1);
     font-size: 1.3vw;
     margin-top: 0.5vw;
@@ -159,26 +161,27 @@
     padding: 1vw 0vw;
 }
 
-:host ::ng-deep .mat-mdc-form-field-subscript-wrapper, .mat-mdc-form-field-bottom-align::before {
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align::before {
     display: none;
 }
 
-.input-padding{
-   margin-bottom: 1vw;
+.input-padding {
+    margin-bottom: 1vw;
 }
 
-.input-padding .text-icon{
+.input-padding .text-icon {
     margin-top: -1vw;
     color: rgba(122, 122, 122, 1);
     font-size: 1.3vw;
     padding: 0vw 0.7vw 0vw 1.7vw;
 }
 
-form .text-padding{
+form .text-padding {
     margin-top: 1.7vw;
 }
 
-form .contact-form{
+.contact-form button {
     font-size: 1vw;
     font-family: "reg";
     background-color: var(--royal-blue);
@@ -186,4 +189,120 @@ form .contact-form{
     border-radius: 3vw;
     padding: 1.75vw 4.3vw;
     margin-top: 1.9vw;
+}
+
+@media only screen and (max-width: 600px) {
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    .container {
+        display: block;
+    }
+
+    .contact{
+        height: 120px;
+    }
+
+    .page-links {
+        width: 27%;
+    }
+
+    .slash {
+        padding: 0vw 1%;
+    }
+
+    .page-links a {
+        font-size: 3vw;
+        align-content: center;
+    }
+
+    .icon-text h2 {
+        font-size: 4.5vw;
+    }
+
+    .light-text-num {
+        font-size: 3.25vw;
+    }
+
+    .light-text {
+        font-size: 3.5vw;
+    }
+
+    .icon-text-location {
+        width: 100%;
+    }
+
+    .left-portion {
+        border: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .icon .mat-icon,
+    .icon-mail .mat-icon {
+        font-size: 6vw;
+        width: 8vw;
+        height: 5.5vw;
+        margin-left: 2vw;
+    }
+
+    .icon,
+    .icon-mail {
+        padding: 0.5vw;
+    }
+
+    .right-portion form {
+        width: 75%;
+    }
+
+    .right-portion {
+        width: 100%;
+        padding: 0;
+        margin-top: 5vw;
+    }
+
+    .right-portion p {
+        font-size: 3.5vw;
+        line-height: 4.8vw;
+        padding-right: 0;
+    }
+
+    :host ::ng-deep .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
+        width: 100% !important;
+    }
+
+    :host ::ng-deep .mat-mdc-form-field-icon-prefix>.mat-icon,
+    .mat-mdc-form-field-icon-suffix>.mat-icon {
+        font-size: 4.3vw;
+        margin-top: 1.8vw;
+    }
+
+    :host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+        font-size: 3vw;
+    }
+
+    .input-padding .text-icon {
+        margin-top: -4vw;
+        font-size: 4.3vw;
+    }
+
+    form .input-padding {
+        width: 100%;
+    }
+
+    .contact-form {
+        width: 30%;
+        margin: auto 70%;
+    }
+
+    .contact-form button {
+        font-size: 4vw;
+        border-radius: 1vw;
+        padding: 0;
+        width: 100%;
+        margin-top: 3.5vw;
+
+    }
 }

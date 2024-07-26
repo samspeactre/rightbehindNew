@@ -65,7 +65,6 @@ export class MapComponent implements OnInit, OnDestroy {
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   propertyMarkerOptions!: google.maps.MarkerOptions;
   communityMarkerOptions!: google.maps.MarkerOptions;
-  videoMarkerOptions!: google.maps.MarkerOptions;
   blogMarkerOptions!: google.maps.MarkerOptions;
   bothMarkerOptions!: google.maps.MarkerOptions;
   autocomplete!: google.maps.places.Autocomplete;
@@ -106,7 +105,7 @@ export class MapComponent implements OnInit, OnDestroy {
       crossOnDrag: true,
       optimized: true,
       icon: {
-        url: '/assets/img/markerP.webp',
+        url: '/assets/img/propertyMar.webp',
         scaledSize: new google.maps.Size(50, 50),
       },
     };
@@ -127,17 +126,7 @@ export class MapComponent implements OnInit, OnDestroy {
       crossOnDrag: true,
       optimized: true,
       icon: {
-        url: '/assets/img/sec-6-profile.webp',
-        scaledSize: new google.maps.Size(50, 50),
-      },
-    };
-    this.videoMarkerOptions = {
-      draggable: this.draggable,
-      clickable: true,
-      crossOnDrag: true,
-      optimized: true,
-      icon: {
-        url: '/assets/img/sec-6-profile.webp',
+        url: '/assets/img/bryanMar.webp',
         scaledSize: new google.maps.Size(50, 50),
       },
     };
@@ -147,7 +136,7 @@ export class MapComponent implements OnInit, OnDestroy {
       crossOnDrag: true,
       optimized: true,
       icon: {
-        url: 'https://cdn-icons-png.flaticon.com/512/4363/4363382.png',
+        url: '/assets/img/blogMar.webp',
         scaledSize: new google.maps.Size(50, 50),
       },
     };

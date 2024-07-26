@@ -167,7 +167,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
 
   placeMarkers() {
     this.clearMarkers();
-    this.createMarkers(this.markers, '/assets/img/markerP.webp');
+    this.createMarkers(this.markers, '/assets/img/propertyMar.webp');
     this.createMarkers(this.communityMarkers, '/assets/img/markerC.webp');
   }
 

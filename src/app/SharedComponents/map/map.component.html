@@ -57,7 +57,7 @@
   } @for (position of videoArray; let i = $index; track position) {
   <map-marker
     [position]="position"
-    [options]="videoMarkerOptions"
+    [options]="bothMarkerOptions"
     (mapDragend)="onMarkerDragEnd($event)"
     #marker="mapMarker"
     (mapClick)="openMapInfoWindow(marker, i, 'video'); moveMap($event)"

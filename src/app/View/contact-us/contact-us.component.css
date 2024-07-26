@@ -193,15 +193,34 @@ form .text-padding {
 
 @media only screen and (max-width: 600px) {
 
+    h1 {
+        text-align: center;
+    }
+
     h2 {
         margin-bottom: 0;
+    }
+
+    .left-contact{
+        margin-top: 20px;
+    }
+
+    .block,
+    .mail-block {
+        display: block;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .mail-block{
+        width: 100%;
     }
 
     .container {
         display: block;
     }
 
-    .contact{
+    .contact {
         height: 120px;
     }
 
@@ -218,16 +237,22 @@ form .text-padding {
         align-content: center;
     }
 
+    .mobile-icon{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
     .icon-text h2 {
-        font-size: 4.5vw;
+        font-size: 5.5vw;
     }
 
     .light-text-num {
-        font-size: 3.25vw;
+        font-size: 4.25vw;
     }
 
     .light-text {
-        font-size: 3.5vw;
+        font-size: 4.25vw;
     }
 
     .icon-text-location {
@@ -238,23 +263,28 @@ form .text-padding {
         border: 0;
         width: 100%;
         padding: 0;
+        margin-bottom: 30px;
     }
 
     .icon .mat-icon,
     .icon-mail .mat-icon {
         font-size: 6vw;
-        width: 8vw;
-        height: 5.5vw;
-        margin-left: 2vw;
+        width: 6vw;
+        height: 7.5vw;
+        margin-left: 0vw;
+        align-content: center;
     }
 
     .icon,
     .icon-mail {
         padding: 0.5vw;
+        width: 13vw;
+        margin: auto;
+        margin-bottom: 5px;
     }
 
     .right-portion form {
-        width: 75%;
+        width: 100%;
     }
 
     .right-portion {
@@ -266,7 +296,8 @@ form .text-padding {
     .right-portion p {
         font-size: 3.5vw;
         line-height: 4.8vw;
-        padding-right: 0;
+        padding: 0 15px;
+        text-align: center;
     }
 
     :host ::ng-deep .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
@@ -293,16 +324,15 @@ form .text-padding {
     }
 
     .contact-form {
-        width: 30%;
-        margin: auto 70%;
+        width: 35%;
+        margin: auto;
     }
 
     .contact-form button {
         font-size: 4vw;
         border-radius: 1vw;
-        padding: 0;
+        padding:23px 0;
         width: 100%;
         margin-top: 3.5vw;
-
     }
 }

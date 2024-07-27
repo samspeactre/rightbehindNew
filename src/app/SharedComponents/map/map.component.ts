@@ -276,8 +276,10 @@ export class MapComponent implements OnInit, OnDestroy {
       window.open(this.blogContents?.[this.index]?.blogUrl);
     } else if (type == 'video') {
       window.open(this.videoContents?.[this.index]?.videoUrl);
+    } else if (type == 'bothVideo') {
+      window.open(this.bothContents?.[this.index]?.videoUrl);
     } else {
-      window.open(this.bothContents?.[this.index]?.bothUrl);
+      window.open(this.bothContents?.[this.index]?.blogUrl);
     }
   }
 }

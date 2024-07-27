@@ -140,6 +140,8 @@ export class HomeComponent {
       this.bothArray = response?.model?.homePropertyTourList?.filter((item: any) => item?.videoUrl && item?.blogUrl)
       this.blogArray = response?.model?.homePropertyTourList?.filter((item: any) => !item?.videoUrl && item?.blogUrl)
       this.videoArray = response?.model?.homePropertyTourList?.filter((item: any) => item?.videoUrl && !item?.blogUrl)
+      console.log(this.bothArray);
+      
       this.bothArray?.map((item) => {
         this.bothLatArray.push({ lat: item?.latitude, lng: item?.longitude })
       })

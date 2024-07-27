@@ -198,12 +198,11 @@ export class RentPopupComponent {
       .subscribe((response: any) => {
         if(response?.status){
           Swal.fire({
-            title: 'Price Overview',
+            title: 'Property Already Exist',
             text: 'Property already exist with this location try to change the location and try again',
-            icon: 'info',
+            icon: 'error',
             confirmButtonText: 'Go Back',
-            showCancelButton: true,
-            cancelButtonText: 'Cancel',
+            showCancelButton: false,
             allowOutsideClick: false,
           }).then((result) => {
           });

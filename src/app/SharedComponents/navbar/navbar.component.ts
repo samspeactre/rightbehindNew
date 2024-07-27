@@ -126,16 +126,17 @@ export class NavbarComponent {
     this.destroy$.complete();
   }
   navigateToOffMarket(id: any): void {
+    this.router.navigateByUrl('/').then(() => {
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          console.log(id);
+          
+          this.scrollToElement(id);
+        });
+    });
     if (this.router.url !== '/') {
-      this.router.navigateByUrl('/').then(() => {
-        this.router.events
-          .pipe(filter((event) => event instanceof NavigationEnd))
-          .subscribe(() => {
-            this.scrollToElement(id);
-          });
-      });
-    } else {
-      this.scrollToElement(id);
+    this.scrollToElement(id);
     }
   }
 
@@ -173,6 +174,7 @@ export class NavbarComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
+      height:'80%',
       width: window.innerWidth > 1330 ? '850px' : '100%',
       data: type,
       scrollStrategy: new NoopScrollStrategy()

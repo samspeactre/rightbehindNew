@@ -38,7 +38,7 @@ import { ResizeService } from '../../Services/resize.service';
     ReactiveFormsModule,
     CommonModule,
     MapComponent,
-    MatIconModule
+    MatIconModule,
   ],
   selector: 'app-rent-popup',
   templateUrl: './rent-popup.component.html',
@@ -63,7 +63,7 @@ export class RentPopupComponent {
   headingText: string = 'Add New Property';
   videoSrc: string = '../../../assets/video/rent-popup.mp4';
   private destroy$ = new Subject<void>();
-closeDialog: any;
+  closeDialog: any;
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RentPopupComponent>,
@@ -72,7 +72,7 @@ closeDialog: any;
     private auth: AuthService,
     private http: HttpService,
     private store: Store,
-    public resize:ResizeService,
+    public resize: ResizeService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.active = data;
@@ -99,12 +99,14 @@ closeDialog: any;
             'contactNo',
             new FormControl('', Validators.required)
           );
-        }
-        else {
+        } else {
           this.propertyForm.get('unit').valueChanges.subscribe((value: any) => {
             if (Number(value) > 20) {
               if (!this.propertyForm.contains('contactNo')) {
-                this.propertyForm.addControl('contactNo', new FormControl('', Validators.required));
+                this.propertyForm.addControl(
+                  'contactNo',
+                  new FormControl('', Validators.required)
+                );
               }
             } else {
               if (this.propertyForm.contains('contactNo')) {
@@ -176,7 +178,7 @@ closeDialog: any;
       confirmButtonText: 'Yes, this is a residential rental',
       showCancelButton: true,
       cancelButtonText: 'No, this is not a residential rental',
-      allowOutsideClick: false
+      allowOutsideClick: false,
     }).then((result: any) => {
       if (result.isConfirmed) {
         this.fireDisclaimerSwal();
@@ -184,35 +186,64 @@ closeDialog: any;
     });
   }
   fireDisclaimerSwal() {
-    const unitCount = Number(this.propertyForm?.controls['unit']?.value);
-    let message = '';
-    if (unitCount === 1) {
-      message = "Featured listing for a single unit (90 days): $50 lifetime";
-    } else if (unitCount > 1 && unitCount <= 10) {
-      message = "Featured listings for multiple units (2-10 units): $150 per month";
-    } else if (unitCount > 10 && unitCount <= 20) {
-      message = "Featured listings for multiple units (11-20 units): $350 per month";
-    } else {
-      message = "For more than 20 units, please contact us for a customized quote";
-    }
-
-    Swal.fire({
-      title: 'Price Overview',
-      text: message,
-      icon: 'info',
-      confirmButtonText: unitCount > 20 ? 'Get A Quote' : 'I Acknowledge',
-      showCancelButton: true,
-      cancelButtonText: 'Go Back',
-      allowOutsideClick: false
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (unitCount > 20) {
-          this.sendInquiry();
-        } else {
-          this.navigate();
+    this.http
+      .loaderGet(
+        `home/isexist?latitude=${JSON.stringify(
+          this.propertyForm.controls['latLng'].value?.lat
+        )}&longitude=${JSON.stringify(
+          this.propertyForm.controls['latLng'].value?.lng
+        )}`,
+        true
+      )
+      .subscribe((response: any) => {
+        if(response?.status){
+          Swal.fire({
+            title: 'Price Overview',
+            text: 'Property already exist with this location try to change the location and try again',
+            icon: 'info',
+            confirmButtonText: 'Go Back',
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+            allowOutsideClick: false,
+          }).then((result) => {
+          });
         }
-      }
-    });
+        else{
+          const unitCount = Number(this.propertyForm?.controls['unit']?.value);
+          let message = '';
+          if (unitCount === 1) {
+            message =
+              'Featured listing for a single unit (90 days): $50 lifetime';
+          } else if (unitCount > 1 && unitCount <= 10) {
+            message =
+              'Featured listings for multiple units (2-10 units): $150 per month';
+          } else if (unitCount > 10 && unitCount <= 20) {
+            message =
+              'Featured listings for multiple units (11-20 units): $350 per month';
+          } else {
+            message =
+              'For more than 20 units, please contact us for a customized quote';
+          }
+  
+          Swal.fire({
+            title: 'Price Overview',
+            text: message,
+            icon: 'info',
+            confirmButtonText: unitCount > 20 ? 'Get A Quote' : 'I Acknowledge',
+            showCancelButton: true,
+            cancelButtonText: 'Go Back',
+            allowOutsideClick: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              if (unitCount > 20) {
+                this.sendInquiry();
+              } else {
+                this.navigate();
+              }
+            }
+          });
+        }
+      });
   }
   navigate() {
     const data = {
@@ -250,34 +281,38 @@ closeDialog: any;
     this.http
       .loaderPost('sellinquiry/create', data, true)
       .subscribe((response) => {
-        this.getAQuote(response?.model?.id)
+        this.getAQuote(response?.model?.id);
       });
   }
   getAQuote(id: any) {
-    this.http.loaderPost('QuoteRequest/create', { sellInquiryId: id }, true).subscribe((response) => {
-      this.dialogRef.close();
-    })
+    this.http
+      .loaderPost('QuoteRequest/create', { sellInquiryId: id }, true)
+      .subscribe((response) => {
+        this.dialogRef.close();
+      });
   }
   checkUnitValidator() {
     const unitCount = Number(this.propertyForm?.controls['unit']?.value);
     if (unitCount > 20) {
-      return true
-    }
-    else {
-      return false
+      return true;
+    } else {
+      return false;
     }
   }
 
   updateHeadingText() {
-    this.headingText = this.active === 'sell' ? 'Add Sell Property' : 'Add New Property';
+    this.headingText =
+      this.active === 'sell' ? 'Add Sell Property' : 'Add New Property';
   }
 
   updateVideoSrc() {
-    this.videoSrc = this.active === 'sell' ? '../../../assets/video/sell-popup.mp4' : '../../../assets/video/rent-popup.mp4';
+    this.videoSrc =
+      this.active === 'sell'
+        ? '../../../assets/video/sell-popup.mp4'
+        : '../../../assets/video/rent-popup.mp4';
   }
 
   closePopup(): void {
     this.dialogRef.close();
   }
-
 }

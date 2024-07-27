@@ -30,18 +30,29 @@ export class SearchBarComponent {
   @Output() showFilter: EventEmitter<any> = new EventEmitter<any>();
   faBars = faFilter
   faSearch=faSearch
+  autocompleteService: any;
   private destroy$ = new Subject<void>();
-
+  predictions: any[] = [];
   constructor(public resize:ResizeService) {
     this.mentorSearchQueryUpdate
       .pipe(
-        debounceTime(500),
+        debounceTime(100),
         takeUntil(this.destroy$),
         distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
       )
       .subscribe((value) => {
         if (value?.length < 1) {
           this.searchEvent.emit(value)
+          this.predictions = [];
+        }
+        else{
+          this.autocompleteService.getPlacePredictions({ input: value }, (predictions, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+              console.log(predictions);
+              
+              this.predictions = predictions;
+            }
+          });
         }
       });
   }
@@ -63,6 +74,7 @@ export class SearchBarComponent {
       const place = this.autocomplete.getPlace();
       this.searchEvent.emit(place.formatted_address)
     });
+    this.autocompleteService = new google.maps.places.AutocompleteService();
   }
   submit() {
     this.searchEvent.emit(this.search)
@@ -70,5 +82,11 @@ export class SearchBarComponent {
   showFilt(){
     this.show = !this.show
     this.showFilter.emit(this.show)
+  }
+  selectFirstSuggestion() {
+    if (this.predictions.length > 0) {
+      this.search = this.predictions[0].description;
+      this.submit()
+    }
   }
 }

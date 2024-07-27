@@ -17,31 +17,36 @@
       <h1>Connect with Us</h1>
 
       <div class="left-contact">
-        <div class="display">
-          <div class="icon">
-            <mat-icon class="call">phone_in_talk</mat-icon>
+
+        <div class="mobile-icon">
+
+          <div class="display block">
+            <div class="icon">
+              <mat-icon class="call">phone_in_talk</mat-icon>
+            </div>
+            @for (info of contact; track info) {
+            <div class="icon-text">
+              <h2 class="bold-text">Phone :</h2>
+              <div class="light-text-num">{{info.num}}</div>
+            </div>
+            }
           </div>
-          @for (info of contact; track info) {
-          <div class="icon-text">
-            <h2 class="bold-text">Phone :</h2>
-            <div class="light-text-num">{{info.num}}</div>
+
+          <div class="display block">
+            <div class="icon-mail">
+              <mat-icon class="mail">mark_email_unread</mat-icon>
+            </div>
+            @for (info of contact; track info) {
+            <div class="icon-text">
+              <h2 class="bold-text">Email :</h2>
+              <div class="light-text">{{info.email}}</div>
+            </div>
+            }
           </div>
-          }
+
         </div>
 
-        <div class="display">
-          <div class="icon-mail">
-            <mat-icon class="mail">mark_email_unread</mat-icon>
-          </div>
-          @for (info of contact; track info) {
-          <div class="icon-text">
-            <h2 class="bold-text">Email :</h2>
-            <div class="light-text">{{info.email}}</div>
-          </div>
-          }
-        </div>
-
-        <div class="display">
+        <div class="display mail-block">
           <div class="icon icon-location">
             <mat-icon class="call">location_on</mat-icon>
           </div>

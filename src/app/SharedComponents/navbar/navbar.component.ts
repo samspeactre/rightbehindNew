@@ -129,29 +129,40 @@ export class NavbarComponent {
   }
   navigateToOffMarket(id: any): void {
     if (this.router.url !== '/') {
-      this.router.navigateByUrl('/').then(() => {
-        this.router.events
-          .pipe(filter((event) => event instanceof NavigationEnd))
-          .subscribe(() => {
-            this.scrollToElement(id);
-          });
-      });
+      console.log('this.router.url');
+      this.router.navigateByUrl('/');
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
+        .subscribe(() => {
+          this.scrollToElement(id);
+        });
     } else {
       this.scrollToElement(id);
     }
   }
 
   private scrollToElement(id: any): void {
-    const element: any = document.querySelector(id);
-    if (element) {
-      const topPos = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: topPos,
-        behavior: 'smooth',
-      });
-    } else {
-      console.error(`Element with id ${id} not found`);
-    }
+    let tries = 0;
+    const maxTries = 10;
+
+    const interval = setInterval(() => {
+      tries++;
+      const element: any = document.querySelector(id);
+      console.log(tries);
+      if (element) {
+        const topPos = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: topPos,
+          behavior: 'smooth',
+        });
+        clearInterval(interval);
+      } else if (tries >= maxTries) {
+        console.error(
+          `Element with id ${id} not found after ${tries} attempts`
+        );
+        clearInterval(interval);
+      }
+    }, 1000);
   }
   socialLinks = [
     { url: 'https://www.facebook.com/', imageUrl: '../../assets/img/fb.png' },
@@ -169,16 +180,16 @@ export class NavbarComponent {
   openPopup(): void {
     this.dialog.open(LoginPopupComponent, {
       width: window.innerWidth > 1330 ? '330px' : '100%',
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
   }
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height:'80%',
+      height: '80%',
       width: window.innerWidth > 1330 ? '850px' : '100%',
       data: type,
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
   }
 
@@ -199,4 +210,3 @@ export class NavbarComponent {
 function closeDialog() {
   throw new Error('Function not implemented.');
 }
-

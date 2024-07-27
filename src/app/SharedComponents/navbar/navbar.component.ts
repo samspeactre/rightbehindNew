@@ -126,17 +126,16 @@ export class NavbarComponent {
     this.destroy$.complete();
   }
   navigateToOffMarket(id: any): void {
-    this.router.navigateByUrl('/').then(() => {
-      this.router.events
-        .pipe(filter((event) => event instanceof NavigationEnd))
-        .subscribe(() => {
-          console.log(id);
-          
-          this.scrollToElement(id);
-        });
-    });
     if (this.router.url !== '/') {
-    this.scrollToElement(id);
+      this.router.navigateByUrl('/').then(() => {
+        this.router.events
+          .pipe(filter((event) => event instanceof NavigationEnd))
+          .subscribe(() => {
+            this.scrollToElement(id);
+          });
+      });
+    } else {
+      this.scrollToElement(id);
     }
   }
 

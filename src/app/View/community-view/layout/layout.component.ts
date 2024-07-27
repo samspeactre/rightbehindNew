@@ -165,8 +165,6 @@ export class LayoutComponent {
       });
   }
   joinNow() {
-    console.log(this.userDetails);
-    
     if (this.userDetails) {
       this.joining();
     } else {

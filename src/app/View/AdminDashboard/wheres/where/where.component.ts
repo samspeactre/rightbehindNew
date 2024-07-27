@@ -101,7 +101,6 @@ export class WhereComponent {
     });
   }
   editPatch() {
-    console.log(this.data);
     this.blogForm.patchValue({
       blogUrl: this.data?.content?.blogUrl,
       videoUrl: this.data?.content?.videoUrl,
@@ -109,8 +108,6 @@ export class WhereComponent {
       longitude: this.data?.content?.longitude,
     });
     this.blogForm.addControl('id', new FormControl(this.data?.content?.id));
-    console.log(this.blogForm.value);
-    
   }
   setFormValue(event: any, control: string) {
     if (control == 'latitude') {

@@ -94,7 +94,6 @@ export class ContactPopupComponent {
         }
       });
     } else {
-      console.log('hello');
     }
   }
 

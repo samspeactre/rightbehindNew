@@ -33,7 +33,6 @@ export class BlogInnerComponent {
   }
   getBlog(){
     this.http.loaderGet(`Blog/get/${this.id}`,true).subscribe((response:any)=>{
-      console.log(response);
       this.blog = response?.model
     })
   }

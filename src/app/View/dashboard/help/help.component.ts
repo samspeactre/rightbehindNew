@@ -26,8 +26,6 @@ export class HelpComponent {
         takeUntil(this.destroy$),
         distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)))
       .subscribe((user) => {
-        console.log(user);
-        
         this.userDetails = user;
       });
   }

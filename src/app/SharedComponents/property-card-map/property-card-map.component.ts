@@ -17,10 +17,7 @@ export class PropertyCardMapComponent {
   faMapMarkerAlt=faMapMarkerAlt
   @Input() card!:any;
   constructor(private router:Router){}
-  ngOnInit(){
-    console.log(this.card);
-    
-  }
+  ngOnInit(){}
   openPopup(propertyData: any): void {
     this.router.navigate(
       ['/preview'],

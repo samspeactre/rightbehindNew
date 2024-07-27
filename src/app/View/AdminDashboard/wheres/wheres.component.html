@@ -26,9 +26,9 @@
               <thead>
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col" class="text-center">Video URL</th>
-                  <th scope="col" class="text-center">Blog URL</th>
-                  <!-- <th scope="col" class="text-center">Phone</th> -->
+                  <th scope="col" class="text-center bigCol">Video URL</th>
+                  <th scope="col" class="text-center bigCol">Blog URL</th>
+                  <!-- <th scope="col" class="text-center bigCol">Phone</th> -->
                   <th scope="col" class="text-center">Action</th>
                 </tr>
               </thead>
@@ -38,8 +38,8 @@
                 $index) {
                 <tr>
                   <th scope="row">{{ item?.id }}</th>
-                  <td class="text-center">{{item?.videoUrl || 'N/A'}}</td>
-                  <td class="text-center">{{ item?.blogUrl || 'N/A' }}</td>
+                  <td class="text-center bigCol">{{item?.videoUrl || 'N/A'}}</td>
+                  <td class="text-center bigCol">{{ item?.blogUrl || 'N/A' }}</td>
                   <!-- <td class="text-center">Otto</td> -->
                   <td class="text-center" style="width: 100px">
                     <div

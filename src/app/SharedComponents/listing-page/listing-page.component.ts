@@ -149,6 +149,9 @@ export class ListingPageComponent {
     if (!loadMore) {
       this.loader = true;
     }
+    if(this.search == '' || !this.search){
+      this.cards = [1, 2, 3]
+    }
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
 

@@ -48,8 +48,6 @@ export class SearchBarComponent {
         else{
           this.autocompleteService.getPlacePredictions({ input: value }, (predictions, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-              console.log(predictions);
-              
               this.predictions = predictions;
             }
           });

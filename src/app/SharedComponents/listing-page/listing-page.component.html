@@ -136,12 +136,7 @@
               ></app-property-card>
               }
             </div>
-            } } @else {
-            <p class="text-danger text-center">
-              No
-              {{ url == "/communities" ? "communities" : "properties" }} found
-            </p>
-            }
+            } }
             <div class="col-lg-12">
               @if(loadMore){
               <div class="dCenter">
@@ -172,7 +167,7 @@
         1024 || showMapClicked){
         <div class="col-lg-6 wow fadeInDown rightP">
           <div class="mapElement">
-            @if(latLngArray?.length){
+            @if(cards?.length && latLngArray?.length){
             <app-map-draw
               [highlighted]="highlighted"
               [markerPositions]="latLngArray"
@@ -184,6 +179,14 @@
           </div>
         </div>
         } }
+        @if(!cards?.length && !loader){
+          <div class="col-lg-12">
+            <p class="text-danger text-center">
+              No
+              {{ url == "/communities" ? "communities" : "properties" }} found
+            </p>
+          </div>
+        }
       </div>
     </div>
   </div>

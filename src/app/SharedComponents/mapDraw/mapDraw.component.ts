@@ -88,7 +88,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   map: any;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 20,
+    zoom: 15,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     gestureHandling: 'greedy',
@@ -345,7 +345,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
 
   clearDrawing() {
     this.mapOptions = {
-      zoom: 10,
+      zoom: 15,
       center: new google.maps.LatLng(this._center?.lat, this._center?.lng),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy',

@@ -148,7 +148,6 @@ export class NavbarComponent {
     const interval = setInterval(() => {
       tries++;
       const element: any = document.querySelector(id);
-      console.log(tries);
       if (element) {
         const topPos = element.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({

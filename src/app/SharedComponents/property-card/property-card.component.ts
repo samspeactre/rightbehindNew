@@ -24,6 +24,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { ContactSelectComponent } from '../contact-select/contact-select.component';
 @Component({
   standalone: true,
   imports: [
@@ -59,7 +60,8 @@ export class PropertyCardComponent {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    autoplay: false,
+    autoplay: true,
+    autoHeight: false,
     margin: 5,
     dots: false,
     navSpeed: 700,
@@ -90,23 +92,26 @@ export class PropertyCardComponent {
         this.userDetails = user;
       });
   }
+  ngOnInit() {
+    console.log(this.card);
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  openPopup(card: any): void {
+  openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
       width: window.innerWidth > 1330 ? '400px' : '100%',
       data: { type: 'property', id: this.card?.id },
       scrollStrategy: new NoopScrollStrategy(),
     });
   }
-  naviagteThroughPopup(card: any) {
+  naviagteThroughPopup() {
     if (window.innerWidth > 1024) {
       this.dialog?.open(PopupComponent, {
         height: '90%',
         width: '85%',
-        data: { card: card },
+        data: { card: this.card },
       });
     } else {
       this.navigateAndClose();
@@ -205,5 +210,31 @@ export class PropertyCardComponent {
     } catch (err: any) {
       console.error('Share failed:', err?.message);
     }
+  }
+  openContactOptions() {
+    const dialogRef = this.dialog.open(ContactSelectComponent, {
+      width: window.innerWidth > 1024 ? '500px' : '100%',
+      data: {
+        email: this.card.listAgentEmail,
+        phone: this.card.listAgentOfficePhone,
+      },
+      scrollStrategy: new NoopScrollStrategy(),
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'email' && this.card.listAgentEmail) {
+        this.openEmail();
+      } else if (result === 'phone' && this.card.listAgentOfficePhone) {
+        this.openPhone();
+      }
+    });
+  }
+
+  openEmail() {
+    window.location.href = `mailto:${this.card.listAgentEmail}`;
+  }
+
+  openPhone() {
+    window.location.href = `tel:${this.card.listAgentOfficePhone}`;
   }
 }

@@ -123,13 +123,18 @@
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
+    object-position: top;
   }
 
   .NoImageFound {
     object-fit: contain;
     background: #dddddd;
   }
+}
+.carouselImg {
+  min-height: 150px;
+  height: 100%;
 }
 .carosuelBtn {
   background: transparent;

@@ -59,7 +59,7 @@ export class PropertyCardComponent {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    autoplay: true,
+    autoplay: false,
     margin: 5,
     dots: false,
     navSpeed: 700,
@@ -186,7 +186,7 @@ export class PropertyCardComponent {
         height: '490px',
         width: window.innerWidth > 1330 ? '330px' : '100%',
         scrollStrategy: new NoopScrollStrategy(),
-        data:'favourite'
+        data: 'favourite',
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result?.data) {
@@ -198,10 +198,12 @@ export class PropertyCardComponent {
   async share(event) {
     event.stopPropagation();
     try {
-      await navigator.share({ title: this.card?.title, url: `preview/?id=${this.card?.listingId || this.card?.id}&type=2` });
+      await navigator.share({
+        title: this.card?.title,
+        url: `preview/?id=${this.card?.listingId || this.card?.id}&type=2`,
+      });
     } catch (err: any) {
-      console.error("Share failed:", err?.message);
+      console.error('Share failed:', err?.message);
     }
   }
-
 }

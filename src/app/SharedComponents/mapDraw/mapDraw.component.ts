@@ -88,7 +88,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   map: any;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 10,
+    zoom: 20,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     gestureHandling: 'greedy',
@@ -146,25 +146,27 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   // }
   zoomToHighlightedMarker(highlighted: any) {
     if (!this.map || !highlighted) return;
-  
-    const marker = this.markers.find(
-      (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
-    ) || this.communityMarkers.find(
-      (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
-    );
-  
+
+    const marker =
+      this.markers.find(
+        (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
+      ) ||
+      this.communityMarkers.find(
+        (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
+      );
+
     if (marker && marker.markerInstance) {
       const position = marker.markerInstance.getPosition();
       if (position) {
         this.map.setCenter(position);
-  
+
         // const currentIcon = marker.markerInstance.getIcon();
-  
+
         // marker.markerInstance.setIcon({
         //   url: currentIcon.url || currentIcon,
         //   scaledSize: new google.maps.Size(70, 70)
         // });
-  
+
         // setTimeout(() => {
         //   marker.markerInstance.setIcon({
         //     url: currentIcon.url || currentIcon,
@@ -250,7 +252,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   disableMapInteractions() {
     this.map.setOptions({
       draggable: false,
-      zoomControl: false,
+      zoomControl: true,
       scrollwheel: false,
       disableDoubleClickZoom: false,
       draggableCursor: 'crosshair',

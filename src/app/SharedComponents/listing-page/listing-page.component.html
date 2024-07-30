@@ -69,9 +69,9 @@
   </app-banner>
 
   <div class="position-relative" [ngClass]="{ cstmZIndex: show }">
-    <div class="cstmContainer">
+    <div class="cstmContainer" [style.min-height.px]="screenHeight">
       <div class="row">
-        <div class="col-lg-7 wow fadeInDown" #listing>
+        <div class="col-lg-12 wow fadeInDown" #listing>
           @if(loader){
           <p style="height: 16px" class="w-75 skeleton my-3"></p>
           } @else {
@@ -86,8 +86,11 @@
               title="Show Properties On {{ showMapClicked ? 'List' : 'Map' }}"
               (click)="showMapClicked = !showMapClicked"
             >
-            {{showMapClicked ? 'Grid View' : 'Map View'}}
-              <fa-icon class="ms-1" [icon]="showMapClicked ? faBuilding : faMap"></fa-icon>
+              {{ showMapClicked ? "Grid View" : "Map View" }}
+              <fa-icon
+                class="ms-1"
+                [icon]="showMapClicked ? faBuilding : faMap"
+              ></fa-icon>
             </button>
             }
           </div>
@@ -110,14 +113,14 @@
         } } @if(!showMapClicked){
         <div
           class="wow fadeInDown"
-          [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-6']"
+          [ngClass]="[url == '/communities' ? 'col-lg-12' : 'col-lg-5']"
           #listing
         >
           <div class="row">
             @if(cards?.length){ @for (card of cards; track card) {
             <div
               class="mb-3 wow fadeInDown"
-              [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-6']"
+              [ngClass]="[url == '/communities' ? 'col-lg-3' : 'col-lg-12']"
             >
               @if(url == '/communities'){
               <app-community-card
@@ -144,20 +147,18 @@
                 <div class="wow fadeInDown mb-3">
                   <app-mini-loading></app-mini-loading>
                 </div>
-                } @else{
-                  @if(cards?.length >= 20){
-                    <button
-                      class="btnPrimary py-1 wow fadeInDown mb-3"
-                      (click)="
-                        loadMoreProperties(
-                          url == '/communities' ? 'communities' : 'properties'
-                        )
-                      "
-                    >
-                      Load More
-                    </button>
-                  }
-                }
+                } @else{ @if(cards?.length >= 20){
+                <button
+                  class="btnPrimary py-1 wow fadeInDown mb-3"
+                  (click)="
+                    loadMoreProperties(
+                      url == '/communities' ? 'communities' : 'properties'
+                    )
+                  "
+                >
+                  Load More
+                </button>
+                } }
               </div>
               }
             </div>
@@ -165,7 +166,7 @@
         </div>
         } @if(url != '/communities'){ @if((resize.windowSize$ | async)?.width >
         1024 || showMapClicked){
-        <div class="col-lg-6 wow fadeInDown rightP">
+        <div class="col-lg-7 wow fadeInDown rightP">
           <div class="mapElement">
             @if(cards?.length && latLngArray?.length){
             <app-map-draw
@@ -178,14 +179,13 @@
             }
           </div>
         </div>
-        } }
-        @if(!cards?.length && !loader){
-          <div class="col-lg-12">
-            <p class="text-danger text-center">
-              No
-              {{ url == "/communities" ? "communities" : "properties" }} found
-            </p>
-          </div>
+        } } @if(!cards?.length && !loader){
+        <div class="col-lg-12">
+          <p class="text-danger text-center">
+            No
+            {{ url == "/communities" ? "communities" : "properties" }} found
+          </p>
+        </div>
         }
       </div>
     </div>

@@ -94,9 +94,7 @@ export class PropertyCardComponent {
         this.userDetails = user;
       });
   }
-  ngOnInit() {
-    console.log(this.card);
-  }
+  ngOnInit() {}
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

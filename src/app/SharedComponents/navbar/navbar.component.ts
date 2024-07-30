@@ -129,7 +129,6 @@ export class NavbarComponent {
   }
   navigateToOffMarket(id: any): void {
     if (this.router.url !== '/') {
-      console.log('this.router.url');
       this.router.navigateByUrl('/');
       this.router.events
         .pipe(filter((event) => event instanceof NavigationEnd))

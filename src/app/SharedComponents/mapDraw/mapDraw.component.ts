@@ -87,6 +87,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   originalMarkers: any[] = [];
   googleMarkers: any[] = [];
   drawnShapes: google.maps.Polygon[] = [];
+  poly: any;
   map: any;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
@@ -184,11 +185,31 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       document.getElementById('map_canvas'),
       this.mapOptions
     );
+    document.getElementById('drawpoly').addEventListener('click', (e) => {
+      e.preventDefault();
+      this.disable();
+
+      google.maps.event.addDomListener(
+        this.map.getDiv(),
+        'mousedown',
+        (e: any) => {
+          this.drawFreeHandCheck();
+        }
+      );
+
+      google.maps.event.addDomListener(
+        this.map.getDiv(),
+        'touchstart',
+        (e: any) => {
+          this.drawFreeHandCheck();
+        }
+      );
+    });
     this.placeMarkers();
   }
 
   setupButtonClickListeners() {
-    $('#editButton').click((e: any) => {
+    $('#drawpoly').click((e: any) => {
       e.preventDefault();
       this.toggleDrawingMode();
     });
@@ -286,66 +307,10 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       this.originalMarkers = [...this.markers];
       this.clearMarkers();
       this.drawingMode = true;
-      this.again(this.drawFreeHand.bind(this));
       this.disablePageScroll();
     } else {
       this.clearDrawing();
     }
-  }
-
-  drawFreeHand() {
-    const isTouchable =
-      'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchable) {
-      this.map.setOptions({ scrollwheel: false });
-    }
-
-    const poly = new google.maps.Polyline({
-      map: this.map,
-      clickable: false,
-      strokeColor: '#f3392c',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-    });
-    const path = poly.getPath();
-    this.shapeCoordinates = [];
-    this.mapMouseMoveListener = google.maps.event.addListener(
-      this.map,
-      'mousemove',
-      (e: any) => {
-        path.push(e.latLng);
-        this.shapeCoordinates.push({
-          lat: e.latLng.lat(),
-          lng: e.latLng.lng(),
-        });
-      }
-    );
-
-    google.maps.event.addListenerOnce(this.map, 'mouseup', () => {
-      google.maps.event.removeListener(this.mapMouseMoveListener);
-      poly.setMap(null);
-      const polygon = new google.maps.Polygon({
-        map: this.map,
-        path,
-        strokeColor: '#f3392c',
-        fillColor: '#f3392c',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillOpacity: 0.35,
-      });
-      this.drawnShapes.push(polygon);
-      google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
-      this.enableMapInteractions();
-      this.shapePromise = Promise.resolve(this.shapeCoordinates);
-      console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
-      this.drawCordinates.emit(JSON.stringify(this.shapeCoordinates));
-      const bounds = new google.maps.LatLngBounds();
-      this.shapeCoordinates.forEach((coord) => bounds.extend(coord));
-      this.map.fitBounds(bounds);
-      $('#editButton').hide();
-      $('#clearButton').show();
-      this.enablePageScroll();
-    });
   }
 
   clearDrawing() {
@@ -368,7 +333,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     this.markers = [...this.originalMarkers];
     this.placeMarkers();
     $('#clearButton').hide();
-    $('#editButton').show();
+    $('#drawpoly').show();
     this.drawingMode = false;
     this.enablePageScroll();
   }
@@ -378,31 +343,8 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     this.drawnShapes = [];
   }
 
-  again(drawFreeHand: () => void) {
-    this.disableMapInteractions();
-    google.maps.event.addDomListener(this.map.getDiv(), 'mousedown', (e: any) =>
-      drawFreeHand()
-    );
-  }
-
   getShapeCoordinates(): Promise<google.maps.LatLngLiteral[]> {
     return this.shapePromise || Promise.resolve([]);
-  }
-
-  getBoundsRadius(bounds: any) {
-    const r = 6378.8;
-    const ne_lat = bounds.getNorthEast().lat() / 57.2958;
-    const ne_lng = bounds.getNorthEast().lng() / 57.2958;
-    const c_lat = bounds.getCenter().lat() / 57.2958;
-    const c_lng = bounds.getCenter().lng() / 57.2958;
-    return (
-      r *
-      Math.acos(
-        Math.sin(c_lat) * Math.sin(ne_lat) +
-          Math.cos(c_lat) * Math.cos(ne_lat) * Math.cos(ne_lng - c_lng)
-      ) *
-      1000
-    );
   }
   disablePageScroll() {
     document.body.style.overflow = 'hidden';
@@ -410,5 +352,58 @@ export class MapDrawComponent implements OnInit, OnDestroy {
 
   enablePageScroll() {
     document.body.style.overflow = 'auto';
+  }
+  disable(): void {
+    this.disablePageScroll();
+    this.map.setOptions({
+      draggable: false,
+      zoomControl: false,
+      scrollwheel: false,
+      disableDoubleClickZoom: false,
+    });
+  }
+
+  enable(): void {
+    this.enablePageScroll();
+    this.map.setOptions({
+      draggable: true,
+      zoomControl: true,
+      scrollwheel: true,
+      disableDoubleClickZoom: true,
+    });
+  }
+  drawFreeHandCheck(): void {
+    this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
+
+    const move = google.maps.event.addListener(
+      this.map,
+      'mousemove',
+      (e: any) => {
+        this.poly.getPath().push(e.latLng);
+      }
+    );
+
+    const touchMove = google.maps.event.addListener(
+      this.map,
+      'touchmove',
+      (e: any) => {
+        e.preventDefault();
+        this.poly.getPath().push(e.latLng);
+      }
+    );
+
+    google.maps.event.addListenerOnce(this.map, 'mouseup', (e: any) => {
+      google.maps.event.removeListener(move);
+      google.maps.event.removeListener(touchMove);
+      const path = this.poly.getPath();
+      this.poly.setMap(null);
+      this.poly = new google.maps.Polygon({ map: this.map, path: path });
+
+      google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
+      google.maps.event.clearListeners(this.map.getDiv(), 'touchstart');
+      $('#editButton').hide();
+      $('#clearButton').show();
+      this.enable();
+    });
   }
 }

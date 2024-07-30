@@ -36,6 +36,7 @@ import { PropertyCardComponent } from '../property-card/property-card.component'
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
+import { DummyMapComponent } from '../dummy-map/dummy-map.component';
 @Component({
   standalone: true,
   imports: [
@@ -64,6 +65,7 @@ import { NoopScrollStrategy } from '@angular/cdk/overlay';
     FontAwesomeModule,
     NgxTypedWriterModule,
     FilterComponent,
+    DummyMapComponent,
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',

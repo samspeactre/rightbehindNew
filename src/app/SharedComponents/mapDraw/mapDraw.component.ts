@@ -1,42 +1,27 @@
-import { CommonModule } from '@angular/common';
 import {
-  ApplicationRef,
   Component,
-  ComponentFactoryResolver,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
   EventEmitter,
   Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
+  ApplicationRef,
+  ComponentFactoryResolver,
 } from '@angular/core';
-import {
-  GoogleMap,
-  GoogleMapsModule,
-  MapInfoWindow,
-  MapMarker,
-} from '@angular/google-maps';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
-import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 import { ResizeService } from '../../Services/resize.service';
+import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
+import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 
 declare const google: any;
-declare var $: any;
 
 @Component({
   selector: 'app-map-draw',
   standalone: true,
-  imports: [
-    GoogleMapsModule,
-    GoogleMap,
-    MapInfoWindow,
-    MapMarker,
-    CommonModule,
-    PropertyCardMapComponent,
-    FontAwesomeModule,
-  ],
+  imports: [GoogleMapsModule, FontAwesomeModule],
   templateUrl: './mapDraw.component.html',
   styleUrls: ['./mapDraw.component.scss'],
 })
@@ -45,42 +30,14 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     lat: 25.761681,
     lng: -80.191788,
   };
-  @Input() set highlighted(data: any) {
-    if (data) {
-      this.zoomToHighlightedMarker(data);
-    }
-  }
-  @Input()
-  get center(): google.maps.LatLngLiteral {
-    return this._center;
-  }
-
-  set center(value: google.maps.LatLngLiteral) {
-    this._center = value;
-    if (this.mapOptions) {
-      this.mapOptions.center = this._center;
-    }
-    if (this.map) {
-      this.map.setCenter(this._center);
-    }
-  }
+  @Input() center: google.maps.LatLngLiteral = this._center;
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
   @Output() propertyHover = new EventEmitter<any>();
   @Output() drawCordinates = new EventEmitter<any>();
-  @Input() set markerPositions(data: any[]) {
-    if (data) {
-      this.markers = data;
-      this.placeMarkers();
-    }
-  }
-  @Input() set communityMarkerPositions(data: any[]) {
-    if (data) {
-      this.communityMarkers = data;
-      this.placeMarkers();
-    }
-  }
+  @Input() markerPositions: any[] = [];
+  @Input() communityMarkerPositions: any[] = [];
 
   markers: any[] = [];
   communityMarkers: any[] = [];
@@ -102,81 +59,28 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     rotateControl: false,
     fullscreenControl: false,
   };
-  shapeCoordinates: google.maps.LatLngLiteral[] = [];
-  shapePromise: Promise<google.maps.LatLngLiteral[]> | undefined;
+  drawingMode: boolean = false;
+
   faEdit = faEdit;
   faTrash = faTrash;
-  drawingMode: boolean = false;
-  private mapMouseMoveListener: any;
 
   constructor(
+    public resize: ResizeService,
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
-    private appRef: ApplicationRef,
-    public resize: ResizeService
+    private appRef: ApplicationRef
   ) {}
 
-  async ngOnInit() {}
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.clearDrawing();
-    if (this.mapMouseMoveListener) {
-      google.maps.event.removeListener(this.mapMouseMoveListener);
-    }
   }
+
   async ngAfterViewInit() {
     await this.initiateMap();
-    if (!this.communityMarkers?.length) {
+    if (!this.communityMarkers.length) {
       this.setupButtonClickListeners();
-    }
-  }
-  // zoomToHighlightedMarker(highlighted) {
-  //   if (!this.map || !highlighted) return;
-  //   const marker =
-  //     this.markers.find(
-  //       (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
-  //     ) ||
-  //     this.communityMarkers.find(
-  //       (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
-  //     );
-  //   if (marker && marker.markerInstance) {
-  //     const position = marker.markerInstance.getPosition();
-  //     if (position) {
-  //       this.map.setCenter(position);
-  //       google.maps.event.trigger(marker.markerInstance, 'click');
-  //     }
-  //   }
-  // }
-  zoomToHighlightedMarker(highlighted: any) {
-    if (!this.map || !highlighted) return;
-
-    const marker =
-      this.markers.find(
-        (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
-      ) ||
-      this.communityMarkers.find(
-        (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
-      );
-
-    if (marker && marker.markerInstance) {
-      const position = marker.markerInstance.getPosition();
-      if (position) {
-        this.map.setCenter(position);
-
-        // const currentIcon = marker.markerInstance.getIcon();
-
-        // marker.markerInstance.setIcon({
-        //   url: currentIcon.url || currentIcon,
-        //   scaledSize: new google.maps.Size(70, 70)
-        // });
-
-        // setTimeout(() => {
-        //   marker.markerInstance.setIcon({
-        //     url: currentIcon.url || currentIcon,
-        //     scaledSize: currentIcon.scaledSize || new google.maps.Size(50, 50)
-        //   });
-        // }, 3000);
-      }
     }
   }
 
@@ -188,33 +92,23 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
       this.disable();
-
-      google.maps.event.addDomListener(
-        this.map.getDiv(),
-        'mousedown',
-        (e: any) => {
-          this.drawFreeHandCheck();
-        }
-      );
-
-      google.maps.event.addDomListener(
-        this.map.getDiv(),
-        'touchstart',
-        (e: any) => {
-          this.drawFreeHandCheck();
-        }
-      );
+      google.maps.event.addDomListener(this.map.getDiv(), 'mousedown', () => {
+        this.drawFreeHandCheck();
+      });
+      google.maps.event.addDomListener(this.map.getDiv(), 'touchstart', () => {
+        this.drawFreeHandCheck();
+      });
     });
     this.placeMarkers();
   }
 
   setupButtonClickListeners() {
-    $('#drawpoly').click((e: any) => {
+    document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
       this.toggleDrawingMode();
     });
 
-    $('#clearButton').click((e: any) => {
+    document.getElementById('clearButton').addEventListener('click', (e) => {
       e.preventDefault();
       this.clearDrawing();
     });
@@ -332,8 +226,8 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     this.clearShapes();
     this.markers = [...this.originalMarkers];
     this.placeMarkers();
-    $('#clearButton').hide();
-    $('#drawpoly').show();
+    document.getElementById('clearButton').style.display = 'none';
+    document.getElementById('drawpoly').style.display = 'block';
     this.drawingMode = false;
     this.enablePageScroll();
   }
@@ -343,35 +237,6 @@ export class MapDrawComponent implements OnInit, OnDestroy {
     this.drawnShapes = [];
   }
 
-  getShapeCoordinates(): Promise<google.maps.LatLngLiteral[]> {
-    return this.shapePromise || Promise.resolve([]);
-  }
-  disablePageScroll() {
-    document.body.style.overflow = 'hidden';
-  }
-
-  enablePageScroll() {
-    document.body.style.overflow = 'auto';
-  }
-  disable(): void {
-    this.disablePageScroll();
-    this.map.setOptions({
-      draggable: false,
-      zoomControl: false,
-      scrollwheel: false,
-      disableDoubleClickZoom: false,
-    });
-  }
-
-  enable(): void {
-    this.enablePageScroll();
-    this.map.setOptions({
-      draggable: true,
-      zoomControl: true,
-      scrollwheel: true,
-      disableDoubleClickZoom: true,
-    });
-  }
   drawFreeHandCheck(): void {
     this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
 
@@ -398,12 +263,45 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       const path = this.poly.getPath();
       this.poly.setMap(null);
       this.poly = new google.maps.Polygon({ map: this.map, path: path });
+      this.drawnShapes.push(this.poly);
 
-      google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
-      google.maps.event.clearListeners(this.map.getDiv(), 'touchstart');
-      $('#editButton').hide();
-      $('#clearButton').show();
+      // Log the latLng coordinates of the drawn shape
+      const coordinates = path.getArray().map((latLng: any) => ({
+        lat: latLng.lat(),
+        lng: latLng.lng(),
+      }));
+      console.log('Drawn Shape Coordinates:', coordinates);
+
+      document.getElementById('drawpoly').style.display = 'none';
+      document.getElementById('clearButton').style.display = 'block';
       this.enable();
+    });
+  }
+
+  disablePageScroll() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  enablePageScroll() {
+    document.body.style.overflow = 'auto';
+  }
+  disable(): void {
+    this.disablePageScroll();
+    this.map.setOptions({
+      draggable: false,
+      zoomControl: false,
+      scrollwheel: false,
+      disableDoubleClickZoom: false,
+    });
+  }
+
+  enable(): void {
+    this.enablePageScroll();
+    this.map.setOptions({
+      draggable: true,
+      zoomControl: true,
+      scrollwheel: true,
+      disableDoubleClickZoom: true,
     });
   }
 }

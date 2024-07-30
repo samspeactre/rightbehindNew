@@ -67,6 +67,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
+  @Output() propertyHover = new EventEmitter<any>();
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -88,7 +89,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   map: any;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 15,
+    zoom: 13,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     gestureHandling: 'greedy',
@@ -220,8 +221,11 @@ export class MapDrawComponent implements OnInit, OnDestroy {
         }
         infoWindow.open(this.map, marker);
         this.currentInfoWindow = infoWindow;
+        this.propertyHover.emit(
+          this.infoContents[index]?.listingId || this.infoContents[index]?.id
+        );
         this.map.setCenter(marker.getPosition());
-        this.map.setZoom(12);
+        this.map.setZoom(13);
       });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
@@ -345,7 +349,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
 
   clearDrawing() {
     this.mapOptions = {
-      zoom: 15,
+      zoom: 13,
       center: new google.maps.LatLng(this._center?.lat, this._center?.lng),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy',

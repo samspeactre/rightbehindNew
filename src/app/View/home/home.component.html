@@ -11,16 +11,26 @@
             Start your journey to unparalleled elegance and coastal charm today.
           </p>
           <div class="search-bar wow fadeInDown">
-            <app-search-bar (searchEvent)="searchProperties($event)"></app-search-bar>
+            <app-search-bar
+              (searchEvent)="searchProperties($event)"
+            ></app-search-bar>
           </div>
+          @if((resize.windowSize$ | async)?.width > 1024){
           <p class="my-3 wow fadeInDown">Or</p>
           <h3 class="wow fadeInDown">Maximize Your Property's Potential!</h3>
           <p class="wow fadeInDown">
             Maximize Your Property's Potential! <br />
             List with us and watch your rental income soar!
           </p>
-          <div class="dCenter pb-3">
-            <button class="btnDanger wow fadeInDown" (click)="openSellPopup('rent')">
+          }
+          <div
+            class="dCenter pb-3"
+            [class.pt-3]="(resize.windowSize$ | async)?.width <= 1024"
+          >
+            <button
+              class="btnDanger wow fadeInDown"
+              (click)="openSellPopup('rent')"
+            >
               Submit A Deal
             </button>
           </div>
@@ -31,7 +41,11 @@
 </app-banner>
 <div class="sec-2 pt-5">
   <div class="cstmContainer position-relative">
-    <app-rental-carousel heading="Hot rentals in Miami" background="white" [cards]="rent"></app-rental-carousel>
+    <app-rental-carousel
+      heading="Hot rentals in Miami"
+      background="white"
+      [cards]="rent"
+    ></app-rental-carousel>
   </div>
 </div>
 <!-- <div class="sec-3 mt-5">
@@ -55,15 +69,22 @@
         </h5>
       </div>
       <div class="col-lg-3 dCenter flex-column text-center">
-        <button class="btnWhite mx-auto mb-3 wow fadeInDown" (click)="openSellPopup('rent')">
+        <button
+          class="btnWhite mx-auto mb-3 wow fadeInDown"
+          (click)="openSellPopup('rent')"
+        >
           Submit Your Property FREE
         </button>
         <div class="counter dCenter align-items-start">
           @for (counter of counters; track counter; let i = $index) {
           <div class="counterBox">
             <div class="counter-num wow fadeInDown">
-              <span class="counter-num" [countUp]="counter.count" [reanimateOnClick]="false"
-                [options]="{ enableScrollSpy: true }"></span>
+              <span
+                class="counter-num"
+                [countUp]="counter.count"
+                [reanimateOnClick]="false"
+                [options]="{ enableScrollSpy: true }"
+              ></span>
               K+
             </div>
             <div class="counter-name wow fadeInDown">{{ counter.name }}</div>
@@ -81,7 +102,10 @@
           Submit an inquiry for a hassle-free home loan process. Let us guide
           you through every step toward securing the keys to your new home.
         </p>
-        <button class="btnSecondary wow fadeInDown submit-btn" (click)="openPopup()">
+        <button
+          class="btnSecondary wow fadeInDown submit-btn"
+          (click)="openPopup()"
+        >
           Submit an inquiry
         </button>
       </div>
@@ -101,7 +125,10 @@
             buying or selling, join our exclusive network to unlock unparalleled
             opportunities. Submit your property or explore listings now!
           </p>
-          <button class="btnBlackNWhite wow fadeInDown knowmore-btn" (click)="openPopup()">
+          <button
+            class="btnBlackNWhite wow fadeInDown knowmore-btn"
+            (click)="openPopup()"
+          >
             Know More
           </button>
         </div>
@@ -111,23 +138,38 @@
 </div>
 <div class="where py-5">
   <div class="cstmContainer">
-    <div class="row" [ngClass]="{
+    <div
+      class="row"
+      [ngClass]="{
         'flex-column-reverse': (resize.windowSize$ | async)?.width <= 1024
-      }">
+      }"
+    >
       <div class="col-lg-6">
         <div class="rounded-4 overflow-hidden">
           @if(bothLatArray?.length || videoLatArray?.length ||
           blogLatArray?.length){
-          <app-map [height]="mapHeight" [video]="true"
-            [center]=" bothLatArray?.[0] || videoLatArray?.[0] || blogLatArray?.[0]" [videoArray]="videoLatArray"
-            [blogArray]="blogLatArray" [bothArray]="bothLatArray" [bothContents]="bothArray"
-            [videoContents]="videoArray" [blogContents]="blogArray"></app-map>
+          <app-map
+            [height]="mapHeight"
+            [video]="true"
+            [center]=" bothLatArray?.[0] || videoLatArray?.[0] || blogLatArray?.[0]"
+            [videoArray]="videoLatArray"
+            [blogArray]="blogLatArray"
+            [bothArray]="bothLatArray"
+            [bothContents]="bothArray"
+            [videoContents]="videoArray"
+            [blogContents]="blogArray"
+          ></app-map>
           }
         </div>
       </div>
       <div class="col-lg-6" #secondCol>
         <div class="brainImg wow fadeInDown">
-          <img src="../../assets/img/sec-6-profile.webp" width="100%" height="100%" alt="brian" />
+          <img
+            src="../../assets/img/sec-6-profile.webp"
+            width="100%"
+            height="100%"
+            alt="brian"
+          />
         </div>
         <h2 class="text-light mt-3 wow fadeInDown profil-heading">
           Where’s Bryan
@@ -146,7 +188,10 @@
           Bryan's expertise and passion make him a trusted voice in Miami's real
           estate market and beyond. }
         </p>
-        <button class="btnPrimary wow fadeInDown" [ngClass]="{ 'mb-3': (resize.windowSize$ | async)?.width <= 1024 }">
+        <button
+          class="btnPrimary wow fadeInDown"
+          [ngClass]="{ 'mb-3': (resize.windowSize$ | async)?.width <= 1024 }"
+        >
           Know More
         </button>
       </div>

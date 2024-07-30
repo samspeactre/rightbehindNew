@@ -12,7 +12,7 @@
 <div
   class="cstm-property-card"
   (mouseenter)="hover()"
-  [id]="'card-' + card?.id"
+  [id]="'card-' + (card?.listingId || card?.id)"
   [ngStyle]="{ background: background }"
   [class.extraHeight]="page == 'listView'"
 >

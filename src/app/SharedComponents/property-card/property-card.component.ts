@@ -25,6 +25,7 @@ import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { ContactSelectComponent } from '../contact-select/contact-select.component';
+import { HttpService } from '../../Services/http.service';
 @Component({
   standalone: true,
   imports: [
@@ -79,7 +80,8 @@ export class PropertyCardComponent {
     public resize: ResizeService,
     private store: Store,
     private dialog: MatDialog,
-    private helper: HelperService
+    private helper: HelperService,
+    private http: HttpService
   ) {
     this.user$
       .pipe(
@@ -185,7 +187,7 @@ export class PropertyCardComponent {
   favourite(event: MouseEvent) {
     event.stopPropagation();
     if (this.userDetails) {
-      // this.createContact();
+      this.toggleFavorite();
     } else {
       const dialogRef = this.dialog.open(LoginPopupComponent, {
         height: '490px',
@@ -195,7 +197,7 @@ export class PropertyCardComponent {
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result?.data) {
-          // this.createContact();
+          this.toggleFavorite();
         }
       });
     }
@@ -236,5 +238,17 @@ export class PropertyCardComponent {
 
   openPhone() {
     window.location.href = `tel:${this.card.listAgentOfficePhone}`;
+  }
+  toggleFavorite() {
+    const url: string = this.card.favoriteId
+      ? 'favoriteproperty/remove'
+      : 'favoriteproperty/add';
+    const data = {
+      propertyId: this.card?.id,
+      listingId: this.card?.listingId,
+    };
+    this.http.loaderPost(url, data, true).subscribe((response: any) => {
+      console.log(response);
+    });
   }
 }

@@ -37,7 +37,10 @@
 .extraHeight {
   min-height: 214px;
 }
-
+.highlightCard {
+  border-right: 3px solid #0062c9;
+  transition: border 0.3s ease-in-out;
+}
 .description-para {
   width: fit-content;
 

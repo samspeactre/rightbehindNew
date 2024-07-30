@@ -1,7 +1,12 @@
 <div class="main-section">
   <app-banner [show]="show">
     <div class="container">
-      <div class="sec-1 pb-3">
+      <div
+        class="pb-3"
+        [class.sec-1]="(resize.windowSize$ | async)?.width > 1024"
+        [class.py-3]="(resize.windowSize$ | async)?.width <= 1024"
+      >
+        @if((resize.windowSize$ | async)?.width > 1024){
         <div [ngClass]="{ 'd-none': show }">
           <ngx-typed-writer
             [strings]="[
@@ -27,7 +32,11 @@
           </h5>
           }
         </div>
-        <div class="my-3 wow fadeInDown search-bar position-relative">
+        }
+        <div
+          class="wow fadeInDown search-bar position-relative"
+          [class.my-3]="(resize.windowSize$ | async)?.width > 1024"
+        >
           <div [ngClass]="{ 'd-none': show }">
             <app-search-bar
               [search]="search"
@@ -54,12 +63,13 @@
               [d]="sort"
               [e]="minPrice"
               [f]="maxPrice"
+              [filterType]="filterType"
               [isResetDisabled]="isResetDisabled()"
               (onChangeFilter)="onFilterChange($event.event, $event.type)"
               (onRangeFilter)="onRangeFilter()"
               (rest)="reset()"
               (sorted)="sorting($event)"
-              (closed)="showFil(false)"
+              (closed)="closeFil()"
             ></app-filter>
             }
           </div>
@@ -101,6 +111,7 @@
         <div class="col-lg-12 wow fadeInDown mb-3">
           @if(latLngArray?.length){
           <app-map-draw
+            (propertyHover)="highlightCard($event)"
             [highlighted]="highlighted"
             [communityMarkerPositions]="latLngArray"
             [center]="latLngArray?.[1]"
@@ -170,6 +181,7 @@
           <div class="mapElement">
             @if(cards?.length && latLngArray?.length){
             <app-map-draw
+              (propertyHover)="highlightCard($event)"
               [highlighted]="highlighted"
               [markerPositions]="latLngArray"
               [center]="latLngArray?.[0]"

@@ -68,6 +68,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   @Input() height: any;
   @Input() community: boolean = false;
   @Output() propertyHover = new EventEmitter<any>();
+  @Output() drawCordinates = new EventEmitter<any>();
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -337,7 +338,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       this.enableMapInteractions();
       this.shapePromise = Promise.resolve(this.shapeCoordinates);
       console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
-
+      this.drawCordinates.emit(JSON.stringify(this.shapeCoordinates));
       const bounds = new google.maps.LatLngBounds();
       this.shapeCoordinates.forEach((coord) => bounds.extend(coord));
       this.map.fitBounds(bounds);

@@ -110,6 +110,7 @@ export class ListingPageComponent {
   type: any = null;
   maxPrice: any = null;
   minPrice: any = null;
+  poly: any = null;
   beds: any = null;
   baths: any = null;
   sort: string = 'Date: Late to Early';
@@ -200,6 +201,7 @@ export class ListingPageComponent {
       noOfBeds: this.beds,
       noOfBaths: this.baths,
       type: '2',
+      poly: this.poly,
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {
@@ -428,5 +430,9 @@ export class ListingPageComponent {
       }
       this.renderer.addClass(cardElement, 'highlightCard');
     }
+  }
+  drawSearch(event) {
+    this.poly = event;
+    this.getProperties(false);
   }
 }

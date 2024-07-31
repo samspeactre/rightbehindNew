@@ -5,7 +5,7 @@
       title="Click to draw on map"
       class="drawButton customBtn"
       id="drawpoly"
-      [class.d-none]="drawing"
+      [class.d-none]="drawing || community"
     >
       <fa-icon [icon]="faEdit"></fa-icon>
     </button>
@@ -14,7 +14,7 @@
     title="Click to clear drawn shapes on map"
     class="drawButton customBtn trash"
     id="clearButton"
-    [class.d-none]="!drawing"
+    [class.d-none]="!drawing || community"
   >
     <fa-icon [icon]="faTrash"></fa-icon>
   </button>

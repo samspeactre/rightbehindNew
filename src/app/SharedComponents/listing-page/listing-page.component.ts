@@ -21,7 +21,7 @@ import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { faBuilding, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxTypedWriterModule } from 'ngx-typed-writer';
-import { Subject, finalize, takeUntil } from 'rxjs';
+import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
@@ -37,6 +37,8 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { DummyMapComponent } from '../dummy-map/dummy-map.component';
+import { selectUser } from '../../Ngrx/data.reducer';
+import { Store } from '@ngrx/store';
 @Component({
   standalone: true,
   imports: [
@@ -116,6 +118,8 @@ export class ListingPageComponent {
   poly: any = null;
   beds: any = null;
   baths: any = null;
+  user$ = this.store.select(selectUser);
+  userDetails: any;
   sort: string = 'Date: Late to Early';
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
@@ -132,10 +136,21 @@ export class ListingPageComponent {
     public dialog: MatDialog,
     public resize: ResizeService,
     private elRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private store: Store
   ) {
     this.url = this.router.url;
     this.showMap = true;
+    this.user$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((user) => {
+        this.userDetails = user;
+      });
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['search']) {
         this.search = params['search'];
@@ -169,7 +184,7 @@ export class ListingPageComponent {
     const Url = `Property/get?${urlParams.toString()}`;
 
     this.http
-      .loaderGet(Url, false, true, true, false)
+      .loaderGet(Url, this.userDetails ? true : false, true, true, false)
       .pipe(
         finalize(() => {
           this.loadMoreLoader = false;
@@ -203,7 +218,7 @@ export class ListingPageComponent {
       minPrice: this.minPrice,
       noOfBeds: this.beds,
       noOfBaths: this.baths,
-      type: '2',
+      propertyType: this.type,
       poly: this.poly,
     };
 

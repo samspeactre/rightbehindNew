@@ -129,6 +129,7 @@
               <div class="w-50 d-flex align-items-center gap-3">
                 <button
                   (click)="favourite($event)"
+                  [class.text-danger]="card?.favoriteId"
                   class="bg-transparent border-0 text-secondary ms-auto"
                 >
                   <fa-icon [icon]="faHeart"></fa-icon>

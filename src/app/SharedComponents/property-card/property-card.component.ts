@@ -242,11 +242,18 @@ export class PropertyCardComponent {
       ? 'favoriteproperty/remove'
       : 'favoriteproperty/add';
     const data = {
-      propertyId: this.card?.id,
+      propertyId: this.card?.id == 0 ? null : this.card?.id,
       listingId: this.card?.listingId,
     };
-    this.http.loaderPost(url, data, true).subscribe((response: any) => {
-      console.log(response);
-    });
+    const favData = {
+      id: this.card.favoriteId,
+    };
+    this.http
+      .loaderPost(url, this.card.favoriteId ? favData : data, true)
+      .subscribe((response: any) => {
+        this.card['favoriteId'] = this.card.favoriteId
+          ? null
+          : response?.model?.id;
+      });
   }
 }

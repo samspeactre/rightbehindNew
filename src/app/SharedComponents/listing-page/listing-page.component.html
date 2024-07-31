@@ -181,7 +181,7 @@
         <div class="col-lg-7 wow fadeInDown rightP">
           <div class="mapElement">
             @if(cards?.length && latLngArray?.length){
-            <app-map-draw
+            <!-- <app-map-draw
               (drawCordinates)="drawSearch($event)"
               (propertyHover)="highlightCard($event)"
               [highlighted]="highlighted"
@@ -189,7 +189,8 @@
               [center]="latLngArray?.[0]"
               [infoContents]="cards"
               [height]="screenHeight"
-            ></app-map-draw>
+            ></app-map-draw> -->
+            <app-dummy-map [height]="screenHeight"></app-dummy-map>
             }
           </div>
         </div>

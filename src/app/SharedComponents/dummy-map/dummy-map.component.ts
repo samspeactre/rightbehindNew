@@ -1,10 +1,13 @@
-// dummy-map.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 declare var google: any;
 
 @Component({
   standalone: true,
+  imports: [FontAwesomeModule],
   selector: 'app-dummy-map',
   templateUrl: './dummy-map.component.html',
   styleUrls: ['./dummy-map.component.scss'],
@@ -12,12 +15,17 @@ declare var google: any;
 export class DummyMapComponent implements OnInit {
   map: any;
   poly: any;
+  @Input() height: any;
+  faEdit = faEdit;
+  faTrash = faTrash;
+  drawing: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
     this.initializeMap();
   }
+
   disablePageScroll() {
     document.body.style.overflow = 'hidden';
   }
@@ -25,9 +33,9 @@ export class DummyMapComponent implements OnInit {
   enablePageScroll() {
     document.body.style.overflow = 'auto';
   }
+
   drawFreeHand(): void {
     this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
-
     const move = google.maps.event.addListener(
       this.map,
       'mousemove',
@@ -40,7 +48,7 @@ export class DummyMapComponent implements OnInit {
       this.map,
       'touchmove',
       (e: any) => {
-        e.preventDefault(); // Prevent default scrolling
+        e.preventDefault();
         this.poly.getPath().push(e.latLng);
       }
     );
@@ -49,9 +57,14 @@ export class DummyMapComponent implements OnInit {
       google.maps.event.removeListener(move);
       google.maps.event.removeListener(touchMove);
       const path = this.poly.getPath();
+      const coordinates = path.getArray().map((latLng: any) => ({
+        lat: latLng.lat(),
+        lng: latLng.lng(),
+      }));
+      console.log(coordinates);
+
       this.poly.setMap(null);
       this.poly = new google.maps.Polygon({ map: this.map, path: path });
-
       google.maps.event.clearListeners(this.map.getDiv(), 'mousedown');
       google.maps.event.clearListeners(this.map.getDiv(), 'touchstart');
       this.enable();
@@ -78,6 +91,14 @@ export class DummyMapComponent implements OnInit {
     });
   }
 
+  clearShapes(): void {
+    if (this.poly) {
+      this.poly.setMap(null);
+      this.poly = null;
+    }
+    this.drawing = false;
+  }
+
   initializeMap(): void {
     const mapOptions = {
       zoom: 14,
@@ -93,7 +114,7 @@ export class DummyMapComponent implements OnInit {
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
       this.disable();
-
+      this.drawing = true;
       google.maps.event.addDomListener(
         this.map.getDiv(),
         'mousedown',
@@ -109,6 +130,11 @@ export class DummyMapComponent implements OnInit {
           this.drawFreeHand();
         }
       );
+    });
+
+    document.getElementById('clearButton').addEventListener('click', (e) => {
+      e.preventDefault();
+      this.clearShapes();
     });
   }
 }

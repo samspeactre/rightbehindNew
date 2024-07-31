@@ -55,6 +55,7 @@ export class DummyMapComponent implements OnInit {
   @Input() community: boolean = false;
   @Output() propertyHover = new EventEmitter<any>();
   @Output() drawCordinates = new EventEmitter<any>();
+  @Output() resetDrawCordinates = new EventEmitter<any>();
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -75,6 +76,7 @@ export class DummyMapComponent implements OnInit {
   faEdit = faEdit;
   faTrash = faTrash;
   drawing: boolean = false;
+  @Input() disabled: boolean = false;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
     zoom: 13,
@@ -167,8 +169,12 @@ export class DummyMapComponent implements OnInit {
     if (this.poly) {
       this.poly.setMap(null);
       this.poly = null;
+      this.resetDrawCordinates.emit(true);
+    } else {
+      this.resetDrawCordinates.emit(false);
+      this.placeMarkers();
     }
-    this.placeMarkers();
+    this.enable();
     this.drawing = false;
   }
 

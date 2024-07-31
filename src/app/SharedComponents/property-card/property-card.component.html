@@ -144,6 +144,7 @@
           </div>
         </div>
         <div class="pb-1 pe-1">
+          @if(!card?.listingId){
           <button
             class="btnPrimary rounded-5 py-1 w-100 mb-1"
             [ngClass]="{ 'wow fadeInDown': animation }"
@@ -151,6 +152,15 @@
           >
             Request A Tour
           </button>
+          } @else {
+          <button
+            class="btnPrimary rounded-5 py-1 w-100 mb-1"
+            [ngClass]="{ 'wow fadeInDown': animation }"
+            (click)="openContactOptions()"
+          >
+            Request A Tour
+          </button>
+          }
         </div>
       </div>
     </div>

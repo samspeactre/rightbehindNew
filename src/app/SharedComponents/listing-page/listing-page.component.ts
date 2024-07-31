@@ -73,6 +73,7 @@ import { DummyMapComponent } from '../dummy-map/dummy-map.component';
 })
 export class ListingPageComponent {
   cards: any = [1, 2, 3];
+  originalCards: any = [];
   zoom = 15;
   pageType!: string;
   private destroy$ = new Subject<void>();
@@ -250,6 +251,7 @@ export class ListingPageComponent {
       }
 
       this.noData = mainResponse?.properties?.length === 0;
+      this.originalCards = this.cards;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
     } else {
       if (!loadMore) {
@@ -436,5 +438,13 @@ export class ListingPageComponent {
   drawSearch(event) {
     this.poly = event;
     this.getProperties(false);
+  }
+  resetCordinates(event) {
+    this.poly = null;
+    if (event) {
+      this.getProperties(false);
+    } else {
+      this.cards = this.originalCards;
+    }
   }
 }

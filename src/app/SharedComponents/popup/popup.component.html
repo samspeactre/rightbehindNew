@@ -116,7 +116,18 @@
               <h2 class="mb-0">{{ propertyData?.price | currency : "USD" }}</h2>
             </div>
             <div class="col-lg-9 my-3 dCenter justify-content-end gap-3">
-              <button class="btnDark" (click)="userDetails ? createContact() : openPopup()">Request a tour</button>
+              @if(!propertyData?.listingId){
+              <button
+                class="btnDark"
+                (click)="userDetails ? createContact() : openPopup()"
+              >
+                Request a tour
+              </button>
+              } @else {
+              <button class="btnDark" (click)="openContactOptions()">
+                Request a tour
+              </button>
+              }
             </div>
           </div>
         </div>

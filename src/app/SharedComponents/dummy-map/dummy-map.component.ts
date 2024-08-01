@@ -26,6 +26,7 @@ declare var google: any;
 })
 export class DummyMapComponent implements OnInit {
   map: any;
+  featureLayer: any;
   poly: any;
   private _center: google.maps.LatLngLiteral = {
     lat: 25.761681,
@@ -36,17 +37,24 @@ export class DummyMapComponent implements OnInit {
       this.zoomToHighlightedMarker(data);
     }
   }
+  @Input() set removeHighlighted(data: any) {
+    if (data) {
+      this.removeHighlightedMarker(data);
+    }
+  }
   @Input()
   get center(): google.maps.LatLngLiteral {
     return this._center;
   }
 
   set center(value: google.maps.LatLngLiteral) {
-    this._center = value;
+    if (value) {
+      this._center = value;
+    }
     if (this.mapOptions) {
       this.mapOptions.center = this._center;
     }
-    if (this.map) {
+    if (this.map && this._center) {
       this.map.setCenter(this._center);
     }
   }
@@ -62,17 +70,28 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     }
   }
+  @Input() set place_id(data: string) {
+    if (data) {
+      this.placeId = data;
+    }
+  }
   @Input() set communityMarkerPositions(data: any[]) {
     if (data) {
       this.communityMarkers = data;
       this.placeMarkers();
     }
   }
-
+  @Input() set highlightedAreaCoordinates(coordinates: any[]) {
+    if (coordinates) {
+      this.setHighlightedArea();
+    }
+  }
+  placeId: string = '';
   markers: any[] = [];
   communityMarkers: any[] = [];
   originalMarkers: any[] = [];
   googleMarkers: any[] = [];
+  highlightedArea: any;
   faEdit = faEdit;
   faTrash = faTrash;
   drawing: boolean = false;
@@ -82,6 +101,7 @@ export class DummyMapComponent implements OnInit {
     zoom: 13,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapId: 'a6d3d2caf60f2217',
     gestureHandling: 'greedy',
     draggable: true,
     mapTypeControl: false,
@@ -207,11 +227,11 @@ export class DummyMapComponent implements OnInit {
       e.preventDefault();
       this.clearShapes();
     });
+    this.featureLayer = this.map.getFeatureLayer('LOCALITY');
     this.placeMarkers();
   }
   zoomToHighlightedMarker(highlighted: any) {
     if (!this.map || !highlighted) return;
-
     const marker =
       this.markers.find(
         (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
@@ -225,19 +245,33 @@ export class DummyMapComponent implements OnInit {
       if (position) {
         this.map.setCenter(position);
 
-        // const currentIcon = marker.markerInstance.getIcon();
+        const currentIcon = marker.markerInstance.getIcon();
 
-        // marker.markerInstance.setIcon({
-        //   url: currentIcon.url || currentIcon,
-        //   scaledSize: new google.maps.Size(70, 70)
-        // });
+        marker.markerInstance.setIcon({
+          url: currentIcon.url || currentIcon,
+          scaledSize: new google.maps.Size(55, 55),
+        });
+      }
+    }
+  }
+  removeHighlightedMarker(highlighted: any) {
+    if (!this.map || !highlighted) return;
+    const marker =
+      this.markers.find(
+        (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
+      ) ||
+      this.communityMarkers.find(
+        (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
+      );
 
-        // setTimeout(() => {
-        //   marker.markerInstance.setIcon({
-        //     url: currentIcon.url || currentIcon,
-        //     scaledSize: currentIcon.scaledSize || new google.maps.Size(50, 50)
-        //   });
-        // }, 3000);
+    if (marker && marker.markerInstance) {
+      const position = marker.markerInstance.getPosition();
+      if (position) {
+        const currentIcon = marker.markerInstance.getIcon();
+        marker.markerInstance.setIcon({
+          url: currentIcon.url || currentIcon,
+          scaledSize: new google.maps.Size(40, 40),
+        });
       }
     }
   }
@@ -252,7 +286,10 @@ export class DummyMapComponent implements OnInit {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(markerData.lat, markerData.lng),
         map: this.map,
-        icon: iconUrl,
+        icon: {
+          url: iconUrl,
+          scaledSize: new google.maps.Size(40, 40),
+        },
       });
       const infoWindow = new google.maps.InfoWindow({
         content: this.createInfoWindowContent(index),
@@ -294,5 +331,22 @@ export class DummyMapComponent implements OnInit {
   clearMarkers() {
     this.googleMarkers.forEach((marker) => marker.setMap(null));
     this.googleMarkers = [];
+  }
+
+  setHighlightedArea(): void {
+    console.log(this.placeId);
+    const featureStyleOptions = {
+      strokeColor: '#810FCB',
+      strokeOpacity: 1.0,
+      strokeWeight: 3.0,
+      fillColor: '#810FCB',
+      fillOpacity: 0.5,
+    };
+    //@ts-ignore
+    this.featureLayer.style = (options) => {
+      if (options.feature.placeId == this.placeId) {
+        return featureStyleOptions;
+      }
+    };
   }
 }

@@ -1,11 +1,6 @@
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,25 +15,24 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMap } from '@fortawesome/free-regular-svg-icons';
 import { faBuilding, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { Store } from '@ngrx/store';
 import { NgxTypedWriterModule } from 'ngx-typed-writer';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
+import { selectUser } from '../../Ngrx/data.reducer';
 import { types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
 import { BannerComponent } from '../banner/banner.component';
 import { CommunityCardComponent } from '../community-card/community-card.component';
+import { DummyMapComponent } from '../dummy-map/dummy-map.component';
+import { FilterComponent } from '../filter/filter.component';
 import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
 import { MapComponent } from '../map/map.component';
-import { MapDrawComponent } from '../mapDraw/mapDraw.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-import { FilterComponent } from '../filter/filter.component';
-import { NoopScrollStrategy } from '@angular/cdk/overlay';
-import { DummyMapComponent } from '../dummy-map/dummy-map.component';
-import { selectUser } from '../../Ngrx/data.reducer';
-import { Store } from '@ngrx/store';
+import { SearchBarListingComponent } from '../search-bar-listing/search-bar-listing.component';
 @Component({
   standalone: true,
   imports: [
@@ -62,12 +56,12 @@ import { Store } from '@ngrx/store';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    MapDrawComponent,
     CommunityCardComponent,
     FontAwesomeModule,
     NgxTypedWriterModule,
     FilterComponent,
     DummyMapComponent,
+    SearchBarListingComponent,
   ],
   selector: 'app-listing-page',
   templateUrl: './listing-page.component.html',
@@ -86,8 +80,9 @@ export class ListingPageComponent {
   filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = '';
+  place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
-  pageSize: number = 20;
+  pageSize: number = 40;
   loader: boolean = true;
   noData: boolean = false;
   loadMore: boolean = false;
@@ -102,6 +97,7 @@ export class ListingPageComponent {
   faBars = faFilter;
   loadFirstTime: boolean = true;
   highlighted: any;
+  removeHighlighted: any;
   sortsArray: any = [
     'Price: Low to High',
     'Price: High to Low',
@@ -125,6 +121,7 @@ export class ListingPageComponent {
     lat: -34.4009703,
     lng: 150.4826715,
   };
+  navHeight: number = 0;
   url!: string;
   screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
@@ -168,7 +165,15 @@ export class ListingPageComponent {
       }
     });
   }
+  ngAfterViewInit() {
+    this.navHeight = document.getElementById('navbarHeight').clientHeight;
 
+    this.screenHeight =
+      window.innerWidth > 1024
+        ? window.innerHeight - this.navHeight
+        : window.innerHeight;
+    console.log(this.navHeight, this.screenHeight, window.innerHeight);
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -244,10 +249,15 @@ export class ListingPageComponent {
         this.cards = newProperties;
       }
       if (this.cards?.length) {
-        this.latLngArray = this.cards.map((location: any) => ({
-          lat: location.latitude,
-          lng: location.longitude,
-        }));
+        this.latLngArray = this.cards
+          .filter(
+            (location: any) =>
+              location.latitude !== null && location.longitude !== null
+          )
+          .map((location: any) => ({
+            lat: location.latitude,
+            lng: location.longitude,
+          }));
         if (type == 'properties') {
           if (this.loadFirstTime) {
             const prices = this.cards.map((data) => data.price ?? 0);
@@ -302,15 +312,13 @@ export class ListingPageComponent {
     }
   }
 
-  searchProperties(event: string) {
-    this.search = event;
+  searchProperties(event: any) {
+    this.search = event.search;
+    this.place_id = event.place_id;
     if (event) {
-      this.router.navigate(
-        [this.router.url.includes('buy') ? '/buy' : 'rent'],
-        { queryParams: { search: event } }
-      );
+      this.router.navigate(['rent'], { queryParams: { search: this.search } });
     } else {
-      this.router.navigate([this.router.url.includes('buy') ? '/buy' : 'rent']);
+      this.router.navigate(['rent']);
     }
   }
 
@@ -378,6 +386,7 @@ export class ListingPageComponent {
   reset() {
     this.closeFil();
     this.search = null;
+    this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
     this.maxPrice = null;
     this.minPrice = null;
     this.beds = null;
@@ -423,6 +432,9 @@ export class ListingPageComponent {
   }
   hover(event) {
     this.highlighted = event;
+  }
+  hoverLeft(event) {
+    this.removeHighlighted = event;
   }
   showFil(event) {
     document.body.classList.add('bodyLoader');

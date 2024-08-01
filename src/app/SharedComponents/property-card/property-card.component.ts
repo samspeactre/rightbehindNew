@@ -53,6 +53,7 @@ export class PropertyCardComponent {
   @Input() background!: string;
   @Input() page!: string;
   @Output() propertyHover = new EventEmitter<any>();
+  @Output() propertyHoverLeft = new EventEmitter<any>();
   faChevronCircleLeft = faChevronLeft;
   faChevronCircleRight = faChevronRight;
   private destroy$ = new Subject<void>();
@@ -178,6 +179,12 @@ export class PropertyCardComponent {
   }
   hover() {
     this.propertyHover.emit({
+      lat: this.card?.latitude,
+      lng: this.card?.longitude,
+    });
+  }
+  hoverLeft() {
+    this.propertyHoverLeft.emit({
       lat: this.card?.latitude,
       lng: this.card?.longitude,
     });

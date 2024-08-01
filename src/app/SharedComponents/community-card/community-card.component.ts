@@ -25,6 +25,8 @@ export class CommunityCardComponent {
   @Input() animation: boolean = true;
   @Input() item: any;
   @Output() propertyHover = new EventEmitter<any>();
+  @Output() propertyHoverLeft = new EventEmitter<any>();
+
   url!: string;
   constructor(private router: Router) {}
   ngOnInit() {
@@ -41,7 +43,16 @@ export class CommunityCardComponent {
       },
     });
   }
-  hover(){
-    this.propertyHover.emit({ lat: this.item?.latitude, lng: this.item?.longitude })
+  hover() {
+    this.propertyHover.emit({
+      lat: this.item?.latitude,
+      lng: this.item?.longitude,
+    });
+  }
+  hoverLeft() {
+    this.propertyHoverLeft.emit({
+      lat: this.item?.latitude,
+      lng: this.item?.longitude,
+    });
   }
 }

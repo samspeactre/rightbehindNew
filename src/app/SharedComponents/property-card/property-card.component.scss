@@ -121,18 +121,18 @@
   }
 }
 .carosuelBtn {
-  background: white;
+  background: #1a1a1ab0;
   border: none;
   outline: none;
-  color: black;
+  color: white;
   position: absolute;
   z-index: 2;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 100px;
-  width: 30px;
-  height: 30px;
-  font-size: 12px;
+  border-radius: 3px;
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
 }
 .sBtn {
   left: 10px;
@@ -149,10 +149,21 @@
   font-size: 13px;
   color: #848484;
 }
+.col60 {
+  width: 60%;
+}
+.col40 {
+  width: 40%;
+}
 .highlight {
   box-shadow: 0 0 4px 1px #ff0e00 !important;
 }
-
+@media only screen and (max-width: 1024px) {
+  .col60,
+  .col40 {
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 600px) {
   .btnContainer button {
     padding: 1.7vw !important;

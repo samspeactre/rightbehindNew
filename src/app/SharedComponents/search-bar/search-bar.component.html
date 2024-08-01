@@ -25,30 +25,4 @@
       @if((resize.windowSize$ | async)?.width > 1024){ Search }
     </button>
   </div>
-  @if(filter){ @if((resize.windowSize$ | async)?.width > 1024){
-  <button class="btnPrimary login-btn dCenter" (click)="showFilt()">
-    <fa-icon [icon]="faBars"></fa-icon>
-  </button>
-  } @else {
-  <div class="minWidth5">
-    <div class="dCenter justify-content-start gap-3 filterBtns my-3">
-      <button class="dCenter btnPrimary py-1" (click)="openPopUp('all')">
-        <fa-icon [icon]="faBars" class="me-2"></fa-icon>
-        All Filters
-      </button>
-      <button class="btnPrimary py-1" (click)="openPopUp('type')">
-        Property Type
-      </button>
-      <button class="btnPrimary py-1" (click)="openPopUp('price')">
-        Price
-      </button>
-      <button class="btnPrimary py-1" (click)="openPopUp('beds')">
-        Beds/Baths
-      </button>
-      <button class="btnPrimary py-1" (click)="openPopUp('sorts')">
-        Sorting
-      </button>
-    </div>
-  </div>
-  } }
 </div>

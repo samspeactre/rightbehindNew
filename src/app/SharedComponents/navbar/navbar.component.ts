@@ -80,7 +80,10 @@ export class NavbarComponent {
     private router: Router,
     private actiavtedRoute: ActivatedRoute
   ) {
-    if (this.router.url.includes('communities')) {
+    if (
+      this.router.url.includes('communities') ||
+      this.router.url.includes('rent')
+    ) {
       this.communityHeader = true;
     }
     if (this.router.url.includes('-add-property')) {

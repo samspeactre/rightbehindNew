@@ -1,0 +1,50 @@
+<div
+  class="m-auto d-flex align-items-center justify-content-between"
+  [class.flex-column]="(resize.windowSize$ | async)?.width <= 1024"
+>
+  <div class="searchBar dCenter justify-content-between">
+    <input
+      #autocompleteInput
+      [(ngModel)]="search"
+      (keydown.enter)="selectFirstSuggestion()"
+      (ngModelChange)="this.mentorSearchQueryUpdate.next($event)"
+      type="text"
+      class="input-text"
+      placeholder="Enter location"
+    />
+    <button
+      class="search dCenter"
+      (click)="submit()"
+      [disabled]="searching || !search || search == ''"
+    >
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+  </div>
+  @if(filter){
+  <div class="minWidth5">
+    <div class="dCenter justify-content-start gap-1 filterBtns">
+      <button class="dCenter btnCstm" (click)="openPopUp('all')">
+        <fa-icon [icon]="faBars" class="me-1"></fa-icon>
+        All Filters
+      </button>
+      <button class="dCenter btnCstm gap-1" (click)="openPopUp('beds')">
+        <fa-icon [icon]="faBed"></fa-icon>
+        /
+        <fa-icon [icon]="faBath"></fa-icon>
+      </button>
+      <button class="dCenter btnCstm" (click)="openPopUp('price')">
+        <fa-icon [icon]="faDollar" class="me-1"></fa-icon>
+        Price
+      </button>
+      <button class="dCenter btnCstm" (click)="openPopUp('type')">
+        <fa-icon [icon]="faBuilding" class="me-1"></fa-icon>
+        Type
+      </button>
+      <button class="dCenter btnCstm" (click)="openPopUp('sorts')">
+        <fa-icon [icon]="faSort" class="me-1"></fa-icon>
+        Sort
+      </button>
+    </div>
+  </div>
+  }
+</div>

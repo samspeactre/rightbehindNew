@@ -166,17 +166,40 @@ export class ListingPageComponent {
     });
   }
   ngAfterViewInit() {
-    this.navHeight = document.getElementById('navbarHeight').clientHeight;
-
-    this.screenHeight =
-      window.innerWidth > 1024
-        ? window.innerHeight - this.navHeight
-        : window.innerHeight;
-    console.log(this.navHeight, this.screenHeight, window.innerHeight);
+    setTimeout(() => {
+      this.navHeight = document.getElementById('navbarHeight').clientHeight;
+      this.screenHeight =
+        window.innerWidth > 1024
+          ? window.innerHeight - this.navHeight
+          : window.innerHeight;
+      console.log(this.navHeight, this.screenHeight, window.innerHeight);
+    });
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  getDrawnProperties() {
+    const Url = `property/get/poly`;
+    this.http
+      .loaderPost(Url, { poly: this.poly }, false)
+      .pipe(
+        finalize(() => {
+          this.loadMoreLoader = false;
+          this.loader = false;
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((response: any) => {
+        console.log(response);
+
+        // this.handleResponse(
+        //   response?.model?.properties,
+        //   loadMore,
+        //   'properties',
+        //   response?.model
+        // );
+      });
   }
   getProperties(loadMore: boolean) {
     if (!loadMore) {
@@ -464,7 +487,7 @@ export class ListingPageComponent {
   }
   drawSearch(event) {
     this.poly = event;
-    this.getProperties(false);
+    this.getDrawnProperties();
   }
   resetCordinates(event) {
     this.poly = null;

@@ -71,6 +71,7 @@ export class LayoutComponent {
   posts: any;
   post: any;
   comment: any;
+  userCount: any = 0;
   private destroy$ = new Subject<void>();
   user$ = this.store.select(selectUser);
   userDetails: any;
@@ -102,8 +103,8 @@ export class LayoutComponent {
         this.userDetails = user;
       });
   }
-  ngOnInit(){
-    this.getInquiries()
+  ngOnInit() {
+    this.getInquiries();
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -116,10 +117,19 @@ export class LayoutComponent {
         takeUntil(this.destroy$),
         finalize(() => {
           this.getRelatedInquiries();
+          this.getInquiry();
         })
       )
       .subscribe((response) => {
         this.inquiries = response?.model?.forums;
+      });
+  }
+  getInquiry() {
+    this.http
+      .loaderGet(`Forum/get/${this.id}`, true, true)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        this.userCount = response?.model?.userCount;
       });
   }
   getRelatedInquiries() {
@@ -162,6 +172,7 @@ export class LayoutComponent {
           queryParams: { userExistInForum: false },
           queryParamsHandling: 'merge',
         });
+        this.userCount = this.userCount - 1;
       });
   }
   joinNow() {
@@ -190,6 +201,7 @@ export class LayoutComponent {
           queryParams: { userExistInForum: true },
           queryParamsHandling: 'merge',
         });
+        this.userCount = this.userCount + 1;
       });
   }
   rating(react: any) {

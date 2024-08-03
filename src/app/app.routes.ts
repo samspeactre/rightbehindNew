@@ -33,9 +33,9 @@ export const routes: Routes = [
       {
         path: 'rent',
         loadChildren: () =>
-          import('./SharedComponents/listing-page/listing-page.route').then(
-            (m) => m.Listing_Page_Routes
-          ),
+          import(
+            './SharedComponents/listing-page-rent/listing-page-rent.route'
+          ).then((m) => m.Listing_Page_Rent_Routes),
       },
       {
         path: 'property-details',

@@ -1,0 +1,64 @@
+@import url("../../../assets/scss/skeleton.scss");
+
+.btnWhiteNBlue {
+  padding: 0.5rem 2rem;
+}
+
+.btnWhiteNBlue.active {
+  background-color: #0160c9;
+  border-color: #0160c9;
+  color: white;
+}
+
+.rightP {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+.zIndex {
+  z-index: 3;
+}
+.btnFilter {
+  background: none;
+  border: none;
+  color: #0147b8;
+}
+.colFirst {
+  width: 40%;
+}
+.colSecond {
+  width: 60%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .colFirst {
+    width: 100%;
+  }
+  .colSecond {
+    width: 100%;
+  }
+  .rightP {
+    position: unset;
+    padding-right: 12px !important;
+  }
+  .btnToggler {
+    background: #f3392c;
+    color: #fff;
+    border: none;
+    padding: 8px 1rem;
+  }
+  :host ::ng-deep {
+    .ngs-select {
+      border: 1px solid #0000002e;
+      margin: 10px 0;
+    }
+
+    .btnToggler {
+      background: #f3392c;
+      color: #fff;
+      border: none;
+      padding: 8px 1rem;
+    }
+  }
+}

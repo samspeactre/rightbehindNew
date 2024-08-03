@@ -6,11 +6,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  faAt,
+  faBath,
+  faBed,
   faChevronLeft,
   faChevronRight,
+  faEnvelope,
   faHeart,
   faMagnifyingGlassPlus,
   faMapMarkerAlt,
+  faPhoneAlt,
+  faRulerCombined,
   faShare,
   faShareAlt,
 } from '@fortawesome/free-solid-svg-icons';
@@ -43,6 +49,11 @@ import { HttpService } from '../../Services/http.service';
 export class PropertyCardComponent {
   faMagnifyingGlassPlus = faMagnifyingGlassPlus;
   faMapMarkerAlt = faMapMarkerAlt;
+  faBed = faBed;
+  faBath = faBath;
+  faRuler = faRulerCombined;
+  faAt = faEnvelope;
+  faPhone = faPhoneAlt;
   user$ = this.store.select(selectUser);
   userDetails: any;
   @Input() card!: any;

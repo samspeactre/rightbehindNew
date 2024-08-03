@@ -58,16 +58,29 @@ export class DummyMapComponent implements OnInit {
       this.map.setCenter(this._center);
     }
   }
-  @Input() infoContents: any[] = [];
+  infoContentsArray: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
   @Output() propertyHover = new EventEmitter<any>();
   @Output() drawCordinates = new EventEmitter<any>();
   @Output() resetDrawCordinates = new EventEmitter<any>();
+  @Input() set infoContents(data: any) {
+    if (data) {
+      this.infoContentsArray = data;
+      if (
+        (this.markers?.length || this.communityMarkers?.length) &&
+        this.infoContentsArray?.length
+      ) {
+        this.placeMarkers();
+      }
+    }
+  }
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
-      this.placeMarkers();
+      if (this.markers?.length && this.infoContentsArray?.length) {
+        this.placeMarkers();
+      }
     }
   }
   @Input() set place_id(data: string) {
@@ -78,7 +91,9 @@ export class DummyMapComponent implements OnInit {
   @Input() set communityMarkerPositions(data: any[]) {
     if (data) {
       this.communityMarkers = data;
-      this.placeMarkers();
+      if (this.communityMarkers?.length && this.infoContentsArray?.length) {
+        this.placeMarkers();
+      }
     }
   }
   @Input() set highlightedAreaCoordinates(coordinates: any[]) {
@@ -302,7 +317,8 @@ export class DummyMapComponent implements OnInit {
         infoWindow.open(this.map, marker);
         this.currentInfoWindow = infoWindow;
         this.propertyHover.emit(
-          this.infoContents[index]?.listingId || this.infoContents[index]?.id
+          this.infoContentsArray[index]?.listingId ||
+            this.infoContentsArray[index]?.id
         );
         this.map.setCenter(marker.getPosition());
         this.map.setZoom(13);
@@ -317,9 +333,10 @@ export class DummyMapComponent implements OnInit {
     const component: any = this.community
       ? CommunityCardMapComponent
       : PropertyCardMapComponent;
+    console.log(this.infoContentsArray[index], index);
     const factory = this.resolver.resolveComponentFactory(component);
     const componentRef: any = factory.create(this.injector);
-    componentRef.instance.card = this.infoContents[index];
+    componentRef.instance.card = this.infoContentsArray[index];
     componentRef.instance.loader = false;
     componentRef.instance.routeDirect = true;
     this.appRef.attachView(componentRef.hostView);

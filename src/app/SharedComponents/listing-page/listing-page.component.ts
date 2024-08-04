@@ -236,7 +236,7 @@ export class ListingPageComponent {
 
   searchProperties(event: any) {
     this.search = event.search;
-    if (event) {
+    if (event.search) {
       this.router.navigate(['communities'], {
         queryParams: { search: this.search },
       });

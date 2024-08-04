@@ -80,7 +80,7 @@ export class ListingPageRentComponent {
   filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = '';
-  place_id: any = null;
+  place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 40;
   loader: boolean = true;
@@ -187,8 +187,6 @@ export class ListingPageRentComponent {
         takeUntil(this.destroy$)
       )
       .subscribe((response: any) => {
-        console.log(response);
-
         this.handleResponse(
           response?.model?.properties,
           false,
@@ -308,18 +306,13 @@ export class ListingPageRentComponent {
     }
   }
   getSearchString(url) {
-    // Extract the part after "search=" using regular expressions
     const searchPattern = /[?&]placeId=([^&]*)/;
     const match = url.match(searchPattern);
-
     if (match) {
-      // Extract the search string
       let searchString = match[1];
-
       return searchString;
     }
-
-    return null; // or return an empty string, or any other value indicating no match
+    return null;
   }
   private handleError(loadMore: boolean): void {
     this.loadMore = false;

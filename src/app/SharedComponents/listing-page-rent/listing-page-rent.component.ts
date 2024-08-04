@@ -80,7 +80,7 @@ export class ListingPageRentComponent {
   filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = '';
-  place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
+  place_id: any = null;
   pageNo: number = 1;
   pageSize: number = 40;
   loader: boolean = true;
@@ -169,12 +169,6 @@ export class ListingPageRentComponent {
         document.getElementById('navbarHeight').clientHeight +
         this.searchHeight;
       this.screenHeight = window.innerHeight - this.navHeight;
-      console.log(
-        this.navHeight,
-        this.screenHeight,
-        window.innerHeight,
-        this.searchHeight
-      );
     });
   }
   ngOnDestroy(): void {
@@ -195,12 +189,12 @@ export class ListingPageRentComponent {
       .subscribe((response: any) => {
         console.log(response);
 
-        // this.handleResponse(
-        //   response?.model?.properties,
-        //   loadMore,
-        //   'properties',
-        //   response?.model
-        // );
+        this.handleResponse(
+          response?.model?.properties,
+          false,
+          'properties',
+          response?.model
+        );
       });
   }
   getProperties(loadMore: boolean) {
@@ -297,7 +291,13 @@ export class ListingPageRentComponent {
         ].sort((a: any, b: any) => a - b);
         this.sorting(null);
       }
-
+      if (!this.place_id) {
+        const searchString = this.getSearchString(this.router.url);
+        if (searchString) {
+          console.log(searchString.split(',')[0]);
+          this.place_id = searchString.split(',')[0];
+        }
+      }
       this.noData = mainResponse?.properties?.length === 0;
       this.originalCards = this.cards;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
@@ -306,6 +306,20 @@ export class ListingPageRentComponent {
         this.noDataError();
       }
     }
+  }
+  getSearchString(url) {
+    // Extract the part after "search=" using regular expressions
+    const searchPattern = /[?&]placeId=([^&]*)/;
+    const match = url.match(searchPattern);
+
+    if (match) {
+      // Extract the search string
+      let searchString = match[1];
+
+      return searchString;
+    }
+
+    return null; // or return an empty string, or any other value indicating no match
   }
   private handleError(loadMore: boolean): void {
     this.loadMore = false;
@@ -335,7 +349,9 @@ export class ListingPageRentComponent {
     this.search = event.search;
     this.place_id = event.place_id;
     if (event) {
-      this.router.navigate(['rent'], { queryParams: { search: this.search } });
+      this.router.navigate(['rent'], {
+        queryParams: { search: this.search, placeId: this.place_id },
+      });
     } else {
       this.router.navigate(['rent']);
     }

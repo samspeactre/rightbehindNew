@@ -96,11 +96,6 @@ export class DummyMapComponent implements OnInit {
       }
     }
   }
-  @Input() set highlightedAreaCoordinates(coordinates: any[]) {
-    if (coordinates) {
-      this.setHighlightedArea();
-    }
-  }
   placeId: string = '';
   markers: any[] = [];
   communityMarkers: any[] = [];
@@ -116,7 +111,7 @@ export class DummyMapComponent implements OnInit {
     zoom: 13,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    mapId: 'a6d3d2caf60f2217',
+    mapId: '4d9b0fd688ab8d67',
     gestureHandling: 'greedy',
     draggable: true,
     mapTypeControl: false,
@@ -214,10 +209,83 @@ export class DummyMapComponent implements OnInit {
   }
 
   initializeMap(): void {
+    const styledMapType = new google.maps.StyledMapType(
+      [
+        {
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'administrative.land_parcel',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'transit.station',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.business',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.government',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.school',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.sports_complex',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.park',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.attraction',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.medical',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.place_of_worship',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.cafe',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.restaurant',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.bar',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.night_club',
+          stylers: [{ visibility: 'off' }],
+        },
+      ],
+      { name: 'Styled Map' }
+    );
+
     this.map = new google.maps.Map(document.getElementById('map_canvas'));
+    this.map.mapTypes.set('styled_map', styledMapType);
+    this.map.setMapTypeId('styled_map');
     this.map.setOptions(this.mapOptions);
+    this.featureLayer = this.map.getFeatureLayer('LOCALITY');
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
+      this.removeHighlightArea();
       this.disable();
       this.drawing = true;
       this.clearMarkers();
@@ -240,9 +308,9 @@ export class DummyMapComponent implements OnInit {
 
     document.getElementById('clearButton').addEventListener('click', (e) => {
       e.preventDefault();
+      this.setHighlightedArea();
       this.clearShapes();
     });
-    this.featureLayer = this.map.getFeatureLayer('LOCALITY');
     this.placeMarkers();
   }
   zoomToHighlightedMarker(highlighted: any) {
@@ -296,8 +364,8 @@ export class DummyMapComponent implements OnInit {
     this.createMarkers(this.communityMarkers, '/assets/img/markerC.webp');
   }
 
-  createMarkers(markerDataArray: any[], iconUrl: string) {
-    markerDataArray.forEach((markerData, index) => {
+  async createMarkers(markerDataArray: any[], iconUrl: string) {
+    await markerDataArray.forEach((markerData, index) => {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(markerData.lat, markerData.lng),
         map: this.map,
@@ -327,13 +395,13 @@ export class DummyMapComponent implements OnInit {
       markerData.infoWindowInstance = infoWindow;
       this.googleMarkers.push(marker);
     });
+    this.setHighlightedArea();
   }
 
   createInfoWindowContent(index: number): HTMLElement {
     const component: any = this.community
       ? CommunityCardMapComponent
       : PropertyCardMapComponent;
-    console.log(this.infoContentsArray[index], index);
     const factory = this.resolver.resolveComponentFactory(component);
     const componentRef: any = factory.create(this.injector);
     componentRef.instance.card = this.infoContentsArray[index];
@@ -351,19 +419,24 @@ export class DummyMapComponent implements OnInit {
   }
 
   setHighlightedArea(): void {
-    console.log(this.placeId);
     const featureStyleOptions = {
-      strokeColor: '#810FCB',
-      strokeOpacity: 1.0,
-      strokeWeight: 3.0,
-      fillColor: '#810FCB',
-      fillOpacity: 0.5,
+      strokeColor: '#ff3932',
+      strokeOpacity: 1,
+      strokeWeight: 1.5,
+      fillColor: '#ff3932',
+      fillOpacity: 0,
     };
     //@ts-ignore
     this.featureLayer.style = (options) => {
       if (options.feature.placeId == this.placeId) {
         return featureStyleOptions;
       }
+    };
+    this.map.data.setStyle(this.featureLayer.style);
+  }
+  removeHighlightArea() {
+    this.featureLayer.style = (options: { feature: { placeId: string } }) => {
+      return null;
     };
   }
 }

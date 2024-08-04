@@ -49,6 +49,7 @@ export class SearchBarListingComponent {
   @Input() search!: string;
   @Input() place_id!: string;
   @Input() show: boolean = false;
+  @Input() extraWidth: boolean = false;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;

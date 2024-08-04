@@ -39,10 +39,11 @@ export class SearchBarComponent {
   @Input() filter: boolean = false;
   @Input() search!: string;
   @Input() show: boolean = false;
+  @Input() place_id!: string;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
-  @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
+  @Output() searchEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showFilter: EventEmitter<any> = new EventEmitter<any>();
   faBars = faFilter;
   faSearch = faSearch;
@@ -60,7 +61,7 @@ export class SearchBarComponent {
       )
       .subscribe((value) => {
         if (value?.length < 1) {
-          this.searchEvent.emit(value);
+          this.searchEvent.emit({ search: '', place_id: '' });
           this.predictions = [];
         } else {
           this.autocompleteService.getPlacePredictions(
@@ -97,13 +98,15 @@ export class SearchBarComponent {
       'place_changed',
       () => {
         const place = this.autocomplete.getPlace();
-        this.searchEvent.emit(place.formatted_address);
+        this.place_id = place.place_id;
+        this.search = place.formatted_address;
+        this.submit();
       }
     );
     this.autocompleteService = new google.maps.places.AutocompleteService();
   }
   submit() {
-    this.searchEvent.emit(this.search);
+    this.searchEvent.emit({ search: this.search, place_id: this.place_id });
   }
   showFilt() {
     this.show = true;
@@ -112,6 +115,7 @@ export class SearchBarComponent {
   selectFirstSuggestion() {
     if (this.predictions.length > 0) {
       this.search = this.predictions[0].description;
+      this.place_id = this.predictions[0].place_id;
       this.submit();
     }
   }

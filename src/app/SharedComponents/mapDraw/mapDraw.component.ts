@@ -67,6 +67,8 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   @Input() infoContents: any[] = [];
   @Input() height: any;
   @Input() community: boolean = false;
+  @Output() propertyHover = new EventEmitter<any>();
+  @Output() drawCordinates = new EventEmitter<any>();
   @Input() set markerPositions(data: any[]) {
     if (data) {
       this.markers = data;
@@ -88,7 +90,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   map: any;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 10,
+    zoom: 13,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     gestureHandling: 'greedy',
@@ -146,25 +148,27 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   // }
   zoomToHighlightedMarker(highlighted: any) {
     if (!this.map || !highlighted) return;
-  
-    const marker = this.markers.find(
-      (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
-    ) || this.communityMarkers.find(
-      (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
-    );
-  
+
+    const marker =
+      this.markers.find(
+        (m) => m?.lat == highlighted.lat && m?.lng == highlighted.lng
+      ) ||
+      this.communityMarkers.find(
+        (m) => m?.lat === highlighted?.lat && m?.lng === highlighted?.lng
+      );
+
     if (marker && marker.markerInstance) {
       const position = marker.markerInstance.getPosition();
       if (position) {
         this.map.setCenter(position);
-  
+
         // const currentIcon = marker.markerInstance.getIcon();
-  
+
         // marker.markerInstance.setIcon({
         //   url: currentIcon.url || currentIcon,
         //   scaledSize: new google.maps.Size(70, 70)
         // });
-  
+
         // setTimeout(() => {
         //   marker.markerInstance.setIcon({
         //     url: currentIcon.url || currentIcon,
@@ -218,8 +222,11 @@ export class MapDrawComponent implements OnInit, OnDestroy {
         }
         infoWindow.open(this.map, marker);
         this.currentInfoWindow = infoWindow;
+        this.propertyHover.emit(
+          this.infoContents[index]?.listingId || this.infoContents[index]?.id
+        );
         this.map.setCenter(marker.getPosition());
-        this.map.setZoom(12);
+        this.map.setZoom(13);
       });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
@@ -250,7 +257,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
   disableMapInteractions() {
     this.map.setOptions({
       draggable: false,
-      zoomControl: false,
+      zoomControl: true,
       scrollwheel: false,
       disableDoubleClickZoom: false,
       draggableCursor: 'crosshair',
@@ -331,7 +338,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
       this.enableMapInteractions();
       this.shapePromise = Promise.resolve(this.shapeCoordinates);
       console.log('Drawn Shape Coordinates:', this.shapeCoordinates);
-
+      this.drawCordinates.emit(JSON.stringify(this.shapeCoordinates));
       const bounds = new google.maps.LatLngBounds();
       this.shapeCoordinates.forEach((coord) => bounds.extend(coord));
       this.map.fitBounds(bounds);
@@ -343,7 +350,7 @@ export class MapDrawComponent implements OnInit, OnDestroy {
 
   clearDrawing() {
     this.mapOptions = {
-      zoom: 10,
+      zoom: 13,
       center: new google.maps.LatLng(this._center?.lat, this._center?.lng),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       gestureHandling: 'greedy',

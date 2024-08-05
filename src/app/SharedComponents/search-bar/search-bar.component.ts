@@ -1,4 +1,11 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -6,51 +13,67 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ResizeService } from '../../Services/resize.service';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
 @Component({
   standalone: true,
-  imports: [MatIconModule, FilterComponent, MatFormFieldModule, MatInputModule, CommonModule, MatButtonModule, FormsModule, FontAwesomeModule],
+  imports: [
+    MatIconModule,
+    FilterComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    CommonModule,
+    MatButtonModule,
+    FormsModule,
+    FontAwesomeModule,
+  ],
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss'
+  styleUrl: './search-bar.component.scss',
 })
 export class SearchBarComponent {
   mentorSearchQueryUpdate = new Subject<any>();
   @Input() searching: boolean = false;
   @Input() filter: boolean = false;
   @Input() search!: string;
-  @Input() show:boolean = false
+  @Input() show: boolean = false;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
   @Output() showFilter: EventEmitter<any> = new EventEmitter<any>();
-  faBars = faFilter
-  faSearch=faSearch
+  faBars = faFilter;
+  faSearch = faSearch;
   autocompleteService: any;
   private destroy$ = new Subject<void>();
   predictions: any[] = [];
-  constructor(public resize:ResizeService) {
+  constructor(public resize: ResizeService) {
     this.mentorSearchQueryUpdate
       .pipe(
         debounceTime(100),
         takeUntil(this.destroy$),
-        distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
       )
       .subscribe((value) => {
         if (value?.length < 1) {
-          this.searchEvent.emit(value)
+          this.searchEvent.emit(value);
           this.predictions = [];
-        }
-        else{
-          this.autocompleteService.getPlacePredictions({ input: value }, (predictions, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
-              this.predictions = predictions;
+        } else {
+          this.autocompleteService.getPlacePredictions(
+            { input: value },
+            (predictions, status) => {
+              if (
+                status === google.maps.places.PlacesServiceStatus.OK &&
+                predictions
+              ) {
+                this.predictions = predictions;
+              }
             }
-          });
+          );
         }
       });
   }
@@ -67,24 +90,33 @@ export class SearchBarComponent {
     }
   }
   initAutocomplete(): void {
-    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput?.nativeElement);
-    this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
-      const place = this.autocomplete.getPlace();
-      this.searchEvent.emit(place.formatted_address)
-    });
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.autocompleteInput?.nativeElement
+    );
+    this.autocompleteListener = this.autocomplete.addListener(
+      'place_changed',
+      () => {
+        const place = this.autocomplete.getPlace();
+        this.searchEvent.emit(place.formatted_address);
+      }
+    );
     this.autocompleteService = new google.maps.places.AutocompleteService();
   }
   submit() {
-    this.searchEvent.emit(this.search)
+    this.searchEvent.emit(this.search);
   }
-  showFilt(){
-    this.show = !this.show
-    this.showFilter.emit(this.show)
+  showFilt() {
+    this.show = true;
+    this.showFilter.emit({ cond: this.show, type: 'all' });
   }
   selectFirstSuggestion() {
     if (this.predictions.length > 0) {
       this.search = this.predictions[0].description;
-      this.submit()
+      this.submit();
     }
+  }
+  openPopUp(type) {
+    this.show = true;
+    this.showFilter.emit({ cond: this.show, type });
   }
 }

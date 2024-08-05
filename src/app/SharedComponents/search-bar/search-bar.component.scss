@@ -1,37 +1,57 @@
 .searchBar {
-  box-shadow: 0px 3px 22px 3px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 22px 3px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   border-radius: 3rem;
   background: white;
   padding: 5px 5px 5px 40px;
   min-height: 50px;
+  width: 90%;
   input {
     background: transparent;
     border: none;
     outline: none;
     width: 90%;
   }
-
-  .login-btn {
-    color: white;
-    padding: 0;
-    border-radius: 100px;
-    width: 40px;
-    height: 40px;
-  }
-  .login-btn.search {
-    width: 140px;
-    height: 50px;
-  }
 }
-@media only screen and (max-width:1024px) {
+.login-btn {
+  color: white;
+  padding: 0;
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+}
+.login-btn.search {
+  width: 140px;
+  height: 50px;
+}
+@media only screen and (max-width: 1024px) {
   .searchBar {
     padding: 5px;
-    input{
+    width: 100%;
+    input {
       padding: 0 1rem 0 1rem;
     }
     .login-btn.search {
       width: 50px;
       height: 50px;
     }
+  }
+  .minWidth5 {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filterBtns {
+    button {
+      min-width: 130px;
+    }
+  }
+
+  .minWidth5::-webkit-scrollbar {
+    display: none;
+  }
+  .minWidth5 {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }

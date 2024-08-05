@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
@@ -72,6 +78,7 @@ export class ListingPageComponent {
   showMapClicked: boolean = false;
   faMap = faMap;
   show: boolean = false;
+  filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = '';
   pageNo: number = 1;
@@ -89,7 +96,7 @@ export class ListingPageComponent {
   bathArray: any;
   faBars = faFilter;
   loadFirstTime: boolean = true;
-  highlighted:any;
+  highlighted: any;
   sortsArray: any = [
     'Price: Low to High',
     'Price: High to Low',
@@ -103,6 +110,7 @@ export class ListingPageComponent {
   type: any = null;
   maxPrice: any = null;
   minPrice: any = null;
+  poly: any = null;
   beds: any = null;
   baths: any = null;
   sort: string = 'Date: Late to Early';
@@ -119,7 +127,9 @@ export class ListingPageComponent {
     private http: HttpService,
     private router: Router,
     public dialog: MatDialog,
-    public resize: ResizeService
+    public resize: ResizeService,
+    private elRef: ElementRef,
+    private renderer: Renderer2
   ) {
     this.url = this.router.url;
     this.showMap = true;
@@ -149,8 +159,8 @@ export class ListingPageComponent {
     if (!loadMore) {
       this.loader = true;
     }
-    if(this.search == '' || !this.search){
-      this.cards = [1, 2, 3]
+    if (this.search == '' || !this.search) {
+      this.cards = [1, 2, 3];
     }
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
@@ -181,7 +191,7 @@ export class ListingPageComponent {
     const urlParams = new URLSearchParams({
       pageNo: String(this.pageNo),
       pageSize: String(this.pageSize),
-      type: this.router.url.includes('buy') ? '1' : '2',
+      type: '2',
     });
 
     const optionalParams = {
@@ -190,7 +200,8 @@ export class ListingPageComponent {
       minPrice: this.minPrice,
       noOfBeds: this.beds,
       noOfBaths: this.baths,
-      type: this.type,
+      type: '2',
+      poly: this.poly,
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {
@@ -285,7 +296,7 @@ export class ListingPageComponent {
   }
 
   openPopup(): void {
-    this.dialog.open(PopupComponent,{
+    this.dialog.open(PopupComponent, {
       scrollStrategy: new NoopScrollStrategy(),
     });
   }
@@ -293,7 +304,7 @@ export class ListingPageComponent {
     this[type] = event;
   }
   onRangeFilter() {
-    this.showFil(false);
+    this.closeFil();
     this.getProperties(false);
   }
   sorting(event) {
@@ -346,7 +357,7 @@ export class ListingPageComponent {
     }
   }
   reset() {
-    this.showFil(false);
+    this.closeFil();
     this.search = null;
     this.maxPrice = null;
     this.minPrice = null;
@@ -391,15 +402,37 @@ export class ListingPageComponent {
         (err: any) => this.handleError(loadMore)
       );
   }
-  hover(event){
-    this.highlighted = event
+  hover(event) {
+    this.highlighted = event;
   }
-  showFil(event: boolean) {
-    if (event) {
-      document.body.classList.add('bodyLoader');
-    } else {
-      document.body.classList.remove('bodyLoader');
+  showFil(event) {
+    document.body.classList.add('bodyLoader');
+    this.show = true;
+    this.filterType = event.type;
+  }
+  closeFil() {
+    document.body.classList.remove('bodyLoader');
+    this.show = false;
+  }
+  highlightCard(cardId: string) {
+    const elementId = `card-${cardId}`;
+    const cardElement = this.elRef.nativeElement.querySelector(`#${elementId}`);
+    if (cardElement) {
+      const highlightedElements =
+        this.elRef.nativeElement.querySelectorAll('.highlightCard');
+      highlightedElements.forEach((element: HTMLElement) => {
+        this.renderer.removeClass(element, 'highlightCard');
+      });
+      const rect = cardElement.getBoundingClientRect();
+      const isInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      if (!isInView) {
+        cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      this.renderer.addClass(cardElement, 'highlightCard');
     }
-    this.show = event;
+  }
+  drawSearch(event) {
+    this.poly = event;
+    this.getProperties(false);
   }
 }

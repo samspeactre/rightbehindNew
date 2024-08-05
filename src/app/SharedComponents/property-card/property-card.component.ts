@@ -24,6 +24,8 @@ import { PopupComponent } from '../popup/popup.component';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { ContactSelectComponent } from '../contact-select/contact-select.component';
+import { HttpService } from '../../Services/http.service';
 @Component({
   standalone: true,
   imports: [
@@ -60,6 +62,7 @@ export class PropertyCardComponent {
     touchDrag: true,
     pullDrag: true,
     autoplay: true,
+    autoHeight: false,
     margin: 5,
     dots: false,
     navSpeed: 700,
@@ -77,7 +80,8 @@ export class PropertyCardComponent {
     public resize: ResizeService,
     private store: Store,
     private dialog: MatDialog,
-    private helper: HelperService
+    private helper: HelperService,
+    private http: HttpService
   ) {
     this.user$
       .pipe(
@@ -90,23 +94,26 @@ export class PropertyCardComponent {
         this.userDetails = user;
       });
   }
+  ngOnInit() {
+    console.log(this.card);
+  }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  openPopup(card: any): void {
+  openPopup(): void {
     this.dialog?.open(ContactPopupComponent, {
       width: window.innerWidth > 1330 ? '400px' : '100%',
       data: { type: 'property', id: this.card?.id },
       scrollStrategy: new NoopScrollStrategy(),
     });
   }
-  naviagteThroughPopup(card: any) {
+  naviagteThroughPopup() {
     if (window.innerWidth > 1024) {
       this.dialog?.open(PopupComponent, {
         height: '90%',
         width: '85%',
-        data: { card: card },
+        data: { card: this.card },
       });
     } else {
       this.navigateAndClose();
@@ -180,17 +187,17 @@ export class PropertyCardComponent {
   favourite(event: MouseEvent) {
     event.stopPropagation();
     if (this.userDetails) {
-      // this.createContact();
+      this.toggleFavorite();
     } else {
       const dialogRef = this.dialog.open(LoginPopupComponent, {
         height: '490px',
         width: window.innerWidth > 1330 ? '330px' : '100%',
         scrollStrategy: new NoopScrollStrategy(),
-        data:'favourite'
+        data: 'favourite',
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (result?.data) {
-          // this.createContact();
+          this.toggleFavorite();
         }
       });
     }
@@ -198,10 +205,50 @@ export class PropertyCardComponent {
   async share(event) {
     event.stopPropagation();
     try {
-      await navigator.share({ title: this.card?.title, url: `preview/?id=${this.card?.listingId || this.card?.id}&type=2` });
+      await navigator.share({
+        title: this.card?.title,
+        url: `preview/?id=${this.card?.listingId || this.card?.id}&type=2`,
+      });
     } catch (err: any) {
-      console.error("Share failed:", err?.message);
+      console.error('Share failed:', err?.message);
     }
   }
+  openContactOptions() {
+    const dialogRef = this.dialog.open(ContactSelectComponent, {
+      width: window.innerWidth > 1024 ? '500px' : '100%',
+      data: {
+        email: this.card.listAgentEmail,
+        phone: this.card.listAgentOfficePhone,
+      },
+      scrollStrategy: new NoopScrollStrategy(),
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === 'email' && this.card.listAgentEmail) {
+        this.openEmail();
+      } else if (result === 'phone' && this.card.listAgentOfficePhone) {
+        this.openPhone();
+      }
+    });
+  }
+
+  openEmail() {
+    window.location.href = `mailto:${this.card.listAgentEmail}`;
+  }
+
+  openPhone() {
+    window.location.href = `tel:${this.card.listAgentOfficePhone}`;
+  }
+  toggleFavorite() {
+    const url: string = this.card.favoriteId
+      ? 'favoriteproperty/remove'
+      : 'favoriteproperty/add';
+    const data = {
+      propertyId: this.card?.id,
+      listingId: this.card?.listingId,
+    };
+    this.http.loaderPost(url, data, true).subscribe((response: any) => {
+      console.log(response);
+    });
+  }
 }

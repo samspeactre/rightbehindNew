@@ -8,7 +8,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'app-filter',
   standalone: true,
-  imports: [NgSelectModule, FormsModule, MatSliderModule, FontAwesomeModule, CommonModule],
+  imports: [
+    NgSelectModule,
+    FormsModule,
+    MatSliderModule,
+    FontAwesomeModule,
+    CommonModule,
+  ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss',
 })
@@ -20,25 +26,25 @@ export class FilterComponent {
   @Input() bathArray!: any;
   @Input() sortsArray!: any;
   @Input() isResetDisabled!: any;
+  @Input() filterType: string = 'all';
   @Input() searching: boolean = false;
   @Output() onChangeFilter = new EventEmitter<any>();
   @Output() onRangeFilter = new EventEmitter<any>();
   @Output() sorted = new EventEmitter<any>();
   @Output() rest = new EventEmitter<any>();
   @Output() closed = new EventEmitter<any>();
-  @Input()a;
-  @Input()b;
-  @Input()c;
-  @Input()d;
-  @Input()e;
-  @Input()f;
-  faTimes=faTimes;
-  ngOnInit(){
-  }
+  @Input() a;
+  @Input() b;
+  @Input() c;
+  @Input() d;
+  @Input() e;
+  @Input() f;
+  faTimes = faTimes;
+  ngOnInit() {}
   onFilterChange(event: any, type: any) {
-    if(type == 'minPrice' || type == 'maxPrice'){
-      this.onChangeFilter.emit({ event:event?.target?.value, type });
-    }else{
+    if (type == 'minPrice' || type == 'maxPrice') {
+      this.onChangeFilter.emit({ event: event?.target?.value, type });
+    } else {
       this.onChangeFilter.emit({ event, type });
     }
   }
@@ -48,10 +54,10 @@ export class FilterComponent {
   reset() {
     this.rest.emit(true);
   }
-  close(){
+  close() {
     this.closed.emit(true);
   }
-  filter(){
-    this.onRangeFilter.emit(true)
+  filter() {
+    this.onRangeFilter.emit(true);
   }
 }

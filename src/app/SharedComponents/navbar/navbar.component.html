@@ -19,7 +19,8 @@
         <div class="social-links dCenter gap-3">
           <a> <fa-icon class="wow fadeInDown" [icon]="faFacebook"></fa-icon></a>
           <a>
-            <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon></a>
+            <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon
+          ></a>
           <a> <fa-icon class="wow fadeInDown" [icon]="faTwitter"></fa-icon></a>
           <a> <fa-icon class="wow fadeInDown" [icon]="faLinkedin"></fa-icon></a>
         </div>
@@ -29,8 +30,14 @@
     <div class="col-lg-12">
       <div class="dCenter justify-content-between">
         <div class="nav-logo wow fadeInDown">
-          <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo in sidebar" width="100%" height="100%"
-              class="logo-img" /></a>
+          <a routerLink="/"
+            ><img
+              src="../../assets/img/nav-logo.webp"
+              alt="logo in sidebar"
+              width="100%"
+              height="100%"
+              class="logo-img"
+          /></a>
         </div>
         <div class="cstm-nav-item">
           <ul class="mb-0 ps-0">
@@ -40,51 +47,87 @@
             <!-- <li>
               <a routerLink="/buy" class="text-dark wow fadeInDown">buy</a>
             </li> -->
-            @if(!sellHide){
+            <!-- @if(!sellHide){
             <li>
               <a (click)="openSellPopup('sell')" class="text-dark wow fadeInDown">Sell</a>
             </li>
-            }
+            } -->
             <li>
               <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
             </li>
             <li>
-              <a (click)="navigateToOffMarket('#blogSection')" class="text-dark wow fadeInDown">Property Trend</a>
+              <a
+                (click)="navigateToOffMarket('#blogSection')"
+                class="text-dark wow fadeInDown"
+                >Property Trend</a
+              >
             </li>
             <li>
-              <a routerLink="/communities" class="text-dark wow fadeInDown">Communities</a>
+              <a routerLink="/communities" class="text-dark wow fadeInDown"
+                >Communities</a
+              >
             </li>
             <li>
-              <a routerLink="/contact-us" class="text-dark wow fadeInDown">Contact Us</a>
+              <a routerLink="/contact-us" class="text-dark wow fadeInDown"
+                >Contact Us</a
+              >
             </li>
           </ul>
         </div>
         <div class="dCenter gap-3">
           @if(user){
           <div class="dropdown cstm-drop-btn" ngbDropdown>
-            <button class="btn-style-none me-0 dCenter gap-2" ngbDropdownToggle type="button" id="dropdownMenuButton1"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <p class="mb-0 text-end text-capitalize text-decoration-underline">
+            <button
+              class="btn-style-none me-0 dCenter gap-2"
+              ngbDropdownToggle
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <p
+                class="mb-0 text-end text-capitalize text-decoration-underline"
+              >
                 {{ user?.fullName }}
               </p>
               <fa-icon [icon]="faCircleChevronDown"></fa-icon>
             </button>
-            <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
+            <ul
+              ngbDropdownMenu
+              class="dropdown-menu cstm-dropmenu"
+              aria-labelledby="dropdownMenuButton1"
+            >
               <li>
-                <a class="dropdown-item" ngbDropdownItem
-                  [routerLink]="user?.userType == 'SuperAdmin' ? '/admin-dashboard' : '/dashboard'">Dashboard</a>
+                <a
+                  class="dropdown-item"
+                  ngbDropdownItem
+                  [routerLink]="
+                    user?.userType == 'SuperAdmin'
+                      ? '/admin-dashboard'
+                      : '/dashboard'
+                  "
+                  >Dashboard</a
+                >
               </li>
               <li>
-                <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
+                <a class="dropdown-item" ngbDropdownItem (click)="logout()"
+                  >Log Out</a
+                >
               </li>
             </ul>
           </div>
           } @else{
-          <button class="wow fadeInDown dCenter py-1 justify-content-between btnSecondary" (click)="openPopup()">
+          <button
+            class="wow fadeInDown dCenter py-1 justify-content-between btnSecondary"
+            (click)="openPopup()"
+          >
             <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
           } @if(!sellHide){
-          <button class="wow fadeInDown btnDanger py-1 dCenter" (click)="openSellPopup('rent')">
+          <button
+            class="wow fadeInDown btnDanger py-1 dCenter"
+            (click)="openSellPopup('rent')"
+          >
             Submit A Deal
           </button>
           }
@@ -99,23 +142,31 @@
     <fa-icon [icon]="faBarsStaggered" (click)="show(true)"></fa-icon>
   </div>
   <div class="side-nav-logo mt-1">
-    <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo image" width="100%" height="100%" /></a>
+    <a routerLink="/"
+      ><img
+        src="../../assets/img/nav-logo.webp"
+        alt="logo image"
+        width="100%"
+        height="100%"
+    /></a>
   </div>
 </div>
 
 <div class="sidebar" [ngClass]="{ open: sidebar }">
-
-  <div class="sidebar-padding d-flex justify-content-between ">
-
+  <div class="sidebar-padding d-flex justify-content-between">
     <div class="side-nav-logo">
-      <a routerLink="/" (click)="show(false)"><img src="../../assets/img/nav-logo.webp" alt="sidebar inside logo"
-          width="100%" height="100%" /></a>
+      <a routerLink="/" (click)="show(false)"
+        ><img
+          src="../../assets/img/nav-logo.webp"
+          alt="sidebar inside logo"
+          width="100%"
+          height="100%"
+      /></a>
     </div>
 
     <div class="dCenter">
       <fa-icon [icon]="faTimes" class="" (click)="show(false)"></fa-icon>
     </div>
-
   </div>
 
   <div class="sidebar-content">
@@ -134,7 +185,9 @@
         <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
       <li>
-        <a (click)="navigateToOffMarket('blogSection')" (click)="show(false)">Property Trend</a>
+        <a (click)="navigateToOffMarket('blogSection')" (click)="show(false)"
+          >Property Trend</a
+        >
       </li>
       <li>
         <!-- <a (click)="navigateToOffMarket('#offMarket')">Off Market</a> -->
@@ -145,18 +198,29 @@
       </li>
       @if(user){
       <li>
-        <a (click)="show(false)"
-          [routerLink]="user?.userType == 'SuperAdmin' ? '/admin-dashboard' : '/dashboard'">Dashboard</a>
+        <a
+          (click)="show(false)"
+          [routerLink]="
+            user?.userType == 'SuperAdmin' ? '/admin-dashboard' : '/dashboard'
+          "
+          >Dashboard</a
+        >
       </li>
       }
     </ul>
     <div class="d-flex justify-content-between flex-column">
       @if(user){
       <button class="sidebar-white-btn" (click)="show(false); logout()">
-        <img class="proifle" width="100%" height="100%" [src]="
+        <img
+          class="proifle"
+          width="100%"
+          height="100%"
+          [src]="
             src + user?.imageUrl ||
             'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
-          " alt="profiel picture" />
+          "
+          alt="profiel picture"
+        />
         Logout
       </button>
       } @else {
@@ -164,7 +228,10 @@
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
       } @if(!sellHide){
-      <button class="sidebar-red-btn py-2 mt-4" (click)="show(false); openSellPopup('rent')">
+      <button
+        class="sidebar-red-btn py-2 mt-4"
+        (click)="show(false); openSellPopup('rent')"
+      >
         Submit A Deal
       </button>
       }
@@ -172,6 +239,5 @@
   </div>
 
   <h6>Find your dream home with us.</h6>
-
 </div>
 }

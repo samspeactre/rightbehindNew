@@ -1,9 +1,16 @@
-.profileImage img{
+.profileImage img {
     border-radius: 50%;
-    object-fit: cover!important;
+    object-fit: cover !important;
     border: 1.5px solid var(--royal-blue);
 }
 
-.save-btn{
-    padding: 0.7vw 2.5vw!important;
+.save-btn {
+    padding: 0.7vw 2.5vw !important;
+}
+
+
+@media only screen and (max-width:600px) {
+    .save-btn {
+        padding: .7vw 8.5vw !important;
+    }
 }

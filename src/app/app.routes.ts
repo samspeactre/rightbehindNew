@@ -60,12 +60,6 @@ export const routes: Routes = [
             (m) => m.Contact_Us_Routes
           ),
       },
-      // {
-      //   path: 'rent-preview',
-      //   data: { footer: true, header: true },
-      //   loadChildren: () =>
-      //     import('./view/preview/preview.route').then((m) => m.Preview_Routes),
-      // },
       {
         path: 'rent-add-property',
         canActivate: [InnerGuard],
@@ -108,6 +102,14 @@ export const routes: Routes = [
             (m) => m.Listing_Page_Routes
           ),
       },
+      // {
+      //   path: 'blogs',
+      //   data: { footer: true, header: true, communityHeader:true },
+      //   loadChildren: () =>
+      //     import('./SharedComponents/blogs').then(
+      //       (m) => m.Listing_Page_Routes
+      //     ),
+      // },
       {
         path: 'payment-success',
         data: { footer: true, header: true },

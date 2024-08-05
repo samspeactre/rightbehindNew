@@ -22,11 +22,11 @@
       </div>
       <form class="row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
         <div class="half-input">
-          <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="firstName"
+          <app-input classes="w-100 mb-2"  type="text" [form]="propertyForm" control="firstName"
             label="First Name" placeholder="Enter your First Name*"></app-input>
         </div>
         <div class="half-input">
-          <app-input classes="w-100 mb-2" [readOnly]="user" type="text" [form]="propertyForm" control="lastName"
+          <app-input classes="w-100 mb-2"  type="text" [form]="propertyForm" control="lastName"
             label="Last Name" placeholder="Enter your Last Name*"></app-input>
         </div>
         <div class="half-input">
@@ -49,7 +49,7 @@
             label="Password" placeholder="Enter your Password*"></app-input>
         </div>
         } @if(active == 'sell' || checkUnitValidator()){
-        <div class="half-input">
+        <div class="full-lenght">
           <app-input classes="w-100 mb-2" type="number" [form]="propertyForm" control="contactNo" label="Contact No"
             placeholder="Enter your Contact No*"></app-input>
         </div>

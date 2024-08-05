@@ -405,7 +405,7 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="dCenter justify-content-end">
-                      <button mat-raised-button color="primary"
+                      <button mat-raised-button class="mt-2" color="primary"
                         [disabled]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10"
                         (click)="fileInput.click()">
                         <mat-icon>cloud_upload</mat-icon>
@@ -414,6 +414,10 @@
                       <input type="file" #fileInput multiple
                         [readonly]="propertyAddForm.controls['PropertyImageFiles']?.value?.length == 10 || propertyAddForm.controls['PropertyImageFiles'].length == 10"
                         (change)="onPropertyImageSelected($event)" style="display: none" />
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio dolor molestiae neque sapiente perspiciatis provident vero recusandae harum, perferendis explicabo laboriosam enim in. Illum harum sed, unde ducimus nisi suscipit sequi consequatur error asperiores! Voluptatibus itaque consectetur tempora. Vel accusantium dignissimos consequuntur natus doloribus soluta repellat quidem aliquam dolorum at dolore architecto beatae nulla fugiat dolorem saepe, fuga maxime rem dicta modi perspiciatis repudiandae facilis? Facere, reprehenderit adipisci fugit alias eius nihil maxime delectus officiis itaque, esse doloribus aut nulla voluptatem ipsam eos voluptas enim laboriosam tempore similique perspiciatis. Quod ad numquam ratione cupiditate. Possimus fugiat nam molestiae nesciunt adipisci eaque ea hic. Ea rerum vel fugiat quis quas! Laudantium ratione deleniti error est et earum, inventore aut saepe obcaecati nisi sequi possimus ullam quod delectus dolor corporis qui aliquam animi eius magni quae suscipit distinctio sapiente ex. Praesentium maiores adipisci vel. Cupiditate similique quis id itaque quas animi, ipsum aliquam in reprehenderit nisi consectetur suscipit at totam numquam et facilis voluptatem est explicabo dolores expedita temporibus quod! Provident iure doloremque temporibus aliquam accusamus cumque, ipsa inventore perspiciatis adipisci laudantium mollitia enim sequi dignissimos rem exercitationem. Unde eaque fugiat vitae in autem? Dolores soluta voluptatem quos provident? Quaerat, reiciendis cum.
+
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam corporis tempora a dolores cum veritatis provident repellendus iure eveniet necessitatibus possimus culpa suscipit rerum hic voluptates dolorum omnis fuga perferendis assumenda, maiores voluptate aut laudantium voluptatibus autem? Quos nam repellendus ut. Animi magni veritatis, ab dignissimos saepe explicabo officia dolor velit ut a asperiores expedita. Adipisci voluptas necessitatibus repellendus architecto id labore optio autem sint recusandae cupiditate. Sint nulla fugiat blanditiis obcaecati optio voluptatibus nisi, in libero, excepturi dolorem consequatur eum alias, suscipit dolor voluptatem delectus temporibus doloribus atque et sit. Vel atque aut unde ex, voluptatem ab in cupiditate quisquam voluptatum amet nostrum minus mollitia repellat ipsam enim quidem magni totam beatae inventore, hic dolor! Consequuntur, ipsam voluptas rem delectus doloremque doloribus voluptatem culpa quasi aperiam, facere sunt. Qui numquam quis quod laboriosam, adipisci rem veniam, voluptatem ab dignissimos aperiam facilis incidunt, maxime perferendis. Quod, eaque? Laboriosam ad eum officiis aliquam nobis quia alias itaque, laborum voluptate atque officia quam eveniet vitae est ut voluptatum? Expedita, nihil alias quae nobis a error nam distinctio ducimus cumque accusamus recusandae enim, ipsam reiciendis autem fugit, corrupti aspernatur quos deleniti. Quo eveniet veritatis dolorum eum veniam reprehenderit ad optio debitis distinctio dolor!
+                        </p>
                     </div>
                   </div>
                 </div>
@@ -588,7 +592,7 @@
                       </div>
                       <div class="col-lg-4">
                         <div class="dCenter justify-content-end">
-                          <button mat-raised-button color="primary"
+                          <button mat-raised-button color="primary" class="mt-2"
                             [disabled]="plan.get('FloorPlanImage').value.length == 1" (click)="fileInput.click()">
                             <mat-icon>cloud_upload</mat-icon>
                             Upload Photos
@@ -672,8 +676,8 @@
                 </div>
               </div>
             </div>
-            <button class="btnPrimary wow fadeInDown my-3"
-              [disabled]="!propertyAddForm.get('Terms').value" (click)="onSubmit()">
+            <button class="btnPrimary wow fadeInDown my-3" [disabled]="!propertyAddForm.get('Terms').value"
+              (click)="onSubmit()">
               Add Property
             </button>
             <!-- <button class="btnPrimary wow fadeInDown my-3" (click)="showFeatured()">

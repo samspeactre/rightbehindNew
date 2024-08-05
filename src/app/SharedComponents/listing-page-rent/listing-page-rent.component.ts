@@ -63,11 +63,11 @@ import { SearchBarListingComponent } from '../search-bar-listing/search-bar-list
     DummyMapComponent,
     SearchBarListingComponent,
   ],
-  selector: 'app-listing-page',
-  templateUrl: './listing-page.component.html',
-  styleUrl: './listing-page.component.scss',
+  selector: 'app-listing-page-rent',
+  templateUrl: './listing-page-rent.component.html',
+  styleUrl: './listing-page-rent.component.scss',
 })
-export class ListingPageComponent {
+export class ListingPageRentComponent {
   cards: any = [1, 2, 3];
   originalCards: any = [];
   zoom = 15;
@@ -77,8 +77,10 @@ export class ListingPageComponent {
   showMapClicked: boolean = false;
   faMap = faMap;
   show: boolean = false;
+  filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = '';
+  place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 40;
   loader: boolean = true;
@@ -96,7 +98,22 @@ export class ListingPageComponent {
   loadFirstTime: boolean = true;
   highlighted: any;
   removeHighlighted: any;
+  sortsArray: any = [
+    'Price: Low to High',
+    'Price: High to Low',
+    'Beds: Low to High',
+    'Beds: High to Low',
+    'Bathrooms: Low to High',
+    'Bathrooms: High to Low',
+    'Date: Early to Late',
+    'Date: Late to Early',
+  ];
   type: any = null;
+  maxPrice: any = null;
+  minPrice: any = null;
+  poly: any = null;
+  beds: any = null;
+  baths: any = null;
   user$ = this.store.select(selectUser);
   userDetails: any;
   sort: string = 'Date: Late to Early';
@@ -105,6 +122,7 @@ export class ListingPageComponent {
     lng: 150.4826715,
   };
   navHeight: number = 0;
+  searchHeight: number = 0;
   url!: string;
   screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
@@ -141,22 +159,74 @@ export class ListingPageComponent {
         }
       }
       this.scrollToListing();
-      this.getInquiries(false);
+      this.getProperties(false);
     });
   }
   ngAfterViewInit() {
     setTimeout(() => {
-      this.navHeight = document.getElementById('navbarHeight').clientHeight;
-      this.screenHeight =
-        window.innerWidth > 1024
-          ? window.innerHeight - this.navHeight
-          : window.innerHeight;
+      this.searchHeight = document.getElementById('searchHeight').clientHeight;
+      this.navHeight =
+        document.getElementById('navbarHeight').clientHeight +
+        this.searchHeight;
+      this.screenHeight = window.innerHeight - this.navHeight;
     });
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
+  getDrawnProperties() {
+    const Url = `property/get/poly`;
+    this.http
+      .loaderPost(Url, { poly: this.poly }, false)
+      .pipe(
+        finalize(() => {
+          this.loadMoreLoader = false;
+          this.loader = false;
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((response: any) => {
+        this.handleResponse(
+          response?.model?.properties,
+          false,
+          'properties',
+          response?.model
+        );
+      });
+  }
+  getProperties(loadMore: boolean) {
+    if (!loadMore) {
+      this.loader = true;
+    }
+    if (this.search == '' || !this.search) {
+      this.cards = [1, 2, 3];
+    }
+    const urlParams = this.buildUrlParams();
+    const Url = `Property/get?${urlParams.toString()}`;
+
+    this.http
+      .loaderGet(Url, this.userDetails ? true : false, true, true, false)
+      .pipe(
+        finalize(() => {
+          this.loadMoreLoader = false;
+          this.loader = false;
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(
+        (response: any) => {
+          this.handleResponse(
+            response?.model?.properties,
+            loadMore,
+            'properties',
+            response?.model
+          );
+        },
+        (err: any) => this.handleError(loadMore)
+      );
+  }
+
   private buildUrlParams(): URLSearchParams {
     const urlParams = new URLSearchParams({
       pageNo: String(this.pageNo),
@@ -166,6 +236,12 @@ export class ListingPageComponent {
 
     const optionalParams = {
       search: this.search,
+      maxPrice: this.maxPrice,
+      minPrice: this.minPrice,
+      noOfBeds: this.beds,
+      noOfBaths: this.baths,
+      propertyType: this.type,
+      poly: this.poly,
     };
 
     for (const [key, value] of Object.entries(optionalParams)) {
@@ -199,8 +275,27 @@ export class ListingPageComponent {
             lat: location.latitude,
             lng: location.longitude,
           }));
+        if (this.loadFirstTime) {
+          const prices = this.cards.map((data) => data.price ?? 0);
+          this.minPrices = Math.min(...prices);
+          this.maxPrices = Math.max(...prices);
+          this.loadFirstTime = false;
+        }
+        this.bedsArray = [
+          ...new Set(this.cards.map((data: any) => data.noOfBed ?? 0)),
+        ].sort((a: any, b: any) => a - b);
+        this.bathArray = [
+          ...new Set(this.cards.map((data: any) => data.noOfBath ?? 0)),
+        ].sort((a: any, b: any) => a - b);
+        this.sorting(null);
       }
-
+      if (!this.place_id) {
+        const searchString = this.getSearchString(this.router.url);
+        if (searchString) {
+          console.log(searchString.split(',')[0]);
+          this.place_id = searchString.split(',')[0];
+        }
+      }
       this.noData = mainResponse?.properties?.length === 0;
       this.originalCards = this.cards;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
@@ -209,6 +304,15 @@ export class ListingPageComponent {
         this.noDataError();
       }
     }
+  }
+  getSearchString(url) {
+    const searchPattern = /[?&]placeId=([^&]*)/;
+    const match = url.match(searchPattern);
+    if (match) {
+      let searchString = match[1];
+      return searchString;
+    }
+    return null;
   }
   private handleError(loadMore: boolean): void {
     this.loadMore = false;
@@ -231,51 +335,116 @@ export class ListingPageComponent {
   loadMoreProperties(type: string) {
     this.pageNo++;
     this.loadMoreLoader = true;
-    this.getInquiries(true);
+    this.getProperties(true);
   }
 
   searchProperties(event: any) {
     this.search = event.search;
-    if (event.search) {
-      this.router.navigate(['communities'], {
-        queryParams: { search: this.search },
+    this.place_id = event.place_id;
+    if (event) {
+      this.router.navigate(['rent'], {
+        queryParams: { search: this.search, placeId: this.place_id },
       });
     } else {
-      this.router.navigate(['communities']);
+      this.router.navigate(['rent']);
     }
   }
-  getInquiries(loadMore: boolean) {
-    if (!loadMore) {
-      this.loader = true;
-    }
-    const urlParams = this.buildUrlParams();
-    const Url = `Forum/get?${urlParams.toString()}`;
 
-    this.http
-      .loaderGet(Url, false, true, true, false)
-      .pipe(
-        finalize(() => {
-          this.loadMoreLoader = false;
-          this.loader = false;
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(
-        (response: any) =>
-          this.handleResponse(
-            response?.model?.forums,
-            loadMore,
-            'communities',
-            response?.model
-          ),
-        (err: any) => this.handleError(loadMore)
-      );
+  openPopup(): void {
+    this.dialog.open(PopupComponent, {
+      scrollStrategy: new NoopScrollStrategy(),
+    });
+  }
+  onFilterChange(event: any, type: any) {
+    this[type] = event;
+  }
+  onRangeFilter() {
+    this.closeFil();
+    this.getProperties(false);
+  }
+  sorting(event) {
+    if (event) {
+      this.sort = event;
+    }
+    switch (this.sort) {
+      case 'Price: Low to High':
+        this.cards.sort((a: any, b: any) => (a.price || 0) - (b.price || 0));
+        break;
+      case 'Price: High to Low':
+        this.cards.sort((a: any, b: any) => (b.price || 0) - (a.price || 0));
+        break;
+      case 'Beds: Low to High':
+        this.cards.sort(
+          (a: any, b: any) => (a.noOfBed || 0) - (b.noOfBed || 0)
+        );
+        break;
+      case 'Beds: High to Low':
+        this.cards.sort(
+          (a: any, b: any) => (b.noOfBed || 0) - (a.noOfBed || 0)
+        );
+        break;
+      case 'Bathrooms: Low to High':
+        this.cards.sort(
+          (a: any, b: any) => (a.noOfBath || 0) - (b.noOfBath || 0)
+        );
+        break;
+      case 'Bathrooms: High to Low':
+        this.cards.sort(
+          (a: any, b: any) => (b.noOfBath || 0) - (a.noOfBath || 0)
+        );
+        break;
+      case 'Date: Early to Late':
+        this.cards.sort(
+          (a: any, b: any) =>
+            (new Date(a.createdAt).getTime() || 0) -
+            (new Date(b.createdAt).getTime() || 0)
+        );
+        break;
+      case 'Date: Late to Early':
+        this.cards.sort(
+          (a: any, b: any) =>
+            (new Date(b.createdAt).getTime() || 0) -
+            (new Date(a.createdAt).getTime() || 0)
+        );
+        break;
+      default:
+        break;
+    }
+  }
+  reset() {
+    this.closeFil();
+    this.search = null;
+    this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
+    this.maxPrice = null;
+    this.minPrice = null;
+    this.beds = null;
+    this.baths = null;
+    this.sort = 'Date: Early to Late';
+    this.getProperties(false);
+  }
+  isResetDisabled(): boolean {
+    return (
+      !this.maxPrice &&
+      !this.minPrice &&
+      !this.beds &&
+      !this.baths &&
+      !this.type
+    );
   }
   hover(event) {
     this.highlighted = event;
   }
   hoverLeft(event) {
     this.removeHighlighted = event;
+  }
+  showFil(event) {
+    document.body.classList.add('bodyLoader');
+    this.show = true;
+    this.filterType = event.type;
+  }
+  closeFil() {
+    document.body.classList.remove('bodyLoader');
+    this.show = false;
   }
   highlightCard(cardId: string) {
     const elementId = `card-${cardId}`;
@@ -292,6 +461,18 @@ export class ListingPageComponent {
         cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       this.renderer.addClass(cardElement, 'highlightCard');
+    }
+  }
+  drawSearch(event) {
+    this.poly = event;
+    this.getDrawnProperties();
+  }
+  resetCordinates(event) {
+    this.poly = null;
+    if (event) {
+      this.getProperties(false);
+    } else {
+      this.cards = this.originalCards;
     }
   }
 }

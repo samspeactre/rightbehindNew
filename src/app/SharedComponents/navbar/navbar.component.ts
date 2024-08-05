@@ -80,7 +80,7 @@ export class NavbarComponent {
     private router: Router,
     private actiavtedRoute: ActivatedRoute
   ) {
-    if (this.router.url.includes('communities')) {
+    if (this.router.url.includes('rent')) {
       this.communityHeader = true;
     }
     if (this.router.url.includes('-add-property')) {
@@ -129,7 +129,6 @@ export class NavbarComponent {
   }
   navigateToOffMarket(id: any): void {
     if (this.router.url !== '/') {
-      console.log('this.router.url');
       this.router.navigateByUrl('/');
       this.router.events
         .pipe(filter((event) => event instanceof NavigationEnd))

@@ -22,12 +22,6 @@
   object-fit: contain;
 }
 
-.property-content .card-property-heading h3 {
-  margin-bottom: 0px;
-  font-size: 24px;
-  font-weight: 900;
-}
-
 .cstm-property-card {
   background-color: #fff;
   box-shadow: 0px 0px 4px 0px #ddd;
@@ -41,9 +35,19 @@
   border-right: 3px solid #0062c9;
   transition: border 0.3s ease-in-out;
 }
+.elipEffect {
+  text-transform: capitalize;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .description-para {
   width: fit-content;
-
+  fa-icon {
+    color: #0062c9;
+  }
   .centerBox {
     position: relative;
 
@@ -71,21 +75,19 @@
   }
 }
 
-.btnContainer {
-  button {
-    font-size: 12px;
-  }
-
-  .whitBtn {
-    background-color: transparent;
-    font-size: 20px;
-    color: #0160c9;
-    border: 1px solid transparent;
-    outline: none;
-  }
+button {
+  font-size: 12px;
 }
 
-.description-para p {
+.whitBtn {
+  background-color: transparent;
+  font-size: 20px;
+  color: #0160c9;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+p {
   font-size: 12px;
 }
 
@@ -121,18 +123,18 @@
   }
 }
 .carosuelBtn {
-  background: white;
+  background: #1a1a1ab0;
   border: none;
   outline: none;
-  color: black;
+  color: white;
   position: absolute;
   z-index: 2;
   top: 50%;
   transform: translateY(-50%);
-  border-radius: 100px;
-  width: 30px;
-  height: 30px;
-  font-size: 12px;
+  border-radius: 3px;
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
 }
 .sBtn {
   left: 10px;
@@ -149,10 +151,21 @@
   font-size: 13px;
   color: #848484;
 }
+.col60 {
+  width: 60%;
+}
+.col40 {
+  width: 40%;
+}
 .highlight {
   box-shadow: 0 0 4px 1px #ff0e00 !important;
 }
-
+@media only screen and (max-width: 1024px) {
+  .col60,
+  .col40 {
+    width: 100%;
+  }
+}
 @media only screen and (max-width: 600px) {
   .btnContainer button {
     padding: 1.7vw !important;

@@ -5,7 +5,9 @@ import { InnerAdminGuard } from './Guards/innerAdmin.gaurd';
 
 export const routes: Routes = [
   {
-    path: '', component: LayoutComponent, children: [
+    path: '',
+    component: LayoutComponent,
+    children: [
       {
         path: '',
         data: { footer: true, header: true },
@@ -30,11 +32,10 @@ export const routes: Routes = [
       },
       {
         path: 'rent',
-        data: { footer: true, header: true },
         loadChildren: () =>
-          import('./SharedComponents/listing-page/listing-page.route').then(
-            (m) => m.Listing_Page_Routes
-          ),
+          import(
+            './SharedComponents/listing-page-rent/listing-page-rent.route'
+          ).then((m) => m.Listing_Page_Rent_Routes),
       },
       {
         path: 'property-details',
@@ -96,7 +97,7 @@ export const routes: Routes = [
       },
       {
         path: 'communities',
-        data: { footer: true, header: true, communityHeader:true },
+        data: { footer: true, header: true, communityHeader: true },
         loadChildren: () =>
           import('./SharedComponents/listing-page/listing-page.route').then(
             (m) => m.Listing_Page_Routes
@@ -126,16 +127,14 @@ export const routes: Routes = [
             (m) => m.Payment_Routes
           ),
       },
-    ]
+    ],
   },
   {
     path: 'dashboard',
     canActivate: [InnerGuard],
     data: { footer: false, header: false },
     loadChildren: () =>
-      import('./view/dashboard/dashboardroute').then(
-        (m) => m.Dashboard_Routes
-      ),
+      import('./view/dashboard/dashboardroute').then((m) => m.Dashboard_Routes),
   },
   {
     path: 'admin-dashboard',
@@ -147,7 +146,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path:'**',
-    redirectTo:'/'
-  }
+    path: '**',
+    redirectTo: '/',
+  },
 ];

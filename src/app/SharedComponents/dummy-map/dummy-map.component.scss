@@ -21,16 +21,12 @@
 }
 .trash {
   right: 10px;
-  display: none;
-}
-.hidden {
-  display: none;
 }
 :host ::ng-deep {
   .gm-style-iw-ch {
     display: none;
   }
-  .gm-style-iw.gm-style-iw-c{
+  .gm-style-iw.gm-style-iw-c {
     padding-top: 12px !important;
   }
   .gm-ui-hover-effect {
@@ -40,5 +36,12 @@
     outline: none;
     background: #ff3932 !important;
     z-index: 12 !important;
+  }
+  .gm-style-iw-d {
+    max-height: 100% !important;
+  }
+  .gm-style-iw.gm-style-iw-c {
+    max-height: 290px !important;
+    height: 250px !important;
   }
 }

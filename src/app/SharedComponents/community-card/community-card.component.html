@@ -9,14 +9,37 @@
   </div>
 </div>
 } @else{
-<div class="card w-100 rounded-2 heightGet" (mouseenter)="hover()" [id]="'card-'+item?.id">
-  <app-map height="150" [center]="{lat:item?.latitude,lng:item?.longitude}"
-    [communityMarkerPositions]="[{lat:item?.latitude,lng:item?.longitude}]" [mapDraggable]="false"></app-map>
+<div
+  class="card w-100 rounded-2 heightGet"
+  (mouseenter)="hover()"
+  (mouseleave)="hoverLeft()"
+  [id]="'card-' + item?.id"
+>
+  <app-map
+    height="150"
+    [center]="{ lat: item?.latitude, lng: item?.longitude }"
+    [communityMarkerPositions]="[{ lat: item?.latitude, lng: item?.longitude }]"
+    [mapDraggable]="false"
+  ></app-map>
   <div class="card-content">
-    <h5 class="card-name text-center text-dark" [ngClass]="{'wow fadeInDown':animation}">{{item?.title}}</h5>
-    <p class="text-dark mt-1 text-center mb-3" [ngClass]="{'wow fadeInDown':animation}">{{item?.description}}</p>
+    <h5
+      class="card-name text-center text-dark"
+      [ngClass]="{ 'wow fadeInDown': animation }"
+    >
+      {{ item?.title }}
+    </h5>
+    <p
+      class="text-dark mt-1 text-center mb-3"
+      [ngClass]="{ 'wow fadeInDown': animation }"
+    >
+      {{ item?.description }}
+    </p>
     <div class="dCenter">
-      <button class="community-button py-2" [ngClass]="{'wow fadeInDown':animation}" (click)="routeToCommunity()">
+      <button
+        class="community-button py-2"
+        [ngClass]="{ 'wow fadeInDown': animation }"
+        (click)="routeToCommunity()"
+      >
         View
       </button>
     </div>

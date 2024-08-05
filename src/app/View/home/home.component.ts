@@ -1,4 +1,13 @@
-import { Component, HostListener, OnDestroy, OnInit, AfterViewInit, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { Subject, finalize, takeUntil } from 'rxjs';
@@ -12,7 +21,10 @@ import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/
 import { SearchBarComponent } from '../../SharedComponents/search-bar/search-bar.component';
 import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { CountUpModule } from 'ngx-countup';
 import { Store } from '@ngrx/store';
 import { selectRental, selectSell } from '../../Ngrx/data.reducer';
@@ -23,9 +35,11 @@ import { ResizeService } from '../../Services/resize.service';
 import { RentPopupComponent } from '../../SharedComponents/rent-popup/rent-popup.component';
 import { CommonModule } from '@angular/common';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
+import { SearchBarListingComponent } from '../../SharedComponents/search-bar-listing/search-bar-listing.component';
 @Component({
   standalone: true,
   imports: [
+    SearchBarListingComponent,
     NavbarComponent,
     RentalCarouselComponent,
     FooterComponent,
@@ -37,15 +51,15 @@ import { NoopScrollStrategy } from '@angular/cdk/overlay';
     MiniLoadingComponent,
     CountUpModule,
     MapComponent,
-    CommonModule
+    CommonModule,
   ],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  counters: { name: string; count: number; }[] = [
+  counters: { name: string; count: number }[] = [
     { name: ' Property Listings', count: 350 },
     { name: 'Monthly Users', count: 200 },
     { name: 'New Property every Month', count: 30 },
@@ -60,12 +74,12 @@ export class HomeComponent {
   sell: any;
   mapHeight: number = 0;
   private destroy$ = new Subject<void>();
-  blogArray: any = []
-  blogLatArray: any = []
-  videoArray: any = []
-  videoLatArray: any = []
-  bothArray: any = []
-  bothLatArray: any = []
+  blogArray: any = [];
+  blogLatArray: any = [];
+  videoArray: any = [];
+  videoLatArray: any = [];
+  bothArray: any = [];
+  bothLatArray: any = [];
 
   private scrollSubject = new Subject<Event>();
   @ViewChild('secondCol') secondCol!: ElementRef;
@@ -73,10 +87,16 @@ export class HomeComponent {
   onWindowScroll(event: Event) {
     this.scrollSubject.next(event);
     if (this.mapHeight == 0) {
-      this.setMapHeight()
+      this.setMapHeight();
     }
   }
-  constructor(private router: Router, public resize: ResizeService, private dialog: MatDialog, private http: HttpService, private store: Store) {
+  constructor(
+    private router: Router,
+    public resize: ResizeService,
+    private dialog: MatDialog,
+    private http: HttpService,
+    private store: Store
+  ) {
     this.rent$
       .pipe(
         takeUntil(this.destroy$),
@@ -100,10 +120,14 @@ export class HomeComponent {
   }
   ngOnInit() {
     this.scrollSubject.pipe(debounceTime(100)).subscribe(() => {
-      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      const scrollPosition =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
       this.scrollPosition = scrollPosition;
     });
-    this.wheres()
+    this.wheres();
   }
   ngOnDestroy() {
     this.destroy$.next();
@@ -111,7 +135,9 @@ export class HomeComponent {
   }
   searchProperties(event: any) {
     if (event) {
-      this.router.navigate(['/buy'], { queryParams: { search: event } });
+      this.router.navigate(['/rent'], {
+        queryParams: { search: event?.search, placeId: event.place_id },
+      });
     }
   }
   setMapHeight() {
@@ -124,7 +150,7 @@ export class HomeComponent {
     this.dialog?.open(ContactPopupComponent, {
       width: window.innerWidth > 1024 ? '400px' : '100%',
       data: { type: 'contact' },
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
   }
 
@@ -132,23 +158,34 @@ export class HomeComponent {
     this.dialog.open(RentPopupComponent, {
       width: window.innerWidth > 1024 ? '850px' : '100%',
       data: type,
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
   }
   wheres() {
-    this.http.loaderGet('Home/get/propertyTour', true, true).subscribe((response: any) => {
-      this.bothArray = response?.model?.homePropertyTourList?.filter((item: any) => item?.videoUrl && item?.blogUrl)
-      this.blogArray = response?.model?.homePropertyTourList?.filter((item: any) => !item?.videoUrl && item?.blogUrl)
-      this.videoArray = response?.model?.homePropertyTourList?.filter((item: any) => item?.videoUrl && !item?.blogUrl)
-      this.bothArray?.map((item) => {
-        this.bothLatArray.push({ lat: item?.latitude, lng: item?.longitude })
-      })
-      this.videoArray?.map((item) => {
-        this.videoLatArray.push({ lat: item?.latitude, lng: item?.longitude })
-      })
-      this.blogArray?.map((item) => {
-        this.blogLatArray.push({ lat: item?.latitude, lng: item?.longitude })
-      })
-    })
+    this.http
+      .loaderGet('Home/get/propertyTour', true, true)
+      .subscribe((response: any) => {
+        this.bothArray = response?.model?.homePropertyTourList?.filter(
+          (item: any) => item?.videoUrl && item?.blogUrl
+        );
+        this.blogArray = response?.model?.homePropertyTourList?.filter(
+          (item: any) => !item?.videoUrl && item?.blogUrl
+        );
+        this.videoArray = response?.model?.homePropertyTourList?.filter(
+          (item: any) => item?.videoUrl && !item?.blogUrl
+        );
+        this.bothArray?.map((item) => {
+          this.bothLatArray.push({ lat: item?.latitude, lng: item?.longitude });
+        });
+        this.videoArray?.map((item) => {
+          this.videoLatArray.push({
+            lat: item?.latitude,
+            lng: item?.longitude,
+          });
+        });
+        this.blogArray?.map((item) => {
+          this.blogLatArray.push({ lat: item?.latitude, lng: item?.longitude });
+        });
+      });
   }
 }

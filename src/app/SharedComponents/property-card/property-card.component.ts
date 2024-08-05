@@ -6,11 +6,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+  faAt,
+  faBath,
+  faBed,
   faChevronLeft,
   faChevronRight,
+  faEnvelope,
   faHeart,
   faMagnifyingGlassPlus,
   faMapMarkerAlt,
+  faPhoneAlt,
+  faRulerCombined,
   faShare,
   faShareAlt,
 } from '@fortawesome/free-solid-svg-icons';
@@ -43,6 +49,11 @@ import { HttpService } from '../../Services/http.service';
 export class PropertyCardComponent {
   faMagnifyingGlassPlus = faMagnifyingGlassPlus;
   faMapMarkerAlt = faMapMarkerAlt;
+  faBed = faBed;
+  faBath = faBath;
+  faRuler = faRulerCombined;
+  faAt = faEnvelope;
+  faPhone = faPhoneAlt;
   user$ = this.store.select(selectUser);
   userDetails: any;
   @Input() card!: any;
@@ -53,6 +64,7 @@ export class PropertyCardComponent {
   @Input() background!: string;
   @Input() page!: string;
   @Output() propertyHover = new EventEmitter<any>();
+  @Output() propertyHoverLeft = new EventEmitter<any>();
   faChevronCircleLeft = faChevronLeft;
   faChevronCircleRight = faChevronRight;
   private destroy$ = new Subject<void>();
@@ -94,9 +106,7 @@ export class PropertyCardComponent {
         this.userDetails = user;
       });
   }
-  ngOnInit() {
-    console.log(this.card);
-  }
+  ngOnInit() {}
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -184,6 +194,12 @@ export class PropertyCardComponent {
       lng: this.card?.longitude,
     });
   }
+  hoverLeft() {
+    this.propertyHoverLeft.emit({
+      lat: this.card?.latitude,
+      lng: this.card?.longitude,
+    });
+  }
   favourite(event: MouseEvent) {
     event.stopPropagation();
     if (this.userDetails) {
@@ -244,11 +260,18 @@ export class PropertyCardComponent {
       ? 'favoriteproperty/remove'
       : 'favoriteproperty/add';
     const data = {
-      propertyId: this.card?.id,
+      propertyId: this.card?.id == 0 ? null : this.card?.id,
       listingId: this.card?.listingId,
     };
-    this.http.loaderPost(url, data, true).subscribe((response: any) => {
-      console.log(response);
-    });
+    const favData = {
+      id: this.card.favoriteId,
+    };
+    this.http
+      .loaderPost(url, this.card.favoriteId ? favData : data, true)
+      .subscribe((response: any) => {
+        this.card['favoriteId'] = this.card.favoriteId
+          ? null
+          : response?.model?.id;
+      });
   }
 }

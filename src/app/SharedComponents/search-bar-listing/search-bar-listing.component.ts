@@ -13,7 +13,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBath,
+  faBed,
+  faBuilding,
+  faDollarSign,
+  faFilter,
+  faSearch,
+  faSliders,
+  faSort,
+} from '@fortawesome/free-solid-svg-icons';
 import { ResizeService } from '../../Services/resize.service';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
@@ -29,24 +38,30 @@ import { FilterComponent } from '../filter/filter.component';
     FormsModule,
     FontAwesomeModule,
   ],
-  selector: 'app-search-bar',
-  templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss',
+  selector: 'app-search-bar-listing',
+  templateUrl: './search-bar-listing.component.html',
+  styleUrl: './search-bar-listing.component.scss',
 })
-export class SearchBarComponent {
+export class SearchBarListingComponent {
   mentorSearchQueryUpdate = new Subject<any>();
   @Input() searching: boolean = false;
   @Input() filter: boolean = false;
   @Input() search!: string;
-  @Input() show: boolean = false;
   @Input() place_id!: string;
+  @Input() show: boolean = false;
+  @Input() extraWidth: boolean = false;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
   @Output() searchEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() showFilter: EventEmitter<any> = new EventEmitter<any>();
-  faBars = faFilter;
+  faBars = faSliders;
   faSearch = faSearch;
+  faBuilding = faBuilding;
+  faBed = faBed;
+  faBath = faBath;
+  faSort = faSort;
+  faDollar = faDollarSign;
   autocompleteService: any;
   private destroy$ = new Subject<void>();
   predictions: any[] = [];

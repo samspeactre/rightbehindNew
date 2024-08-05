@@ -70,6 +70,7 @@ export class DashboardHomeComponent {
   mapHeight: number = 0;
   dashboard: any;
   rent: any;
+  favorite: any;
   months = [
     'Jan',
     'Feb',
@@ -138,8 +139,8 @@ export class DashboardHomeComponent {
         '#FFEB3B', // Yellow
         '#795548', // Brown
         '#4CAF50', // Green
-        '#F44336'  // Red
-      ]
+        '#F44336', // Red
+      ],
     };
   }
   ngOnDestroy() {
@@ -170,11 +171,27 @@ export class DashboardHomeComponent {
           (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
         ),
         finalize(() => {
-          this.getDashboard();
+          this.getFavourites();
         })
       )
       .subscribe((response) => {
         this.rent = response?.model?.properties;
+      });
+  }
+  getFavourites() {
+    this.http
+      .loaderGet('FavoriteProperty/get', true)
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        ),
+        finalize(() => {
+          this.getDashboard();
+        })
+      )
+      .subscribe((response) => {
+        this.favorite = response?.modelList;
       });
   }
   getDashboard() {

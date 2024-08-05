@@ -265,7 +265,7 @@
       </div>
     </div>
 
-    <div class="btnContainer dCenter justify-content-between px-2 pb-2 gap-3">
+    <div class="btnContainer dCenter justify-content-between px-2 pb-2 gap-2">
       @if(page == 'mylisting'){
       <button
         class="btnPrimary py-1 w-50 bold text-center"
@@ -293,7 +293,7 @@
       </button>
       @if(page != 'dashboard'){ @if(!card?.listingId){
       <button
-        class="btnPrimary rounded-5 py-1 w-50"
+        class="btnPrimary rounded-5 py-2 w-50"
         [ngClass]="{ 'wow fadeInDown': animation }"
         (click)="userDetails ? createContact() : openPopup()"
       >
@@ -301,7 +301,7 @@
       </button>
       } @else {
       <button
-        class="btnPrimary rounded-5 py-1 w-50"
+        class="btnPrimary rounded-5 py-2 w-50"
         [ngClass]="{ 'wow fadeInDown': animation }"
         (click)="openContactOptions()"
       >

@@ -185,7 +185,6 @@ export class NavbarComponent {
 
   openSellPopup(type: string): void {
     this.dialog.open(RentPopupComponent, {
-      height: '80%',
       width: window.innerWidth > 1330 ? '850px' : '100%',
       data: type,
       scrollStrategy: new NoopScrollStrategy(),

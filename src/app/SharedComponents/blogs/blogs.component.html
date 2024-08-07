@@ -1,76 +1,86 @@
 <app-banner>
-    <div class="lg-12">
-        <div class="content contact">
-            <h1 class="text-dark bold bigFont">Blogs</h1>
-            <div class="page-links display">
-                <a href="">Home</a>
-                <div class="slash">/</div>
-                <a href="">Blogs</a>
-            </div>
-        </div>
+  <div class="lg-12">
+    <div class="content contact">
+      <h1 class="text-dark bold bigFont">Blogs</h1>
+      <div class="page-links display">
+        <a href="">Home</a>
+        <div class="slash">/</div>
+        <a href="">Blogs</a>
+      </div>
     </div>
+  </div>
 </app-banner>
 
 <div class="cstmContainer mt-3">
-    <div class="wow fadeInDown col-lg-12" #listing>
-        <div class="row">
-            @if(cards?.length){ @for (card of cards; track card) {
-            <div class="mb-3 wow fadeInDown col-lg-4">
-                <owl-carousel-o [options]="customOptions" #owlCar>
-                    @for (card of cards; track card) {
-                    <ng-template carouselSlide>
-                        @if(loading){
-                        <div class="pb-3 cstm-property-card rounded-2 heightGet">
-                            <div class="property-card">
-                                <div class="property-img skeleton"></div>
-                                <div class="card-content mt-3">
-                                    <h5 class="skeleton title"></h5>
-                                    <p class="skeleton description"></p>
-                                </div>
-                            </div>
-                        </div>
-                        } @else {
-                        <div class="card-wrapper swiper-slide" [routerLink]="['/blog-inner']"
-                            [queryParams]="{ id: card?.id }">
-                            <div class="card rounded-3 w-100">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-                                    <div class="w-100">
-                                        <img [src]="
-                                    card?.imagePath ||
-                                    'https://homes.madeeasy.app/img/no-propertyfound.png'
-                                  " alt="Card Image" [class.NoImageFound]="!card?.imagePath" width="100%"
-                                            class="card-img rounded-3 wow fadeInDown" />
-                                        <div class="blog-img-content mt-3 dCenter justify-content-between">
-                                            <div class="dCenter justify-content-start gap-2">
-                                                <div class="circle wow fadeInDown"></div>
-                                                <p class="date text-dark reg smallFont mb-0 wow fadeInDown">
-                                                    {{ card?.createdAt | date:'longDate' }}
-                                                </p>
-                                            </div>
-                                            <div class="badge wow fadeInDown">{{ card?.blogTags?.[0]?.tag?.name }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="w-100 py-2 px-3">
-                                        <h5 class="bold text-dark wow fadeInDown">{{ card?.title }}</h5>
-                                        <div class="text-dark reg"
-                                            [innerHTML]="getTruncatedDescription(card?.description, 40)"></div>
-                                        <a [routerLink]="['/blog-inner']" [queryParams]="{ id: card?.id }"
-                                            class="dCenter mt-2 gap-2 justify-content-start wow fadeInDown">
-                                            <fa-icon [icon]="faArrowRight"></fa-icon>
-                                            <span class="smallFont bold">Read more</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        }
-                    </ng-template>
-                    }
-                </owl-carousel-o>
-
+  <div class="wow fadeInDown col-lg-12" #listing>
+    <div class="row">
+      @if(cards?.length){ @for (card of cards; track card) {
+      <div class="col-lg-4 mb-3">
+        @if(loading){
+        <div class="pb-3 cstm-property-card rounded-2 heightGet">
+          <div class="property-card">
+            <div class="property-img skeleton"></div>
+            <div class="card-content mt-3">
+              <h5 class="skeleton title"></h5>
+              <p class="skeleton description"></p>
             </div>
-            }}
+          </div>
         </div>
+        } @else {
+        <div
+          class="card-wrapper swiper-slide"
+          [routerLink]="['/blogs/blog-inner']"
+          [queryParams]="{ id: card?.id }"
+        >
+          <div class="card rounded-3 w-100">
+            <div class="image-content">
+              <span class="overlay"></span>
+              <div class="w-100">
+                <img
+                  [src]="
+                    card?.imagePath ||
+                    'https://homes.madeeasy.app/img/no-propertyfound.png'
+                  "
+                  alt="Card Image"
+                  [class.NoImageFound]="!card?.imagePath"
+                  width="100%"
+                  class="card-img rounded-3 wow fadeInDown"
+                />
+                <div
+                  class="blog-img-content mt-3 dCenter justify-content-between"
+                >
+                  <div class="dCenter justify-content-start gap-2">
+                    <div class="circle wow fadeInDown"></div>
+                    <p class="date text-dark reg smallFont mb-0 wow fadeInDown">
+                      {{ card?.createdAt | date : "longDate" }}
+                    </p>
+                  </div>
+                  <div class="badge wow fadeInDown">
+                    {{ card?.blogTags?.[0]?.tag?.name }}
+                  </div>
+                </div>
+              </div>
+              <div class="w-100 py-2 px-3">
+                <h5 class="bold text-dark wow fadeInDown">{{ card?.title }}</h5>
+                <div
+                  class="text-dark reg"
+                  [innerHTML]="getTruncatedDescription(card?.description, 40)"
+                ></div>
+                <a
+                  [routerLink]="['/blogs/blog-inner']"
+                  [queryParams]="{ id: card?.id }"
+                  class="dCenter mt-2 gap-2 justify-content-start wow fadeInDown"
+                >
+                  <fa-icon [icon]="faArrowRight"></fa-icon>
+                  <span class="smallFont bold">Read more</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      }}
     </div>
+  </div>
 </div>

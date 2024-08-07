@@ -424,7 +424,7 @@ export class DummyMapComponent implements OnInit {
       strokeOpacity: 1,
       strokeWeight: 1.5,
       fillColor: '#ff3932',
-      fillOpacity: 0,
+      fillOpacity: 0.3,
     };
     //@ts-ignore
     this.featureLayer.style = (options) => {

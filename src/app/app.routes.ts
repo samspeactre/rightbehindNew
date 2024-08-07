@@ -15,10 +15,12 @@ export const routes: Routes = [
           import('./view/home/home.route').then((m) => m.Home_Routes),
       },
       {
-        path: 'all-blogs',
+        path: 'blogs',
         data: { footer: true, header: true },
         loadChildren: () =>
-          import('./SharedComponents/blogs/blogs.route').then((m) => m.Blog_Routes),
+          import('./SharedComponents/blogs/blogs.route').then(
+            (m) => m.Blog_Routes
+          ),
       },
       {
         path: 'buy',
@@ -94,14 +96,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'blog-inner',
-        data: { footer: true, header: true },
-        loadChildren: () =>
-          import('./view/blog-inner/blog-inner.route').then(
-            (m) => m.Blog_Inner_Routes
-          ),
-      },
-      {
         path: 'communities',
         data: { footer: true, header: true, communityHeader: true },
         loadChildren: () =>
@@ -109,14 +103,6 @@ export const routes: Routes = [
             (m) => m.Listing_Page_Routes
           ),
       },
-      // {
-      //   path: 'blogs',
-      //   data: { footer: true, header: true, communityHeader:true },
-      //   loadChildren: () =>
-      //     import('./SharedComponents/blogs').then(
-      //       (m) => m.Listing_Page_Routes
-      //     ),
-      // },
       {
         path: 'payment-success',
         data: { footer: true, header: true },

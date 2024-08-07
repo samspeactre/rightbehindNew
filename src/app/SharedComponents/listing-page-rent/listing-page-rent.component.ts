@@ -18,7 +18,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { Store } from '@ngrx/store';
 import { NgxTypedWriterModule } from 'ngx-typed-writer';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { selectUser } from '../../Ngrx/data.reducer';
+import { selectLocation, selectUser } from '../../Ngrx/data.reducer';
 import { types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
@@ -79,12 +79,11 @@ export class ListingPageRentComponent {
   show: boolean = false;
   filterType: string = 'all';
   faBuilding = faBuilding;
-  search: any = '';
+  search: any = 'Miami, FL, USA';
   place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 40;
   loader: boolean = true;
-  noData: boolean = false;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
@@ -116,6 +115,8 @@ export class ListingPageRentComponent {
   baths: any = null;
   user$ = this.store.select(selectUser);
   userDetails: any;
+  location$ = this.store.select(selectLocation);
+  locationDetails: any;
   sort: string = 'Date: Late to Early';
   center: google.maps.LatLngLiteral = {
     lat: -34.4009703,
@@ -149,18 +150,39 @@ export class ListingPageRentComponent {
       .subscribe((user) => {
         this.userDetails = user;
       });
-    this.activatedRoute.queryParams.subscribe((params) => {
-      if (params['search']) {
-        this.search = params['search'];
-        if (params['search']) {
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      if (params?.search) {
+        this.search = params?.search;
+        if (params?.search) {
           this.param = true;
         } else {
           this.param = false;
         }
+        this.scrollToListing();
+        this.getProperties(false);
       }
-      this.scrollToListing();
-      this.getProperties(false);
     });
+    this.location$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((location) => {
+        this.locationDetails = location;
+        if (!this.search && this.locationDetails) {
+          this.center = {
+            lat: this.locationDetails?.lat,
+            lng: this.locationDetails?.lng,
+          };
+          this.search = this.locationDetails.placeName;
+          this.place_id = this.locationDetails.placeId;
+          this.router.navigate(['rent'], {
+            queryParams: { search: this.search, placeId: this.place_id },
+          });
+        }
+      });
   }
   ngAfterViewInit() {
     setTimeout(() => {
@@ -197,10 +219,8 @@ export class ListingPageRentComponent {
   }
   getProperties(loadMore: boolean) {
     if (!loadMore) {
-      this.loader = true;
-    }
-    if (this.search == '' || !this.search) {
       this.cards = [1, 2, 3];
+      this.loader = true;
     }
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
@@ -275,6 +295,7 @@ export class ListingPageRentComponent {
             lat: location.latitude,
             lng: location.longitude,
           }));
+        this.center = this.latLngArray?.[0];
         if (this.loadFirstTime) {
           const prices = this.cards.map((data) => data.price ?? 0);
           this.minPrices = Math.min(...prices);
@@ -296,7 +317,6 @@ export class ListingPageRentComponent {
           this.place_id = searchString.split(',')[0];
         }
       }
-      this.noData = mainResponse?.properties?.length === 0;
       this.originalCards = this.cards;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
     } else {
@@ -322,7 +342,7 @@ export class ListingPageRentComponent {
   }
   noDataError() {
     this.cards = [];
-    this.noData = true;
+    this.latLngArray = null;
   }
   scrollToListing(): void {
     if (this.listing) {
@@ -339,14 +359,32 @@ export class ListingPageRentComponent {
   }
 
   searchProperties(event: any) {
-    this.search = event.search;
-    this.place_id = event.place_id;
-    if (event) {
+    if (event.search && event.place_id) {
+      this.search = event.search;
+      this.place_id = event.place_id;
+      this.router.navigate(['rent'], {
+        queryParams: { search: this.search, placeId: this.place_id },
+      });
+    } else if (this.locationDetails) {
+      this.search = this.locationDetails?.placeName;
+      this.place_id = this.locationDetails?.placeId;
+      this.center = {
+        lat: this.locationDetails?.lat,
+        lng: this.locationDetails?.lng,
+      };
       this.router.navigate(['rent'], {
         queryParams: { search: this.search, placeId: this.place_id },
       });
     } else {
-      this.router.navigate(['rent']);
+      this.search = 'Miami, FL, USA';
+      this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
+      this.center = {
+        lat: -34.4009703,
+        lng: 150.4826715,
+      };
+      this.router.navigate(['rent'], {
+        queryParams: { search: this.search, placeId: this.place_id },
+      });
     }
   }
 

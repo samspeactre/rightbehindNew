@@ -80,7 +80,9 @@
               (propertyHoverLeft)="hoverLeft($event)"
             ></app-property-card>
           </div>
-          } }
+          } } @else {
+          <p class="text-danger">No properties found with this location</p>
+          }
           <div class="col-lg-12">
             @if(loadMore){
             <div class="dCenter">
@@ -112,7 +114,7 @@
           [highlighted]="highlighted"
           [removeHighlighted]="removeHighlighted"
           [markerPositions]="latLngArray"
-          [center]="latLngArray?.[0]"
+          [center]="center"
           [highlightedAreaCoordinates]="latLngArray"
           [infoContents]="cards"
           [height]="screenHeight"

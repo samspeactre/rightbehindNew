@@ -48,6 +48,7 @@ export class DummyMapComponent implements OnInit {
   }
 
   set center(value: google.maps.LatLngLiteral) {
+    console.log(value, 'checklats');
     if (value) {
       this._center = value;
     }
@@ -312,6 +313,19 @@ export class DummyMapComponent implements OnInit {
       this.clearShapes();
     });
     this.placeMarkers();
+    console.log(
+      'check',
+      this.communityMarkers.length,
+      this.markers.length,
+      this.placeId
+    );
+    if (
+      !this.communityMarkers.length &&
+      !this.markers.length &&
+      this.placeId != ''
+    ) {
+      this.setHighlightedArea();
+    }
   }
   zoomToHighlightedMarker(highlighted: any) {
     if (!this.map || !highlighted) return;

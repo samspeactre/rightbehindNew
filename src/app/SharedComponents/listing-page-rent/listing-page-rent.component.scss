@@ -30,7 +30,7 @@
 .colSecond {
   width: 60%;
 }
-.section-width{
+.section-width {
   width: 97.5vw !important;
 }
 @media only screen and (max-width: 1024px) {
@@ -42,7 +42,7 @@
   }
   .rightP {
     position: unset;
-    padding-right: 12px !important;
+    padding-right: 0 !important;
   }
   .btnToggler {
     background: #f3392c;

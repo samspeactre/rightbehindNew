@@ -61,6 +61,7 @@
   </div>
   <div class="cstmContainer overflow-hidden section-width">
     <div class="w-100 d-flex align-items-start justify-content-between">
+      @if((resize.windowSize$ | async)?.width > 1024 || !showMapClicked){
       <div class="colFirst">
         <div
           class="row overflow-y-auto p-0"
@@ -100,7 +101,7 @@
           </div>
         </div>
       </div>
-      @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
+      } @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
       <div class="colSecond rightP" [style.top.px]="searchHeight">
         <app-dummy-map
           [place_id]="place_id"

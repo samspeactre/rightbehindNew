@@ -18,7 +18,9 @@ export const routes: Routes = [
         path: 'all-blogs',
         data: { footer: true, header: true },
         loadChildren: () =>
-          import('./SharedComponents/blogs/blogs.route').then((m) => m.Blog_Routes),
+          import('./SharedComponents/blogs/blogs.route').then(
+            (m) => m.Blog_Routes
+          ),
       },
       {
         path: 'buy',
@@ -109,14 +111,12 @@ export const routes: Routes = [
             (m) => m.Listing_Page_Routes
           ),
       },
-      // {
-      //   path: 'blogs',
-      //   data: { footer: true, header: true, communityHeader:true },
-      //   loadChildren: () =>
-      //     import('./SharedComponents/blogs').then(
-      //       (m) => m.Listing_Page_Routes
-      //     ),
-      // },
+      {
+        path: 'blogs',
+        data: { footer: true, header: true, communityHeader: true },
+        loadChildren: () =>
+          import('./SharedComponents/blogs').then((m) => m.Listing_Page_Routes),
+      },
       {
         path: 'payment-success',
         data: { footer: true, header: true },

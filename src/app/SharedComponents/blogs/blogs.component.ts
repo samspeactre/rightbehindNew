@@ -1,6 +1,5 @@
-import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
@@ -10,9 +9,10 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from '../../Services/http.service';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { finalize } from 'rxjs';
+import { HttpService } from '../../Services/http.service';
+import { BannerComponent } from '../../SharedComponents/banner/banner.component';
 
 @Component({
   standalone: true,
@@ -28,7 +28,7 @@ import { finalize } from 'rxjs';
   ],
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrl: './blogs.component.scss'
+  styleUrl: './blogs.component.scss',
 })
 export class BlogsComponent {
   faArrowRight = faArrowRight;
@@ -64,29 +64,6 @@ export class BlogsComponent {
   ];
   faChevronCircleLeft = faChevronLeft;
   faChevronCircleRight = faChevronRight;
-  customOptions: OwlOptions = {
-    loop: true,
-    skip_validateItems: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    margin: 20,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 1,
-      },
-      740: {
-        items: 3,
-      },
-    },
-    nav: false,
-  };
   constructor(private router: Router, private http: HttpService) {}
 
   ngOnInit(): void {
@@ -117,5 +94,4 @@ export class BlogsComponent {
       ? description.slice(0, length) + '...'
       : description;
   }
-
 }

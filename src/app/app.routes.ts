@@ -15,7 +15,7 @@ export const routes: Routes = [
           import('./view/home/home.route').then((m) => m.Home_Routes),
       },
       {
-        path: 'all-blogs',
+        path: 'blogs',
         data: { footer: true, header: true },
         loadChildren: () =>
           import('./SharedComponents/blogs/blogs.route').then(
@@ -96,26 +96,12 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'blog-inner',
-        data: { footer: true, header: true },
-        loadChildren: () =>
-          import('./view/blog-inner/blog-inner.route').then(
-            (m) => m.Blog_Inner_Routes
-          ),
-      },
-      {
         path: 'communities',
         data: { footer: true, header: true, communityHeader: true },
         loadChildren: () =>
           import('./SharedComponents/listing-page/listing-page.route').then(
             (m) => m.Listing_Page_Routes
           ),
-      },
-      {
-        path: 'blogs',
-        data: { footer: true, header: true, communityHeader: true },
-        loadChildren: () =>
-          import('./SharedComponents/blogs').then((m) => m.Listing_Page_Routes),
       },
       {
         path: 'payment-success',

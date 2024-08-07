@@ -1,139 +1,187 @@
 @if((resize.windowSize$ | async)?.width > 786){
-<section class="cstmContainer" id="navbarHeight" [class.py-1]="communityHeader">
+<section>
   <div class="row">
     @if(!communityHeader){
-    <div class="col-lg-12 mb-3">
-      <div class="dCenter justify-content-between">
-        <a class="dCenter gap-2">
-          <fa-icon [icon]="faHeadphones"></fa-icon>
-          <p class="smallFont mb-0 bold wow fadeInDown">
-            Need Help? Call us 123 456 7890
-          </p>
-        </a>
-        <a class="dCenter gap-2">
-          <fa-icon [icon]="faAt"></fa-icon>
-          <p class="smallFont mb-0 bold wow fadeInDown">
-            Contact for more info: info&#64;rightnehindme.com
-          </p>
-        </a>
-        <div class="social-links dCenter gap-3">
-          <a> <fa-icon class="wow fadeInDown" [icon]="faFacebook"></fa-icon></a>
-          <a>
-            <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon
-          ></a>
-          <a> <fa-icon class="wow fadeInDown" [icon]="faTwitter"></fa-icon></a>
-          <a> <fa-icon class="wow fadeInDown" [icon]="faLinkedin"></fa-icon></a>
+    <section class="cstmContainer" id="navbarHeight" [class.py-1]="communityHeader">
+      <div class="col-lg-12 mb-3">
+        <div class="dCenter justify-content-between">
+          <a class="dCenter gap-2">
+            <fa-icon [icon]="faHeadphones"></fa-icon>
+            <p class="smallFont mb-0 bold wow fadeInDown">
+              Need Help? Call us 123 456 7890
+            </p>
+          </a>
+          <a class="dCenter gap-2">
+            <fa-icon [icon]="faAt"></fa-icon>
+            <p class="smallFont mb-0 bold wow fadeInDown">
+              Contact for more info: info&#64;rightnehindme.com
+            </p>
+          </a>
+          <div class="social-links dCenter gap-3">
+            <a> <fa-icon class="wow fadeInDown" [icon]="faFacebook"></fa-icon></a>
+            <a>
+              <fa-icon class="wow fadeInDown" [icon]="faInstagram"></fa-icon></a>
+            <a> <fa-icon class="wow fadeInDown" [icon]="faTwitter"></fa-icon></a>
+            <a> <fa-icon class="wow fadeInDown" [icon]="faLinkedin"></fa-icon></a>
+          </div>
         </div>
       </div>
-    </div>
-    }
-    <div class="col-lg-12">
-      <div class="dCenter justify-content-between">
-        <div class="nav-logo wow fadeInDown">
-          <a routerLink="/"
-            ><img
-              src="../../assets/img/nav-logo.webp"
-              alt="logo in sidebar"
-              width="100%"
-              height="100%"
-              class="logo-img"
-          /></a>
-        </div>
-        <div class="cstm-nav-item">
-          <ul class="mb-0 ps-0">
-            <li>
-              <a routerLink="/" class="text-dark wow fadeInDown">Home</a>
-            </li>
-            <!-- <li>
+      <div class="col-lg-12">
+        <div class="dCenter justify-content-between">
+          <div class="nav-logo wow fadeInDown">
+            <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo in sidebar" width="100%" height="100%"
+                class="logo-img" /></a>
+          </div>
+          <div class="cstm-nav-item">
+            <ul class="mb-0 ps-0">
+              <li>
+                <a routerLink="/" class="text-dark wow fadeInDown">Home</a>
+              </li>
+              <!-- <li>
               <a routerLink="/buy" class="text-dark wow fadeInDown">buy</a>
             </li> -->
-            <!-- @if(!sellHide){
+              <!-- @if(!sellHide){
             <li>
               <a (click)="openSellPopup('sell')" class="text-dark wow fadeInDown">Sell</a>
             </li>
             } -->
+              <li>
+                <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
+              </li>
+              <li>
+                <a (click)="navigateToOffMarket('#blogSection')" class="text-dark wow fadeInDown">Property Trend</a>
+              </li>
+              <li>
+                <a routerLink="/communities" class="text-dark wow fadeInDown">Communities</a>
+              </li>
+              <!-- <li>
+                <a routerLink="/all-blogs" class="text-dark wow fadeInDown">Blogs</a>
+              </li> -->
+              <li>
+                <a routerLink="/contact-us" class="text-dark wow fadeInDown">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+          <div class="dCenter gap-3">
+            @if(user){
+            <div class="dropdown cstm-drop-btn" ngbDropdown>
+              <button class="btn-style-none me-0 dCenter gap-2" ngbDropdownToggle type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <p class="mb-0 text-end text-capitalize text-decoration-underline">
+                  {{ user?.fullName }}
+                </p>
+                <fa-icon [icon]="faCircleChevronDown"></fa-icon>
+              </button>
+              <ul ngbDropdownMenu class="dropdown-menu cstm-dropmenu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a class="dropdown-item" ngbDropdownItem [routerLink]="
+                    user?.userType == 'SuperAdmin'
+                      ? '/admin-dashboard'
+                      : '/dashboard'
+                  ">Dashboard</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
+                </li>
+              </ul>
+            </div>
+            } @else{
+            <button class="wow fadeInDown dCenter py-1 justify-content-between btnSecondary" (click)="openPopup()">
+              <fa-icon [icon]="faUser"></fa-icon> Login
+            </button>
+            } @if(!sellHide){
+            <button class="wow fadeInDown btnDanger py-1 dCenter" (click)="openSellPopup('rent')">
+              Submit A Deal
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+    }@else {
+
+    <div class="col-lg-12 justify-content-between d-flex p-0 align-items-center w-100 listing-page-nav">
+      <div class="col-lg-4">
+
+        <div class="dropdown-links" ngbDropdown #dropdown="ngbDropdown"
+          (openChange)="onDropdownChange(dropdown.isOpen())">
+          <button class="nav-icon-btn" ngbDropdownToggle type="button" id="dropdownMenuButton2"
+            [ngClass]="{ 'bg-gray': isDropdownOpen, 'no-hover': isDropdownOpen }" data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+            <div class="parent-div">
+              <fa-icon [icon]="faBarsStaggered" class="toggle-icon"></fa-icon>
+              <span class="ms-2">Menu</span>
+            </div>
+
+          </button>
+
+          <ul ngbDropdownMenu class="listing-drop-menu" aria-labelledby="dropdownMenuButton2">
             <li>
-              <a routerLink="/rent" class="text-dark wow fadeInDown">Rent</a>
+              <a class="dropdown-item" ngbDropdownItem routerLink="/">Home</a>
             </li>
             <li>
-              <a
-                (click)="navigateToOffMarket('#blogSection')"
-                class="text-dark wow fadeInDown"
-                >Property Trend</a
-              >
+              <a class="dropdown-item" ngbDropdownItem routerLink="/rent">Rent</a>
             </li>
             <li>
-              <a routerLink="/communities" class="text-dark wow fadeInDown"
-                >Communities</a
-              >
+              <a class="dropdown-item" ngbDropdownItem routerLink="/communities">Communities</a>
             </li>
+            <!-- <li>
+              <a class="dropdown-item" ngbDropdownItem routerLink="/all-blogs">Blogs</a>
+            </li> -->
             <li>
-              <a routerLink="/contact-us" class="text-dark wow fadeInDown"
-                >Contact Us</a
-              >
+              <a class="dropdown-item" ngbDropdownItem routerLink="/contact-us">Contact Us</a>
             </li>
           </ul>
         </div>
-        <div class="dCenter gap-3">
+
+
+      </div>
+
+      <div class="col-lg-4 dCenter">
+        <a routerLink="/" class="nav-logo-img">
+          <img src="../../../assets/img/nav-logo.webp" alt="">
+        </a>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-3" style="float: right;margin-right: 24px;">
           @if(user){
-          <div class="dropdown cstm-drop-btn" ngbDropdown>
-            <button
-              class="btn-style-none me-0 dCenter gap-2"
-              ngbDropdownToggle
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <p
-                class="mb-0 text-end text-capitalize text-decoration-underline"
-              >
+          <div class=" dropdown cstm-drop-btn" ngbDropdown>
+            <button class="btn-style-none me-0 dCenter gap-2" ngbDropdownToggle type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <p class="mb-0 text-end text-capitalize text-decoration-underline">
                 {{ user?.fullName }}
               </p>
               <fa-icon [icon]="faCircleChevronDown"></fa-icon>
             </button>
-            <ul
-              ngbDropdownMenu
-              class="dropdown-menu cstm-dropmenu"
-              aria-labelledby="dropdownMenuButton1"
-            >
+            <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
-                <a
-                  class="dropdown-item"
-                  ngbDropdownItem
-                  [routerLink]="
+                <a class="dropdown-item" ngbDropdownItem [routerLink]="
                     user?.userType == 'SuperAdmin'
                       ? '/admin-dashboard'
                       : '/dashboard'
-                  "
-                  >Dashboard</a
-                >
+                  ">Dashboard</a>
               </li>
               <li>
-                <a class="dropdown-item" ngbDropdownItem (click)="logout()"
-                  >Log Out</a
-                >
+                <a class="dropdown-item" ngbDropdownItem (click)="logout()">Log Out</a>
               </li>
             </ul>
           </div>
           } @else{
-          <button
-            class="wow fadeInDown dCenter py-1 justify-content-between btnSecondary"
-            (click)="openPopup()"
-          >
+          <button class="wow fadeInDown dCenter py-1 justify-content-between btnSecondary" (click)="openPopup()">
             <fa-icon [icon]="faUser"></fa-icon> Login
           </button>
           } @if(!sellHide){
-          <button
-            class="wow fadeInDown btnDanger py-1 dCenter"
-            (click)="openSellPopup('rent')"
-          >
+          <button class="wow fadeInDown btnDanger py-1 dCenter" (click)="openSellPopup('rent')">
             Submit A Deal
           </button>
           }
         </div>
       </div>
     </div>
+
+    }
   </div>
 </section>
 } @else{
@@ -142,26 +190,15 @@
     <fa-icon [icon]="faBarsStaggered" (click)="show(true)"></fa-icon>
   </div>
   <div class="side-nav-logo mt-1">
-    <a routerLink="/"
-      ><img
-        src="../../assets/img/nav-logo.webp"
-        alt="logo image"
-        width="100%"
-        height="100%"
-    /></a>
+    <a routerLink="/"><img src="../../assets/img/nav-logo.webp" alt="logo image" width="100%" height="100%" /></a>
   </div>
 </div>
 
 <div class="sidebar" [ngClass]="{ open: sidebar }">
   <div class="sidebar-padding d-flex justify-content-between">
     <div class="side-nav-logo">
-      <a routerLink="/" (click)="show(false)"
-        ><img
-          src="../../assets/img/nav-logo.webp"
-          alt="sidebar inside logo"
-          width="100%"
-          height="100%"
-      /></a>
+      <a routerLink="/" (click)="show(false)"><img src="../../assets/img/nav-logo.webp" alt="sidebar inside logo"
+          width="100%" height="100%" /></a>
     </div>
 
     <div class="dCenter">
@@ -185,42 +222,33 @@
         <a routerLink="/rent" (click)="show(false)">Rent</a>
       </li>
       <li>
-        <a (click)="navigateToOffMarket('blogSection')" (click)="show(false)"
-          >Property Trend</a
-        >
+        <a (click)="navigateToOffMarket('blogSection')" (click)="show(false)">Property Trend</a>
       </li>
       <li>
         <!-- <a (click)="navigateToOffMarket('#offMarket')">Off Market</a> -->
         <a routerLink="/communities">Communities</a>
       </li>
+      <!-- <li>
+        <a routerLink="/all-blogs">Blogs</a>
+      </li> -->
       <li>
         <a routerLink="/contact-us" (click)="show(false)">Contact Us</a>
       </li>
       @if(user){
       <li>
-        <a
-          (click)="show(false)"
-          [routerLink]="
+        <a (click)="show(false)" [routerLink]="
             user?.userType == 'SuperAdmin' ? '/admin-dashboard' : '/dashboard'
-          "
-          >Dashboard</a
-        >
+          ">Dashboard</a>
       </li>
       }
     </ul>
     <div class="d-flex justify-content-between flex-column">
       @if(user){
       <button class="sidebar-white-btn" (click)="show(false); logout()">
-        <img
-          class="proifle"
-          width="100%"
-          height="100%"
-          [src]="
+        <img class="proifle" width="100%" height="100%" [src]="
             src + user?.imageUrl ||
             'https://www.pinclipart.com/picdir/big/89-897615_all-photo-png-clipart-telemarketing-clipart-transparent-png.png'
-          "
-          alt="profiel picture"
-        />
+          " alt="profiel picture" />
         Logout
       </button>
       } @else {
@@ -228,10 +256,7 @@
         <fa-icon [icon]="faUser"></fa-icon> Login
       </button>
       } @if(!sellHide){
-      <button
-        class="sidebar-red-btn py-2 mt-4"
-        (click)="show(false); openSellPopup('rent')"
-      >
+      <button class="sidebar-red-btn py-2 mt-4" (click)="show(false); openSellPopup('rent')">
         Submit A Deal
       </button>
       }

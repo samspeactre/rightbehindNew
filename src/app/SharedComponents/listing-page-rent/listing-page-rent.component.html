@@ -1,11 +1,11 @@
 <div class="position-relative overflow-hidden">
   <div
-    class="position-sticky top-0 zIndex bg-white py-1 wow fadeInDown"
+    class="position-sticky top-0 zIndex bg-white py-2 wow fadeInDown"
     [class.bg-transparent]="show"
     [class.py-0]="show"
     id="searchHeight"
   >
-    <div class="cstmContainer">
+    <div class="cstmContainer section-width">
       <div [ngClass]="{ 'd-none': show }">
         <app-search-bar-listing
           [search]="search"
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div class="cstmContainer overflow-hidden">
+  <div class="cstmContainer overflow-hidden section-width">
     <div class="w-100 d-flex align-items-start justify-content-between">
       <div class="colFirst">
         <div
@@ -72,7 +72,6 @@
             <app-property-card
               [animation]="false"
               page="listView"
-              background="#e6f2ff"
               [card]="card"
               [loader]="loader"
               type="component"

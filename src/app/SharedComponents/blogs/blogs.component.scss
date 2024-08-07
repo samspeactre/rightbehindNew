@@ -1,0 +1,111 @@
+.contact {
+    height: 250px;
+}
+
+.sicontainer-te {
+    padding: 0vw 3.55vw;
+}
+
+.content {
+    padding-top: 8.25vw;
+}
+
+.content h1 {
+    text-align: center;
+}
+
+.page-links {
+    width: 8.2%;
+    margin: auto;
+    text-align: center;
+    margin-top: 0.65vw;
+    padding: 0vw 1.5vw;
+}
+
+.page-links a {
+    font-family: "reg";
+    font-size: 1.1vw;
+    color: var(--head-black);
+    text-align: center;
+    letter-spacing: 0.03vw;
+    transition: font-family 0.6s ease;
+}
+
+.page-links a:hover {
+    font-family: 'med';
+}
+
+.slash {
+    padding: 0vw 0.25vw;
+    align-content: center;
+}
+
+.sec-2 {
+    margin-top: 3.7vw;
+    margin-bottom: 6.9vw;
+}
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    .left-contact{
+        margin-top: 20px;
+    }
+
+    .block,
+    .mail-block {
+        display: block;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .mail-block{
+        width: 100%;
+    }
+
+    .container {
+        display: block;
+    }
+
+    .contact {
+        height: 120px;
+    }
+
+    .page-links {
+        width: 19.5%;
+    }
+
+    .slash {
+        padding: 0vw 1%;
+    }
+
+    .page-links a {
+        font-size: 3vw;
+        align-content: center;
+    }
+
+    .mobile-icon{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .icon-text h2 {
+        font-size: 5.5vw;
+    }
+
+    .light-text-num {
+        font-size: 4.25vw;
+    }
+
+    .light-text {
+        font-size: 4.25vw;
+    }
+}

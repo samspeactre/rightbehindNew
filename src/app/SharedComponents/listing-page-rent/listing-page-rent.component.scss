@@ -30,7 +30,9 @@
 .colSecond {
   width: 60%;
 }
-
+.section-width{
+  width: 97.5vw !important;
+}
 @media only screen and (max-width: 1024px) {
   .colFirst {
     width: 100%;

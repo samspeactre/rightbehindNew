@@ -1,8 +1,8 @@
 .searchBar {
   border-radius: 100px;
   background: #fff;
-  border: 1px solid #5e5e5e;
-  padding: 0.5rem;
+  border: 1px solid #d3d3d3;
+  padding: 0.5rem 1rem;
   min-height: auto;
   width: 40%;
   input {
@@ -12,7 +12,7 @@
     width: 90%;
   }
   .search {
-    color: #0062c9;
+    color: #919090;
     background: none;
     border: none;
     outline: none;
@@ -43,12 +43,12 @@
   padding: 0.7rem 0;
 }
 .btnCstm {
-  border: 1px solid #5e5e5e;
+  border: 1px solid #d3d3d3;
   color: #000;
   border-radius: 100px;
   background: none;
   fa-icon {
-    color: #0062c9;
+    color: #919090;
   }
 }
 @media only screen and (max-width: 1024px) {

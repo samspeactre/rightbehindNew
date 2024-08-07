@@ -15,6 +15,12 @@ export const routes: Routes = [
           import('./view/home/home.route').then((m) => m.Home_Routes),
       },
       {
+        path: 'all-blogs',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('./SharedComponents/blogs/blogs.route').then((m) => m.Blog_Routes),
+      },
+      {
         path: 'buy',
         data: { footer: true, header: true },
         loadChildren: () =>

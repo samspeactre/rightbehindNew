@@ -29,12 +29,7 @@
           @for (card of propertyDetails?.propertyImages; let i = $index; track
           card) {
           <div class="col-lg-4">
-            <img
-              [src]="card?.imageUrl"
-              class="carouselImg"
-              alt="image"
-              (click)="open(i)"
-            />
+            <img [src]="card?.imageUrl" class="carouselImg" alt="image" (click)="open(i)" />
           </div>
           }
         </div>
@@ -50,11 +45,7 @@
         } } } @else {
         <div class="dCenter">
           <div class="banner-review-img">
-            <img
-              class="NoImageFound"
-              src="https://homes.madeeasy.app/img/no-propertyfound.png"
-              alt="noimage found"
-            />
+            <img class="NoImageFound" src="https://homes.madeeasy.app/img/no-propertyfound.png" alt="noimage found" />
           </div>
         </div>
         } @if(propertyDetails?.featuredTill || propertyDetails?.isPromoted){
@@ -62,9 +53,9 @@
           💲
           {{ propertyDetails?.featuredTill ? "Featured" : "" }}
           {{
-            propertyDetails?.featuredTill && propertyDetails?.isPromoted
-              ? " & "
-              : " "
+          propertyDetails?.featuredTill && propertyDetails?.isPromoted
+          ? " & "
+          : " "
           }}
           {{ propertyDetails?.isPromoted ? "Promoted" : "" }}
         </div>
@@ -83,11 +74,7 @@
                 <fa-icon class="dCenter" [icon]="faHeart"></fa-icon>
               </a> -->
               <a>
-                <fa-icon
-                  class="dCenter"
-                  [icon]="faShare"
-                  (click)="share()"
-                ></fa-icon>
+                <fa-icon class="dCenter" [icon]="faShare" (click)="share()"></fa-icon>
               </a>
               <!-- <a>
                 <fa-icon class="dCenter" [icon]="faEllipsisVertical"></fa-icon>
@@ -99,9 +86,7 @@
             <p>{{ propertyDetails?.location }}</p>
           </div>
           }
-          <div
-            class="d-flex align-items-center justify-content-between flex-wrap"
-          >
+          <div class="d-flex align-items-center justify-content-between flex-wrap">
             <div class="prop-details display content-between">
               @if(propertyDetails?.noOfBed){
               <div class="dCenter bath-box right-border-gray">
@@ -136,7 +121,7 @@
               <h4>
                 <strong>{{
                   propertyDetails?.price || 0 | currency : "USD"
-                }}</strong>
+                  }}</strong>
               </h4>
             </div>
           </div>
@@ -151,7 +136,7 @@
               <label>Home Type: </label>
               <label>{{
                 helper.returnType(propertyDetails?.propertyType)
-              }}</label>
+                }}</label>
             </div>
           </div>
           } @if(propertyDetails?.noOfBed){
@@ -193,23 +178,19 @@
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>Years Constructed: </label>
-              <label
-                >{{ propertyDetails?.homeFacts?.[0]?.constructedYear | date : "d MMMM y" }}</label
-              >
+              <label>{{ propertyDetails?.homeFacts?.[0]?.constructedYear | date : "d MMMM y" }}</label>
             </div>
           </div>
           } @if(propertyDetails?.homeFacts?.[0]?.remodelYear){
           <div class="col-lg-6">
             <div class="d-flex justify-content-between labelCheck">
               <label>Structural Remodal Year: </label>
-              <label
-                >{{ propertyDetails?.homeFacts?.[0]?.remodelYear | date : "d MMMM y" }}</label
-              >
+              <label>{{ propertyDetails?.homeFacts?.[0]?.remodelYear | date : "d MMMM y" }}</label>
             </div>
           </div>
           } @if(propertyDetails?.description){
           <div class="col-lg-12">
-            <div class="d-flex justify-content-start gap-1 labelCheck">
+            <div class="justify-content-start gap-1 labelCheck">
               <label class="w-auto">Description: </label>
               <label class="w-100">{{ propertyDetails?.description }}</label>
             </div>
@@ -252,7 +233,7 @@
           </div>
           } @if(item?.description){
           <div class="col-lg-12">
-            <div class="d-flex justify-content-start gap-1 labelCheck">
+            <div class="justify-content-start gap-1 labelCheck">
               <label class="w-auto">Description: </label>
               <label class="w-100">{{ item?.description }}</label>
             </div>
@@ -325,9 +306,7 @@
             <h6><Strong>Policy</Strong></h6>
           </div>
           <div class="col-lg-12">
-            <div
-              class="white-box dCenter justify-content-between labelCheck yellow-label"
-            >
+            <div class="white-box dCenter justify-content-between labelCheck yellow-label">
               <div class="white-box-text text-info">Pet Policy</div>
               <div class="white-box-text">
                 {{ propertyDetails?.petPolicy }}
@@ -479,9 +458,7 @@
           </div>
           } @if(propertyDetails?.description){
           <div class="col-lg-12">
-            <div
-              class="white-box dCenter justify-content-start gap-3 labelCheck"
-            >
+            <div class="white-box justify-content-start gap-3 labelCheck">
               <div class="white-box-text text-info">Description</div>
               <div class="white-box-text">
                 {{ propertyDetails?.description }}
@@ -498,13 +475,10 @@
         </div>
         @for (info of propertyDetails?.openHouses; let i = $index; track info) {
         <div class="col-lg-4">
-          <div
-            class="white-box dCenter justify-content-start gap-3"
-            [ngClass]="{
+          <div class="white-box dCenter justify-content-start gap-3" [ngClass]="{
               'white-label': i % 2 === 0,
               'yellow-label': i % 2 !== 0
-            }"
-          >
+            }">
             <div class="white-box-text text-info">Date</div>
             <div class="white-box-text">
               {{ info?.startDateTime | date : "d MMMM y" }}
@@ -512,13 +486,10 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div
-            class="white-box dCenter justify-content-start gap-3"
-            [ngClass]="{
+          <div class="white-box dCenter justify-content-start gap-3" [ngClass]="{
               'white-label': i % 2 === 0,
               'yellow-label': i % 2 !== 0
-            }"
-          >
+            }">
             <div class="white-box-text text-info">Start Time</div>
             <div class="white-box-text">
               {{ info?.startDateTime | date : "d MMMM y" }}
@@ -526,13 +497,10 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div
-            class="white-box dCenter justify-content-start gap-3"
-            [ngClass]="{
+          <div class="white-box dCenter justify-content-start gap-3" [ngClass]="{
               'white-label': i % 2 === 0,
               'yellow-label': i % 2 !== 0
-            }"
-          >
+            }">
             <div class="white-box-text text-info">End Time</div>
             <div class="white-box-text">
               {{ info?.endDateTime | date : "d MMMM y" }}
@@ -560,13 +528,7 @@
             <h6 class="mb-0">Sq Ft</h6>
           </div>
         </div>
-        <div
-          ngbAccordion
-          class="mt-3"
-          [closeOthers]="true"
-          [destroyOnHide]="true"
-          [animation]="true"
-        >
+        <div ngbAccordion class="mt-3" [closeOthers]="true" [destroyOnHide]="true" [animation]="true">
           @for (item of propertyDetails?.floorPlans; track $index) {
           <div ngbAccordionItem [collapsed]="true">
             <h2 ngbAccordionHeader>
@@ -594,23 +556,14 @@
             <div ngbAccordionCollapse>
               <div ngbAccordionBody>
                 <ng-template>
-                  <img
-                    class="shadow"
-                    [ngClass]="{ NoImageFound: !item?.planImage }"
-                    [src]="
+                  <img class="shadow" [ngClass]="{ NoImageFound: !item?.planImage }" [src]="
                       item?.planImage
                         ? src + item?.planImage
                         : 'https://homes.madeeasy.app/img/no-propertyfound.png'
-                    "
-                    width="100%"
-                    height="200px"
-                    alt="image"
-                  />
+                    " width="100%" height="200px" alt="image" />
                   <h5 class="mt-3 bold">{{ item?.planName }}</h5>
                   <p>{{ item?.description }}</p>
-                  <div
-                    class="d-flex align-items-center justify-content-between flex-wrap"
-                  >
+                  <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <div class="prop-details display content-between">
                       @if(item.noOfBed){
                       <div class="dCenter bath-box right-border-gray">
@@ -646,13 +599,13 @@
                         Start Price:
                         <strong class="ms-2">{{
                           item?.startPrice || 0 | currency : "USD"
-                        }}</strong>
+                          }}</strong>
                       </h6>
                       <h6>
                         End Price:
                         <strong class="ms-2">{{
                           item?.endPrice || 0 | currency : "USD"
-                        }}</strong>
+                          }}</strong>
                       </h6>
                     </div>
                   </div>
@@ -796,9 +749,7 @@
         </div>
         } @if(propertyDetails?.location){
         <div class="col-lg-12">
-          <div
-            class="white-box d-flex align-items-start gap-3 justify-content-start labelCheck"
-          >
+          <div class="white-box d-flex align-items-start gap-3 justify-content-start labelCheck">
             <div class="white-box-text text-info">Address</div>
             <div class="white-box-text">
               {{ propertyDetails?.location }}
@@ -817,11 +768,8 @@
             <p>{{ info?.description }}</p>
           </div>
           <div class="dCenter flex-wrap">
-            <a
-              class="btnPrimary cstm-width-full"
-              (click)="clickAnalytic('phone')"
-              [href]="'tel:' + (propertyDetails?.propertyContacts?.[0]?.contact || propertyDetails?.listAgentOfficePhone)"
-            >
+            <a class="btnPrimary cstm-width-full" (click)="clickAnalytic('phone')"
+              [href]="'tel:' + (propertyDetails?.propertyContacts?.[0]?.contact || propertyDetails?.listAgentOfficePhone)">
               <fa-icon [icon]="faPhoneAlt"></fa-icon>
               {{propertyDetails?.propertyContacts?.[0]?.contact || propertyDetails?.listAgentOfficePhone}}
             </a>
@@ -830,11 +778,8 @@
               <p class="mb-0">or</p>
               <hr />
             </div>
-            <a
-              class="btnPrimary cstm-width-full mt-3"
-              (click)="clickAnalytic('email')"
-              [href]="'mailto:' + (propertyDetails?.propertyContacts?.[0]?.email || propertyDetails?.listAgentEmail)"
-            >
+            <a class="btnPrimary cstm-width-full mt-3" (click)="clickAnalytic('email')"
+              [href]="'mailto:' + (propertyDetails?.propertyContacts?.[0]?.email || propertyDetails?.listAgentEmail)">
               @if(propertyDetails?.propertyContacts?.[0]?.isEmailPrefered){
               <fa-icon [icon]="faCheck" class="me-3"></fa-icon>
               }
@@ -855,33 +800,23 @@
     }
     <!-- map div -->
     <div class="col-lg-12 my-3">
-      <app-map
-        [center]="{
+      <app-map [center]="{
           lat: propertyDetails?.latitude,
           lng: propertyDetails?.longitude
-        }"
-        [markerPositions]="[
+        }" [markerPositions]="[
           { lat: propertyDetails?.latitude, lng: propertyDetails?.longitude }
-        ]"
-      ></app-map>
+        ]"></app-map>
     </div>
-    @if((resize.windowSize$ | async)?.width <= 1024){
-    <div class="position-sticky d-flex justify-content-between stick">
-      <a
-        class="btnPrimary cstmWidthBtn py-3"
-        (click)="clickAnalytic('phone')"
-        [href]="'tel:' + (propertyDetails?.propertyContacts?.[0]?.contact ||propertyDetails?.listAgentOfficePhone)"
-      >
+    @if((resize.windowSize$ | async)?.width <= 1024){ <div class="position-sticky d-flex justify-content-between stick">
+      <a class="btnPrimary cstmWidthBtn py-3" (click)="clickAnalytic('phone')"
+        [href]="'tel:' + (propertyDetails?.propertyContacts?.[0]?.contact ||propertyDetails?.listAgentOfficePhone)">
         {{propertyDetails?.propertyContacts?.[0]?.contact || propertyDetails?.listAgentOfficePhone}}
       </a>
-      <a
-        class="btnPrimary cstmWidthBtn py-3"
-        (click)="clickAnalytic('email')"
-        [href]="'mailto:' + (propertyDetails?.propertyContacts?.[0]?.email || propertyDetails?.listAgentEmail)"
-      >
+      <a class="btnPrimary cstmWidthBtn py-3" (click)="clickAnalytic('email')"
+        [href]="'mailto:' + (propertyDetails?.propertyContacts?.[0]?.email || propertyDetails?.listAgentEmail)">
         Send an email
       </a>
-    </div>
-    } }
   </div>
+  } }
+</div>
 </div>

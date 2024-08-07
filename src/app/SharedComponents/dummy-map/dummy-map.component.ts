@@ -48,7 +48,6 @@ export class DummyMapComponent implements OnInit {
   }
 
   set center(value: google.maps.LatLngLiteral) {
-    console.log(value, 'checklats');
     if (value) {
       this._center = value;
     }
@@ -442,7 +441,10 @@ export class DummyMapComponent implements OnInit {
     };
     //@ts-ignore
     this.featureLayer.style = (options) => {
+      console.log(options.feature.placeId, this.placeId);
+
       if (options.feature.placeId == this.placeId) {
+        console.log(options.feature.placeId, this.placeId, 'fpimd');
         return featureStyleOptions;
       }
     };

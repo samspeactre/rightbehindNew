@@ -79,7 +79,7 @@ export class ListingPageRentComponent {
   show: boolean = false;
   filterType: string = 'all';
   faBuilding = faBuilding;
-  search: any = 'Miami, FL, USA';
+  search: any = null;
   place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 40;
@@ -87,7 +87,7 @@ export class ListingPageRentComponent {
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
-  latLngArray: any;
+  latLngArray: any = [];
   types = types;
   maxPrices: any;
   minPrices: any;
@@ -119,8 +119,8 @@ export class ListingPageRentComponent {
   locationDetails: any;
   sort: string = 'Date: Late to Early';
   center: google.maps.LatLngLiteral = {
-    lat: -34.4009703,
-    lng: 150.4826715,
+    lat: 25.761681,
+    lng: -80.191788,
   };
   navHeight: number = 0;
   searchHeight: number = 0;
@@ -153,6 +153,7 @@ export class ListingPageRentComponent {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       if (params?.search) {
         this.search = params?.search;
+        this.place_id = params?.placeId;
         if (params?.search) {
           this.param = true;
         } else {
@@ -278,7 +279,7 @@ export class ListingPageRentComponent {
     type: string,
     mainResponse: any
   ): void {
-    if (response) {
+    if (response?.length) {
       const newProperties = response || [];
       if (loadMore) {
         this.cards = [...this.cards, ...newProperties];
@@ -342,7 +343,7 @@ export class ListingPageRentComponent {
   }
   noDataError() {
     this.cards = [];
-    this.latLngArray = null;
+    this.latLngArray = [];
   }
   scrollToListing(): void {
     if (this.listing) {
@@ -379,8 +380,8 @@ export class ListingPageRentComponent {
       this.search = 'Miami, FL, USA';
       this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
       this.center = {
-        lat: -34.4009703,
-        lng: 150.4826715,
+        lat: 25.761681,
+        lng: -80.191788,
       };
       this.router.navigate(['rent'], {
         queryParams: { search: this.search, placeId: this.place_id },

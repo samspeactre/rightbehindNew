@@ -42,6 +42,42 @@ export class DummyMapComponent implements OnInit {
       this.removeHighlightedMarker(data);
     }
   }
+  infoContentsArray: any[] = [];
+  @Input() height: any;
+  @Input() community: boolean = false;
+  @Output() propertyHover = new EventEmitter<any>();
+  @Output() drawCordinates = new EventEmitter<any>();
+  @Output() resetDrawCordinates = new EventEmitter<any>();
+  @Input() set infoContents(data: any) {
+    this.infoContentsArray = data;
+    if (
+      (this.markers?.length || this.communityMarkers?.length) &&
+      this.infoContentsArray?.length
+    ) {
+      this.placeMarkers();
+    }
+  }
+  @Input() set markerPositions(data: any[]) {
+    this.markers = data;
+    if (this.markers?.length && this.infoContentsArray?.length) {
+      this.placeMarkers();
+    } else {
+      this.setHighlightedArea();
+    }
+  }
+  @Input() set place_id(data: string) {
+    if (data) {
+      this.placeId = data;
+    }
+  }
+  @Input() set communityMarkerPositions(data: any[]) {
+    this.communityMarkers = data;
+    if (this.communityMarkers?.length && this.infoContentsArray?.length) {
+      this.placeMarkers();
+    } else {
+      this.setHighlightedArea();
+    }
+  }
   @Input()
   get center(): google.maps.LatLngLiteral {
     return this._center;
@@ -54,46 +90,9 @@ export class DummyMapComponent implements OnInit {
     if (this.mapOptions) {
       this.mapOptions.center = this._center;
     }
+    console.log(this._center, 'center check1');
     if (this.map && this._center) {
       this.map.setCenter(this._center);
-    }
-  }
-  infoContentsArray: any[] = [];
-  @Input() height: any;
-  @Input() community: boolean = false;
-  @Output() propertyHover = new EventEmitter<any>();
-  @Output() drawCordinates = new EventEmitter<any>();
-  @Output() resetDrawCordinates = new EventEmitter<any>();
-  @Input() set infoContents(data: any) {
-    if (data) {
-      this.infoContentsArray = data;
-      if (
-        (this.markers?.length || this.communityMarkers?.length) &&
-        this.infoContentsArray?.length
-      ) {
-        this.placeMarkers();
-      }
-    }
-  }
-  @Input() set markerPositions(data: any[]) {
-    if (data) {
-      this.markers = data;
-      if (this.markers?.length && this.infoContentsArray?.length) {
-        this.placeMarkers();
-      }
-    }
-  }
-  @Input() set place_id(data: string) {
-    if (data) {
-      this.placeId = data;
-    }
-  }
-  @Input() set communityMarkerPositions(data: any[]) {
-    if (data) {
-      this.communityMarkers = data;
-      if (this.communityMarkers?.length && this.infoContentsArray?.length) {
-        this.placeMarkers();
-      }
     }
   }
   placeId: string = '';
@@ -108,7 +107,7 @@ export class DummyMapComponent implements OnInit {
   @Input() disabled: boolean = false;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 13,
+    zoom: 16,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapId: '4d9b0fd688ab8d67',
@@ -312,15 +311,9 @@ export class DummyMapComponent implements OnInit {
       this.clearShapes();
     });
     this.placeMarkers();
-    console.log(
-      'check',
-      this.communityMarkers.length,
-      this.markers.length,
-      this.placeId
-    );
     if (
-      !this.communityMarkers.length &&
-      !this.markers.length &&
+      !this.communityMarkers?.length &&
+      !this.markers?.length &&
       this.placeId != ''
     ) {
       this.setHighlightedArea();
@@ -373,8 +366,12 @@ export class DummyMapComponent implements OnInit {
   }
   placeMarkers() {
     this.clearMarkers();
-    this.createMarkers(this.markers, '/assets/img/solid-map-icon.webp');
-    this.createMarkers(this.communityMarkers, '/assets/img/markerC.webp');
+    if (this.markers?.length) {
+      this.createMarkers(this.markers, '/assets/img/solid-map-icon.webp');
+    }
+    if (this.communityMarkers?.length) {
+      this.createMarkers(this.communityMarkers, '/assets/img/markerC.webp');
+    }
   }
 
   async createMarkers(markerDataArray: any[], iconUrl: string) {
@@ -402,7 +399,7 @@ export class DummyMapComponent implements OnInit {
             this.infoContentsArray[index]?.id
         );
         this.map.setCenter(marker.getPosition());
-        this.map.setZoom(13);
+        this.map.setZoom(16);
       });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
@@ -432,23 +429,28 @@ export class DummyMapComponent implements OnInit {
   }
 
   setHighlightedArea(): void {
-    const featureStyleOptions = {
-      strokeColor: '#ff3932',
-      strokeOpacity: 1,
-      strokeWeight: 1.5,
-      fillColor: '#ff3932',
-      fillOpacity: 0.3,
-    };
-    //@ts-ignore
-    this.featureLayer.style = (options) => {
-      console.log(options.feature.placeId, this.placeId);
+    console.log('check data 1');
 
-      if (options.feature.placeId == this.placeId) {
-        console.log(options.feature.placeId, this.placeId, 'fpimd');
-        return featureStyleOptions;
-      }
-    };
-    this.map.data.setStyle(this.featureLayer.style);
+    if (this.map) {
+      console.log('check data 2');
+      const featureStyleOptions = {
+        strokeColor: '#ff3932',
+        strokeOpacity: 1,
+        strokeWeight: 1.5,
+        fillColor: '#ff3932',
+        fillOpacity: 0.1,
+      };
+      //@ts-ignore
+      this.featureLayer.style = (options) => {
+        console.log(options.feature.placeId, this.placeId);
+
+        if (options.feature.placeId == this.placeId) {
+          console.log(options.feature.placeId, this.placeId, 'fpimd');
+          return featureStyleOptions;
+        }
+      };
+      this.map.data.setStyle(this.featureLayer.style);
+    }
   }
   removeHighlightArea() {
     this.featureLayer.style = (options: { feature: { placeId: string } }) => {

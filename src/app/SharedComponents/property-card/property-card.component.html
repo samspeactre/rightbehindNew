@@ -20,7 +20,12 @@
   @if (page == 'listView') {
   <div class="dCenter align-items-start flex-wrap p-2 property-card-styling">
     <div class="w-100 d-flex align-items-start justify-content-between">
-      <div class="w-75">
+      <div
+        class="w-75"
+        (click)="
+          page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
+        "
+      >
         @if(card?.title){
         <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
           {{ card?.title }}

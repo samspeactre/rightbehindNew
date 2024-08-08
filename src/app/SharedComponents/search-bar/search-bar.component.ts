@@ -17,6 +17,7 @@ import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ResizeService } from '../../Services/resize.service';
 import { CommonModule } from '@angular/common';
 import { FilterComponent } from '../filter/filter.component';
+declare var google: any;
 @Component({
   standalone: true,
   imports: [

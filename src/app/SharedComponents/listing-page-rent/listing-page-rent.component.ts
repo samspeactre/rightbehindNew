@@ -166,14 +166,22 @@ export class ListingPageRentComponent {
           };
           this.search = this.locationDetails.placeName;
           this.place_id = this.locationDetails.placeId;
+          this.center = {
+            lat: this.locationDetails.lat,
+            lng: this.locationDetails.lng,
+          };
           this.router.navigate(['rent'], {
-            queryParams: { search: this.search, placeId: this.place_id },
+            queryParams: {
+              search: this.search,
+              placeId: this.place_id,
+              lat: this.locationDetails.lat,
+              lng: this.locationDetails.lng,
+            },
           });
         }
       });
     this.activatedRoute.queryParams.subscribe((params: any) => {
       if (params?.search) {
-        console.log(params);
         this.search = params?.search;
         this.place_id = params?.placeId;
         if (params?.lat && params?.lng) {

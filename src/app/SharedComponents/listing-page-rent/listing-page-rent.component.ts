@@ -1,6 +1,12 @@
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +39,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchBarListingComponent } from '../search-bar-listing/search-bar-listing.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   standalone: true,
   imports: [
@@ -76,7 +83,6 @@ export class ListingPageRentComponent {
   showMap: boolean = false;
   showMapClicked: boolean = false;
   faMap = faMap;
-  show: boolean = false;
   filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = null;
@@ -136,7 +142,8 @@ export class ListingPageRentComponent {
     public resize: ResizeService,
     private elRef: ElementRef,
     private renderer: Renderer2,
-    private store: Store
+    private store: Store,
+    private modalService: NgbModal
   ) {
     this.url = this.router.url;
     this.showMap = true;
@@ -312,7 +319,7 @@ export class ListingPageRentComponent {
         if (this.loadFirstTime) {
           const prices = this.cards.map((data) => data.price ?? 0);
           this.minPrices = 0;
-          this.maxPrices = 100000000;
+          this.maxPrices = this.maxPrice = 100000000;
           this.loadFirstTime = false;
         }
         this.bedsArray = [
@@ -438,6 +445,14 @@ export class ListingPageRentComponent {
     this.closeFil();
     this.getProperties(false);
   }
+  closeFil() {
+    this.modalService.dismissAll();
+  }
+  open(content: TemplateRef<any>) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+      .result.then((result) => {});
+  }
   sorting(event) {
     if (event) {
       this.sort = event;
@@ -514,13 +529,7 @@ export class ListingPageRentComponent {
     this.removeHighlighted = event;
   }
   showFil(event) {
-    document.body.classList.add('bodyLoader');
-    this.show = true;
     this.filterType = event.type;
-  }
-  closeFil() {
-    document.body.classList.remove('bodyLoader');
-    this.show = false;
   }
   highlightCard(cardId: string) {
     const elementId = `card-${cardId}`;

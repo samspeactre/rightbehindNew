@@ -1,47 +1,20 @@
 <div class="position-relative overflow-hidden">
   <div
     class="position-sticky top-0 zIndex bg-white py-2 wow fadeInDown"
-    [class.bg-transparent]="show"
-    [class.py-0]="show"
     id="searchHeight"
   >
     <div class="cstmContainer section-width">
-      <div [ngClass]="{ 'd-none': show }">
-        <app-search-bar-listing
-          [search]="search"
-          (searchEvent)="searchProperties($event)"
-          [searching]="loader"
-          [filter]="true"
-          (showFilter)="showFil($event)"
-          [show]="show"
-        ></app-search-bar-listing>
-      </div>
-      <div class="show" [ngClass]="[show ? 'd-block' : 'd-none']">
-        @if(show){
-        <app-filter
-          [searching]="loader"
-          [types]="types"
-          [bedsArray]="bedsArray"
-          [bathArray]="bathArray"
-          [sortsArray]="sortsArray"
-          [minPrices]="minPrices"
-          [maxPrices]="maxPrices"
-          [a]="type"
-          [b]="beds"
-          [c]="baths"
-          [d]="sort"
-          [e]="minPrice"
-          [f]="maxPrice"
-          [filterType]="filterType"
-          [isResetDisabled]="isResetDisabled()"
-          (onChangeFilter)="onFilterChange($event.event, $event.type)"
-          (onRangeFilter)="onRangeFilter()"
-          (rest)="reset()"
-          (sorted)="sorting($event)"
-          (closed)="closeFil()"
-        ></app-filter>
-        }
-      </div>
+      <app-search-bar-listing
+        [search]="search"
+        (searchEvent)="searchProperties($event)"
+        [searching]="loader"
+        [filter]="true"
+        (showFilter)="showFil($event); open(content)"
+        (closed)="closeFil()"
+      ></app-search-bar-listing>
+      <!-- <div class="show" [ngClass]="[show ? 'd-block' : 'd-none']">
+        
+      </div> -->
       <div class="dCenter justify-content-between">
         @if((resize.windowSize$ | async)?.width <= 1024){
         <button
@@ -124,3 +97,37 @@
     </div>
   </div>
 </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Property Filters</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-filter
+      [searching]="loader"
+      [types]="types"
+      [bedsArray]="bedsArray"
+      [bathArray]="bathArray"
+      [sortsArray]="sortsArray"
+      [minPrices]="minPrices"
+      [maxPrices]="maxPrices"
+      [a]="type"
+      [b]="beds"
+      [c]="baths"
+      [d]="sort"
+      [e]="minPrice"
+      [f]="maxPrice"
+      [filterType]="filterType"
+      [isResetDisabled]="isResetDisabled()"
+      (onChangeFilter)="onFilterChange($event.event, $event.type)"
+      (onRangeFilter)="onRangeFilter()"
+      (rest)="reset()"
+      (sorted)="sorting($event)"
+    ></app-filter>
+  </div>
+</ng-template>

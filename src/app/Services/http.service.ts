@@ -7,11 +7,18 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { Observable, Subject, throwError } from 'rxjs';
-import { catchError, distinctUntilChanged, finalize, shareReplay, takeUntil, tap } from 'rxjs/operators';
+import {
+  catchError,
+  distinctUntilChanged,
+  finalize,
+  shareReplay,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { selectUser } from '../Ngrx/data.reducer';
 import { LoaderService } from './loader.service';
-export const baseUrl = 'https://recursing-allen.74-208-96-50.plesk.page/api/'
+export const baseUrl = 'https://recursing-allen.74-208-96-50.plesk.page/api/';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,7 +35,10 @@ export class HttpService {
     this.user$
       .pipe(
         takeUntil(this.destroy$),
-        distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)))
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
       .subscribe((user) => {
         this.userDetails = user;
       });
@@ -53,16 +63,18 @@ export class HttpService {
       }),
     };
   }
-  loaderPost(link: string, data: any, token: boolean, toaster: boolean = true, loader: boolean = true) {
+  loaderPost(
+    link: string,
+    data: any,
+    token: boolean,
+    toaster: boolean = true,
+    loader: boolean = true
+  ) {
     if (loader) {
       LoaderService.loader.next(true);
     }
     return this.http
-      .post(
-        baseUrl + link,
-        data,
-        token ? this.headerToken : this.header,
-      )
+      .post(baseUrl + link, data, token ? this.headerToken : this.header)
       .pipe(
         tap((res: any) => {
           if (toaster) {
@@ -83,13 +95,19 @@ export class HttpService {
             LoaderService.loader.next(false);
           }
           if (toaster) {
-            this.errorShown(error)
+            this.errorShown(error);
           }
           return throwError(error.message || 'Server error');
-        }),
+        })
       );
   }
-  loaderGet(url: string, token: boolean, clearCache: boolean = false, toastr: boolean = false, loader: boolean = true) {
+  loaderGet(
+    url: string,
+    token: boolean,
+    clearCache: boolean = false,
+    toastr: boolean = false,
+    loader: boolean = true
+  ) {
     if (loader) {
       LoaderService.loader.next(true);
     }
@@ -112,16 +130,21 @@ export class HttpService {
       }),
       catchError((error: HttpErrorResponse) => {
         if (toastr && error) {
-          this.errorShown(error)
+          this.errorShown(error);
         }
         if (loader) {
           LoaderService.loader.next(false);
         }
         return throwError(error.message || 'Server error');
-      }),
+      })
     );
   }
-  get(url: string, token: boolean, clearCache: boolean = false, toaster: boolean = false) {
+  get(
+    url: string,
+    token: boolean,
+    clearCache: boolean = false,
+    toaster: boolean = false
+  ) {
     const CACHE_SIZE = 1;
     const params = clearCache
       ? new HttpParams().set('clearCache', 'true')
@@ -136,39 +159,11 @@ export class HttpService {
       }),
       catchError((error: HttpErrorResponse) => {
         if (toaster) {
-          this.errorShown(error)
+          this.errorShown(error);
         }
         return throwError(error || 'Server error');
-      }),
+      })
     );
-  }
-  post(link: string, data: any, token: boolean, toaster: boolean) {
-    return this.http
-      .post(
-        baseUrl + link,
-        data,
-        token ? this.headerToken : this.header,
-      )
-      .pipe(
-        tap((res: any) => {
-          if (toaster) {
-            if (res?.userMessage) {
-              this.toastr.success(res.userMessage);
-            } else if (res?.successMessage) {
-              this.toastr.success(res.successMessage);
-            } else if (res?.errorMessage) {
-              this.toastr.error(res.errorMessage);
-            }
-          }
-        }),
-        catchError((error: HttpErrorResponse) => {
-          LoaderService.loader.next(false);
-          if (toaster) {
-            this.errorShown(error)
-          }
-          return throwError(error || 'Server error');
-        }),
-      );
   }
   errorShown(error: any) {
     if (error?.error?.length) {
@@ -187,7 +182,7 @@ export class HttpService {
       }
     }
   }
-  profileImageUpload(selectedFile: File,token:string): Observable<any> {
+  profileImageUpload(selectedFile: File, token: string): Observable<any> {
     return new Observable((observer) => {
       const formData = new FormData();
       formData.append('file', selectedFile, selectedFile.name);
@@ -197,22 +192,23 @@ export class HttpService {
           Authorization: `Bearer ${token}`,
         }),
       };
-      this.http.post(baseUrl + 'user/profile/image', formData, HttpUploadOptions).subscribe(
-        (response: any) => {
+      this.http
+        .post(baseUrl + 'user/profile/image', formData, HttpUploadOptions)
+        .subscribe(
+          (response: any) => {
             observer.next(response);
             observer.complete();
-        },
-        (error: any) => {
-          LoaderService.loader.next(false);
-          console.error('Error uploading profile image:', error);
-          observer.error(error);
-        }
-      );
-      return () => {
-      };
+          },
+          (error: any) => {
+            LoaderService.loader.next(false);
+            console.error('Error uploading profile image:', error);
+            observer.error(error);
+          }
+        );
+      return () => {};
     });
   }
-  blogImageUpload(selectedFile: File,token:string): Observable<any> {
+  blogImageUpload(selectedFile: File, token: string): Observable<any> {
     return new Observable((observer) => {
       const formData = new FormData();
       formData.append('file', selectedFile, selectedFile.name);
@@ -222,19 +218,20 @@ export class HttpService {
           Authorization: `Bearer ${token}`,
         }),
       };
-      this.http.post(baseUrl + 'blog/upload/image', formData, HttpUploadOptions).subscribe(
-        (response: any) => {
+      this.http
+        .post(baseUrl + 'blog/upload/image', formData, HttpUploadOptions)
+        .subscribe(
+          (response: any) => {
             observer.next(response);
             observer.complete();
-        },
-        (error: any) => {
-          LoaderService.loader.next(false);
-          console.error('Error uploading profile image:', error);
-          observer.error(error);
-        }
-      );
-      return () => {
-      };
+          },
+          (error: any) => {
+            LoaderService.loader.next(false);
+            console.error('Error uploading profile image:', error);
+            observer.error(error);
+          }
+        );
+      return () => {};
     });
   }
 }

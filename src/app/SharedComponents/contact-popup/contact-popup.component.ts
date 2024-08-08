@@ -1,27 +1,45 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, distinctUntilChanged, of, switchMap, takeUntil } from 'rxjs';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Subject, of, switchMap, takeUntil } from 'rxjs';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { HelperService, types } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
 import { AuthService } from '../../TsExtras/auth.service';
 import { InputComponent } from '../input/input.component';
 import { MapComponent } from '../map/map.component';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import Swal from 'sweetalert2';
-import { HttpService } from '../../Services/http.service';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
-  imports: [InputComponent, SweetAlert2Module, MatIconModule, RouterModule, MatButtonModule, FormsModule, ReactiveFormsModule, CommonModule, MapComponent],
+  imports: [
+    InputComponent,
+    SweetAlert2Module,
+    MatIconModule,
+    RouterModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MapComponent,
+  ],
   selector: 'app-contact-popup',
   templateUrl: './contact-popup.component.html',
-  styleUrl: './contact-popup.component.scss'
+  styleUrl: './contact-popup.component.scss',
 })
 export class ContactPopupComponent {
   selected: any;
@@ -32,20 +50,27 @@ export class ContactPopupComponent {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    message: ['', Validators.required]
+    message: ['', Validators.required],
   });
   user: any;
   private destroy$ = new Subject<void>();
-  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<ContactPopupComponent>,
-    private router: Router, private fb: FormBuilder, private auth: AuthService,
+  constructor(
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<ContactPopupComponent>,
+    private router: Router,
+    private fb: FormBuilder,
+    private auth: AuthService,
     private store: Store,
     private http: HttpService,
     private helper: HelperService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.active = data
+    this.active = data;
     if (this.active?.type === 'property') {
-      this.propertyForm.addControl('password', this.fb.control('', [Validators.required, Validators.minLength(8)]));
+      this.propertyForm.addControl(
+        'password',
+        this.fb.control('', [Validators.required, Validators.minLength(8)])
+      );
     }
   }
   ngOnDestroy(): void {
@@ -57,42 +82,47 @@ export class ContactPopupComponent {
       const data = {
         fullName: `${this.propertyForm.controls['firstName'].value} ${this.propertyForm.controls['lastName'].value}`,
         password: this.propertyForm.controls['password'].value,
-        email: this.propertyForm.controls['email'].value
+        email: this.propertyForm.controls['email'].value,
       };
-      this.auth.register(data).pipe(
-        takeUntil(this.destroy$),
-        switchMap((registerResponse) => this.auth.login(data).pipe(
+      this.auth
+        .register(data)
+        .pipe(
           takeUntil(this.destroy$),
-          switchMap((loginResponse) => {
-            this.auth.handleLoginResponse(loginResponse);
-            return this.helper.createContact(this.active?.id).pipe(
+          switchMap((registerResponse) =>
+            this.auth.login(data).pipe(
               takeUntil(this.destroy$),
-              switchMap((contactResponse) => {
-                const id = contactResponse?.model?.id;
-                const messageData = {
-                  chatContactId: id,
-                  message: this.propertyForm.controls['message'].value
-                };
-                if (id) {
-                  return this.http.loaderPost('Chat/send', messageData, true).pipe(
-                    takeUntil(this.destroy$)
-                  );
-                } else {
-                  return of(null);
-                }
+              switchMap((loginResponse) => {
+                this.auth.handleLoginResponse(loginResponse);
+                return this.helper.createContact(this.active?.id).pipe(
+                  takeUntil(this.destroy$),
+                  switchMap((contactResponse) => {
+                    const id = contactResponse?.model?.id;
+                    const messageData = {
+                      chatContactId: id,
+                      message: this.propertyForm.controls['message'].value,
+                    };
+                    if (id) {
+                      return this.http
+                        .loaderPost('Chat/send', messageData, true)
+                        .pipe(takeUntil(this.destroy$));
+                    } else {
+                      return of(null);
+                    }
+                  })
+                );
               })
-            );
-          })
-        ))
-      ).subscribe({
-        next: () => {
-          this.propertyForm.reset();
-          this.dialogRef.close();
-        },
-        error: (err) => {
-          console.error('An error occurred:', err);
-        }
-      });
+            )
+          )
+        )
+        .subscribe({
+          next: () => {
+            this.propertyForm.reset();
+            this.dialogRef.close();
+          },
+          error: (err) => {
+            console.error('An error occurred:', err);
+          },
+        });
     } else {
     }
   }

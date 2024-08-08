@@ -1,7 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowRight,
@@ -9,9 +10,8 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from '../../Services/http.service';
 import { finalize } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   standalone: true,
@@ -84,7 +84,7 @@ export class BlogCarouselComponent implements OnInit {
     },
     nav: false,
   };
-  constructor(private router: Router, private http: HttpService) {}
+  constructor(private http: HttpService) {}
 
   ngOnInit(): void {
     this.getBlogs();

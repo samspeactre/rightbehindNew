@@ -360,7 +360,7 @@ export class DummyMapComponent implements OnInit {
   }
   placeMarkers() {
     this.clearMarkers();
-    this.createMarkers(this.markers, '/assets/img/solid-map-icon.webp');
+    this.createMarkers(this.markers, '/assets/img/solid-map-icon.svg');
     this.createMarkers(this.communityMarkers, '/assets/img/markerC.webp');
   }
 

@@ -1,15 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { HttpService } from '../../../Services/http.service';
-import { ChatPopupComponent } from '../../../SharedComponents/add-chat-popup/add-chat-popup.component';
-import { InputComponent } from '../../../SharedComponents/input/input.component';
-import { CommunityCardComponent } from '../../../SharedComponents/community-card/community-card.component';
+import { Router } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { of, Subject } from 'rxjs';
 import {
   debounceTime,
@@ -17,7 +13,9 @@ import {
   switchMap,
   takeUntil,
 } from 'rxjs/operators';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { HttpService } from '../../../Services/http.service';
+import { InputComponent } from '../../../SharedComponents/input/input.component';
+import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
 
 @Component({
   standalone: true,
@@ -129,12 +127,14 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     if (!this.searchForm?.controls['search'].value) {
       this.inquiries = this.originalInquiries;
     } else {
-      const lowerSearchTerm = this.searchForm?.controls['search'].value.toLowerCase();
-      this.inquiries = this.originalInquiries.filter((inquiry:any) => 
-        inquiry.id.toString().includes(lowerSearchTerm) ||
-        inquiry.paymentNumber.toLowerCase().includes(lowerSearchTerm) ||
-        inquiry.status.toLowerCase().includes(lowerSearchTerm) ||
-        inquiry.amount.toString().includes(lowerSearchTerm)
+      const lowerSearchTerm =
+        this.searchForm?.controls['search'].value.toLowerCase();
+      this.inquiries = this.originalInquiries.filter(
+        (inquiry: any) =>
+          inquiry.id.toString().includes(lowerSearchTerm) ||
+          inquiry.paymentNumber.toLowerCase().includes(lowerSearchTerm) ||
+          inquiry.status.toLowerCase().includes(lowerSearchTerm) ||
+          inquiry.amount.toString().includes(lowerSearchTerm)
       );
     }
   }

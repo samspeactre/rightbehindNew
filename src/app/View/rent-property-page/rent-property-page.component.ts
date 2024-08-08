@@ -194,7 +194,7 @@ export class RentPropertyPageComponent implements OnInit {
                       ?.amenityCategory?.amenityCategoryName,
                   RentSpecial: response?.model?.rentSpecials,
                   PropertyContact: response?.model?.propertyContacts,
-                  ...response?.model
+                  ...response?.model,
                 };
                 response?.model?.propertyImages?.map((image: any) => {
                   this.propertyImageFiles.push(
@@ -265,7 +265,7 @@ export class RentPropertyPageComponent implements OnInit {
           Country: this.previousData?.address?.country,
           ZipCode: this.previousData?.address?.zipCode,
           Street: this.previousData?.address?.street,
-          Unit: Number(this.previousData?.unit)
+          Unit: Number(this.previousData?.unit),
         });
         if (this.previousData?.active === 'sell') {
           this.propertyAddForm.removeControl('RentSpecial');
@@ -338,8 +338,8 @@ export class RentPropertyPageComponent implements OnInit {
     this.propertyAddForm.removeControl('AmentiyCategory');
     this.propertyAddForm.controls['Country'].setValue(
       this.propertyAddForm.controls['Country'].value +
-      '/' +
-      this.propertyAddForm.controls['State'].value
+        '/' +
+        this.propertyAddForm.controls['State'].value
     );
     const formData = new FormData();
     const appendFormData = (data: any, rootName: string = '') => {
@@ -366,11 +366,11 @@ export class RentPropertyPageComponent implements OnInit {
       }
     };
     appendFormData(this.propertyAddForm.value);
-    if(this.previousData?.getData){
-      formData.append('isActive',this.previousData?.isActive)
-      formData.append('isLive',this.previousData?.isLive)
-      formData.append('createdAt',this.previousData?.createdAt)
-      formData.append('isDeleted',this.previousData?.isDeleted)
+    if (this.previousData?.getData) {
+      formData.append('isActive', this.previousData?.isActive);
+      formData.append('isLive', this.previousData?.isLive);
+      formData.append('createdAt', this.previousData?.createdAt);
+      formData.append('isDeleted', this.previousData?.isDeleted);
     }
     const url = this.previousData?.getData
       ? 'Property/update'
@@ -696,7 +696,7 @@ export class RentPropertyPageComponent implements OnInit {
       height: '490px',
       width: window.innerWidth > 1024 ? '600px' : '100%',
       data: { id: this.previousData?.id, show: 'Featured' },
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.data) {

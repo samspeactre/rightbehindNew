@@ -46,22 +46,6 @@ export const routes: Routes = [
           ).then((m) => m.Listing_Page_Rent_Routes),
       },
       {
-        path: 'property-details',
-        data: { footer: true, header: true },
-        loadChildren: () =>
-          import('./view/property-details/property-details.route').then(
-            (m) => m.Property_Details_Routes
-          ),
-      },
-      {
-        path: 'selling-detail',
-        data: { footer: true, header: true },
-        loadChildren: () =>
-          import('./view/property-details/property-details.route').then(
-            (m) => m.Property_Details_Routes
-          ),
-      },
-      {
         path: 'contact-us',
         data: { footer: true, header: true },
         loadChildren: () =>

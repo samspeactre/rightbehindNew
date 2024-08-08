@@ -201,7 +201,7 @@ form .text-padding {
         margin-bottom: 0;
     }
 
-    .left-contact{
+    .left-contact {
         margin-top: 20px;
     }
 
@@ -212,7 +212,7 @@ form .text-padding {
         justify-content: space-between;
     }
 
-    .mail-block{
+    .mail-block {
         width: 100%;
     }
 
@@ -237,10 +237,14 @@ form .text-padding {
         align-content: center;
     }
 
-    .mobile-icon{
+    .mobile-icon {
         display: flex;
         justify-content: space-between;
         margin-bottom: 20px;
+    }
+
+    .icon-text {
+        margin-left: 0;
     }
 
     .icon-text h2 {
@@ -331,7 +335,7 @@ form .text-padding {
     .contact-form button {
         font-size: 4vw;
         border-radius: 1vw;
-        padding:23px 0;
+        padding: 23px 0;
         width: 100%;
         margin-top: 3.5vw;
     }

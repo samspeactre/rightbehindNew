@@ -2,12 +2,6 @@
   cursor: pointer;
 }
 
-.dCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .hideScroll {
   height: 100vh;
   overflow: hidden;
@@ -62,7 +56,7 @@ input[type="number"] {
 .special {
   background: rgba(255, 255, 255, 0.76);
   border-radius: 4px;
-  padding: 5px .5rem;
+  padding: 5px 0.5rem;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -70,8 +64,8 @@ input[type="number"] {
   color: black;
   width: fit-content;
 }
-.featured{
-  left: 10px; 
+.featured {
+  left: 10px;
 }
 
 .transition {

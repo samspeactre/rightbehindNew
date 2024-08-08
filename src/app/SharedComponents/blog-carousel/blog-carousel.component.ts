@@ -32,7 +32,7 @@ export class BlogCarouselComponent implements OnInit {
   loading: boolean = true;
   cards = [
     {
-      imgSrc: '../../assets/img/blog-1.webp',
+      imgSrc: '',
       date: 'March 2024',
       badge: 'Marketing',
       name: 'How behavioral-based solutions minimize your marketing budget.',
@@ -41,7 +41,7 @@ export class BlogCarouselComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/blog-2.webp',
+      imgSrc: '',
       date: 'April 2024',
       badge: 'Marketing',
       name: 'Consistency is the key to achieving marketing success.',
@@ -50,7 +50,7 @@ export class BlogCarouselComponent implements OnInit {
       buttonUrl: '',
     },
     {
-      imgSrc: '../../assets/img/blog-1.webp',
+      imgSrc: '',
       date: 'March 2024',
       badge: 'Marketing',
       name: 'How behavioral-based solutions minimize your marketing budget.',

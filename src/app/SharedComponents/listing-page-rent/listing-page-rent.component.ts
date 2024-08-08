@@ -86,6 +86,7 @@ export class ListingPageRentComponent {
   filterType: string = 'all';
   faBuilding = faBuilding;
   search: any = null;
+  searchByBar: any = null;
   place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 40;
@@ -146,6 +147,9 @@ export class ListingPageRentComponent {
     private modalService: NgbModal
   ) {
     this.url = this.router.url;
+    this.searchByBar = JSON.parse(
+      localStorage.getItem('searchByBar') || 'false'
+    );
     this.showMap = true;
     this.user$
       .pipe(
@@ -166,17 +170,14 @@ export class ListingPageRentComponent {
       )
       .subscribe((location) => {
         this.locationDetails = location;
-        if (!this.search && this.locationDetails) {
-          this.center = {
-            lat: this.locationDetails?.lat,
-            lng: this.locationDetails?.lng,
-          };
+        if (!this.searchByBar && this.locationDetails) {
           this.search = this.locationDetails.placeName;
           this.place_id = this.locationDetails.placeId;
           this.center = {
             lat: this.locationDetails.lat,
             lng: this.locationDetails.lng,
           };
+          localStorage.setItem('searchByBar', 'false');
           this.router.navigate(['rent'], {
             queryParams: {
               search: this.search,
@@ -319,7 +320,7 @@ export class ListingPageRentComponent {
         if (this.loadFirstTime) {
           const prices = this.cards.map((data) => data.price ?? 0);
           this.minPrices = 0;
-          this.maxPrices = this.maxPrice = 100000000;
+          this.maxPrices = 100000000;
           this.loadFirstTime = false;
         }
         this.bedsArray = [
@@ -383,6 +384,8 @@ export class ListingPageRentComponent {
       this.search = event.search;
       this.place_id = event.place_id;
       this.center = event.center;
+      this.searchByBar = true;
+      localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
@@ -394,6 +397,8 @@ export class ListingPageRentComponent {
     } else if (event.search && event.place_id) {
       this.search = event.search;
       this.place_id = event.place_id;
+      this.searchByBar = true;
+      localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
@@ -403,6 +408,8 @@ export class ListingPageRentComponent {
     } else if (this.locationDetails) {
       this.search = this.locationDetails?.placeName;
       this.place_id = this.locationDetails?.placeId;
+      this.searchByBar = false;
+      localStorage.setItem('searchByBar', 'false');
       this.center = {
         lat: this.locationDetails?.lat,
         lng: this.locationDetails?.lng,
@@ -422,6 +429,8 @@ export class ListingPageRentComponent {
         lat: 25.761681,
         lng: -80.191788,
       };
+      this.searchByBar = false;
+      localStorage.setItem('searchByBar', 'false');
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,

@@ -31,10 +31,12 @@ export class LocationService {
               }
             );
           } else {
+            this.handlePermissionDenied();
             reject('Geolocation permission denied.');
           }
         });
       } else {
+        this.handlePermissionDenied();
         reject('Geolocation permissions API is not supported by this browser.');
       }
     });
@@ -57,6 +59,7 @@ export class LocationService {
                 ...location,
                 placeName: placeName?.formatted_address,
                 placeId: placeName?.place_id,
+                default: false,
               };
               this.store.dispatch(addCurrenLocation({ data: locationData }));
               resolve(locationData);
@@ -86,5 +89,17 @@ export class LocationService {
           throw new Error('No address found');
         }
       });
+  }
+
+  private handlePermissionDenied() {
+    const dummyData = {
+      placeName: 'Miami, FL, USA',
+      placeId: 'ChIJEcHIDqKw2YgRZU-t3XHylv8',
+      lat: 25.761681,
+      lng: -80.191788,
+      default: true,
+    };
+    console.warn('Geolocation permission denied.', dummyData);
+    this.store.dispatch(addCurrenLocation({ data: dummyData }));
   }
 }

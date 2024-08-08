@@ -1,6 +1,12 @@
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +24,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { Store } from '@ngrx/store';
 import { NgxTypedWriterModule } from 'ngx-typed-writer';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
-import { selectUser } from '../../Ngrx/data.reducer';
+import { selectLocation, selectUser } from '../../Ngrx/data.reducer';
 import { types } from '../../Services/helper.service';
 import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
@@ -33,6 +39,7 @@ import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchBarListingComponent } from '../search-bar-listing/search-bar-listing.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   standalone: true,
   imports: [
@@ -76,19 +83,17 @@ export class ListingPageRentComponent {
   showMap: boolean = false;
   showMapClicked: boolean = false;
   faMap = faMap;
-  show: boolean = false;
   filterType: string = 'all';
   faBuilding = faBuilding;
-  search: any = '';
+  search: any = null;
   place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 40;
   loader: boolean = true;
-  noData: boolean = false;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;
   param: boolean = false;
-  latLngArray: any;
+  latLngArray: any = [];
   types = types;
   maxPrices: any;
   minPrices: any;
@@ -116,10 +121,12 @@ export class ListingPageRentComponent {
   baths: any = null;
   user$ = this.store.select(selectUser);
   userDetails: any;
+  location$ = this.store.select(selectLocation);
+  locationDetails: any;
   sort: string = 'Date: Late to Early';
   center: google.maps.LatLngLiteral = {
-    lat: -34.4009703,
-    lng: 150.4826715,
+    lat: 25.761681,
+    lng: -80.191788,
   };
   navHeight: number = 0;
   searchHeight: number = 0;
@@ -135,7 +142,8 @@ export class ListingPageRentComponent {
     public resize: ResizeService,
     private elRef: ElementRef,
     private renderer: Renderer2,
-    private store: Store
+    private store: Store,
+    private modalService: NgbModal
   ) {
     this.url = this.router.url;
     this.showMap = true;
@@ -149,17 +157,51 @@ export class ListingPageRentComponent {
       .subscribe((user) => {
         this.userDetails = user;
       });
-    this.activatedRoute.queryParams.subscribe((params) => {
-      if (params['search']) {
-        this.search = params['search'];
-        if (params['search']) {
+    this.location$
+      .pipe(
+        takeUntil(this.destroy$),
+        distinctUntilChanged(
+          (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+        )
+      )
+      .subscribe((location) => {
+        this.locationDetails = location;
+        if (!this.search && this.locationDetails) {
+          this.center = {
+            lat: this.locationDetails?.lat,
+            lng: this.locationDetails?.lng,
+          };
+          this.search = this.locationDetails.placeName;
+          this.place_id = this.locationDetails.placeId;
+          this.center = {
+            lat: this.locationDetails.lat,
+            lng: this.locationDetails.lng,
+          };
+          this.router.navigate(['rent'], {
+            queryParams: {
+              search: this.search,
+              placeId: this.place_id,
+              lat: this.locationDetails.lat,
+              lng: this.locationDetails.lng,
+            },
+          });
+        }
+      });
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      if (params?.search) {
+        this.search = params?.search;
+        this.place_id = params?.placeId;
+        if (params?.lat && params?.lng) {
+          this.center = { lat: Number(params?.lat), lng: Number(params?.lng) };
+        }
+        if (params?.search) {
           this.param = true;
         } else {
           this.param = false;
         }
+        this.scrollToListing();
+        this.getProperties(false);
       }
-      this.scrollToListing();
-      this.getProperties(false);
     });
   }
   ngAfterViewInit() {
@@ -197,10 +239,8 @@ export class ListingPageRentComponent {
   }
   getProperties(loadMore: boolean) {
     if (!loadMore) {
-      this.loader = true;
-    }
-    if (this.search == '' || !this.search) {
       this.cards = [1, 2, 3];
+      this.loader = true;
     }
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
@@ -258,7 +298,7 @@ export class ListingPageRentComponent {
     type: string,
     mainResponse: any
   ): void {
-    if (response) {
+    if (response?.length) {
       const newProperties = response || [];
       if (loadMore) {
         this.cards = [...this.cards, ...newProperties];
@@ -275,10 +315,11 @@ export class ListingPageRentComponent {
             lat: location.latitude,
             lng: location.longitude,
           }));
+        this.center = this.latLngArray?.[0];
         if (this.loadFirstTime) {
           const prices = this.cards.map((data) => data.price ?? 0);
-          this.minPrices = Math.min(...prices);
-          this.maxPrices = Math.max(...prices);
+          this.minPrices = 0;
+          this.maxPrices = this.maxPrice = 100000000;
           this.loadFirstTime = false;
         }
         this.bedsArray = [
@@ -296,7 +337,6 @@ export class ListingPageRentComponent {
           this.place_id = searchString.split(',')[0];
         }
       }
-      this.noData = mainResponse?.properties?.length === 0;
       this.originalCards = this.cards;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
     } else {
@@ -322,7 +362,7 @@ export class ListingPageRentComponent {
   }
   noDataError() {
     this.cards = [];
-    this.noData = true;
+    this.latLngArray = [];
   }
   scrollToListing(): void {
     if (this.listing) {
@@ -339,14 +379,57 @@ export class ListingPageRentComponent {
   }
 
   searchProperties(event: any) {
-    this.search = event.search;
-    this.place_id = event.place_id;
-    if (event) {
+    if (event.search && event.place_id && event.center) {
+      this.search = event.search;
+      this.place_id = event.place_id;
+      this.center = event.center;
       this.router.navigate(['rent'], {
-        queryParams: { search: this.search, placeId: this.place_id },
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+          lat: event?.center?.lat,
+          lng: event.center?.lng,
+        },
+      });
+    } else if (event.search && event.place_id) {
+      this.search = event.search;
+      this.place_id = event.place_id;
+      this.router.navigate(['rent'], {
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+        },
+      });
+    } else if (this.locationDetails) {
+      this.search = this.locationDetails?.placeName;
+      this.place_id = this.locationDetails?.placeId;
+      this.center = {
+        lat: this.locationDetails?.lat,
+        lng: this.locationDetails?.lng,
+      };
+      this.router.navigate(['rent'], {
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+          lat: this.locationDetails?.lat,
+          lng: this.locationDetails?.lng,
+        },
       });
     } else {
-      this.router.navigate(['rent']);
+      this.search = 'Miami, FL, USA';
+      this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
+      this.center = {
+        lat: 25.761681,
+        lng: -80.191788,
+      };
+      this.router.navigate(['rent'], {
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+          lat: 25.761681,
+          lng: -80.191788,
+        },
+      });
     }
   }
 
@@ -361,6 +444,14 @@ export class ListingPageRentComponent {
   onRangeFilter() {
     this.closeFil();
     this.getProperties(false);
+  }
+  closeFil() {
+    this.modalService.dismissAll();
+  }
+  open(content: TemplateRef<any>) {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+      .result.then((result) => {});
   }
   sorting(event) {
     if (event) {
@@ -438,13 +529,7 @@ export class ListingPageRentComponent {
     this.removeHighlighted = event;
   }
   showFil(event) {
-    document.body.classList.add('bodyLoader');
-    this.show = true;
     this.filterType = event.type;
-  }
-  closeFil() {
-    document.body.classList.remove('bodyLoader');
-    this.show = false;
   }
   highlightCard(cardId: string) {
     const elementId = `card-${cardId}`;

@@ -50,6 +50,7 @@ export class SearchBarListingComponent {
   @Input() place_id!: string;
   @Input() show: boolean = false;
   @Input() extraWidth: boolean = false;
+  center: any;
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   autocomplete!: google.maps.places.Autocomplete;
   autocompleteListener!: google.maps.MapsEventListener;
@@ -113,6 +114,10 @@ export class SearchBarListingComponent {
       'place_changed',
       () => {
         const place = this.autocomplete.getPlace();
+        console.log(place);
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        this.center = { lat, lng };
         this.place_id = place.place_id;
         this.search = place.formatted_address;
         this.submit();
@@ -121,7 +126,11 @@ export class SearchBarListingComponent {
     this.autocompleteService = new google.maps.places.AutocompleteService();
   }
   submit() {
-    this.searchEvent.emit({ search: this.search, place_id: this.place_id });
+    this.searchEvent.emit({
+      search: this.search,
+      place_id: this.place_id,
+      center: this.center,
+    });
   }
   showFilt() {
     this.show = true;

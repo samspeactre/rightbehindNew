@@ -24,7 +24,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { addRental, addSell } from './Ngrx/data.action';
-import { RentalReducer, SellReducer, userReducer } from './Ngrx/data.reducer';
+import {
+  LocationReducer,
+  RentalReducer,
+  SellReducer,
+  userReducer,
+} from './Ngrx/data.reducer';
 import { CacheInterceptor } from './TsExtras/cache.interceptor';
 import { routes } from './app.routes';
 import { StarRatingModule } from 'angular-star-rating';
@@ -111,6 +116,7 @@ export const appConfig: ApplicationConfig = {
         user: userReducer,
         rent: RentalReducer,
         sell: SellReducer,
+        location: LocationReducer,
       }),
       StarRatingModule.forRoot(),
       ToastrModule.forRoot({

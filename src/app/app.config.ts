@@ -55,6 +55,19 @@ const initializeApp = (
           tap((response: any) => {
             if (response?.model?.properties) {
               const properties = response.model.properties;
+              if (properties?.length) {
+                properties?.forEach((property: any) => {
+                  if (
+                    property.propertyImages &&
+                    property.propertyImages.length > 5
+                  ) {
+                    property.propertyImages = property.propertyImages.slice(
+                      0,
+                      5
+                    );
+                  }
+                });
+              }
               store.dispatch(addRental({ data: properties }));
             }
           })

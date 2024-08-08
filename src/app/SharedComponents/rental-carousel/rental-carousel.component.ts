@@ -5,7 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { HttpService } from '../../Services/http.service';
@@ -20,7 +23,7 @@ import { PropertyCardComponent } from '../property-card/property-card.component'
     PropertyCardComponent,
     CarouselModule,
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   selector: 'app-rental-carousel',
   templateUrl: './rental-carousel.component.html',
@@ -31,45 +34,50 @@ export class RentalCarouselComponent implements OnInit {
   @Input() type!: string;
   @Input() background!: string;
   @Input() heading!: string;
-  faChevronCircleLeft=faChevronLeft
-  faChevronCircleRight=faChevronRight
+  faChevronCircleLeft = faChevronLeft;
+  faChevronCircleRight = faChevronRight;
   noData: boolean = false;
   isDragging: boolean = false;
-  customOptions!: OwlOptions
+  customOptions!: OwlOptions;
   constructor(
     public dialog: MatDialog,
     private http: HttpService,
     private store: Store
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.customOptions = {
       loop: true,
-      skip_validateItems:true,
+      skip_validateItems: true,
       mouseDrag: true,
       touchDrag: true,
       pullDrag: true,
-      autoHeight:true,
-      autoWidth:false,
+      autoHeight: true,
+      autoWidth: false,
       margin: 20,
       dots: false,
       navSpeed: 700,
       navText: ['', ''],
       responsive: {
         0: {
-          items: 1
+          items: 1,
         },
         740: {
-          items: 3
+          items: 3,
         },
-        1024:{
-          items: 4
-        }
+        1024: {
+          items: 4,
+        },
       },
-      nav: false
-    }
+      nav: false,
+    };
   }
-  public ngAfterViewInit(): void {window.dispatchEvent(new Event('resize'));}
+  public ngAfterViewInit(): void {
+    window.dispatchEvent(new Event('resize'));
+  }
+  setItem() {
+    localStorage.setItem('searchByBar', 'false');
+  }
 }
 
 // openPopup(): void {

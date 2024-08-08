@@ -94,7 +94,6 @@ export class AppComponent {
     );
   }
   ngAfterViewInit(): void {
-    new WOW().init();
     setTimeout(() => {
       this.helper.appendLink(
         'https://fonts.googleapis.com/icon?family=Material+Icons'

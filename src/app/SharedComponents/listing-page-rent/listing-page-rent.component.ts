@@ -307,6 +307,11 @@ export class ListingPageRentComponent {
         this.cards = newProperties;
       }
       if (this.cards?.length) {
+        this.cards?.forEach((property: any) => {
+          if (property.propertyImages && property.propertyImages.length > 5) {
+            property.propertyImages = property.propertyImages.slice(0, 5);
+          }
+        });
         this.latLngArray = this.cards
           .filter(
             (location: any) =>

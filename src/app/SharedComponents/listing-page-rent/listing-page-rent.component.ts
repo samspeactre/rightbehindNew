@@ -318,8 +318,7 @@ export class ListingPageRentComponent {
           }));
         this.center = this.latLngArray?.[0];
         if (this.loadFirstTime) {
-          const prices = this.cards.map((data) => data.price ?? 0);
-          this.minPrices = 0;
+          this.minPrices = this.minPrice = 0;
           this.maxPrices = 100000000;
           this.loadFirstTime = false;
         }

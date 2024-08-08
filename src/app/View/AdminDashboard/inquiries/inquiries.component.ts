@@ -1,21 +1,25 @@
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
-import { faPhoneAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { HttpService } from '../../../Services/http.service';
-import { ChatPopupComponent } from '../../../SharedComponents/add-chat-popup/add-chat-popup.component';
-import { InputComponent } from '../../../SharedComponents/input/input.component';
-import { CommunityCardComponent } from '../../../SharedComponents/community-card/community-card.component';
-import { of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { Router } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { of, Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  takeUntil,
+} from 'rxjs/operators';
+import { HttpService } from '../../../Services/http.service';
+import { CommunityCardComponent } from '../../../SharedComponents/community-card/community-card.component';
+import { InputComponent } from '../../../SharedComponents/input/input.component';
 import { InquiryPopupComponent } from '../../../SharedComponents/inquiry-popup/inquiry-popup.component';
-import { NoopScrollStrategy } from '@angular/cdk/overlay';
+import { MiniLoadingComponent } from '../../../SharedComponents/loaders/mini-loader/mini-loading.component';
 
 @Component({
   standalone: true,
@@ -27,7 +31,7 @@ import { NoopScrollStrategy } from '@angular/cdk/overlay';
     FontAwesomeModule,
     ReactiveFormsModule,
     MiniLoadingComponent,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   selector: 'app-inquiries',
   templateUrl: './inquiries.component.html',
@@ -128,8 +132,8 @@ export class InquiriesComponent implements OnInit, OnDestroy {
     this.dialog.open(InquiryPopupComponent, {
       height: '80%',
       width: window.innerWidth > 1024 ? '50%' : '100%',
-      data:data,
-      scrollStrategy: new NoopScrollStrategy()
+      data: data,
+      scrollStrategy: new NoopScrollStrategy(),
     });
   }
 }

@@ -118,6 +118,11 @@
   border: none;
   color: #0147b8;
 }
+
+.community-searchbar{
+  width: 70%;
+  margin: auto;
+}
 @media only screen and (max-width: 1024px) {
   :host ::ng-deep {
     h1 {
@@ -150,5 +155,10 @@
       border: none;
       padding: 8px 1rem;
     }
+  }
+
+  .community-searchbar{
+    width: 100%;
+    margin: auto;
   }
 }

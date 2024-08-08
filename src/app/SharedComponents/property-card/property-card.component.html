@@ -98,6 +98,7 @@
       </div>
     </div>
     <div class="col40">
+
       <div class="property-content ps-2">
         <button
           class="whitBtn rounded-0 w-100 bold text-start"
@@ -117,7 +118,7 @@
           "
         >
           <p class="elipEffect mb-1">{{ card?.description }}</p>
-          <div class="d-flex flex-wrap gap-3 mt-1 mb-3">
+          <div class="d-flex flex-wrap gap-3 mt-1 mb-lg-2">
             <div class="dCenter">
               <fa-icon size="sm" [icon]="faBed"></fa-icon>
               <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
@@ -156,7 +157,7 @@
         </div>
         @if(!card?.listingId){
         <button
-          class="btnPrimary rounded-5 py-1 w-100 mb-1"
+          class="btnPrimary rounded-5 py-1 w-100 mb-1 tour-button"
           [ngClass]="{ 'wow fadeInDown': animation }"
           (click)="userDetails ? createContact() : openPopup()"
         >
@@ -164,7 +165,7 @@
         </button>
         } @else {
         <button
-          class="btnPrimary rounded-5 py-1 w-100 mb-1"
+          class="btnPrimary rounded-5 py-1 w-100 mb-1 tour-button"
           [ngClass]="{ 'wow fadeInDown': animation }"
           (click)="openContactOptions()"
         >

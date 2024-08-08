@@ -1,54 +1,32 @@
 <div class="position-relative">
-  <div class="cstmContainer">
+  <div class="">
     <app-banner>
       <div class="container">
-        <div class="py-5">
-          <ngx-typed-writer
-            [strings]="['<h1>Find The Best Communities In Miami.</h1>']"
-            [isHTML]="true"
-            [typeSpeed]="30"
-            [loop]="false"
-            [showCursor]="false"
-          ></ngx-typed-writer>
-          <div [ngClass]="{ 'd-none': show }">
-            <app-search-bar
-              [search]="search"
-              (searchEvent)="searchProperties($event)"
-              [searching]="loader"
-              [filter]="false"
-              [show]="show"
-            ></app-search-bar>
+        <div class="pt-lg-5 pb-5">
+          <ngx-typed-writer [strings]="['<h1>Find The Best Communities In Miami.</h1>']" [isHTML]="true"
+            [typeSpeed]="30" [loop]="false" [showCursor]="false"></ngx-typed-writer>
+          <div [ngClass]="{ 'd-none': show }" class="mt-lg-2 community-searchbar">
+            <app-search-bar [search]="search" (searchEvent)="searchProperties($event)" [searching]="loader"
+              [filter]="false" [show]="show"></app-search-bar>
           </div>
         </div>
       </div>
     </app-banner>
     @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
-    <div class="col-lg-12 wow fadeInDown mb-3">
-      <app-dummy-map
-        [disabled]="loader"
-        (resetDrawCordinates)="resetCordinates($event)"
-        (drawCordinates)="drawSearch($event)"
-        (propertyHover)="highlightCard($event)"
-        [highlighted]="highlighted"
-        [removeHighlighted]="removeHighlighted"
-        [communityMarkerPositions]="latLngArray"
-        [center]="latLngArray?.[1]"
-        [community]="true"
-        [infoContents]="cards"
-        [height]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200"
-      ></app-dummy-map>
+    <div class="col-lg-12 wow fadeInDown mt-lg-3 mb-3 cstmContainer">
+      <app-dummy-map [disabled]="loader" (resetDrawCordinates)="resetCordinates($event)"
+        (drawCordinates)="drawSearch($event)" (propertyHover)="highlightCard($event)" [highlighted]="highlighted"
+        [removeHighlighted]="removeHighlighted" [communityMarkerPositions]="latLngArray" [center]="latLngArray?.[1]"
+        [community]="true" [infoContents]="cards"
+        [height]="(resize.windowSize$ | async)?.width > 1024 ? 300 : 200"></app-dummy-map>
     </div>
     } @if((resize.windowSize$ | async)?.width > 1024 || !showMapClicked){
-    <div class="wow fadeInDown col-lg-12" #listing>
+    <div class="wow fadeInDown col-lg-12 mt-lg-0 mt-3 cstmContainer" #listing>
       <div class="row">
         @if(cards?.length){ @for (card of cards; track card) {
         <div class="mb-3 wow fadeInDown col-lg-3">
-          <app-community-card
-            (propertyHover)="hover($event)"
-            (propertyHoverLeft)="hoverLeft($event)"
-            [item]="card"
-            [loader]="loader"
-          ></app-community-card>
+          <app-community-card (propertyHover)="hover($event)" (propertyHoverLeft)="hoverLeft($event)" [item]="card"
+            [loader]="loader"></app-community-card>
         </div>
         } }
         <div class="col-lg-12">
@@ -59,10 +37,7 @@
               <app-mini-loading></app-mini-loading>
             </div>
             } @else{ @if(cards?.length >= 20){
-            <button
-              class="btnPrimary py-1 wow fadeInDown mb-3"
-              (click)="loadMoreProperties('communities')"
-            >
+            <button class="btnPrimary py-1 wow fadeInDown mb-3" (click)="loadMoreProperties('communities')">
               Load More
             </button>
             } }

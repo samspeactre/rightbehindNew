@@ -28,13 +28,16 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
 .extraHeight {
   min-height: 214px;
 }
+
 .highlightCard {
   border-right: 3px solid #0062c9;
   transition: border 0.3s ease-in-out;
 }
+
 .elipEffect {
   text-transform: capitalize;
   display: -webkit-box;
@@ -44,11 +47,14 @@
   text-overflow: ellipsis;
   -webkit-text-stroke-width: 0.3px;
 }
+
 .description-para {
   width: fit-content;
+
   fa-icon {
     color: #0062c9;
   }
+
   .centerBox {
     position: relative;
 
@@ -99,6 +105,7 @@ p {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
 .property-img {
   width: 100%;
   height: 170px;
@@ -111,8 +118,10 @@ p {
     background: #dddddd;
   }
 }
+
 .carouselImg {
   height: 168px;
+
   img {
     height: 168px;
   }
@@ -135,12 +144,15 @@ p {
   font-size: 13px;
   font-weight: 700;
 }
+
 .sBtn {
   left: 10px;
 }
+
 .eBtn {
   right: 10px;
 }
+
 .location {
   color: #848484;
   font-size: 10px;
@@ -150,12 +162,15 @@ p {
   font-size: 13px;
   color: #848484;
 }
+
 .col60 {
   width: 50%;
 }
+
 .col40 {
   width: 50%;
 }
+
 .highlight {
   box-shadow: 0 0 4px 1px #ff0e00 !important;
 }
@@ -165,12 +180,26 @@ p {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   margin-left: 3px;
 }
+
+.property-content {
+  position: relative;
+  height: 168px;
+}
+
+.tour-button {
+  position: absolute;
+  bottom: 0;
+  width: 96% !important;
+  margin: auto;
+}
+
 @media only screen and (max-width: 1024px) {
   .col60,
   .col40 {
     width: 100%;
   }
 }
+
 @media only screen and (max-width: 600px) {
   .btnContainer button {
     padding: 1.7vw !important;

@@ -4,7 +4,7 @@ import { ListingPageComponent } from './listing-page.component';
 export const Listing_Page_Routes: Routes = [
   {
     path: '',
-    data: { footer: false, header: true, communityHeader: false },
+    data: { footer: true, header: true, communityHeader: false },
     component: ListingPageComponent,
   },
   {

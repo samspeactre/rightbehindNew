@@ -8,8 +8,8 @@
 }
 
 :host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
-    width: 1vw;
-    height: 1vw;
+    width: 15px;
+    height: 15px;
     background-color: var(--checkbox);
     border: 0;
 }

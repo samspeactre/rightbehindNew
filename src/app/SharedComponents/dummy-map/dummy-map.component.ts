@@ -368,7 +368,7 @@ export class DummyMapComponent implements OnInit {
   placeMarkers() {
     this.clearMarkers();
     if (this.markers?.length) {
-      this.createMarkers(this.markers, '/assets/img/solid-map-icon.webp');
+      this.createMarkers(this.markers, '/assets/img/solid-map-icon.svg');
     }
     if (this.communityMarkers?.length) {
       this.createMarkers(this.communityMarkers, '/assets/img/markerC.webp');

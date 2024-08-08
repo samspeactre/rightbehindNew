@@ -16,26 +16,31 @@
   right: 10px;
   cursor: pointer;
 }
+
 :host ::ng-deep {
   .ngs-select {
     border: 1px solid #0000002e;
     margin: 10px 0;
   }
+
   .mat-mdc-slider {
     width: 97% !important;
   }
 }
+
 .removeExtra {
   min-height: auto;
+
   .btnDanger,
   .btnPrimary {
     margin-top: 2rem;
   }
 }
 
-.ngs-select .ng-select{
-  padding:0 5px !important;
+.ngs-select .ng-select {
+  padding: 0 5px !important;
 }
+
 @media only screen and (max-width: 1024px) {
   .filterBox {
     position: fixed;

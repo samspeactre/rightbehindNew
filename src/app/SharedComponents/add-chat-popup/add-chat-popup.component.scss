@@ -76,7 +76,7 @@ button.Active {
     width: 45%;
 }
 
-.main{
+.main {
     padding-left: 35px;
     padding-right: 35px;
     padding-bottom: 35px;
@@ -86,34 +86,33 @@ button.Active {
 .close-popup {
     padding: 7px 7px 0 0;
     float: right;
-  }
-  
-  .close-popup button {
+}
+
+.close-popup button {
     background-color: transparent;
     border: 0;
-  }
-  
-  .close-popup button .mat-icon {
+}
+
+.close-popup button .mat-icon {
     font-size: 23px;
     font-weight: 700;
     color: black;
-  }
+}
 
-  @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .close-popup {
-      margin-left: -8vw;
+        margin-left: -8vw;
     }
 
-    .main{
+    .main {
         margin-top: 30px;
     }
 
-    .left{
+    .left {
         display: none;
     }
 
-    .right{
+    .right {
         width: 100%;
     }
-  }
-  
+}

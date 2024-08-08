@@ -150,19 +150,6 @@ export class ListingPageRentComponent {
       .subscribe((user) => {
         this.userDetails = user;
       });
-    this.activatedRoute.queryParams.subscribe((params: any) => {
-      if (params?.search) {
-        this.search = params?.search;
-        this.place_id = params?.placeId;
-        if (params?.search) {
-          this.param = true;
-        } else {
-          this.param = false;
-        }
-        this.scrollToListing();
-        this.getProperties(false);
-      }
-    });
     this.location$
       .pipe(
         takeUntil(this.destroy$),
@@ -184,6 +171,23 @@ export class ListingPageRentComponent {
           });
         }
       });
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      if (params?.search) {
+        console.log(params);
+        this.search = params?.search;
+        this.place_id = params?.placeId;
+        if (params?.lat && params?.lng) {
+          this.center = { lat: Number(params?.lat), lng: Number(params?.lng) };
+        }
+        if (params?.search) {
+          this.param = true;
+        } else {
+          this.param = false;
+        }
+        this.scrollToListing();
+        this.getProperties(false);
+      }
+    });
   }
   ngAfterViewInit() {
     setTimeout(() => {
@@ -360,11 +364,26 @@ export class ListingPageRentComponent {
   }
 
   searchProperties(event: any) {
-    if (event.search && event.place_id) {
+    if (event.search && event.place_id && event.center) {
+      this.search = event.search;
+      this.place_id = event.place_id;
+      this.center = event.center;
+      this.router.navigate(['rent'], {
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+          lat: event?.center?.lat,
+          lng: event.center?.lng,
+        },
+      });
+    } else if (event.search && event.place_id) {
       this.search = event.search;
       this.place_id = event.place_id;
       this.router.navigate(['rent'], {
-        queryParams: { search: this.search, placeId: this.place_id },
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+        },
       });
     } else if (this.locationDetails) {
       this.search = this.locationDetails?.placeName;
@@ -374,7 +393,12 @@ export class ListingPageRentComponent {
         lng: this.locationDetails?.lng,
       };
       this.router.navigate(['rent'], {
-        queryParams: { search: this.search, placeId: this.place_id },
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+          lat: this.locationDetails?.lat,
+          lng: this.locationDetails?.lng,
+        },
       });
     } else {
       this.search = 'Miami, FL, USA';
@@ -384,7 +408,12 @@ export class ListingPageRentComponent {
         lng: -80.191788,
       };
       this.router.navigate(['rent'], {
-        queryParams: { search: this.search, placeId: this.place_id },
+        queryParams: {
+          search: this.search,
+          placeId: this.place_id,
+          lat: 25.761681,
+          lng: -80.191788,
+        },
       });
     }
   }

@@ -62,6 +62,7 @@ export class DummyMapComponent implements OnInit {
     if (this.markers?.length && this.infoContentsArray?.length) {
       this.placeMarkers();
     } else {
+      this.clearMarkers();
       this.setHighlightedArea();
     }
   }
@@ -75,6 +76,7 @@ export class DummyMapComponent implements OnInit {
     if (this.communityMarkers?.length && this.infoContentsArray?.length) {
       this.placeMarkers();
     } else {
+      this.clearMarkers();
       this.setHighlightedArea();
     }
   }
@@ -90,7 +92,6 @@ export class DummyMapComponent implements OnInit {
     if (this.mapOptions) {
       this.mapOptions.center = this._center;
     }
-    console.log(this._center, 'center check1');
     if (this.map && this._center) {
       this.map.setCenter(this._center);
     }
@@ -429,10 +430,7 @@ export class DummyMapComponent implements OnInit {
   }
 
   setHighlightedArea(): void {
-    console.log('check data 1');
-
     if (this.map) {
-      console.log('check data 2');
       const featureStyleOptions = {
         strokeColor: '#ff3932',
         strokeOpacity: 1,
@@ -442,10 +440,7 @@ export class DummyMapComponent implements OnInit {
       };
       //@ts-ignore
       this.featureLayer.style = (options) => {
-        console.log(options.feature.placeId, this.placeId);
-
         if (options.feature.placeId == this.placeId) {
-          console.log(options.feature.placeId, this.placeId, 'fpimd');
           return featureStyleOptions;
         }
       };

@@ -6,15 +6,15 @@ export const types = [
   { name: 'Houses', value: 2 },
   { name: 'Condos', value: 3 },
   { name: 'Townhomes', value: 4 },
-  { name: 'Rooms', value: 5 }
+  { name: 'Rooms', value: 5 },
 ];
-export const assetUrl = 'https://recursing-allen.74-208-96-50.plesk.page'
+export const assetUrl = 'https://recursing-allen.74-208-96-50.plesk.page';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HelperService {
   private destroy$ = new Subject<void>();
-  constructor(private http:HttpService) { }
+  constructor(private http: HttpService) {}
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -22,39 +22,30 @@ export class HelperService {
   detectBrowserName() {
     const userAgent = navigator.userAgent;
     if (/Edg\/\d+/.test(userAgent)) {
-      return "Microsoft Edge";
+      return 'Microsoft Edge';
     }
 
     if (/MSIE/i.test(userAgent) || /Trident/i.test(userAgent)) {
-      return "Internet Explorer";
+      return 'Internet Explorer';
     }
 
     if (/Opera/i.test(userAgent) || /OPR/i.test(userAgent)) {
-      return "Opera";
+      return 'Opera';
     }
 
     if (/Chrome/i.test(userAgent)) {
-      return "Google Chrome";
+      return 'Google Chrome';
     }
 
     if (/Firefox/i.test(userAgent)) {
-      return "Mozilla Firefox";
+      return 'Mozilla Firefox';
     }
 
     if (/Safari/i.test(userAgent)) {
-      return "Apple Safari";
+      return 'Apple Safari';
     }
 
-    return "Unknown";
-  }
-  appendScript(src: string): void {
-    const scriptAvailable = document.querySelector(`script[src="${src}"]`);
-    if (!scriptAvailable) {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = src;
-      document.body.appendChild(script);
-    }
+    return 'Unknown';
   }
   appendLink(href: string) {
     const linkAvailable = document.querySelector(`link[href="${href}"]`);
@@ -65,12 +56,6 @@ export class HelperService {
       document.head.appendChild(link);
     }
   }
-  removeScript(src: string): void {
-    const script = document.querySelector(`script[src="${src}"]`);
-    if (script) {
-      script.remove();
-    }
-  }
   removeLink(href: string) {
     const link = document.querySelector(`link[href="${href}"]`);
     if (link) {
@@ -78,16 +63,18 @@ export class HelperService {
     }
   }
   returnType(id: number) {
-    const type = types.find((type: any) => type?.value == id)
-    return type?.name
+    const type = types.find((type: any) => type?.value == id);
+    return type?.name;
   }
-  createContact(propertyId:number): Observable<any> {
+  createContact(propertyId: number): Observable<any> {
     const data = {
-      propertyId: propertyId
+      propertyId: propertyId,
     };
     return this.http.loaderPost('ChatContact/create', data, true).pipe(
       takeUntil(this.destroy$),
-      distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      )
     );
   }
 }

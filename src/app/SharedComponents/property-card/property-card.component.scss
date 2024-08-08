@@ -104,13 +104,7 @@ p {
   height: 170px;
   border-radius: 10px;
   overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    object-position: top;
-  }
+  position: relative;
 
   .NoImageFound {
     object-fit: contain;
@@ -122,6 +116,9 @@ p {
   img {
     height: 168px;
   }
+}
+.fixedHeight {
+  height: 170px;
 }
 .carosuelBtn {
   background: #1a1a1a69;
@@ -163,8 +160,9 @@ p {
   box-shadow: 0 0 4px 1px #ff0e00 !important;
 }
 
-.property-card-styling{
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+.property-card-styling {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   margin-left: 3px;
 }
 @media only screen and (max-width: 1024px) {

@@ -1,4 +1,5 @@
-import { CommonModule } from '@angular/common';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-  faAt,
   faBath,
   faBed,
   faChevronLeft,
@@ -17,21 +17,19 @@ import {
   faMapMarkerAlt,
   faPhoneAlt,
   faRulerCombined,
-  faShare,
   faShareAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { selectUser } from '../../Ngrx/data.reducer';
 import { HelperService } from '../../Services/helper.service';
+import { HttpService } from '../../Services/http.service';
 import { ResizeService } from '../../Services/resize.service';
 import { ContactPopupComponent } from '../contact-popup/contact-popup.component';
-import { PopupComponent } from '../popup/popup.component';
-import { NoopScrollStrategy } from '@angular/cdk/overlay';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { ContactSelectComponent } from '../contact-select/contact-select.component';
-import { HttpService } from '../../Services/http.service';
+import { LoginPopupComponent } from '../login-popup/login-popup.component';
+import { PopupComponent } from '../popup/popup.component';
 @Component({
   standalone: true,
   imports: [
@@ -41,6 +39,7 @@ import { HttpService } from '../../Services/http.service';
     FontAwesomeModule,
     RouterModule,
     CarouselModule,
+    NgOptimizedImage,
   ],
   selector: 'app-property-card',
   templateUrl: './property-card.component.html',

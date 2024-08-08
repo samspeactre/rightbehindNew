@@ -71,7 +71,7 @@
           @for (item of card?.propertyImages; let i = $index; track item) {
           <ng-template carouselSlide>
             <div class="position-relative fixedHeight">
-              <img [ngSrc]="item?.imageUrl" fill priority alt="card image" />
+              <img [ngSrc]="item?.imageUrl" fill alt="card image" />
             </div>
           </ng-template>
           }
@@ -82,7 +82,6 @@
             ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png"
             class="NoImageFound"
             fill
-            priority
             alt="Card Image"
           />
         </div>
@@ -191,7 +190,7 @@
       @for (item of card?.propertyImages; let i = $index; track item) {
       <ng-template carouselSlide>
         <div class="position-relative fixedHeight">
-          <img [ngSrc]="item?.imageUrl" fill priority alt="card image" />
+          <img [ngSrc]="item?.imageUrl" fill alt="card image" />
         </div>
       </ng-template>
       }
@@ -201,7 +200,6 @@
       <img
         [ngSrc]="card?.propertyImages?.[0]?.imageUrl"
         fill
-        priority
         alt="Card Image"
       />
     </div>
@@ -211,7 +209,6 @@
         ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png"
         class="NoImageFound"
         fill
-        priority
         alt="Card Image"
       />
     </div>

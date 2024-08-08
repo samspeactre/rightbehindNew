@@ -89,7 +89,7 @@ export class ListingPageRentComponent {
   searchByBar: any = null;
   place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
-  pageSize: number = 40;
+  pageSize: number = 20;
   loader: boolean = true;
   loadMore: boolean = false;
   loadMoreLoader: boolean = false;

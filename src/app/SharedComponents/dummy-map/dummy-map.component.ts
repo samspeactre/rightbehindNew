@@ -26,7 +26,7 @@ declare var google: any;
 })
 export class DummyMapComponent implements OnInit {
   map: any;
-  featureLayer: any;
+  // featureLayer: any;
   poly: any;
   private _center: google.maps.LatLngLiteral = {
     lat: 25.761681,
@@ -63,7 +63,7 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
-      this.setHighlightedArea();
+      // this.setHighlightedArea();
     }
   }
   @Input() set place_id(data: string) {
@@ -77,7 +77,7 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
-      this.setHighlightedArea();
+      // this.setHighlightedArea();
     }
   }
   @Input()
@@ -282,10 +282,10 @@ export class DummyMapComponent implements OnInit {
     this.map.mapTypes.set('styled_map', styledMapType);
     this.map.setMapTypeId('styled_map');
     this.map.setOptions(this.mapOptions);
-    this.featureLayer = this.map.getFeatureLayer('LOCALITY');
+    // this.featureLayer = this.map.getFeatureLayer('LOCALITY');
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
-      this.removeHighlightArea();
+      // this.removeHighlightArea();
       this.disable();
       this.drawing = true;
       this.clearMarkers();
@@ -308,7 +308,7 @@ export class DummyMapComponent implements OnInit {
 
     document.getElementById('clearButton').addEventListener('click', (e) => {
       e.preventDefault();
-      this.setHighlightedArea();
+      // this.setHighlightedArea();
       this.clearShapes();
     });
     this.placeMarkers();
@@ -317,7 +317,7 @@ export class DummyMapComponent implements OnInit {
       !this.markers?.length &&
       this.placeId != ''
     ) {
-      this.setHighlightedArea();
+      // this.setHighlightedArea();
     }
   }
   zoomToHighlightedMarker(highlighted: any) {
@@ -406,7 +406,7 @@ export class DummyMapComponent implements OnInit {
       markerData.infoWindowInstance = infoWindow;
       this.googleMarkers.push(marker);
     });
-    this.setHighlightedArea();
+    // this.setHighlightedArea();
   }
 
   createInfoWindowContent(index: number): HTMLElement {
@@ -429,27 +429,27 @@ export class DummyMapComponent implements OnInit {
     this.googleMarkers = [];
   }
 
-  setHighlightedArea(): void {
-    if (this.map) {
-      const featureStyleOptions = {
-        strokeColor: '#ff3932',
-        strokeOpacity: 1,
-        strokeWeight: 1.5,
-        fillColor: '#ff3932',
-        fillOpacity: 0.1,
-      };
-      //@ts-ignore
-      this.featureLayer.style = (options) => {
-        if (options.feature.placeId == this.placeId) {
-          return featureStyleOptions;
-        }
-      };
-      this.map.data.setStyle(this.featureLayer.style);
-    }
-  }
-  removeHighlightArea() {
-    this.featureLayer.style = (options: { feature: { placeId: string } }) => {
-      return null;
-    };
-  }
+  // setHighlightedArea(): void {
+  //   if (this.map) {
+  //     const featureStyleOptions = {
+  //       strokeColor: '#ff3932',
+  //       strokeOpacity: 1,
+  //       strokeWeight: 1.5,
+  //       fillColor: '#ff3932',
+  //       fillOpacity: 0.1,
+  //     };
+  //     //@ts-ignore
+  //     this.featureLayer.style = (options) => {
+  //       if (options.feature.placeId == this.placeId) {
+  //         return featureStyleOptions;
+  //       }
+  //     };
+  //     this.map.data.setStyle(this.featureLayer.style);
+  //   }
+  // }
+  // removeHighlightArea() {
+  //   this.featureLayer.style = (options: { feature: { placeId: string } }) => {
+  //     return null;
+  //   };
+  // }
 }

@@ -1,4 +1,3 @@
-import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,10 +28,9 @@ import { FilterComponent } from '../filter/filter.component';
 import { MiniLoadingComponent } from '../loaders/mini-loader/mini-loading.component';
 import { MapComponent } from '../map/map.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { PopupComponent } from '../popup/popup.component';
 import { PropertyCardComponent } from '../property-card/property-card.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchBarListingComponent } from '../search-bar-listing/search-bar-listing.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 @Component({
   standalone: true,
   imports: [

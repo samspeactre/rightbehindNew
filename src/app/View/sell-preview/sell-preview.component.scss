@@ -1,6 +1,7 @@
-h6,h6 strong {
+h6,
+h6 strong {
   font-size: 1.25rem;
-  font-family: 'med';
+  font-family: "med";
 }
 
 .inner-heading h1 {
@@ -8,7 +9,6 @@ h6,h6 strong {
 }
 
 :host ::ng-deep {
-
   .owl-carousel .owl-item img,
   .carouselImg {
     height: 350px;
@@ -17,15 +17,6 @@ h6,h6 strong {
     margin: 20px 0;
     border-radius: 0px;
     width: 100%;
-  }
-
-  .accordion-button::after {
-    position: absolute;
-    right: 10px;
-  }
-
-  .accordion-item .accordion-header .accordion-button {
-    padding: 1rem 0;
   }
 }
 
@@ -78,21 +69,20 @@ h6,h6 strong {
 
 .labelCheck label {
   font-size: 15px;
-  font-family: 'reg';
+  font-family: "reg";
   color: var(--black);
 }
 
 .blue-box label {
   width: 49%;
-  // padding: 6px 10px;
   font-size: 15px;
-  font-family: 'reg';
+  font-family: "reg";
   color: var(--black);
 }
 
-.white-box-text{
+.white-box-text {
   font-size: 15px;
-  font-family: 'reg';
+  font-family: "reg";
 }
 
 .white-label {
@@ -106,21 +96,11 @@ h6,h6 strong {
   padding: 6px 10px;
   margin-bottom: 5px;
 }
-
-.accordion-item .accordion-header .accordion-button {
-  box-shadow: none;
-}
-
-.information-para p,
-.inner-home-list ul li {
-  font-size: 15px;
-}
-
 .inner-home-list ul li {
   width: 25%;
   margin-bottom: 10px;
   font-size: 15px;
-  font-family: 'reg';
+  font-family: "reg";
   color: var(--black);
 }
 
@@ -192,11 +172,11 @@ h6,h6 strong {
   .right-site {
     padding: 2rem 10px;
   }
-  .cstmWidthBtn{
+  .cstmWidthBtn {
     width: 32%;
     text-align: center;
   }
-  .stick{
+  .stick {
     bottom: 10px;
   }
 }

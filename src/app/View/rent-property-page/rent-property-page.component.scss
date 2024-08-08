@@ -20,7 +20,8 @@
     padding: 0.8vw;
     background-color: var(--white);
     border-radius: 0.3vw;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 
   .ng-select .ng-select-container .ng-value-container {
@@ -40,7 +41,8 @@ textarea {
   width: 100%;
   background-color: var(--white);
   border-radius: 0.3vw;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 0.8vw;
 }
 
@@ -79,29 +81,11 @@ h2 {
   color: var(--black);
 }
 
-h3 {
-  font-family: "med";
-  font-size: 20px;
-  color: var(--black);
-  letter-spacing: 0.03vw;
-  margin-bottom: 1.6vw;
-  cursor: pointer;
-  transition: color 0.3 ease;
-}
-
-h3:hover {
-  color: var(--royal-blue);
-}
-
 p {
   font-family: "reg";
   font-size: 16px;
   color: var(--head-black);
   text-align: center;
-}
-
-.content {
-  padding-top: 8.25vw;
 }
 
 a {
@@ -173,14 +157,6 @@ a {
   margin-top: 1.4vw;
 }
 
-.ameneties-portion-para {
-  font-family: "reg";
-  font-size: 1.1vw;
-  color: var(--carousel-add);
-  text-align: start;
-  width: 58%;
-}
-
 :host ::ng-deep .mat-mdc-form-field-subscript-wrapper,
 .mat-mdc-form-field-bottom-align::before {
   display: none;
@@ -190,7 +166,10 @@ a {
   display: none;
 }
 
-:host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+:host
+  ::ng-deep
+  .mat-mdc-form-field:not(.mat-form-field-disabled)
+  .mat-mdc-floating-label.mdc-floating-label {
   cursor: inherit;
   font-size: 15px;
   font-family: "reg";
@@ -199,13 +178,19 @@ a {
   color: var(--property-text);
 }
 
-:host ::ng-deep .mat-options .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host
+  ::ng-deep
+  .mat-options
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
 }
 
-:host ::ng-deep .mat-options-3 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host
+  ::ng-deep
+  .mat-options-3
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
@@ -215,7 +200,13 @@ a {
   margin-top: 0.5vw;
 }
 
-:host ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate="true"])~.mdc-checkbox__background {
+:host
+  ::ng-deep
+  .mdc-checkbox
+  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+    [data-indeterminate="true"]
+  )
+  ~ .mdc-checkbox__background {
   background-color: var(--sec-light) !important;
   border: 0 !important;
   padding: 0;
@@ -245,17 +236,6 @@ a {
   width: 20px;
   height: 20px;
   border: none;
-}
-
-.checkbox-width .example-margin {
-  --mdc-circular-progress-active-indicator-color: #ff4081;
-  width: 23.8vw !important;
-  margin-bottom: 0.35vw;
-}
-
-.checkbox-width .last-margin {
-  --mdc-circular-progress-active-indicator-color: #ff4081;
-  width: 16vw !important;
 }
 
 .upload-container {
@@ -309,11 +289,6 @@ a {
   color: rgba(113, 113, 113, 1);
 }
 
-.upload-btn {
-  margin-left: 1vw;
-  align-content: center;
-}
-
 :host ::ng-deep .mat-mdc-raised-button:not(:disabled) {
   padding: 1.8vw 2.3vw;
   border-radius: 3vw;
@@ -323,10 +298,10 @@ a {
   background-color: var(--royal-blue);
 }
 
-:host ::ng-deep .mat-mdc-button>.mat-icon,
-.mat-mdc-unelevated-button>.mat-icon,
-.mat-mdc-raised-button>.mat-icon,
-.mat-mdc-outlined-button>.mat-icon {
+:host ::ng-deep .mat-mdc-button > .mat-icon,
+.mat-mdc-unelevated-button > .mat-icon,
+.mat-mdc-raised-button > .mat-icon,
+.mat-mdc-outlined-button > .mat-icon {
   font-size: 22px;
   height: 24px;
   width: 24px;
@@ -352,13 +327,19 @@ a {
   font-size: 28px;
 }
 
-:host ::ng-deep .mat-options-social .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host
+  ::ng-deep
+  .mat-options-social
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
 }
 
-:host ::ng-deep .mat-options-link .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host
+  ::ng-deep
+  .mat-options-link
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   border-radius: 0.3vw;
   margin-bottom: 1.04vw;
@@ -367,44 +348,6 @@ a {
 :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: var(--sec-light);
   margin-bottom: 0.85vw;
-}
-
-.upload-2 {
-  width: 100%;
-  margin-bottom: 1.5vw;
-}
-
-.upload-2-container {
-  margin-top: -1vw;
-  margin-bottom: 1vw;
-}
-
-:host ::ng-deep .add-more-btn .mdc-button__label,
-:host ::ng-deep .add-more-btn .mat-icon {
-  color: var(--royal-blue);
-}
-
-.add-more-btn {
-  align-content: center;
-  border: 0;
-  font-size: 17px;
-  font-family: "bold";
-  letter-spacing: -0.01vw;
-}
-
-.map-img {
-  width: 64vw;
-  margin-bottom: 1.5vw;
-}
-
-.map-img img {
-  width: 100%;
-  object-fit: cover;
-}
-
-.submit-btns {
-  float: right;
-  margin-top: 0.5vw;
 }
 
 .reset button,
@@ -423,16 +366,10 @@ a {
   margin-right: 0;
 }
 
-.footer {
-  margin-top: 6vw;
-}
-
-.add-section {
-  width: 100%;
-  display: block;
-}
-
-:host ::ng-deep .category-select .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+:host
+  ::ng-deep
+  .category-select
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   margin-top: 0.5vw;
   background-color: transparent;
 }
@@ -444,8 +381,7 @@ a {
 }
 
 .amenities-portion-para,
-.utilities-portion-para,
-.rent-special-para {
+.utilities-portion-para {
   font-family: "reg";
   font-size: 16px;
   color: var(--carousel-add);
@@ -453,36 +389,8 @@ a {
   width: 58%;
 }
 
-.amenities-column {
-  display: flex;
-  flex-direction: column;
+.rent-special {
   width: 33.3%;
-  /* Adjust margin as needed for spacing between columns */
-}
-
-.checkbox-container {
-  flex-wrap: wrap;
-}
-
-.checkbox-wrapper {
-  width: calc(100% / 3);
-  /* Each checkbox takes one third of the container */
-}
-
-.pets-column,
-.laundry-column {
-  margin-top: 1vw;
-}
-
-.pets-column-width,
-.laundry-column-width,
-.rent-special,
-.contact-role-check {
-  width: 33.3%;
-}
-
-.rent-special-form {
-  margin-top: 1vw;
 }
 
 .special-tags,
@@ -491,22 +399,6 @@ a {
   font-family: "bold";
   color: var(--black);
   margin-top: 0.5vw;
-}
-
-.special-offers-check {
-  margin-top: 1vw;
-}
-
-.contact-info-form {
-  margin-top: 1.5vw;
-}
-
-.contact-role-por {
-  padding-bottom: 1.5vw;
-}
-
-.terms-condition {
-  width: 90%;
 }
 
 .terms-text {
@@ -519,26 +411,6 @@ a {
 .terms-text a {
   font-family: "med";
   color: var(--royal-blue);
-}
-
-.floor-img {
-  width: 100%;
-  margin-top: 1vw;
-}
-
-.floor-img img {
-  width: 100%;
-  height: 20vw;
-  object-fit: cover;
-  border-radius: 1vw;
-}
-
-.delete-btn {
-  margin-left: -3.2vw;
-  margin-top: 0.5vw;
-  background-color: var(--red);
-  width: 2.5vw;
-  height: 2.5vw;
 }
 
 @media only screen and (max-width: 821px) {

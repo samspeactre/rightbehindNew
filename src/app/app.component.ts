@@ -1,20 +1,18 @@
 import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import {
-  ActivatedRoute,
   NavigationEnd,
   NavigationStart,
   Router,
   RouterModule,
 } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Subject, distinctUntilChanged, filter, takeUntil } from 'rxjs';
+import { LocationService } from './Services/getLocation.service';
 import { HelperService } from './Services/helper.service';
 import { LoaderService } from './Services/loader.service';
+import { ResizeService } from './Services/resize.service';
 import { FooterComponent } from './SharedComponents/footer/footer.component';
 import { LoadingComponent } from './SharedComponents/loaders/loading/loading.component';
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
-import { ResizeService } from './Services/resize.service';
-import { LocationService } from './Services/getLocation.service';
 declare var WOW: any;
 @Component({
   standalone: true,

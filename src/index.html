@@ -1,106 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Right Behind Me</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Right Behind Me</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-
-<body>
-  <div id="root">
-    <app-root>
-      <style>
-        html,
-        body {
-          margin: 0;
-        }
-
-        @-webkit-keyframes loading {
-          to {
-            -webkit-transform: rotate(360deg);
+  <body>
+    <div id="root">
+      <app-root>
+        <style>
+          html,
+          body {
+            margin: 0;
           }
-        }
 
-        @-moz-keyframes loading {
-          to {
-            -moz-transform: rotate(360deg);
+          @-webkit-keyframes loading {
+            to {
+              -webkit-transform: rotate(360deg);
+            }
           }
-        }
 
-        @-ms-keyframes loading {
-          to {
-            -ms-transform: rotate(360deg);
+          @-moz-keyframes loading {
+            to {
+              -moz-transform: rotate(360deg);
+            }
           }
-        }
 
-        @keyframes loading {
-          to {
-            transform: rotate(360deg);
+          @-ms-keyframes loading {
+            to {
+              -ms-transform: rotate(360deg);
+            }
           }
-        }
 
-        /* Loader (*/
-        #loading {
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          background: transparent;
-          border-top: 2px solid #2f64ed;
-          border-right: 2px solid #2f64ed;
-          border-bottom: 2px solid #a3a3a3;
-          border-left: 2px solid #a3a3a3;
-          -webkit-animation: loading 1.2s infinite linear;
-          -moz-animation: loading 1.2s infinite linear;
-          -ms-animation: loading 1.2s infinite linear;
-          animation: loading 1.2s infinite linear;
-        }
+          @keyframes loading {
+            to {
+              transform: rotate(360deg);
+            }
+          }
 
-        .splash {
-          width: 100%;
-          height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-          flex-direction: column;
-          background: linear-gradient(339.53deg,
-              #fff 35.34%,
-              #fff 112.54%);
-        }
+          /* Loader (*/
+          #loading {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: transparent;
+            border-top: 2px solid #2f64ed;
+            border-right: 2px solid #2f64ed;
+            border-bottom: 2px solid #a3a3a3;
+            border-left: 2px solid #a3a3a3;
+            -webkit-animation: loading 1.2s infinite linear;
+            -moz-animation: loading 1.2s infinite linear;
+            -ms-animation: loading 1.2s infinite linear;
+            animation: loading 1.2s infinite linear;
+          }
 
-        .logoBox {
-          width: 150px;
-          height: 40px;
-          overflow: hidden;
-          margin-bottom: 1rem;
-        }
+          .splash {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-direction: column;
+            background: linear-gradient(339.53deg, #fff 35.34%, #fff 112.54%);
+          }
 
-        .logoBox img {
-          object-fit: contain;
-        }
-
-        @media only screen and (max-width: 1024px) {
           .logoBox {
-            width: 110px;
+            width: 150px;
             height: 40px;
+            overflow: hidden;
+            margin-bottom: 1rem;
           }
-        }
-      </style>
-      <div class="splash">
-        <div class="logoBox">
-          <img width="100%" height="100%" src="./assets/img/nav-logo.webp" alt="splashLogo" />
+
+          .logoBox img {
+            object-fit: contain;
+          }
+
+          @media only screen and (max-width: 1024px) {
+            .logoBox {
+              width: 110px;
+              height: 40px;
+            }
+          }
+        </style>
+        <div class="splash">
+          <div class="logoBox">
+            <img
+              width="100%"
+              height="100%"
+              src="./assets/img/nav-logo.webp"
+              alt="splashLogo"
+            />
+          </div>
+          <div id="loading"></div>
         </div>
-        <div id="loading"></div>
-      </div>
-    </app-root>
-  </div>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&loading=async&libraries=geometry,places,marker&ext=.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/t-writer.js/dist/t-writer.min.js"></script>
-
-</body>
-
+      </app-root>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300&loading=async&libraries=geometry,places,marker&ext=.js"></script>
+  </body>
 </html>

@@ -1,8 +1,8 @@
 <app-banner>
-  <div class="lg-12">
+  <div class="col-lg-12">
     <div class="content contact">
       <h1 class="text-dark bold bigFont">Contact Us</h1>
-      <div class="page-links display">
+      <div class="page-links d-flex">
         <a href="">Home</a>
         <div class="slash">/</div>
         <a href="">Contact Us</a>
@@ -12,75 +12,74 @@
 </app-banner>
 
 <section>
-  <div class="container display sec-2">
+  <div class="container d-flex sec-2">
     <div class="left-portion">
       <h1>Connect with Us</h1>
 
       <div class="left-contact">
-
         <div class="mobile-icon">
-
-          <div class="display block">
+          <div class="d-flex block">
             <div class="icon">
               <mat-icon class="call">phone_in_talk</mat-icon>
             </div>
             @for (info of contact; track info) {
             <div class="icon-text">
               <h2 class="bold-text">Phone :</h2>
-              <div class="light-text-num">{{info.num}}</div>
+              <div class="light-text-num">{{ info.num }}</div>
             </div>
             }
           </div>
 
-          <div class="display block">
+          <div class="d-flex block">
             <div class="icon-mail">
               <mat-icon class="mail">mark_email_unread</mat-icon>
             </div>
             @for (info of contact; track info) {
             <div class="icon-text">
               <h2 class="bold-text">Email :</h2>
-              <div class="light-text">{{info.email}}</div>
+              <div class="light-text">{{ info.email }}</div>
             </div>
             }
           </div>
-
         </div>
 
-        <div class="display mail-block">
+        <div class="d-flex mail-block">
           <div class="icon icon-location">
             <mat-icon class="call">location_on</mat-icon>
           </div>
           @for (info of contact; track info) {
           <div class="icon-text icon-text-location">
             <h2 class="bold-text">Visit Here:</h2>
-            <div class="light-text">{{info.location}}</div>
+            <div class="light-text">{{ info.location }}</div>
           </div>
           }
         </div>
-
       </div>
     </div>
     <div class="right-portion">
       <h1>Get in Touch</h1>
-      <p>Lorem ipsum dolor sit amet consectetur. Bibendum neque pellentesque quis adipiscing convallis.</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur. Bibendum neque pellentesque quis
+        adipiscing convallis.
+      </p>
 
       <form [formGroup]="contactForm">
         <mat-form-field class="input-padding">
           <mat-label>Full Name</mat-label>
           <mat-icon class="form-icon" matPrefix>person</mat-icon>
-          <input matInput formControlName="name">
+          <input matInput formControlName="name" />
         </mat-form-field>
 
         <mat-form-field class="input-padding">
           <mat-label>Email Address</mat-label>
           <mat-icon class="form-icon" matPrefix>mail</mat-icon>
-          <input matInput formControlName="email">
+          <input matInput formControlName="email" />
         </mat-form-field>
 
         <mat-form-field class="input-padding">
           <mat-label>Mobile No</mat-label>
           <mat-icon class="form-icon" matPrefix>call</mat-icon>
-          <input matInput formControlName="contactNo">
+          <input matInput formControlName="contactNo" />
         </mat-form-field>
 
         <mat-form-field class="input-padding text-padding">
@@ -92,7 +91,6 @@
         <div class="contact-form">
           <button mat-raised-button (click)="onSubmit()">Send</button>
         </div>
-
       </form>
     </div>
   </div>

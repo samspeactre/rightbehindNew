@@ -123,6 +123,9 @@ export class NavbarComponent {
           });
       });
   }
+  setItem() {
+    localStorage.setItem('searchByBar', 'false');
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -203,15 +206,12 @@ export class NavbarComponent {
       document?.body?.classList?.remove('bodyLoader', 'backdropFront');
     }
   }
-  
+
   isDropdownOpen = false;
   onDropdownChange(isOpen: boolean) {
     this.isDropdownOpen = isOpen;
   }
-
 }
 function closeDialog() {
   throw new Error('Function not implemented.');
 }
-
-

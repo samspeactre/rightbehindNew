@@ -323,11 +323,13 @@ export class ListingPageRentComponent {
           this.loadFirstTime = false;
         }
         this.bedsArray = [
-          ...new Set(this.cards.map((data: any) => data.noOfBed ?? 0)),
-        ].sort((a: any, b: any) => a - b);
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+          20,
+        ];
         this.bathArray = [
-          ...new Set(this.cards.map((data: any) => data.noOfBath ?? 0)),
-        ].sort((a: any, b: any) => a - b);
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+          20,
+        ];
         this.sorting(null);
       }
       if (!this.place_id) {
@@ -458,7 +460,7 @@ export class ListingPageRentComponent {
   }
   open(content: TemplateRef<any>) {
     this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+      .open(content, { centered: true })
       .result.then((result) => {});
   }
   sorting(event) {

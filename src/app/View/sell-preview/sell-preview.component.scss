@@ -1,4 +1,5 @@
-h6,h6 strong {
+h6,
+h6 strong {
   font-size: 1.25rem;
   font-family: 'med';
 }
@@ -43,6 +44,7 @@ h6,h6 strong {
 .location-para p,
 .bath-text h6 {
   color: #848484;
+  font-family: 'med' !important;
 }
 
 .bath-img {
@@ -84,15 +86,16 @@ h6,h6 strong {
 
 .blue-box label {
   width: 49%;
-  // padding: 6px 10px;
-  font-size: 15px;
+  font-size: 17px;
   font-family: 'reg';
   color: var(--black);
+  letter-spacing: 0.2px;
 }
 
-.white-box-text{
-  font-size: 15px;
+.white-box-text {
+  font-size: 17px;
   font-family: 'reg';
+  letter-spacing: 0.2px;
 }
 
 .white-label {
@@ -134,6 +137,7 @@ h6,h6 strong {
   top: 1vw;
   left: 0;
   overflow: hidden;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .right-site p {
@@ -178,7 +182,6 @@ h6,h6 strong {
 
 .left-site-box {
   padding: 16px 0px;
-  box-shadow: 0px 0px 4px 0px #ddd;
   border-radius: 14px;
 }
 
@@ -188,16 +191,38 @@ h6,h6 strong {
   margin: 0;
 }
 
+.desc-bold {
+  font-family: 'med' !important;
+  font-size: 16px !important;
+  margin-bottom: 5px !important;
+}
+
+.desc-bold-para {
+  font-size: 15px !important;
+  letter-spacing: 0.4px !important;
+}
+
+.sec-border {
+  padding: 22px 13px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
 @media only screen and (max-width: 1025px) {
   .right-site {
     padding: 2rem 10px;
   }
-  .cstmWidthBtn{
-    width: 32%;
+
+  .cstmWidthBtn {
+    width: 36%;
     text-align: center;
   }
-  .stick{
+
+  .stick {
     bottom: 10px;
+  }
+
+  .sec-border {
+    padding: 12px 0;
   }
 }
 
@@ -207,6 +232,14 @@ h6,h6 strong {
     width: 60%;
     margin: auto;
   }
+
+  .first-box {
+    padding: 0px;
+  }
+
+  .sec-border {
+    padding: 12px 0;
+  }
 }
 
 @media only screen and (max-width: 540px) {
@@ -215,10 +248,12 @@ h6,h6 strong {
     width: 98%;
     margin: auto;
   }
+
   .owl-carousel .owl-item img,
   .carouselImg {
     height: 200px;
   }
+
   .inner-heading h1 {
     font-size: 24px;
   }
@@ -235,5 +270,13 @@ h6,h6 strong {
 
   .inner-home-list ul li {
     width: 100%;
+  }
+
+  .first-box {
+    padding: 0px;
+  }
+
+  .sec-border {
+    padding: 12px 0;
   }
 }

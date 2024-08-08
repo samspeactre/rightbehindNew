@@ -558,6 +558,10 @@ a {
   h2 {
     font-size: 18px;
   }
+
+  .min75 {
+    min-height: 23vh;
+  }
 }
 
 @media only screen and (max-width: 540px) {
@@ -573,5 +577,9 @@ a {
 
   .terms-text {
     font-size: 12px;
+  }
+
+  .min75 {
+    min-height: 23vh;
   }
 }

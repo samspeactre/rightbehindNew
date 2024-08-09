@@ -9,57 +9,38 @@
   </div>
 </div>
 } @else{
-<div
-  class="cstm-property-card"
-  (mouseenter)="hover()"
-  (mouseleave)="hoverLeft()"
-  [id]="'card-' + (card?.listingId || card?.id)"
-  [ngStyle]="{ background: background }"
-  [class.extraHeight]="page == 'listView'"
->
+<div class="cstm-property-card" (mouseenter)="hover()" (mouseleave)="hoverLeft()"
+  [id]="'card-' + (card?.listingId || card?.id)" [ngStyle]="{ background: background }"
+  [class.extraHeight]="page == 'listView'">
   @if (page == 'listView') {
   <div class="dCenter align-items-start flex-wrap p-2 property-card-styling">
     <div class="w-100 d-flex align-items-start justify-content-between">
-      <div
-        class="w-75"
-        (click)="
+      <div class="w-75" (click)="
           page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
-        "
-      >
+        ">
         @if(card?.title){
         <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
           {{ card?.title }}
         </h6>
         }
-        <div
-          class="span-text my-1 dCenter justify-content-start gap-1 location"
-          [ngClass]="{ 'wow fadeInDown': animation }"
-        >
+        <div class="span-text my-1 dCenter justify-content-start gap-1 location"
+          [ngClass]="{ 'wow fadeInDown': animation }">
           <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon>
           <span class="elip">{{ card?.location }}</span>
         </div>
       </div>
       <div class="w-25 dCenter justify-content-end gap-3">
-        <button
-          (click)="favourite($event)"
-          [class.text-danger]="card?.favoriteId"
-          class="bg-transparent border-0 text-secondary ms-auto"
-        >
+        <button (click)="favourite($event)" [class.text-danger]="card?.favoriteId"
+          class="bg-transparent border-0 text-secondary ms-auto">
           <fa-icon [icon]="faHeart" size="xl"></fa-icon>
         </button>
-        <button
-          (click)="share($event)"
-          class="bg-transparent border-0 text-dark"
-        >
+        <button (click)="share($event)" class="bg-transparent border-0 text-dark">
           <fa-icon size="xl" [icon]="faShare"></fa-icon>
         </button>
       </div>
     </div>
     <div class="col60">
-      <div
-        class="property-img carouselImg position-relative"
-        [ngClass]="{ 'wow fadeInDown': animation }"
-      >
+      <div class="property-img carouselImg position-relative" [ngClass]="{ 'wow fadeInDown': animation }">
         @if(card?.propertyImages?.length){
         <button class="carosuelBtn sBtn dCenter" (click)="owlCar.prev()">
           <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
@@ -78,12 +59,7 @@
         </owl-carousel-o>
         } @else {
         <div class="position-relative fixedHeight">
-          <img
-            ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png"
-            class="NoImageFound"
-            fill
-            alt="Card Image"
-          />
+          <img ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png" class="NoImageFound" fill alt="Card Image" />
         </div>
         } @if(card?.featuredTill || card?.isPromoted){
         <div class="special featured">
@@ -100,45 +76,38 @@
     <div class="col40">
 
       <div class="property-content ps-2">
-        <button
-          class="whitBtn rounded-0 w-100 bold text-start"
-          [ngClass]="{
+        <button class="whitBtn rounded-0 w-100 bold text-start" [ngClass]="{
             'wow fadeInDown': animation
-          }"
-          (click)="
+          }" (click)="
             page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
-          "
-        >
+          ">
           {{ card.price || 0 | currency : "USD" }}
         </button>
-        <div
-          class="d-flex flex-column justify-content-between w-100 description-para"
-          (click)="
+        <div class="d-flex flex-column justify-content-between w-100 description-para" (click)="
             page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
-          "
-        >
+          ">
           <p class="elipEffect mb-1">{{ card?.description }}</p>
           <div class="d-flex flex-wrap gap-3 mt-1 mb-lg-2">
             <div class="dCenter">
-              <fa-icon size="sm" [icon]="faBed"></fa-icon>
+              <fa-icon size="sm" [icon]="faBed" class="card-icon"></fa-icon>
               <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
                 {{ card?.noOfBed || 0 }}
               </p>
             </div>
             <div class="dCenter centerBox">
-              <fa-icon size="sm" [icon]="faBath"></fa-icon>
+              <fa-icon size="sm" [icon]="faBath" class="card-icon"></fa-icon>
               <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
                 {{ card?.noOfBath || 0 }}
               </p>
             </div>
             <div class="dCenter">
-              <fa-icon size="sm" [icon]="faRuler"></fa-icon>
+              <fa-icon size="sm" [icon]="faRuler" class="card-icon"></fa-icon>
               <p class="mb-0 ms-2" [ngClass]="{ 'wow fadeInDown': animation }">
                 {{ card.area || 0 }} sq ft
               </p>
             </div>
           </div>
-          @if(card?.propertyContacts?.[0]?.contact ||
+          <!-- @if(card?.propertyContacts?.[0]?.contact ||
           card?.listAgentOfficePhone){
           <div class="dCenter justify-content-start">
             <fa-icon size="sm" [icon]="faPhone"></fa-icon>
@@ -153,22 +122,16 @@
               {{card?.propertyContacts?.[0]?.email || card?.listAgentEmail}}
             </p>
           </div>
-          }
+          } -->
         </div>
         @if(!card?.listingId){
-        <button
-          class="btnPrimary rounded-5 py-1 w-100 mb-1 tour-button"
-          [ngClass]="{ 'wow fadeInDown': animation }"
-          (click)="userDetails ? createContact() : openPopup()"
-        >
+        <button class="btnPrimary rounded-5 py-1 w-100 mb-1 tour-button" [ngClass]="{ 'wow fadeInDown': animation }"
+          (click)="userDetails ? createContact() : openPopup()">
           Request A Tour
         </button>
         } @else {
-        <button
-          class="btnPrimary rounded-5 py-1 w-100 mb-1 tour-button"
-          [ngClass]="{ 'wow fadeInDown': animation }"
-          (click)="openContactOptions()"
-        >
+        <button class="btnPrimary rounded-5 py-1 w-100 mb-1 tour-button" [ngClass]="{ 'wow fadeInDown': animation }"
+          (click)="openContactOptions()">
           Request A Tour
         </button>
         }
@@ -176,10 +139,7 @@
     </div>
   </div>
   } @else{
-  <div
-    class="property-img position-relative"
-    [ngClass]="{ 'wow fadeInDown': animation }"
-  >
+  <div class="property-img position-relative" [ngClass]="{ 'wow fadeInDown': animation }">
     @if(card?.propertyImages?.length){ @if(card?.propertyImages?.length > 1){
     <button class="carosuelBtn sBtn dCenter" (click)="owlCar.prev()">
       <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
@@ -198,20 +158,11 @@
     </owl-carousel-o>
     } @else {
     <div class="position-relative fixedHeight">
-      <img
-        [ngSrc]="card?.propertyImages?.[0]?.imageUrl"
-        fill
-        alt="Card Image"
-      />
+      <img [ngSrc]="card?.propertyImages?.[0]?.imageUrl" fill alt="Card Image" />
     </div>
     } } @else {
     <div class="position-relative fixedHeight">
-      <img
-        ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png"
-        class="NoImageFound"
-        fill
-        alt="Card Image"
-      />
+      <img ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png" class="NoImageFound" fill alt="Card Image" />
     </div>
     } @if(card?.featuredTill || card?.isPromoted){
     <div class="special featured">
@@ -225,23 +176,16 @@
     }
   </div>
   <div class="property-content">
-    <div
-      class="p-2"
-      (click)="page == 'listView' ? naviagteThroughPopup() : navigateAndClose()"
-    >
+    <div class="p-2" (click)="page == 'listView' ? naviagteThroughPopup() : navigateAndClose()">
       @if(card?.title){
-      <div
-        class="d-flex justify-content-between align-items-center card-property-heading"
-      >
+      <div class="d-flex justify-content-between align-items-center card-property-heading">
         <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
           {{ card?.title }}
         </h6>
       </div>
       }
-      <div
-        class="span-text my-1 dCenter justify-content-start gap-1 location"
-        [ngClass]="{ 'wow fadeInDown': animation }"
-      >
+      <div class="span-text my-1 dCenter justify-content-start gap-1 location"
+        [ngClass]="{ 'wow fadeInDown': animation }">
         <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon>
         <span class="elip">{{ card?.location }}</span>
       </div>
@@ -265,10 +209,7 @@
           </p>
         </div>
         <div class="d-flex align-items-center gap-3 ms-auto">
-          <button
-            (click)="share($event)"
-            class="bg-transparent border-0 text-dark"
-          >
+          <button (click)="share($event)" class="bg-transparent border-0 text-dark">
             <fa-icon [icon]="faShare" size="lg"></fa-icon>
           </button>
         </div>
@@ -277,51 +218,32 @@
 
     <div class="btnContainer dCenter justify-content-between px-2 pb-2 gap-2">
       @if(page == 'mylisting'){
-      <button
-        class="btnPrimary py-1 w-50 bold text-center"
-        (click)="navigateAndClose()"
-      >
+      <button class="btnPrimary py-1 w-50 bold text-center" (click)="navigateAndClose()">
         View
       </button>
-      <button
-        class="btnPrimary py-1 w-50 bold text-center"
-        (click)="navigateEditAndClose()"
-      >
+      <button class="btnPrimary py-1 w-50 bold text-center" (click)="navigateEditAndClose()">
         Edit
       </button>
       } @if(page != 'mylisting'){
-      <button
-        class="whitBtn rounded-0 w-50 bold text-start"
-        [ngClass]="{
+      <button class="whitBtn rounded-0 w-50 bold text-start" [ngClass]="{
           'wow fadeInDown': animation
-        }"
-        (click)="
+        }" (click)="
           page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
-        "
-      >
+        ">
         {{ card.price || 0 | currency : "USD" }}
       </button>
       @if(page != 'dashboard'){ @if(!card?.listingId){
-      <button
-        class="btnPrimary rounded-5 py-2 w-50"
-        [ngClass]="{ 'wow fadeInDown': animation }"
-        (click)="userDetails ? createContact() : openPopup()"
-      >
+      <button class="btnPrimary rounded-5 py-2 w-50" [ngClass]="{ 'wow fadeInDown': animation }"
+        (click)="userDetails ? createContact() : openPopup()">
         Request A Tour
       </button>
       } @else {
-      <button
-        class="btnPrimary rounded-5 py-2 w-50"
-        [ngClass]="{ 'wow fadeInDown': animation }"
-        (click)="openContactOptions()"
-      >
+      <button class="btnPrimary rounded-5 py-2 w-50" [ngClass]="{ 'wow fadeInDown': animation }"
+        (click)="openContactOptions()">
         Request A Tour
       </button>
       } } @else {
-      <button
-        class="btnPrimary py-1 w-50 bold text-center"
-        (click)="navigateAndClose()"
-      >
+      <button class="btnPrimary py-1 w-50 bold text-center" (click)="navigateAndClose()">
         View
       </button>
       } }

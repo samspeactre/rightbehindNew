@@ -22,12 +22,12 @@
       </div>
       <form class="row justify-content-between" [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
         <div class="half-input">
-          <app-input classes="w-100 mb-2"  type="text" [form]="propertyForm" control="firstName"
-            label="First Name" placeholder="Enter your First Name*"></app-input>
+          <app-input classes="w-100 mb-2" type="text" [form]="propertyForm" control="firstName" label="First Name"
+            placeholder="Enter your First Name*"></app-input>
         </div>
         <div class="half-input">
-          <app-input classes="w-100 mb-2"  type="text" [form]="propertyForm" control="lastName"
-            label="Last Name" placeholder="Enter your Last Name*"></app-input>
+          <app-input classes="w-100 mb-2" type="text" [form]="propertyForm" control="lastName" label="Last Name"
+            placeholder="Enter your Last Name*"></app-input>
         </div>
         <div class="half-input">
           <app-input classes="w-100 mb-2" matType="select" [array]="types" [form]="propertyForm" control="propertyType"

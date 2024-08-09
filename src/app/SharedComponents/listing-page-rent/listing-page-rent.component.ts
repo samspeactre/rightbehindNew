@@ -124,7 +124,7 @@ export class ListingPageRentComponent {
   userDetails: any;
   location$ = this.store.select(selectLocation);
   locationDetails: any;
-  sort: string = 'Date: Late to Early';
+  sort: string;
   center: google.maps.LatLngLiteral = {
     lat: 25.761681,
     lng: -80.191788,

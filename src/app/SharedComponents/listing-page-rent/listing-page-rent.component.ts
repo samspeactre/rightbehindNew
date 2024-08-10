@@ -95,7 +95,6 @@ export class ListingPageRentComponent {
   loadMoreLoader: boolean = false;
   param: boolean = false;
   latLngArray: any = [];
-  types = types;
   maxPrices: any;
   minPrices: any;
   bedsArray: any;
@@ -125,6 +124,8 @@ export class ListingPageRentComponent {
   location$ = this.store.select(selectLocation);
   locationDetails: any;
   sort: string;
+  types: any = types;
+  placeTypes: any = ['LOCALITY'];
   center: google.maps.LatLngLiteral = {
     lat: 25.761681,
     lng: -80.191788,
@@ -173,6 +174,7 @@ export class ListingPageRentComponent {
         if (!this.searchByBar && this.locationDetails) {
           this.search = this.locationDetails.placeName;
           this.place_id = this.locationDetails.placeId;
+          this.placeTypes = this.locationDetails.types;
           this.center = {
             lat: this.locationDetails.lat,
             lng: this.locationDetails.lng,
@@ -184,6 +186,7 @@ export class ListingPageRentComponent {
               placeId: this.place_id,
               lat: this.locationDetails.lat,
               lng: this.locationDetails.lng,
+              types: this.locationDetails.types,
             },
           });
         }
@@ -192,6 +195,7 @@ export class ListingPageRentComponent {
       if (params?.search) {
         this.search = params?.search;
         this.place_id = params?.placeId;
+        this.placeTypes = params?.types;
         if (params?.lat && params?.lng) {
           this.center = { lat: Number(params?.lat), lng: Number(params?.lng) };
         }
@@ -391,6 +395,7 @@ export class ListingPageRentComponent {
       this.place_id = event.place_id;
       this.center = event.center;
       this.searchByBar = true;
+      this.placeTypes = event.types;
       localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['rent'], {
         queryParams: {
@@ -398,22 +403,26 @@ export class ListingPageRentComponent {
           placeId: this.place_id,
           lat: event?.center?.lat,
           lng: event.center?.lng,
+          types: this.placeTypes,
         },
       });
     } else if (event.search && event.place_id) {
       this.search = event.search;
       this.place_id = event.place_id;
       this.searchByBar = true;
+      this.placeTypes = event.types;
       localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
           placeId: this.place_id,
+          types: this.placeTypes,
         },
       });
     } else if (this.locationDetails) {
       this.search = this.locationDetails?.placeName;
       this.place_id = this.locationDetails?.placeId;
+      this.placeTypes = this.locationDetails.types;
       this.searchByBar = false;
       localStorage.setItem('searchByBar', 'false');
       this.center = {
@@ -426,6 +435,7 @@ export class ListingPageRentComponent {
           placeId: this.place_id,
           lat: this.locationDetails?.lat,
           lng: this.locationDetails?.lng,
+          types: this.placeTypes,
         },
       });
     } else {
@@ -443,6 +453,7 @@ export class ListingPageRentComponent {
           placeId: this.place_id,
           lat: 25.761681,
           lng: -80.191788,
+          types: this.placeTypes,
         },
       });
     }

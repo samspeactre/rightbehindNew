@@ -48,6 +48,7 @@ export class SearchBarListingComponent {
   @Input() filter: boolean = false;
   @Input() search!: string;
   @Input() place_id!: string;
+  @Input() types!: any;
   @Input() show: boolean = false;
   @Input() extraWidth: boolean = false;
   center: any;
@@ -120,6 +121,7 @@ export class SearchBarListingComponent {
         this.center = { lat, lng };
         this.place_id = place.place_id;
         this.search = place.formatted_address;
+        this.types = place.types;
         this.submit();
       }
     );
@@ -130,6 +132,7 @@ export class SearchBarListingComponent {
       search: this.search,
       place_id: this.place_id,
       center: this.center,
+      types: this.types,
     });
   }
   showFilt() {
@@ -140,6 +143,7 @@ export class SearchBarListingComponent {
     if (this.predictions.length > 0) {
       this.search = this.predictions[0].description;
       this.place_id = this.predictions[0].place_id;
+      this.types = this.predictions[0].types;
       this.submit();
     }
   }

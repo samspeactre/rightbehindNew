@@ -14,6 +14,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 import { ResizeService } from '../../Services/resize.service';
+import simplify from 'simplify-js';
 
 declare var google: any;
 
@@ -64,7 +65,6 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
-      this.setHighlightedArea();
     }
   }
   @Input() set place_id(data: string) {
@@ -78,7 +78,6 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
-      this.setHighlightedArea();
     }
   }
   @Input() set placeTypes(data: any[]) {
@@ -87,6 +86,11 @@ export class DummyMapComponent implements OnInit {
       this.types.map((item: any) => {
         this.setFeaturLayer(item);
       });
+    }
+  }
+  @Input() set setPolygon(data: any[]) {
+    if (this.map) {
+      this.setPolygonOnMap(data);
     }
   }
   @Input()
@@ -218,85 +222,84 @@ export class DummyMapComponent implements OnInit {
   }
 
   initializeMap(): void {
-    // const styledMapType = new google.maps.StyledMapType(
-    //   [
-    //     {
-    //       featureType: 'poi',
-    //       elementType: 'labels',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'administrative.land_parcel',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'transit.station',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.business',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.government',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.school',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.sports_complex',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.park',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.attraction',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.medical',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.place_of_worship',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.cafe',
-    //       elementType: 'labels',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.restaurant',
-    //       elementType: 'labels',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.bar',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //     {
-    //       featureType: 'poi.night_club',
-    //       stylers: [{ visibility: 'off' }],
-    //     },
-    //   ],
-    //   { name: 'Styled Map' }
-    // );
+    const styledMapType = new google.maps.StyledMapType(
+      [
+        {
+          featureType: 'poi',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'administrative.land_parcel',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'transit.station',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.business',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.government',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.school',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.sports_complex',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.park',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.attraction',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.medical',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.place_of_worship',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.cafe',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.restaurant',
+          elementType: 'labels',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.bar',
+          stylers: [{ visibility: 'off' }],
+        },
+        {
+          featureType: 'poi.night_club',
+          stylers: [{ visibility: 'off' }],
+        },
+      ],
+      { name: 'Styled Map' }
+    );
 
     this.map = new google.maps.Map(document.getElementById('map_canvas'));
-    // this.map.mapTypes.set('styled_map', styledMapType);
-    // this.map.setMapTypeId('styled_map');
+    this.map.mapTypes.set('styled_map', styledMapType);
+    this.map.setMapTypeId('styled_map');
     this.map.setOptions(this.mapOptions);
     this.types.map((item: any) => {
       this.setFeaturLayer(item);
     });
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
-      this.removeHighlightArea();
       this.disable();
       this.drawing = true;
       this.clearMarkers();
@@ -319,20 +322,19 @@ export class DummyMapComponent implements OnInit {
 
     document.getElementById('clearButton').addEventListener('click', (e) => {
       e.preventDefault();
-      this.setHighlightedArea();
       this.clearShapes();
     });
+    this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
     this.placeMarkers();
-    if (
-      !this.communityMarkers?.length &&
-      !this.markers?.length &&
-      this.placeId != ''
-    ) {
-      this.setHighlightedArea();
-    }
   }
   setFeaturLayer(featureName) {
-    if (this.map && featureName == 'locality') {
+    if (
+      (this.map && featureName.toLowerCase().includes('locality')) ||
+      featureName.toLowerCase().includes('country') ||
+      featureName.toLowerCase().includes('postal') ||
+      featureName.toLowerCase().includes('school') ||
+      featureName.toLowerCase().includes('administrative')
+    ) {
       this.featureLayer = this.map.getFeatureLayer(featureName.toUpperCase());
     }
   }
@@ -422,7 +424,6 @@ export class DummyMapComponent implements OnInit {
       markerData.infoWindowInstance = infoWindow;
       this.googleMarkers.push(marker);
     });
-    this.setHighlightedArea();
   }
 
   createInfoWindowContent(index: number): HTMLElement {
@@ -445,33 +446,64 @@ export class DummyMapComponent implements OnInit {
     this.googleMarkers = [];
   }
 
-  setHighlightedArea(): void {
-    if (this.map) {
-      const featureStyleOptions = {
-        strokeColor: '#ff3932',
-        strokeOpacity: 1,
-        strokeWeight: 1.5,
-        fillColor: '#ff3932',
-        fillOpacity: 0.1,
-      };
-      //@ts-ignore
-      this.featureLayer.style = (options) => {
-        console.log(
-          options.feature.placeId,
-          this.placeId,
-          options.feature.placeId == this.placeId
-        );
+  // setHighlightedArea(): void {
+  //   if (this.map) {
+  //     const featureStyleOptions = {
+  //       strokeColor: '#ff3932',
+  //       strokeOpacity: 1,
+  //       strokeWeight: 1.5,
+  //       fillColor: '#ff3932',
+  //       fillOpacity: 0.1,
+  //     };
+  //     if (this.featureLayer) {
+  //       //@ts-ignore
+  //       this.featureLayer.style = (options) => {
+  //         console.log(
+  //           options.feature.placeId,
+  //           this.placeId,
+  //           options.feature.placeId == this.placeId
+  //         );
 
-        if (options.feature.placeId == this.placeId) {
-          return featureStyleOptions;
-        }
-      };
-      this.map.data.setStyle(this.featureLayer.style);
-    }
+  //         if (options.feature.placeId == this.placeId) {
+  //           return featureStyleOptions;
+  //         }
+  //       };
+  //       this.map.data.setStyle(this.featureLayer.style);
+  //     }
+  //   }
+  // }
+  // removeHighlightArea() {
+  //   this.featureLayer.style = (options: { feature: { placeId: string } }) => {
+  //     return null;
+  //   };
+  // }
+  drawPolygonWithCoordinates(coordinates: google.maps.LatLngLiteral[]): void {
+    this.poly.setMap(null);
+    this.poly = new google.maps.Polygon({
+      paths: coordinates,
+      strokeColor: '#ff3932',
+      strokeOpacity: 1,
+      strokeWeight: 1.5,
+      fillColor: '#ff3932',
+      fillOpacity: 0.1,
+    });
+    this.poly.setMap(this.map);
   }
-  removeHighlightArea() {
-    this.featureLayer.style = (options: { feature: { placeId: string } }) => {
-      return null;
-    };
+  async setPolygonOnMap(coordinates) {
+    console.log(coordinates);
+    const points = coordinates?.[0]?.map((coord) => ({
+      x: coord.lng,
+      y: coord.lat,
+    }));
+    const tolerance = 0.0001;
+    const simplifiedPoints = simplify(points, tolerance, true);
+    console.log(points, 'pssads');
+    const simplifiedCoordinates = await simplifiedPoints.map((point) => ({
+      lat: point.y,
+      lng: point.x,
+    }));
+    console.log(simplifiedCoordinates);
+
+    this.drawPolygonWithCoordinates(simplifiedCoordinates);
   }
 }

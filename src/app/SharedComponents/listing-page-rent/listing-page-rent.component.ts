@@ -40,6 +40,7 @@ import { PropertyCardComponent } from '../property-card/property-card.component'
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchBarListingComponent } from '../search-bar-listing/search-bar-listing.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
 @Component({
   standalone: true,
   imports: [
@@ -103,6 +104,7 @@ export class ListingPageRentComponent {
   loadFirstTime: boolean = true;
   highlighted: any;
   removeHighlighted: any;
+  polygonData: any;
   sortsArray: any = [
     'Price: Low to High',
     'Price: High to Low',
@@ -139,6 +141,7 @@ export class ListingPageRentComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpService,
+    private https: HttpClient,
     private router: Router,
     public dialog: MatDialog,
     public resize: ResizeService,
@@ -189,6 +192,7 @@ export class ListingPageRentComponent {
               types: this.locationDetails.types,
             },
           });
+          this.getShapeCordinate();
         }
       });
     this.activatedRoute.queryParams.subscribe((params: any) => {
@@ -205,6 +209,7 @@ export class ListingPageRentComponent {
           this.param = false;
         }
         this.scrollToListing();
+        this.getShapeCordinate();
         this.getProperties(false);
       }
     });
@@ -456,9 +461,29 @@ export class ListingPageRentComponent {
           types: this.placeTypes,
         },
       });
+      this.getShapeCordinate();
     }
   }
-
+  getShapeCordinate() {
+    this.https
+      .get(
+        `https://api.mapbox.com/isochrone/v1/mapbox/driving-traffic/${this.center.lng}%2C${this.center.lat}?contours_minutes=10&polygons=true&denoise=1&access_token=pk.eyJ1IjoiYWhtZWQxMjg5IiwiYSI6ImNsem9uNzc4bDB4MjAycXI0NDd3YXpnMG4ifQ.MfFDTrpriZ7Qf43bSwZ9Zw`
+      )
+      .subscribe(
+        async (response: any) => {
+          this.polygonData =
+            response?.features?.[0]?.geometry?.coordinates?.map((item: any) =>
+              item?.map((item2: any) => ({
+                lat: item2[1],
+                lng: item2[0],
+              }))
+            ) || [];
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
   openPopup(): void {
     this.dialog.open(PopupComponent, {
       scrollStrategy: new NoopScrollStrategy(),

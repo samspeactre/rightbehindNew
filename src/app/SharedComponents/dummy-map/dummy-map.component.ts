@@ -218,78 +218,78 @@ export class DummyMapComponent implements OnInit {
   }
 
   initializeMap(): void {
-    const styledMapType = new google.maps.StyledMapType(
-      [
-        {
-          featureType: 'poi',
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'administrative.land_parcel',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'transit.station',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.business',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.government',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.school',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.sports_complex',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.park',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.attraction',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.medical',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.place_of_worship',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.cafe',
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.restaurant',
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.bar',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.night_club',
-          stylers: [{ visibility: 'off' }],
-        },
-      ],
-      { name: 'Styled Map' }
-    );
+    // const styledMapType = new google.maps.StyledMapType(
+    //   [
+    //     {
+    //       featureType: 'poi',
+    //       elementType: 'labels',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'administrative.land_parcel',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'transit.station',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.business',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.government',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.school',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.sports_complex',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.park',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.attraction',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.medical',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.place_of_worship',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.cafe',
+    //       elementType: 'labels',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.restaurant',
+    //       elementType: 'labels',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.bar',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //     {
+    //       featureType: 'poi.night_club',
+    //       stylers: [{ visibility: 'off' }],
+    //     },
+    //   ],
+    //   { name: 'Styled Map' }
+    // );
 
     this.map = new google.maps.Map(document.getElementById('map_canvas'));
-    this.map.mapTypes.set('styled_map', styledMapType);
-    this.map.setMapTypeId('styled_map');
+    // this.map.mapTypes.set('styled_map', styledMapType);
+    // this.map.setMapTypeId('styled_map');
     this.map.setOptions(this.mapOptions);
     this.types.map((item: any) => {
       this.setFeaturLayer(item);

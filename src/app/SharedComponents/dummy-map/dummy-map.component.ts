@@ -14,7 +14,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 import { ResizeService } from '../../Services/resize.service';
-import simplify from 'simplify-js';
 
 declare var google: any;
 
@@ -65,6 +64,7 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
+      this.setHighlightedArea();
     }
   }
   @Input() set place_id(data: string) {
@@ -78,6 +78,7 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
+      this.setHighlightedArea();
     }
   }
   @Input() set placeTypes(data: any[]) {
@@ -86,11 +87,6 @@ export class DummyMapComponent implements OnInit {
       this.types.map((item: any) => {
         this.setFeaturLayer(item);
       });
-    }
-  }
-  @Input() set setPolygon(data: any[]) {
-    if (this.map) {
-      this.setPolygonOnMap(data);
     }
   }
   @Input()
@@ -300,6 +296,7 @@ export class DummyMapComponent implements OnInit {
     });
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
+      this.removeHighlightArea();
       this.disable();
       this.drawing = true;
       this.clearMarkers();
@@ -322,10 +319,17 @@ export class DummyMapComponent implements OnInit {
 
     document.getElementById('clearButton').addEventListener('click', (e) => {
       e.preventDefault();
+      this.setHighlightedArea();
       this.clearShapes();
     });
-    this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
     this.placeMarkers();
+    if (
+      !this.communityMarkers?.length &&
+      !this.markers?.length &&
+      this.placeId != ''
+    ) {
+      this.setHighlightedArea();
+    }
   }
   setFeaturLayer(featureName) {
     if (
@@ -424,6 +428,7 @@ export class DummyMapComponent implements OnInit {
       markerData.infoWindowInstance = infoWindow;
       this.googleMarkers.push(marker);
     });
+    this.setHighlightedArea();
   }
 
   createInfoWindowContent(index: number): HTMLElement {
@@ -446,64 +451,35 @@ export class DummyMapComponent implements OnInit {
     this.googleMarkers = [];
   }
 
-  // setHighlightedArea(): void {
-  //   if (this.map) {
-  //     const featureStyleOptions = {
-  //       strokeColor: '#ff3932',
-  //       strokeOpacity: 1,
-  //       strokeWeight: 1.5,
-  //       fillColor: '#ff3932',
-  //       fillOpacity: 0.1,
-  //     };
-  //     if (this.featureLayer) {
-  //       //@ts-ignore
-  //       this.featureLayer.style = (options) => {
-  //         console.log(
-  //           options.feature.placeId,
-  //           this.placeId,
-  //           options.feature.placeId == this.placeId
-  //         );
+  setHighlightedArea(): void {
+    if (this.map) {
+      const featureStyleOptions = {
+        strokeColor: '#ff3932',
+        strokeOpacity: 1,
+        strokeWeight: 1.5,
+        fillColor: '#ff3932',
+        fillOpacity: 0.1,
+      };
+      if (this.featureLayer) {
+        //@ts-ignore
+        this.featureLayer.style = (options) => {
+          console.log(
+            options.feature.placeId,
+            this.placeId,
+            options.feature.placeId == this.placeId
+          );
 
-  //         if (options.feature.placeId == this.placeId) {
-  //           return featureStyleOptions;
-  //         }
-  //       };
-  //       this.map.data.setStyle(this.featureLayer.style);
-  //     }
-  //   }
-  // }
-  // removeHighlightArea() {
-  //   this.featureLayer.style = (options: { feature: { placeId: string } }) => {
-  //     return null;
-  //   };
-  // }
-  drawPolygonWithCoordinates(coordinates: google.maps.LatLngLiteral[]): void {
-    this.poly.setMap(null);
-    this.poly = new google.maps.Polygon({
-      paths: coordinates,
-      strokeColor: '#ff3932',
-      strokeOpacity: 1,
-      strokeWeight: 1.5,
-      fillColor: '#ff3932',
-      fillOpacity: 0.1,
-    });
-    this.poly.setMap(this.map);
+          if (options.feature.placeId == this.placeId) {
+            return featureStyleOptions;
+          }
+        };
+        this.map.data.setStyle(this.featureLayer.style);
+      }
+    }
   }
-  async setPolygonOnMap(coordinates) {
-    console.log(coordinates);
-    const points = coordinates?.[0]?.map((coord) => ({
-      x: coord.lng,
-      y: coord.lat,
-    }));
-    const tolerance = 0.0001;
-    const simplifiedPoints = simplify(points, tolerance, true);
-    console.log(points, 'pssads');
-    const simplifiedCoordinates = await simplifiedPoints.map((point) => ({
-      lat: point.y,
-      lng: point.x,
-    }));
-    console.log(simplifiedCoordinates);
-
-    this.drawPolygonWithCoordinates(simplifiedCoordinates);
+  removeHighlightArea() {
+    this.featureLayer.style = (options: { feature: { placeId: string } }) => {
+      return null;
+    };
   }
 }

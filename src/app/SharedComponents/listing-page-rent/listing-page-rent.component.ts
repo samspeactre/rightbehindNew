@@ -88,7 +88,6 @@ export class ListingPageRentComponent {
   faBuilding = faBuilding;
   search: any = null;
   searchByBar: any = null;
-  place_id: any = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
   pageNo: number = 1;
   pageSize: number = 20;
   loader: boolean = true;
@@ -127,7 +126,6 @@ export class ListingPageRentComponent {
   locationDetails: any;
   sort: string;
   types: any = types;
-  placeTypes: any = ['LOCALITY'];
   center: google.maps.LatLngLiteral = {
     lat: 25.761681,
     lng: -80.191788,
@@ -176,8 +174,6 @@ export class ListingPageRentComponent {
         this.locationDetails = location;
         if (!this.searchByBar && this.locationDetails) {
           this.search = this.locationDetails.placeName;
-          this.place_id = this.locationDetails.placeId;
-          this.placeTypes = this.locationDetails.types;
           this.center = {
             lat: this.locationDetails.lat,
             lng: this.locationDetails.lng,
@@ -186,10 +182,8 @@ export class ListingPageRentComponent {
           this.router.navigate(['rent'], {
             queryParams: {
               search: this.search,
-              placeId: this.place_id,
               lat: this.locationDetails.lat,
               lng: this.locationDetails.lng,
-              types: this.locationDetails.types,
             },
           });
           this.getShapeCordinate();
@@ -198,8 +192,6 @@ export class ListingPageRentComponent {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       if (params?.search) {
         this.search = params?.search;
-        this.place_id = params?.placeId;
-        this.placeTypes = params?.types;
         if (params?.lat && params?.lng) {
           this.center = { lat: Number(params?.lat), lng: Number(params?.lng) };
         }
@@ -346,13 +338,6 @@ export class ListingPageRentComponent {
         ];
         this.sorting(null);
       }
-      if (!this.place_id) {
-        const searchString = this.getSearchString(this.router.url);
-        if (searchString) {
-          console.log(searchString.split(',')[0]);
-          this.place_id = searchString.split(',')[0];
-        }
-      }
       this.originalCards = this.cards;
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
     } else {
@@ -360,15 +345,6 @@ export class ListingPageRentComponent {
         this.noDataError();
       }
     }
-  }
-  getSearchString(url) {
-    const searchPattern = /[?&]placeId=([^&]*)/;
-    const match = url.match(searchPattern);
-    if (match) {
-      let searchString = match[1];
-      return searchString;
-    }
-    return null;
   }
   private handleError(loadMore: boolean): void {
     this.loadMore = false;
@@ -395,39 +371,29 @@ export class ListingPageRentComponent {
   }
 
   searchProperties(event: any) {
-    if (event.search && event.place_id && event.center) {
+    if (event.search && event.center) {
       this.search = event.search;
-      this.place_id = event.place_id;
       this.center = event.center;
       this.searchByBar = true;
-      this.placeTypes = event.types;
       localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
-          placeId: this.place_id,
           lat: event?.center?.lat,
           lng: event.center?.lng,
-          types: this.placeTypes,
         },
       });
-    } else if (event.search && event.place_id) {
+    } else if (event.search) {
       this.search = event.search;
-      this.place_id = event.place_id;
       this.searchByBar = true;
-      this.placeTypes = event.types;
       localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
-          placeId: this.place_id,
-          types: this.placeTypes,
         },
       });
     } else if (this.locationDetails) {
       this.search = this.locationDetails?.placeName;
-      this.place_id = this.locationDetails?.placeId;
-      this.placeTypes = this.locationDetails.types;
       this.searchByBar = false;
       localStorage.setItem('searchByBar', 'false');
       this.center = {
@@ -437,15 +403,12 @@ export class ListingPageRentComponent {
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
-          placeId: this.place_id,
           lat: this.locationDetails?.lat,
           lng: this.locationDetails?.lng,
-          types: this.placeTypes,
         },
       });
     } else {
       this.search = 'Miami, FL, USA';
-      this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
       this.center = {
         lat: 25.761681,
         lng: -80.191788,
@@ -455,34 +418,29 @@ export class ListingPageRentComponent {
       this.router.navigate(['rent'], {
         queryParams: {
           search: this.search,
-          placeId: this.place_id,
           lat: 25.761681,
           lng: -80.191788,
-          types: this.placeTypes,
         },
       });
       this.getShapeCordinate();
     }
   }
   getShapeCordinate() {
-    this.https
-      .get(
-        `https://api.mapbox.com/isochrone/v1/mapbox/driving-traffic/${this.center.lng}%2C${this.center.lat}?contours_minutes=10&polygons=true&denoise=1&access_token=pk.eyJ1IjoiYWhtZWQxMjg5IiwiYSI6ImNsem9uNzc4bDB4MjAycXI0NDd3YXpnMG4ifQ.MfFDTrpriZ7Qf43bSwZ9Zw`
-      )
-      .subscribe(
-        async (response: any) => {
-          this.polygonData =
-            response?.features?.[0]?.geometry?.coordinates?.map((item: any) =>
-              item?.map((item2: any) => ({
-                lat: item2[1],
-                lng: item2[0],
-              }))
-            ) || [];
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+    const url = `https://api.mapbox.com/isochrone/v1/mapbox/walking/${this.center.lng}%2C${this.center.lat}?contours_meters=2000&contours_colors=08519c&polygons=true&denoise=1&generalize=0&access_token=pk.eyJ1IjoiYWhtZWQxMjg5IiwiYSI6ImNsem9uNzc4bDB4MjAycXI0NDd3YXpnMG4ifQ.MfFDTrpriZ7Qf43bSwZ9Zw`;
+    this.https.get(url).subscribe(
+      async (response: any) => {
+        this.polygonData =
+          response?.features?.[0]?.geometry?.coordinates?.map((item: any) =>
+            item?.map((item2: any) => ({
+              lat: item2[1],
+              lng: item2[0],
+            }))
+          ) || [];
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   openPopup(): void {
     this.dialog.open(PopupComponent, {
@@ -556,7 +514,6 @@ export class ListingPageRentComponent {
   reset() {
     this.closeFil();
     this.search = null;
-    this.place_id = 'ChIJEcHIDqKw2YgRZU-t3XHylv8';
     this.maxPrice = null;
     this.minPrice = null;
     this.beds = null;

@@ -79,7 +79,6 @@
       } @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
       <div class="colSecond rightP" [style.top.px]="searchHeight">
         <app-dummy-map
-          [place_id]="place_id"
           [disabled]="loader"
           (resetDrawCordinates)="resetCordinates($event)"
           (drawCordinates)="drawSearch($event)"
@@ -91,7 +90,6 @@
           [highlightedAreaCoordinates]="latLngArray"
           [infoContents]="cards"
           [height]="screenHeight"
-          [placeTypes]="placeTypes"
           [setPolygon]="polygonData"
         ></app-dummy-map>
       </div>

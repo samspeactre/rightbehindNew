@@ -14,8 +14,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 import { ResizeService } from '../../Services/resize.service';
-import simplify from 'simplify-js';
-
 declare var google: any;
 
 @Component({
@@ -121,7 +119,7 @@ export class DummyMapComponent implements OnInit {
   @Input() disabled: boolean = false;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 16,
+    zoom: 14,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapId: '4d9b0fd688ab8d67',
@@ -418,7 +416,7 @@ export class DummyMapComponent implements OnInit {
             this.infoContentsArray[index]?.id
         );
         this.map.setCenter(marker.getPosition());
-        this.map.setZoom(16);
+        this.map.setZoom(14);
       });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
@@ -482,8 +480,8 @@ export class DummyMapComponent implements OnInit {
     this.poly = new google.maps.Polygon({
       paths: coordinates,
       strokeColor: '#ff3932',
-      strokeOpacity: 1,
-      strokeWeight: 1.5,
+      strokeOpacity: 0.5,
+      strokeWeight: 1,
       fillColor: '#ff3932',
       fillOpacity: 0.1,
     });
@@ -491,19 +489,6 @@ export class DummyMapComponent implements OnInit {
   }
   async setPolygonOnMap(coordinates) {
     console.log(coordinates);
-    const points = coordinates?.[0]?.map((coord) => ({
-      x: coord.lng,
-      y: coord.lat,
-    }));
-    const tolerance = 0.0001;
-    const simplifiedPoints = simplify(points, tolerance, true);
-    console.log(points, 'pssads');
-    const simplifiedCoordinates = await simplifiedPoints.map((point) => ({
-      lat: point.y,
-      lng: point.x,
-    }));
-    console.log(simplifiedCoordinates);
-
-    this.drawPolygonWithCoordinates(simplifiedCoordinates);
+    this.drawPolygonWithCoordinates(coordinates);
   }
 }

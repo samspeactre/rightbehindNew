@@ -426,7 +426,7 @@ export class ListingPageRentComponent {
     }
   }
   getShapeCordinate() {
-    const url = `https://api.mapbox.com/isochrone/v1/mapbox/walking/${this.center.lng}%2C${this.center.lat}?contours_meters=2000&contours_colors=08519c&polygons=true&denoise=1&generalize=0&access_token=pk.eyJ1IjoiYWhtZWQxMjg5IiwiYSI6ImNsem9uNzc4bDB4MjAycXI0NDd3YXpnMG4ifQ.MfFDTrpriZ7Qf43bSwZ9Zw`;
+    const url = `https://api.mapbox.com/isochrone/v1/mapbox/walking/${this.center.lng}%2C${this.center.lat}?contours_meters=2000&contours_colors=08519c&polygons=true&denoise=1&generalize=0&access_token=sk.eyJ1IjoiYWhtZWQxMjg5IiwiYSI6ImNsem90ZjRleTB3N2Mya3M4eDZidnp6a3IifQ.CX-J_N3Pm8CPdIBH35Oxsg`;
     this.https.get(url).subscribe(
       async (response: any) => {
         this.polygonData =

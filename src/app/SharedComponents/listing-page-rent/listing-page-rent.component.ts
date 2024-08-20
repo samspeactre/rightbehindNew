@@ -41,6 +41,8 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { SearchBarListingComponent } from '../search-bar-listing/search-bar-listing.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 @Component({
   standalone: true,
   imports: [
@@ -70,6 +72,7 @@ import { HttpClient } from '@angular/common/http';
     FilterComponent,
     DummyMapComponent,
     SearchBarListingComponent,
+    ScrollingModule
   ],
   selector: 'app-listing-page-rent',
   templateUrl: './listing-page-rent.component.html',
@@ -246,7 +249,7 @@ export class ListingPageRentComponent {
     }
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
-
+console.log(Url, 'Url')
     this.http
       .loaderGet(Url, this.userDetails ? true : false, true, true, false)
       .pipe(
@@ -258,6 +261,7 @@ export class ListingPageRentComponent {
       )
       .subscribe(
         (response: any) => {
+          console.log(response, 'responseresponse')
           this.handleResponse(
             response?.model?.properties,
             loadMore,

@@ -58,7 +58,6 @@ export class LocationService {
               const locationData = {
                 ...location,
                 placeName: placeName?.formatted_address,
-                placeId: placeName?.place_id,
                 default: false,
               };
               this.store.dispatch(addCurrenLocation({ data: locationData }));
@@ -94,7 +93,6 @@ export class LocationService {
   private handlePermissionDenied() {
     const dummyData = {
       placeName: 'Miami, FL, USA',
-      placeId: 'ChIJEcHIDqKw2YgRZU-t3XHylv8',
       lat: 25.761681,
       lng: -80.191788,
       default: true,

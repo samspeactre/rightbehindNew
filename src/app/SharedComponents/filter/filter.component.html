@@ -1,20 +1,13 @@
 <div class="container">
   <div class="row">
-    <div
-      class="col-lg-12"
-      [ngClass]="[
+    <div class="col-lg-12" [ngClass]="[
         filterType == 'type' || filterType == 'all' ? 'd-block' : 'd-none'
-      ]"
-    >
+      ]">
       <p class="smallFont mb-0">Property Type</p>
       <div class="ngs-select">
         @if(!searching){
-        <ng-select
-          [(ngModel)]="a"
-          placeholder="Property Type"
-          (change)="onFilterChange($event, 'type')"
-          [searchable]="false"
-        >
+        <ng-select [(ngModel)]="a" placeholder="Property Type" (change)="onFilterChange($event, 'type')"
+          [searchable]="false">
           @if(types){ @for (item of types; track $index) {
           <ng-option [value]="item?.value">{{ item?.name }}</ng-option>
           } }
@@ -22,7 +15,7 @@
         }
       </div>
     </div>
-    <div
+    <!-- <div
       class="col-lg-12"
       [ngClass]="[
         filterType == 'price' || filterType == 'all' ? 'd-block' : 'd-none'
@@ -41,66 +34,68 @@
           (change)="onFilterChange($event, 'maxPrice')"
         />
       </mat-slider>
+    </div> -->
+    <div class="col-lg-12" [ngClass]="[
+    filterType == 'price' || filterType == 'all' ? 'd-block' : 'd-none'
+  ]">
+      <p class="smallFont mb-3">Price Range</p>
+      <div class="form-row row mb-3">
+        <div class="form-group col-md-6">
+          <label for="minPrice" class="form-label">Min Price:</label>
+          <input id="minPrice" type="number" class="form-control" [value]="e"
+            (change)="onFilterChange($event, 'minPrice')" />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="maxPrice" class="form-label">Max Price:</label>
+          <input id="maxPrice" type="number" class="form-control" [value]="f"
+            (change)="onFilterChange($event, 'maxPrice')" />
+        </div>
+      </div>
     </div>
-    <div
-      class="col-lg-12"
-      [ngClass]="[
+
+
+    <div class="col-lg-12" [ngClass]="[
         filterType == 'beds' || filterType == 'all' ? 'd-block' : 'd-none'
-      ]"
-    >
+      ]">
       <p class="smallFont mb-0">No Of Beds</p>
-      <div class="ngs-select">
+      <div>
         @if(!searching){
-        <ng-select
-          [(ngModel)]="b"
-          placeholder="Beds"
-          (change)="onFilterChange($event, 'beds')"
-          [searchable]="false"
-        >
+        <!-- <ng-select [(ngModel)]="b" placeholder="Beds" (change)="onFilterChange($event, 'beds')" [searchable]="false">
           @if(bedsArray){ @for (item of bedsArray; track $index) {
           <ng-option [value]="item">{{ item }} Beds</ng-option>
           } }
-        </ng-select>
+        </ng-select> -->
+        <div class="form-group">
+          <input [(ngModel)]="b" class="form-control" placeholder="Beds" (change)="onFilterChange($event, 'beds')" />
+        </div>
         }
       </div>
     </div>
-    <div
-      class="col-lg-12"
-      [ngClass]="[
+    <div class="col-lg-12 mt-3 mb-3" [ngClass]="[
         filterType == 'beds' || filterType == 'all' ? 'd-block' : 'd-none'
-      ]"
-    >
+      ]">
       <p class="smallFont mb-0">No. Of Baths</p>
-      <div class="ngs-select">
+      <div >
         @if(!searching){
-        <ng-select
-          [(ngModel)]="c"
-          placeholder="Bathrooms"
-          (change)="onFilterChange($event, 'baths')"
-          [searchable]="false"
-        >
+        <!-- <ng-select [(ngModel)]="c" placeholder="Bathrooms" (change)="onFilterChange($event, 'baths')"
+          [searchable]="false">
           @if(bathArray){ @for (item of bathArray; track $index) {
           <ng-option [value]="item">{{ item }} Bathroom</ng-option>
           } }
-        </ng-select>
+        </ng-select> -->
+        <div class="form-group">
+          <input [(ngModel)]="c" class="form-control" placeholder="Bathrooms" (change)="onFilterChange($event, 'baths')" />
+        </div>
         }
       </div>
     </div>
-    <div
-      class="col-lg-12"
-      [ngClass]="[
+    <div class="col-lg-12" [ngClass]="[
         filterType == 'sorts' || filterType == 'all' ? 'd-block' : 'd-none'
-      ]"
-    >
+      ]">
       <p class="smallFont mb-0">Sort</p>
       <div class="ngs-select">
         @if(!searching){
-        <ng-select
-          [(ngModel)]="d"
-          placeholder="Sort"
-          (change)="sorting($event)"
-          [searchable]="false"
-        >
+        <ng-select [(ngModel)]="d" placeholder="Sort" (change)="sorting($event)" [searchable]="false">
           @if(sortsArray){ @for (item of sortsArray; track $index) {
           <ng-option [value]="item">{{ item }}</ng-option>
           } }
@@ -109,11 +104,7 @@
       </div>
     </div>
     <div class="col-lg-12 d-flex justify-content-between gap-3">
-      <button
-        class="btnDanger w-50 py-2"
-        [disabled]="isResetDisabled"
-        (click)="reset()"
-      >
+      <button class="btnDanger w-50 py-2" [disabled]="isResetDisabled" (click)="reset()">
         Reset
       </button>
       <button class="btnPrimary w-50 py-2" (click)="filter()">Filter</button>

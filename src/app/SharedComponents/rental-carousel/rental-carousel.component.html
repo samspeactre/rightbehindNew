@@ -29,6 +29,7 @@
 <div class="rental-btn py-3 wow fadeInDown">
   <button
     [ngClass]="[ cards?.[cards?.length-1]?.propertyType == 1 ? 'btnWhiteNBlue' : 'btnPrimary']"
+    (click)="setItem()"
     routerLink="/rent"
   >
     View More

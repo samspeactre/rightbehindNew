@@ -135,6 +135,7 @@ export class HomeComponent {
   }
   searchProperties(event: any) {
     if (event) {
+      localStorage.setItem('searchByBar', 'true');
       this.router.navigate(['/rent'], {
         queryParams: { search: event?.search, placeId: event.place_id },
       });

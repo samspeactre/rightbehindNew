@@ -36,11 +36,9 @@
             <div class="wow fadeInDown mb-3">
               <app-mini-loading></app-mini-loading>
             </div>
-            } @else{ @if(cards?.length >= 20){
-            <button class="btnPrimary py-1 wow fadeInDown mb-3" (click)="loadMoreProperties('communities')">
+            } @else{ <button class="btnPrimary py-1 wow fadeInDown mb-3" (click)="loadMoreProperties('communities')">
               Load More
-            </button>
-            } }
+            </button> }
           </div>
           }
         </div>

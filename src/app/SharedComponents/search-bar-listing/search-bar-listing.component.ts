@@ -47,7 +47,6 @@ export class SearchBarListingComponent {
   @Input() searching: boolean = false;
   @Input() filter: boolean = false;
   @Input() search!: string;
-  @Input() place_id!: string;
   @Input() show: boolean = false;
   @Input() extraWidth: boolean = false;
   center: any;
@@ -114,11 +113,9 @@ export class SearchBarListingComponent {
       'place_changed',
       () => {
         const place = this.autocomplete.getPlace();
-        console.log(place);
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
         this.center = { lat, lng };
-        this.place_id = place.place_id;
         this.search = place.formatted_address;
         this.submit();
       }
@@ -128,7 +125,6 @@ export class SearchBarListingComponent {
   submit() {
     this.searchEvent.emit({
       search: this.search,
-      place_id: this.place_id,
       center: this.center,
     });
   }
@@ -139,7 +135,6 @@ export class SearchBarListingComponent {
   selectFirstSuggestion() {
     if (this.predictions.length > 0) {
       this.search = this.predictions[0].description;
-      this.place_id = this.predictions[0].place_id;
       this.submit();
     }
   }

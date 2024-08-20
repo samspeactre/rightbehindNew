@@ -52,14 +52,19 @@
           @for (item of card?.propertyImages; let i = $index; track item) {
           <ng-template carouselSlide>
             <div class="position-relative fixedHeight">
-              <img [ngSrc]="item?.imageUrl" fill alt="card image" />
+              <img [ngSrc]="item?.imageUrl" fill priority alt="card image" />
             </div>
           </ng-template>
           }
         </owl-carousel-o>
         } @else {
         <div class="position-relative fixedHeight">
-          <img ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png" class="NoImageFound" fill alt="Card Image" />
+          <img
+            ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png"
+            class="NoImageFound"
+            fill
+            alt="Card Image"
+          />
         </div>
         } @if(card?.featuredTill || card?.isPromoted){
         <div class="special featured">
@@ -74,7 +79,6 @@
       </div>
     </div>
     <div class="col40">
-
       <div class="property-content ps-2">
         <button class="whitBtn rounded-0 w-100 bold text-start" [ngClass]="{
             'wow fadeInDown': animation
@@ -151,18 +155,27 @@
       @for (item of card?.propertyImages; let i = $index; track item) {
       <ng-template carouselSlide>
         <div class="position-relative fixedHeight">
-          <img [ngSrc]="item?.imageUrl" fill alt="card image" />
+          <img [ngSrc]="item?.imageUrl" fill priority alt="card image" />
         </div>
       </ng-template>
       }
     </owl-carousel-o>
     } @else {
     <div class="position-relative fixedHeight">
-      <img [ngSrc]="card?.propertyImages?.[0]?.imageUrl" fill alt="Card Image" />
+      <img
+        [ngSrc]="card?.propertyImages?.[0]?.imageUrl"
+        fill
+        alt="Card Image"
+      />
     </div>
     } } @else {
     <div class="position-relative fixedHeight">
-      <img ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png" class="NoImageFound" fill alt="Card Image" />
+      <img
+        ngSrc="https://homes.madeeasy.app/img/no-propertyfound.png"
+        class="NoImageFound"
+        fill
+        alt="Card Image"
+      />
     </div>
     } @if(card?.featuredTill || card?.isPromoted){
     <div class="special featured">

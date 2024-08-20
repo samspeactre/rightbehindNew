@@ -2,12 +2,46 @@
   <div class="property-img">
     <img
       [src]="cardData?.propertyImages?.[0]?.imageUrl ? cardData?.propertyImages?.[0]?.imageUrl : 'https://homes.madeeasy.app/img/no-propertyfound.png'"
-      [class.NoImageFound]="!cardData?.propertyImages?.[0]?.imageUrl"
-      alt="Card Image"
-    />
+      [class.NoImageFound]="!cardData?.propertyImages?.[0]?.imageUrl" alt="Card Image" />
   </div>
-  <div class="property-content mt-3">
-    <div
+  <div class="property-content mt-3 d-flex justify-content-between align-items-center">
+    <div>
+      @if(cardData?.title){
+      <h6 class="bold mb-0">{{ cardData?.title }}</h6>
+      }
+      @else {
+      <h6 class="bold mb-0">N/A</h6>
+      }
+
+      <div class="d-flex flex-wrap gap-3 mt-1">
+        <div class="dCenter">
+          <fa-icon size="sm" [icon]="faBed"></fa-icon>
+          <p class="mb-0 ms-2">
+            {{ cardData?.noOfBed || 0 }}
+          </p>
+        </div>
+        <div class="dCenter centerBox">
+          <fa-icon size="sm" [icon]="faBath"></fa-icon>
+          <p class="mb-0 ms-2">
+            {{ cardData?.noOfBath || 0 }}
+          </p>
+        </div>
+        <div class="dCenter">
+          <fa-icon size="sm" [icon]="faRuler"></fa-icon>
+          <p class="mb-0 ms-2">{{ cardData?.area || 0 }} sq ft</p>
+        </div>
+      </div>
+    </div>
+    <div class="viewPrice">
+      @if(cardData?.title){
+        <h6 class="bold">${{ cardData?.price }}</h6>
+        }
+        @else {
+          <h6 class="bold">N/A</h6>
+          }
+      <a class="view-tag mt-1" (click)="openPopup(card)">View</a>
+    </div>
+    <!-- <div
       class="d-flex justify-content-between align-items-center card-property-heading"
     >
       @if(cardData?.title){
@@ -32,6 +66,6 @@
         <fa-icon size="sm" [icon]="faRuler"></fa-icon>
         <p class="mb-0 ms-2">{{ cardData?.area || 0 }} sq ft</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

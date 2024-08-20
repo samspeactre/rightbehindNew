@@ -14,7 +14,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
 import { CommunityCardMapComponent } from '../community-card-map/community-card-map.component';
 import { ResizeService } from '../../Services/resize.service';
-
 declare var google: any;
 
 @Component({
@@ -26,7 +25,7 @@ declare var google: any;
 })
 export class DummyMapComponent implements OnInit {
   map: any;
-  // featureLayer: any;
+  featureLayer: any;
   poly: any;
   private _center: google.maps.LatLngLiteral = {
     lat: 25.761681,
@@ -43,6 +42,7 @@ export class DummyMapComponent implements OnInit {
     }
   }
   infoContentsArray: any[] = [];
+  types: any = ['LOCALITY'];
   @Input() height: any;
   @Input() community: boolean = false;
   @Output() propertyHover = new EventEmitter<any>();
@@ -63,7 +63,6 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
-      // this.setHighlightedArea();
     }
   }
   @Input() set place_id(data: string) {
@@ -77,7 +76,19 @@ export class DummyMapComponent implements OnInit {
       this.placeMarkers();
     } else {
       this.clearMarkers();
-      // this.setHighlightedArea();
+    }
+  }
+  @Input() set placeTypes(data: any[]) {
+    this.types = data;
+    if (this.map) {
+      this.types.map((item: any) => {
+        this.setFeaturLayer(item);
+      });
+    }
+  }
+  @Input() set setPolygon(data: any[]) {
+    if (this.map) {
+      this.setPolygonOnMap(data);
     }
   }
   @Input()
@@ -108,7 +119,7 @@ export class DummyMapComponent implements OnInit {
   @Input() disabled: boolean = false;
   private currentInfoWindow: google.maps.InfoWindow | null = null;
   mapOptions: any = {
-    zoom: 16,
+    zoom: 14,
     center: this._center,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapId: '4d9b0fd688ab8d67',
@@ -282,10 +293,11 @@ export class DummyMapComponent implements OnInit {
     this.map.mapTypes.set('styled_map', styledMapType);
     this.map.setMapTypeId('styled_map');
     this.map.setOptions(this.mapOptions);
-    // this.featureLayer = this.map.getFeatureLayer('LOCALITY');
+    this.types.map((item: any) => {
+      this.setFeaturLayer(item);
+    });
     document.getElementById('drawpoly').addEventListener('click', (e) => {
       e.preventDefault();
-      // this.removeHighlightArea();
       this.disable();
       this.drawing = true;
       this.clearMarkers();
@@ -308,16 +320,20 @@ export class DummyMapComponent implements OnInit {
 
     document.getElementById('clearButton').addEventListener('click', (e) => {
       e.preventDefault();
-      // this.setHighlightedArea();
       this.clearShapes();
     });
+    this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
     this.placeMarkers();
+  }
+  setFeaturLayer(featureName) {
     if (
-      !this.communityMarkers?.length &&
-      !this.markers?.length &&
-      this.placeId != ''
+      (this.map && featureName.toLowerCase().includes('locality')) ||
+      featureName.toLowerCase().includes('country') ||
+      featureName.toLowerCase().includes('postal') ||
+      featureName.toLowerCase().includes('school') ||
+      featureName.toLowerCase().includes('administrative')
     ) {
-      // this.setHighlightedArea();
+      this.featureLayer = this.map.getFeatureLayer(featureName.toUpperCase());
     }
   }
   zoomToHighlightedMarker(highlighted: any) {
@@ -400,13 +416,12 @@ export class DummyMapComponent implements OnInit {
             this.infoContentsArray[index]?.id
         );
         this.map.setCenter(marker.getPosition());
-        this.map.setZoom(16);
+        this.map.setZoom(14);
       });
       markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
       this.googleMarkers.push(marker);
     });
-    // this.setHighlightedArea();
   }
 
   createInfoWindowContent(index: number): HTMLElement {
@@ -438,13 +453,21 @@ export class DummyMapComponent implements OnInit {
   //       fillColor: '#ff3932',
   //       fillOpacity: 0.1,
   //     };
-  //     //@ts-ignore
-  //     this.featureLayer.style = (options) => {
-  //       if (options.feature.placeId == this.placeId) {
-  //         return featureStyleOptions;
-  //       }
-  //     };
-  //     this.map.data.setStyle(this.featureLayer.style);
+  //     if (this.featureLayer) {
+  //       //@ts-ignore
+  //       this.featureLayer.style = (options) => {
+  //         console.log(
+  //           options.feature.placeId,
+  //           this.placeId,
+  //           options.feature.placeId == this.placeId
+  //         );
+
+  //         if (options.feature.placeId == this.placeId) {
+  //           return featureStyleOptions;
+  //         }
+  //       };
+  //       this.map.data.setStyle(this.featureLayer.style);
+  //     }
   //   }
   // }
   // removeHighlightArea() {
@@ -452,4 +475,20 @@ export class DummyMapComponent implements OnInit {
   //     return null;
   //   };
   // }
+  drawPolygonWithCoordinates(coordinates: google.maps.LatLngLiteral[]): void {
+    this.poly.setMap(null);
+    this.poly = new google.maps.Polygon({
+      paths: coordinates,
+      strokeColor: '#ff3932',
+      strokeOpacity: 0.5,
+      strokeWeight: 1,
+      fillColor: '#ff3932',
+      fillOpacity: 0.1,
+    });
+    this.poly.setMap(this.map);
+  }
+  async setPolygonOnMap(coordinates) {
+    console.log(coordinates);
+    this.drawPolygonWithCoordinates(coordinates);
+  }
 }

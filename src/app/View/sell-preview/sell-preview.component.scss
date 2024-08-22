@@ -12,7 +12,7 @@ h6 strong {
 
   .owl-carousel .owl-item img,
   .carouselImg {
-    height: 350px;
+    height: 250px;
     object-fit: cover;
     object-position: top;
     margin: 20px 0;
@@ -207,18 +207,52 @@ h6 strong {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
+.carosuelBtn {
+  // background: #1a1a1a69;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 3px;
+  width: 35px;
+  height: 35px;
+  font-size: 30px;
+  font-weight: 700;
+  transition: all 0.4s ease;
+  &:hover{
+    color: var(--royal-blue);
+  }
+}
+
+.sBtn {
+  left: 10px;
+}
+
+.eBtn {
+  right: 10px;
+}
+
 @media only screen and (max-width: 1025px) {
   .right-site {
     padding: 2rem 10px;
   }
 
   .cstmWidthBtn {
-    width: 36%;
+    width: 38%;
     text-align: center;
   }
 
   .stick {
-    bottom: 10px;
+    bottom: 0;
+    background-color: #fff;
+    padding: 10px 0px;
+    box-shadow: 0 -2px 2px #00000029;
+    width: 89vw;
+    margin: auto;
   }
 
   .sec-border {

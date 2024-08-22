@@ -72,7 +72,7 @@ export class PropertyCardComponent {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    autoplay: true,
+    autoplay: false,
     autoHeight: false,
     margin: 5,
     dots: false,

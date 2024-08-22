@@ -67,6 +67,10 @@ td {
     z-index: 3;
   }
 }
+
+.display{
+  display: flex;
+}
 .backdropFront.bodyLoader::before {
   z-index: 5;
 }

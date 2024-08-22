@@ -535,10 +535,10 @@ console.log(Url, 'Url')
     );
   }
   hover(event) {
-    this.highlighted = event;
+    // this.highlighted = event;
   }
   hoverLeft(event) {
-    this.removeHighlighted = event;
+    // this.removeHighlighted = event;
   }
   showFil(event) {
     this.filterType = event.type;

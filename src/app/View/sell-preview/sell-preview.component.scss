@@ -237,6 +237,11 @@ h6 strong {
 }
 
 @media only screen and (max-width: 1025px) {
+
+  .carousel-sell-btn{
+    display: none !important;
+  }
+
   .right-site {
     padding: 2rem 10px;
   }
@@ -249,9 +254,9 @@ h6 strong {
   .stick {
     bottom: 0;
     background-color: #fff;
-    padding: 10px 0px;
-    box-shadow: 0 -2px 2px #00000029;
-    width: 89vw;
+    padding: 10px 5px;
+    box-shadow: 0 -2px 0px #00000029;
+    width: 88vw;
     margin: auto;
   }
 
@@ -261,6 +266,11 @@ h6 strong {
 }
 
 @media only screen and (max-width: 820px) {
+
+  .carousel-sell-btn{
+    display: none !important;
+  }
+
   .right-site {
     padding: 2rem;
     width: 60%;
@@ -277,6 +287,11 @@ h6 strong {
 }
 
 @media only screen and (max-width: 540px) {
+
+  .carousel-sell-btn{
+    display: none !important;
+  }
+
   .right-site {
     padding: 2rem 1rem;
     width: 98%;

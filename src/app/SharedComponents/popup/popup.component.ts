@@ -15,6 +15,7 @@ import {
   faHeart,
   faShare,
   faShareAlt,
+  faArrowUpRightFromSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
@@ -50,7 +51,7 @@ export class PopupComponent implements OnInit {
   faHeart = faHeart;
   faShare = faShareAlt;
   faEllipsisVertical = faEllipsisVertical;
-  faRedirect = faShare;
+  faRedirect = faArrowUpRightFromSquare;
   propertyData: any;
   user$ = this.store.select(selectUser);
   userDetails: any;

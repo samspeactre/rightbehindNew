@@ -34,8 +34,9 @@
   width: 97.5vw !important;
 }
 .example-viewport{
-  width: 100%;
+  width: 98%;
   height: 100%;
+  margin-left: 2%;
 }
 :host ::ng-deep {
   .cdk-virtual-scroll-content-wrapper{

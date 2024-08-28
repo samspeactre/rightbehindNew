@@ -27,6 +27,7 @@ import { MiniLoadingComponent } from '../../SharedComponents/loaders/mini-loader
 import { MapComponent } from '../../SharedComponents/map/map.component';
 import { NavbarComponent } from '../../SharedComponents/navbar/navbar.component';
 import { RentalCarouselComponent } from '../../SharedComponents/rental-carousel/rental-carousel.component';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 @Component({
   standalone: true,
   imports: [
@@ -54,6 +55,8 @@ export class SellPreviewComponent implements OnInit {
   faPhoneAlt = faPhoneAlt;
   faEnvelope = faEnvelope;
   faCheck = faCheckCircle;
+  leftIcon = faChevronLeft;
+  RightIcon = faChevronRight;
   type!: any;
   id!: any;
   propertyDetails: any;

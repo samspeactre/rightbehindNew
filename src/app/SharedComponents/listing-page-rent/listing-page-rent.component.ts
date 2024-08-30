@@ -325,6 +325,7 @@ console.log(Url, 'Url')
           .map((location: any) => ({
             lat: location.latitude,
             lng: location.longitude,
+            price: location?.price,
           }));
         this.center = this.latLngArray?.[0];
         if (this.loadFirstTime) {

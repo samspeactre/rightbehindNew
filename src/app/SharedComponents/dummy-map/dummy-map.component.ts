@@ -59,6 +59,7 @@ export class DummyMapComponent implements OnInit {
   }
   @Input() set markerPositions(data: any[]) {
     this.markers = data;
+    console.log(data, 'data')
     if (this.markers?.length && this.infoContentsArray?.length) {
       this.placeMarkers();
     } else {
@@ -398,9 +399,44 @@ export class DummyMapComponent implements OnInit {
         map: this.map,
         icon: {
           url: iconUrl,
-          scaledSize: new google.maps.Size(40, 40),
+          scaledSize: new google.maps.Size(40, 40), // Marker size
         },
       });
+  
+      const priceLabel = new google.maps.OverlayView();
+  
+      priceLabel.onAdd = function () {
+        const div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.transform = 'translate(-50%, 0)'; // Center the label horizontally
+        div.style.backgroundColor = 'white';
+        div.style.padding = '2px 5px';
+        div.style.borderRadius = '3px';
+        div.style.boxShadow = '0px 2px 6px rgba(0,0,0,0.3)';
+        div.style.fontSize = '14px';
+        div.style.fontWeight = 'bold';
+        div.style.color = '#000';
+        div.innerText = `$${markerData.price}`;
+        this.div = div;
+  
+        const panes = this.getPanes();
+        panes.floatPane.appendChild(div);
+      };
+  
+      priceLabel.draw = function () {
+        const position = this.getProjection().fromLatLngToDivPixel(marker.getPosition() as google.maps.LatLng);
+        if (position) {
+          this.div.style.left = position.x + 'px';
+          this.div.style.top = position.y + '50px'; // Adjust as needed
+        }
+      };
+  
+      priceLabel.onRemove = function () {
+        this.div.parentNode!.removeChild(this.div);
+      };
+  
+      priceLabel.setMap(this.map);
+
       const infoWindow = new google.maps.InfoWindow({
         content: this.createInfoWindowContent(index),
       });
@@ -418,11 +454,15 @@ export class DummyMapComponent implements OnInit {
         this.map.setCenter(marker.getPosition());
         this.map.setZoom(14);
       });
-      markerData.markerInstance = marker;
       markerData.infoWindowInstance = infoWindow;
+  
+      // Store marker and priceLabel references if needed
+      markerData.markerInstance = marker;
+      markerData.priceLabelInstance = priceLabel;
       this.googleMarkers.push(marker);
     });
   }
+  
 
   createInfoWindowContent(index: number): HTMLElement {
     const component: any = this.community

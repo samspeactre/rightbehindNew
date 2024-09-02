@@ -8,7 +8,9 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import {
   GoogleMap,
@@ -17,6 +19,7 @@ import {
   MapMarker,
 } from '@angular/google-maps';
 import { PropertyCardMapComponent } from '../property-card-map/property-card-map.component';
+import { HelperService } from '../../Services/helper.service';
 
 export const key = 'AIzaSyBGYeRS6eNJZNzhvtiEcWb7Fmp1d4bm300';
 
@@ -74,8 +77,9 @@ export class MapComponent implements OnInit, OnDestroy {
   type: any;
   @Input() value: string = '';
   @ViewChild(MapInfoWindow) infosWindow!: MapInfoWindow;
+  @ViewChildren('marker') markers!: QueryList<MapMarker>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private helperService: HelperService) {}
 
   moveMap(event: any) {
     this.center = event.latLng.toJSON();
@@ -152,7 +156,32 @@ export class MapComponent implements OnInit, OnDestroy {
         this.initAutocomplete();
       }
     }, 500);
+
+    this.helperService.triggerMarkerClick$.subscribe(() => {
+      setTimeout(() => {
+        this.clickMarkerAtIndex(0)
+      }, 1000);
+    });
   }
+  clickMarkerAtIndex(index: number): void {
+    if (this.blogArray && index < this.blogArray.length) {
+      const targetPosition = this.blogArray[index];
+  
+      // Find the marker with the target position
+      const marker = this.markers.toArray().find(m => 
+        m.getPosition()?.lat() === targetPosition.lat && 
+        m.getPosition()?.lng() === targetPosition.lng
+      );
+
+      if (marker) {
+        this.openMapInfoWindow(marker, 0, 'blog')
+      } else {
+        console.warn('Marker not found for position:', targetPosition);
+      }
+      console.log(marker, 'marker')
+    }
+  }
+  
   initAutocomplete(): void {
     this.autocomplete = new google.maps.places.Autocomplete(
       this.autocompleteInput?.nativeElement
@@ -267,6 +296,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.index = i;
   }
   openMapInfoWindow(marker: MapMarker, i: number, type: string) {
+    console.log(marker)
     this.infosWindow.open(marker);
     this.index = i;
     this.type = type;

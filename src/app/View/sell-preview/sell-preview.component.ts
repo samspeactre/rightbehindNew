@@ -230,7 +230,12 @@ export class SellPreviewComponent implements OnInit {
     // Scroll to the section
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // element.scrollIntoView({ behavior: 'smooth' });
+      const topPos = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: topPos - 100,
+          behavior: 'smooth',
+        });
     }
 
     // Remove 'active' class from all tabBox elements

@@ -34,7 +34,7 @@ import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { RentPopupComponent } from '../rent-popup/rent-popup.component';
 import { AuthService } from '../../TsExtras/auth.service';
 import { ResizeService } from '../../Services/resize.service';
-import { assetUrl } from '../../Services/helper.service';
+import { assetUrl, HelperService } from '../../Services/helper.service';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
@@ -78,7 +78,8 @@ export class NavbarComponent {
     public dialog: MatDialog,
     private auth: AuthService,
     private router: Router,
-    private actiavtedRoute: ActivatedRoute
+    private actiavtedRoute: ActivatedRoute,
+    private helperService: HelperService
   ) {
     if (this.router.url.includes('rent')) {
       this.communityHeader = true;
@@ -210,6 +211,11 @@ export class NavbarComponent {
   isDropdownOpen = false;
   onDropdownChange(isOpen: boolean) {
     this.isDropdownOpen = isOpen;
+  }
+
+  newsScoll(){
+    this.scrollToElement('#newsSec');
+    this.helperService.triggerMarkerClick();
   }
 }
 function closeDialog() {

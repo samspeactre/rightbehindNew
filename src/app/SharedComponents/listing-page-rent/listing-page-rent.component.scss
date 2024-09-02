@@ -31,7 +31,7 @@
   width: 60%;
 }
 .section-width {
-  width: 97.5vw !important;
+  width: 100%;
 }
 .example-viewport{
   width: 98%;
@@ -72,5 +72,14 @@
       border: none;
       padding: 8px 1rem;
     }
+  }
+}
+
+@media only screen and (min-width: 1800px){
+  .colFirst{
+    width: 30%;
+  }
+  .colSecond {
+    width: 70%;
   }
 }

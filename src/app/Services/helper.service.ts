@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, distinctUntilChanged, takeUntil } from 'rxjs';
 import { HttpService } from './http.service';
 export const types = [
   { name: 'Apartments', value: 1 },
@@ -14,6 +14,15 @@ export const assetUrl = 'https://recursing-allen.74-208-96-50.plesk.page';
 })
 export class HelperService {
   private destroy$ = new Subject<void>();
+
+  private _triggerMarkerClick$ = new BehaviorSubject<void>(null);
+  triggerMarkerClick$ = this._triggerMarkerClick$.asObservable();
+
+  triggerMarkerClick() {
+    console.log('triggerMarkerClick called');
+    this._triggerMarkerClick$.next();
+  }
+
   constructor(private http: HttpService) {}
   ngOnDestroy(): void {
     this.destroy$.next();

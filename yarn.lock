@@ -10,23 +10,23 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@angular-devkit/architect@0.1703.8":
-  version "0.1703.8"
-  resolved "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1703.8.tgz"
-  integrity sha512-lKxwG4/QABXZvJpqeSIn/kAwnY6MM9HdHZUV+o5o3UiTi+vO8rZApG4CCaITH3Bxebm7Nam7Xbk8RuukC5rq6g==
+"@angular-devkit/architect@0.1703.9":
+  version "0.1703.9"
+  resolved "https://registry.npmjs.org/@angular-devkit/architect/-/architect-0.1703.9.tgz"
+  integrity sha512-kEPfTOVnzrJxPGTvaXy8653HU9Fucxttx9gVfQR1yafs+yIEGx3fKGKe89YPmaEay32bIm7ZUpxDF1FO14nkdQ==
   dependencies:
-    "@angular-devkit/core" "17.3.8"
+    "@angular-devkit/core" "17.3.9"
     rxjs "7.8.1"
 
 "@angular-devkit/build-angular@^17.2.2":
-  version "17.3.8"
-  resolved "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-17.3.8.tgz"
-  integrity sha512-ixsdXggWaFRP7Jvxd0AMukImnePuGflT9Yy7NJ9/y0cL/k//S/3RnkQv5i411KzN+7D4RIbNkRGGTYeqH24zlg==
+  version "17.3.9"
+  resolved "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-17.3.9.tgz"
+  integrity sha512-EuAPSC4c2DSJLlL4ieviKLx1faTyY+ymWycq6KFwoxu1FgWly/dqBeWyXccYinLhPVZmoh6+A/5S4YWXlOGSnA==
   dependencies:
     "@ampproject/remapping" "2.3.0"
-    "@angular-devkit/architect" "0.1703.8"
-    "@angular-devkit/build-webpack" "0.1703.8"
-    "@angular-devkit/core" "17.3.8"
+    "@angular-devkit/architect" "0.1703.9"
+    "@angular-devkit/build-webpack" "0.1703.9"
+    "@angular-devkit/core" "17.3.9"
     "@babel/core" "7.24.0"
     "@babel/generator" "7.23.6"
     "@babel/helper-annotate-as-pure" "7.22.5"
@@ -37,7 +37,7 @@
     "@babel/preset-env" "7.24.0"
     "@babel/runtime" "7.24.0"
     "@discoveryjs/json-ext" "0.5.7"
-    "@ngtools/webpack" "17.3.8"
+    "@ngtools/webpack" "17.3.9"
     "@vitejs/plugin-basic-ssl" "1.1.0"
     ansi-colors "4.1.3"
     autoprefixer "10.4.18"
@@ -81,7 +81,7 @@
     undici "6.11.1"
     vite "5.1.7"
     watchpack "2.4.0"
-    webpack "5.90.3"
+    webpack "5.94.0"
     webpack-dev-middleware "6.1.2"
     webpack-dev-server "4.15.1"
     webpack-merge "5.10.0"
@@ -89,18 +89,18 @@
   optionalDependencies:
     esbuild "0.20.1"
 
-"@angular-devkit/build-webpack@0.1703.8":
-  version "0.1703.8"
-  resolved "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1703.8.tgz"
-  integrity sha512-9u6fl8VVOxcLOEMzrUeaybSvi9hSLSRucHnybneYrabsgreDo32tuy/4G8p6YAHQjpWEj9jvF9Um13ertdni5Q==
+"@angular-devkit/build-webpack@0.1703.9":
+  version "0.1703.9"
+  resolved "https://registry.npmjs.org/@angular-devkit/build-webpack/-/build-webpack-0.1703.9.tgz"
+  integrity sha512-3b0LND39Nc+DwCQ0N7Tbsd7RAFWTeIc4VDwk/7RO8EMYTP5Kfgr/TK66nwTBypHsjmD69IMKHZZaZuiDfGfx2A==
   dependencies:
-    "@angular-devkit/architect" "0.1703.8"
+    "@angular-devkit/architect" "0.1703.9"
     rxjs "7.8.1"
 
-"@angular-devkit/core@17.3.8":
-  version "17.3.8"
-  resolved "https://registry.npmjs.org/@angular-devkit/core/-/core-17.3.8.tgz"
-  integrity sha512-Q8q0voCGudbdCgJ7lXdnyaxKHbNQBARH68zPQV72WT8NWy+Gw/tys870i6L58NWbBaCJEUcIj/kb6KoakSRu+Q==
+"@angular-devkit/core@17.3.9":
+  version "17.3.9"
+  resolved "https://registry.npmjs.org/@angular-devkit/core/-/core-17.3.9.tgz"
+  integrity sha512-/iKyn5YT7NW5ylrg9yufUydS8byExeQ2HHIwFC4Ebwb/JYYCz+k4tBf2LdP+zXpemDpLznXTQGWia0/yJjG8Vg==
   dependencies:
     ajv "8.12.0"
     ajv-formats "2.1.1"
@@ -109,32 +109,39 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
-"@angular-devkit/schematics@17.3.8":
-  version "17.3.8"
-  resolved "https://registry.npmjs.org/@angular-devkit/schematics/-/schematics-17.3.8.tgz"
-  integrity sha512-QRVEYpIfgkprNHc916JlPuNbLzOgrm9DZalHasnLUz4P6g7pR21olb8YCyM2OTJjombNhya9ZpckcADU5Qyvlg==
+"@angular-devkit/schematics@17.3.9":
+  version "17.3.9"
+  resolved "https://registry.npmjs.org/@angular-devkit/schematics/-/schematics-17.3.9.tgz"
+  integrity sha512-9qg+uWywgAtaQlvbnCQv47hcL6ZuA+d9ucgZ0upZftBllZ2vp5WIthCPb2mB0uBkj84Csmtz9MsErFjOQtTj4g==
   dependencies:
-    "@angular-devkit/core" "17.3.8"
+    "@angular-devkit/core" "17.3.9"
     jsonc-parser "3.2.1"
     magic-string "0.30.8"
     ora "5.4.1"
     rxjs "7.8.1"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@angular/animations@^17.0.0 || ^18.0.0", "@angular/animations@^17.2.0", "@angular/animations@17.3.11":
   version "17.3.11"
   resolved "https://registry.npmjs.org/@angular/animations/-/animations-17.3.11.tgz"
   integrity sha512-1y1Egag5jbdUSUWVK+KA39N9VFDrzq9ObjbAhrXFlXKa0npBRw5bprEEeLFQMETMP9Mpjbmj2PoASfl4vqj/Iw==
 =======
+=======
+>>>>>>> mapbox
 "@angular/animations@^17.0.0 || ^18.0.0", "@angular/animations@^17.2.0", "@angular/animations@17.3.12":
   version "17.3.12"
   resolved "https://registry.npmjs.org/@angular/animations/-/animations-17.3.12.tgz"
   integrity sha512-9hsdWF4gRRcVJtPcCcYLaX1CIyM9wUu6r+xRl6zU5hq8qhl35hig6ounz7CXFAzLf0WDBdM16bPHouVGaG76lg==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.0"
 
 "@angular/cdk@^18.2.0", "@angular/cdk@17.3.10":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "18.2.0"
   resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-18.2.0.tgz"
@@ -144,20 +151,25 @@
   resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-18.2.1.tgz"
   integrity sha512-6y4MmpEPXze6igUHkLsBUPkxw32F8+rmW0xVXZchkSyGlFgqfh53ueXoryWb0qL4s5enkNY6AzXnKAqHfPNkVQ==
 >>>>>>> Stashed changes
+=======
+  version "18.2.2"
+  resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-18.2.2.tgz"
+  integrity sha512-+u7ZcMA24WO03vDzlBJJWq+okZLFDeW9JrtHzrdiT09FDt4sdUp+7PddXaZcRHIXjJL+CaCLQ6slaqPNEufqgg==
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.0"
   optionalDependencies:
     parse5 "^7.1.2"
 
 "@angular/cli@^17.2.2":
-  version "17.3.8"
-  resolved "https://registry.npmjs.org/@angular/cli/-/cli-17.3.8.tgz"
-  integrity sha512-X5ZOQ6ZTKVHjhIsfl32ZRqbs+FUoeHLbT7x4fh2Os/8ObDDwrUcCJPqxe2b2RB5E2d0vepYigknHeLE7gwzlNQ==
+  version "17.3.9"
+  resolved "https://registry.npmjs.org/@angular/cli/-/cli-17.3.9.tgz"
+  integrity sha512-b5RGu5RO4VKZlMQDatwABAn1qocgD9u4IrGN2dvHDcrz5apTKYftUdGyG42vngyDNBCg1mWkSDQEWK4f2HfuGg==
   dependencies:
-    "@angular-devkit/architect" "0.1703.8"
-    "@angular-devkit/core" "17.3.8"
-    "@angular-devkit/schematics" "17.3.8"
-    "@schematics/angular" "17.3.8"
+    "@angular-devkit/architect" "0.1703.9"
+    "@angular-devkit/core" "17.3.9"
+    "@angular-devkit/schematics" "17.3.9"
+    "@schematics/angular" "17.3.9"
     "@yarnpkg/lockfile" "1.1.0"
     ansi-colors "4.1.3"
     ini "4.1.2"
@@ -173,6 +185,7 @@
     symbol-observable "4.0.0"
     yargs "17.7.2"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@angular/common@ ^18.0.0-rc.0 || ^18.0.0", "@angular/common@^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "@angular/common@^17.0.0", "@angular/common@^17.0.0 || ^18.0.0", "@angular/common@^17.0.2", "@angular/common@^17.2.0", "@angular/common@^18.0.0", "@angular/common@^18.0.0 || ^19.0.0", "@angular/common@>=13.0.0", "@angular/common@>=16.0.0-0", "@angular/common@>=18.0.0", "@angular/common@17.3.11":
   version "17.3.11"
@@ -193,11 +206,23 @@
   dependencies:
     tslib "^2.3.0"
 
+=======
+"@angular/common@ ^18.0.0-rc.0 || ^18.0.0", "@angular/common@^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "@angular/common@^17.0.0", "@angular/common@^17.0.0 || ^18.0.0", "@angular/common@^17.2.0", "@angular/common@^18.0.0", "@angular/common@^18.0.0 || ^19.0.0", "@angular/common@^18.0.1", "@angular/common@>=13.0.0", "@angular/common@>=16.0.0-0", "@angular/common@>=18.0.0", "@angular/common@17.3.12":
+  version "17.3.12"
+  resolved "https://registry.npmjs.org/@angular/common/-/common-17.3.12.tgz"
+  integrity sha512-vabJzvrx76XXFrm1RJZ6o/CyG32piTB/1sfFfKHdlH1QrmArb8It4gyk9oEjZ1IkAD0HvBWlfWmn+T6Vx3pdUw==
+  dependencies:
+    tslib "^2.3.0"
+
+>>>>>>> mapbox
 "@angular/compiler-cli@^17.0.0", "@angular/compiler-cli@^17.2.0", "@angular/compiler-cli@17.3.12":
   version "17.3.12"
   resolved "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-17.3.12.tgz"
   integrity sha512-1F8M7nWfChzurb7obbvuE7mJXlHtY1UG58pcwcomVtpPb+kPavgAO8OEvJHYBMV+bzSxkXt5UIwL9lt9jHUxZA==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
   dependencies:
     "@babel/core" "7.23.9"
     "@jridgewell/sourcemap-codec" "^1.4.14"
@@ -208,6 +233,7 @@
     tslib "^2.3.0"
     yargs "^17.2.1"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@angular/compiler@^17.2.0", "@angular/compiler@17.3.11":
   version "17.3.11"
@@ -228,15 +254,28 @@
   dependencies:
     tslib "^2.3.0"
 
+=======
+"@angular/compiler@^17.2.0", "@angular/compiler@17.3.12":
+  version "17.3.12"
+  resolved "https://registry.npmjs.org/@angular/compiler/-/compiler-17.3.12.tgz"
+  integrity sha512-vwI8oOL/gM+wPnptOVeBbMfZYwzRxQsovojZf+Zol9szl0k3SZ3FycWlxxXZGFu3VIEfrP6pXplTmyODS/Lt1w==
+  dependencies:
+    tslib "^2.3.0"
+
+>>>>>>> mapbox
 "@angular/core@^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "@angular/core@^17.0.0", "@angular/core@^17.0.0 || ^18.0.0", "@angular/core@^17.2.0", "@angular/core@^18.0.0", "@angular/core@^18.0.0 || ^19.0.0", "@angular/core@^18.0.0-rc.0 || ^18.0.0", "@angular/core@^18.0.1", "@angular/core@>=10.0.0", "@angular/core@>=13.0.0", "@angular/core@>=16.0.0-0", "@angular/core@>=18.0.0", "@angular/core@17.3.12":
   version "17.3.12"
   resolved "https://registry.npmjs.org/@angular/core/-/core-17.3.12.tgz"
   integrity sha512-MuFt5yKi161JmauUta4Dh0m8ofwoq6Ino+KoOtkYMBGsSx+A7dSm+DUxxNwdj7+DNyg3LjVGCFgBFnq4g8z06A==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.0"
 
 "@angular/forms@^17.0.0", "@angular/forms@^17.0.0 || ^18.0.0", "@angular/forms@^17.2.0", "@angular/forms@^18.0.0", "@angular/forms@>=10.0.0", "@angular/forms@>=13.0.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "17.3.11"
   resolved "https://registry.npmjs.org/@angular/forms/-/forms-17.3.11.tgz"
@@ -246,10 +285,16 @@
   resolved "https://registry.npmjs.org/@angular/forms/-/forms-17.3.12.tgz"
   integrity sha512-tV6r12Q3yEUlXwpVko4E+XscunTIpPkLbaiDn/MTL3Vxi2LZnsLgHyd/i38HaHN+e/H3B0a1ToSOhV5wf3ay4Q==
 >>>>>>> Stashed changes
+=======
+  version "17.3.12"
+  resolved "https://registry.npmjs.org/@angular/forms/-/forms-17.3.12.tgz"
+  integrity sha512-tV6r12Q3yEUlXwpVko4E+XscunTIpPkLbaiDn/MTL3Vxi2LZnsLgHyd/i38HaHN+e/H3B0a1ToSOhV5wf3ay4Q==
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.0"
 
 "@angular/google-maps@^18.1.4":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "18.2.0"
   resolved "https://registry.npmjs.org/@angular/google-maps/-/google-maps-18.2.0.tgz"
@@ -259,11 +304,17 @@
   resolved "https://registry.npmjs.org/@angular/google-maps/-/google-maps-18.2.1.tgz"
   integrity sha512-Vy1MPkbA3KjX4hu5707EtP/cT0kYPyfQdx52I130FBJpLkLhpqekSIUC382trbRnyzHtn1bq+CBWysFBPVJN3w==
 >>>>>>> Stashed changes
+=======
+  version "18.2.2"
+  resolved "https://registry.npmjs.org/@angular/google-maps/-/google-maps-18.2.2.tgz"
+  integrity sha512-4fxKE2YN5jlWlv7V0jD9/73FoaK7RxeNzseK6zVcIOABw+hS9cQPCjR/lQ8BhQnqclAzfIOhoCpHgoTFFnXVCw==
+>>>>>>> mapbox
   dependencies:
     "@types/google.maps" "^3.54.10"
     tslib "^2.3.0"
 
 "@angular/localize@^17.0.0", "@angular/localize@^17.2.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "17.3.11"
   resolved "https://registry.npmjs.org/@angular/localize/-/localize-17.3.11.tgz"
@@ -273,6 +324,11 @@
   resolved "https://registry.npmjs.org/@angular/localize/-/localize-17.3.12.tgz"
   integrity sha512-b7J7zY/CgJhFVPtmu/pEjefU5SHuTy7lQgX6kTrJPaUSJ5i578R17xr4SwrWe7G4jzQwO6GXZZd17a62uNRyOA==
 >>>>>>> Stashed changes
+=======
+  version "17.3.12"
+  resolved "https://registry.npmjs.org/@angular/localize/-/localize-17.3.12.tgz"
+  integrity sha512-b7J7zY/CgJhFVPtmu/pEjefU5SHuTy7lQgX6kTrJPaUSJ5i578R17xr4SwrWe7G4jzQwO6GXZZd17a62uNRyOA==
+>>>>>>> mapbox
   dependencies:
     "@babel/core" "7.23.9"
     "@types/babel__core" "7.20.5"
@@ -334,6 +390,7 @@
     tslib "^2.3.0"
 
 "@angular/platform-browser-dynamic@^17.2.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "17.3.11"
   resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-17.3.11.tgz"
@@ -352,15 +409,27 @@
   dependencies:
     tslib "^2.3.0"
 
+=======
+  version "17.3.12"
+  resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-17.3.12.tgz"
+  integrity sha512-DQwV7B2x/DRLRDSisngZRdLqHdYbbrqZv2Hmu4ZbnNYaWPC8qvzgE/0CvY+UkDat3nCcsfwsMnlDeB6TL7/IaA==
+  dependencies:
+    tslib "^2.3.0"
+
+>>>>>>> mapbox
 "@angular/platform-browser@^17.0.0 || ^18.0.0", "@angular/platform-browser@^17.2.0", "@angular/platform-browser@>=16.0.0-0", "@angular/platform-browser@17.3.12":
   version "17.3.12"
   resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-17.3.12.tgz"
   integrity sha512-DYY04ptWh/ulMHzd+y52WCE8QnEYGeIiW3hEIFjCN8z0kbIdFdUtEB0IK5vjNL3ejyhUmphcpeT5PYf3YXtqWQ==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.0"
 
 "@angular/router@^17.2.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "17.3.11"
   resolved "https://registry.npmjs.org/@angular/router/-/router-17.3.11.tgz"
@@ -370,6 +439,11 @@
   resolved "https://registry.npmjs.org/@angular/router/-/router-17.3.12.tgz"
   integrity sha512-dg7PHBSW9fmPKTVzwvHEeHZPZdpnUqW/U7kj8D29HTP9ur8zZnx9QcnbplwPeYb8yYa62JMnZSEel2X4PxdYBg==
 >>>>>>> Stashed changes
+=======
+  version "17.3.12"
+  resolved "https://registry.npmjs.org/@angular/router/-/router-17.3.12.tgz"
+  integrity sha512-dg7PHBSW9fmPKTVzwvHEeHZPZdpnUqW/U7kj8D29HTP9ur8zZnx9QcnbplwPeYb8yYa62JMnZSEel2X4PxdYBg==
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.0"
 
@@ -381,17 +455,23 @@
     "@babel/highlight" "^7.24.7"
     picocolors "^1.0.0"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/compat-data@^7.22.6", "@babel/compat-data@^7.23.5", "@babel/compat-data@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.24.7.tgz"
   integrity sha512-qJzAIcv03PyaWqxRgO4mSU3lihncDT296vnyuE2O8uA4w3UHWI4S3hgeZd1L8W1Bft40w9JxJ2b412iDUFFRhw==
 =======
+=======
+>>>>>>> mapbox
 "@babel/compat-data@^7.22.6", "@babel/compat-data@^7.23.5", "@babel/compat-data@^7.25.2":
   version "7.25.4"
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.25.4.tgz"
   integrity sha512-+LGRog6RAsCJrrrg/IO6LGmpphNe5DiK30dGjCoxxeGv49B10/3XYGxPsAwrDlMFcFEvdAUavDT8r9k/hSyQqQ==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 "@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.0.0-0 || ^8.0.0-0 <8.0.0", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.4.0 || ^8.0.0-0 <8.0.0", "@babel/core@7.24.0":
   version "7.24.0"
@@ -445,6 +525,7 @@
     "@jridgewell/trace-mapping" "^0.3.17"
     jsesc "^2.5.1"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/generator@^7.24.7":
   version "7.24.7"
@@ -460,6 +541,14 @@
   dependencies:
     "@babel/types" "^7.25.4"
 >>>>>>> Stashed changes
+=======
+"@babel/generator@^7.25.6":
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/generator/-/generator-7.25.6.tgz"
+  integrity sha512-VPC82gr1seXOpkjAAKoLhP50vx4vGNlF4msF64dSFq1P8RfB+QAuJWGHPXXPc8QyfVWwwB/TNNU4+ayZmHNbZw==
+  dependencies:
+    "@babel/types" "^7.25.6"
+>>>>>>> mapbox
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.25"
     jsesc "^2.5.1"
@@ -486,33 +575,39 @@
     "@babel/traverse" "^7.24.7"
     "@babel/types" "^7.24.7"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-compilation-targets@^7.22.6", "@babel/helper-compilation-targets@^7.23.6", "@babel/helper-compilation-targets@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-7.24.7.tgz"
   integrity sha512-ctSdRHBi20qWOfy27RUb4Fhp07KSJ3sXcuSvTrXrc4aG8NSYDo1ici3Vhg9bg69y5bj0Mr1lh0aeEgTvc12rMg==
+=======
+"@babel/helper-compilation-targets@^7.22.6", "@babel/helper-compilation-targets@^7.23.6", "@babel/helper-compilation-targets@^7.24.7", "@babel/helper-compilation-targets@^7.24.8", "@babel/helper-compilation-targets@^7.25.2":
+  version "7.25.2"
+  resolved "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-7.25.2.tgz"
+  integrity sha512-U2U5LsSaZ7TAt3cfaymQ8WHh0pxvdHoEk6HVpaexxixjyEquMh0L0YNJNM6CTGKMXV1iksi0iZkGw4AcFkPaaw==
+>>>>>>> mapbox
   dependencies:
-    "@babel/compat-data" "^7.24.7"
-    "@babel/helper-validator-option" "^7.24.7"
-    browserslist "^4.22.2"
+    "@babel/compat-data" "^7.25.2"
+    "@babel/helper-validator-option" "^7.24.8"
+    browserslist "^4.23.1"
     lru-cache "^5.1.1"
     semver "^6.3.1"
 
-"@babel/helper-create-class-features-plugin@^7.24.7":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.24.7.tgz"
-  integrity sha512-kTkaDl7c9vO80zeX1rJxnuRpEsD5tA81yh11X1gQo+PhSti3JS+7qeZo9U4RHobKRiFPKaGK3svUAeb8D0Q7eg==
+"@babel/helper-create-class-features-plugin@^7.24.7", "@babel/helper-create-class-features-plugin@^7.25.4":
+  version "7.25.4"
+  resolved "https://registry.npmjs.org/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.25.4.tgz"
+  integrity sha512-ro/bFs3/84MDgDmMwbcHgDa8/E6J3QKNTk4xJJnVeFtGE+tL0K26E3pNxhYz2b67fJpt7Aphw5XcploKXuCvCQ==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.24.7"
-    "@babel/helper-environment-visitor" "^7.24.7"
-    "@babel/helper-function-name" "^7.24.7"
-    "@babel/helper-member-expression-to-functions" "^7.24.7"
+    "@babel/helper-member-expression-to-functions" "^7.24.8"
     "@babel/helper-optimise-call-expression" "^7.24.7"
-    "@babel/helper-replace-supers" "^7.24.7"
+    "@babel/helper-replace-supers" "^7.25.0"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.24.7"
-    "@babel/helper-split-export-declaration" "^7.24.7"
+    "@babel/traverse" "^7.25.4"
     semver "^6.3.1"
 
+<<<<<<< HEAD
 "@babel/helper-create-regexp-features-plugin@^7.18.6", "@babel/helper-create-regexp-features-plugin@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-create-regexp-features-plugin/-/helper-create-regexp-features-plugin-7.24.7.tgz"
@@ -542,11 +637,16 @@
     "@babel/traverse" "^7.25.4"
     semver "^6.3.1"
 
+=======
+>>>>>>> mapbox
 "@babel/helper-create-regexp-features-plugin@^7.18.6", "@babel/helper-create-regexp-features-plugin@^7.24.7", "@babel/helper-create-regexp-features-plugin@^7.25.2":
   version "7.25.2"
   resolved "https://registry.npmjs.org/@babel/helper-create-regexp-features-plugin/-/helper-create-regexp-features-plugin-7.25.2.tgz"
   integrity sha512-+wqVGP+DFmqwFD3EH6TMTfUNeqDehV3E/dl+Sd54eaXqm17tEUNbEIn4sVivVowbvUpOtIGxdo3GoXyDH9N/9g==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.24.7"
     regexpu-core "^5.3.1"
@@ -574,17 +674,22 @@
     lodash.debounce "^4.0.8"
     resolve "^1.14.2"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-environment-visitor@^7.22.20", "@babel/helper-environment-visitor@^7.24.7":
 =======
 "@babel/helper-environment-visitor@^7.22.20":
 >>>>>>> Stashed changes
+=======
+"@babel/helper-environment-visitor@^7.22.20":
+>>>>>>> mapbox
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-environment-visitor/-/helper-environment-visitor-7.24.7.tgz"
   integrity sha512-DoiN84+4Gnd0ncbBOM9AZENV4a5ZiL39HYMyZJGZ/AZEykHYdJw0wW3kdcsh9/Kn+BRXHLkkklZ51ecPKmI1CQ==
   dependencies:
     "@babel/types" "^7.24.7"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-function-name@^7.24.7":
   version "7.24.7"
@@ -617,6 +722,15 @@
     "@babel/traverse" "^7.24.8"
     "@babel/types" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+"@babel/helper-member-expression-to-functions@^7.24.8":
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/helper-member-expression-to-functions/-/helper-member-expression-to-functions-7.24.8.tgz"
+  integrity sha512-LABppdt+Lp/RlBxqrh4qgf1oEH/WxdzQNDJIu5gC/W1GyvPVrOBiItmmM8wan2fm4oYqFuFfkXmlGpLQhPY8CA==
+  dependencies:
+    "@babel/traverse" "^7.24.8"
+    "@babel/types" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/helper-module-imports@^7.22.15", "@babel/helper-module-imports@^7.24.7":
   version "7.24.7"
@@ -626,17 +740,23 @@
     "@babel/traverse" "^7.24.7"
     "@babel/types" "^7.24.7"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-module-transforms@^7.23.3", "@babel/helper-module-transforms@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-7.24.7.tgz"
   integrity sha512-1fuJEwIrp+97rM4RWdO+qrRsZlAeL1lQJoPqtCYWv0NL115XM93hIH4CSRln2w52SqvmY5hqdtauB6QFCDiZNQ==
+=======
+"@babel/helper-module-transforms@^7.23.3", "@babel/helper-module-transforms@^7.24.7", "@babel/helper-module-transforms@^7.24.8", "@babel/helper-module-transforms@^7.25.0":
+  version "7.25.2"
+  resolved "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-7.25.2.tgz"
+  integrity sha512-BjyRAbix6j/wv83ftcVJmBt72QtHI56C7JXZoG2xATiLpmoC7dpd8WnkikExHDVPpi/3qCmO6WY1EaXOluiecQ==
+>>>>>>> mapbox
   dependencies:
-    "@babel/helper-environment-visitor" "^7.24.7"
     "@babel/helper-module-imports" "^7.24.7"
     "@babel/helper-simple-access" "^7.24.7"
-    "@babel/helper-split-export-declaration" "^7.24.7"
     "@babel/helper-validator-identifier" "^7.24.7"
+<<<<<<< HEAD
 =======
 "@babel/helper-module-transforms@^7.23.3", "@babel/helper-module-transforms@^7.24.7", "@babel/helper-module-transforms@^7.24.8", "@babel/helper-module-transforms@^7.25.0":
   version "7.25.2"
@@ -648,6 +768,9 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     "@babel/traverse" "^7.25.2"
 >>>>>>> Stashed changes
+=======
+    "@babel/traverse" "^7.25.2"
+>>>>>>> mapbox
 
 "@babel/helper-optimise-call-expression@^7.24.7":
   version "7.24.7"
@@ -656,29 +779,36 @@
   dependencies:
     "@babel/types" "^7.24.7"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-plugin-utils@^7.0.0", "@babel/helper-plugin-utils@^7.10.4", "@babel/helper-plugin-utils@^7.12.13", "@babel/helper-plugin-utils@^7.14.5", "@babel/helper-plugin-utils@^7.18.6", "@babel/helper-plugin-utils@^7.22.5", "@babel/helper-plugin-utils@^7.24.0", "@babel/helper-plugin-utils@^7.24.7", "@babel/helper-plugin-utils@^7.8.0", "@babel/helper-plugin-utils@^7.8.3":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.24.7.tgz"
   integrity sha512-Rq76wjt7yz9AAc1KnlRKNAi/dMSVWgDRx43FHoJEbcYU6xOWaE2dVPwcdTukJrjxS65GITyfbvEYHvkirZ6uEg==
+=======
+"@babel/helper-plugin-utils@^7.0.0", "@babel/helper-plugin-utils@^7.10.4", "@babel/helper-plugin-utils@^7.12.13", "@babel/helper-plugin-utils@^7.14.5", "@babel/helper-plugin-utils@^7.18.6", "@babel/helper-plugin-utils@^7.22.5", "@babel/helper-plugin-utils@^7.24.0", "@babel/helper-plugin-utils@^7.24.7", "@babel/helper-plugin-utils@^7.24.8", "@babel/helper-plugin-utils@^7.8.0", "@babel/helper-plugin-utils@^7.8.3":
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.24.8.tgz"
+  integrity sha512-FFWx5142D8h2Mgr/iPVGH5G7w6jDn4jUSpZTyDnQO0Yn7Ks2Kuz6Pci8H6MPCoUJegd/UZQ3tAvfLCxQSnWWwg==
+>>>>>>> mapbox
 
 "@babel/helper-remap-async-to-generator@^7.22.20":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/helper-remap-async-to-generator/-/helper-remap-async-to-generator-7.24.7.tgz"
-  integrity sha512-9pKLcTlZ92hNZMQfGCHImUpDOlAgkkpqalWEeftW5FBya75k8Li2ilerxkM/uBEj01iBZXcCIB/bwvDYgWyibA==
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/helper-remap-async-to-generator/-/helper-remap-async-to-generator-7.25.0.tgz"
+  integrity sha512-NhavI2eWEIz/H9dbrG0TuOicDhNexze43i5z7lEqwYm0WEZVTwnPpA0EafUTP7+6/W79HWIP2cTe3Z5NiSTVpw==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.24.7"
-    "@babel/helper-environment-visitor" "^7.24.7"
-    "@babel/helper-wrap-function" "^7.24.7"
+    "@babel/helper-wrap-function" "^7.25.0"
+    "@babel/traverse" "^7.25.0"
 
-"@babel/helper-replace-supers@^7.24.7":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/helper-replace-supers/-/helper-replace-supers-7.24.7.tgz"
-  integrity sha512-qTAxxBM81VEyoAY0TtLrx1oAEJc09ZK67Q9ljQToqCnA+55eNwCORaxlKyu+rNfX86o8OXRUSNUnrtsAZXM9sg==
+"@babel/helper-replace-supers@^7.24.7", "@babel/helper-replace-supers@^7.25.0":
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/helper-replace-supers/-/helper-replace-supers-7.25.0.tgz"
+  integrity sha512-q688zIvQVYtZu+i2PsdIu/uWGRpfxzr5WESsfpShfZECkO+d2o+WROWezCi/Q6kJ0tfPa5+pUGUlfx2HhrA3Bg==
   dependencies:
-    "@babel/helper-environment-visitor" "^7.24.7"
-    "@babel/helper-member-expression-to-functions" "^7.24.7"
+    "@babel/helper-member-expression-to-functions" "^7.24.8"
     "@babel/helper-optimise-call-expression" "^7.24.7"
+<<<<<<< HEAD
 =======
 "@babel/helper-plugin-utils@^7.0.0", "@babel/helper-plugin-utils@^7.10.4", "@babel/helper-plugin-utils@^7.12.13", "@babel/helper-plugin-utils@^7.14.5", "@babel/helper-plugin-utils@^7.18.6", "@babel/helper-plugin-utils@^7.22.5", "@babel/helper-plugin-utils@^7.24.0", "@babel/helper-plugin-utils@^7.24.7", "@babel/helper-plugin-utils@^7.24.8", "@babel/helper-plugin-utils@^7.8.0", "@babel/helper-plugin-utils@^7.8.3":
   version "7.24.8"
@@ -703,6 +833,9 @@
     "@babel/helper-optimise-call-expression" "^7.24.7"
     "@babel/traverse" "^7.25.0"
 >>>>>>> Stashed changes
+=======
+    "@babel/traverse" "^7.25.0"
+>>>>>>> mapbox
 
 "@babel/helper-simple-access@^7.24.7":
   version "7.24.7"
@@ -720,6 +853,7 @@
     "@babel/traverse" "^7.24.7"
     "@babel/types" "^7.24.7"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-split-export-declaration@^7.24.7":
   version "7.24.7"
@@ -730,6 +864,8 @@
 
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 "@babel/helper-split-export-declaration@7.22.6":
   version "7.22.6"
   resolved "https://registry.npmjs.org/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.22.6.tgz"
@@ -737,44 +873,57 @@
   dependencies:
     "@babel/types" "^7.22.5"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-string-parser@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-7.24.7.tgz"
   integrity sha512-7MbVt6xrwFQbunH2DNQsAP5sTGxfqQtErvBIvIMi6EQnbgUOuVYanvREcmFrOPhoXBrTtjhhP+lW+o5UfK+tDg==
 =======
+=======
+>>>>>>> mapbox
 "@babel/helper-string-parser@^7.24.8":
   version "7.24.8"
   resolved "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-7.24.8.tgz"
   integrity sha512-pO9KhhRcuUyGnJWwyEgnRJTSIZHiT+vMD0kPeD+so0l7mxkMT19g3pjY9GTnHySck/hDzq+dtW/4VgnMkippsQ==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 "@babel/helper-validator-identifier@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.24.7.tgz"
   integrity sha512-rR+PBcQ1SMQDDyF6X0wxtG8QyLCgUB0eRAGguqRLfkCA87l7yAP7ehq8SNj96OOGTO8OBV70KhuFYcIkHXOg0w==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/helper-validator-option@^7.23.5", "@babel/helper-validator-option@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/helper-validator-option/-/helper-validator-option-7.24.7.tgz"
   integrity sha512-yy1/KvjhV/ZCL+SM7hBrvnZJ3ZuT9OuZgIJAGpPEToANvc3iM6iDvBnRjtElWibHU6n8/LPR/EjX9EtIEYO3pw==
+=======
+"@babel/helper-validator-option@^7.23.5", "@babel/helper-validator-option@^7.24.8":
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/helper-validator-option/-/helper-validator-option-7.24.8.tgz"
+  integrity sha512-xb8t9tD1MHLungh/AIoWYN+gVHaB9kwlu8gffXGSt3FFEIT7RjS+xWbc2vUD1UTZdIpKj/ab3rdqJ7ufngyi2Q==
+>>>>>>> mapbox
 
-"@babel/helper-wrap-function@^7.24.7":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/helper-wrap-function/-/helper-wrap-function-7.24.7.tgz"
-  integrity sha512-N9JIYk3TD+1vq/wn77YnJOqMtfWhNewNE+DJV4puD2X7Ew9J4JvrzrFDfTfyv5EgEXVy9/Wt8QiOErzEmv5Ifw==
+"@babel/helper-wrap-function@^7.25.0":
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/helper-wrap-function/-/helper-wrap-function-7.25.0.tgz"
+  integrity sha512-s6Q1ebqutSiZnEjaofc/UKDyC4SbzV5n5SrA2Gq8UawLycr3i04f1dX4OzoQVnexm6aOCh37SQNYlJ/8Ku+PMQ==
   dependencies:
-    "@babel/helper-function-name" "^7.24.7"
-    "@babel/template" "^7.24.7"
-    "@babel/traverse" "^7.24.7"
-    "@babel/types" "^7.24.7"
+    "@babel/template" "^7.25.0"
+    "@babel/traverse" "^7.25.0"
+    "@babel/types" "^7.25.0"
 
 "@babel/helpers@^7.23.9", "@babel/helpers@^7.24.0":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/helpers/-/helpers-7.24.7.tgz"
-  integrity sha512-NlmJJtvcw72yRJRcnCmGvSi+3jDEg8qFu3z0AFoymmzLx5ERVWyzd9kVXr7Th9/8yIJi2Zc6av4Tqz3wFs8QWg==
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/helpers/-/helpers-7.25.6.tgz"
+  integrity sha512-Xg0tn4HcfTijTwfDwYlvVCl43V6h4KyVVX2aEm4qdO/PC6L2YvzLHFdmxhoeSA3eslcE6+ZVXHgWwopXYLNq4Q==
   dependencies:
+<<<<<<< HEAD
     "@babel/template" "^7.24.7"
     "@babel/types" "^7.24.7"
 =======
@@ -800,6 +949,10 @@
     "@babel/template" "^7.25.0"
     "@babel/types" "^7.25.0"
 >>>>>>> Stashed changes
+=======
+    "@babel/template" "^7.25.0"
+    "@babel/types" "^7.25.6"
+>>>>>>> mapbox
 
 "@babel/highlight@^7.24.7":
   version "7.24.7"
@@ -811,17 +964,27 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.7", "@babel/parser@^7.23.9", "@babel/parser@^7.24.0", "@babel/parser@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.24.7.tgz"
   integrity sha512-9uUYRm6OqQrCqQdG1iCBwBPZgN8ciDBro2nIOFaiRz1/BCxaI7CNvQbDHvsArAC7Tw9Hda/B3U+6ui9u4HWXPw==
+=======
+"@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.7", "@babel/parser@^7.23.9", "@babel/parser@^7.24.0", "@babel/parser@^7.25.0", "@babel/parser@^7.25.6":
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.25.6.tgz"
+  integrity sha512-trGdfBdbD0l1ZPmcJ83eNxB9rbEax4ALFTF7fN386TMYbeCQbyme5cOEXQhbGXKebwGaB/J52w1mrklMcbgy6Q==
+  dependencies:
+    "@babel/types" "^7.25.6"
+>>>>>>> mapbox
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.23.3":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.24.7.tgz"
-  integrity sha512-unaQgZ/iRu/By6tsjMZzpeBZjChYfLYry6HrEXPoz3KmfF0sVBQ1l8zKMQ4xRGLWVsjuvB8nQfjNP/DcfEOCsg==
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.25.0.tgz"
+  integrity sha512-lXwdNZtTmeVOOFtwM/WDe7yg1PL8sYhRk/XH0FzbR2HDQ0xC+EnQ/JHeoMYSavtU115tnUk0q9CDyq8si+LMAA==
   dependencies:
+<<<<<<< HEAD
     "@babel/helper-plugin-utils" "^7.24.7"
 =======
 "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.20.7", "@babel/parser@^7.23.9", "@babel/parser@^7.24.0", "@babel/parser@^7.25.0", "@babel/parser@^7.25.4":
@@ -838,6 +1001,9 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.23.3":
   version "7.24.7"
@@ -849,6 +1015,7 @@
     "@babel/plugin-transform-optional-chaining" "^7.24.7"
 
 "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@^7.23.7":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly/-/plugin-bugfix-v8-static-class-fields-redefine-readonly-7.24.7.tgz"
@@ -864,6 +1031,14 @@
     "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/traverse" "^7.25.0"
 >>>>>>> Stashed changes
+=======
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly/-/plugin-bugfix-v8-static-class-fields-redefine-readonly-7.25.0.tgz"
+  integrity sha512-tggFrk1AIShG/RUQbEwt2Tr/E+ObkfwrPjR6BjbRvsx24+PSjK8zrq0GWPNCjo8qpRx4DuJzlcvWJqlm+0h3kw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.8"
+    "@babel/traverse" "^7.25.0"
+>>>>>>> mapbox
 
 "@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2":
   version "7.21.0-placeholder-for-preset-env.2"
@@ -906,18 +1081,18 @@
     "@babel/helper-plugin-utils" "^7.8.3"
 
 "@babel/plugin-syntax-import-assertions@^7.23.3":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.24.7.tgz"
-  integrity sha512-Ec3NRUMoi8gskrkBe3fNmEQfxDvY8bgfQpz6jlk/41kX9eUjvpyqWU7PBP/pLAvMaSQjbMNKJmvX57jP+M6bPg==
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.25.6.tgz"
+  integrity sha512-aABl0jHw9bZ2karQ/uUD6XP4u0SG22SJrOHFoL6XB1R7dTovOP4TzTlsxOYC5yQ1pdscVK2JTUnF6QL3ARoAiQ==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-plugin-utils" "^7.24.8"
 
 "@babel/plugin-syntax-import-attributes@^7.23.3":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/plugin-syntax-import-attributes/-/plugin-syntax-import-attributes-7.24.7.tgz"
-  integrity sha512-hbX+lKKeUMGihnK8nvKqmXBInriT3GVjzXKFriV3YC6APGxMbP8RZNFwy91+hocLXq90Mta+HshoB31802bb8A==
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-import-attributes/-/plugin-syntax-import-attributes-7.25.6.tgz"
+  integrity sha512-sXaDXaJN9SNLymBdlWFA+bjzBhFD617ZaFiY13dGt7TVslVvVgA6fkZOP7Ki3IGElC45lwHdOTrCtKZGVAWeLQ==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-plugin-utils" "^7.24.8"
 
 "@babel/plugin-syntax-import-meta@^7.10.4":
   version "7.10.4"
@@ -1031,18 +1206,25 @@
     "@babel/helper-plugin-utils" "^7.24.7"
 
 "@babel/plugin-transform-block-scoping@^7.23.4":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-block-scoping/-/plugin-transform-block-scoping-7.24.7.tgz"
   integrity sha512-Nd5CvgMbWc+oWzBsuaMcbwjJWAcp5qzrbg69SZdHSP7AMY0AbWFqFO0WTFCA1jxhMCwodRwvRec8k0QUbZk7RQ==
+=======
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-block-scoping/-/plugin-transform-block-scoping-7.25.0.tgz"
+  integrity sha512-yBQjYoOjXlFv9nlXb3f1casSHOZkWr29NX+zChVanLg5Nc157CrbEX9D7hxxtTpuFy7Q0YzmmWfJxzvps4kXrQ==
+>>>>>>> mapbox
   dependencies:
-    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-plugin-utils" "^7.24.8"
 
 "@babel/plugin-transform-class-properties@^7.23.3":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/plugin-transform-class-properties/-/plugin-transform-class-properties-7.24.7.tgz"
-  integrity sha512-vKbfawVYayKcSeSR5YYzzyXvsDFWU2mD8U5TFeXtbCPLFUqe7GyCgvO6XDHzje862ODrOwy6WCPmKeWHbCFJ4w==
+  version "7.25.4"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-class-properties/-/plugin-transform-class-properties-7.25.4.tgz"
+  integrity sha512-nZeZHyCWPfjkdU5pA/uHiTaDAFUEqkpzf1YoQT2NeSynCGYq9rxfyI3XpQbfx/a0hSnFH6TGlEXvae5Vi7GD8g==
   dependencies:
+<<<<<<< HEAD
     "@babel/helper-create-class-features-plugin" "^7.24.7"
     "@babel/helper-plugin-utils" "^7.24.7"
 =======
@@ -1060,6 +1242,10 @@
     "@babel/helper-create-class-features-plugin" "^7.25.4"
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+    "@babel/helper-create-class-features-plugin" "^7.25.4"
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-class-static-block@^7.23.4":
   version "7.24.7"
@@ -1071,6 +1257,7 @@
     "@babel/plugin-syntax-class-static-block" "^7.14.5"
 
 "@babel/plugin-transform-classes@^7.23.8":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-classes/-/plugin-transform-classes-7.24.7.tgz"
@@ -1089,11 +1276,21 @@
   integrity sha512-oexUfaQle2pF/b6E0dwsxQtAol9TLSO88kQvym6HHBWFliV2lGdrPieX+WgMRLSJDVzdYywk7jXbLPuO2KLTLg==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.24.7"
+=======
+  version "7.25.4"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-classes/-/plugin-transform-classes-7.25.4.tgz"
+  integrity sha512-oexUfaQle2pF/b6E0dwsxQtAol9TLSO88kQvym6HHBWFliV2lGdrPieX+WgMRLSJDVzdYywk7jXbLPuO2KLTLg==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.24.7"
+>>>>>>> mapbox
     "@babel/helper-compilation-targets" "^7.25.2"
     "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/helper-replace-supers" "^7.25.0"
     "@babel/traverse" "^7.25.4"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
     globals "^11.1.0"
 
 "@babel/plugin-transform-computed-properties@^7.23.3":
@@ -1105,6 +1302,7 @@
     "@babel/template" "^7.24.7"
 
 "@babel/plugin-transform-destructuring@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-destructuring/-/plugin-transform-destructuring-7.24.7.tgz"
@@ -1118,6 +1316,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-destructuring/-/plugin-transform-destructuring-7.24.8.tgz"
+  integrity sha512-36e87mfY8TnRxc7yc6M9g9gOB7rKgSahqkIKwLpz4Ppk2+zC2Cy1is0uwtuSG6AE4zlTOUa+7JGz9jCJGLqQFQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-dotall-regex@^7.23.3":
   version "7.24.7"
@@ -1167,6 +1372,7 @@
     "@babel/helper-skip-transparent-expression-wrappers" "^7.24.7"
 
 "@babel/plugin-transform-function-name@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.24.7.tgz"
@@ -1184,6 +1390,15 @@
     "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/traverse" "^7.25.1"
 >>>>>>> Stashed changes
+=======
+  version "7.25.1"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.25.1.tgz"
+  integrity sha512-TVVJVdW9RKMNgJJlLtHsKDTydjZAbwIsn6ySBPQaEAUU5+gVvlJt/9nRmqVbsV/IBanRjzWoaAQKLoamWVOUuA==
+  dependencies:
+    "@babel/helper-compilation-targets" "^7.24.8"
+    "@babel/helper-plugin-utils" "^7.24.8"
+    "@babel/traverse" "^7.25.1"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-json-strings@^7.23.4":
   version "7.24.7"
@@ -1194,6 +1409,7 @@
     "@babel/plugin-syntax-json-strings" "^7.8.3"
 
 "@babel/plugin-transform-literals@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-literals/-/plugin-transform-literals-7.24.7.tgz"
@@ -1207,6 +1423,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+  version "7.25.2"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-literals/-/plugin-transform-literals-7.25.2.tgz"
+  integrity sha512-HQI+HcTbm9ur3Z2DkO+jgESMAMcYLuN/A7NRw9juzxAezN9AvqvUTnpKP/9kkYANz6u7dFlAyOu44ejuGySlfw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-logical-assignment-operators@^7.23.4":
   version "7.24.7"
@@ -1232,24 +1455,30 @@
     "@babel/helper-plugin-utils" "^7.24.7"
 
 "@babel/plugin-transform-modules-commonjs@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.24.7.tgz"
   integrity sha512-iFI8GDxtevHJ/Z22J5xQpVqFLlMNstcLXh994xifFwxxGslr2ZXXLWgtBeLctOD63UFDArdvN6Tg8RFw+aEmjQ==
+=======
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.24.8.tgz"
+  integrity sha512-WHsk9H8XxRs3JXKWFiqtQebdh9b/pTk4EgueygFzYlTKAg0Ud985mSevdNjdXdFBATSKVJGQXP1tv6aGbssLKA==
+>>>>>>> mapbox
   dependencies:
-    "@babel/helper-module-transforms" "^7.24.7"
-    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-module-transforms" "^7.24.8"
+    "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/helper-simple-access" "^7.24.7"
 
 "@babel/plugin-transform-modules-systemjs@^7.23.9":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/plugin-transform-modules-systemjs/-/plugin-transform-modules-systemjs-7.24.7.tgz"
-  integrity sha512-GYQE0tW7YoaN13qFh3O1NCY4MPkUiAH3fiF7UcV/I3ajmDKEdG3l+UOcbAm4zUE3gnvUU+Eni7XrVKo9eO9auw==
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-modules-systemjs/-/plugin-transform-modules-systemjs-7.25.0.tgz"
+  integrity sha512-YPJfjQPDXxyQWg/0+jHKj1llnY5f/R6a0p/vP4lPymxLu7Lvl4k2WMitqi08yxwQcCVUUdG9LCUj4TNEgAp3Jw==
   dependencies:
-    "@babel/helper-hoist-variables" "^7.24.7"
-    "@babel/helper-module-transforms" "^7.24.7"
-    "@babel/helper-plugin-utils" "^7.24.7"
+    "@babel/helper-module-transforms" "^7.25.0"
+    "@babel/helper-plugin-utils" "^7.24.8"
     "@babel/helper-validator-identifier" "^7.24.7"
+<<<<<<< HEAD
 =======
   version "7.24.8"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.24.8.tgz"
@@ -1269,6 +1498,9 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     "@babel/traverse" "^7.25.0"
 >>>>>>> Stashed changes
+=======
+    "@babel/traverse" "^7.25.0"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-modules-umd@^7.23.3":
   version "7.24.7"
@@ -1336,6 +1568,7 @@
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
 
 "@babel/plugin-transform-optional-chaining@^7.23.4", "@babel/plugin-transform-optional-chaining@^7.24.7":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-optional-chaining/-/plugin-transform-optional-chaining-7.24.7.tgz"
@@ -1349,6 +1582,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-optional-chaining/-/plugin-transform-optional-chaining-7.24.8.tgz"
+  integrity sha512-5cTOLSMs9eypEy8JUVvIKOu6NgvbJMnpG62VpIHrTmROdQ+L5mDAaI40g25k5vXti55JWNX5jCkq3HZxXBQANw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
     "@babel/helper-skip-transparent-expression-wrappers" "^7.24.7"
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
 
@@ -1360,6 +1600,7 @@
     "@babel/helper-plugin-utils" "^7.24.7"
 
 "@babel/plugin-transform-private-methods@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-private-methods/-/plugin-transform-private-methods-7.24.7.tgz"
@@ -1375,6 +1616,14 @@
     "@babel/helper-create-class-features-plugin" "^7.25.4"
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+  version "7.25.4"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-private-methods/-/plugin-transform-private-methods-7.25.4.tgz"
+  integrity sha512-ao8BG7E2b/URaUQGqN3Tlsg+M3KlHY6rJ1O1gXAEUnZoyNQnvKyH87Kfg+FoxSeyWUB8ISZZsC91C44ZuBFytw==
+  dependencies:
+    "@babel/helper-create-class-features-plugin" "^7.25.4"
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-private-property-in-object@^7.23.4":
   version "7.24.7"
@@ -1450,6 +1699,7 @@
     "@babel/helper-plugin-utils" "^7.24.7"
 
 "@babel/plugin-transform-typeof-symbol@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-typeof-symbol/-/plugin-transform-typeof-symbol-7.24.7.tgz"
@@ -1463,6 +1713,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+  version "7.24.8"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-typeof-symbol/-/plugin-transform-typeof-symbol-7.24.8.tgz"
+  integrity sha512-adNTUpDCVnmAE58VEqKlAA6ZBlNkMnWD0ZcW76lyNFN3MJniyGFZfNwERVk8Ap56MCnXztmDr19T4mPTztcuaw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/plugin-transform-unicode-escapes@^7.23.3":
   version "7.24.7"
@@ -1488,6 +1745,7 @@
     "@babel/helper-plugin-utils" "^7.24.7"
 
 "@babel/plugin-transform-unicode-sets-regex@^7.23.3":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-unicode-sets-regex/-/plugin-transform-unicode-sets-regex-7.24.7.tgz"
@@ -1503,6 +1761,14 @@
     "@babel/helper-create-regexp-features-plugin" "^7.25.2"
     "@babel/helper-plugin-utils" "^7.24.8"
 >>>>>>> Stashed changes
+=======
+  version "7.25.4"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-unicode-sets-regex/-/plugin-transform-unicode-sets-regex-7.25.4.tgz"
+  integrity sha512-qesBxiWkgN1Q+31xUE9RcMk79eOXXDCv6tfyGMRSs4RGlioSg2WVyQAm07k726cSE56pa+Kb0y9epX2qaXzTvA==
+  dependencies:
+    "@babel/helper-create-regexp-features-plugin" "^7.25.2"
+    "@babel/helper-plugin-utils" "^7.24.8"
+>>>>>>> mapbox
 
 "@babel/preset-env@7.24.0":
   version "7.24.0"
@@ -1611,53 +1877,60 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@babel/template@^7.23.9", "@babel/template@^7.24.0", "@babel/template@^7.24.7":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/template/-/template-7.24.7.tgz"
   integrity sha512-jYqfPrU9JTF0PmPy1tLYHW4Mp4KlgxJD9l2nP9fD6yT/ICi554DmrWBAEYpIelzjHf1msDP3PxJIRt/nFNfBig==
+=======
+"@babel/template@^7.23.9", "@babel/template@^7.24.0", "@babel/template@^7.24.7", "@babel/template@^7.25.0":
+  version "7.25.0"
+  resolved "https://registry.npmjs.org/@babel/template/-/template-7.25.0.tgz"
+  integrity sha512-aOOgh1/5XzKvg1jvVz7AVrx2piJ2XBi227DHmbY6y+bM9H2FlN+IfecYu4Xl0cNiiVejlsCri89LUsbj8vJD9Q==
+>>>>>>> mapbox
   dependencies:
     "@babel/code-frame" "^7.24.7"
-    "@babel/parser" "^7.24.7"
-    "@babel/types" "^7.24.7"
+    "@babel/parser" "^7.25.0"
+    "@babel/types" "^7.25.0"
 
-"@babel/traverse@^7.23.9", "@babel/traverse@^7.24.0", "@babel/traverse@^7.24.7":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.24.7.tgz"
-  integrity sha512-yb65Ed5S/QAcewNPh0nZczy9JdYXkkAbIsEo+P7BE7yO3txAY30Y/oPa3QkQ5It3xVG2kpKMg9MsdxZaO31uKA==
+"@babel/traverse@^7.23.9", "@babel/traverse@^7.24.0", "@babel/traverse@^7.24.7", "@babel/traverse@^7.24.8", "@babel/traverse@^7.25.0", "@babel/traverse@^7.25.1", "@babel/traverse@^7.25.2", "@babel/traverse@^7.25.4":
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.25.6.tgz"
+  integrity sha512-9Vrcx5ZW6UwK5tvqsj0nGpp/XzqthkT0dqIc9g1AdtygFToNtTF67XzYS//dm+SAK9cp3B9R4ZO/46p63SCjlQ==
   dependencies:
     "@babel/code-frame" "^7.24.7"
-    "@babel/generator" "^7.24.7"
-    "@babel/helper-environment-visitor" "^7.24.7"
-    "@babel/helper-function-name" "^7.24.7"
-    "@babel/helper-hoist-variables" "^7.24.7"
-    "@babel/helper-split-export-declaration" "^7.24.7"
-    "@babel/parser" "^7.24.7"
-    "@babel/types" "^7.24.7"
+    "@babel/generator" "^7.25.6"
+    "@babel/parser" "^7.25.6"
+    "@babel/template" "^7.25.0"
+    "@babel/types" "^7.25.6"
     debug "^4.3.1"
     globals "^11.1.0"
 
-"@babel/types@^7.0.0", "@babel/types@^7.20.7", "@babel/types@^7.22.5", "@babel/types@^7.23.6", "@babel/types@^7.23.9", "@babel/types@^7.24.0", "@babel/types@^7.24.7", "@babel/types@^7.4.4":
-  version "7.24.7"
-  resolved "https://registry.npmjs.org/@babel/types/-/types-7.24.7.tgz"
-  integrity sha512-XEFXSlxiG5td2EJRe8vOmRbaXVgfcBlszKujvVmWIK/UpywWljQCfzAv3RQCGujWQ1RD4YYWEAqDXfuJiy8f5Q==
+"@babel/types@^7.0.0", "@babel/types@^7.20.7", "@babel/types@^7.22.5", "@babel/types@^7.23.6", "@babel/types@^7.23.9", "@babel/types@^7.24.0", "@babel/types@^7.24.7", "@babel/types@^7.24.8", "@babel/types@^7.25.0", "@babel/types@^7.25.6", "@babel/types@^7.4.4":
+  version "7.25.6"
+  resolved "https://registry.npmjs.org/@babel/types/-/types-7.25.6.tgz"
+  integrity sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==
   dependencies:
-    "@babel/helper-string-parser" "^7.24.7"
+    "@babel/helper-string-parser" "^7.24.8"
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
-"@ckeditor/ckeditor5-adapter-ckfinder@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-adapter-ckfinder/-/ckeditor5-adapter-ckfinder-42.0.1.tgz"
-  integrity sha512-dfyULdo7vQDnFJWZfm0Qv6scW2TVnWLPEVo5r1D9knZbDC4zWFCmr0GeSjMHYKbtstPJzQ1QiVWKMFhWPvOeLg==
+"@ckeditor/ckeditor5-adapter-ckfinder@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-adapter-ckfinder/-/ckeditor5-adapter-ckfinder-42.0.2.tgz"
+  integrity sha512-nX624WYyyJh6BGGy7jNOlEyf+Kv95VWHKlqn39HLTLKlONBp3zBhAtN9rd0gqU5EM6FgPQ+RjOtQinuto0B6oQ==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-upload" "42.0.2"
+    ckeditor5 "42.0.2"
 
-"@ckeditor/ckeditor5-alignment@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-alignment/-/ckeditor5-alignment-42.0.1.tgz"
-  integrity sha512-vy0SyqB1+SQ5ADZyyqZy4I4kD1SEVigFuCA+77IyaL9eDWvwZswwp+YuvnLRe3pZgPhCus1QMbxgbalhxnbhRg==
+"@ckeditor/ckeditor5-adapter-ckfinder@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-adapter-ckfinder/-/ckeditor5-adapter-ckfinder-43.0.0.tgz"
+  integrity sha512-pwhr46NNLOEyF2Qob/x4+Mwt6Bqi9i/j/4JaI5fSdhml8CZQHw5levJB3NRrOUX1zOw4cjZXQDU+j4TAN+l3xw==
   dependencies:
+<<<<<<< HEAD
     ckeditor5 "42.0.1"
 =======
 "@babel/template@^7.23.9", "@babel/template@^7.24.0", "@babel/template@^7.24.7", "@babel/template@^7.25.0":
@@ -1705,6 +1978,8 @@
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-adapter-ckfinder/-/ckeditor5-adapter-ckfinder-43.0.0.tgz"
   integrity sha512-pwhr46NNLOEyF2Qob/x4+Mwt6Bqi9i/j/4JaI5fSdhml8CZQHw5levJB3NRrOUX1zOw4cjZXQDU+j4TAN+l3xw==
   dependencies:
+=======
+>>>>>>> mapbox
     "@ckeditor/ckeditor5-core" "43.0.0"
     "@ckeditor/ckeditor5-upload" "43.0.0"
     ckeditor5 "43.0.0"
@@ -1728,7 +2003,10 @@
     "@ckeditor/ckeditor5-ui" "43.0.0"
     "@ckeditor/ckeditor5-utils" "43.0.0"
     ckeditor5 "43.0.0"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 "@ckeditor/ckeditor5-angular@^8.0.0":
   version "8.0.0"
@@ -1737,282 +2015,384 @@
   dependencies:
     tslib "^2.3.0"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@ckeditor/ckeditor5-autoformat@42.0.1":
   version "42.0.1"
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-autoformat/-/ckeditor5-autoformat-42.0.1.tgz"
   integrity sha512-jJvtrbgtvbB4gcgWnAXIyHpb51i3dxY84Uwoc1KIRJyBeCX2vSoXKZ9frnQZp1r5r/MZfW0esuqyMHDI9R+TJQ==
+=======
+"@ckeditor/ckeditor5-autoformat@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-autoformat/-/ckeditor5-autoformat-42.0.2.tgz"
+  integrity sha512-tnMdNc8VJ4y4wqbkSAbBGRiUukByOo1nBqyvzYS+SZ2Wzo67OmzKybvqz60PFYIbPAQJa0/uFkvgd55c+VTaqg==
+>>>>>>> mapbox
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
 
-"@ckeditor/ckeditor5-autosave@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-autosave/-/ckeditor5-autosave-42.0.1.tgz"
-  integrity sha512-ogKO/b+Ckj1yJTkuhCUnsVXkgHztKcU8K8zmpN9+nZR+BHqPEsrw7zEYdQm6LQi3tARdEvDvItqehcGDi9MA8Q==
+"@ckeditor/ckeditor5-autoformat@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-autoformat/-/ckeditor5-autoformat-43.0.0.tgz"
+  integrity sha512-wCPNWhgnUQctU7c8JdDVbf9m8Ai1dugvnFnR7xTLY3SLh7LvUCF0q0QQ4CysHdNVGSoGVJBmdjU7Qg3qNwD9Ng==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-autosave@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-autosave/-/ckeditor5-autosave-42.0.2.tgz"
+  integrity sha512-QIsftrJ6LjJrmUTDfJYpBKy9DJ79ltt2pMHtb8DhoyugGZUup40pFvMrt/4/UuQRm64jS/IjhwWXkSMg4PejJw==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-basic-styles@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-basic-styles/-/ckeditor5-basic-styles-42.0.1.tgz"
-  integrity sha512-p//VnlaacNeMTOmWdSFQomrTsteXRACkwd8Fr1qTu/m8FT4x8o0S2+UMiIh+H2fkUz9kqfy0lm/BE/RKsBOjng==
+"@ckeditor/ckeditor5-autosave@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-autosave/-/ckeditor5-autosave-43.0.0.tgz"
+  integrity sha512-tqOH9ihcSpErDD9tYCDuIBnWNkAlti3b9gknpNj1cc3JSFbIcyX9KAsSFP49qMgaA1An95UyNTo7YunZgOp5sw==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+    lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-block-quote@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-block-quote/-/ckeditor5-block-quote-42.0.1.tgz"
-  integrity sha512-pSh752pye2vp68DAnrUg+Evi1FlxbBK2zUjt2xT92WOrqpow9b1LYdmnZkeJayt271+ot1rowyNEm8v+uOZBHw==
+"@ckeditor/ckeditor5-basic-styles@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-basic-styles/-/ckeditor5-basic-styles-42.0.2.tgz"
+  integrity sha512-LT0Kk1K30z/YhI48QBDa69tjU1G2ljSKi5pU5pfiSBLhMl1ShLmXIAy6cEHnijHS0mte8FGwhiGXmNB/jAZ7Iw==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-basic-styles@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-basic-styles/-/ckeditor5-basic-styles-43.0.0.tgz"
+  integrity sha512-L3kMP+uDvmkoAtkZO/cvJz4zvbnES1OQYmSipkq2YKZfyAtajj2FWHJ9Xy58D6TRN7RlgoN4WeM4jA0VghNcXQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-block-quote@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-block-quote/-/ckeditor5-block-quote-42.0.2.tgz"
+  integrity sha512-xfX+tdAhn7WPHNNZR5Wkjl+OnmbNlEOVVZCL2iAjfswf4r3CglLnJOa529FO+4MyNcwkP+joQ3iVBclZNbETLw==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-enter" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-block-quote@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-block-quote/-/ckeditor5-block-quote-43.0.0.tgz"
+  integrity sha512-FispEZZOZTpau6L3ft+hbpOqi1nDSrPRdEl4oObcHXdisHEYrTdfPXUtGDlcCcaU5mekNzVt4BNRikx2wNP9oQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-enter" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
 
 "@ckeditor/ckeditor5-build-classic@^42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-42.0.1.tgz"
-  integrity sha512-3pururepwfd086jN+YYEqX7YNEQEiufgNpvzQ50gqXkHtS6NJ8ZsrIsg1Os1z1H4khy82MvEhQrGZXkzEty7Hg==
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-42.0.2.tgz"
+  integrity sha512-jzQ54btXx1EL6ioLLGWu0SMSVUqQJAuJC+K18yKaLP48gep6DnZ9unsTtJhkhKOLE21sEGUUnP3GXo/MzMBflw==
   dependencies:
-    "@ckeditor/ckeditor5-adapter-ckfinder" "42.0.1"
-    "@ckeditor/ckeditor5-autoformat" "42.0.1"
-    "@ckeditor/ckeditor5-basic-styles" "42.0.1"
-    "@ckeditor/ckeditor5-block-quote" "42.0.1"
-    "@ckeditor/ckeditor5-ckbox" "42.0.1"
-    "@ckeditor/ckeditor5-ckfinder" "42.0.1"
-    "@ckeditor/ckeditor5-cloud-services" "42.0.1"
-    "@ckeditor/ckeditor5-easy-image" "42.0.1"
-    "@ckeditor/ckeditor5-editor-classic" "42.0.1"
-    "@ckeditor/ckeditor5-essentials" "42.0.1"
-    "@ckeditor/ckeditor5-heading" "42.0.1"
-    "@ckeditor/ckeditor5-image" "42.0.1"
-    "@ckeditor/ckeditor5-indent" "42.0.1"
-    "@ckeditor/ckeditor5-link" "42.0.1"
-    "@ckeditor/ckeditor5-list" "42.0.1"
-    "@ckeditor/ckeditor5-media-embed" "42.0.1"
-    "@ckeditor/ckeditor5-paragraph" "42.0.1"
-    "@ckeditor/ckeditor5-paste-from-office" "42.0.1"
-    "@ckeditor/ckeditor5-table" "42.0.1"
-    "@ckeditor/ckeditor5-typing" "42.0.1"
+    "@ckeditor/ckeditor5-adapter-ckfinder" "42.0.2"
+    "@ckeditor/ckeditor5-autoformat" "42.0.2"
+    "@ckeditor/ckeditor5-basic-styles" "42.0.2"
+    "@ckeditor/ckeditor5-block-quote" "42.0.2"
+    "@ckeditor/ckeditor5-ckbox" "42.0.2"
+    "@ckeditor/ckeditor5-ckfinder" "42.0.2"
+    "@ckeditor/ckeditor5-cloud-services" "42.0.2"
+    "@ckeditor/ckeditor5-easy-image" "42.0.2"
+    "@ckeditor/ckeditor5-editor-classic" "42.0.2"
+    "@ckeditor/ckeditor5-essentials" "42.0.2"
+    "@ckeditor/ckeditor5-heading" "42.0.2"
+    "@ckeditor/ckeditor5-image" "42.0.2"
+    "@ckeditor/ckeditor5-indent" "42.0.2"
+    "@ckeditor/ckeditor5-link" "42.0.2"
+    "@ckeditor/ckeditor5-list" "42.0.2"
+    "@ckeditor/ckeditor5-media-embed" "42.0.2"
+    "@ckeditor/ckeditor5-paragraph" "42.0.2"
+    "@ckeditor/ckeditor5-paste-from-office" "42.0.2"
+    "@ckeditor/ckeditor5-table" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
 
-"@ckeditor/ckeditor5-ckbox@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ckbox/-/ckeditor5-ckbox-42.0.1.tgz"
-  integrity sha512-1URxhD1ejokpsTUyD+s8aoZkejBh84402sfwLTXnF6oF7Fd6XpFwkW7u3kRQVgkP88d+BeT+SXUw9230IODD5w==
+"@ckeditor/ckeditor5-ckbox@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ckbox/-/ckeditor5-ckbox-42.0.2.tgz"
+  integrity sha512-RvCUphlhrTuGBy78kEOFJvdvmP3o7ajibubOOpVfUMz1V8BbTmmx1+XaveCDxznkwiCLUwqZplWZnpPoEABj2w==
   dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-upload" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
     blurhash "2.0.5"
-    ckeditor5 "42.0.1"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-ckfinder@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ckfinder/-/ckeditor5-ckfinder-42.0.1.tgz"
-  integrity sha512-tZx2UNBblgRhJEP+ZylAOsp8DT8lvmpjxnfQWgh9RKhzrH13b4cIjN+7lbDNVLtuniCz0aSR7dHnWBrl9TxUOg==
+"@ckeditor/ckeditor5-ckbox@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ckbox/-/ckeditor5-ckbox-43.0.0.tgz"
+  integrity sha512-dvTgYbn1+EObVoW93rOrLJHlIwAy0/4trLibTTIuwjhKU3IeVW1vH4/UIgXV8Q45CCi5vypLBxzU5V9/bzzcDg==
   dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-clipboard@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-clipboard/-/ckeditor5-clipboard-42.0.1.tgz"
-  integrity sha512-+NN8dqdskyrtkjdv5NXZqO1VvKlGvQh1+kC/PqAuBBB/mGNVHBXnUmV3RoIFHBv3C7YolW3ltwjQduz71Ay25A==
-  dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-engine" "42.0.1"
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
-    "@ckeditor/ckeditor5-widget" "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-upload" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    blurhash "2.0.5"
+    ckeditor5 "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-cloud-services@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-cloud-services/-/ckeditor5-cloud-services-42.0.1.tgz"
-  integrity sha512-nzwJKgWR0SFXV1b4pkxnOZelk2aXWxiaAmMrF4jZV8F1pTVsU3/SKxBbqhZxQZFImi9xhAGdka6QrIwEquIq1g==
+"@ckeditor/ckeditor5-ckfinder@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ckfinder/-/ckeditor5-ckfinder-42.0.2.tgz"
+  integrity sha512-3lkMF+9Z3R1OUfwZJdORlRDgPSyR9Be57zgizpevpKTenxrZ+UU33ib/kvK8LXVDOzz3qp7UyCucLfY1KNXCzA==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
 
-"@ckeditor/ckeditor5-code-block@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-code-block/-/ckeditor5-code-block-42.0.1.tgz"
-  integrity sha512-Ix35lRf/gS0sLPS3QawZYfnyT8TtEwTW0kfg/lhx7z+lTXmjlR7cAVAeIDrP3uQnASEydyIWHkqlzp9le0HjGA==
+"@ckeditor/ckeditor5-ckfinder@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ckfinder/-/ckeditor5-ckfinder-43.0.0.tgz"
+  integrity sha512-YZv2AO9my3HBv/J6pOSjkMgVxl6fkUuT7Ify6Wp6ixQFCy1nPPR7s3W3WQX4+d0BPEXcz602A1PylCESYWwFfA==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-clipboard@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-clipboard/-/ckeditor5-clipboard-42.0.2.tgz"
+  integrity sha512-x76SjAhaguwVQtJSgz62q96RsJsw0eSM7ZnuUqLjMMzO+hq2hAj7ZIJNPcA46ZyDR6LDQzH760IumSz0xlHn9w==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    "@ckeditor/ckeditor5-widget" "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-core@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-core/-/ckeditor5-core-42.0.1.tgz"
-  integrity sha512-a/Lftjxi/jFiBM8l9/VI7qNqiTgGSqed4FGua1RFfE35v6goOsfFhIPkzT9sTXJL5ZDj7Zjrh/RrOc3jKzjdPA==
+"@ckeditor/ckeditor5-clipboard@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-clipboard/-/ckeditor5-clipboard-43.0.0.tgz"
+  integrity sha512-z0A800Acmd1bfY2bi69OB2xBVNZFeqRNRfWyIX+kdP3+kA+tkb6ypMhAc0XMC2cstBcTKUSPEk7HufgD0k8gTw==
   dependencies:
-    "@ckeditor/ckeditor5-engine" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
-    "@ckeditor/ckeditor5-watchdog" "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    "@ckeditor/ckeditor5-widget" "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-easy-image@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-easy-image/-/ckeditor5-easy-image-42.0.1.tgz"
-  integrity sha512-l+1Pa7K5DzCL6d5+3nwDPYEUxC92pkfRQGn+LDdfjXg3kCyRexP5FasFrRCwuNmZRjws+B8gzLoTS1bRCrWB4A==
+"@ckeditor/ckeditor5-cloud-services@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-cloud-services/-/ckeditor5-cloud-services-42.0.2.tgz"
+  integrity sha512-oNdtgD/suEh5nAndXsjik8HgRDk095EGxkmrMO+Z3gbOit28fvTDL6bbUOQvenoNNWa7RXLZMbfyiTMuNH+X8Q==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
 
-"@ckeditor/ckeditor5-editor-balloon@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-balloon/-/ckeditor5-editor-balloon-42.0.1.tgz"
-  integrity sha512-gZ8rFF7NbYUsNfHY4I2QYbHvfoQiGu1puzflZ7vPEiu/q09E8W5TtYwRTaWDXfIwLP4RbpXBKb4xnArThdrFqw==
+"@ckeditor/ckeditor5-cloud-services@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-cloud-services/-/ckeditor5-cloud-services-43.0.0.tgz"
+  integrity sha512-cJ0nwSZNRyX69Ky0M8xIjLzxTJz7E1JJ52TBkzGogV1D2XogiC2eXUMHZDi6zoiBP5KyB84d4trBIxUs0ElaEQ==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-code-block@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-code-block/-/ckeditor5-code-block-42.0.2.tgz"
+  integrity sha512-NFGn+350VS6/UNhHm9CurOLm3ZiXFUCO/SgKRILPKZ82Wh2GQqocs5O3yvvo1WQ9jA2DEwjfN0TgOpwgVOZQPQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-enter" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-editor-classic@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-classic/-/ckeditor5-editor-classic-42.0.1.tgz"
-  integrity sha512-WASM6IXZED1uTvbWtLAgkga9JCVITvWGgDVAJgAYD6+7a5F2iEqxdegoV4duSr0qWhhzFqeRpey8mLrUi9VYwg==
+"@ckeditor/ckeditor5-code-block@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-code-block/-/ckeditor5-code-block-43.0.0.tgz"
+  integrity sha512-gQJaMQdEvHtqG7KsCpWawSnVJeH+aLzgETYEuiWxWkJPXqKpE/gzq/XSRxqoyIoda6YWz2gfxCDZckVAHXa9Pg==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-clipboard" "43.0.0"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-enter" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-core@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-core/-/ckeditor5-core-42.0.2.tgz"
+  integrity sha512-LkNx1Qpk/gwh0wYkl4FdZfi1N2G5Gmp026sVp301boyE9sSVeR3YxcSdKXfsr2HII+7EdJHxMswTvnd/L+IdSg==
+  dependencies:
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    "@ckeditor/ckeditor5-watchdog" "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-editor-decoupled@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-decoupled/-/ckeditor5-editor-decoupled-42.0.1.tgz"
-  integrity sha512-IR/ymKv813b8lVcFtKA6jGBvSTyc8UMOr/5yTCmvUYGBYjD39wv4QQpj4AClbbVL8CPNxUAToexLxelhjc1cgQ==
+"@ckeditor/ckeditor5-core@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-core/-/ckeditor5-core-43.0.0.tgz"
+  integrity sha512-UbOnWwB8RIjipDTuFCPVqJtSnIhuCf5DCUa+05JqMdKzlqj3pJC+iBsvGbxtk6DdzSr8q1CUHwhJxlXfs3BSLg==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    "@ckeditor/ckeditor5-watchdog" "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-editor-inline@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-inline/-/ckeditor5-editor-inline-42.0.1.tgz"
-  integrity sha512-A2qd/hcKpeIxRubyWLK2TZhPPCvZsDJerySSAzw6fFpAgedlBV2Lz048tV3AJholhwlFsITuaNyna/dTVE6/qg==
+"@ckeditor/ckeditor5-easy-image@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-easy-image/-/ckeditor5-easy-image-42.0.2.tgz"
+  integrity sha512-JYVpX6lRVRve8roROx5y6nsixLXLuVwIokBLoo+usS313xeeZvjoLrxGTeRuyyVbK3BFPE+zqyXsgqGs1Q0stg==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-upload" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-easy-image@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-easy-image/-/ckeditor5-easy-image-43.0.0.tgz"
+  integrity sha512-iT+g9lrBvKreHjRP7tc8P/LrzHEtipBQ488eJdtmaNvMUIQvFnjhZOIcYd7Lr+a4M7+qJl8tSwJOQvM/KiXDeQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-upload" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-editor-balloon@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-balloon/-/ckeditor5-editor-balloon-42.0.2.tgz"
+  integrity sha512-NXTVQ3aBW8OirKgv8PJvjSDDbl39JGlnS/W+/LRwUlOgHVVWHVSMMqY52AhP90TzP6xfbFYBYX8n13EB6o/4Bw==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-editor-multi-root@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-multi-root/-/ckeditor5-editor-multi-root-42.0.1.tgz"
-  integrity sha512-IDU22zezBwM40/ofeAloHGzbghQxPlKW21h6XYs1RmKJLzq87BuxiZ4KY8hJkg9asdZrw4gU7YS20570QvjBjQ==
+"@ckeditor/ckeditor5-editor-balloon@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-balloon/-/ckeditor5-editor-balloon-43.0.0.tgz"
+  integrity sha512-D8tJ/ZKezsc0m75/kzSS783VB8tRiWabmzJUOtlFGss8RwD3QZqHCabP/boZW95vEm/sk5UZt2COL43jlNN4TA==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-engine@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-engine/-/ckeditor5-engine-42.0.1.tgz"
-  integrity sha512-hI7qVWVYYcfCeJ846Kjbbam4VnYYG93XDcL2SXKcyCgtuiJPiQroL7tvfSKTvBn2KZR2SwpHFfPkm5QXrZP+Xg==
+"@ckeditor/ckeditor5-editor-classic@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-classic/-/ckeditor5-editor-classic-42.0.2.tgz"
+  integrity sha512-K9+154AP/OpxDn6702772QCiT830lAQXsiUty1Z35MM3hVS5quwkuxS6V0NjKxx0AcqUmmgdXoFxx6v4mj3R7g==
   dependencies:
-    "@ckeditor/ckeditor5-utils" "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-enter@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-enter/-/ckeditor5-enter-42.0.1.tgz"
-  integrity sha512-HuROcF33ekLzR8Uuc7tkonZqxEcpQ37pkd1Rx7V6JCt60rapm7cpELKl3nxDDyPUh+cWZ2nM6iQh/vsvXZkSKw==
+"@ckeditor/ckeditor5-editor-classic@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-classic/-/ckeditor5-editor-classic-43.0.0.tgz"
+  integrity sha512-VUewScFqwQxm5tu2YPMNzX6pVb3HaXGyEL1PbKo8gBtmo8eimsfNS6WbW2gn4RhQKyu2BzFKXeaNi9Dj0aTZLA==
   dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-engine" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
-
-"@ckeditor/ckeditor5-essentials@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-essentials/-/ckeditor5-essentials-42.0.1.tgz"
-  integrity sha512-+hjE9KMCIsmajNmWVdUYpx27CogUry1g674VJ6he9QaFqrVsfApihZD98Zgl1QfoDdaCFnBpI9W/PE+2M1veIw==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-find-and-replace@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-find-and-replace/-/ckeditor5-find-and-replace-42.0.1.tgz"
-  integrity sha512-GhjbzZIJ6aVfbQyCfru6jGTv1A3tmNcWs/YncSewZFb1Xxgk9EkfPcynB+hG3X8X38bX8ggvbxoicRFGKqzLHg==
-  dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-font@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-font/-/ckeditor5-font-42.0.1.tgz"
-  integrity sha512-5TEbQvvrQn45S+08ancAFFecv8BWvC2L4nIxPKKYikOsFNScE6C5nxrr/Xaa98ZEgHowp48z+yZxLjTDwOZctQ==
+"@ckeditor/ckeditor5-editor-decoupled@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-decoupled/-/ckeditor5-editor-decoupled-42.0.2.tgz"
+  integrity sha512-ANhlpcZXV+nZl/f9o+wS5vqc+Va5K4LnYA0F/pJNTNlighVCa1nGQX11tRGm48vItpNlgQxty+p86NHa+7YrLw==
   dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-heading@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-heading/-/ckeditor5-heading-42.0.1.tgz"
-  integrity sha512-Uf6IlamcgnZn3VkliP4+qWxEFKdaZNGfCntU08oW4b0Wf3i3P7lbBz73ZQ1sUF79QWZVlZiMIuQNL5RjAc93eA==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-highlight@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-highlight/-/ckeditor5-highlight-42.0.1.tgz"
-  integrity sha512-mUvnfdX6HYa7kbsfDILLCX32Ia4lFDfOQm/mx5gR17hxbv//u55jZESKwvwNwUBoYXzln/hg2ifqoPFTFuC/aA==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-horizontal-line@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-horizontal-line/-/ckeditor5-horizontal-line-42.0.1.tgz"
-  integrity sha512-nw99pQ3dgm9G/M88UDtcvVUy3Xb6+baLz1IvanfItgVrH8FFObICFZjNJWxd/H4xtbQzMz1Ty6w8ZocPWja9sg==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-html-embed@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-html-embed/-/ckeditor5-html-embed-42.0.1.tgz"
-  integrity sha512-MEim8XV+75aEnDGRkrft15oURiyVEOvHo9h+7cFeE3hgI9+wjk/V3arHQIAUkZTT3XpRv8LQKjBC1hmXTz7YyA==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-html-support@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-html-support/-/ckeditor5-html-support-42.0.1.tgz"
-  integrity sha512-RxWl+RyfBSpa9setDWmtoF3ertzVOmaLi7Aw7xnyn71jV+S3aCMlZphiv7m9KENNy46FOc+Nzct5sScnJ+EpVg==
-  dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-image@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-image/-/ckeditor5-image-42.0.1.tgz"
-  integrity sha512-O1u27JxByLNgZpmwP3up6lh48IU89w/7rMvd9WByQCyZpUPTT2J/4Mvjlimq1AMt61qmzx08TdcfhI+8aRhBvA==
+"@ckeditor/ckeditor5-editor-decoupled@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-decoupled/-/ckeditor5-editor-decoupled-43.0.0.tgz"
+  integrity sha512-BVrMPXCrHMDaxxEuLiUhma4Kx2huSnp7u5EoWaDxAVOXjpb3ZRlboGV5smpt87BmjP5Zt58SrUsDoHnLPfN6eA==
   dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-indent@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-indent/-/ckeditor5-indent-42.0.1.tgz"
-  integrity sha512-aT/ui69ncvXFv/9TJqe3TUegppH62b2E9XaQqfwCmm1jZ5BDEG8oYnJI1htnsnmQSOXqye7m5276F+47nrN42w==
+"@ckeditor/ckeditor5-editor-inline@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-inline/-/ckeditor5-editor-inline-42.0.2.tgz"
+  integrity sha512-gWngpGE/6JDCyKpKTX7iIgFaxrDPzocZt56p1JmBJCNpVQb4sGoZs94uUg7rxlVo8t3PDH+foL49gSdBKYS9uw==
   dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-language@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-language/-/ckeditor5-language-42.0.1.tgz"
-  integrity sha512-iWmfEySQqDzNT8VN7qh8yr8tzUjrUwjYuYV2yvggNHPMo66JoRGsJwwZDYcdx1tOzIhcxOtZnQLK3v34k0gNQg==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-link@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-link/-/ckeditor5-link-42.0.1.tgz"
-  integrity sha512-SaLYdmAknaMgX9ABxafMUmJ7a42IgKZQU58+wwwD+gWmaXt/vmWSCSbe1q6+e49UejnBMC4NCDC6YaQWAiTrIw==
-  dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-list@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-list/-/ckeditor5-list-42.0.1.tgz"
-  integrity sha512-yEzFuO28msXm8I65lpF/D6eWLDK6ZsWnKsYDcQI45QlsVGxrs9r0t4mJzmHv26lN4p4/2pv5CPM1w1+ovvC6Ww==
+"@ckeditor/ckeditor5-editor-inline@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-inline/-/ckeditor5-editor-inline-43.0.0.tgz"
+  integrity sha512-II77SDB23t02Kbapf74W0gR8QpNCeVm7g7IT6NvGF1OW3RlTwDJQsfdyOgvHQoU4FkdRoOIEOoeFbJxgToJORw==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+    lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-markdown-gfm@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-markdown-gfm/-/ckeditor5-markdown-gfm-42.0.1.tgz"
-  integrity sha512-P2ihM9c3cVDeCdrVk3JoTmG3ApJZgbYy1Iag1rcoLyVW185nn4H3rkPBVSVFfa1+B9lw0Oe50YcPv67mIWe8VQ==
+"@ckeditor/ckeditor5-editor-multi-root@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-multi-root/-/ckeditor5-editor-multi-root-42.0.2.tgz"
+  integrity sha512-1Cv4WGB75KoWZWewCOnHP4s4HGFXKt3BajvDkN8LXS6CtaIPDkH18okY/ivH/Idhu1pT9k2bjzCfR7W4EhtRJg==
   dependencies:
+<<<<<<< HEAD
     ckeditor5 "42.0.1"
 =======
 "@ckeditor/ckeditor5-autoformat@42.0.2":
@@ -2384,6 +2764,8 @@
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-editor-multi-root/-/ckeditor5-editor-multi-root-42.0.2.tgz"
   integrity sha512-1Cv4WGB75KoWZWewCOnHP4s4HGFXKt3BajvDkN8LXS6CtaIPDkH18okY/ivH/Idhu1pT9k2bjzCfR7W4EhtRJg==
   dependencies:
+=======
+>>>>>>> mapbox
     "@ckeditor/ckeditor5-core" "42.0.2"
     "@ckeditor/ckeditor5-engine" "42.0.2"
     "@ckeditor/ckeditor5-ui" "42.0.2"
@@ -2762,143 +3144,321 @@
     "@ckeditor/ckeditor5-core" "42.0.2"
     "@ckeditor/ckeditor5-engine" "42.0.2"
     ckeditor5 "42.0.2"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
     marked "4.0.12"
     turndown "7.2.0"
     turndown-plugin-gfm "1.0.2"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@ckeditor/ckeditor5-media-embed@42.0.1":
   version "42.0.1"
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-media-embed/-/ckeditor5-media-embed-42.0.1.tgz"
   integrity sha512-OnaZb8LdXKS7jyWRSInXFtA/u+t9KcSJAO68MxRnI1bkUdegudaj4JzXX7/ifIocgFTdG+QlG+v40PAUfXYTkQ==
+=======
+"@ckeditor/ckeditor5-markdown-gfm@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-markdown-gfm/-/ckeditor5-markdown-gfm-43.0.0.tgz"
+  integrity sha512-4TjnTugDEMoxLej/dmiUxqKEwGqmPACuwU1SnSR15E5X7MR+0SHAdXg/sQfJcbmwrjle/6tSp4NVK7XKPi7Sug==
+>>>>>>> mapbox
   dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-clipboard" "43.0.0"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    ckeditor5 "43.0.0"
+    marked "4.0.12"
+    turndown "7.2.0"
+    turndown-plugin-gfm "1.0.2"
 
-"@ckeditor/ckeditor5-mention@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-mention/-/ckeditor5-mention-42.0.1.tgz"
-  integrity sha512-lrRSMHtbo6kuKzfoUk7D5hb7IQaFnDtTsePk7k7kkg22T0yCzxeJwmd314dAZfcNf5D49izvg1RucpquJ6XS4g==
+"@ckeditor/ckeditor5-media-embed@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-media-embed/-/ckeditor5-media-embed-42.0.2.tgz"
+  integrity sha512-iXGcfgOm0IWa600ln5YeSssg7Sew6Lf1z9ziTxsQsmforPIqXgZQEvdLoo0tABddSRQZI+yQZnRnwrus9sZXIA==
   dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-clipboard" "42.0.2"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-undo" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    "@ckeditor/ckeditor5-widget" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-media-embed@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-media-embed/-/ckeditor5-media-embed-43.0.0.tgz"
+  integrity sha512-l+BlHpS88yZ0J25KqfXADgb3AYXuAt5yTzYwN8XCMQ0/HbjKmgb/Hkppo5Bcd/hzSBG+LUh1dygP1F2lkc5N/A==
+  dependencies:
+    "@ckeditor/ckeditor5-clipboard" "43.0.0"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-undo" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    "@ckeditor/ckeditor5-widget" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-mention@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-mention/-/ckeditor5-mention-42.0.2.tgz"
+  integrity sha512-81MYULfB7bHDb5Y7saIZMkNVG1BJV/ir5BwIDuuXwGXLNVX++uMTK4ryAItYToiSFN8/NBms7JFXPrRhL/zbOw==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-minimap@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-minimap/-/ckeditor5-minimap-42.0.1.tgz"
-  integrity sha512-OGdFguNeEVUh8pUF0VCAEkbM5QIiQJW9KPWc+wLJyhSMnLV4J9abI1vBalTD/C/obD1g/gKtGu3jhxNk1YMEOg==
+"@ckeditor/ckeditor5-mention@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-mention/-/ckeditor5-mention-43.0.0.tgz"
+  integrity sha512-B5DNmfj1JbLLx5+6vnneoK+C0BLPjiM+5x1qdpLVAMIWkbr6qJCthZfe5gnGD7WoGpRILIE//cskm42eP26wcQ==
   dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-page-break@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-page-break/-/ckeditor5-page-break-42.0.1.tgz"
-  integrity sha512-bCRTEh2giOIidDjjBI+xK8TJ0QvXLtahDEV7MmecAeXu1SAk2FpECl60BUMl+/DQcaK3XGHsLZCMZsSdCXGqbQ==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-paragraph@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-paragraph/-/ckeditor5-paragraph-42.0.1.tgz"
-  integrity sha512-rxGX+vnrxUGpTXZQSIO5XBP2Cz8CaYyufLF8Ad4fTpT6VT++BAczI0r2ij5SZLK7iCKQfHBrzz1BvatJmxjr5Q==
-  dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
-
-"@ckeditor/ckeditor5-paste-from-office@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-paste-from-office/-/ckeditor5-paste-from-office-42.0.1.tgz"
-  integrity sha512-OKeWTHPrt7Yjp+rzZomxYmhEqZRQmGy+YGkWCdnfy2CH4ypsQVLI07hZazuZ8ZNVZ+/P7gxD7m+1y6EOj3SC5w==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-remove-format@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-remove-format/-/ckeditor5-remove-format-42.0.1.tgz"
-  integrity sha512-j1VpxnMRqSEDr2nzY/JGjvd+wYFqw2VJrTLA/2hmkH40BhdmCw8+t8AFLUNUPqBE/vGTHbMVvmf4vRhy/nM2Rg==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-restricted-editing@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-restricted-editing/-/ckeditor5-restricted-editing-42.0.1.tgz"
-  integrity sha512-lgLucIp20Z6P6sUX1sH9fQiqbGQ0t/yBNoMhi340T9ejBjIfRQ2sJyvUelInD5XICrwdU29jPBcGD0VqWBbFBw==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-select-all@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-select-all/-/ckeditor5-select-all-42.0.1.tgz"
-  integrity sha512-1PymHaP/0lEoTVrxrNzCY/36QsKqV/mKcXm5zwNwRdLgY8GB2tcu75YthubG8sVHNR893IMG4FYlGS/a1exwIQ==
-  dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
-
-"@ckeditor/ckeditor5-show-blocks@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-show-blocks/-/ckeditor5-show-blocks-42.0.1.tgz"
-  integrity sha512-mdmytIO/GslWrCt8Cubt2TsHOogio+/0lTjk76LtPIJn+AUEI4xYhPIZfFOHbxqzjVx2tx9g49Sr+S/SA2Ag9A==
-  dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-source-editing@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-source-editing/-/ckeditor5-source-editing-42.0.1.tgz"
-  integrity sha512-6b5ujT5smdpB+2rZbGM7Isqgevs/any+PsbEtbBT7dc9NkkPI/2YH+o4a5FLf38c7fDxGCV4Ob7kwOPStkNAIA==
-  dependencies:
-    "@ckeditor/ckeditor5-theme-lark" "42.0.1"
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-special-characters@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-special-characters/-/ckeditor5-special-characters-42.0.1.tgz"
-  integrity sha512-irWFRCpZODtB1ui3Wm214Es6jxFNDZn/e1mbhGf5DGOGEQCLe8aAJc68FDKI3hl8cQlXxDTSch1RFvUiuNaBIA==
-  dependencies:
-    ckeditor5 "42.0.1"
-
-"@ckeditor/ckeditor5-style@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-style/-/ckeditor5-style-42.0.1.tgz"
-  integrity sha512-JVO8Iq9j15iABpHTt24T8KsdDf2KxVFe7gg0ooowlZB7CmmYVCqKBGnnMemqM+aQk3qfXPUgNA1G3v259MHs9g==
-  dependencies:
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-table@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-table/-/ckeditor5-table-42.0.1.tgz"
-  integrity sha512-xITEPFvV05h+sNbs2jqLSUu6UUat5DCoyt9WIbqIYC8hwJrGGAcuwldyfL0e+hrUAbHHkL1K9oRlMmhKuw6OEA==
+"@ckeditor/ckeditor5-minimap@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-minimap/-/ckeditor5-minimap-42.0.2.tgz"
+  integrity sha512-dOBT6bS/7tREFmpRCD4XwOEmoW4p7ZV1Pp3tA/KYQ++2BAgI/O/Yeww7nlhsKhal4r74v459hgihI/SnlfqBQA==
   dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    ckeditor5 "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-minimap@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-minimap/-/ckeditor5-minimap-43.0.0.tgz"
+  integrity sha512-2C59bqoVBOTnbccsgpCyie+sGKTl/J5nIt5Wu1oyINYPT+j+VjUtiSh5yZKPRXTF+Cyba6NyFU/56BJLBnPurQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-page-break@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-page-break/-/ckeditor5-page-break-42.0.2.tgz"
+  integrity sha512-h6Wb0fWsl4a0MyU8W3F4Yku/1CWnR6tQrcMapn0sHB9W/HAvHLQIJGdsYh+a1W6QzMIjpVAqjT4mxQ1rU86RkQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-widget" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-page-break@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-page-break/-/ckeditor5-page-break-43.0.0.tgz"
+  integrity sha512-oSHGAPBHrs2pRwAp36ldVn3fy2xySzDmMXNArnpiRbwIScQOZHuf/iqAIPeeZkO27Gfo9bfh/oWbGcUfPBzF6A==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-widget" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-paragraph@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-paragraph/-/ckeditor5-paragraph-42.0.2.tgz"
+  integrity sha512-feI7Rw76uPbPmoFeVEPpKdPTOjdlccpWabhfrimgT08rECLa7ErFw2oRZVmnx5+kjX+NAUeD9kaUZUUkNNP0wg==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+
+"@ckeditor/ckeditor5-paragraph@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-paragraph/-/ckeditor5-paragraph-43.0.0.tgz"
+  integrity sha512-xt8x4E6Vh0dmFxbCtv89KdKoSM+xB6B8s7q+Mvf/a/gtnV/x1OJgMBBTUj81FRYtMVB5LyQsE8Wo8jNLYzHmTQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+
+"@ckeditor/ckeditor5-paste-from-office@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-paste-from-office/-/ckeditor5-paste-from-office-42.0.2.tgz"
+  integrity sha512-9K54E44rEjvLqWKRRHeifOlb1bICKzzX8gOv/i90sFQfMeQphA6qEn3WJZNQY4NY9Uwhu3kF/gh3/dqlcBhsvw==
+  dependencies:
+    "@ckeditor/ckeditor5-clipboard" "42.0.2"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-paste-from-office@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-paste-from-office/-/ckeditor5-paste-from-office-43.0.0.tgz"
+  integrity sha512-VMONY8JUdSfWQ0GNjtpjqWvA1BGunIqhDp4dIvbSyiAoK/3p7QQfjdAm9OOxHIwyns5gO5+sBiEHC5GZadgSMg==
+  dependencies:
+    "@ckeditor/ckeditor5-clipboard" "43.0.0"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-remove-format@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-remove-format/-/ckeditor5-remove-format-42.0.2.tgz"
+  integrity sha512-YIyKibU44Jt6P9qu3WGPjUUh/pb5dvexeE1XG6f5JNtVlZCy3sUI+BDytzqWI68/coOHBKYkKSDOEQdzw83PdA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-remove-format@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-remove-format/-/ckeditor5-remove-format-43.0.0.tgz"
+  integrity sha512-q27Zqie8WJXk9XGp5CFaGZ8JMyLczhdGU/kyeeX9A5FcCDxpR2nYOgtq0BGgt14XTa2Hr0IKM8NIfdyxA29YNA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-restricted-editing@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-restricted-editing/-/ckeditor5-restricted-editing-42.0.2.tgz"
+  integrity sha512-tfnEE6ieR2UhjZ9zoDNfXIMAMy2FWoajASKffdtpTMBjkVKzM+isg8j0hEkWgiQqCsJYVWt0314nPZrm5EUIfA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-restricted-editing@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-restricted-editing/-/ckeditor5-restricted-editing-43.0.0.tgz"
+  integrity sha512-zMX3ONNZ1jKKfT41PERvJOr79ciZYxCQjhBkCHQE6xe1VhU5QFfPibvZRj+KEHI6CBhxGrwo0In0YaLLIHbUuQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-select-all@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-select-all/-/ckeditor5-select-all-42.0.2.tgz"
+  integrity sha512-eqLhxmsxDQ8s+Op4f0OoXbN9vwz0hekE1HxsClXIsqwhjsO2o/HYcyhIzR9lPgmi4bVf8uy8T9oyWQNRLv4S9w==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+
+"@ckeditor/ckeditor5-select-all@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-select-all/-/ckeditor5-select-all-43.0.0.tgz"
+  integrity sha512-ABPFd6cVeef5tWXtnv3ZNdCK1WcCEH48Gm8o84S+ZwQ0wW6y3CY3EW6QVCIL1sqBzgLY8NBBCgGvS7Ymn7fv4A==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+
+"@ckeditor/ckeditor5-show-blocks@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-show-blocks/-/ckeditor5-show-blocks-42.0.2.tgz"
+  integrity sha512-CFYJN3gyiWwJ1mDonzIktRL/A+WONZuyCptELqlU51RRCwbG7eSMtu2Eyd+Q463zYbOKZcdr5uNvlWuRpSsalw==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-show-blocks@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-show-blocks/-/ckeditor5-show-blocks-43.0.0.tgz"
+  integrity sha512-KX0nfY1Hhs++fv/mgy4+lJxT78ekOwSecLURpX3Mzs4j7AAek424D7itlP5r1wPK9e7ozPd7+AmUYHCuesSD4w==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-source-editing@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-source-editing/-/ckeditor5-source-editing-42.0.2.tgz"
+  integrity sha512-lo/ZmBeAoWu9j0qfuUVIpc2QzZmcrYZ2enloz2mL22DCn3eP8IstE7gSmZlQ/DQxcPC5Sf2uC0l9IurBAP9+pg==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-theme-lark" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-source-editing@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-source-editing/-/ckeditor5-source-editing-43.0.0.tgz"
+  integrity sha512-Go9lDGoB26d0Rb7D329I54NHO4T28c4grqx6KVjO0R8nmugfcSpITBLdSn/KarDJA1ysIsbN7k/p5guuiVWTMg==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-theme-lark" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-special-characters@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-special-characters/-/ckeditor5-special-characters-42.0.2.tgz"
+  integrity sha512-B2E9thXW0Ej1istiResH6987g+REnX18aoxW4uXG+PHDrYWjsV4fClEnjWdkO/O0A3yOoNc4LYAbGSo7z0g/1g==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
+
+"@ckeditor/ckeditor5-special-characters@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-special-characters/-/ckeditor5-special-characters-43.0.0.tgz"
+  integrity sha512-5l2SdmYEBbid15xUo/L/UjzuxFODNEhNvv4mXIZZOX0tkJ6UNlF1jt5wMjFjWrfFUsZdUwj/aC/7FutotWeHrQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
+
+"@ckeditor/ckeditor5-style@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-style/-/ckeditor5-style-42.0.2.tgz"
+  integrity sha512-vq1GSeOtZm00W4FC6MgqukJbdDE394Sh7ID6634gKmdknbxOBvNcF0XUdAu+kWtJzTjYVrC4+oPYpS5C+odidQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-typing" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+    ckeditor5 "42.0.2"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-theme-lark@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-theme-lark/-/ckeditor5-theme-lark-42.0.1.tgz"
-  integrity sha512-EZfxuFpBro6VTobQytGkvMQl/H8PymANTQrnICwLEKd81ZM5yJQTeolF/VS+QFlDqx1gXUESNJt8NqFytm1cww==
+"@ckeditor/ckeditor5-style@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-style/-/ckeditor5-style-43.0.0.tgz"
+  integrity sha512-9obmKXVQWsg/Ly25ggXyO92GrHp3lIcJ8vjEkbQU/8PO2pblhEylLJEPIRWSySNKYkw0d2fsSDKjC5c3Brx/Gg==
   dependencies:
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-
-"@ckeditor/ckeditor5-typing@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-typing/-/ckeditor5-typing-42.0.1.tgz"
-  integrity sha512-gLqp27CiLZe/ycKgJotqQ5Ta1KX3aSlZMYmnHurmOmkvjXB76syM990KlPiDAkff2QyXE1qgg0uKLgT4CbrKNg==
-  dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-engine" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-typing" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    ckeditor5 "43.0.0"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-ui@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ui/-/ckeditor5-ui-42.0.1.tgz"
-  integrity sha512-3OF/nm/pc8rwH65+GYET5Xj5qk53aVXnBi/DBVRQZBdhuAGlMQuy+7E2WU6vO7G24w1LOJUSPpeBJt/MXs6z2w==
+"@ckeditor/ckeditor5-table@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-table/-/ckeditor5-table-42.0.2.tgz"
+  integrity sha512-fFMXbQCa7UR4aAmwVkKzDcRmKCd2YwE1iNLeGWJz7tz1c+hGeadej0aHgUxBw+hHu6DhS9AyvtwmNweQpc3PnQ==
   dependencies:
+<<<<<<< HEAD
     "@ckeditor/ckeditor5-core" "42.0.1"
     "@ckeditor/ckeditor5-utils" "42.0.1"
 =======
@@ -3200,6 +3760,8 @@
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-table/-/ckeditor5-table-42.0.2.tgz"
   integrity sha512-fFMXbQCa7UR4aAmwVkKzDcRmKCd2YwE1iNLeGWJz7tz1c+hGeadej0aHgUxBw+hHu6DhS9AyvtwmNweQpc3PnQ==
   dependencies:
+=======
+>>>>>>> mapbox
     "@ckeditor/ckeditor5-clipboard" "42.0.2"
     "@ckeditor/ckeditor5-core" "42.0.2"
     "@ckeditor/ckeditor5-engine" "42.0.2"
@@ -3264,62 +3826,96 @@
   dependencies:
     "@ckeditor/ckeditor5-core" "42.0.2"
     "@ckeditor/ckeditor5-utils" "42.0.2"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
     color-convert "2.0.1"
     color-parse "1.4.2"
     lodash-es "4.17.21"
     vanilla-colorful "0.7.2"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@ckeditor/ckeditor5-undo@42.0.1":
   version "42.0.1"
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-undo/-/ckeditor5-undo-42.0.1.tgz"
   integrity sha512-3tIj7JLtKFMxiJrfZ7IrBXBzBe0dtP+EcztjzgQbndS1PaAldErH3g7z55avwp6R3hum0wFnqgvQRIgSUlYONQ==
+=======
+"@ckeditor/ckeditor5-ui@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-ui/-/ckeditor5-ui-43.0.0.tgz"
+  integrity sha512-R77EeM3vbRWmVdCUPbw5ZfqQlz2UiOIrCnjkXEf1GQVFzn5THNejlUzf9QwL51GS8CquOyH8rg1iRPM9gQiGuw==
+>>>>>>> mapbox
   dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-engine" "42.0.1"
-    "@ckeditor/ckeditor5-ui" "42.0.1"
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+    color-convert "2.0.1"
+    color-parse "1.4.2"
+    lodash-es "4.17.21"
+    vanilla-colorful "0.7.2"
 
-"@ckeditor/ckeditor5-upload@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-upload/-/ckeditor5-upload-42.0.1.tgz"
-  integrity sha512-0tn4ltiz0cTmlMPFPpJkDzi5+jVkPbtv9R9OHGDFgDW0uyN93UvnW0xPpoXKn/R/qRJf2gnPK95QlUaeiz33+w==
+"@ckeditor/ckeditor5-undo@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-undo/-/ckeditor5-undo-42.0.2.tgz"
+  integrity sha512-OpfdYnADY2MM8nWN5M13BEDDnwL15YHUYUpgMnydgJObZzSnePqgWQSFaBAY5j24eze0a8gyGgnOE5jV6VBm1Q==
   dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-engine" "42.0.2"
+    "@ckeditor/ckeditor5-ui" "42.0.2"
 
-"@ckeditor/ckeditor5-utils@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-42.0.1.tgz"
-  integrity sha512-gJlP8/dCfnmcgq1E30//rd5KU3EetuFx0QQqphuaeUxuJeVhRJlMvva0H/dZOv82uMrTBgspxYsRrkjn7XnVxQ==
+"@ckeditor/ckeditor5-undo@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-undo/-/ckeditor5-undo-43.0.0.tgz"
+  integrity sha512-FDLyZqxkcMqhodOHrYP/GTQWQuC3e9n1gg25nQYqR0IgEqrDU6TH+wTBMrvo6YHv3pl88IZsfNr2vj5ZnsKThQ==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-engine" "43.0.0"
+    "@ckeditor/ckeditor5-ui" "43.0.0"
+
+"@ckeditor/ckeditor5-upload@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-upload/-/ckeditor5-upload-42.0.2.tgz"
+  integrity sha512-QD6PR1ZurGQv0gULG4hNiaFMO306qM9Gin2BbICkZuJ+IFKd7nQ+mp7ZCbgPgRYtSkeUyHjSzNR4+wIA2nPVEg==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "42.0.2"
+    "@ckeditor/ckeditor5-utils" "42.0.2"
+
+"@ckeditor/ckeditor5-upload@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-upload/-/ckeditor5-upload-43.0.0.tgz"
+  integrity sha512-IXryGBQFjw2wDz04UM8pbwjJETBxYCmyMz0WW7GJsNA04qO3evxlaCVGczb1nheRbbUb9SBU8wpHKPz05xMQdA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "43.0.0"
+    "@ckeditor/ckeditor5-utils" "43.0.0"
+
+"@ckeditor/ckeditor5-utils@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-42.0.2.tgz"
+  integrity sha512-z4lNVoVf4cyK6cugMABNgMtYDiIK+0eQwYFtr45DhPK283RWEqrU0xwbwoqhIqeXRQ6B+9+0nC7ZIFPEdQ+iDA==
   dependencies:
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-watchdog@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-watchdog/-/ckeditor5-watchdog-42.0.1.tgz"
-  integrity sha512-ROfjUFky3W2u9F+6sXiT1IR9pa/odYAjT9ck/wp5W2dHum5XMIAdF4A6bEwXeBtZnpMo8+tQ1b1OZv78rZ31IA==
+"@ckeditor/ckeditor5-utils@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-43.0.0.tgz"
+  integrity sha512-xupNfpUX3EGVVRycijYGOZXTaWEebHPwEMAfI5rduYAUAf63AbTpL4s7sakxFaHp1SS3bQWN+j1QiXh/TBhRAw==
   dependencies:
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-widget@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-widget/-/ckeditor5-widget-42.0.1.tgz"
-  integrity sha512-hz02QxOFw4HNmDqM6369rCZgEotsmUtHcysC1Ius6XxbPiZHLraagb2wG9Dts/80DRN//1zGbxKG61sTa/5Bog==
+"@ckeditor/ckeditor5-watchdog@42.0.2":
+  version "42.0.2"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-watchdog/-/ckeditor5-watchdog-42.0.2.tgz"
+  integrity sha512-0z00yqbBt/JALAD8C62LNySitQ+wBw1My43Qe2xs5VAP5tUZcziFFCc4BhMy+w6ZWUmZj2hkjSLlmx7b/vid+A==
   dependencies:
-    "@ckeditor/ckeditor5-core" "42.0.1"
-    "@ckeditor/ckeditor5-engine" "42.0.1"
-    "@ckeditor/ckeditor5-enter" "42.0.1"
-    "@ckeditor/ckeditor5-typing" "42.0.1"
-    "@ckeditor/ckeditor5-ui" "42.0.1"
-    "@ckeditor/ckeditor5-utils" "42.0.1"
     lodash-es "4.17.21"
 
-"@ckeditor/ckeditor5-word-count@42.0.1":
-  version "42.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-word-count/-/ckeditor5-word-count-42.0.1.tgz"
-  integrity sha512-hTTCMmWTORGLj4f83DeKZC0d8K4JmOJHCCzAQypPIB1qD2n1D6VbweoVsgVOUr5fPsd5QO5jOyor2T2yHyQmyg==
+"@ckeditor/ckeditor5-watchdog@43.0.0":
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-watchdog/-/ckeditor5-watchdog-43.0.0.tgz"
+  integrity sha512-sS+mnuWGZWpe04YbpGZWy3MpMzZ2eFDn911jo0+7nGbypuH8cqrFSZBCUZ4DyE7ghsZ2P6CgMTsUtz4G+kjeZw==
   dependencies:
+<<<<<<< HEAD
     ckeditor5 "42.0.1"
 =======
 "@ckeditor/ckeditor5-ui@43.0.0":
@@ -3394,6 +3990,8 @@
   resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-watchdog/-/ckeditor5-watchdog-43.0.0.tgz"
   integrity sha512-sS+mnuWGZWpe04YbpGZWy3MpMzZ2eFDn911jo0+7nGbypuH8cqrFSZBCUZ4DyE7ghsZ2P6CgMTsUtz4G+kjeZw==
   dependencies:
+=======
+>>>>>>> mapbox
     lodash-es "4.17.21"
 
 "@ckeditor/ckeditor5-widget@42.0.2":
@@ -3442,7 +4040,10 @@
     "@ckeditor/ckeditor5-ui" "43.0.0"
     "@ckeditor/ckeditor5-utils" "43.0.0"
     ckeditor5 "43.0.0"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
     lodash-es "4.17.21"
 
 "@colors/colors@1.5.0":
@@ -3472,38 +4073,46 @@
   dependencies:
     tslib "^2.6.2"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@fortawesome/fontawesome-common-types@6.5.2":
   version "6.5.2"
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.5.2.tgz"
   integrity sha512-gBxPg3aVO6J0kpfHNILc+NMhXnqHumFxOmjYCFfOiLZfwhnnfhtsdA2hfJlDnj+8PjAs6kKQPenOTKj3Rf7zHw==
+=======
+"@fortawesome/fontawesome-common-types@6.6.0":
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.6.0.tgz"
+  integrity sha512-xyX0X9mc0kyz9plIyryrRbl7ngsA9jz77mCZJsUkLl+ZKs0KWObgaEBoSgQiYWAsSmjz/yjl0F++Got0Mdp4Rw==
+>>>>>>> mapbox
 
 "@fortawesome/fontawesome-svg-core@^6.4.2", "@fortawesome/fontawesome-svg-core@~1.2.27 || ~1.3.0-beta2 || ^6.1.0":
-  version "6.5.2"
-  resolved "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.5.2.tgz"
-  integrity sha512-5CdaCBGl8Rh9ohNdxeeTMxIj8oc3KNBgIeLMvJosBMdslK/UnEB8rzyDRrbKdL1kDweqBPo4GT9wvnakHWucZw==
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.6.0.tgz"
+  integrity sha512-KHwPkCk6oRT4HADE7smhfsKudt9N/9lm6EJ5BVg0tD1yPA5hht837fB87F8pn15D8JfTqQOjhKTktwmLMiD7Kg==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "6.5.2"
+    "@fortawesome/fontawesome-common-types" "6.6.0"
 
 "@fortawesome/free-brands-svg-icons@^6.4.2":
-  version "6.5.2"
-  resolved "https://registry.npmjs.org/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-6.5.2.tgz"
-  integrity sha512-zi5FNYdmKLnEc0jc0uuHH17kz/hfYTg4Uei0wMGzcoCL/4d3WM3u1VMc0iGGa31HuhV5i7ZK8ZlTCQrHqRHSGQ==
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-6.6.0.tgz"
+  integrity sha512-1MPD8lMNW/earme4OQi1IFHtmHUwAKgghXlNwWi9GO7QkTfD+IIaYpIai4m2YJEzqfEji3jFHX1DZI5pbY/biQ==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "6.5.2"
+    "@fortawesome/fontawesome-common-types" "6.6.0"
 
 "@fortawesome/free-regular-svg-icons@^6.4.2":
-  version "6.5.2"
-  resolved "https://registry.npmjs.org/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-6.5.2.tgz"
-  integrity sha512-iabw/f5f8Uy2nTRtJ13XZTS1O5+t+anvlamJ3zJGLEVE2pKsAWhPv2lq01uQlfgCX7VaveT3EVs515cCN9jRbw==
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-6.6.0.tgz"
+  integrity sha512-Yv9hDzL4aI73BEwSEh20clrY8q/uLxawaQ98lekBx6t9dQKDHcDzzV1p2YtBGTtolYtNqcWdniOnhzB+JPnQEQ==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "6.5.2"
+    "@fortawesome/fontawesome-common-types" "6.6.0"
 
 "@fortawesome/free-solid-svg-icons@^6.4.2":
-  version "6.5.2"
-  resolved "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.5.2.tgz"
-  integrity sha512-QWFZYXFE7O1Gr1dTIp+D6UcFUF0qElOnZptpi7PBUMylJh+vFmIedVe1Ir6RM1t2tEQLLSV1k7bR4o92M+uqlw==
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.6.0.tgz"
+  integrity sha512-IYv/2skhEDFc2WGUcqvFJkeK39Q+HyPf5GHUrT/l2pKbtgEIv1al1TKd6qStR5OIwQdN1GZP54ci3y4mroJWjA==
   dependencies:
+<<<<<<< HEAD
     "@fortawesome/fontawesome-common-types" "6.5.2"
 =======
 "@fortawesome/fontawesome-common-types@6.6.0":
@@ -3539,6 +4148,9 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "6.6.0"
 >>>>>>> Stashed changes
+=======
+    "@fortawesome/fontawesome-common-types" "6.6.0"
+>>>>>>> mapbox
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
@@ -3596,6 +4208,7 @@
     "@jridgewell/trace-mapping" "^0.3.25"
 
 "@jridgewell/sourcemap-codec@^1.4.10", "@jridgewell/sourcemap-codec@^1.4.14", "@jridgewell/sourcemap-codec@^1.4.15":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.4.15"
   resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz"
@@ -3605,6 +4218,11 @@
   resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 >>>>>>> Stashed changes
+=======
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz"
+  integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
+>>>>>>> mapbox
 
 "@jridgewell/trace-mapping@^0.3.17", "@jridgewell/trace-mapping@^0.3.20", "@jridgewell/trace-mapping@^0.3.24", "@jridgewell/trace-mapping@^0.3.25":
   version "0.3.25"
@@ -4341,6 +4959,7 @@
     tslib "^2.3.0"
 
 "@ng-select/ng-select@^13.2.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "13.2.0"
   resolved "https://registry.npmjs.org/@ng-select/ng-select/-/ng-select-13.2.0.tgz"
@@ -4350,6 +4969,11 @@
   resolved "https://registry.npmjs.org/@ng-select/ng-select/-/ng-select-13.7.0.tgz"
   integrity sha512-GMNu3bLYxWAbgy9pXZ4RgnWp/cxRcrWRQdxLLyg8p9gMCLpim1p4TXR8laXJKK25MKG/LEaWgs+90yCVOoWgZA==
 >>>>>>> Stashed changes
+=======
+  version "13.7.0"
+  resolved "https://registry.npmjs.org/@ng-select/ng-select/-/ng-select-13.7.0.tgz"
+  integrity sha512-GMNu3bLYxWAbgy9pXZ4RgnWp/cxRcrWRQdxLLyg8p9gMCLpim1p4TXR8laXJKK25MKG/LEaWgs+90yCVOoWgZA==
+>>>>>>> mapbox
   dependencies:
     tslib "^2.3.1"
 
@@ -4375,10 +4999,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngtools/webpack@17.3.8":
-  version "17.3.8"
-  resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-17.3.8.tgz"
-  integrity sha512-CjSVVa/9fzMpEDQP01SC4colKCbZwj7vUq0H2bivp8jVsmd21x9Fu0gDBH0Y9NdfAIm4eGZvmiZKMII3vIOaYQ==
+"@ngtools/webpack@17.3.9":
+  version "17.3.9"
+  resolved "https://registry.npmjs.org/@ngtools/webpack/-/webpack-17.3.9.tgz"
+  integrity sha512-2+NvEQuYKRWdZaJbRJWEnR48tpW0uYbhwfHBHLDI9Kazb3mb0oAwYBVXdq+TtDLBypXnMsFpCewjRHTvkVx4/A==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -4420,6 +5044,7 @@
     semver "^7.3.5"
 
 "@npmcli/git@^5.0.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "5.0.7"
   resolved "https://registry.npmjs.org/@npmcli/git/-/git-5.0.7.tgz"
@@ -4434,6 +5059,14 @@
     "@npmcli/promise-spawn" "^7.0.0"
     ini "^4.1.3"
 >>>>>>> Stashed changes
+=======
+  version "5.0.8"
+  resolved "https://registry.npmjs.org/@npmcli/git/-/git-5.0.8.tgz"
+  integrity sha512-liASfw5cqhjNW9UFd+ruwwdEf/lbOAQjLL2XY2dFW/bkJheXDYZgOyul/4gVvEV4BWkTXjYGmDqMw9uegdbJNQ==
+  dependencies:
+    "@npmcli/promise-spawn" "^7.0.0"
+    ini "^4.1.3"
+>>>>>>> mapbox
     lru-cache "^10.0.1"
     npm-pick-manifest "^9.0.0"
     proc-log "^4.0.0"
@@ -4501,6 +5134,7 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "@rollup/rollup-win32-x64-msvc@4.18.0":
   version "4.18.0"
@@ -4512,14 +5146,20 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.21.1.tgz"
   integrity sha512-xGiIH95H1zU7naUyTKEyOA/I0aexNMUdO9qRv0bLKN3qu25bBdrxZHqA3PTJ24YNN/GdMzG4xkDcd/GvjuhfLg==
 >>>>>>> Stashed changes
+=======
+"@rollup/rollup-win32-x64-msvc@4.21.2":
+  version "4.21.2"
+  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.21.2.tgz"
+  integrity sha512-6UUxd0+SKomjdzuAcp+HAmxw1FlGBnl1v2yEPSabtx4lBfdXHDVsW7+lQkgz9cNFJGY3AWR7+V8P5BqkD9L9nA==
+>>>>>>> mapbox
 
-"@schematics/angular@17.3.8":
-  version "17.3.8"
-  resolved "https://registry.npmjs.org/@schematics/angular/-/angular-17.3.8.tgz"
-  integrity sha512-2g4OmSyE9YGq50Uj7fNI26P/TSAFJ7ZuirwTF2O7Xc4XRQ29/tYIIqhezpNlTb6rlYblcQuMcUZBrMfWJHcqJw==
+"@schematics/angular@17.3.9":
+  version "17.3.9"
+  resolved "https://registry.npmjs.org/@schematics/angular/-/angular-17.3.9.tgz"
+  integrity sha512-q6N8mbcYC6cgPyjTrMH7ehULQoUUwEYN4g7uo4ylZ/PFklSLJvpSp4BuuxANgW449qHSBvQfdIoui9ayAUXQzA==
   dependencies:
-    "@angular-devkit/core" "17.3.8"
-    "@angular-devkit/schematics" "17.3.8"
+    "@angular-devkit/core" "17.3.9"
+    "@angular-devkit/schematics" "17.3.9"
     jsonc-parser "3.2.1"
 
 "@sigstore/bundle@^2.3.2":
@@ -4574,6 +5214,7 @@
   integrity sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==
 
 "@sweetalert2/ngx-sweetalert2@^12.3.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "12.3.0"
   resolved "https://registry.npmjs.org/@sweetalert2/ngx-sweetalert2/-/ngx-sweetalert2-12.3.0.tgz"
@@ -4583,6 +5224,11 @@
   resolved "https://registry.npmjs.org/@sweetalert2/ngx-sweetalert2/-/ngx-sweetalert2-12.4.0.tgz"
   integrity sha512-8ZufWS5GRTBt8fCMUHFwDX6Yftbfzfs6zdshcpzTXbTEpIBYYOXL/ODHcdEOpgh/7bPjwi0SzDYcdRtwnrZfIQ==
 >>>>>>> Stashed changes
+=======
+  version "12.4.0"
+  resolved "https://registry.npmjs.org/@sweetalert2/ngx-sweetalert2/-/ngx-sweetalert2-12.4.0.tgz"
+  integrity sha512-8ZufWS5GRTBt8fCMUHFwDX6Yftbfzfs6zdshcpzTXbTEpIBYYOXL/ODHcdEOpgh/7bPjwi0SzDYcdRtwnrZfIQ==
+>>>>>>> mapbox
   dependencies:
     tslib "^2.0.0"
 
@@ -4679,6 +5325,7 @@
   resolved "https://registry.npmjs.org/@types/crypto-js/-/crypto-js-4.2.2.tgz"
   integrity sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==
 
+<<<<<<< HEAD
 "@types/eslint-scope@^3.7.3":
   version "3.7.7"
   resolved "https://registry.npmjs.org/@types/eslint-scope/-/eslint-scope-3.7.7.tgz"
@@ -4702,11 +5349,15 @@
     "@types/json-schema" "*"
 
 "@types/estree@*", "@types/estree@^1.0.5", "@types/estree@1.0.5":
+=======
+"@types/estree@^1.0.5", "@types/estree@1.0.5":
+>>>>>>> mapbox
   version "1.0.5"
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.5.tgz"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
 
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.33":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "4.19.3"
   resolved "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-4.19.3.tgz"
@@ -4716,6 +5367,11 @@
   resolved "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-4.19.5.tgz"
   integrity sha512-y6W03tvrACO72aijJ5uF02FRq5cgDR9lUxddQ8vyF+GvmjJQqbzDcJngEjURc+ZsG31VI3hODNZJ2URj86pzmg==
 >>>>>>> Stashed changes
+=======
+  version "4.19.5"
+  resolved "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-4.19.5.tgz"
+  integrity sha512-y6W03tvrACO72aijJ5uF02FRq5cgDR9lUxddQ8vyF+GvmjJQqbzDcJngEjURc+ZsG31VI3hODNZJ2URj86pzmg==
+>>>>>>> mapbox
   dependencies:
     "@types/node" "*"
     "@types/qs" "*"
@@ -4738,6 +5394,7 @@
   integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
 
 "@types/google.maps@^3.54.10":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "3.55.9"
   resolved "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.55.9.tgz"
@@ -4747,6 +5404,11 @@
   resolved "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.55.12.tgz"
   integrity sha512-Q8MsLE+YYIrE1H8wdN69YHHAF8h7ApvF5MiMXh/zeCpP9Ut745mV9M0F4X4eobZ2WJe9k8tW2ryYjLa87IO2Sg==
 >>>>>>> Stashed changes
+=======
+  version "3.57.0"
+  resolved "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.57.0.tgz"
+  integrity sha512-8X/HqaUXob25aVslslO84p9ESInpOQd3lMxW085IxqZZ1opRuFfwx2/c1JIUFVvCkkK+sCQHFDJ+Kw60Gsi1qA==
+>>>>>>> mapbox
 
 "@types/http-errors@*":
   version "2.0.4"
@@ -4754,6 +5416,7 @@
   integrity sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==
 
 "@types/http-proxy@^1.17.8":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.17.14"
   resolved "https://registry.npmjs.org/@types/http-proxy/-/http-proxy-1.17.14.tgz"
@@ -4763,6 +5426,11 @@
   resolved "https://registry.npmjs.org/@types/http-proxy/-/http-proxy-1.17.15.tgz"
   integrity sha512-25g5atgiVNTIv0LBDTg1H74Hvayx0ajtJPLLcYE3whFv75J0pWNtOBzaXJQgDTmrX1bx5U9YC2w/n65BN1HwRQ==
 >>>>>>> Stashed changes
+=======
+  version "1.17.15"
+  resolved "https://registry.npmjs.org/@types/http-proxy/-/http-proxy-1.17.15.tgz"
+  integrity sha512-25g5atgiVNTIv0LBDTg1H74Hvayx0ajtJPLLcYE3whFv75J0pWNtOBzaXJQgDTmrX1bx5U9YC2w/n65BN1HwRQ==
+>>>>>>> mapbox
   dependencies:
     "@types/node" "*"
 
@@ -4778,7 +5446,7 @@
   dependencies:
     "@types/sizzle" "*"
 
-"@types/json-schema@*", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
+"@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.15"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
@@ -4796,6 +5464,7 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@^18.0.0 || >=20.0.0", "@types/node@>=10.0.0":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "20.14.2"
   resolved "https://registry.npmjs.org/@types/node/-/node-20.14.2.tgz"
@@ -4809,6 +5478,13 @@
   dependencies:
     undici-types "~6.19.2"
 >>>>>>> Stashed changes
+=======
+  version "22.5.1"
+  resolved "https://registry.npmjs.org/@types/node/-/node-22.5.1.tgz"
+  integrity sha512-KkHsxej0j9IW1KKOOAA/XBA0z08UFSrRQHErzEfA3Vgq57eXIMYboIlHJuYIfd+lwCQjtKqUu3UnmKbtUc9yRw==
+  dependencies:
+    undici-types "~6.19.2"
+>>>>>>> mapbox
 
 "@types/qs@*":
   version "6.9.15"
@@ -4862,6 +5538,7 @@
     "@types/node" "*"
 
 "@types/ws@^8.5.5":
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "8.5.10"
   resolved "https://registry.npmjs.org/@types/ws/-/ws-8.5.10.tgz"
@@ -4871,6 +5548,11 @@
   resolved "https://registry.npmjs.org/@types/ws/-/ws-8.5.12.tgz"
   integrity sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==
 >>>>>>> Stashed changes
+=======
+  version "8.5.12"
+  resolved "https://registry.npmjs.org/@types/ws/-/ws-8.5.12.tgz"
+  integrity sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==
+>>>>>>> mapbox
   dependencies:
     "@types/node" "*"
 
@@ -4879,7 +5561,7 @@
   resolved "https://registry.npmjs.org/@vitejs/plugin-basic-ssl/-/plugin-basic-ssl-1.1.0.tgz"
   integrity sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==
 
-"@webassemblyjs/ast@^1.11.5", "@webassemblyjs/ast@1.12.1":
+"@webassemblyjs/ast@^1.12.1", "@webassemblyjs/ast@1.12.1":
   version "1.12.1"
   resolved "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.12.1.tgz"
   integrity sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==
@@ -4945,7 +5627,7 @@
   resolved "https://registry.npmjs.org/@webassemblyjs/utf8/-/utf8-1.11.6.tgz"
   integrity sha512-vtXf2wTQ3+up9Zsg8sa2yWiQpzSsMyXj0qViVP6xKGCUT8p8YJ6HqI7l5eCnWx1T/FYdsv07HQs2wTFbbof/RA==
 
-"@webassemblyjs/wasm-edit@^1.11.5":
+"@webassemblyjs/wasm-edit@^1.12.1":
   version "1.12.1"
   resolved "https://registry.npmjs.org/@webassemblyjs/wasm-edit/-/wasm-edit-1.12.1.tgz"
   integrity sha512-1DuwbVvADvS5mGnXbE+c9NfA8QRcZ6iKquqjjmR10k6o+zzsRVesil54DKexiowcFCPdr/Q0qaMgB01+SQ1u6g==
@@ -4980,7 +5662,7 @@
     "@webassemblyjs/wasm-gen" "1.12.1"
     "@webassemblyjs/wasm-parser" "1.12.1"
 
-"@webassemblyjs/wasm-parser@^1.11.5", "@webassemblyjs/wasm-parser@1.12.1":
+"@webassemblyjs/wasm-parser@^1.12.1", "@webassemblyjs/wasm-parser@1.12.1":
   version "1.12.1"
   resolved "https://registry.npmjs.org/@webassemblyjs/wasm-parser/-/wasm-parser-1.12.1.tgz"
   integrity sha512-xikIi7c2FHXysxXe3COrVUPSheuBtpcfhbpFj4gmu7KRLYOzANztwUU0IbsqvMqzuNK2+glRGWCEqZo1WCLyAQ==
@@ -5033,12 +5715,13 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.8:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
-acorn-import-assertions@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.npmjs.org/acorn-import-assertions/-/acorn-import-assertions-1.9.0.tgz"
-  integrity sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==
+acorn-import-attributes@^1.9.5:
+  version "1.9.5"
+  resolved "https://registry.npmjs.org/acorn-import-attributes/-/acorn-import-attributes-1.9.5.tgz"
+  integrity sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==
 
 acorn@^8, acorn@^8.7.1, acorn@^8.8.2:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "8.11.3"
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.11.3.tgz"
@@ -5048,6 +5731,11 @@ acorn@^8, acorn@^8.7.1, acorn@^8.8.2:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.12.1.tgz"
   integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
 >>>>>>> Stashed changes
+=======
+  version "8.12.1"
+  resolved "https://registry.npmjs.org/acorn/-/acorn-8.12.1.tgz"
+  integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
+>>>>>>> mapbox
 
 adjust-sourcemap-loader@^4.0.0:
   version "4.0.0"
@@ -5184,6 +5872,7 @@ anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 apexcharts@^3.45.2, apexcharts@^3.49.1:
   version "3.49.1"
@@ -5195,6 +5884,12 @@ apexcharts@^3.49.1:
   resolved "https://registry.npmjs.org/apexcharts/-/apexcharts-3.52.0.tgz"
   integrity sha512-7dg0ADKs8AA89iYMZMe2sFDG0XK5PfqllKV9N+i3hKHm3vEtdhwz8AlXGm+/b0nJ6jKiaXsqci5LfVxNhtB+dA==
 >>>>>>> Stashed changes
+=======
+apexcharts@^3.49.1:
+  version "3.53.0"
+  resolved "https://registry.npmjs.org/apexcharts/-/apexcharts-3.53.0.tgz"
+  integrity sha512-QESZHZY3w9LPQ64PGh1gEdfjYjJ5Jp+Dfy0D/CLjsLOPTpXzdxwlNMqRj+vPbTcP0nAHgjWv1maDqcEq6u5olw==
+>>>>>>> mapbox
   dependencies:
     "@yr/monotone-cubic-spline" "^1.0.3"
     svg.draggable.js "^2.2.2"
@@ -5378,6 +6073,7 @@ braces@^3.0.2, braces@^3.0.3, braces@~3.0.2:
   dependencies:
     fill-range "^7.1.1"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 browserslist@^4.21.10, browserslist@^4.21.5, browserslist@^4.22.2, browserslist@^4.23.0, "browserslist@>= 4.21.0":
   version "4.23.1"
@@ -5394,11 +6090,21 @@ browserslist@^4.21.10, browserslist@^4.21.5, browserslist@^4.23.0, browserslist@
   resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.23.3.tgz"
   integrity sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==
   dependencies:
+=======
+browserslist@^4.21.10, browserslist@^4.21.5, browserslist@^4.23.0, browserslist@^4.23.1, browserslist@^4.23.3, "browserslist@>= 4.21.0":
+  version "4.23.3"
+  resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.23.3.tgz"
+  integrity sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==
+  dependencies:
+>>>>>>> mapbox
     caniuse-lite "^1.0.30001646"
     electron-to-chromium "^1.5.4"
     node-releases "^2.0.18"
     update-browserslist-db "^1.1.0"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 buffer-from@^1.0.0:
   version "1.1.2"
@@ -5424,6 +6130,7 @@ bytes@3.1.2:
   integrity sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==
 
 cacache@^18.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "18.0.3"
   resolved "https://registry.npmjs.org/cacache/-/cacache-18.0.3.tgz"
@@ -5433,6 +6140,11 @@ cacache@^18.0.0:
   resolved "https://registry.npmjs.org/cacache/-/cacache-18.0.4.tgz"
   integrity sha512-B+L5iIa9mgcjLbliir2th36yEwPftrzteHYujzsx3dFP/31GCHcIeS8f5MGd80odLOjaOvSpU3EEAmRQptkxLQ==
 >>>>>>> Stashed changes
+=======
+  version "18.0.4"
+  resolved "https://registry.npmjs.org/cacache/-/cacache-18.0.4.tgz"
+  integrity sha512-B+L5iIa9mgcjLbliir2th36yEwPftrzteHYujzsx3dFP/31GCHcIeS8f5MGd80odLOjaOvSpU3EEAmRQptkxLQ==
+>>>>>>> mapbox
   dependencies:
     "@npmcli/fs" "^3.1.0"
     fs-minipass "^3.0.0"
@@ -5468,6 +6180,7 @@ camelcase@^5.3.1:
   resolved "https://registry.npmjs.org/camelcase/-/camelcase-5.3.1.tgz"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 caniuse-lite@^1.0.30001591, caniuse-lite@^1.0.30001629:
   version "1.0.30001633"
@@ -5479,6 +6192,12 @@ caniuse-lite@^1.0.30001591, caniuse-lite@^1.0.30001646:
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001653.tgz"
   integrity sha512-XGWQVB8wFQ2+9NZwZ10GxTYC5hk0Fa+q8cSkr0tgvMhYhMHP/QC+WTgrePMDBWiWc/pV+1ik82Al20XOK25Gcw==
 >>>>>>> Stashed changes
+=======
+caniuse-lite@^1.0.30001591, caniuse-lite@^1.0.30001646:
+  version "1.0.30001655"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001655.tgz"
+  integrity sha512-jRGVy3iSGO5Uutn2owlb5gR6qsGngTw9ZTb4ali9f3glshcNmJ2noam4Mo9zia5P9Dk3jNNydy7vQjuE5dQmfg==
+>>>>>>> mapbox
 
 chalk@^2.4.2:
   version "2.4.2"
@@ -5532,6 +6251,7 @@ chrome-trace-event@^1.0.2:
   resolved "https://registry.npmjs.org/chrome-trace-event/-/chrome-trace-event-1.0.4.tgz"
   integrity sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "ckeditor5@>=42.0.0 || ^0.0.0-nightly", ckeditor5@42.0.1:
   version "42.0.1"
@@ -5601,6 +6321,13 @@ chrome-trace-event@^1.0.2:
   resolved "https://registry.npmjs.org/ckeditor5/-/ckeditor5-43.0.0.tgz"
   integrity sha512-7amisPZrSPMuaSDRFVAz/BgplV5OzUpWs6jtFP6MNDh98QK/RLyGvm4vhxjEN5n2MCov/ZURphwYsKwStIX68Q==
   dependencies:
+=======
+"ckeditor5@>=42.0.0 || ^0.0.0-nightly", ckeditor5@43.0.0:
+  version "43.0.0"
+  resolved "https://registry.npmjs.org/ckeditor5/-/ckeditor5-43.0.0.tgz"
+  integrity sha512-7amisPZrSPMuaSDRFVAz/BgplV5OzUpWs6jtFP6MNDh98QK/RLyGvm4vhxjEN5n2MCov/ZURphwYsKwStIX68Q==
+  dependencies:
+>>>>>>> mapbox
     "@ckeditor/ckeditor5-adapter-ckfinder" "43.0.0"
     "@ckeditor/ckeditor5-alignment" "43.0.0"
     "@ckeditor/ckeditor5-autoformat" "43.0.0"
@@ -5721,7 +6448,10 @@ ckeditor5@42.0.2:
     "@ckeditor/ckeditor5-watchdog" "42.0.2"
     "@ckeditor/ckeditor5-widget" "42.0.2"
     "@ckeditor/ckeditor5-word-count" "42.0.2"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 clean-stack@^2.0.0:
   version "2.2.0"
@@ -5784,17 +6514,22 @@ color-convert@^1.9.0:
   dependencies:
     color-name "1.1.3"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 color-convert@^2.0.1:
 =======
 color-convert@^2.0.1, color-convert@2.0.1:
 >>>>>>> Stashed changes
+=======
+color-convert@^2.0.1, color-convert@2.0.1:
+>>>>>>> mapbox
   version "2.0.1"
   resolved "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz"
   integrity sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==
   dependencies:
     color-name "~1.1.4"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 color-convert@2.0.1:
   version "2.0.1"
@@ -5812,18 +6547,27 @@ color-name@~1.1.4:
 =======
 color-name@^1.0.0, color-name@~1.1.4:
 >>>>>>> Stashed changes
+=======
+color-name@^1.0.0, color-name@~1.1.4:
+>>>>>>> mapbox
   version "1.1.4"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> mapbox
 color-name@1.1.3:
   version "1.1.3"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz"
   integrity sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 color-parse@1.4.2:
   version "1.4.2"
   resolved "https://registry.npmjs.org/color-parse/-/color-parse-1.4.2.tgz"
@@ -5943,6 +6687,7 @@ copy-webpack-plugin@11.0.0:
     serialize-javascript "^6.0.0"
 
 core-js-compat@^3.31.0, core-js-compat@^3.34.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "3.37.1"
   resolved "https://registry.npmjs.org/core-js-compat/-/core-js-compat-3.37.1.tgz"
@@ -5956,6 +6701,13 @@ core-js-compat@^3.31.0, core-js-compat@^3.34.0:
   dependencies:
     browserslist "^4.23.3"
 >>>>>>> Stashed changes
+=======
+  version "3.38.1"
+  resolved "https://registry.npmjs.org/core-js-compat/-/core-js-compat-3.38.1.tgz"
+  integrity sha512-JRH6gfXxGmrzF3tZ57lFx97YARxCXPaMzPo6jELZhv88pBH5VXpQ+y0znKGlFnzuaihqhLbefxSJxWJMPtfDzw==
+  dependencies:
+    browserslist "^4.23.3"
+>>>>>>> mapbox
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -6063,6 +6815,7 @@ date-format@^4.0.14:
   integrity sha512-39BOQLs9ZjKh0/patS9nrT8wc3ioX3/eA/zgbKNopnF2wCqJEoxywwwElATYvRsXdnOxA/OQeQoFZ3rFjVajhg==
 
 debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.4, debug@~4.3.1, debug@~4.3.2, debug@~4.3.4, debug@4:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "4.3.5"
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.5.tgz"
@@ -6072,6 +6825,11 @@ debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.4, debug@~4.3.1, debug@~4.3
   resolved "https://registry.npmjs.org/debug/-/debug-4.3.6.tgz"
   integrity sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==
 >>>>>>> Stashed changes
+=======
+  version "4.3.6"
+  resolved "https://registry.npmjs.org/debug/-/debug-4.3.6.tgz"
+  integrity sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==
+>>>>>>> mapbox
   dependencies:
     ms "2.1.2"
 
@@ -6204,17 +6962,23 @@ ee-first@1.1.1:
   resolved "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 electron-to-chromium@^1.4.796:
   version "1.4.801"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.801.tgz"
   integrity sha512-PnlUz15ii38MZMD2/CEsAzyee8tv9vFntX5nhtd2/4tv4HqY7C5q2faUAjmkXS/UFpVooJ/5H6kayRKYWoGMXQ==
 =======
+=======
+>>>>>>> mapbox
 electron-to-chromium@^1.5.4:
   version "1.5.13"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.13.tgz"
   integrity sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -6244,6 +7008,7 @@ encoding@^0.1.13:
     iconv-lite "^0.6.2"
 
 engine.io-parser@~5.2.1:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "5.2.2"
   resolved "https://registry.npmjs.org/engine.io-parser/-/engine.io-parser-5.2.2.tgz"
@@ -6263,6 +7028,16 @@ engine.io@~6.5.2:
   resolved "https://registry.npmjs.org/engine.io/-/engine.io-6.5.5.tgz"
   integrity sha512-C5Pn8Wk+1vKBoHghJODM63yk8MvrO9EWZUfkAt5HAqIgPE4/8FF0PEGHXtEd40l223+cE5ABWuPzm38PHFXfMA==
 >>>>>>> Stashed changes
+=======
+  version "5.2.3"
+  resolved "https://registry.npmjs.org/engine.io-parser/-/engine.io-parser-5.2.3.tgz"
+  integrity sha512-HqD3yTBfnBxIrbnM1DoD6Pcq8NECnh8d4As1Qgh0z5Gg3jRRIqijury0CL3ghu/edArpUYiYqQiDUQBIs4np3Q==
+
+engine.io@~6.5.2:
+  version "6.5.5"
+  resolved "https://registry.npmjs.org/engine.io/-/engine.io-6.5.5.tgz"
+  integrity sha512-C5Pn8Wk+1vKBoHghJODM63yk8MvrO9EWZUfkAt5HAqIgPE4/8FF0PEGHXtEd40l223+cE5ABWuPzm38PHFXfMA==
+>>>>>>> mapbox
   dependencies:
     "@types/cookie" "^0.4.1"
     "@types/cors" "^2.8.12"
@@ -6273,6 +7048,7 @@ engine.io@~6.5.2:
     cors "~2.8.5"
     debug "~4.3.1"
     engine.io-parser "~5.2.1"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     ws "~8.11.0"
 
@@ -6288,22 +7064,36 @@ enhanced-resolve@^5.15.0:
   resolved "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-5.17.1.tgz"
   integrity sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==
 >>>>>>> Stashed changes
+=======
+    ws "~8.17.1"
+
+enhanced-resolve@^5.17.1:
+  version "5.17.1"
+  resolved "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-5.17.1.tgz"
+  integrity sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==
+>>>>>>> mapbox
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
 
 ent@~2.2.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "2.2.0"
   resolved "https://registry.npmjs.org/ent/-/ent-2.2.0.tgz"
   integrity sha512-GHrMyVZQWvTIdDtpiEXdHZnFQKzeO09apj8Cbl4pKWy4i0Oprcq17usfDt5aO63swf0JOeMWjWQE/LzgSRuWpA==
 =======
+=======
+>>>>>>> mapbox
   version "2.2.1"
   resolved "https://registry.npmjs.org/ent/-/ent-2.2.1.tgz"
   integrity sha512-QHuXVeZx9d+tIQAz/XztU0ZwZf2Agg9CcXcgE1rurqvdBeDBrpSwjl8/6XUqMg7tw2Y7uAdKb2sRv+bSEFqQ5A==
   dependencies:
     punycode "^1.4.1"
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 entities@^4.2.0, entities@^4.3.0, entities@^4.4.0:
   version "4.5.0"
@@ -6347,6 +7137,7 @@ es-errors@^1.3.0:
   integrity sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==
 
 es-module-lexer@^1.2.1:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.5.3"
   resolved "https://registry.npmjs.org/es-module-lexer/-/es-module-lexer-1.5.3.tgz"
@@ -6356,6 +7147,11 @@ es-module-lexer@^1.2.1:
   resolved "https://registry.npmjs.org/es-module-lexer/-/es-module-lexer-1.5.4.tgz"
   integrity sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==
 >>>>>>> Stashed changes
+=======
+  version "1.5.4"
+  resolved "https://registry.npmjs.org/es-module-lexer/-/es-module-lexer-1.5.4.tgz"
+  integrity sha512-MVNK56NiMrOwitFB7cqDwq0CQutbw+0BvLshJSse0MUNU+y1FC3bUS/AQg7oUng+/wKrrki7JfmwtVHkVfPLlw==
+>>>>>>> mapbox
 
 esbuild-wasm@0.20.1:
   version "0.20.1"
@@ -6421,9 +7217,9 @@ esbuild@0.20.1:
     "@esbuild/win32-x64" "0.20.1"
 
 escalade@^3.1.1, escalade@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.npmjs.org/escalade/-/escalade-3.1.2.tgz"
-  integrity sha512-ErCHMCae19vR8vQGe50xIsVomy19rg6gFu3+r3jkEO46suLMWBksvVyoGgQV+jOfl84ZSOSlmv6Gxa89PmTGmA==
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/escalade/-/escalade-3.2.0.tgz"
+  integrity sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -6676,6 +7472,7 @@ follow-redirects@^1.0.0:
   integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
 
 foreground-child@^3.1.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "3.2.0"
   resolved "https://registry.npmjs.org/foreground-child/-/foreground-child-3.2.0.tgz"
@@ -6685,6 +7482,11 @@ foreground-child@^3.1.0:
   resolved "https://registry.npmjs.org/foreground-child/-/foreground-child-3.3.0.tgz"
   integrity sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==
 >>>>>>> Stashed changes
+=======
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/foreground-child/-/foreground-child-3.3.0.tgz"
+  integrity sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==
+>>>>>>> mapbox
   dependencies:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
@@ -6793,6 +7595,7 @@ glob-to-regexp@^0.4.1:
   integrity sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==
 
 glob@^10.2.2:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "10.4.1"
   resolved "https://registry.npmjs.org/glob/-/glob-10.4.1.tgz"
@@ -6802,11 +7605,17 @@ glob@^10.2.2:
   resolved "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz"
   integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
 >>>>>>> Stashed changes
+=======
+  version "10.4.5"
+  resolved "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz"
+  integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
+>>>>>>> mapbox
   dependencies:
     foreground-child "^3.1.0"
     jackspeak "^3.1.2"
     minimatch "^9.0.4"
     minipass "^7.1.2"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     path-scurry "^1.11.1"
 
@@ -6823,15 +7632,28 @@ glob@^10.3.10:
   resolved "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz"
   integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
 >>>>>>> Stashed changes
+=======
+    package-json-from-dist "^1.0.0"
+    path-scurry "^1.11.1"
+
+glob@^10.3.10:
+  version "10.4.5"
+  resolved "https://registry.npmjs.org/glob/-/glob-10.4.5.tgz"
+  integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
+>>>>>>> mapbox
   dependencies:
     foreground-child "^3.1.0"
     jackspeak "^3.1.2"
     minimatch "^9.0.4"
     minipass "^7.1.2"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     package-json-from-dist "^1.0.0"
 >>>>>>> Stashed changes
+=======
+    package-json-from-dist "^1.0.0"
+>>>>>>> mapbox
     path-scurry "^1.11.1"
 
 glob@^7.1.3, glob@^7.1.4, glob@^7.1.7:
@@ -6869,7 +7691,7 @@ gopd@^1.0.1:
   dependencies:
     get-intrinsic "^1.1.3"
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4, graceful-fs@^4.2.6, graceful-fs@^4.2.9:
+graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.11, graceful-fs@^4.2.4, graceful-fs@^4.2.6:
   version "4.2.11"
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
@@ -6906,11 +7728,15 @@ has-symbols@^1.0.3:
   resolved "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.3.tgz"
   integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 hasown@^2.0.0:
 =======
 hasown@^2.0.0, hasown@^2.0.2:
 >>>>>>> Stashed changes
+=======
+hasown@^2.0.0, hasown@^2.0.2:
+>>>>>>> mapbox
   version "2.0.2"
   resolved "https://registry.npmjs.org/hasown/-/hasown-2.0.2.tgz"
   integrity sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==
@@ -7070,6 +7896,7 @@ ignore-walk@^6.0.4:
     minimatch "^9.0.0"
 
 ignore@^5.2.4:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "5.3.1"
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.3.1.tgz"
@@ -7079,6 +7906,11 @@ ignore@^5.2.4:
   resolved "https://registry.npmjs.org/ignore/-/ignore-5.3.2.tgz"
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
 >>>>>>> Stashed changes
+=======
+  version "5.3.2"
+  resolved "https://registry.npmjs.org/ignore/-/ignore-5.3.2.tgz"
+  integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
+>>>>>>> mapbox
 
 image-size@~0.5.0:
   version "0.5.5"
@@ -7086,6 +7918,7 @@ image-size@~0.5.0:
   integrity sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==
 
 immutable@^4.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "4.3.6"
   resolved "https://registry.npmjs.org/immutable/-/immutable-4.3.6.tgz"
@@ -7095,6 +7928,11 @@ immutable@^4.0.0:
   resolved "https://registry.npmjs.org/immutable/-/immutable-4.3.7.tgz"
   integrity sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==
 >>>>>>> Stashed changes
+=======
+  version "4.3.7"
+  resolved "https://registry.npmjs.org/immutable/-/immutable-4.3.7.tgz"
+  integrity sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==
+>>>>>>> mapbox
 
 import-fresh@^3.3.0:
   version "3.3.0"
@@ -7132,14 +7970,20 @@ inherits@2.0.3:
   resolved "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz"
   integrity sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> mapbox
 ini@^4.1.3:
   version "4.1.3"
   resolved "https://registry.npmjs.org/ini/-/ini-4.1.3.tgz"
   integrity sha512-X7rqawQBvfdjS10YU1y1YVreA3SsLrW9dX2CewP2EbBJM4ypVNLDkO5y04gejPwKIY9lR+7r9gn3rFPt/kmWFg==
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 ini@4.1.2:
   version "4.1.2"
   resolved "https://registry.npmjs.org/ini/-/ini-4.1.2.tgz"
@@ -7196,6 +8040,7 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 is-core-module@^2.13.0, is-core-module@^2.8.1:
   version "2.13.1"
@@ -7211,6 +8056,14 @@ is-core-module@^2.13.0:
   dependencies:
     hasown "^2.0.2"
 >>>>>>> Stashed changes
+=======
+is-core-module@^2.13.0:
+  version "2.15.1"
+  resolved "https://registry.npmjs.org/is-core-module/-/is-core-module-2.15.1.tgz"
+  integrity sha512-z0vtXSwucUJtANQWldhbtbt7BnL0vxiFjIdDLAatwhDYty2bad6s+rijD6Ri4YuYJubLzIJLUidCh09e1djEVQ==
+  dependencies:
+    hasown "^2.0.2"
+>>>>>>> mapbox
 
 is-docker@^2.0.0, is-docker@^2.1.1:
   version "2.2.1"
@@ -7351,6 +8204,7 @@ istanbul-reports@^3.0.5:
     istanbul-lib-report "^3.0.0"
 
 jackspeak@^3.1.2:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "3.4.0"
   resolved "https://registry.npmjs.org/jackspeak/-/jackspeak-3.4.0.tgz"
@@ -7360,6 +8214,11 @@ jackspeak@^3.1.2:
   resolved "https://registry.npmjs.org/jackspeak/-/jackspeak-3.4.3.tgz"
   integrity sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==
 >>>>>>> Stashed changes
+=======
+  version "3.4.3"
+  resolved "https://registry.npmjs.org/jackspeak/-/jackspeak-3.4.3.tgz"
+  integrity sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==
+>>>>>>> mapbox
   dependencies:
     "@isaacs/cliui" "^8.0.2"
   optionalDependencies:
@@ -7515,6 +8374,7 @@ karma-source-map-support@1.4.0:
     source-map-support "^0.5.5"
 
 karma@^6.0.0, karma@^6.3.0, karma@~6.4.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "6.4.3"
   resolved "https://registry.npmjs.org/karma/-/karma-6.4.3.tgz"
@@ -7524,6 +8384,11 @@ karma@^6.0.0, karma@^6.3.0, karma@~6.4.0:
   resolved "https://registry.npmjs.org/karma/-/karma-6.4.4.tgz"
   integrity sha512-LrtUxbdvt1gOpo3gxG+VAJlJAEMhbWlM4YrFQgql98FwF7+K8K12LYO4hnDdUkNjeztYrOXEMqgTajSWgmtI/w==
 >>>>>>> Stashed changes
+=======
+  version "6.4.4"
+  resolved "https://registry.npmjs.org/karma/-/karma-6.4.4.tgz"
+  integrity sha512-LrtUxbdvt1gOpo3gxG+VAJlJAEMhbWlM4YrFQgql98FwF7+K8K12LYO4hnDdUkNjeztYrOXEMqgTajSWgmtI/w==
+>>>>>>> mapbox
   dependencies:
     "@colors/colors" "1.5.0"
     body-parser "^1.19.0"
@@ -7561,6 +8426,7 @@ klona@^2.0.4:
   integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
 
 launch-editor@^2.6.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "2.6.1"
   resolved "https://registry.npmjs.org/launch-editor/-/launch-editor-2.6.1.tgz"
@@ -7570,6 +8436,11 @@ launch-editor@^2.6.0:
   resolved "https://registry.npmjs.org/launch-editor/-/launch-editor-2.8.1.tgz"
   integrity sha512-elBx2l/tp9z99X5H/qev8uyDywVh0VXAwEbjk8kJhnc5grOFkGh7aW6q55me9xnYbss261XtnUrysZ+XvGbhQA==
 >>>>>>> Stashed changes
+=======
+  version "2.8.1"
+  resolved "https://registry.npmjs.org/launch-editor/-/launch-editor-2.8.1.tgz"
+  integrity sha512-elBx2l/tp9z99X5H/qev8uyDywVh0VXAwEbjk8kJhnc5grOFkGh7aW6q55me9xnYbss261XtnUrysZ+XvGbhQA==
+>>>>>>> mapbox
   dependencies:
     picocolors "^1.0.0"
     shell-quote "^1.8.1"
@@ -7678,6 +8549,7 @@ log4js@^6.4.1:
     streamroller "^3.1.5"
 
 lru-cache@^10.0.1:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "10.2.2"
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-10.2.2.tgz"
@@ -7697,6 +8569,16 @@ lru-cache@^10.2.0:
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 >>>>>>> Stashed changes
+=======
+  version "10.4.3"
+  resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz"
+  integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
+
+lru-cache@^10.2.0:
+  version "10.4.3"
+  resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz"
+  integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
+>>>>>>> mapbox
 
 lru-cache@^5.1.1:
   version "5.1.1"
@@ -7763,6 +8645,7 @@ media-typer@0.3.0:
   integrity sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==
 
 memfs@^3.4.12, memfs@^3.4.3:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "3.6.0"
   resolved "https://registry.npmjs.org/memfs/-/memfs-3.6.0.tgz"
@@ -7772,6 +8655,11 @@ memfs@^3.4.12, memfs@^3.4.3:
   resolved "https://registry.npmjs.org/memfs/-/memfs-3.5.3.tgz"
   integrity sha512-UERzLsxzllchadvbPs5aolHh65ISpKpM+ccLbOJ8/vvpBKmAWf+la7dXFy7Mr0ySHbdHrFv5kGFCUHHe6GFEmw==
 >>>>>>> Stashed changes
+=======
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/memfs/-/memfs-3.5.3.tgz"
+  integrity sha512-UERzLsxzllchadvbPs5aolHh65ISpKpM+ccLbOJ8/vvpBKmAWf+la7dXFy7Mr0ySHbdHrFv5kGFCUHHe6GFEmw==
+>>>>>>> mapbox
   dependencies:
     fs-monkey "^1.0.4"
 
@@ -7796,6 +8684,7 @@ methods@~1.1.2:
   integrity sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==
 
 micromatch@^4.0.2, micromatch@^4.0.4:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "4.0.7"
   resolved "https://registry.npmjs.org/micromatch/-/micromatch-4.0.7.tgz"
@@ -7805,6 +8694,11 @@ micromatch@^4.0.2, micromatch@^4.0.4:
   resolved "https://registry.npmjs.org/micromatch/-/micromatch-4.0.8.tgz"
   integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
 >>>>>>> Stashed changes
+=======
+  version "4.0.8"
+  resolved "https://registry.npmjs.org/micromatch/-/micromatch-4.0.8.tgz"
+  integrity sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==
+>>>>>>> mapbox
   dependencies:
     braces "^3.0.3"
     picomatch "^2.3.1"
@@ -7862,6 +8756,7 @@ minimatch@^3.0.4, minimatch@^3.1.1:
     brace-expansion "^1.1.7"
 
 minimatch@^9.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "9.0.4"
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-9.0.4.tgz"
@@ -7871,10 +8766,16 @@ minimatch@^9.0.0:
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-9.0.5.tgz"
   integrity sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==
 >>>>>>> Stashed changes
+=======
+  version "9.0.5"
+  resolved "https://registry.npmjs.org/minimatch/-/minimatch-9.0.5.tgz"
+  integrity sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==
+>>>>>>> mapbox
   dependencies:
     brace-expansion "^2.0.1"
 
 minimatch@^9.0.4:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "9.0.4"
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-9.0.4.tgz"
@@ -7884,6 +8785,11 @@ minimatch@^9.0.4:
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-9.0.5.tgz"
   integrity sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==
 >>>>>>> Stashed changes
+=======
+  version "9.0.5"
+  resolved "https://registry.npmjs.org/minimatch/-/minimatch-9.0.5.tgz"
+  integrity sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==
+>>>>>>> mapbox
   dependencies:
     brace-expansion "^2.0.1"
 
@@ -7918,6 +8824,7 @@ minipass-flush@^1.0.5:
     minipass "^3.0.0"
 
 minipass-json-stream@^1.0.1:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.0.1"
   resolved "https://registry.npmjs.org/minipass-json-stream/-/minipass-json-stream-1.0.1.tgz"
@@ -7927,6 +8834,11 @@ minipass-json-stream@^1.0.1:
   resolved "https://registry.npmjs.org/minipass-json-stream/-/minipass-json-stream-1.0.2.tgz"
   integrity sha512-myxeeTm57lYs8pH2nxPzmEEg8DGIgW+9mv6D4JZD2pa81I/OBjeU7PtICXV6c9eRGTA5JMDsuIPUZRCyBMYNhg==
 >>>>>>> Stashed changes
+=======
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/minipass-json-stream/-/minipass-json-stream-1.0.2.tgz"
+  integrity sha512-myxeeTm57lYs8pH2nxPzmEEg8DGIgW+9mv6D4JZD2pa81I/OBjeU7PtICXV6c9eRGTA5JMDsuIPUZRCyBMYNhg==
+>>>>>>> mapbox
   dependencies:
     jsonparse "^1.3.1"
     minipass "^3.0.0"
@@ -8044,6 +8956,7 @@ neo-async@^2.6.2:
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
 ng-apexcharts@^1.10.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.10.0"
   resolved "https://registry.npmjs.org/ng-apexcharts/-/ng-apexcharts-1.10.0.tgz"
@@ -8053,6 +8966,11 @@ ng-apexcharts@^1.10.0:
   resolved "https://registry.npmjs.org/ng-apexcharts/-/ng-apexcharts-1.11.0.tgz"
   integrity sha512-bzZ2qMYpJJ1V/Yfp9eC5y7BuxrlZx4fc9ev9pNHW8qEs5B0yE5yW25WrLhoGTYsfeFZfiADWeAmZkceEiihpFw==
 >>>>>>> Stashed changes
+=======
+  version "1.11.0"
+  resolved "https://registry.npmjs.org/ng-apexcharts/-/ng-apexcharts-1.11.0.tgz"
+  integrity sha512-bzZ2qMYpJJ1V/Yfp9eC5y7BuxrlZx4fc9ev9pNHW8qEs5B0yE5yW25WrLhoGTYsfeFZfiADWeAmZkceEiihpFw==
+>>>>>>> mapbox
   dependencies:
     tslib "^2.0.0"
 
@@ -8127,6 +9045,7 @@ node-forge@^1:
   integrity sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==
 
 node-gyp@^10.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "10.1.0"
   resolved "https://registry.npmjs.org/node-gyp/-/node-gyp-10.1.0.tgz"
@@ -8136,6 +9055,11 @@ node-gyp@^10.0.0:
   resolved "https://registry.npmjs.org/node-gyp/-/node-gyp-10.2.0.tgz"
   integrity sha512-sp3FonBAaFe4aYTcFdZUn2NYkbP7xroPGYvQmP4Nl5PxamznItBnNCgjrVTKrEfQynInMsJvZrdmqUnysCJ8rw==
 >>>>>>> Stashed changes
+=======
+  version "10.2.0"
+  resolved "https://registry.npmjs.org/node-gyp/-/node-gyp-10.2.0.tgz"
+  integrity sha512-sp3FonBAaFe4aYTcFdZUn2NYkbP7xroPGYvQmP4Nl5PxamznItBnNCgjrVTKrEfQynInMsJvZrdmqUnysCJ8rw==
+>>>>>>> mapbox
   dependencies:
     env-paths "^2.2.0"
     exponential-backoff "^3.1.1"
@@ -8143,12 +9067,17 @@ node-gyp@^10.0.0:
     graceful-fs "^4.2.6"
     make-fetch-happen "^13.0.0"
     nopt "^7.0.0"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     proc-log "^3.0.0"
+=======
+    proc-log "^4.1.0"
+>>>>>>> mapbox
     semver "^7.3.5"
-    tar "^6.1.2"
+    tar "^6.2.1"
     which "^4.0.0"
 
+<<<<<<< HEAD
 node-releases@^2.0.14:
   version "2.0.14"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.14.tgz"
@@ -8159,11 +9088,16 @@ node-releases@^2.0.14:
     tar "^6.2.1"
     which "^4.0.0"
 
+=======
+>>>>>>> mapbox
 node-releases@^2.0.18:
   version "2.0.18"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.18.tgz"
   integrity sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 nopt@^7.0.0:
   version "7.2.1"
@@ -8173,6 +9107,7 @@ nopt@^7.0.0:
     abbrev "^2.0.0"
 
 normalize-package-data@^6.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "6.0.1"
   resolved "https://registry.npmjs.org/normalize-package-data/-/normalize-package-data-6.0.1.tgz"
@@ -8187,6 +9122,13 @@ normalize-package-data@^6.0.0:
   dependencies:
     hosted-git-info "^7.0.0"
 >>>>>>> Stashed changes
+=======
+  version "6.0.2"
+  resolved "https://registry.npmjs.org/normalize-package-data/-/normalize-package-data-6.0.2.tgz"
+  integrity sha512-V6gygoYb/5EmNI+MEGrWkC+e6+Rr7mTmfHrxDbLzxQogBkgzo76rkok0Am6thgSF7Mv2nLOajAJj5vDJZEFn7g==
+  dependencies:
+    hosted-git-info "^7.0.0"
+>>>>>>> mapbox
     semver "^7.3.5"
     validate-npm-package-license "^3.0.4"
 
@@ -8280,6 +9222,7 @@ object-assign@^4:
   integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
 
 object-inspect@^1.13.1:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.13.1"
   resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.1.tgz"
@@ -8289,6 +9232,11 @@ object-inspect@^1.13.1:
   resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.2.tgz"
   integrity sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==
 >>>>>>> Stashed changes
+=======
+  version "1.13.2"
+  resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.2.tgz"
+  integrity sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==
+>>>>>>> mapbox
 
 obuf@^1.0.0, obuf@^1.1.2:
   version "1.1.2"
@@ -8405,14 +9353,20 @@ p-try@^2.0.0:
   resolved "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> mapbox
 package-json-from-dist@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/package-json-from-dist/-/package-json-from-dist-1.0.0.tgz"
   integrity sha512-dATvCeZN/8wQsGywez1mzHtTlP22H8OEfPrVMLNr4/eGa+ijtLn/6M5f0dY8UKNrC2O9UCU6SSoG3qRKnt7STw==
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 pacote@17.0.6:
   version "17.0.6"
   resolved "https://registry.npmjs.org/pacote/-/pacote-17.0.6.tgz"
@@ -8617,6 +9571,7 @@ postcss-modules-values@^4.0.0:
     icss-utils "^5.0.0"
 
 postcss-selector-parser@^6.0.2, postcss-selector-parser@^6.0.4:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "6.1.0"
   resolved "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.0.tgz"
@@ -8626,6 +9581,11 @@ postcss-selector-parser@^6.0.2, postcss-selector-parser@^6.0.4:
   resolved "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz"
   integrity sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==
 >>>>>>> Stashed changes
+=======
+  version "6.1.2"
+  resolved "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz"
+  integrity sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==
+>>>>>>> mapbox
   dependencies:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
@@ -8654,14 +9614,20 @@ proc-log@^4.0.0:
   resolved "https://registry.npmjs.org/proc-log/-/proc-log-4.2.0.tgz"
   integrity sha512-g8+OnU/L2v+wyiVK+D5fA34J7EH8jZ8DDlvwhRCMxmMj7UCBvxiO1mGeN+36JXIKF4zevU4kRBd8lVgG9vLelA==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> mapbox
 proc-log@^4.1.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/proc-log/-/proc-log-4.2.0.tgz"
   integrity sha512-g8+OnU/L2v+wyiVK+D5fA34J7EH8jZ8DDlvwhRCMxmMj7UCBvxiO1mGeN+36JXIKF4zevU4kRBd8lVgG9vLelA==
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 proc-log@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/proc-log/-/proc-log-4.2.0.tgz"
@@ -8698,14 +9664,20 @@ prr@~1.0.1:
   resolved "https://registry.npmjs.org/prr/-/prr-1.0.1.tgz"
   integrity sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> mapbox
 punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.npmjs.org/punycode/-/punycode-1.4.1.tgz"
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 punycode@^2.1.0:
   version "2.3.1"
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz"
@@ -8931,6 +9903,7 @@ rimraf@^3.0.2:
     glob "^7.1.3"
 
 rollup@^4.2.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "4.18.0"
   resolved "https://registry.npmjs.org/rollup/-/rollup-4.18.0.tgz"
@@ -8978,6 +9951,30 @@ rollup@^4.2.0:
     "@rollup/rollup-win32-ia32-msvc" "4.21.1"
     "@rollup/rollup-win32-x64-msvc" "4.21.1"
 >>>>>>> Stashed changes
+=======
+  version "4.21.2"
+  resolved "https://registry.npmjs.org/rollup/-/rollup-4.21.2.tgz"
+  integrity sha512-e3TapAgYf9xjdLvKQCkQTnbTKd4a6jwlpQSJJFokHGaX2IVjoEqkIIhiQfqsi0cdwlOD+tQGuOd5AJkc5RngBw==
+  dependencies:
+    "@types/estree" "1.0.5"
+  optionalDependencies:
+    "@rollup/rollup-android-arm-eabi" "4.21.2"
+    "@rollup/rollup-android-arm64" "4.21.2"
+    "@rollup/rollup-darwin-arm64" "4.21.2"
+    "@rollup/rollup-darwin-x64" "4.21.2"
+    "@rollup/rollup-linux-arm-gnueabihf" "4.21.2"
+    "@rollup/rollup-linux-arm-musleabihf" "4.21.2"
+    "@rollup/rollup-linux-arm64-gnu" "4.21.2"
+    "@rollup/rollup-linux-arm64-musl" "4.21.2"
+    "@rollup/rollup-linux-powerpc64le-gnu" "4.21.2"
+    "@rollup/rollup-linux-riscv64-gnu" "4.21.2"
+    "@rollup/rollup-linux-s390x-gnu" "4.21.2"
+    "@rollup/rollup-linux-x64-gnu" "4.21.2"
+    "@rollup/rollup-linux-x64-musl" "4.21.2"
+    "@rollup/rollup-win32-arm64-msvc" "4.21.2"
+    "@rollup/rollup-win32-ia32-msvc" "4.21.2"
+    "@rollup/rollup-win32-x64-msvc" "4.21.2"
+>>>>>>> mapbox
     fsevents "~2.3.2"
 
 run-async@^3.0.0:
@@ -9246,6 +10243,7 @@ smart-buffer@^4.2.0:
   integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
 
 socket.io-adapter@~2.5.2:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "2.5.4"
   resolved "https://registry.npmjs.org/socket.io-adapter/-/socket.io-adapter-2.5.4.tgz"
@@ -9261,6 +10259,14 @@ socket.io-adapter@~2.5.2:
     debug "~4.3.4"
     ws "~8.17.1"
 >>>>>>> Stashed changes
+=======
+  version "2.5.5"
+  resolved "https://registry.npmjs.org/socket.io-adapter/-/socket.io-adapter-2.5.5.tgz"
+  integrity sha512-eLDQas5dzPgOWCk9GuuJC2lBqItuhKI4uxGgo9aIV7MYbk2h9Q6uULEh8WBzThoI7l+qU9Ast9fVUmkqPP9wYg==
+  dependencies:
+    debug "~4.3.4"
+    ws "~8.17.1"
+>>>>>>> mapbox
 
 socket.io-parser@~4.2.4:
   version "4.2.4"
@@ -9293,15 +10299,22 @@ sockjs@^0.3.24:
     websocket-driver "^0.7.4"
 
 socks-proxy-agent@^8.0.3:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "8.0.3"
   resolved "https://registry.npmjs.org/socks-proxy-agent/-/socks-proxy-agent-8.0.3.tgz"
   integrity sha512-VNegTZKhuGq5vSD6XNKlbqWhyt/40CgoEw8XxD6dhnm8Jq9IEa3nIa4HwnM8XOqU0CdB0BwWVXusqiFXfHB3+A==
+=======
+  version "8.0.4"
+  resolved "https://registry.npmjs.org/socks-proxy-agent/-/socks-proxy-agent-8.0.4.tgz"
+  integrity sha512-GNAq/eg8Udq2x0eNiFkr9gRg5bA7PXEWagQdeRX4cPSG+X/8V38v637gim9bjFptMk1QWsCTr0ttrJEiXbNnRw==
+>>>>>>> mapbox
   dependencies:
     agent-base "^7.1.1"
     debug "^4.3.4"
-    socks "^2.7.1"
+    socks "^2.8.3"
 
+<<<<<<< HEAD
 socks@^2.7.1:
 =======
   version "8.0.4"
@@ -9314,6 +10327,9 @@ socks@^2.7.1:
 
 socks@^2.8.3:
 >>>>>>> Stashed changes
+=======
+socks@^2.8.3:
+>>>>>>> mapbox
   version "2.8.3"
   resolved "https://registry.npmjs.org/socks/-/socks-2.8.3.tgz"
   integrity sha512-l5x7VUUWbjVFbafGLxPWkYsHIhEvmF85tbIeFZWc8ZPtoMyybuEhL7Jye/ooC4/d48FgOjSJXgsF/AJPYCW8Zw==
@@ -9389,6 +10405,7 @@ spdx-expression-parse@^3.0.0:
     spdx-license-ids "^3.0.0"
 
 spdx-license-ids@^3.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "3.0.18"
   resolved "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.18.tgz"
@@ -9398,6 +10415,11 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.20.tgz"
   integrity sha512-jg25NiDV/1fLtSgEgyvVyDunvaNHbuwF9lfNV17gSmPFAlYzdfNBlLtLzXTevwkPj7DhGbmN9VnmJIgLnhvaBw==
 >>>>>>> Stashed changes
+=======
+  version "3.0.20"
+  resolved "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.20.tgz"
+  integrity sha512-jg25NiDV/1fLtSgEgyvVyDunvaNHbuwF9lfNV17gSmPFAlYzdfNBlLtLzXTevwkPj7DhGbmN9VnmJIgLnhvaBw==
+>>>>>>> mapbox
 
 spdy-transport@^3.0.0:
   version "3.0.0"
@@ -9607,6 +10629,7 @@ svg.select.js@^3.0.1:
     svg.js "^2.6.5"
 
 sweetalert2@^11.0.0, sweetalert2@^11.11.1:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "11.11.1"
   resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.11.1.tgz"
@@ -9616,6 +10639,11 @@ sweetalert2@^11.0.0, sweetalert2@^11.11.1:
   resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.12.4.tgz"
   integrity sha512-ZSpyaLbAmn4b7xjnV9x9BFD1UOrCAhIzm1D8dZ443kGxtVKqbTIA5SgXs4xeEtmFfEXUyC3RBgpSlu1AXmCiHA==
 >>>>>>> Stashed changes
+=======
+  version "11.12.4"
+  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.12.4.tgz"
+  integrity sha512-ZSpyaLbAmn4b7xjnV9x9BFD1UOrCAhIzm1D8dZ443kGxtVKqbTIA5SgXs4xeEtmFfEXUyC3RBgpSlu1AXmCiHA==
+>>>>>>> mapbox
 
 symbol-observable@4.0.0:
   version "4.0.0"
@@ -9627,11 +10655,15 @@ tapable@^2.1.1, tapable@^2.2.0, tapable@^2.2.1:
   resolved "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 tar@^6.1.11, tar@^6.1.2:
 =======
 tar@^6.1.11, tar@^6.2.1:
 >>>>>>> Stashed changes
+=======
+tar@^6.1.11, tar@^6.2.1:
+>>>>>>> mapbox
   version "6.2.1"
   resolved "https://registry.npmjs.org/tar/-/tar-6.2.1.tgz"
   integrity sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==
@@ -9713,6 +10745,7 @@ tree-kill@1.2.2:
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
 
 tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.6.0, tslib@^2.6.2:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "2.6.3"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.3.tgz"
@@ -9722,6 +10755,11 @@ tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.6.0, tslib@^2.6
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.7.0.tgz"
   integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
 >>>>>>> Stashed changes
+=======
+  version "2.7.0"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.7.0.tgz"
+  integrity sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==
+>>>>>>> mapbox
 
 tslib@2.6.2:
   version "2.6.2"
@@ -9777,17 +10815,23 @@ ua-parser-js@^0.7.30:
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.38.tgz"
   integrity sha512-fYmIy7fKTSFAhG3fuPlubeGaMoAd6r0rSnfEsO5nEY55i26KSLt9EH7PLQiiqPUhNqYIJvSkTy1oArIcXAbPbA==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 undici-types@~5.26.4:
   version "5.26.5"
   resolved "https://registry.npmjs.org/undici-types/-/undici-types-5.26.5.tgz"
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 =======
+=======
+>>>>>>> mapbox
 undici-types@~6.19.2:
   version "6.19.8"
   resolved "https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz"
   integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 undici@6.11.1:
   version "6.11.1"
@@ -9841,17 +10885,23 @@ unpipe@~1.0.0, unpipe@1.0.0:
   resolved "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz"
   integrity sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 update-browserslist-db@^1.0.16:
   version "1.0.16"
   resolved "https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.0.16.tgz"
   integrity sha512-KVbTxlBYlckhF5wgfyZXTWnMn7MMZjMu9XG8bPlliUOP9ThaF4QnhP8qrjrH7DRzHfSk0oQv1wToW+iA5GajEQ==
 =======
+=======
+>>>>>>> mapbox
 update-browserslist-db@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.1.0.tgz"
   integrity sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
   dependencies:
     escalade "^3.1.2"
     picocolors "^1.0.1"
@@ -9917,7 +10967,15 @@ void-elements@^2.0.0:
   resolved "https://registry.npmjs.org/void-elements/-/void-elements-2.0.1.tgz"
   integrity sha512-qZKX4RnBzH2ugr8Lxa7x+0V6XD9Sb/ouARtiasEQCHB1EVU4NXtmHsDDrx1dO4ne5fc3J6EW05BP1Dl0z0iung==
 
-watchpack@^2.4.0, watchpack@2.4.0:
+watchpack@^2.4.1:
+  version "2.4.2"
+  resolved "https://registry.npmjs.org/watchpack/-/watchpack-2.4.2.tgz"
+  integrity sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==
+  dependencies:
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.1.2"
+
+watchpack@2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/watchpack/-/watchpack-2.4.0.tgz"
   integrity sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==
@@ -10018,26 +11076,25 @@ webpack-subresource-integrity@5.1.0:
   dependencies:
     typed-assert "^1.0.8"
 
-"webpack@^4.0.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.12.0, webpack@^5.30.0, webpack@^5.54.0, webpack@^5.72.1, webpack@>=5, webpack@5.90.3:
-  version "5.90.3"
-  resolved "https://registry.npmjs.org/webpack/-/webpack-5.90.3.tgz"
-  integrity sha512-h6uDYlWCctQRuXBs1oYpVe6sFcWedl0dpcVaTf/YF67J9bKvwJajFulMVSYKHrksMB3I/pIagRzDxwxkebuzKA==
+"webpack@^4.0.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.12.0, webpack@^5.30.0, webpack@^5.54.0, webpack@^5.72.1, webpack@>=5, webpack@5.94.0:
+  version "5.94.0"
+  resolved "https://registry.npmjs.org/webpack/-/webpack-5.94.0.tgz"
+  integrity sha512-KcsGn50VT+06JH/iunZJedYGUJS5FGjow8wb9c0v5n1Om8O1g4L6LjtfxwlXIATopoQu+vOXXa7gYisWxCoPyg==
   dependencies:
-    "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^1.0.5"
-    "@webassemblyjs/ast" "^1.11.5"
-    "@webassemblyjs/wasm-edit" "^1.11.5"
-    "@webassemblyjs/wasm-parser" "^1.11.5"
+    "@webassemblyjs/ast" "^1.12.1"
+    "@webassemblyjs/wasm-edit" "^1.12.1"
+    "@webassemblyjs/wasm-parser" "^1.12.1"
     acorn "^8.7.1"
-    acorn-import-assertions "^1.9.0"
+    acorn-import-attributes "^1.9.5"
     browserslist "^4.21.10"
     chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.15.0"
+    enhanced-resolve "^5.17.1"
     es-module-lexer "^1.2.1"
     eslint-scope "5.1.1"
     events "^3.2.0"
     glob-to-regexp "^0.4.1"
-    graceful-fs "^4.2.9"
+    graceful-fs "^4.2.11"
     json-parse-even-better-errors "^2.3.1"
     loader-runner "^4.2.0"
     mime-types "^2.1.27"
@@ -10045,7 +11102,7 @@ webpack-subresource-integrity@5.1.0:
     schema-utils "^3.2.0"
     tapable "^2.1.1"
     terser-webpack-plugin "^5.3.10"
-    watchpack "^2.4.0"
+    watchpack "^2.4.1"
     webpack-sources "^3.2.3"
 
 websocket-driver@^0.7.4, websocket-driver@>=0.5.1:
@@ -10129,6 +11186,7 @@ wrappy@1:
   resolved "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ws@^8.13.0:
   version "8.17.0"
@@ -10140,11 +11198,16 @@ ws@~8.11.0:
   resolved "https://registry.npmjs.org/ws/-/ws-8.11.0.tgz"
   integrity sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==
 =======
+=======
+>>>>>>> mapbox
 ws@^8.13.0, ws@~8.17.1:
   version "8.17.1"
   resolved "https://registry.npmjs.org/ws/-/ws-8.17.1.tgz"
   integrity sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> mapbox
 
 y18n@^5.0.5:
   version "5.0.8"
@@ -10198,6 +11261,7 @@ yargs@^17.2.1, yargs@17.7.2:
     yargs-parser "^21.1.1"
 
 yocto-queue@^1.0.0:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   version "1.0.0"
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-1.0.0.tgz"
@@ -10217,3 +11281,13 @@ zone.js@~0.14.0, zone.js@~0.14.3:
   resolved "https://registry.npmjs.org/zone.js/-/zone.js-0.14.10.tgz"
   integrity sha512-YGAhaO7J5ywOXW6InXNlLmfU194F8lVgu7bRntUF3TiG8Y3nBK0x1UJJuHUP/e8IyihkjCYqhCScpSwnlaSRkQ==
 >>>>>>> Stashed changes
+=======
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-1.1.1.tgz"
+  integrity sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==
+
+zone.js@~0.14.0, zone.js@~0.14.3:
+  version "0.14.10"
+  resolved "https://registry.npmjs.org/zone.js/-/zone.js-0.14.10.tgz"
+  integrity sha512-YGAhaO7J5ywOXW6InXNlLmfU194F8lVgu7bRntUF3TiG8Y3nBK0x1UJJuHUP/e8IyihkjCYqhCScpSwnlaSRkQ==
+>>>>>>> mapbox

@@ -215,6 +215,34 @@ export class SellPreviewComponent implements OnInit {
       type == 'email'
         ? `PropertyAnalytic/email/${this.id}`
         : `PropertyAnalytic/phone/${this.id}`;
-    this.http.get(api, false).subscribe((response) => {});
+    this.http.get(api, false).subscribe((response) => { });
   }
+
+  createSlideIndices(arr: any[]): number[] {
+    const indices = [];
+    for (let i = 0; i < arr.length; i += 2) {
+      indices.push(i);
+    }
+    return indices;
+  }
+
+  scrollDiv(event: Event, sectionId: string) {
+    // Scroll to the section
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Remove 'active' class from all tabBox elements
+    const tabs = document.querySelectorAll('.tabBox');
+    tabs.forEach(tab => {
+      tab.classList?.remove('active');
+    });
+
+    // Add 'active' class to the clicked tab
+    const clickedTab = event.target as HTMLElement;
+    console.log(clickedTab)
+    clickedTab?.classList?.add('active');
+  }
+
 }

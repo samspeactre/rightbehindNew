@@ -65,90 +65,107 @@ export class RentPropertyPageComponent implements OnInit {
   utilities!: any;
   amenities!: any;
   types = types;
+  submited:boolean = false
   private destroy$ = new Subject<void>();
   propertyAddForm: any = this.fb.group({
-    Title: ['', Validators.required],
-    Description: ['', Validators.required],
-    Category: ['', Validators.required],
-    AmentiyCategory: ['', Validators.required],
-    PropertyType: ['', Validators.required],
-    NoOfBed: [''],
-    LeaseMonth: [''],
-    NoOfBath: [''],
-    Area: [''],
-    Price: [''],
-    Deposit: [''],
-    Location: [''],
-    Country: [''],
-    Landmark: [''],
-    State: [''],
-    City: [''],
-    ZipCode: [''],
-    Unit: [''],
-    Plot: [''],
-    Street: [''],
-    Building: [''],
-    VideoUrl: [''],
+    Title: [null, Validators.required],
+    Description: [null, Validators.required],
+    Category: [null, Validators.required],
+    AmentiyCategory: [null, Validators.required],
+    PropertyType: [null, Validators.required],
+    NoOfBed: [null, Validators.required],
+    LeaseMonth: [null, Validators.required],
+    NoOfBath: [null, Validators.required],
+    Area: [null, Validators.required],
+    Price: [null, Validators.required],
+    Deposit: [null, Validators.required],
+    Location: [null, Validators.required],
+    Country: [null, Validators.required],
+    Landmark: [null, Validators.required],
+    State: [null, Validators.required],
+    City: [null, Validators.required],
+    ZipCode: [null, Validators.required],
+    Unit: [null, Validators.required],
+    Plot: [null, Validators.required],
+    Street: [null, Validators.required],
+    Building: [null, Validators.required],
+    VideoUrl: [null, Validators.required],
     Latitude: [25.761681],
     Longitude: [-80.191788],
-    PetPolicy: [''],
-    Parking: [''],
-    ParkingFees: [''],
-    Laundry: [''],
-    Terms: ['', Validators.required],
+    PetPolicy: [null, Validators.required],
+    Parking: [null, Validators.required],
+    ParkingFees: [null, Validators.required],
+    Laundry: [null, Validators.required],
+    Terms: [null, Validators.required],
     IsFurnished: [true],
     PropertyImageFiles: this.fb.array([]),
     Amenities: this.fb.array([]),
     Utilities: this.fb.array([]),
     FloorPlans: this.fb.array([
       this.fb.group({
-        PlanName: ['', Validators.required],
-        NoOfBed: ['', Validators.required],
-        NoOfBath: ['', Validators.required],
-        Area: ['', Validators.required],
-        StartPrice: ['', Validators.required],
-        EndPrice: ['', Validators.required],
-        Description: ['', Validators.required],
+        PlanName: [null, Validators.required],
+        NoOfBed: [null, Validators.required],
+        NoOfBath: [null, Validators.required],
+        Area: [null, Validators.required],
+        StartPrice: [null, Validators.required],
+        EndPrice: [null, Validators.required],
+        Description: [null, Validators.required],
         FloorPlanImage: this.fb.array([]),
         FloorPlanUnits: this.fb.array([
           this.fb.group({
-            Price: ['', Validators.required],
-            AvailabilityDate: ['', Validators.required],
+            Price: [null, Validators.required],
+            AvailabilityDate: [null, Validators.required],
           }),
         ]),
       }),
     ]),
     OpenHouses: this.fb.array([
       this.fb.group({
-        StartDateTime: [''],
-        EndDateTime: [''],
+        StartDateTime: [null, Validators.required],
+        EndDateTime: [null, Validators.required],
       }),
     ]),
     PropertyContact: this.fb.group({
-      UserRole: [''],
-      FullName: [''],
-      Email: [''],
-      Contact: [''],
-      IsEmailPrefered: [''],
+      UserRole: [null, Validators.required],
+      FullName: [null, Validators.required],
+      Email: [null, Validators.required],
+      Contact: [null, Validators.required],
+      IsEmailPrefered: [null, Validators.required],
     }),
     RentSpecial: this.fb.group({
-      Title: [''],
-      Description: [''],
-      Tag: [''],
-      StartDate: [''],
-      EndDate: [''],
+      Title: [null, Validators.required],
+      Description: [null, Validators.required],
+      Tag: [null, Validators.required],
+      StartDate: [null, Validators.required],
+      EndDate: [null, Validators.required],
     }),
     HomeFact: this.fb.group({
-      NoOfBeds: [''],
-      NoOfBaths: [''],
-      FinishedSqrFt: [''],
-      SqrFt: [''],
-      RemodelYear: [''],
-      BasementSqrFt: [''],
-      LotSize: [''],
-      ConstructedYear: [''],
-      HaoDues: [''],
-      GarageSqrFt: [''],
+      NoOfBeds: ['0'],
+      NoOfBaths: ['0'],
+      FinishedSqrFt: ['0'],
+      SqrFt: ['0'],
+      RemodelYear: ['01/10/1990'],
+      BasementSqrFt: ['0'],
+      LotSize: ['0'],
+      ConstructedYear: ['01/10/1990'],
+      HaoDues: ['01/10/1990'],
+      GarageSqrFt: ['0'],
+    }),
+    Fees: this.fb.group({
+      PetFee: [null, Validators.required],
+      Parking: [null, Validators.required],
+      TrashPickup: [null, Validators.required],
+      LawnCareSnowRemoval: [null, Validators.required],
+      PestControl: [null, Validators.required],
+      MonthlyEstimate: [null, Validators.required],
+    }),
+    OneTime: this.fb.group({
+      ApplicationFee: [null, Validators.required],
+      SecurityDeposit: [null, Validators.required],
+      PetDeposit: [null, Validators.required],
+      PetFee: [null, Validators.required],
+      AdministrativeFee: [null, Validators.required],
+      MoveInEstimate: [null, Validators.required],
     }),
   });
   radioValues = ['1 Month Free', '50% Off', 'Free Move-in'];
@@ -189,6 +206,8 @@ export class RentPropertyPageComponent implements OnInit {
                   ...this.previousData,
                   floorPlans: response?.model?.floorPlans,
                   homeFacts: response?.model?.homeFacts,
+                  fees: response?.model?.fees,
+                  oneTime: response?.model?.oneTime,
                   AmentiyCategory:
                     response?.model?.propertyAmenities?.[0]?.amenity
                       ?.amenityCategory?.amenityCategoryName,
@@ -213,12 +232,27 @@ export class RentPropertyPageComponent implements OnInit {
                   'RentSpecial'
                 ) as FormGroup;
                 RentSpecialGroup.addControl('Id', this.fb.control(null));
+
                 const homeFactGroupArray = this.propertyAddForm.get(
                   'HomeFact'
                 ) as FormGroup;
                 if (homeFactGroupArray) {
                   homeFactGroupArray.addControl('Id', this.fb.control(null));
                 }
+
+                const feesGroupArray = this.propertyAddForm.get(
+                  'Fees'
+                ) as FormGroup;
+                if (feesGroupArray) {
+                  feesGroupArray.addControl('Id', this.fb.control(null));
+                }
+                const oneTimeGroupArray = this.propertyAddForm.get(
+                  'OneTime'
+                ) as FormGroup;
+                if (oneTimeGroupArray) {
+                  oneTimeGroupArray.addControl('Id', this.fb.control(null));
+                }
+
                 const FloorPlansArray = this.propertyAddForm.get(
                   'FloorPlans'
                 ) as FormArray;
@@ -335,63 +369,69 @@ export class RentPropertyPageComponent implements OnInit {
     }
   }
   onSubmit() {
+    console.log('submitted')
     this.propertyAddForm.removeControl('AmentiyCategory');
     this.propertyAddForm.controls['Country'].setValue(
       this.propertyAddForm.controls['Country'].value +
-        '/' +
-        this.propertyAddForm.controls['State'].value
+      '/' +
+      this.propertyAddForm.controls['State'].value
     );
-    const formData = new FormData();
-    const appendFormData = (data: any, rootName: string = '') => {
-      if (data instanceof FileList) {
-        for (let i = 0; i < data.length; i++) {
-          formData.append(rootName, data[i]);
-        }
-      } else if (data instanceof Array) {
-        for (let i = 0; i < data.length; i++) {
-          if (data[i] instanceof File) {
+
+    console.log(this.propertyAddForm)
+    this.submited = true
+    if (this.propertyAddForm.valid) {
+      const formData = new FormData();
+      const appendFormData = (data: any, rootName: string = '') => {
+        if (data instanceof FileList) {
+          for (let i = 0; i < data.length; i++) {
             formData.append(rootName, data[i]);
-          } else {
-            appendFormData(data[i], `${rootName}[${i}]`);
           }
-        }
-      } else if (data instanceof Object && !(data instanceof File)) {
-        for (const key in data) {
-          if (data.hasOwnProperty(key)) {
-            appendFormData(data[key], rootName ? `${rootName}.${key}` : key);
+        } else if (data instanceof Array) {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i] instanceof File) {
+              formData.append(rootName, data[i]);
+            } else {
+              appendFormData(data[i], `${rootName}[${i}]`);
+            }
           }
+        } else if (data instanceof Object && !(data instanceof File)) {
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              appendFormData(data[key], rootName ? `${rootName}.${key}` : key);
+            }
+          }
+        } else {
+          formData.append(rootName, data);
         }
-      } else {
-        formData.append(rootName, data);
+      };
+      appendFormData(this.propertyAddForm.value);
+      if (this.previousData?.getData) {
+        formData.append('isActive', this.previousData?.isActive);
+        formData.append('isLive', this.previousData?.isLive);
+        formData.append('createdAt', this.previousData?.createdAt);
+        formData.append('isDeleted', this.previousData?.isDeleted);
       }
-    };
-    appendFormData(this.propertyAddForm.value);
-    if (this.previousData?.getData) {
-      formData.append('isActive', this.previousData?.isActive);
-      formData.append('isLive', this.previousData?.isLive);
-      formData.append('createdAt', this.previousData?.createdAt);
-      formData.append('isDeleted', this.previousData?.isDeleted);
+      const url = this.previousData?.getData
+        ? 'Property/update'
+        : 'Property/create';
+      this.http
+        .loaderPost(url, formData, true)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((response) => {
+          this.previousData = {
+            ...this.previousData,
+            id: response?.model?.id,
+          };
+          if (!this.previousData?.getData) {
+            this.fireSwal();
+          }
+          // if (this.previousData?.active == 'rent') {
+          //   this.router.navigateByUrl('/rent');
+          // } else {
+          //   this.router.navigateByUrl('/buy');
+          // }
+        });
     }
-    const url = this.previousData?.getData
-      ? 'Property/update'
-      : 'Property/create';
-    this.http
-      .loaderPost(url, formData, true)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((response) => {
-        this.previousData = {
-          ...this.previousData,
-          id: response?.model?.id,
-        };
-        if (!this.previousData?.getData) {
-          this.fireSwal();
-        }
-        // if (this.previousData?.active == 'rent') {
-        //   this.router.navigateByUrl('/rent');
-        // } else {
-        //   this.router.navigateByUrl('/buy');
-        // }
-      });
   }
   addFloorPlan(): void {
     const floorPlan = this.fb.group({
@@ -567,6 +607,8 @@ export class RentPropertyPageComponent implements OnInit {
     );
 
     await this.patchNestedControls('HomeFact', previousDataLower.homefacts);
+    await this.patchNestedControls('Fees', previousDataLower.fees);
+    await this.patchNestedControls('OneTime', previousDataLower.onetime);
     await this.patchNestedControls(
       'RentSpecial',
       previousDataLower.rentspecial

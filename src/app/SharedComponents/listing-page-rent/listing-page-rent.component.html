@@ -1,6 +1,6 @@
 <div class="position-relative overflow-hidden">
   <div class="position-sticky top-0 zIndex bg-white py-2 wow fadeInDown" id="searchHeight">
-    <div class="cstmContainer section-width">
+    <div class=" section-width">
       <app-search-bar-listing [search]="search" (searchEvent)="searchProperties($event)" [searching]="loader"
         [filter]="true" (showFilter)="showFil($event); open(content)" (closed)="closeFil()"></app-search-bar-listing>
       <!-- <div class="show" [ngClass]="[show ? 'd-block' : 'd-none']">
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <div class="cstmContainer overflow-hidden section-width">
+  <div class=" overflow-hidden section-width">
     <div class="w-100 d-flex align-items-start justify-content-between">
       @if((resize.windowSize$ | async)?.width > 1024 || !showMapClicked){
       <div class="colFirst">

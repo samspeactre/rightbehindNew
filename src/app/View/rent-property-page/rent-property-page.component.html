@@ -19,108 +19,80 @@
     <div class="row lower-portion mb-5">
       <div class="col-lg-3">
         <div class="left-portion">
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'property-information' }"
-            (click)="scrollToSection('property-information')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'property-information' }" (click)="scrollToSection('property-information')">
             Property Information
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'amenities' }"
-            (click)="scrollToSection('amenities')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'amenities' }"
+            (click)="scrollToSection('amenities')">
             Amenities
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'utilities' }"
-            (click)="scrollToSection('utilities')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'utilities' }"
+            (click)="scrollToSection('utilities')">
             Utilities
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'rent-special' }"
-            (click)="scrollToSection('rent-special')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'rent-special' }" (click)="scrollToSection('rent-special')">
             @if(previousData?.active == 'rent'){ Rent Special } @else{ Open
             House }
           </button>
           <br />
-          <button
+          <!-- <button
             class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
             [ngClass]="{ active: section == 'Home-Facts' }"
             (click)="scrollToSection('Home-Facts')"
           >
             Home Facts
+          </button> -->
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'Fees' }"
+            (click)="scrollToSection('Fees')">
+            Fees
+          </button>
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'One-Time' }"
+            (click)="scrollToSection('One-Time')">
+            One-Time
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'Pet-policy' }"
-            (click)="scrollToSection('Pet-policy')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'Pet-policy' }" (click)="scrollToSection('Pet-policy')">
             Pet Policy
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'laundry' }"
-            (click)="scrollToSection('laundry')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'laundry' }"
+            (click)="scrollToSection('laundry')">
             Laundry
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'gallery' }"
-            (click)="scrollToSection('gallery')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'gallery' }"
+            (click)="scrollToSection('gallery')">
             Gallery
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'videos' }"
-            (click)="scrollToSection('videos')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'videos' }"
+            (click)="scrollToSection('videos')">
             Videos
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'contact-info' }"
-            (click)="scrollToSection('contact-info')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'contact-info' }" (click)="scrollToSection('contact-info')">
             Contact Information
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'description' }"
-            (click)="scrollToSection('description')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'description' }" (click)="scrollToSection('description')">
             Description
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'floor-plans' }"
-            (click)="scrollToSection('floor-plans')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
+            [ngClass]="{ active: section == 'floor-plans' }" (click)="scrollToSection('floor-plans')">
             Floor Plans
           </button>
           <br />
-          <button
-            class="btnWhiteNBlueOutline mb-1 w-100 bold text-start"
-            [ngClass]="{ active: section == 'location' }"
-            (click)="scrollToSection('location')"
-          >
+          <button class="btnWhiteNBlueOutline mb-1 w-100 bold text-start" [ngClass]="{ active: section == 'location' }"
+            (click)="scrollToSection('location')">
             Location
           </button>
         </div>
@@ -144,118 +116,228 @@
                   <ng-option [value]="item?.value">{{ item?.name }}</ng-option>
                   }
                 </ng-select>
+
+                <div class="error" *ngIf="(propertyAddForm.controls['PropertyType'].invalid && (propertyAddForm.controls['PropertyType'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-6">
                 <p class="text-start mb-0">Property Title</p>
-                <input
-                  placeholder="Property Title"
-                  formControlName="Title"
-                  type="text"
-                />
+                <input placeholder="Property Title" formControlName="Title" type="text" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['Title'].invalid && (propertyAddForm.controls['Title'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Price</p>
-                <input
-                  placeholder="Price"
-                  formControlName="Price"
-                  type="number"
-                />
+                <input placeholder="Price" formControlName="Price" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['Price'].invalid && (propertyAddForm.controls['Price'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
+                
               </div>
               @if(previousData?.active == 'rent'){
               <div class="col-lg-4">
                 <p class="text-start mb-0">Lease Lenght In Months</p>
-                <input
-                  placeholder="Lease Lenght In Months"
-                  formControlName="LeaseMonth"
-                  type="number"
-                />
+                <input placeholder="Lease Lenght In Months" formControlName="LeaseMonth" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['LeaseMonth'].invalid && (propertyAddForm.controls['LeaseMonth'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Monthly Rent</p>
-                <input
-                  placeholder="Monthly Rent"
-                  formControlName="Price"
-                  type="number"
-                />
+                <input placeholder="Monthly Rent" formControlName="Price" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['Price'].invalid && (propertyAddForm.controls['Price'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Deposit</p>
-                <input
-                  placeholder="Deposit"
-                  formControlName="Deposit"
-                  type="number"
-                />
+                <input placeholder="Deposit" formControlName="Deposit" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['Deposit'].invalid && (propertyAddForm.controls['Deposit'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               }
               <div class="col-lg-4">
                 <p class="text-start mb-0">No. of Bedrooms</p>
-                <input
-                  placeholder="No. of Bedrooms"
-                  formControlName="NoOfBed"
-                  type="number"
-                />
+                <input placeholder="No. of Bedrooms" formControlName="NoOfBed" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['NoOfBed'].invalid && (propertyAddForm.controls['NoOfBed'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">No. of Bathrooms</p>
-                <input
-                  placeholder="No. of Bathrooms"
-                  formControlName="NoOfBath"
-                  type="number"
-                />
+                <input placeholder="No. of Bathrooms" formControlName="NoOfBath" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['NoOfBath'].invalid && (propertyAddForm.controls['NoOfBath'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Sqft</p>
-                <input
-                  placeholder="Sqft"
-                  formControlName="Area"
-                  type="number"
-                />
+                <input placeholder="Sqft" formControlName="Area" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['Area'].invalid && (propertyAddForm.controls['Area'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Parking</p>
-                <input
-                  placeholder="Parking"
-                  formControlName="Parking"
-                  type="text"
-                />
+                <input placeholder="Parking" formControlName="Parking" type="text" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['Parking'].invalid && (propertyAddForm.controls['Parking'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-4">
                 <p class="text-start mb-0">Parking Fees</p>
-                <input
-                  placeholder="Parking Fees"
-                  formControlName="ParkingFees"
-                  type="number"
-                />
+                <input placeholder="Parking Fees" formControlName="ParkingFees" type="number" />
+
+                <div class="error" *ngIf="(propertyAddForm.controls['ParkingFees'].invalid && (propertyAddForm.controls['ParkingFees'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
               <div class="col-lg-12">
                 <p class="text-start mb-0">Furnished</p>
                 <div class="row">
                   <div class="col-lg-3">
                     <div class="dCenter check-box justify-content-start gap-2">
-                      <input
-                        type="radio"
-                        formControlName="IsFurnished"
-                        [value]="true"
-                        id="isFurnishedYes"
-                      />
+                      <input type="radio" formControlName="IsFurnished" [value]="true" id="isFurnishedYes" />
                       <label for="isFurnishedYes">Yes</label>
                     </div>
                   </div>
                   <div class="col-lg-3">
                     <div class="dCenter check-box justify-content-start gap-2">
-                      <input
-                        type="radio"
-                        formControlName="IsFurnished"
-                        [value]="false"
-                        id="isFurnishedNo"
-                      />
+                      <input type="radio" formControlName="IsFurnished" [value]="false" id="isFurnishedNo" />
                       <label for="isFurnishedNo">No</label>
                     </div>
                   </div>
                 </div>
+                <div class="error" *ngIf="(propertyAddForm.controls['IsFurnished'].invalid && (propertyAddForm.controls['IsFurnished'].touched || submited))">
+                  <small class="text-danger">required.</small>
+                </div>
               </div>
             </div>
-            <div id="Home-Facts" formGroupName="HomeFact">
+            <div id="Fees" formGroupName="Fees">
+              <h2 class="mt-3">Fees</h2>
+              <div class="row">
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Pet Fee</p>
+                  <input placeholder="Pet Fee" formControlName="PetFee" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Fees.PetFee').invalid && (propertyAddForm.get('Fees.PetFee').touched || submited))">
+                    <small class="text-danger">Pet Fee is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Parking</p>
+                  <input placeholder="Parking" formControlName="Parking" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Fees.Parking').invalid && (propertyAddForm.get('Fees.Parking').touched || submited))">
+                    <small class="text-danger">Parking is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Trash Pickup</p>
+                  <input placeholder="Trash Pickup" formControlName="TrashPickup" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Fees.TrashPickup').invalid && (propertyAddForm.get('Fees.TrashPickup').touched || submited))">
+                    <small class="text-danger">Trash Pickup is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Lawn Care / Snow Removal</p>
+                  <input placeholder="Lawn Care / Snow Removal" formControlName="LawnCareSnowRemoval" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Fees.LawnCareSnowRemoval').invalid && (propertyAddForm.get('Fees.LawnCareSnowRemoval').touched || submited))">
+                    <small class="text-danger">Lawn Care / Snow Removal is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Pest Control</p>
+                  <input placeholder="Pest Control" formControlName="PestControl" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Fees.PestControl').invalid && (propertyAddForm.get('Fees.PestControl').touched || submited))">
+                    <small class="text-danger">Pest Control is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Monthly Estimate (including rent)</p>
+                  <input placeholder="Monthly Estimate" formControlName="MonthlyEstimate" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Fees.MonthlyEstimate').invalid && (propertyAddForm.get('Fees.MonthlyEstimate').touched || submited))">
+                    <small class="text-danger">Monthly Estimate is required.</small>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+            
+            
+            <div id="One-Time" formGroupName="OneTime">
+              <h2 class="mt-3">One-Time</h2>
+              <div class="row">
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Application Fee</p>
+                  <input placeholder="Application Fee" formControlName="ApplicationFee" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('OneTime.ApplicationFee').invalid && (propertyAddForm.get('OneTime.ApplicationFee').touched || submited))">
+                    <small class="text-danger">Application Fee is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Security Deposit</p>
+                  <input placeholder="Security Deposit" formControlName="SecurityDeposit" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('OneTime.SecurityDeposit').invalid && (propertyAddForm.get('OneTime.SecurityDeposit').touched || submited))">
+                    <small class="text-danger">Security Deposit is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Pet Deposit</p>
+                  <input placeholder="Pet Deposit" formControlName="PetDeposit" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('OneTime.PetDeposit').invalid && (propertyAddForm.get('OneTime.PetDeposit').touched || submited))">
+                    <small class="text-danger">Pet Deposit is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Pet Fee</p>
+                  <input placeholder="Pet Fee" formControlName="PetFee" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('OneTime.PetFee').invalid && (propertyAddForm.get('OneTime.PetFee').touched || submited))">
+                    <small class="text-danger">Pet Fee is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Administrative Fee</p>
+                  <input placeholder="Administrative Fee" formControlName="AdministrativeFee" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('OneTime.AdministrativeFee').invalid && (propertyAddForm.get('OneTime.AdministrativeFee').touched || submited))">
+                    <small class="text-danger">Administrative Fee is required.</small>
+                  </div>
+                </div>
+            
+                <div class="col-lg-4">
+                  <p class="text-start mb-0">Move In Estimate</p>
+                  <input placeholder="Move In Estimate" formControlName="MoveInEstimate" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('OneTime.MoveInEstimate').invalid && (propertyAddForm.get('OneTime.MoveInEstimate').touched || submited))">
+                    <small class="text-danger">Move In Estimate is required.</small>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+            
+            
+            <!-- <div id="Home-Facts" formGroupName="HomeFact">
               <h2 class="mt-3">Home Facts</h2>
               <div class="row">
                 <div class="col-lg-4">
@@ -339,20 +421,17 @@
                   />
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="checkbox-portion row">
               @if(amenityCategories?.length){
               <h2 id="amenities">Amenities</h2>
               <div class="col-lg-12">
                 <p class="text-start mb-0">Category</p>
-                <ng-select
-                  formControlName="AmentiyCategory"
-                  [searchable]="false"
-                >
+                <ng-select formControlName="AmentiyCategory" [searchable]="false">
                   @for (item of amenityCategories; track $index) {
                   <ng-option [value]="item?.amenityCategoryName">{{
                     item?.amenityCategoryName
-                  }}</ng-option>
+                    }}</ng-option>
                   }
                 </ng-select>
               </div>
@@ -366,19 +445,14 @@
               amenity) {
               <div class="col-lg-3">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input
-                    type="checkbox"
-                    [checked]="
+                  <input type="checkbox" [checked]="
                       propertyAddForm
                         .get('Amenities')
                         .value?.includes(amenity?.id)
-                    "
-                    [id]="'amenity' + amenity?.id"
-                    (change)="checkboxSelect($event, amenity?.id, 'Amenities')"
-                  />
+                    " [id]="'amenity' + amenity?.id" (change)="checkboxSelect($event, amenity?.id, 'Amenities')" />
                   <label [for]="'amenity' + amenity?.id">{{
                     amenity?.amenityName
-                  }}</label>
+                    }}</label>
                 </div>
               </div>
               } } @if(utilities?.length){
@@ -389,19 +463,14 @@
               @for (utility of utilities; let i =$index; track utility) {
               <div class="col-lg-3">
                 <div class="dCenter check-box justify-content-start gap-2">
-                  <input
-                    type="checkbox"
-                    [checked]="
+                  <input type="checkbox" [checked]="
                       propertyAddForm
                         .get('Utilities')
                         .value?.includes(utility?.id)
-                    "
-                    [id]="'utility' + utility?.id"
-                    (change)="checkboxSelect($event, utility?.id, 'Utilities')"
-                  />
+                    " [id]="'utility' + utility?.id" (change)="checkboxSelect($event, utility?.id, 'Utilities')" />
                   <label [for]="'utility' + utility?.id">{{
                     utility?.utilityName
-                  }}</label>
+                    }}</label>
                 </div>
               </div>
               } }
@@ -413,62 +482,60 @@
                 Enter any rent specials you wish to offer prospective renters.
               </p>
               <div formGroupName="RentSpecial" class="row">
+
                 <div class="col-lg-4">
                   <p class="text-start mb-0">Rent Special Title</p>
-                  <input
-                    placeholder="Rent Special Title"
-                    formControlName="Title"
-                    type="text"
-                  />
+                  <input placeholder="Rent Special Title" formControlName="Title" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('RentSpecial.Title').invalid && (propertyAddForm.get('RentSpecial.Title').touched || submited))">
+                    <small class="text-danger">Rent Special Title is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-4">
                   <p class="text-start mb-0">Start Date</p>
-                  <input
-                    placeholder="Start Date"
-                    formControlName="StartDate"
-                    type="date"
-                  />
+                  <input placeholder="Start Date" formControlName="StartDate" type="date" />
+                  <div class="error" *ngIf="(propertyAddForm.get('RentSpecial.StartDate').invalid && (propertyAddForm.get('RentSpecial.StartDate').touched || submited))">
+                    <small class="text-danger">Start Date is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-4">
                   <p class="text-start mb-0">End Date</p>
-                  <input
-                    placeholder="End Date"
-                    formControlName="EndDate"
-                    type="date"
-                  />
+                  <input placeholder="End Date" formControlName="EndDate" type="date" />
+                  <div class="error" *ngIf="(propertyAddForm.get('RentSpecial.EndDate').invalid && (propertyAddForm.get('RentSpecial.EndDate').touched || submited))">
+                    <small class="text-danger">End Date is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-12 special-tags">Special Offers:</div>
-                @for (value of radioValues; track $index) {
-                <div class="col-lg-4 my-3">
+              
+                <!-- Iterate over radio values -->
+                <div *ngFor="let value of radioValues; let i = index" class="col-lg-4 my-3">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      [id]="value"
-                      formControlName="Tag"
-                      [value]="value"
-                    />
+                    <input type="radio" [id]="value" formControlName="Tag" [value]="value" />
                     <label [for]="value">{{ value }}</label>
                   </div>
                 </div>
-                }
+              
                 <div class="col-lg-4">
                   <p class="text-start mb-0">Custom Offer</p>
-                  <input
-                    placeholder="Custom Offer"
-                    formControlName="Tag"
-                    type="text"
-                    appCharacterLimit
-                    [limit]="10"
-                  />
+                  <input placeholder="Custom Offer" formControlName="Tag" type="text" appCharacterLimit [limit]="10" />
+                  <div class="error" *ngIf="(propertyAddForm.get('RentSpecial.Tag').invalid && (propertyAddForm.get('RentSpecial.Tag').touched || submited))">
+                    <small class="text-danger">Custom Offer is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Description</p>
-                  <textarea
-                    placeholder="Description"
-                    formControlName="Description"
-                  ></textarea>
+                  <textarea placeholder="Description" formControlName="Description"></textarea>
+                  <div class="error" *ngIf="(propertyAddForm.get('RentSpecial.Description').invalid && (propertyAddForm.get('RentSpecial.Description').touched || submited))">
+                    <small class="text-danger">Description is required.</small>
+                  </div>
                 </div>
+              
               </div>
+              
+              
             </div>
             } @else{
             <div id="rent-special">
@@ -480,27 +547,16 @@
                 <div [formGroupName]="i" class="row">
                   <div class="col-lg-6">
                     <p class="text-start mb-0">Start Date</p>
-                    <input
-                      placeholder="Start Date"
-                      formControlName="StartDateTime"
-                      type="datetime-local"
-                    />
+                    <input placeholder="Start Date" formControlName="StartDateTime" type="datetime-local" />
                   </div>
                   <div class="col-lg-6">
                     <p class="text-start mb-0">End Date</p>
-                    <input
-                      placeholder="End Date"
-                      formControlName="EndDateTime"
-                      type="datetime-local"
-                    />
+                    <input placeholder="End Date" formControlName="EndDateTime" type="datetime-local" />
                   </div>
                 </div>
                 }
                 <div class="col-lg-12">
-                  <button
-                    class="btnBlackNWhite py-1 wow fadeInDown mb-3"
-                    (click)="addOpenHouse()"
-                  >
+                  <button class="btnBlackNWhite py-1 wow fadeInDown mb-3" (click)="addOpenHouse()">
                     Add Open House
                   </button>
                 </div>
@@ -513,37 +569,25 @@
               <div class="row">
                 <div class="col-lg-3">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="PetPolicy"
-                      value="Cat"
-                      id="policyCat"
-                    />
+                    <input type="radio" formControlName="PetPolicy" value="Cat" id="policyCat" />
                     <label for="policyCat">Cat</label>
                   </div>
                 </div>
                 <div class="col-lg-3">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="PetPolicy"
-                      value="Dog"
-                      id="policyDog"
-                    />
+                    <input type="radio" formControlName="PetPolicy" value="Dog" id="policyDog" />
                     <label for="policyDog">Dog</label>
                   </div>
                 </div>
                 <div class="col-lg-3">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="PetPolicy"
-                      value="Both"
-                      id="policyBoth"
-                    />
+                    <input type="radio" formControlName="PetPolicy" value="Both" id="policyBoth" />
                     <label for="policyBoth">Both</label>
                   </div>
                 </div>
+              </div>
+              <div class="error" *ngIf="(propertyAddForm.get('PetPolicy').invalid && (propertyAddForm.get('PetPolicy').touched || submited))">
+                <small class="text-danger">required.</small>
               </div>
             </div>
             <div id="laundry">
@@ -551,26 +595,19 @@
               <div class="row">
                 <div class="col-lg-3">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="Laundry"
-                      id="Laundry1"
-                      value="Washer/Dryer-In Unit"
-                    />
+                    <input type="radio" formControlName="Laundry" id="Laundry1" value="Washer/Dryer-In Unit" />
                     <label for="Laundry1">Washer/Dryer-In Unit</label>
                   </div>
                 </div>
                 <div class="col-lg-3">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="Laundry"
-                      id="Laundry2"
-                      value="Washer/Dryer Hookup"
-                    />
+                    <input type="radio" formControlName="Laundry" id="Laundry2" value="Washer/Dryer Hookup" />
                     <label for="Laundry2">Washer/Dryer Hookup</label>
                   </div>
                 </div>
+              </div>
+              <div class="error" *ngIf="(propertyAddForm.get('Laundry').invalid && (propertyAddForm.get('Laundry').touched || submited))">
+                <small class="text-danger">required.</small>
               </div>
             </div>
             <div id="gallery">
@@ -585,22 +622,16 @@
                 <div>
                   <p class="text-start bold">
                     Selected Images ({{
-                      propertyAddForm.controls["PropertyImageFiles"].length
+                    propertyAddForm.controls["PropertyImageFiles"].length
                     }}/10)
                   </p>
-                  <div
-                    class="image-preview-container dCenter justify-content-start flex-wrap gap-3"
-                  >
+                  <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
                     @for (file of
                     propertyAddForm.controls['PropertyImageFiles'].value; track
                     file; let i = $index) {
                     <div class="image-preview d-flex">
                       <img [src]="getImageSrc(file)" alt="images" />
-                      <button
-                        mat-fab
-                        color="warn"
-                        (click)="removePropertyImage(i)"
-                      >
+                      <button mat-fab color="warn" (click)="removePropertyImage(i)">
                         <mat-icon>delete</mat-icon>
                       </button>
                     </div>
@@ -611,49 +642,32 @@
 
                 <div class="row align-items-center mt-3">
                   <div class="col-lg-8">
-                    <button
-                      [disabled]="
+                    <button [disabled]="
                         propertyAddForm.controls['PropertyImageFiles']?.value
                           ?.length == 10 ||
                         propertyAddForm.controls['PropertyImageFiles'].length ==
                           10
-                      "
-                      class="upload-imgs"
-                      (click)="fileInput.click()"
-                    >
+                      " class="upload-imgs" (click)="fileInput.click()">
                       <span>Browse Photo</span>
                     </button>
                   </div>
                   <div class="col-lg-4">
                     <div class="dCenter justify-content-end">
-                      <button
-                        mat-raised-button
-                        class="mt-2"
-                        color="primary"
-                        [disabled]="
+                      <button mat-raised-button class="mt-2" color="primary" [disabled]="
                           propertyAddForm.controls['PropertyImageFiles']?.value
                             ?.length == 10 ||
                           propertyAddForm.controls['PropertyImageFiles']
                             .length == 10
-                        "
-                        (click)="fileInput.click()"
-                      >
+                        " (click)="fileInput.click()">
                         <mat-icon>cloud_upload</mat-icon>
                         Upload Photos
                       </button>
-                      <input
-                        type="file"
-                        #fileInput
-                        multiple
-                        [readonly]="
+                      <input type="file" #fileInput multiple [readonly]="
                           propertyAddForm.controls['PropertyImageFiles']?.value
                             ?.length == 10 ||
                           propertyAddForm.controls['PropertyImageFiles']
                             .length == 10
-                        "
-                        (change)="onPropertyImageSelected($event)"
-                        style="display: none"
-                      />
+                        " (change)="onPropertyImageSelected($event)" style="display: none" />
                     </div>
                   </div>
                 </div>
@@ -679,11 +693,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Enter Video Link</p>
-                  <input
-                    placeholder="VideoUrl"
-                    formControlName="VideoUrl"
-                    type="text"
-                  />
+                  <input placeholder="VideoUrl" formControlName="VideoUrl" type="text" />
                 </div>
               </div>
             </div>
@@ -694,75 +704,74 @@
                 your listing.
               </p>
               <div formGroupName="PropertyContact" class="row">
+
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Full Name</p>
-                  <input
-                    placeholder="FullName"
-                    formControlName="FullName"
-                    type="text"
-                  />
+                  <input placeholder="FullName" formControlName="FullName" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('PropertyContact.FullName').invalid && (propertyAddForm.get('PropertyContact.FullName').touched || submited))">
+                    <small class="text-danger">Full Name is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Email</p>
-                  <input
-                    placeholder="Email"
-                    formControlName="Email"
-                    type="email"
-                  />
+                  <input placeholder="Email" formControlName="Email" type="email" />
+                  <div class="error" *ngIf="(propertyAddForm.get('PropertyContact.Email').invalid && (propertyAddForm.get('PropertyContact.Email').touched || submited))">
+                    <small class="text-danger">A valid Email is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Phone</p>
-                  <input
-                    placeholder="Phone"
-                    formControlName="Contact"
-                    type="number"
-                  />
+                  <input placeholder="Phone" formControlName="Contact" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('PropertyContact.Contact').invalid && (propertyAddForm.get('PropertyContact.Contact').touched || submited))">
+                    <small class="text-danger">Phone number is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Preference</p>
-                  <ng-select
-                    formControlName="IsEmailPrefered"
-                    [searchable]="false"
-                  >
+                  <ng-select formControlName="IsEmailPrefered" [searchable]="false">
                     <ng-option [value]="false">Phone</ng-option>
                     <ng-option [value]="true">Email</ng-option>
                   </ng-select>
+                  <div class="error" *ngIf="(propertyAddForm.get('PropertyContact.IsEmailPrefered').invalid && (propertyAddForm.get('PropertyContact.IsEmailPrefered').touched || submited))">
+                    <small class="text-danger">Preference is required.</small>
+                  </div>
                 </div>
+              
                 <div class="contact-role">Role</div>
+              
                 <div class="col-lg-4">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="UserRole"
-                      value="Owner"
-                      id="role1"
-                    />
+                    <input type="radio" formControlName="UserRole" value="Owner" id="role1" />
                     <label for="role1">Owner</label>
                   </div>
                 </div>
+              
                 <div class="col-lg-4">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="UserRole"
-                      value="Broker"
-                      id="role2"
-                    />
+                    <input type="radio" formControlName="UserRole" value="Broker" id="role2" />
                     <label for="role2">Broker</label>
                   </div>
                 </div>
+              
                 <div class="col-lg-4">
                   <div class="dCenter check-box justify-content-start gap-2">
-                    <input
-                      type="radio"
-                      formControlName="UserRole"
-                      value="Property Manager"
-                      id="role3"
-                    />
+                    <input type="radio" formControlName="UserRole" value="Property Manager" id="role3" />
                     <label for="role3">Property Manager</label>
                   </div>
                 </div>
+              
+                <div class="col-lg-12">
+                  <div class="error" *ngIf="(propertyAddForm.get('PropertyContact.UserRole').invalid && (propertyAddForm.get('PropertyContact.UserRole').touched || submited))">
+                    <small class="text-danger">Role is required.</small>
+                  </div>
+                </div>
+              
               </div>
+              
+              
             </div>
             <div id="description">
               <h2 class="mt-3">Description</h2>
@@ -774,10 +783,10 @@
               <div class="row">
                 <div class="col-lg-12">
                   <p class="text-start mb-0">Description</p>
-                  <textarea
-                    placeholder="Description"
-                    formControlName="Description"
-                  ></textarea>
+                  <textarea placeholder="Description" formControlName="Description"></textarea>
+                  <div class="error" *ngIf="(propertyAddForm.get('Description').invalid && (propertyAddForm.get('Description').touched || submited))">
+                    <small class="text-danger">Full Name is required.</small>
+                  </div>
                 </div>
               </div>
             </div>
@@ -789,173 +798,138 @@
                 urna, porttitor.
               </p>
               <div formArrayName="FloorPlans">
-                @for (plan of propertyAddForm.get('FloorPlans').controls; let i
-                = $index; track plan) {
-                <div [formGroupName]="i" class="row">
-                  <div class="col-lg-4">
-                    <p class="text-start mb-0">Plan Name</p>
-                    <input
-                      placeholder="Plan Name"
-                      formControlName="PlanName"
-                      type="text"
-                    />
-                  </div>
-                  <div class="col-lg-4">
-                    <p class="text-start mb-0">No. of Bedrooms</p>
-                    <input
-                      placeholder="No. of Bedrooms"
-                      formControlName="NoOfBed"
-                      type="number"
-                    />
-                  </div>
-                  <div class="col-lg-4">
-                    <p class="text-start mb-0">No. of Bathrooms</p>
-                    <input
-                      placeholder="No. of Bathrooms"
-                      formControlName="NoOfBath"
-                      type="number"
-                    />
-                  </div>
-                  <div class="col-lg-4">
-                    <p class="text-start mb-0">Sqft</p>
-                    <input
-                      placeholder="Sqft"
-                      formControlName="Area"
-                      type="number"
-                    />
-                  </div>
-                  <div class="col-lg-4">
-                    <p class="text-start mb-0">Start Price</p>
-                    <input
-                      placeholder="Start Price"
-                      formControlName="StartPrice"
-                      type="number"
-                    />
-                  </div>
-                  <div class="col-lg-4">
-                    <p class="text-start mb-0">End Price</p>
-                    <input
-                      placeholder="End Price"
-                      formControlName="EndPrice"
-                      type="number"
-                    />
-                  </div>
-                  <div class="col-lg-12">
-                    <p class="text-start mb-0">Enter Description of Property</p>
-                    <textarea
-                      placeholder="Enter Description of Property"
-                      formControlName="Description"
-                      rows="10"
-                    ></textarea>
-                  </div>
-                  <div formArrayName="FloorPlanUnits" class="col-lg-12">
-                    @for (unit of plan.get('FloorPlanUnits').controls; let k =
-                    $index; track unit) {
-                    <div [formGroupName]="k" class="row">
-                      <div class="col-lg-6">
-                        <p class="text-start mb-0">Price</p>
-                        <input
-                          placeholder="Price"
-                          formControlName="Price"
-                          type="number"
-                        />
-                      </div>
-                      <div class="col-lg-6">
-                        <p class="text-start mb-0">Availability Date</p>
-                        <input
-                          placeholder="Availability Date"
-                          formControlName="AvailabilityDate"
-                          type="date"
-                        />
+                @for (plan of propertyAddForm.get('FloorPlans').controls; let i = $index; track plan) {
+                  <div [formGroupName]="i" class="row">
+                    
+                    <div class="col-lg-4">
+                      <p class="text-start mb-0">Plan Name</p>
+                      <input placeholder="Plan Name" formControlName="PlanName" type="text" />
+                      <div class="error" *ngIf="(plan.get('PlanName').invalid && (plan.get('PlanName').touched || submited))">
+                        <small class="text-danger">Plan Name is required.</small>
                       </div>
                     </div>
-                    }
-                  </div>
-                  <div class="col-lg-12">
-                    <button
-                      class="btnBlackNWhite py-1 wow fadeInDown mb-3"
-                      (click)="addFloorPlanUnit(i)"
-                    >
-                      Add Unit
-                    </button>
-                  </div>
-                  <div class="upload-container">
-                    @if(plan.get('FloorPlanImage').value.length > 0){
-                    <div>
-                      <p class="text-start bold">
-                        Selected Images ({{
-                          plan.get("FloorPlanImage").value.length
-                        }}/1)
-                      </p>
-                      <div
-                        class="image-preview-container dCenter justify-content-start flex-wrap gap-3"
-                      >
-                        @for (item of plan.get('FloorPlanImage').value; let j =
-                        $index; track $item) {
-                        <div class="image-preview d-flex">
-                          <img [src]="getImageSrc(item)" alt="images" />
-                          <button
-                            mat-fab
-                            color="warn"
-                            (click)="removeFloorPlanImage(i, j)"
-                          >
-                            <mat-icon>delete</mat-icon>
+                    
+                    <div class="col-lg-4">
+                      <p class="text-start mb-0">No. of Bedrooms</p>
+                      <input placeholder="No. of Bedrooms" formControlName="NoOfBed" type="number" />
+                      <div class="error" *ngIf="(plan.get('NoOfBed').invalid && (plan.get('NoOfBed').touched || submited))">
+                        <small class="text-danger">Number of Bedrooms is required.</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                      <p class="text-start mb-0">No. of Bathrooms</p>
+                      <input placeholder="No. of Bathrooms" formControlName="NoOfBath" type="number" />
+                      <div class="error" *ngIf="(plan.get('NoOfBath').invalid && (plan.get('NoOfBath').touched || submited))">
+                        <small class="text-danger">Number of Bathrooms is required.</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                      <p class="text-start mb-0">Sqft</p>
+                      <input placeholder="Sqft" formControlName="Area" type="number" />
+                      <div class="error" *ngIf="(plan.get('Area').invalid && (plan.get('Area').touched || submited))">
+                        <small class="text-danger">Area is required.</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                      <p class="text-start mb-0">Start Price</p>
+                      <input placeholder="Start Price" formControlName="StartPrice" type="number" />
+                      <div class="error" *ngIf="(plan.get('StartPrice').invalid && (plan.get('StartPrice').touched || submited))">
+                        <small class="text-danger">Start Price is required.</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                      <p class="text-start mb-0">End Price</p>
+                      <input placeholder="End Price" formControlName="EndPrice" type="number" />
+                      <div class="error" *ngIf="(plan.get('EndPrice').invalid && (plan.get('EndPrice').touched || submited))">
+                        <small class="text-danger">End Price is required.</small>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-12">
+                      <p class="text-start mb-0">Enter Description of Property</p>
+                      <textarea placeholder="Enter Description of Property" formControlName="Description" rows="10"></textarea>
+                      <div class="error" *ngIf="(plan.get('Description').invalid && (plan.get('Description').touched || submited))">
+                        <small class="text-danger">Description is required.</small>
+                      </div>
+                    </div>
+                    
+                    <div formArrayName="FloorPlanUnits" class="col-lg-12">
+                      @for (unit of plan.get('FloorPlanUnits').controls; let k = $index; track unit) {
+                        <div [formGroupName]="k" class="row">
+                          <div class="col-lg-6">
+                            <p class="text-start mb-0">Price</p>
+                            <input placeholder="Price" formControlName="Price" type="number" />
+                            <div class="error" *ngIf="(unit.get('Price').invalid && (unit.get('Price').touched || submited))">
+                              <small class="text-danger">Price is required.</small>
+                            </div>
+                          </div>
+                          
+                          <div class="col-lg-6">
+                            <p class="text-start mb-0">Availability Date</p>
+                            <input placeholder="Availability Date" formControlName="AvailabilityDate" type="date" />
+                            <div class="error" *ngIf="(unit.get('AvailabilityDate').invalid && (unit.get('AvailabilityDate').touched || submited))">
+                              <small class="text-danger">Availability Date is required.</small>
+                            </div>
+                          </div>
+                        </div>
+                      }
+                    </div>
+                    
+                    <div class="col-lg-12">
+                      <button class="btnBlackNWhite py-1 wow fadeInDown mb-3" (click)="addFloorPlanUnit(i)">
+                        Add Unit
+                      </button>
+                    </div>
+                    
+                    <div class="upload-container">
+                      @if(plan.get('FloorPlanImage').value.length > 0) {
+                        <div>
+                          <p class="text-start bold">
+                            Selected Images ({{ plan.get("FloorPlanImage").value.length }}/1)
+                          </p>
+                          <div class="image-preview-container dCenter justify-content-start flex-wrap gap-3">
+                            @for (item of plan.get('FloorPlanImage').value; let j = $index; track $item) {
+                              <div class="image-preview d-flex">
+                                <img [src]="getImageSrc(item)" alt="images" />
+                                <button mat-fab color="warn" (click)="removeFloorPlanImage(i, j)">
+                                  <mat-icon>delete</mat-icon>
+                                </button>
+                              </div>
+                            }
+                          </div>
+                        </div>
+                      }
+                      <div class="row align-items-center mt-3">
+                        <div class="col-lg-8">
+                          <button [disabled]="plan.get('FloorPlanImage').value.length == 1" class="upload-imgs" (click)="fileInput.click()">
+                            <span>Browse Photo</span>
                           </button>
                         </div>
-                        }
-                      </div>
-                    </div>
-                    }
-                    <div class="row align-items-center mt-3">
-                      <div class="col-lg-8">
-                        <button
-                          [disabled]="
-                            plan.get('FloorPlanImage').value.length == 1
-                          "
-                          class="upload-imgs"
-                          (click)="fileInput.click()"
-                        >
-                          <span>Browse Photo</span>
-                        </button>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="dCenter justify-content-end">
-                          <button
-                            mat-raised-button
-                            color="primary"
-                            class="mt-2"
-                            [disabled]="
-                              plan.get('FloorPlanImage').value.length == 1
-                            "
-                            (click)="fileInput.click()"
-                          >
-                            <mat-icon>cloud_upload</mat-icon>
-                            Upload Photos
-                          </button>
-                          <input
-                            type="file"
-                            #fileInput
-                            [readonly]="
-                              plan.get('FloorPlanImage').value.length == 10
-                            "
-                            (change)="onFloorPlanImageSelected($event, i)"
-                            style="display: none"
-                          />
+                        <div class="col-lg-4">
+                          <div class="dCenter justify-content-end">
+                            <button mat-raised-button color="primary" class="mt-2" [disabled]="plan.get('FloorPlanImage').value.length == 1" (click)="fileInput.click()">
+                              <mat-icon>cloud_upload</mat-icon>
+                              Upload Photos
+                            </button>
+                            <input type="file" #fileInput [readonly]="plan.get('FloorPlanImage').value.length == 10" (change)="onFloorPlanImageSelected($event, i)" style="display: none" />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 }
+                
                 <div class="dCenter justify-content-end">
-                  <button
-                    class="btnPrimary wow fadeInDown mb-3"
-                    (click)="addFloorPlan()"
-                  >
+                  <button class="btnPrimary wow fadeInDown mb-3" (click)="addFloorPlan()">
                     Add Floor Plan
                   </button>
                 </div>
               </div>
+              
             </div>
             <div id="location">
               <h2 class="mt-3">Property Location</h2>
@@ -968,86 +942,102 @@
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Country</p>
                   <input formControlName="Country" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Country').invalid && (propertyAddForm.get('Country').touched || submited))">
+                    <small class="text-danger">Country is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">State</p>
                   <input formControlName="State" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('State').invalid && (propertyAddForm.get('State').touched || submited))">
+                    <small class="text-danger">State is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">City</p>
                   <input formControlName="City" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('City').invalid && (propertyAddForm.get('City').touched || submited))">
+                    <small class="text-danger">City is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Plot</p>
                   <input formControlName="Plot" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Plot').invalid && (propertyAddForm.get('Plot').touched || submited))">
+                    <small class="text-danger">Plot is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Street</p>
                   <input formControlName="Street" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Street').invalid && (propertyAddForm.get('Street').touched || submited))">
+                    <small class="text-danger">Street is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Building</p>
                   <input formControlName="Building" type="text" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Building').invalid && (propertyAddForm.get('Building').touched || submited))">
+                    <small class="text-danger">Building is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Landmark</p>
-                  <input
-                    placeholder="Landmark"
-                    type="text"
-                    formControlName="Landmark"
-                  />
+                  <input placeholder="Landmark" type="text" formControlName="Landmark" />
+                  <div class="error" *ngIf="(propertyAddForm.get('Landmark').invalid && (propertyAddForm.get('Landmark').touched || submited))">
+                    <small class="text-danger">Landmark is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-6">
                   <p class="text-start mb-0">Zip Code</p>
                   <input formControlName="ZipCode" type="number" />
+                  <div class="error" *ngIf="(propertyAddForm.get('ZipCode').invalid && (propertyAddForm.get('ZipCode').touched || submited))">
+                    <small class="text-danger">Zip Code is required.</small>
+                  </div>
                 </div>
+              
                 <div class="col-lg-12">
-                  <app-map
-                    [addMarker]="true"
-                    [draggable]="true"
-                    [search]="true"
-                    [value]="propertyAddForm.get('Location').value"
-                    [center]="{
+                  <app-map [addMarker]="true" [draggable]="true" [search]="true"
+                    [value]="propertyAddForm.get('Location').value" [center]="{
                       lat: propertyAddForm.get('Latitude').value,
                       lng: propertyAddForm.get('Longitude').value
-                    }"
-                    [markerPositions]="[
+                    }" [markerPositions]="[
                       {
                         lat: propertyAddForm.get('Latitude').value,
                         lng: propertyAddForm.get('Longitude').value
                       }
-                    ]"
-                    (mapMarkerCordinates)="
+                    ]" (mapMarkerCordinates)="
                       setFormValue($event, 'Latitude');
                       setFormValue($event, 'Longitude')
-                    "
-                    (mapSearchLocation)="setFormValue($event, 'Location')"
-                  ></app-map>
+                    " (mapSearchLocation)="setFormValue($event, 'Location')"></app-map>
                 </div>
               </div>
+              
             </div>
             <div class="row">
               <div class="col-lg-12 my-2">
                 <div class="dCenter check-box justify-content-start gap-2">
                   <input type="checkbox" formControlName="Terms" id="terms" />
                   <label for="terms">
-                    <span class="terms-text"
-                      >By checking this box I agree as follows: I agree that I
+                    <span class="terms-text">By checking this box I agree as follows: I agree that I
                       will provide accurate and
                       <a href="">non discriminatory</a> information and I will
                       comply with the Apartments.com
                       <a href="">Terms and Conditions</a> and the
-                      <a href="">Add a Property Terms of Service.</a></span
-                    >
+                      <a href="">Add a Property Terms of Service.</a></span>
                   </label>
                 </div>
               </div>
             </div>
-            <button
-              class="btnPrimary wow fadeInDown my-3"
-              [disabled]="!propertyAddForm.get('Terms').value"
-              (click)="onSubmit()"
-            >
+            <button class="btnPrimary wow fadeInDown my-3" [disabled]="!propertyAddForm.get('Terms').value"
+              (click)="onSubmit()">
               Add Property
             </button>
             <!-- <button class="btnPrimary wow fadeInDown my-3" (click)="showFeatured()">

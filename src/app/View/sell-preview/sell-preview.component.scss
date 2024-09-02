@@ -236,6 +236,28 @@ h6 strong {
   right: 10px;
 }
 
+.cstabs{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 1px 1px 5px -2px #000;
+  border-radius: 6px;
+  padding: 0 10px;
+  position: sticky;
+  top: 1vw;
+  left: 0;
+  background-color: #fff;
+  z-index: 1;
+
+  .tabBox{
+    padding: 10px;
+    cursor: pointer;
+    &.active{
+      color: #0160c9;
+    }
+  }
+}
+
 @media only screen and (max-width: 1025px) {
 
   .carousel-sell-btn{

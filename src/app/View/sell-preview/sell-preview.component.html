@@ -82,36 +82,36 @@
     
     <div class="col-lg-8 mt-3">
       <div class="cstabs">
-        <div class="tabBox" (click)="scrollDiv(this, 'Details')">
+        <div class="tabBox" [class.active]="selectedTab=='Details'" (click)="scrollDiv('Details')">
           Details
         </div>
         @if(propertyDetails?.openHouses?.length){
-          <div class="tabBox" (click)="scrollDiv(this, 'OpenHouse')">
+          <div class="tabBox" [class.active]="selectedTab=='OpenHouse'" (click)="scrollDiv('OpenHouse')">
             Open House
           </div>
         }
         @if(propertyDetails?.floorPlans?.length){
-          <div class="tabBox" (click)="scrollDiv(this, 'FloorPlan')">
+          <div class="tabBox" [class.active]="selectedTab=='FloorPlan'" (click)="scrollDiv('FloorPlan')">
             Floor Plan
           </div>
         }
         @if(propertyDetails?.fees?.length){
-          <div class="tabBox" (click)="scrollDiv(this, 'Fees')">
+          <div class="tabBox" [class.active]="selectedTab=='Fees'" (click)="scrollDiv('Fees')">
             Fees
           </div>
         }
         @if(propertyDetails?.oneTime?.length){
-          <div class="tabBox" (click)="scrollDiv(this, 'OneTime')">
+          <div class="tabBox" [class.active]="selectedTab=='OneTime'" (click)="scrollDiv('OneTime')">
             One Time
           </div>
         }
         @if(propertyDetails?.propertyContacts ||
       propertyDetails?.listAgentOfficePhone || propertyDetails?.listAgentEmail){
-        <div class="tabBox" (click)="scrollDiv(this, 'Contact')">
+        <div class="tabBox" [class.active]="selectedTab=='Contact'" (click)="scrollDiv('Contact')">
           Contact
         </div>
       }
-        <div class="tabBox" (click)="scrollDiv(this, 'Location')">
+        <div class="tabBox" [class.active]="selectedTab=='Location'" (click)="scrollDiv('Location')">
           Location
         </div>
       </div>

@@ -63,6 +63,7 @@ export class SellPreviewComponent implements OnInit {
   loader: boolean = true;
   user$ = this.store.select(selectUser);
   userDetails: any;
+  selectedTab:string = null;
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -226,7 +227,7 @@ export class SellPreviewComponent implements OnInit {
     return indices;
   }
 
-  scrollDiv(event: Event, sectionId: string) {
+  scrollDiv(sectionId: string) {
     // Scroll to the section
     const element = document.getElementById(sectionId);
     if (element) {
@@ -245,9 +246,7 @@ export class SellPreviewComponent implements OnInit {
     });
 
     // Add 'active' class to the clicked tab
-    const clickedTab = event.target as HTMLElement;
-    console.log(clickedTab)
-    clickedTab?.classList?.add('active');
+    this.selectedTab = sectionId;
   }
 
 }

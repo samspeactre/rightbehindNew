@@ -144,11 +144,11 @@ export class DummyMapComponent implements OnInit {
   }
 
   disablePageScroll() {
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
   }
 
   enablePageScroll() {
-    document.body.style.overflow = 'auto';
+    // document.body.style.overflow = 'auto';
   }
 
   drawFreeHand(): void {
@@ -416,6 +416,7 @@ export class DummyMapComponent implements OnInit {
         div.style.fontSize = '14px';
         div.style.fontWeight = 'bold';
         div.style.color = '#000';
+        div.classList.add('markerPrice')
         div.innerText = `$${markerData.price}`;
         this.div = div;
   
@@ -482,6 +483,10 @@ export class DummyMapComponent implements OnInit {
   clearMarkers() {
     this.googleMarkers.forEach((marker) => marker.setMap(null));
     this.googleMarkers = [];
+    const elements = document.querySelectorAll('.markerPrice');
+    elements.forEach(element => {
+      element.remove();
+    });
   }
 
   // setHighlightedArea(): void {

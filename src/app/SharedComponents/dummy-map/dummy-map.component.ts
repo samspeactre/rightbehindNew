@@ -411,9 +411,10 @@ export class DummyMapComponent implements OnInit {
         div.style.transform = 'translate(-50%, 0)'; // Center the label horizontally
         div.style.backgroundColor = 'white';
         div.style.padding = '2px 5px';
-        div.style.borderRadius = '3px';
-        div.style.boxShadow = '0px 2px 6px rgba(0,0,0,0.3)';
-        div.style.fontSize = '14px';
+        div.style.border = '1px solid rgba(1, 96, 201, 1)';
+        div.style.borderRadius = '15px';
+        // div.style.boxShadow = '0px 2px 6px rgba(0,0,0,0.3)';
+        div.style.fontSize = '13px';
         div.style.fontWeight = 'bold';
         div.style.color = '#000';
         div.innerText = `$${markerData.price}`;

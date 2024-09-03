@@ -18,15 +18,15 @@
       <div class="w-75" (click)="
           page == 'listView' ? naviagteThroughPopup(card) : navigateAndClose()
         ">
-        @if(card?.title){
+        <!-- @if(card?.title){
         <h6 class="bold mb-0" [ngClass]="{ 'wow fadeInDown': animation }">
           {{ card?.title }}
         </h6>
-        }
+        } -->
         <div class="span-text my-1 dCenter justify-content-start gap-1 location"
           [ngClass]="{ 'wow fadeInDown': animation }">
-          <fa-icon [icon]="faMapMarkerAlt" class="dCenter"></fa-icon>
-          <span class="elip">{{ card?.location }}</span>
+          <fa-icon [icon]="faMapMarkerAlt" class="dCenter prop-card-icon"></fa-icon>
+          <h6 class="elip bold">{{ card?.location }}</h6>
         </div>
       </div>
       <div class="w-25 dCenter justify-content-end gap-3">

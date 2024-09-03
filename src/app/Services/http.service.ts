@@ -205,7 +205,7 @@ export class HttpService {
             observer.error(error);
           }
         );
-      return () => {};
+      return () => { };
     });
   }
   blogImageUpload(selectedFile: File, token: string): Observable<any> {
@@ -231,7 +231,7 @@ export class HttpService {
             observer.error(error);
           }
         );
-      return () => {};
+      return () => { };
     });
   }
 }

@@ -41,7 +41,7 @@
 .elipEffect {
   text-transform: capitalize;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -53,6 +53,7 @@
 
   fa-icon {
     color: #0062c9;
+    font-size: 18px !important;
   }
 
   .centerBox {
@@ -126,6 +127,7 @@ p {
     height: 168px;
   }
 }
+
 .fixedHeight {
   height: 170px;
 }
@@ -155,8 +157,12 @@ p {
 }
 
 .location {
-  color: #848484;
-  font-size: 10px;
+  color: #767676d9;
+
+  .prop-card-icon {
+    font-size: 13px;
+    margin-top: -9px;
+  }
 }
 
 .span-text span {
@@ -194,7 +200,12 @@ p {
   margin: auto;
 }
 
+.card-icon {
+  font-size: 18px !important;
+}
+
 @media only screen and (max-width: 1024px) {
+
   .col60,
   .col40 {
     width: 100%;

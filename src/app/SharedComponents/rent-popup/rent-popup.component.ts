@@ -61,7 +61,7 @@ export class RentPopupComponent {
   });
   user: any;
   headingText: string = 'Add New Property';
-  videoSrc: string = '../../../assets/video/rent-popup.mp4';
+  videoSrc: string = '../../../assets/video/Rent-Popup.mp4';
   private destroy$ = new Subject<void>();
   closeDialog: any;
   constructor(
@@ -307,8 +307,8 @@ export class RentPopupComponent {
   updateVideoSrc() {
     this.videoSrc =
       this.active === 'sell'
-        ? '../../../assets/video/sell-popup.mp4'
-        : '../../../assets/video/rent-popup.mp4';
+        ? '../../../assets/video/Sell-Popup.mp4'
+        : '../../../assets/video/Rent-Popup.mp4';
   }
 
   closePopup(): void {

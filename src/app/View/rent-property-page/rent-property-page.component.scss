@@ -71,14 +71,17 @@ textarea::placeholder {
   font-size: 10px;
 }
 
-h1 {
-  font-family: "bold";
+.medFont{
+  font-size: 45px;
+  font-family: bold;
+  text-transform: capitalize;
   color: var(--black);
   text-align: center;
+  padding: 0 12%;
 }
 
 .min75 {
-  min-height: 50vh;
+  min-height: 40vh;
 }
 
 h2 {

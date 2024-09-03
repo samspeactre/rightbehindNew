@@ -2,74 +2,35 @@
 <div class="cstmsContainer mb-3">
   <div class="cstmInputBox">
     <label [class.focused]="isFocused">Address</label>
-    <input
-      #autocompleteInput
-      type="text"
-      [value]="value"
-      (input)="write($event)"
-      placeholder="Enter Your Address"
-      [class.show-placeholder]="isFocused"
-      (focus)="togglePlaceholder(true)"
-      (blur)="togglePlaceholder(false)"
-    />
+    <input #autocompleteInput type="text" [value]="value" (input)="write($event)" placeholder="Enter Your Address"
+      [class.show-placeholder]="isFocused" (focus)="togglePlaceholder(true)" (blur)="togglePlaceholder(false)" />
   </div>
 </div>
 }
-<google-map
-  [height]="height || '180px'"
-  width="100%"
-  [center]="center"
-  [zoom]="zoom"
-  class="position-relative"
-  (mapClick)="addMarker && addMarkerPoint($event)"
->
+<google-map [height]="height || '180px'" width="100%" [center]="center" [zoom]="zoom" class="position-relative"
+  (mapClick)="addMarker && addMarkerPoint($event)">
   @for (position of markerPositions; let i = $index; track position) {
-  <map-marker
-    [position]="position"
-    [options]="propertyMarkerOptions"
-    (mapDragend)="onMarkerDragEnd($event)"
-    #marker="mapMarker"
-    (mapClick)="
+  <map-marker [position]="position" [options]="propertyMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker" (mapClick)="
       (infoContents?.length || video) && openInfoWindow(marker, i);
       moveMap($event)
-    "
-  />
+    " />
   } @for (position of communityMarkerPositions; let i = $index; track position)
   {
-  <map-marker
-    [position]="position"
-    [options]="communityMarkerOptions"
-    (mapDragend)="onMarkerDragEnd($event)"
-    #marker="mapMarker"
-    (mapClick)="
+  <map-marker [position]="position" [options]="communityMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker" (mapClick)="
       (infoContents?.length || video) && openInfoWindow(marker, i);
       moveMap($event)
-    "
-  />
+    " />
   } @for (position of blogArray; let i = $index; track position) {
-  <map-marker
-    [position]="position"
-    [options]="blogMarkerOptions"
-    (mapDragend)="onMarkerDragEnd($event)"
-    #marker="mapMarker"
-    (mapClick)="openMapInfoWindow(marker, i, 'blog'); moveMap($event)"
-  />
+  <map-marker [position]="position" [options]="blogMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker" (mapClick)="openMapInfoWindow(marker, i, 'blog'); moveMap($event)" />
   } @for (position of videoArray; let i = $index; track position) {
-  <map-marker
-    [position]="position"
-    [options]="bothMarkerOptions"
-    (mapDragend)="onMarkerDragEnd($event)"
-    #marker="mapMarker"
-    (mapClick)="openMapInfoWindow(marker, i, 'video'); moveMap($event)"
-  />
+  <map-marker [position]="position" [options]="bothMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker" (mapClick)="openMapInfoWindow(marker, i, 'video'); moveMap($event)" />
   } @for (position of bothArray; let i = $index; track position) {
-  <map-marker
-    [position]="position"
-    [options]="bothMarkerOptions"
-    (mapDragend)="onMarkerDragEnd($event)"
-    #marker="mapMarker"
-    (mapClick)="openMapInfoWindow(marker, i, 'both'); moveMap($event)"
-  />
+  <map-marker [position]="position" [options]="bothMarkerOptions" (mapDragend)="onMarkerDragEnd($event)"
+    #marker="mapMarker" (mapClick)="openMapInfoWindow(marker, i, 'both'); moveMap($event)" />
   }
   <map-info-window>
     @if(video){ @if(type == 'video'){
@@ -83,11 +44,8 @@
     }
     } @else{ @if(infoContents){
     <div class="mt-2">
-      <app-property-card-map
-        [card]="infoContents?.[index]"
-        [loader]="false"
-        [routeDirect]="true"
-      ></app-property-card-map>
+      <app-property-card-map [card]="infoContents?.[index]" [loader]="false"
+        [routeDirect]="true"></app-property-card-map>
     </div>
     } }
   </map-info-window>

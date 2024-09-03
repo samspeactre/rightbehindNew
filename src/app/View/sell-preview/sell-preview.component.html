@@ -13,7 +13,8 @@
         <div class="slash smallFont text-dark">/</div>
         <a class="smallFont text-dark">{{ propertyDetails?.title }}</a>
       </div>
-      <div class="position-relative">
+
+      <div class="position-relative listingCarousel">
         @if(propertyDetails?.propertyImages?.length){
 
         @if(propertyDetails?.propertyImages?.length >= 4){
@@ -27,20 +28,17 @@
         </div>
 
         <owl-carousel-o [options]="customOptions" #owlCar>
-          <ng-template carouselSlide *ngFor="let i of createSlideIndices(propertyDetails?.propertyImages); let j = index">
+          <ng-template carouselSlide
+            *ngFor="let i of createSlideIndices(propertyDetails?.propertyImages); let j = index">
             <div class="slide-container">
-              <img *ngIf="propertyDetails?.propertyImages[i]" 
-                   [src]="propertyDetails?.propertyImages[i]?.imageUrl" 
-                   alt="image" 
-                   (click)="open(i)" />
-              <img *ngIf="propertyDetails?.propertyImages[i + 1]" 
-                   [src]="propertyDetails?.propertyImages[i + 1]?.imageUrl" 
-                   alt="image" 
-                   (click)="open(i + 1)" />
+              <img *ngIf="propertyDetails?.propertyImages[i]" [src]="propertyDetails?.propertyImages[i]?.imageUrl"
+                alt="image" (click)="open(i)" />
+              <img *ngIf="propertyDetails?.propertyImages[i + 1]"
+                [src]="propertyDetails?.propertyImages[i + 1]?.imageUrl" alt="image" (click)="open(i + 1)" />
             </div>
           </ng-template>
         </owl-carousel-o>
-        
+
         } @else{ @if((resize.windowSize$ | async)?.width > 1024){
         <div class="row">
           @for (card of propertyDetails?.propertyImages; let i = $index; track
@@ -79,8 +77,9 @@
         }
       </div>
     </div>
-    
+
     <div class="col-lg-8 mt-3">
+
       <div class="cstabs">
         <div class="tabBox" [class.active]="selectedTab=='Details'" (click)="scrollDiv('Details')">
           Details
@@ -115,6 +114,7 @@
           Location
         </div>
       </div>
+
       <div class="left-site-box" id="Details">
         <div class="first-box">
           <div class="d-flex align-items-start justify-content-between">
@@ -713,115 +713,115 @@
       </div>
 
       @if(propertyDetails?.fees?.length){
-        <div class="row mt-5 blue-box  sec-border" id="Fees">
-          <div class="col-lg-12 mb-3">
-            <h6><Strong>Fees</Strong></h6>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Pet Fee</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.fees?.petFee || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Parking</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.fees?.parking || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Trash Pickup</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.fees?.trashPickup || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Lawn care / Snow removal</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.fees?.lowCareSnowRemoval || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Pest Control</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.fees?.pestControl || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Monthly Estimate</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.fees?.monthlyEstimate || 'N/A' }}
-              </div>
+      <div class="row mt-5 blue-box  sec-border" id="Fees">
+        <div class="col-lg-12 mb-3">
+          <h6><Strong>Fees</Strong></h6>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Pet Fee</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.fees?.petFee || 'N/A' }}
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Parking</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.fees?.parking || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Trash Pickup</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.fees?.trashPickup || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Lawn care / Snow removal</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.fees?.lowCareSnowRemoval || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Pest Control</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.fees?.pestControl || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Monthly Estimate</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.fees?.monthlyEstimate || 'N/A' }}
+            </div>
+          </div>
+        </div>
+      </div>
       }
 
       @if(propertyDetails?.oneTime?.length){
-        <div class="row mt-5 blue-box  sec-border" id="OneTime">
-          <div class="col-lg-12 mb-3">
-            <h6><Strong>One-time</Strong></h6>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Application Fee</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.oneTime?.applicationFee || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Security Deposit</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.oneTime?.securityDeposit || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Pet Deposit</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.oneTime?.petDeposit || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Pet Fee</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.oneTime?.petFee || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Administrative Fee</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.oneTime?.administrativeFee || 'N/A' }}
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="white-box dCenter justify-content-between labelCheck">
-              <div class="white-box-text ">Move-in Estimatre</div>
-              <div class="white-box-text">
-                {{ propertyDetails?.oneTime?.moveInEstimate || 'N/A' }}
-              </div>
+      <div class="row mt-5 blue-box  sec-border" id="OneTime">
+        <div class="col-lg-12 mb-3">
+          <h6><Strong>One-time</Strong></h6>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Application Fee</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.oneTime?.applicationFee || 'N/A' }}
             </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Security Deposit</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.oneTime?.securityDeposit || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Pet Deposit</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.oneTime?.petDeposit || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Pet Fee</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.oneTime?.petFee || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Administrative Fee</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.oneTime?.administrativeFee || 'N/A' }}
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="white-box dCenter justify-content-between labelCheck">
+            <div class="white-box-text ">Move-in Estimatre</div>
+            <div class="white-box-text">
+              {{ propertyDetails?.oneTime?.moveInEstimate || 'N/A' }}
+            </div>
+          </div>
+        </div>
+      </div>
       }
 
       } @if(propertyDetails?.propertyContacts ||
@@ -867,7 +867,7 @@
 
       }
 
-      <div class="row mt-5 blue-box sec-border"  id="Location">
+      <div class="row mt-5 blue-box sec-border" id="Location">
         <div class="col-lg-12 mb-3">
           <h6><Strong>Location</Strong></h6>
         </div>

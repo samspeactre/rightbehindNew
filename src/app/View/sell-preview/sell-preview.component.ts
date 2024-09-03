@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -92,7 +92,8 @@ export class SellPreviewComponent implements OnInit {
     private http: HttpService,
     private store: Store,
     private location: Location,
-    public helper: HelperService
+    public helper: HelperService,
+    private cdr: ChangeDetectorRef
   ) {
     this.activatedRoute.queryParams.subscribe((param: any) => {
       if (!param?.id) {
@@ -232,10 +233,15 @@ export class SellPreviewComponent implements OnInit {
     if (element) {
       // element.scrollIntoView({ behavior: 'smooth' });
       const topPos = element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: topPos - 100,
-          behavior: 'smooth',
-        });
+      window.scrollTo({
+        top: topPos - 100,
+        behavior: 'smooth',
+      });
+
+      const clickedTab = event.target as HTMLElement;
+      clickedTab?.classList?.add('active');
+
+      this.cdr.detectChanges();
     }
 
     // Remove 'active' class from all tabBox elements

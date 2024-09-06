@@ -138,6 +138,8 @@ export class ListingPageRentComponent {
   url!: string;
   screenHeight: number = window.innerHeight;
   @ViewChild('listing', { static: true }) listing!: ElementRef;
+  blogArray: any = [];
+  blogLatArray: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -217,6 +219,7 @@ export class ListingPageRentComponent {
         this.searchHeight;
       this.screenHeight = window.innerHeight - this.navHeight;
     });
+    this.getBlogs()
   }
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -572,5 +575,18 @@ console.log(Url, 'Url')
     } else {
       this.cards = this.originalCards;
     }
+  }
+
+  getBlogs() {
+    this.http
+      .loaderGet('Home/get/propertyTour', true, true)
+      .subscribe((response: any) => {
+        this.blogArray = response?.model?.homePropertyTourList?.filter(
+          (item: any) => !item?.videoUrl && item?.blogUrl
+        );
+        this.blogArray?.map((item) => {
+          this.blogLatArray.push({ lat: item?.latitude, lng: item?.longitude });
+        });
+      });
   }
 }

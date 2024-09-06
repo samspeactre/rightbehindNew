@@ -18,9 +18,9 @@ export class HelperService {
   private _triggerMarkerClick$ = new BehaviorSubject<void>(null);
   triggerMarkerClick$ = this._triggerMarkerClick$.asObservable();
 
-  triggerMarkerClick() {
+  triggerMarkerClick(res) {
     console.log('triggerMarkerClick called');
-    this._triggerMarkerClick$.next();
+    this._triggerMarkerClick$.next(res);
   }
 
   constructor(private http: HttpService) {}

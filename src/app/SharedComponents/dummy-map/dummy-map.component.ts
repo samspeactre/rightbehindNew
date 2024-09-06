@@ -41,6 +41,9 @@ export class DummyMapComponent implements OnInit {
       this.removeHighlightedMarker(data);
     }
   }
+  @Input() blogArray: google.maps.LatLngLiteral[] = [];
+  @Input() blogContents: any = [];
+
   infoContentsArray: any[] = [];
   types: any = ['LOCALITY'];
   @Input() height: any;
@@ -137,7 +140,7 @@ export class DummyMapComponent implements OnInit {
     private injector: Injector,
     private appRef: ApplicationRef,
     public resize: ResizeService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeMap();
@@ -393,6 +396,36 @@ export class DummyMapComponent implements OnInit {
   }
 
   async createMarkers(markerDataArray: any[], iconUrl: string) {
+    // for blog
+    const blogMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(this.blogContents?.[0]?.latitude, this.blogContents?.[0]?.longitude),
+      map: this.map,
+      icon: {
+        url: '/assets/img/blogMar.webp',
+        scaledSize: new google.maps.Size(40, 40), // Marker size
+      },
+    });
+    const infoBlog = () => {
+      const div = document.createElement('div');
+      return div;
+    }
+    const infoWindowBlog = new google.maps.InfoWindow({
+      content: infoBlog(),
+    });
+
+    blogMarker.addListener('click', () => {
+      if (this.currentInfoWindow) {
+        this.currentInfoWindow.close();
+      }
+      infoWindowBlog.open(this.map, blogMarker);
+      this.currentInfoWindow = infoWindowBlog;
+      this.map.setCenter(blogMarker.getPosition());
+      this.map.setZoom(14);
+    });
+
+    this.blogContents[0].infoWindowInstance = infoWindowBlog;
+    this.googleMarkers.push(blogMarker);
+
     await markerDataArray.forEach((markerData, index) => {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(markerData.lat, markerData.lng),
@@ -402,9 +435,9 @@ export class DummyMapComponent implements OnInit {
           scaledSize: new google.maps.Size(40, 40), // Marker size
         },
       });
-  
+
       const priceLabel = new google.maps.OverlayView();
-  
+
       priceLabel.onAdd = function () {
         const div = document.createElement('div');
         div.style.position = 'absolute';
@@ -420,11 +453,11 @@ export class DummyMapComponent implements OnInit {
         div.classList.add('markerPrice')
         div.innerText = `$${markerData.price}`;
         this.div = div;
-  
+
         const panes = this.getPanes();
         panes.floatPane.appendChild(div);
       };
-  
+
       priceLabel.draw = function () {
         const position = this.getProjection().fromLatLngToDivPixel(marker.getPosition() as google.maps.LatLng);
         if (position) {
@@ -432,11 +465,11 @@ export class DummyMapComponent implements OnInit {
           this.div.style.top = position.y + '50px'; // Adjust as needed
         }
       };
-  
+
       priceLabel.onRemove = function () {
         this.div.parentNode!.removeChild(this.div);
       };
-  
+
       priceLabel.setMap(this.map);
 
       const infoWindow = new google.maps.InfoWindow({
@@ -451,20 +484,22 @@ export class DummyMapComponent implements OnInit {
         this.currentInfoWindow = infoWindow;
         this.propertyHover.emit(
           this.infoContentsArray[index]?.listingId ||
-            this.infoContentsArray[index]?.id
+          this.infoContentsArray[index]?.id
         );
         this.map.setCenter(marker.getPosition());
         this.map.setZoom(14);
       });
       markerData.infoWindowInstance = infoWindow;
-  
+
       // Store marker and priceLabel references if needed
       markerData.markerInstance = marker;
       markerData.priceLabelInstance = priceLabel;
       this.googleMarkers.push(marker);
     });
+
+
   }
-  
+
 
   createInfoWindowContent(index: number): HTMLElement {
     const component: any = this.community
@@ -536,5 +571,9 @@ export class DummyMapComponent implements OnInit {
   async setPolygonOnMap(coordinates) {
     console.log(coordinates);
     this.drawPolygonWithCoordinates(coordinates);
+  }
+
+  open(type) {
+    window.open(this.blogContents?.[0]?.blogUrl);
   }
 }

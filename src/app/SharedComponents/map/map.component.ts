@@ -100,6 +100,7 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.autocompleteListener) {
       google.maps.event.removeListener(this.autocompleteListener);
     }
+    this.helperService.triggerMarkerClick(null);
   }
 
   initMap(): void {
@@ -157,19 +158,22 @@ export class MapComponent implements OnInit, OnDestroy {
       }
     }, 500);
 
-    this.helperService.triggerMarkerClick$.subscribe(() => {
-      setTimeout(() => {
-        this.clickMarkerAtIndex(0)
-      }, 1000);
+    this.helperService.triggerMarkerClick$.subscribe((res:any) => {
+      console.log(res, 'resss')
+      if(res != null){
+        setTimeout(() => {
+          this.clickMarkerAtIndex(0)
+        }, 1000);
+      }
     });
   }
   clickMarkerAtIndex(index: number): void {
     if (this.blogArray && index < this.blogArray.length) {
       const targetPosition = this.blogArray[index];
-  
+
       // Find the marker with the target position
-      const marker = this.markers.toArray().find(m => 
-        m.getPosition()?.lat() === targetPosition.lat && 
+      const marker = this.markers.toArray().find(m =>
+        m.getPosition()?.lat() === targetPosition.lat &&
         m.getPosition()?.lng() === targetPosition.lng
       );
 
@@ -181,7 +185,7 @@ export class MapComponent implements OnInit, OnDestroy {
       console.log(marker, 'marker')
     }
   }
-  
+
   initAutocomplete(): void {
     this.autocomplete = new google.maps.places.Autocomplete(
       this.autocompleteInput?.nativeElement

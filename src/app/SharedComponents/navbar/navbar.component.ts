@@ -215,7 +215,7 @@ export class NavbarComponent {
 
   newsScoll(){
     this.scrollToElement('#newsSec');
-    this.helperService.triggerMarkerClick();
+    this.helperService.triggerMarkerClick('show');
   }
 }
 function closeDialog() {

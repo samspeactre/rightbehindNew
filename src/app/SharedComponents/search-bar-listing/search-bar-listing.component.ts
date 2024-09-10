@@ -22,6 +22,7 @@ import {
   faSearch,
   faSliders,
   faSort,
+  faNewspaper
 } from '@fortawesome/free-solid-svg-icons';
 import { ResizeService } from '../../Services/resize.service';
 import { CommonModule } from '@angular/common';
@@ -61,6 +62,7 @@ export class SearchBarListingComponent {
   faBed = faBed;
   faBath = faBath;
   faSort = faSort;
+  faNewspaper = faNewspaper;
   faDollar = faDollarSign;
   autocompleteService: any;
   private destroy$ = new Subject<void>();

@@ -43,6 +43,7 @@ export class DummyMapComponent implements OnInit {
   }
   @Input() blogArray: google.maps.LatLngLiteral[] = [];
   @Input() blogContents: any = [];
+  @Input() filterType: string;
 
   infoContentsArray: any[] = [];
   types: any = ['LOCALITY'];
@@ -50,6 +51,7 @@ export class DummyMapComponent implements OnInit {
   @Input() community: boolean = false;
   @Output() propertyHover = new EventEmitter<any>();
   @Output() drawCordinates = new EventEmitter<any>();
+  @Output() setFilterType = new EventEmitter<any>();
   @Output() resetDrawCordinates = new EventEmitter<any>();
   @Input() set infoContents(data: any) {
     this.infoContentsArray = data;
@@ -144,6 +146,12 @@ export class DummyMapComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeMap();
+  }
+
+  ngOnChanges(changes) {
+    if (changes?.filterType?.currentValue == 'news') {
+      this.blogMarkerRender()
+    }
   }
 
   disablePageScroll() {
@@ -395,36 +403,103 @@ export class DummyMapComponent implements OnInit {
     }
   }
 
-  async createMarkers(markerDataArray: any[], iconUrl: string) {
-    // for blog
-    const blogMarker = new google.maps.Marker({
-      position: new google.maps.LatLng(this.blogContents?.[0]?.latitude, this.blogContents?.[0]?.longitude),
-      map: this.map,
-      icon: {
-        url: '/assets/img/blogMar.webp',
-        scaledSize: new google.maps.Size(40, 40), // Marker size
-      },
-    });
-    const infoBlog = () => {
-      const div = document.createElement('div');
-      return div;
-    }
-    const infoWindowBlog = new google.maps.InfoWindow({
-      content: infoBlog(),
-    });
+  blogMarkerRender() {
+    console.log(this.filterType, 'filterType');
 
-    blogMarker.addListener('click', () => {
+    // Define a unique position key for the marker
+    const positionKey = `${this.blogContents?.[0]?.latitude},${this.blogContents?.[0]?.longitude}`;
+
+    // Check if a marker with this position already exists
+    let existingMarker = this.googleMarkers.find(marker => {
+      const markerPosition = marker.getPosition();
+      return `${markerPosition.lat()},${markerPosition.lng()}` === positionKey;
+    });
+    console.log(existingMarker, 'existingMarker')
+    if (existingMarker) {
+      // Marker exists, just open the info window
       if (this.currentInfoWindow) {
         this.currentInfoWindow.close();
       }
-      infoWindowBlog.open(this.map, blogMarker);
-      this.currentInfoWindow = infoWindowBlog;
-      this.map.setCenter(blogMarker.getPosition());
+      existingMarker.infoWindowInstance.open(this.map, existingMarker);
+      this.currentInfoWindow = existingMarker.infoWindowInstance;
+      this.map.setCenter(existingMarker.getPosition());
       this.map.setZoom(14);
-    });
+      return;
+    } else {
+      // Create a new marker
+      const blogMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(this.blogContents?.[0]?.latitude, this.blogContents?.[0]?.longitude),
+        map: this.map,
+        icon: {
+          url: '/assets/img/blogMar.webp',
+          scaledSize: new google.maps.Size(40, 40), // Marker size
+        },
+      });
 
-    this.blogContents[0].infoWindowInstance = infoWindowBlog;
-    this.googleMarkers.push(blogMarker);
+      const infoBlog = () => {
+        const div = document.createElement('div');
+        div.id = "blogUrl";
+
+        // Create the button element
+        const button = document.createElement('button');
+        button.className = 'btnPrimary py-2';
+        button.textContent = 'Open Blog';
+
+        // Add click event to the button
+        button.onclick = () => {
+          const blogUrl = this.blogContents?.[0]?.blogUrl;
+          if (blogUrl) {
+            window.open(blogUrl);
+          } else {
+            console.error('Blog URL not found');
+          }
+        };
+
+        // Append the button to the div
+        div.appendChild(button);
+
+        return div;
+      };
+
+      const infoWindowBlog = new google.maps.InfoWindow({
+        content: infoBlog(),
+      });
+
+      // Attach the info window to the marker
+      blogMarker.addListener('click', () => {
+        if (this.currentInfoWindow) {
+          this.currentInfoWindow.close();
+        }
+        infoWindowBlog.open(this.map, blogMarker);
+        this.currentInfoWindow = infoWindowBlog;
+        this.map.setCenter(blogMarker.getPosition());
+        this.map.setZoom(14);
+      });
+
+      // Store the marker and info window instance
+      blogMarker.infoWindowInstance = infoWindowBlog;
+      this.googleMarkers.push(blogMarker);
+
+      setTimeout(() => {
+        if (this.currentInfoWindow) {
+          this.currentInfoWindow.close();
+        }
+        infoWindowBlog.open(this.map, blogMarker);
+        this.currentInfoWindow = infoWindowBlog;
+        this.map.setCenter(blogMarker.getPosition());
+        this.map.setZoom(14);
+      }, 1000);
+    }
+
+    setTimeout(() => {
+      this.setFilterType.emit('all')
+    }, 1000);
+
+  }
+
+  async createMarkers(markerDataArray: any[], iconUrl: string) {
+    // for blog
+    // this.blogMarkerRender()
 
     await markerDataArray.forEach((markerData, index) => {
       const marker = new google.maps.Marker({

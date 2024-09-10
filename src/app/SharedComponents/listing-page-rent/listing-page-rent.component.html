@@ -60,10 +60,10 @@
       } @if((resize.windowSize$ | async)?.width > 1024 || showMapClicked){
       <div class="colSecond rightP" [style.top.px]="searchHeight">
         <app-dummy-map [disabled]="loader" (resetDrawCordinates)="resetCordinates($event)"
-          (drawCordinates)="drawSearch($event)" (propertyHover)="highlightCard($event)" [highlighted]="highlighted"
+          (drawCordinates)="drawSearch($event)" (setFilterType)="setFilterType($event)" (propertyHover)="highlightCard($event)" [highlighted]="highlighted"
           [removeHighlighted]="removeHighlighted" [markerPositions]="latLngArray" [center]="center"
           [highlightedAreaCoordinates]="latLngArray" [infoContents]="cards" [height]="screenHeight"
-          [setPolygon]="polygonData" [blogArray]="blogLatArray" [blogContents]="blogArray"></app-dummy-map>
+          [setPolygon]="polygonData" [blogArray]="blogLatArray" [blogContents]="blogArray" [filterType]="filterType"></app-dummy-map>
       </div>
       }
     </div>

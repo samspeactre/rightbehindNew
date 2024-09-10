@@ -466,9 +466,14 @@ console.log(Url, 'Url')
     this.modalService.dismissAll();
   }
   open(content: TemplateRef<any>) {
-    this.modalService
+    console.log('i call 2', this.filterType)
+    if(this.filterType == 'news'){
+
+    }else{
+      this.modalService
       .open(content, { centered: true })
       .result.then((result) => {});
+    }
   }
   sorting(event) {
     if (event) {
@@ -563,6 +568,10 @@ console.log(Url, 'Url')
       }
       this.renderer.addClass(cardElement, 'highlightCard');
     }
+  }
+  setFilterType(event){
+    this.filterType = event;
+    console.log(event, 'event')
   }
   drawSearch(event) {
     this.poly = event;

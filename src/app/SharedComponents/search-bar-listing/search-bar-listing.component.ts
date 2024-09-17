@@ -62,6 +62,7 @@ export class SearchBarListingComponent {
   faBed = faBed;
   faBath = faBath;
   faSort = faSort;
+  faNewspaper = faNewspaper;
   faDollar = faDollarSign;
   fablog = faNewspaper;
   autocompleteService: any;

@@ -467,28 +467,36 @@ export class DummyMapComponent implements OnInit {
 
       // Attach the info window to the marker
       blogMarker.addListener('click', () => {
-        if (this.currentInfoWindow) {
-          this.currentInfoWindow.close();
-        }
-        infoWindowBlog.open(this.map, blogMarker);
-        this.currentInfoWindow = infoWindowBlog;
-        this.map.setCenter(blogMarker.getPosition());
-        this.map.setZoom(14);
+        // if (this.currentInfoWindow) {
+        //   this.currentInfoWindow.close();
+        // }
+        // infoWindowBlog.open(this.map, blogMarker);
+        // this.currentInfoWindow = infoWindowBlog;
+        // this.map.setCenter(blogMarker.getPosition());
+        // this.map.setZoom(14);
+        
+        const blogUrl = this.blogContents?.[0]?.blogUrl;
+          if (blogUrl) {
+            window.open(blogUrl);
+          } else {
+            console.error('Blog URL not found');
+          }
+
       });
 
       // Store the marker and info window instance
-      blogMarker.infoWindowInstance = infoWindowBlog;
+      // blogMarker.infoWindowInstance = infoWindowBlog;
       this.googleMarkers.push(blogMarker);
 
-      setTimeout(() => {
-        if (this.currentInfoWindow) {
-          this.currentInfoWindow.close();
-        }
-        infoWindowBlog.open(this.map, blogMarker);
-        this.currentInfoWindow = infoWindowBlog;
-        this.map.setCenter(blogMarker.getPosition());
-        this.map.setZoom(14);
-      }, 1000);
+      // setTimeout(() => {
+      //   if (this.currentInfoWindow) {
+      //     this.currentInfoWindow.close();
+      //   }
+      //   infoWindowBlog.open(this.map, blogMarker);
+      //   this.currentInfoWindow = infoWindowBlog;
+      //   this.map.setCenter(blogMarker.getPosition());
+      //   this.map.setZoom(14);
+      // }, 1000);
     }
 
     setTimeout(() => {

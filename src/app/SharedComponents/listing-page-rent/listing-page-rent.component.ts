@@ -425,9 +425,12 @@ console.log(Url, 'Url')
       localStorage.setItem('searchByBar', 'false');
       this.router.navigate(['rent'], {
         queryParams: {
-          search: this.search,
-          lat: 25.761681,
-          lng: -80.191788,
+          // search: this.search,
+          // lat: 25.761681,
+          // lng: -80.191788,
+          search: '',
+          lat: 1.0,
+          lng: -1.0,
         },
       });
       this.getShapeCordinate();

@@ -331,6 +331,8 @@ export class DummyMapComponent implements OnInit {
     });
 
     document.getElementById('clearButton').addEventListener('click', (e) => {
+      this.clearMarkers()
+      console.log('clear click')
       e.preventDefault();
       this.clearShapes();
     });
@@ -474,7 +476,7 @@ export class DummyMapComponent implements OnInit {
         // this.currentInfoWindow = infoWindowBlog;
         // this.map.setCenter(blogMarker.getPosition());
         // this.map.setZoom(14);
-        
+
         const blogUrl = this.blogContents?.[0]?.blogUrl;
           if (blogUrl) {
             window.open(blogUrl);

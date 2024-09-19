@@ -176,22 +176,28 @@ export class ListingPageRentComponent {
         )
       )
       .subscribe((location) => {
-        this.locationDetails = location;
-        if (!this.searchByBar && this.locationDetails) {
-          this.search = this.locationDetails.placeName;
-          this.center = {
-            lat: this.locationDetails.lat,
-            lng: this.locationDetails.lng,
-          };
-          localStorage.setItem('searchByBar', 'false');
-          this.router.navigate(['rent'], {
-            queryParams: {
-              search: this.search,
+        if (!location?.placeName) {
+            this.getProperties(false)
+        }
+        else {
+          console.log('i call', location)
+          this.locationDetails = location;
+          if (!this.searchByBar && this.locationDetails) {
+            this.search = this.locationDetails.placeName;
+            this.center = {
               lat: this.locationDetails.lat,
               lng: this.locationDetails.lng,
-            },
-          });
-          this.getShapeCordinate();
+            };
+            localStorage.setItem('searchByBar', 'false');
+            this.router.navigate(['rent'], {
+              queryParams: {
+                search: this.search,
+                lat: this.locationDetails.lat,
+                lng: this.locationDetails.lng,
+              },
+            });
+            this.getShapeCordinate();
+          }
         }
       });
     this.activatedRoute.queryParams.subscribe((params: any) => {
@@ -252,7 +258,7 @@ export class ListingPageRentComponent {
     }
     const urlParams = this.buildUrlParams();
     const Url = `Property/get?${urlParams.toString()}`;
-console.log(Url, 'Url')
+    console.log(Url, 'Url')
     this.http
       .loaderGet(Url, this.userDetails ? true : false, true, true, false)
       .pipe(
@@ -467,12 +473,12 @@ console.log(Url, 'Url')
   }
   open(content: TemplateRef<any>) {
     console.log('i call 2', this.filterType)
-    if(this.filterType == 'news'){
+    if (this.filterType == 'news') {
 
-    }else{
+    } else {
       this.modalService
-      .open(content, { centered: true })
-      .result.then((result) => {});
+        .open(content, { centered: true })
+        .result.then((result) => { });
     }
   }
   sorting(event) {
@@ -569,7 +575,7 @@ console.log(Url, 'Url')
       this.renderer.addClass(cardElement, 'highlightCard');
     }
   }
-  setFilterType(event){
+  setFilterType(event) {
     this.filterType = event;
     console.log(event, 'event')
   }

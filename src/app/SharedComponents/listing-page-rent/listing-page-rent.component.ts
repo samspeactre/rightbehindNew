@@ -243,6 +243,7 @@ export class ListingPageRentComponent {
         takeUntil(this.destroy$)
       )
       .subscribe((response: any) => {
+        console.log(response?.model?.properties)
         this.handleResponse(
           response?.model?.properties,
           false,
@@ -351,8 +352,11 @@ export class ListingPageRentComponent {
           20,
         ];
         this.sorting(null);
+
+        console.log(this.latLngArray, 'this.latLngArray')
       }
       this.originalCards = this.cards;
+
       this.loadMore = this.cards?.length < mainResponse?.totalResults;
     } else {
       if (!loadMore) {
@@ -462,6 +466,7 @@ export class ListingPageRentComponent {
     });
   }
   onFilterChange(event: any, type: any) {
+    console.log(type, event)
     this[type] = event;
   }
   onRangeFilter() {
@@ -538,6 +543,7 @@ export class ListingPageRentComponent {
     this.beds = null;
     this.baths = null;
     this.sort = 'Date: Early to Late';
+    this.type = null;
     this.getProperties(false);
   }
   isResetDisabled(): boolean {

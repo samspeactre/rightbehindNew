@@ -60,6 +60,7 @@ export class DummyMapComponent implements OnInit {
       this.infoContentsArray?.length
     ) {
       this.placeMarkers();
+      console.log('1')
     }
   }
   @Input() set markerPositions(data: any[]) {
@@ -67,6 +68,7 @@ export class DummyMapComponent implements OnInit {
     console.log(data, 'data')
     if (this.markers?.length && this.infoContentsArray?.length) {
       this.placeMarkers();
+      console.log('2')
     } else {
       this.clearMarkers();
     }
@@ -80,6 +82,7 @@ export class DummyMapComponent implements OnInit {
     this.communityMarkers = data;
     if (this.communityMarkers?.length && this.infoContentsArray?.length) {
       this.placeMarkers();
+      console.log('3')
     } else {
       this.clearMarkers();
     }
@@ -226,6 +229,7 @@ export class DummyMapComponent implements OnInit {
     } else {
       this.resetDrawCordinates.emit(false);
       this.placeMarkers();
+      console.log('4')
     }
     this.enable();
     this.drawing = false;
@@ -338,6 +342,7 @@ export class DummyMapComponent implements OnInit {
     });
     this.poly = new google.maps.Polyline({ map: this.map, clickable: false });
     this.placeMarkers();
+    console.log('5')
   }
   setFeaturLayer(featureName) {
     if (
@@ -398,6 +403,7 @@ export class DummyMapComponent implements OnInit {
   placeMarkers() {
     this.clearMarkers();
     if (this.markers?.length) {
+      console.log(this.markers, 'this.markersthis.markers')
       this.createMarkers(this.markers, '/assets/img/solid-map-icon.svg');
     }
     if (this.communityMarkers?.length) {
@@ -510,7 +516,7 @@ export class DummyMapComponent implements OnInit {
   async createMarkers(markerDataArray: any[], iconUrl: string) {
     // for blog
     // this.blogMarkerRender()
-
+    console.log(markerDataArray, 'markerDataArray')
     await markerDataArray.forEach((markerData, index) => {
       const marker = new google.maps.Marker({
         position: new google.maps.LatLng(markerData.lat, markerData.lng),
@@ -559,9 +565,12 @@ export class DummyMapComponent implements OnInit {
 
       const infoWindow = new google.maps.InfoWindow({
         content: this.createInfoWindowContent(index),
+        zIndex: 9999,
       });
 
       marker.addListener('click', () => {
+        priceLabel.div.style.display = 'none';
+
         if (this.currentInfoWindow) {
           this.currentInfoWindow.close();
         }

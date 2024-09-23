@@ -91,13 +91,13 @@ export class LocationService {
   }
 
   private handlePermissionDenied() {
-    const dummyData = {
-      placeName: 'Miami, FL, USA',
-      lat: 25.761681,
-      lng: -80.191788,
-      default: true,
-    };
-    console.warn('Geolocation permission denied.', dummyData);
-    this.store.dispatch(addCurrenLocation({ data: dummyData }));
+    // const dummyData = {
+    //   placeName: 'Miami, FL, USA',
+    //   lat: 25.761681,
+    //   lng: -80.191788,
+    //   default: true,
+    // };
+    // console.warn('Geolocation permission denied.', dummyData);
+    // this.store.dispatch(addCurrenLocation({ data: dummyData }));
   }
 }

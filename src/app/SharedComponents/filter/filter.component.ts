@@ -42,8 +42,8 @@ export class FilterComponent {
   faTimes = faTimes;
   ngOnInit() {}
   onFilterChange(event: any, type: any) {
-    console.log(event?.target?.value)
-    if (type == 'minPrice' || type == 'maxPrice') {
+    console.log(event?.target?.value, 'filter')
+    if (type == 'minPrice' || type == 'maxPrice' || type == 'beds' || type == 'baths') {
       this.onChangeFilter.emit({ event: event?.target?.value, type });
     } else {
       this.onChangeFilter.emit({ event, type });

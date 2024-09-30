@@ -1,5 +1,6 @@
 import {
   ApplicationRef,
+  ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
   EventEmitter,
@@ -22,6 +23,7 @@ declare var google: any;
   selector: 'app-dummy-map',
   templateUrl: './dummy-map.component.html',
   styleUrls: ['./dummy-map.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DummyMapComponent implements OnInit {
   map: any;

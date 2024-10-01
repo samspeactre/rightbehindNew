@@ -1,6 +1,7 @@
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Renderer2,
@@ -151,7 +152,8 @@ export class ListingPageRentComponent {
     private elRef: ElementRef,
     private renderer: Renderer2,
     private store: Store,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private ref: ChangeDetectorRef
   ) {
     this.url = this.router.url;
     this.searchByBar = JSON.parse(
@@ -243,7 +245,8 @@ export class ListingPageRentComponent {
         takeUntil(this.destroy$)
       )
       .subscribe((response: any) => {
-        console.log(response?.model?.properties)
+        // let properties = this.chunkArray(response?.model?.properties, 10);
+        //   console.log(properties, 'responseresponse')
         this.handleResponse(
           response?.model?.properties,
           false,
@@ -271,7 +274,7 @@ export class ListingPageRentComponent {
       )
       .subscribe(
         (response: any) => {
-          console.log(response, 'responseresponse')
+          
           this.handleResponse(
             response?.model?.properties,
             loadMore,
@@ -281,6 +284,14 @@ export class ListingPageRentComponent {
         },
         (err: any) => this.handleError(loadMore)
       );
+  }
+
+  chunkArray(array: any[], chunkSize: number): any[][] {
+    const results = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      results.push(array.slice(i, i + chunkSize));
+    }
+    return results;
   }
 
   private buildUrlParams(): URLSearchParams {
@@ -363,6 +374,7 @@ export class ListingPageRentComponent {
         this.noDataError();
       }
     }
+    this.ref.detectChanges();
   }
   private handleError(loadMore: boolean): void {
     this.loadMore = false;

@@ -9,8 +9,7 @@ h2 {
   color: var(--royal-blue);
 }
 
-h3 {
-  font-size: 1.2vw;
+h6 {
   font-family: 'bold';
   color: var(--black);
 }
@@ -32,7 +31,7 @@ p {
 }
 
 .carousel-img-half,
-.carousel-img-full  {
+.carousel-img-full {
   width: 49%;
   height: 150px;
   margin: 5px 0;
@@ -124,13 +123,14 @@ p {
   border-radius: 1vw;
   margin-bottom: 1vw;
 }
+
 .facility-group {
   list-style: none;
   margin: 0;
   padding: 0;
   display: inline-block;
   vertical-align: top;
- 
+
 }
 
 .facility {
@@ -192,7 +192,7 @@ p {
   width: 100%;
 }
 
-.map-head{
+.map-head {
   margin-bottom: 1vw;
 }
 
@@ -210,25 +210,13 @@ p {
   display: none;
 }
 
-.popup-icon-links{
-  font-size: 1.5vw;
+.popup-icon-links {
+  font-size: 16px;
   color: var(--black);
 }
 
-.Prop-info h3,
-.ameneties h3,
-.map h3{
-  font-size: 1.2vw;
-  padding: 0vw 1vw 0vw;
-}
-
-.ameneties h3,
-.map h3{
-  padding-top: 1vw;
-}
-
-.sm-font{
-  font-size: 1vw;
+.sm-font {
+  font-size: 12px;
   font-family: 'reg';
   color: var(--black);
 }
@@ -249,10 +237,43 @@ p {
   margin-right: auto;
 }
 
+.close-popup {
+  padding: 7px 7px 0 0;
+  margin-left: 96.75%;
+}
+
+.close-popup button {
+  background-color: transparent;
+  border: 0;
+}
+
+.close-popup button .mat-icon {
+  font-size: 23px;
+  font-weight: 700;
+  color: black;
+}
+
+.special {
+  background: rgba(255, 255, 255, 0.76);
+  border-radius: 4px;
+  padding: 5px .5rem;
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  font-size: 8px;
+  color: black;
+  width: fit-content;
+}
 
 @media only screen and (max-width:1024px) {
   .prop-detail-img img {
     width: 25px;
     height: 25px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .close-popup {
+    margin-left: -8vw;
   }
 }

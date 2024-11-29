@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { InnerGuard } from './Guards/inner.gaurd';
 import { LayoutComponent } from './SharedComponents/layout/layout.component';
+import { InnerAdminGuard } from './Guards/innerAdmin.gaurd';
 
 export const routes: Routes = [
   {
@@ -59,12 +60,12 @@ export const routes: Routes = [
             (m) => m.Contact_Us_Routes
           ),
       },
-      {
-        path: 'rent-preview',
-        data: { footer: true, header: true },
-        loadChildren: () =>
-          import('./view/preview/preview.route').then((m) => m.Preview_Routes),
-      },
+      // {
+      //   path: 'rent-preview',
+      //   data: { footer: true, header: true },
+      //   loadChildren: () =>
+      //     import('./view/preview/preview.route').then((m) => m.Preview_Routes),
+      // },
       {
         path: 'rent-add-property',
         canActivate: [InnerGuard],
@@ -99,8 +100,30 @@ export const routes: Routes = [
             (m) => m.Blog_Inner_Routes
           ),
       },
-      
-      
+      {
+        path: 'communities',
+        data: { footer: true, header: true, communityHeader:true },
+        loadChildren: () =>
+          import('./SharedComponents/listing-page/listing-page.route').then(
+            (m) => m.Listing_Page_Routes
+          ),
+      },
+      {
+        path: 'payment-success',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('../app/SharedComponents/payment/payment.route').then(
+            (m) => m.Payment_Routes
+          ),
+      },
+      {
+        path: 'payment-failed',
+        data: { footer: true, header: true },
+        loadChildren: () =>
+          import('../app/SharedComponents/payment/payment.route').then(
+            (m) => m.Payment_Routes
+          ),
+      },
     ]
   },
   {
@@ -112,4 +135,17 @@ export const routes: Routes = [
         (m) => m.Dashboard_Routes
       ),
   },
+  {
+    path: 'admin-dashboard',
+    // canActivate: [InnerAdminGuard],
+    data: { footer: false, header: false },
+    loadChildren: () =>
+      import('./view/AdminDashboard/adminDashboardroute').then(
+        (m) => m.Dashboard_Routes
+      ),
+  },
+  {
+    path:'**',
+    redirectTo:'/'
+  }
 ];

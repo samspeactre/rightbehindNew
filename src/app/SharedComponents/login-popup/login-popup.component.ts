@@ -1,18 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, distinctUntilChanged, finalize, takeUntil } from 'rxjs';
 import { HttpService } from '../../Services/http.service';
 import { RegisterPopupComponent } from '../../View/register-popup/register-popup.component';
 import { HelperService } from '../../Services/helper.service';
 import { InputComponent } from '../input/input.component';
 import { AuthService } from '../../TsExtras/auth.service';
+import { ResizeService } from '../../Services/resize.service';
+import { MatIconModule } from '@angular/material/icon';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
+
 
 @Component({
   standalone: true,
-  imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule],
+  imports: [MatCheckboxModule, InputComponent, MatButtonModule, ReactiveFormsModule, MatIconModule],
   selector: 'app-login-popup',
   templateUrl: './login-popup.component.html',
   styleUrls: ['./login-popup.component.scss'],
@@ -20,14 +24,17 @@ import { AuthService } from '../../TsExtras/auth.service';
 export class LoginPopupComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   private destroy$ = new Subject<void>();
-
+  request: any = null
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterPopupComponent>,
     private fb: FormBuilder,
     private helper: HelperService,
-    private auth: AuthService
+    private auth: AuthService,
+    private resize: ResizeService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
+    this.request = data
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -48,7 +55,7 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password, rememberMe } = this.loginForm.value;
-      this.auth.login({email, password})
+      this.auth.login({ email, password })
         .pipe(
           takeUntil(this.destroy$),
           distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
@@ -60,7 +67,12 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
           } else {
             this.clearCredentials();
           }
-          this.dialogRef.close();
+          if (this.request) {
+            this.dialogRef.close({ data: true });
+          }
+          else {
+            this.dialogRef.close();
+          }
         });
     }
   }
@@ -68,8 +80,9 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
   openRegisterPopup(): void {
     this.dialogRef.close();
     this.dialog.open(RegisterPopupComponent, {
-      height: '92%',
-      width: window.innerWidth > 1024 ? '27%' : '100%'
+      height: '610px',
+      width: window.innerWidth > 1330 ? '380px' : '100%',
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 
@@ -94,5 +107,9 @@ export class LoginPopupComponent implements OnInit, OnDestroy {
         rememberMe: true
       });
     }
+  }
+
+  closePopup(): void {
+    this.dialogRef.close();
   }
 }

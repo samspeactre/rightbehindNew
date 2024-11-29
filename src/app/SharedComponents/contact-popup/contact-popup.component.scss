@@ -1,9 +1,20 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    align-content: center;
+    padding: 0 24px 35px;
+}
+
 .inq-para {
     width: 85%;
     margin: auto;
 }
 
-form{
+form {
     margin-top: 1vw;
 }
 
@@ -15,8 +26,7 @@ form{
     border-radius: 0.5vw;
     border: 0;
     transition: background-color 0.3s ease-out, color 0.3s ease-out, border 0.3s ease-out;
-    padding: 0vw 2.5vw;
-    height: 3.5vw;
+    padding: 16px 2.5vw;
     margin-bottom: 1vw;
 }
 
@@ -36,3 +46,38 @@ form{
     width: 100%;
     object-fit: cover;
 }
+
+.half-input {
+    width: 48.5%;
+}
+
+.full-lenght {
+    width: 100%;
+}
+
+.close-popup {
+    padding: 7px 7px 0 0;
+    float: right;
+  }
+  
+  .close-popup button {
+    background-color: transparent;
+    border: 0;
+  }
+  
+  .close-popup button .mat-icon {
+    font-size: 23px;
+    font-weight: 700;
+    color: black;
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    .container{
+        padding-top: 35px;
+    }
+
+    .close-popup {
+      margin-left: -8vw;
+    }
+  }

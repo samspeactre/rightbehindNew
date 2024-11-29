@@ -8,10 +8,15 @@ h4 {
     font-family: 'bold';
 }
 
+p {
+    text-align: center;
+    font-size: 12px;
+    font-family: 'reg';
+}
+
 .logo {
     width: 150px;
     margin: auto;
-    margin-top: 1.5vw;
 }
 
 .logo img {
@@ -71,31 +76,27 @@ p {
     font-family: "reg";
 }
 
-.para-1 {
-    font-size: 1vw;
-    text-align: center;
-}
-
-.head-1 {
-    font-size: 2.5vw;
-    margin-top: 1vw;
-}
-
 .main {
-    padding: 0vw 2vw;
+    align-content: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 35px;
 }
 
-.display {
-    display: flex;
-    justify-content: space-between;
+.close-popup {
+    padding: 7px 7px 0 0;
+    float: right;
 }
 
-.input-width {
-    width: 49%;
+.close-popup button {
+    background-color: transparent;
+    border: 0;
 }
 
-.btnPrimary {
-    width: 30%;
+.close-popup button .mat-icon {
+    font-size: 23px;
+    font-weight: 700;
+    color: black;
 }
 
 
@@ -104,3 +105,14 @@ p {
         font-size: 12px;
     }
 }
+
+@media only screen and (max-width: 600px) {
+
+    .main{
+        padding-top: 35px;
+    }
+
+    .close-popup {
+      margin-left: -8vw;
+    }
+  }

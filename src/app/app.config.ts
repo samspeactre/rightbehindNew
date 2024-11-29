@@ -1,8 +1,23 @@
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import {
+  APP_INITIALIZER,
+  ApplicationConfig,
+  importProvidersFrom,
+} from '@angular/core';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { InMemoryScrollingFeature, InMemoryScrollingOptions, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
+import {
+  InMemoryScrollingFeature,
+  InMemoryScrollingOptions,
+  provideRouter,
+  withInMemoryScrolling,
+  withPreloading,
+} from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { ToastrModule } from 'ngx-toastr';
@@ -12,36 +27,47 @@ import { addRental, addSell } from './Ngrx/data.action';
 import { RentalReducer, SellReducer, userReducer } from './Ngrx/data.reducer';
 import { CacheInterceptor } from './TsExtras/cache.interceptor';
 import { routes } from './app.routes';
-
+import { StarRatingModule } from 'angular-star-rating';
+import { AuthInterceptor } from './TsExtras/auth.interceptor';
+import { IMAGE_CONFIG } from '@angular/common';
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
 };
-const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling(scrollConfig);
+const inMemoryScrollingFeature: InMemoryScrollingFeature =
+  withInMemoryScrolling(scrollConfig);
 
-const initializeApp = (httpClient: HttpClient, store: Store): (() => Observable<any>) => {
+const initializeApp = (
+  httpClient: HttpClient,
+  store: Store
+): (() => Observable<any>) => {
   return () => {
     return new Observable((observer) => {
-      httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=1').pipe(
-        tap((response: any) => {
-          if (response?.model?.properties) {
-            const properties = response.model.properties;
-            store.dispatch(addRental({ data: properties }));
-          }
-        })
-      ).subscribe({
-        complete: () => {
-          observer.next();
-          observer.complete();
-          // httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=2').pipe(
-          //   tap((response: any) => {
-          //     if (response?.model?.properties) {
-          //       const properties = response.model.properties;
-          //       store.dispatch(addSell({ data: properties }));
-          //     }
-          //   })
-          // ).subscribe();
-        }
-      });
+      httpClient
+        .get(
+          'https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=2'
+        )
+        .pipe(
+          tap((response: any) => {
+            if (response?.model?.properties) {
+              const properties = response.model.properties;
+              store.dispatch(addRental({ data: properties }));
+            }
+          })
+        )
+        .subscribe({
+          complete: () => {
+            observer.next();
+            observer.complete();
+            // httpClient.get('https://recursing-allen.74-208-96-50.plesk.page/api/Property/get?pageNo=1&pageSize=10&type=1').pipe(
+            //   tap((response: any) => {
+            //     if (response?.model?.properties) {
+            //       const properties = response.model.properties;
+            //       store.dispatch(addSell({ data: properties }));
+            //     }
+            //   })
+            // ).subscribe();
+          },
+        });
     });
   };
 };
@@ -49,7 +75,11 @@ const initializeApp = (httpClient: HttpClient, store: Store): (() => Observable<
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
-    provideRouter(routes, inMemoryScrollingFeature, withPreloading(QuicklinkStrategy)),
+    provideRouter(
+      routes,
+      inMemoryScrollingFeature,
+      withPreloading(QuicklinkStrategy)
+    ),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
     {
@@ -58,9 +88,21 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true,
+        disableImageLazyLoadWarning: true,
+      },
+    },
+    {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
       deps: [HttpClient, Store],
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
     importProvidersFrom(
@@ -68,8 +110,9 @@ export const appConfig: ApplicationConfig = {
       StoreModule.forRoot({
         user: userReducer,
         rent: RentalReducer,
-        sell: SellReducer
+        sell: SellReducer,
       }),
+      StarRatingModule.forRoot(),
       ToastrModule.forRoot({
         timeOut: 2000,
         positionClass: 'toast-bottom-left',

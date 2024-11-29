@@ -1,109 +1,146 @@
-@import url('../../../assets/scss/skeleton.scss');
+@import url("../../../assets/scss/skeleton.scss");
 
 .btnWhiteNBlue {
-    padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
 }
 
 .btnWhiteNBlue.active {
-    background-color: #0160c9;
-    border-color: #0160c9;
-    color: white;
+  background-color: #0160c9;
+  border-color: #0160c9;
+  color: white;
 }
 
 :host ::ng-deep {
-    // .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-    //     padding: 0vw 0vw 0vw 1vw;
-    // }
+  h1 {
+    margin-top: 5rem;
+    text-align: center;
+    color: black;
+    font-size: 3.5rem;
+    margin-bottom: 0;
+    font-family: "bold";
+  }
+  .ngs-select {
+    background-color: white;
+    border-radius: 100px;
+    padding: 0px 15px;
+  }
 
-    .ngs-select {
-        background-color: white;
-        border-radius: 100px;
-        padding: 5px 15px;
-    }
-    .ng-select {
-        padding-bottom: 0 !important;
-    }
-    .ng-select .ng-select-container:after{
-        content: unset !important;
-    }
+  .ng-select {
+    padding-bottom: 0 !important;
+  }
+
+  .ng-select .ng-select-container:after {
+    content: unset !important;
+    min-height: 51.5px;
+    padding-bottom: 6px;
+  }
+  .mat-mdc-form-field {
+    width: 100%;
+  }
 }
 
-// :host ::ng-deep .mat-mdc-form-field-infix {
-//     width: 0vw;
-//     padding: 0vw 4.5vw 0vw 0vw;
-// }
+.search-bar {
+  width: 60%;
+  margin: auto;
+  .ngs-select {
+    background-color: white;
+    border-radius: 100px;
+    padding: 0px 15px;
+  }
+  .ng-select {
+    padding-bottom: 0 !important;
+  }
+  .ng-select .ng-select-container:after {
+    content: unset !important;
+    min-height: 51.5px;
+    padding-bottom: 6px;
+  }
+}
 
-// :host ::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
-//     cursor: inherit;
-//     font-size: 1.2vw;
-//     color: gray;
-// }
-
+.search-bar {
+  width: 60%;
+  margin: auto;
+}
 .sec-1 {
-    min-height: 57vh;
+  min-height: 40vh;
 }
 
 :host ::ng-deep .mat-mdc-select-arrow {
-    display: none;
+  display: none;
 }
 
 .arrow-down {
-    color: #0147b8 !important;
-    font-weight: 500;
-}
-
-:host ::ng-deep {
-    .mat-mdc-form-field {
-        width: 100%;
-    }
-
-    // .mdc-line-ripple {
-    //     display: none;
-    // }
-
-    // .mdc-text-field--filled {
-    //     background: white !important;
-    // }
-
-    // .mat-mdc-text-field-wrapper {
-    //     background: white !important;
-    // }
-
-    // .mat-mdc-form-field-focus-overlay {
-    //     opacity: 0;
-    //     background-color: white !important;
-    // }
+  color: #0147b8 !important;
+  font-weight: 500;
 }
 
 .mapElement {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .rightP {
-    padding-right: 0 !important;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
+  padding-right: 0 !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
 }
-.bigFont {
-    margin-top: 3rem;
+.fire-animation {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 9px;
 }
+.cstmZIndex {
+  z-index: -2;
+}
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
 
-.searchBar-width{
-    width: 65%;
-    margin: auto;
+  50% {
+    border-color: black;
+  }
 }
-@media only screen and (max-width:1024px) {
-    .bigFont {
-        margin-top: 4rem;
-        // margin-bottom: 2rem;
+.btnFilter {
+  background: none;
+  border: none;
+  color: #0147b8;
+}
+@media only screen and (max-width: 1024px) {
+  :host ::ng-deep {
+    h1 {
+      margin-top: 4rem;
+      font-size: 3rem;
+    }
+  }
+  .rightP {
+    position: unset;
+    padding-right: 12px !important;
+  }
+  .btnToggler {
+    background: #f3392c;
+    color: #fff;
+    border: none;
+    padding: 8px 1rem;
+  }
+  .search-bar {
+    width: 100%;
+  }
+  :host ::ng-deep {
+    .ngs-select {
+      border: 1px solid #0000002e;
+      margin: 10px 0;
     }
 
-    .rightP {
-        position: unset;
-        padding-right: 12px !important;
+    .btnToggler {
+      background: #f3392c;
+      color: #fff;
+      border: none;
+      padding: 8px 1rem;
     }
+  }
 }

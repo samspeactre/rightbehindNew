@@ -1,0 +1,138 @@
+<div class="feed me-3 mt-4">
+    <div class="post mt-2 mb-3 rounded-3">
+      <div class="post__top">
+        <div class="post__top-left">
+          <img
+            class="post__profile-img"
+            [src]="
+              post?.user?.imageUrl
+                ? src + post?.user?.imageUrl
+                : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+            "
+            alt="profile pic"
+          />
+          <a class="post__profile-name">{{
+            post?.user?.fullName
+          }}</a>
+        </div>
+        <div>
+          <span class="post__date-posted">{{
+            post?.createdAt | amTimeAgo
+          }}</span>
+        </div>
+      </div>
+      <div class="post__content">
+        <p class="p">
+          {{ post?.title }}
+        </p>
+      </div>
+      <div class="post__footer">
+        <button
+          class="footer-link bg-transparent border-0"
+          [disabled]="
+            (post?.userReaction && post?.isReactedByUser) || !join
+          "
+          (click)="react(true, post?.id)"
+        >
+          <fa-icon [icon]="faArrowUp"></fa-icon>
+          {{ post?.likeCount }}
+        </button>
+        <button
+          class="footer-link bg-transparent border-0"
+          [disabled]="
+            (post?.userReaction && !post?.isReactedByUser) || !join
+          "
+          (click)="react(false, post?.id)"
+        >
+          <fa-icon [icon]="faArrowDown"></fa-icon>
+          {{ post?.dislikeCount }}
+        </button>
+        <button class="footer-link bg-transparent border-0">
+          <fa-icon [icon]="faComment"></fa-icon>
+          {{ post?.forumPostAnswers?.length }}
+        </button>
+      </div>
+      <div class="post__comments">
+        <h6 class="bold mb-2 mt-2">Comments</h6>
+        @for (comment of post?.forumPostAnswers; track $index) {
+        <div
+          class="comment rounded-3"
+          style="
+            background-color: #e6f2ff;
+            align-items: flex-start;
+            padding: 6px 8px;
+            padding-bottom: 0;
+            margin: 10px 0;
+          "
+        >
+          <img
+            class="comment__profile-img"
+            [src]="
+              comment?.user?.imageUrl
+                ? src + comment?.user?.imageUrl
+                : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+            "
+            alt="commentator"
+          />
+          <div
+            class="comment__content w-100"
+            style="padding: 4px 0"
+          >
+            <div
+              class="d-flex justify-content-between align-items-center w-100"
+            >
+              <a class="comment-name">{{
+                comment?.user?.fullName
+              }}</a>
+              <span class="post__date-posted smallFont mb-0">{{
+                comment?.createdAt | amTimeAgo
+              }}</span>
+            </div>
+            <p
+              class="comment__text"
+              style="padding: 4px 6px; padding-left: 0"
+            >
+              {{ comment?.answer }}
+            </p>
+          </div>
+        </div>
+        }
+        <div
+          class="comment-create rounded-3"
+          style="background: transparent; padding: 12px 8px"
+        >
+          <img
+            class="comment__profile-img"
+            [src]="
+              userDetails?.imageUrl
+                ? src + userDetails?.imageUrl
+                : 'https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png'
+            "
+            alt="My Profile Picture"
+          />
+          <div class="inputBox position-relative">
+            <input
+              [title]="
+                join ? 'Comment here' : 'Join first to comment'
+              "
+              [readOnly]="!join"
+              class="input"
+              placeholder="Add a comment"
+              [(ngModel)]="comment"
+              style="background-color: #e6f2ff"
+            />
+            <button
+              [disabled]="!comment"
+              class="bg-transparent border-0"
+              (click)="createComment(post?.id)"
+            >
+              <fa-icon
+                [icon]="faPaperPlane"
+                class="position-absolute btnIcon"
+              ></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

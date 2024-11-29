@@ -1,0 +1,18 @@
+:host ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+  width: 100% !important;
+}
+
+:host ::ng-deep .mat-mdc-dialog-content {
+  padding: 0 !important;
+  max-height: 100% !important;
+}
+.cstmCheck {
+  box-shadow: 0 0 5px 5px #dbdbdb;
+  padding: 10px 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+.cstmCheck.skeleton{
+  height: 68px;
+  width: 100%;
+}

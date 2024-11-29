@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMagnifyingGlassPlus, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { assetUrl } from '../../Services/helper.service';
 @Component({
   standalone:true,
   imports:[CommonModule,MatIconModule,MatButtonModule, FontAwesomeModule, RouterModule],
@@ -16,7 +15,6 @@ import { assetUrl } from '../../Services/helper.service';
 export class PropertyCardMapComponent {
   faMagnifyingGlassPlus=faMagnifyingGlassPlus;
   faMapMarkerAlt=faMapMarkerAlt
-  src = assetUrl
   @Input() card!:any;
   constructor(private router:Router){}
   ngOnInit(){}

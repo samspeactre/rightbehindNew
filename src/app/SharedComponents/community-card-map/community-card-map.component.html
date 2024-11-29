@@ -1,0 +1,15 @@
+<div class="card rounded-2 heightGet">
+  <app-map height="150" [center]="{lat:card?.latitude,lng:card?.longitude}"
+    [communityMarkerPositions]="[{lat:card?.latitude,lng:card?.longitude}]" [mapDraggable]="false"></app-map>
+  <div class="card-content p-3">
+    <div class="dCenter justify-content-between flex-wrap">
+      <h5 class="card-name text-dark wow fadeInDown bold text-center">{{card?.title}}</h5>
+    </div>
+    <p class="text-dark mt-3 wow fadeInDown">{{card?.description}}</p>
+    <div class="dCenter">
+      <button class="btnDanger wow fadeInDown py-2" (click)="routeToCommunity()">
+        Join Now
+      </button>
+    </div>
+  </div>
+</div>

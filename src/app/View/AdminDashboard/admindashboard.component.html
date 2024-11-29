@@ -1,0 +1,27 @@
+<div class="blueBg min-vh-100 overflow-hidden d-flex align-items-center">
+    <div class="cstmContainer">
+        <div class="row d-flex align-items-start">
+            @if((resize.windowSize$ | async)?.width <= 1024){ <div class="col-lg-12">
+                <div class="logo mx-auto my-3">
+                    <a routerLink="/">
+                        <img src="../../assets/img/nav-logo.webp" alt="logo" width="100%" height="100%">
+                    </a>
+                </div>
+        </div>
+        }
+        <div [ngClass]="[isSidebarCollapsed ? ( (resize.windowSize$ | async)?.width <= 1024 ? 'col-2' : 'col-1') : 'col-2']"
+            class="transition" #sidebar>
+            <app-sidebar [admin]="true" [isSidebarCollapsed]="isSidebarCollapsed"
+                (isSidebarCollapsedEvent)="isSidebarCollapsed = $event"></app-sidebar>
+        </div>
+        <div [ngClass]="[isSidebarCollapsed ? ( (resize.windowSize$ | async)?.width <= 1024 ? 'col-10' : 'col-11') : 'col-10']"
+            class="transition">
+            <div class="rounded-4 overflow-hidden">
+                <div class="w-100 bg-white overflow-y-auto p-3 fixedHeight">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

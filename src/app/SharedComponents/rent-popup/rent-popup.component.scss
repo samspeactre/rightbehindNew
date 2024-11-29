@@ -1,57 +1,145 @@
-
-.popup-head{
-    font-size: 2vw;
-    font-family: 'bold';
-    color: var(--black);
+p {
+  font-size: 14px;
+  font-family: "reg";
+  color: rgb(170, 169, 169);
 }
 
-.plus-img{
-    width: 50px;
-    height: 50px;
-    margin: auto;
+.popup-head {
+  font-size: 33px;
+  font-family: "bold";
+  color: var(--black);
+  margin-bottom: 8px;
 }
 
-.plus-img img{
-    width: 100%;
-    object-fit: cover;
+.plus-img {
+  width: 50px;
+  height: 50px;
+  margin: auto;
 }
 
-.input-width{
-    width: 32.5%;
+.plus-img img {
+  width: 100%;
+  object-fit: cover;
 }
 
-:host ::ng-deep .btns .rent-btn{
+.input-width {
+  width: 32.5%;
+}
+
+:host ::ng-deep {
+  .btns .rent-btn {
     font-size: 0.8vw;
     letter-spacing: -0.03vw;
-    font-family: 'bold';
+    font-family: "bold";
     padding: 1.3vw 2vw;
     background-color: var(--white);
     border-radius: 3vw;
     border: 0.1vw solid rgba(217, 217, 217, 1);
+  }
+
+  .ng-select .ng-select-container {
+    align-items: center;
+    min-height: 45px;
+    border-radius: 10px;
+  }
+
+  .ng-select .ng-select-container .ng-value-container {
+    border-top: none;
+  }
 }
 
-:host ::ng-deep .sell-btn{
-    padding: 1.3vw 2.2vw;
-    font-size: 0.8vw;
-    letter-spacing: -0.03vw;
-    font-family: 'bold';
-    background-color: var(--white);
-    border-radius: 3vw;
-    border: 0.1vw solid rgba(217, 217, 217, 1);
-}
-.map{
-    width: 100%;
+:host ::ng-deep .sell-btn {
+  padding: 1.3vw 2.2vw;
+  font-size: 0.8vw;
+  letter-spacing: -0.03vw;
+  font-family: "bold";
+  background-color: var(--white);
+  border-radius: 3vw;
+  border: 0.1vw solid rgba(217, 217, 217, 1);
 }
 
-.map img{
-    width: 100%;
-    height: 9.3vw;
-    object-fit: cover;
-    border-radius: 0.5vw;
+.map {
+  width: 100%;
 }
-button{
-    transition: 0.5s all ease-in-out;
+
+.map img {
+  width: 100%;
+  height: 9.3vw;
+  object-fit: cover;
+  border-radius: 0.5vw;
 }
-button.Active{
-    background: #b8daff !important;
+
+button {
+  transition: 0.5s all ease-in-out;
+}
+
+button.Active {
+  background: #b8daff !important;
+}
+
+.full-lenght {
+  width: 100%;
+  padding: 0;
+}
+
+.half-input {
+  width: 49%;
+  padding: 0;
+}
+
+.full-lenght p {
+  line-height: 20px;
+  padding: 0px 60px;
+}
+
+.form-btn button {
+  padding: 12px 45px;
+}
+
+.left {
+  width: 50%;
+  align-content: center;
+}
+
+.left video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.right {
+  width: 45%;
+  align-content: center;
+}
+
+.main {
+  align-content: center;
+  padding:30px 35px 35px;
+}
+
+.right,
+.left {
+  align-content: center;
+}
+
+.close-popup {
+  padding: 7px 7px 0 0;
+  float: right;
+}
+
+.close-popup button {
+  background-color: transparent;
+  border: 0;
+}
+
+.close-popup button .mat-icon {
+  font-size: 23px;
+  font-weight: 700;
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .close-popup {
+    margin-left: -8vw;
+  }
 }

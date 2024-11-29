@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from '../../SharedComponents/Dashboard/sidebar/sidebar.component';
 import { DashNavComponent } from '../../SharedComponents/dash-nav/dash-nav.component';
+import { ResizeService } from '../../Services/resize.service';
 
 @Component({
   standalone: true,
@@ -19,9 +20,8 @@ export class DashboardComponent {
   @ViewChild('sidebar', { static: true }) sidebar!: ElementRef;
   rightHieght: number = 0
   currentSection = 'Dashboard';
-  width: number = window.innerWidth
-  isSidebarCollapsed: boolean = this.width < 1024 ? true : false;
-  constructor(){}
+  isSidebarCollapsed: boolean = window.innerWidth > 1024 ? false : true;
+  constructor(public resize:ResizeService){}
   ngAfterViewInit() {
     setTimeout(() => {
       this.setMapHeight()
@@ -29,7 +29,7 @@ export class DashboardComponent {
   }
   setMapHeight() {
     if (this.sidebar) {
-      this.rightHieght = this.width > 1024 ? this.sidebar.nativeElement.offsetHeight : (window.innerHeight - 50)
+      this.rightHieght = window.innerWidth > 1024 ? this.sidebar?.nativeElement.offsetHeight : (window.innerHeight - 50)
     }
   }
 }

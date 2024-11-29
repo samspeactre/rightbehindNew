@@ -18,14 +18,14 @@
     padding: 0;
     margin: 10px 0;
     padding: 0.8vw;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
-    border-bottom: 0.15vw solid var(--royal-blue);
+    background-color: var(--white);
+    border-radius: 0.3vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 
   .ng-select .ng-select-container .ng-value-container {
     align-items: stretch;
     padding: 0;
-    border-top: 0;
   }
 }
 
@@ -36,16 +36,15 @@ input[type="datetime-local"],
 input[type="date"],
 textarea {
   border: none;
-  border-bottom: 0.15vw solid var(--royal-blue);
   outline: none;
   width: 100%;
-  background: var(--white);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  background-color: var(--white);
+  border-radius: 0.3vw;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 0.8vw;
 }
 
 textarea {
-  border: 0.14vw solid var(--royal-blue);
   resize: none;
   padding: 1rem;
 }
@@ -222,6 +221,16 @@ a {
   padding: 0;
   width: 1.5vw;
   height: 1.5vw;
+}
+
+:host ::ng-deep {
+  .ng-select .ng-select-container .ng-value-container {
+    border-top: none;
+  }
+
+  .ng-select {
+    padding: 10.5px 1rem;
+  }
 }
 
 .check-box label {

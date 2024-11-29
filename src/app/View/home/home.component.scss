@@ -153,6 +153,7 @@ h5 {
 }
 
 @media only screen and (max-width: 1366px) {
+
   .bigFont {
     font-size: 56px;
   }
@@ -225,13 +226,13 @@ h5 {
     width: 100%;
   }
 
+  .dream-home {
+    margin-top: 1rem;
+    min-height: auto;
+  }
+
   .dream-home::after {
-    content: "";
-    width: 100%;
-    top: 10px;
-    position: relative;
-    height: 360px;
-    background-position: center;
+    content: unset;
   }
 
   .where .brainImg {
@@ -261,6 +262,11 @@ h5 {
 }
 
 @media only screen and (max-width: 540px) {
+
+  h5 {
+    font-size: 4vw;
+  }
+
   .dream-home p {
     line-height: normal;
   }
@@ -289,5 +295,17 @@ h5 {
 
   .dream-home::after {
     height: 320px;
+  }
+
+  .submit-btn {
+    background-color: red !important;
+    color: white !important;
+    border: 0;
+  }
+
+  .knowmore-btn {
+    background-color: black;
+    color: white;
+    border: 0;
   }
 }

@@ -31,12 +31,11 @@
     max-width: fit-content;
     margin-right: auto;
     min-width: 100%;
-    padding: 1vw 1vw 1vw 1vw;
     font-size: 12px;
 
     &.active {
-        background: white;
-        color: #000f28;
+        background: #0160C9;
+        color: #fff;
     }
 
     &.isSidebarCollapsed {

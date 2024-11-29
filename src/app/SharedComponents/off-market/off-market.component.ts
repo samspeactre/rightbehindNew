@@ -7,6 +7,7 @@ import { OffMarketCarouselComponent } from '../off-market-carousel/off-market-ca
 import { OffmarketSearchComponent } from '../offmarket-search/offmarket-search.component';
 import { LoginPopupComponent } from '../login-popup/login-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-off-market',
@@ -43,6 +44,14 @@ export class OffMarketComponent {
     'Visit properties in person to speak directly with owners about selling their property.'
   ];
 
+  marketInsight = [
+    'Stay updated with market trends specific to off-market properties.',
+    'Utilize our data to identify emerging opportunities and make strategic investment decisions.',
+    'Get expert analysis and predictions for investment guidance..',
+    'Explore market reports and neighborhood demographics.',
+    'Participate in webinars and live Q&A sessions with real estate experts to deepen your market knowledge.'
+  ];
+
   scrollToCarousel() {
     if (this.carouselSection) {
       this.carouselSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -51,9 +60,10 @@ export class OffMarketComponent {
 
   openLoginPopup(): void {
     this.dialog.open(LoginPopupComponent, {
-      height: '85%',
-      width: window.innerWidth > 1024 ? '27%' : '100%',
-      data: 'any'
+      height: '490px',
+      width: window.innerWidth > 1024 ? '350px' : '100%',
+      data: 'any',
+      scrollStrategy: new NoopScrollStrategy()
     });
   }
 }
